@@ -4,6 +4,6 @@
 /node_modules/
 /webroot/css/less/
 /webroot/upload/avatar/1/
+config/app.php
 .idea
-.sass-cache
 flo.js

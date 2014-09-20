@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS blog_categories (
 CREATE TABLE IF NOT EXISTS users (
   id int(11) NOT NULL AUTO_INCREMENT,
   username varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
   email varchar(50) NOT NULL,
   first_name varchar(100) NOT NULL,
   last_name varchar(100) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS users (
   blog_article_count int(11) DEFAULT '0',
   register_ip varchar(15) DEFAULT NULL,
   last_login_ip varchar(15) DEFAULT NULL,
-  last_login datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_login datetime NOT NULL,
   created datetime NOT NULL,
   modified datetime NOT NULL,
   PRIMARY KEY (id),
