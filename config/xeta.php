@@ -10,7 +10,7 @@ $config = [
 	],
 	'Site' => [
 		'name' => 'Xeta',
-		'github_url' => 'https://github.com/Xety'
+		'github_url' => 'https://github.com/Xety/Xeta'
 	],
 	'Home' => [
 		'articles' => 8,
