@@ -1,0 +1,304 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-09-02 20:58+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/UsersController.php:30
+msgid "Your username or password doesn't match."
+msgstr ""
+
+#: Controller/UsersController.php:47
+msgid "Your account has been created successfully !"
+msgstr ""
+
+#: Controller/UsersController.php:52
+msgid "Please, correct your mistake."
+msgstr ""
+
+#: Model/Table/BlogArticlesCommentsTable.php:51
+msgid "Please, {0} characters minimum for your comment."
+msgstr ""
+
+#: Model/Table/UsersTable.php:52
+msgid "You must set an username"
+msgstr ""
+
+#: Model/Table/UsersTable.php:57
+msgid "This username is already used."
+msgstr ""
+
+#: Model/Table/UsersTable.php:61
+msgid "Only alphanumeric characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:65
+msgid "Your username must be between {0} and {1} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:69
+msgid "You must specify your password."
+msgstr ""
+
+#: Model/Table/UsersTable.php:71
+msgid "You must specify your password (confirmation)."
+msgstr ""
+
+#: Model/Table/UsersTable.php:75
+msgid "Your password (confirmation) must be between {0} and {1} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:81
+msgid "Your password confirm must match with your password"
+msgstr ""
+
+#: Model/Table/UsersTable.php:90
+msgid "This E-mail is already used."
+msgstr ""
+
+#: Model/Table/UsersTable.php:94
+msgid "You must specify a valid E-mail address."
+msgstr ""
+
+#: Template/Blog/add.ctp:7
+msgid "Add Blog Article"
+msgstr ""
+
+#: Template/Blog/add.ctp:16
+#: Template/Blog/edit.ctp:18
+msgid "Submit"
+msgstr ""
+
+#: Template/Blog/article.ctp:6
+#: Template/Blog/category.ctp:6
+#: Template/Blog/index.ctp:6
+#: Template/Element/header.ctp:16
+msgid "Home"
+msgstr ""
+
+#: Template/Blog/article.ctp:9
+#: Template/Blog/category.ctp:9
+#: Template/Blog/index.ctp:9
+#: Template/Element/header.ctp:21
+msgid "Blog"
+msgstr ""
+
+#: Template/Blog/article.ctp:51;131
+#: Template/Blog/category.ctp:58
+#: Template/Blog/index.ctp:71
+msgid "Comments"
+msgstr ""
+
+#: Template/Blog/article.ctp:51;131
+#: Template/Blog/category.ctp:58
+#: Template/Blog/index.ctp:71
+msgid "Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:56
+#: Template/Blog/category.ctp:63
+#: Template/Blog/index.ctp:76
+msgid "Likes"
+msgstr ""
+
+#: Template/Blog/article.ctp:56
+#: Template/Blog/category.ctp:63
+#: Template/Blog/index.ctp:76
+msgid "Like"
+msgstr ""
+
+#: Template/Blog/article.ctp:67;156
+msgid "{0} Reply"
+msgstr ""
+
+#: Template/Blog/article.ctp:118
+msgid "Leave a Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:122
+msgid "Post Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:184
+msgid "Reply"
+msgstr ""
+
+#: Template/Blog/category.ctp:12
+msgid "Category"
+msgstr ""
+
+#: Template/Blog/category.ctp:79
+#: Template/Blog/index.ctp:92
+msgid "Read More"
+msgstr ""
+
+#: Template/Blog/edit.ctp:4
+msgid "Edit Blog Article"
+msgstr ""
+
+#: Template/Blog/edit.ctp:22
+msgid "Actions"
+msgstr ""
+
+#: Template/Blog/edit.ctp:24
+msgid "Delete"
+msgstr ""
+
+#: Template/Blog/edit.ctp:24
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: Template/Blog/edit.ctp:25
+msgid "List Blog Articles"
+msgstr ""
+
+#: Template/Blog/edit.ctp:26
+msgid "List BlogCategories"
+msgstr ""
+
+#: Template/Blog/edit.ctp:27
+msgid "New Blog Category"
+msgstr ""
+
+#: Template/Blog/edit.ctp:28
+msgid "List Users"
+msgstr ""
+
+#: Template/Blog/edit.ctp:29
+msgid "New User"
+msgstr ""
+
+#: Template/Blog/edit.ctp:30
+msgid "List BlogArticlesComments"
+msgstr ""
+
+#: Template/Blog/edit.ctp:31
+msgid "New Blog Articles Comment"
+msgstr ""
+
+#: Template/Blog/edit.ctp:32
+msgid "List BlogArticlesLikes"
+msgstr ""
+
+#: Template/Blog/edit.ctp:33
+msgid "New Blog Articles Like"
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:3
+msgid "Search Posts"
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:6
+msgid "Type your search..."
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:13
+msgid "Featured Article"
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:50
+msgid "Categories"
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:64
+msgid "Archives"
+msgstr ""
+
+#: Template/Cell/Blog/sidebar.ctp:69
+msgid "{0} ({1})"
+msgstr ""
+
+#: Template/Element/footer.ctp:8
+msgid "&copy; {0} {1}. All rights reserved."
+msgstr ""
+
+#: Template/Element/footer.ctp:11
+msgid "Designed & developed by"
+msgstr ""
+
+#: Template/Element/header.ctp:26
+msgid "Contact"
+msgstr ""
+
+#: Template/Element/header.ctp:34
+msgid "Hello,"
+msgstr ""
+
+#: Template/Element/header.ctp:39
+msgid "Login"
+msgstr ""
+
+#: Template/Element/header.ctp:49
+msgid "Sign up"
+msgstr ""
+
+#: Template/Element/header.ctp:70
+msgid "My Profil"
+msgstr ""
+
+#: Template/Element/header.ctp:73
+msgid "My Account"
+msgstr ""
+
+#: Template/Element/header.ctp:76
+msgid "Logout"
+msgstr ""
+
+#: Template/Users/add.ctp:7
+msgid "Ajouter un utilisateur"
+msgstr ""
+
+#: Template/Users/add.ctp:12
+msgid "Ajouter"
+msgstr ""
+
+#: Template/Users/login.ctp:6
+msgid "Why create an account ?"
+msgstr ""
+
+#: Template/Users/login.ctp:9
+msgid "With an account you can download all the sources provided in tutorials and you can interact with all the community !"
+msgstr ""
+
+#: Template/Users/login.ctp:25
+msgid "Create an Account"
+msgstr ""
+
+#: Template/Users/login.ctp:42;130
+msgid "Username"
+msgstr ""
+
+#: Template/Users/login.ctp:59
+msgid "E-mail"
+msgstr ""
+
+#: Template/Users/login.ctp:76;145
+msgid "Password"
+msgstr ""
+
+#: Template/Users/login.ctp:94
+msgid "Password (Confirmation)"
+msgstr ""
+
+#: Template/Users/login.ctp:103
+msgid "SignUp {0}"
+msgstr ""
+
+#: Template/Users/login.ctp:117
+msgid "LogIn to your Account"
+msgstr ""
+
+#: Template/Users/login.ctp:152
+msgid "LogIn {0}"
+msgstr ""
+
