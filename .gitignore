@@ -3,7 +3,7 @@
 /logs/*
 /node_modules/
 /webroot/css/less/
-/webroot/upload/avatar/*
+/webroot/upload/avatar/1/
 .idea
 .sass-cache
 flo.js
