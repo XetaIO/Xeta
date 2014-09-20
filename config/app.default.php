@@ -90,7 +90,7 @@ $config = [
 	 */
 		'_cake_core_' => [
 			'className' => 'File',
-			'prefix' => 'myapp_cake_core_',
+			'prefix' => 'Xeta_cake_core_',
 			'path' => CACHE . 'persistent/',
 			'serialize' => true,
 			'duration' => '+2 minutes',
@@ -103,7 +103,7 @@ $config = [
 	 */
 		'_cake_model_' => [
 			'className' => 'File',
-			'prefix' => 'myapp_cake_model_',
+			'prefix' => 'Xeta_cake_model_',
 			'path' => CACHE . 'models/',
 			'serialize' => true,
 			'duration' => '+2 minutes',
@@ -192,8 +192,8 @@ $config = [
 		'default' => [
 			'transport' => 'default',
 			'from' => 'you@localhost',
-			//'charset' => 'utf-8',
-			//'headerCharset' => 'utf-8',
+			'charset' => 'utf-8',
+			'headerCharset' => 'utf-8',
 		],
 	],
 
@@ -207,9 +207,9 @@ $config = [
 			'driver' => 'Cake\Database\Driver\Mysql',
 			'persistent' => false,
 			'host' => 'localhost',
-			'login' => 'my_app',
-			'password' => 'secret',
-			'database' => 'my_app',
+			'login' => 'root',
+			'password' => '',
+			'database' => 'xeta',
 			'prefix' => false,
 			'encoding' => 'utf8',
 			'timezone' => 'UTC',
@@ -311,5 +311,6 @@ $config = [
  */
 	'Session' => [
 		'defaults' => 'php',
+		'cookie' => 'Xeta'
 	],
 ];

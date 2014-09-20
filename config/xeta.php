@@ -32,7 +32,7 @@ $config = [
 		'User' => [
 			'biography' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
 				a[href], br, blockquote',
 				'CSS.AllowedProperties' => 'font-size,height,width,color',
@@ -40,7 +40,7 @@ $config = [
 			],
 			'signature' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p, strong, em, u, a[href], br, img[alt|src|style|title]',
 				'AutoFormat.RemoveEmpty' => true
 			]
@@ -48,7 +48,7 @@ $config = [
 		'Blog' => [
 			'comment' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
 				a[href], br, blockquote, pre[class]',
 				'CSS.AllowedProperties' => 'font-size,height,width',
@@ -57,13 +57,13 @@ $config = [
 			],
 			'comment_empty' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p',
 				'AutoFormat.RemoveEmpty' => true
 			],
 			'article' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
 				a[href], br, blockquote, pre[class]',
 				'CSS.AllowedProperties' => 'font-size,height,width',
@@ -72,7 +72,7 @@ $config = [
 			],
 			'article_empty' => [
 				'Core.Encoding' => 'UTF-8',
-				'URI.Base' => 'http://localhost/Xeta/',
+				'URI.Base' => 'http://xeta.io',
 				'HTML.Allowed' => 'p',
 				'AutoFormat.RemoveEmpty' => true
 			]
