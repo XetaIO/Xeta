@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -21,7 +20,7 @@ class BlogCategoriesTable extends Table {
 		$this->displayField('title');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-        $this->addBehavior('Sluggable');
+		$this->addBehavior('Sluggable');
 
 		$this->hasMany('BlogArticles', [
 			'foreignKey' => 'category_id',
@@ -31,7 +30,7 @@ class BlogCategoriesTable extends Table {
 /**
  * Default validation rules.
  *
- * @param \Cake\Validation\Validator $validator
+ * @param \Cake\Validation\Validator $validator Instance of the validator.
  * @return \Cake\Validation\Validator
  */
 	public function validationDefault(Validator $validator) {

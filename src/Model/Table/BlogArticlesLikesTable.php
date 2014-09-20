@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class BlogArticlesLikesTable extends Table
-{
+class BlogArticlesLikesTable extends Table {
 
 /**
  * Initialize method
@@ -14,8 +12,7 @@ class BlogArticlesLikesTable extends Table
  * @param array $config The configuration for the Table.
  * @return void
  */
-	public function initialize(array $config)
-	{
+	public function initialize(array $config) {
 		$this->table('blog_articles_likes');
 		$this->primaryKey('id');
 
@@ -35,11 +32,10 @@ class BlogArticlesLikesTable extends Table
 /**
  * Default validation rules.
  *
- * @param \Cake\Validation\Validator $validator
+ * @param \Cake\Validation\Validator $validator Instance of the validator.
  * @return \Cake\Validation\Validator
  */
-	public function validationDefault(Validator $validator)
-	{
+	public function validationDefault(Validator $validator) {
 		$validator
 			->add('article_id', 'valid', ['rule' => 'numeric'])
 			->validatePresence('article_id', 'create')

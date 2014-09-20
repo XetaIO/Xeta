@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class BlogArticlesTable extends Table
-{
+class BlogArticlesTable extends Table {
 
 /**
  * Initialize method
@@ -14,8 +12,7 @@ class BlogArticlesTable extends Table
  * @param array $config The configuration for the Table.
  * @return void
  */
-	public function initialize(array $config)
-	{
+	public function initialize(array $config) {
 		$this->table('blog_articles');
 		$this->displayField('title');
 		$this->primaryKey('id');
@@ -24,7 +21,7 @@ class BlogArticlesTable extends Table
 		$this->addBehavior('CounterCache', [
 			'Users' => ['blog_article_count']
 		]);
-        $this->addBehavior('Sluggable');
+		$this->addBehavior('Sluggable');
 
 		$this->belongsTo('BlogCategories', [
 			'foreignKey' => 'category_id',
@@ -43,11 +40,10 @@ class BlogArticlesTable extends Table
 /**
  * Default validation rules.
  *
- * @param \Cake\Validation\Validator $validator
+ * @param \Cake\Validation\Validator $validator Instance of the validator.
  * @return \Cake\Validation\Validator
  */
-	public function validationDefault(Validator $validator)
-	{
+	public function validationDefault(Validator $validator) {
 		$validator
 			->add('category_id', 'valid', ['rule' => 'numeric'])
 			->validatePresence('category_id', 'create')
@@ -65,6 +61,4 @@ class BlogArticlesTable extends Table
 
 		return $validator;
 	}
-
-
 }

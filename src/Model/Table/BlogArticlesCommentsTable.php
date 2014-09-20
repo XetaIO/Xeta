@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class BlogArticlesCommentsTable extends Table
-{
+class BlogArticlesCommentsTable extends Table {
 
 /**
  * Initialize method
@@ -14,8 +12,7 @@ class BlogArticlesCommentsTable extends Table
  * @param array $config The configuration for the Table.
  * @return void
  */
-	public function initialize(array $config)
-	{
+	public function initialize(array $config) {
 		$this->table('blog_articles_comments');
 		$this->displayField('comment');
 		$this->primaryKey('id');
@@ -37,11 +34,10 @@ class BlogArticlesCommentsTable extends Table
 /**
  * Create validation rules.
  *
- * @param \Cake\Validation\Validator $validator
+ * @param \Cake\Validation\Validator $validator Instance of the validator.
  * @return \Cake\Validation\Validator
  */
-	public function validationCreate(Validator $validator)
-	{
+	public function validationCreate(Validator $validator) {
 		$validator
 			->validatePresence('content', 'create')
 			->notEmpty('content')

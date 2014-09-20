@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller\Admin;
 
 
@@ -7,26 +6,32 @@ use App\Controller\AppController;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 
-class AdminController extends AppController
-{
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
+class AdminController extends AppController {
 
-        if(!$this->Auth->user() || $this->Auth->user('role') != 'admin')
-        {
-            throw new NotFoundException;
-        }
+/**
+ * BeforeFilter handle.
+ *
+ * @param Event $event The beforeFilter event that was fired.
+ *
+ * @throws \Cake\Error\NotFoundException When the user has not the required rank.
+ *
+ * @return void
+ */
+	public function beforeFilter(Event $event) {
+		parent::beforeFilter($event);
 
-        $this->layout = 'admin';
-    }
+		if (!$this->Auth->user() || $this->Auth->user('role') != 'admin') {
+			throw new NotFoundException;
+		}
 
-    public function home()
-    {
-        $this->loadModel('BlogArticles');
+		$this->layout = 'admin';
+	}
 
-        $Articles = $this->BlogArticles->find('all')->toArray();
-
-        //debug($Articles);
-    }
-} 
+/**
+ * Index page.
+ *
+ * @return void
+ */
+	public function home() {
+	}
+}
