@@ -18,7 +18,7 @@ Router::scope('/', function($routes) {
 	$routes->connect(
 		'/blog/article/:slug',
 		[
-			'controller' => 'blog',
+			'controller' => 'Blog',
 			'action' => 'article'
 		],
 		[
@@ -32,7 +32,7 @@ Router::scope('/', function($routes) {
 	$routes->connect(
 		'/blog/category/:slug',
 		[
-			'controller' => 'blog',
+			'controller' => 'Blog',
 			'action' => 'category',
 
 		],
@@ -47,7 +47,7 @@ Router::scope('/', function($routes) {
 	$routes->connect(
 		'/blog/archive/:slug',
 		[
-			'controller' => 'blog',
+			'controller' => 'Blog',
 			'action' => 'archive',
 
 		],
@@ -65,7 +65,7 @@ Router::scope('/', function($routes) {
 	$routes->connect(
 		'/users/profile/:slug',
 		[
-			'controller' => 'users',
+			'controller' => 'Users',
 			'action' => 'profile',
 
 		],
@@ -84,7 +84,7 @@ Router::scope('/', function($routes) {
  * Admin routes.
  */
 Router::prefix('admin', function ($routes) {
-	$routes->connect('/home', ['controller' => 'admin', 'action' => 'home']);
+	$routes->connect('/home', ['controller' => 'Admin', 'action' => 'home']);
 
 	$routes->fallbacks();
 });

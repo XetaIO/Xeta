@@ -7,3 +7,4 @@
 config/app.php
 .idea
 flo.js
+composer.lock

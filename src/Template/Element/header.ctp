@@ -46,7 +46,7 @@
 <?php if($this->Session->read('Auth.User')): ?>
 	<nav id="user-menu" class="user-menu menu-close">
 
-		<?= $this->Html->image('http://xeta.io/templates/components/Xeta/1.0/img/avatar.png', ['class' => 'user-menu-img']);?>
+		<?= $this->Html->image(h($this->Session->read('Auth.User.avatar')), ['class' => 'user-menu-img']);?>
 		<ul>
 			<li>
 				<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profil'), ['_name' => 'users-profile', 'slug' => h($this->Session->read('Auth.User.slug'))], ['escape' => false]);?>
