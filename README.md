@@ -2,17 +2,18 @@
 
 [![Build Status](https://travis-ci.org/Xety/Xeta.svg)](https://travis-ci.org/Xety/Xeta)
 
-Cake3 Blog Resource, is a resource for help new people who is starting with Cake3.
+Cake3 Blog Resource, is a resource to help people starting with Cake3.
 
-Actually, i have developed this blog for trying Cake3 and for my needs (personal blog), and i have decided to release it for helping people with Cake3, so there is probably some custom configurations/functions for my needs only.
+Actually, I have developed this blog to try Cake3 and for my needs (personal blog), and I have decided to release it to help people with Cake3, so there is probably some custom configurations/functions that only fit my needs.
 
 **It is not recommended to do a website with Cake3 until the first stable Cake3 version will be released.**
 
 ## Demo
 http://xeta.io
+    * User : test | Pass : 12345678
 
 # Install
-If you need to install it for trying a function or any other things, just follow the steps bellow.
+If you need to install to try a function or any other things, just follow the steps bellow.
 
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
@@ -28,12 +29,12 @@ Steps to install :
 
 #### Pre-installed Accounts
 * Admin account
-    * User : Admin | Pass : adminisstrator
-* Test account
+    * User : Admin | Pass : administrator
+* Member account
     * User : Test | Pass : testaccount
 
 # Features
-Since i have decided to release it, i'm trying to use the maximum of Cake3's features :
+Since I have decided to release it, I'm trying to use the maximum of Cake3's features :
 
 ## Behaviors
 * Timestamp
