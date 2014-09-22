@@ -5,17 +5,18 @@
 	"type": "project",
 	"license": "MIT",
 	"require": {
-		"php": ">=5.4.19",
+		"php": ">=5.4.16",
 		"cakephp/cakephp": "3.0.*-dev",
 		"mobiledetect/mobiledetectlib": "2.*",
+		"cakephp/debug_kit": "3.0.*-dev",
 		"ezyang/htmlpurifier": "dev-master"
 	},
 	"require-dev": {
-		"d11wtq/boris": "1.0.*",
-		"phpunit/phpunit": "4.2.*"
+		"d11wtq/boris": "1.0.*"
 	},
 	"suggest": {
-		"phpunit/phpunit": "Allows automated tests to be run without system-wide install."
+		"phpunit/phpunit": "Allows automated tests to be run without system-wide install.",
+		"cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."
 	},
 	"autoload": {
 		"psr-4": {
@@ -29,5 +30,10 @@
 	},
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall"
-	}
+	},
+	"config" : {
+		"bin-dir" : "bin"
+	},
+	"minimum-stability" : "dev",
+	"prefer-stable": true
 }

@@ -17,7 +17,7 @@ If you need to install to try a function or any other things, just follow the st
 
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
-* :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html)
+* :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :coffee: Some cups of coffee
 
 Steps to install :
@@ -43,7 +43,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * To build counter automatically
         * Comments count
         * Likes count
-* Custum Behavior :
+* Custom Behavior :
     * UploadBehavior
         * To upload safely an avatar for user
     * Sluggable Behavior
@@ -57,7 +57,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
 * Authentication
     * For login/logout an user
 * Flash
-    * With custum message : Error, Success, Info, Primary
+    * With custom message : Error, Success, Info, Primary
 * Cross Site Request Forgery (CSRF)
     * To provide the max security
 * Request Handling
@@ -95,7 +95,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
 
 ### General
 * Validation & Validator
-    * Custum Validator
+    * Custom Validator
         * UploadValidator
         * PurifierValidator
 * View Cell
