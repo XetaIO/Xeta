@@ -60,7 +60,7 @@ $config = [
  *   You should treat it as extremely sensitive data.
  */
 	'Security' => [
-		'salt' => '__SALT__',
+		'salt' => '316cbd07fd497fR6cbd9fTgb41537fR1f4915497b1533zDcv19993cbd6d',
 	],
 
 /**

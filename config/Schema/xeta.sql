@@ -1,5 +1,6 @@
+
 --
--- Structure de la table 'blog_articles'
+-- Table structure 'blog_articles'
 --
 
 CREATE TABLE IF NOT EXISTS blog_articles (
@@ -16,12 +17,19 @@ CREATE TABLE IF NOT EXISTS blog_articles (
   modified datetime NOT NULL,
   PRIMARY KEY (id),
   KEY slug (slug)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data 'blog_articles'
+--
+
+INSERT INTO blog_articles (id, category_id, user_id, title, content, slug, comment_count, like_count, is_display, created, modified) VALUES
+(1, 1, 1, 'Lorem ipsum dolor sit amet', '<p><strong>Lorem ipsum</strong> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n\r\n<blockquote>\r\n<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>\r\n</blockquote>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat : </p>\r\n\r\n<ul><li>vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto</li>\r\n	<li>odio dignissim qui blandit praesent luptatum zzril</li>\r\n	<li>delenit augue duis dolore te feugait nulla facilisi</li>\r\n</ul><p> </p>\r\n\r\n<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. <img alt="heureux" src="http://xeta.io/js/ckeditor/plugins/smiley/images/heureux.png" style="height:19px;width:19px;" title="heureux" /></p>\r\n', 'lorem-ipsum-dolor-sit-amet', 2, 1, 1, '2014-09-22 10:10:00', '2014-09-22 10:10:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table 'blog_articles_comments'
+-- Table structure 'blog_articles_comments'
 --
 
 CREATE TABLE IF NOT EXISTS blog_articles_comments (
@@ -32,12 +40,20 @@ CREATE TABLE IF NOT EXISTS blog_articles_comments (
   created datetime NOT NULL,
   modified datetime NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Table data 'blog_articles_comments'
+--
+
+INSERT INTO blog_articles_comments (id, article_id, user_id, content, created, modified) VALUES
+(1, 1, 1, '<p>Lorem i<strong>psum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh <u>euismod tincidunt </u>ut laoreet dolore <em>magna aliquam </em>erat volutpat.</p>\r\n', '2014-09-22 10:16:21', '2014-09-22 10:16:21'),
+(2, 1, 2, '<p><a href="/Xeta/blog/go/1"><strong>Admin has said :</strong> </a></p>\n\n<blockquote>\n<p>Lorem i<strong>psum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh <u>euismod tincidunt </u>ut laoreet dolore <em>magna aliquam </em>erat volutpat.</p>\n</blockquote>\n\n<p> </p>\n\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse <strong>molestie consequat,</strong> vel illum dolore eu feugiat nulla facilisis <em>at vero eros</em> et accumsan et iusto odio dignissim qui blandit praesent <u>luptatum zzril delenit</u> augue duis dolore te feugait nulla facilisi. <img alt="siffle" src="http://localhost/Xeta/js/ckeditor/plugins/smiley/images/siffle.png" style="height:19px;width:20px;" title="siffle" /></p>\n', '2014-09-22 10:19:30', '2014-09-22 10:19:30');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table 'blog_articles_likes'
+-- Table structure 'blog_articles_likes'
 --
 
 CREATE TABLE IF NOT EXISTS blog_articles_likes (
@@ -47,12 +63,19 @@ CREATE TABLE IF NOT EXISTS blog_articles_likes (
   created datetime NOT NULL,
   modified datetime NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data 'blog_articles_likes'
+--
+
+INSERT INTO blog_articles_likes (id, article_id, user_id, created, modified) VALUES
+(1, 1, 2, '2014-09-22 10:21:34', '2014-09-22 10:21:34');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table 'blog_categories'
+-- Table structure 'blog_categories'
 --
 
 CREATE TABLE IF NOT EXISTS blog_categories (
@@ -66,12 +89,19 @@ CREATE TABLE IF NOT EXISTS blog_categories (
   modified datetime NOT NULL,
   PRIMARY KEY (id),
   KEY slug (slug)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data 'blog_categories'
+--
+
+INSERT INTO blog_categories (id, title, description, slug, article_count, last_article_id, created, modified) VALUES
+(1, 'Xeta', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'xeta', 1, 0, '2014-09-22 10:00:00', '2014-09-22 10:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table 'users'
+-- Table structure 'users'
 --
 
 CREATE TABLE IF NOT EXISTS users (
@@ -99,4 +129,12 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE KEY username (username),
   UNIQUE KEY mail (email),
   KEY slug (slug)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Table data 'users'
+--
+
+INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, role, slug, blog_articles_comment_count, blog_article_count, register_ip, last_login_ip, last_login, created, modified) VALUES
+(1, 'Admin', '$2y$10$CEtYNUipq7kQcmLqeWn8XujbGLopZ6SsrNtZFBKDTyElpVuH3.2x.', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1, '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
+(2, 'Test', '$2y$10$QzacL4FNrPB1zuGWLei1suvhwFFxaD.IoXdbc4TsoIEQHWSpUGcdK', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0, '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');
