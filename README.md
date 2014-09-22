@@ -10,7 +10,7 @@ Actually, I have developed this blog to try Cake3 and for my needs (personal blo
 
 ## Demo
 http://xeta.io
-    * User : test | Pass : 12345678
+* User : test | Pass : 12345678
 
 # Install
 If you need to install to try a function or any other things, just follow the steps bellow.
