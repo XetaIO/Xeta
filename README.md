@@ -23,8 +23,8 @@ If you need to install to try a function or any other things, just follow the st
 Steps to install :
 * Setup a new database
 * Import the file `config/Schema/xeta.sql`
-* Rename the file `config/app.default.php` to `app.php`
 * Configure your database in this file [config/app.default.php](https://github.com/Xety/Xeta/blob/master/config/app.default.php#L206-L216)  (Do not change the SALT, else the account Admin and Test will not work)
+* Rename the file `config/app.default.php` to `app.php`
 * Run the command `composer update` in the root directory to install the lastest version of CakePHP3 and all dependencies.
 
 #### Pre-installed Accounts
