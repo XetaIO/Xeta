@@ -117,7 +117,7 @@ class Installer {
 		$config = $dir . '/config/app.php';
 		$content = file_get_contents($config);
 
-		$databaseName = $io->ask('What is your new database name ?', 'xeta');
+		$databaseName = $io->ask('What is your new database name ? ', 'xeta');
 		$content = str_replace('__DATABASE__', $databaseName, $content, $count);
 
 		if ($count == 0) {
@@ -180,8 +180,8 @@ class Installer {
 		$database = $dir . '/config/Schema/xeta.sql';
 		$content = file_get_contents($database);
 
-		$adminPass = $io->ask('Provide a password for the Admin account :', 'administrator');
-		$memberPass = $io->ask('Provide a password for the Member account :', 'testaccount');
+		$adminPass = $io->ask('Provide a password for the Admin account : ', 'administrator');
+		$memberPass = $io->ask('Provide a password for the Member account : ', 'testaccount');
 
 		$replacement = [
 			(new DefaultPasswordHasher)->hash($adminPass),

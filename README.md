@@ -29,9 +29,9 @@ Steps to install :
 
 #### Pre-installed Accounts
 * Admin account
-    * User : Admin | Pass : administrator
+    * User : Admin | Pass : administrator (Default password)
 * Member account
-    * User : Test | Pass : testaccount
+    * User : Test | Pass : testaccount (Default password)
 
 # Features
 Since I have decided to release it, I'm trying to use the maximum of Cake3's features :
