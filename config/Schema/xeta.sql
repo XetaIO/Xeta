@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS blog_articles_comments (
 
 INSERT INTO blog_articles_comments (id, article_id, user_id, content, created, modified) VALUES
 (1, 1, 1, '<p>Lorem i<strong>psum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh <u>euismod tincidunt </u>ut laoreet dolore <em>magna aliquam </em>erat volutpat.</p>\r\n', '2014-09-22 10:16:21', '2014-09-22 10:16:21'),
-(2, 1, 2, '<p><a href="/Xeta/blog/go/1"><strong>Admin has said :</strong> </a></p>\n\n<blockquote>\n<p>Lorem i<strong>psum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh <u>euismod tincidunt </u>ut laoreet dolore <em>magna aliquam </em>erat volutpat.</p>\n</blockquote>\n\n<p> </p>\n\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse <strong>molestie consequat,</strong> vel illum dolore eu feugiat nulla facilisis <em>at vero eros</em> et accumsan et iusto odio dignissim qui blandit praesent <u>luptatum zzril delenit</u> augue duis dolore te feugait nulla facilisi. <img alt="siffle" src="http://localhost/Xeta/js/ckeditor/plugins/smiley/images/siffle.png" style="height:19px;width:20px;" title="siffle" /></p>\n', '2014-09-22 10:19:30', '2014-09-22 10:19:30');
+(2, 1, 2, '<p><a href="/blog/go/1"><strong>Admin has said :</strong> </a></p>\n\n<blockquote>\n<p>Lorem i<strong>psum dolor sit amet,</strong> consectetuer adipiscing elit, sed diam nonummy nibh <u>euismod tincidunt </u>ut laoreet dolore <em>magna aliquam </em>erat volutpat.</p>\n</blockquote>\n\n<p> </p>\n\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse <strong>molestie consequat,</strong> vel illum dolore eu feugiat nulla facilisis <em>at vero eros</em> et accumsan et iusto odio dignissim qui blandit praesent <u>luptatum zzril delenit</u> augue duis dolore te feugait nulla facilisi.</p>\n', '2014-09-22 10:19:30', '2014-09-22 10:19:30');
 
 -- --------------------------------------------------------
 
@@ -136,5 +136,7 @@ CREATE TABLE IF NOT EXISTS users (
 --
 
 INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, role, slug, blog_articles_comment_count, blog_article_count, register_ip, last_login_ip, last_login, created, modified) VALUES
-(1, 'Admin', '$2y$10$CEtYNUipq7kQcmLqeWn8XujbGLopZ6SsrNtZFBKDTyElpVuH3.2x.', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1, '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
-(2, 'Test', '$2y$10$QzacL4FNrPB1zuGWLei1suvhwFFxaD.IoXdbc4TsoIEQHWSpUGcdK', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0, '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');
+(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1,
+'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
+(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0,
+'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');

@@ -14,6 +14,7 @@
  */
 namespace App\Console;
 
+use Cake\Auth\DefaultPasswordHasher;
 use Composer\Script\Event;
 
 /**
@@ -26,6 +27,7 @@ class Installer {
  * Does some routine installation tasks so people don't have to.
  *
  * @param \Composer\Script\Event $event The composer event object.
+ *
  * @return void
  */
 	public static function postInstall(Event $event) {
@@ -34,7 +36,9 @@ class Installer {
 		$rootDir = dirname(dirname(__DIR__));
 		static::createAppConfig($rootDir, $io);
 		static::setFolderPermissions($rootDir, $io);
-		static::setSecuritySalt($rootDir, $io);
+		static::setDatabaseName($rootDir, $io);
+		$newKey = static::setSecuritySalt($rootDir, $io);
+		static::setAccountPassword($rootDir, $io, $newKey);
 	}
 
 /**
@@ -42,6 +46,7 @@ class Installer {
  *
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
+ *
  * @return void
  */
 	public static function createAppConfig($dir, $io) {
@@ -60,6 +65,7 @@ class Installer {
  *
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
+ *
  * @return void
  */
 	public static function setFolderPermissions($dir, $io) {
@@ -100,10 +106,39 @@ class Installer {
 	}
 
 /**
+ * Set the datasources.default.database value in the application's config file.
+ *
+ * @param string $dir The application's root directory.
+ * @param \Composer\IO\IOInterface $io IO interface to write to console.
+ *
+ * @return void
+ */
+	public static function setDatabaseName($dir, $io) {
+		$config = $dir . '/config/app.php';
+		$content = file_get_contents($config);
+
+		$databaseName = $io->ask('What is your new database name ?', 'xeta');
+		$content = str_replace('__DATABASE__', $databaseName, $content, $count);
+
+		if ($count == 0) {
+			$io->write('No Datasources.default.database placeholder to replace.');
+			return;
+		}
+
+		$result = file_put_contents($config, $content);
+		if ($result) {
+			$io->write('Updated Datasources.default.database value in config/app.php');
+			return;
+		}
+		$io->write('Unable to update Datasources.default.database value.');
+	}
+
+/**
  * Set the security.salt value in the application's config file.
  *
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
+ *
  * @return void
  */
 	public static function setSecuritySalt($dir, $io) {
@@ -121,9 +156,57 @@ class Installer {
 		$result = file_put_contents($config, $content);
 		if ($result) {
 			$io->write('Updated Security.salt value in config/app.php');
-			return;
+			return $newKey;
 		}
 		$io->write('Unable to update Security.salt value.');
 	}
 
+/**
+ * Set up the admin and member password for the
+ *
+ * @param string $dir The application's root directory.
+ * @param \Composer\IO\IOInterface $io IO interface to write to console.
+ * @param string $newKey The new SALT.
+ *
+ * @return void
+ */
+	public static function setAccountPassword($dir, $io, $newKey = null) {
+		if ($newKey == null) {
+			$io->write('The new Security.salt value is empty in config/app.php, can\'t set up the password.');
+
+			return;
+		}
+
+		$database = $dir . '/config/Schema/xeta.sql';
+		$content = file_get_contents($database);
+
+		$adminPass = $io->ask('Provide a password for the Admin account :', 'administrator');
+		$memberPass = $io->ask('Provide a password for the Member account :', 'testaccount');
+
+		$replacement = [
+			(new DefaultPasswordHasher)->hash($adminPass),
+			(new DefaultPasswordHasher)->hash($memberPass),
+		];
+
+		$search = [
+			'__ADMINPASSWORD__',
+			'__MEMBERPASSWORD__'
+		];
+
+		$content = str_replace($search, $replacement, $content, $count);
+
+		if ($count != 2) {
+			$io->write('Error, there was no password to replace.');
+			return;
+		}
+
+		$result = file_put_contents($database, $content);
+
+		if ($result) {
+			$io->write('Set up Admin & Member passwords successfully !');
+			return;
+		}
+
+		$io->write('Unable to set up Admin & Member passwords.');
+	}
 }

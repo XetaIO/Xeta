@@ -60,7 +60,7 @@ $config = [
  *   You should treat it as extremely sensitive data.
  */
 	'Security' => [
-		'salt' => '316cbd07fd497fR6cbd9fTgb41537fR1f4915497b1533zDcv19993cbd6d',
+		'salt' => '__SALT__',
 	],
 
 /**
@@ -209,7 +209,7 @@ $config = [
 			'host' => 'localhost',
 			'login' => 'root',
 			'password' => '',
-			'database' => 'xeta',
+			'database' => '__DATABASE__',
 			'prefix' => false,
 			'encoding' => 'utf8',
 			'timezone' => 'UTC',
