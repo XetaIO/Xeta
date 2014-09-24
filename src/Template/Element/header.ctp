@@ -48,6 +48,12 @@
 
 		<?= $this->Html->image(h($this->Session->read('Auth.User.avatar')), ['class' => 'user-menu-img']);?>
 		<ul>
+			<?php if($this->Session->read('Auth.User.role') == 'admin'): ?>
+				<li>
+					<?= $this->Html->link('<i class="fa fa-key"></i>&nbsp;' . __('Dashboard'), ['controller' => 'Admin',
+							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]);?>
+				</li>
+			<?php endif;?>
 			<li>
 				<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profil'), ['_name' => 'users-profile', 'slug' => h($this->Session->read('Auth.User.slug'))], ['escape' => false]);?>
 			</li>
