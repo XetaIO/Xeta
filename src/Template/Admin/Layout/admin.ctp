@@ -3,9 +3,9 @@
     <head>
         <?= $this->Html->charset() ?>
         <?= $this->Html->meta(
-            'viewport',
-            'width=device-width, initial-scale=1.0, maximum-scale=1.0'
-        );?>
+			'viewport',
+			'width=device-width, initial-scale=1.0, maximum-scale=1.0'
+		);?>
         <title>
             <?= $this->fetch('title') ?>
         </title>
@@ -13,11 +13,11 @@
 
         <!-- Styles -->
         <?= $this->Html->css([
-            'http://fonts.googleapis.com/css?family=Leckerli+One',
-            'bootstrap.min',
-            'font-awesome.min',
-            'admin'
-        ]); ?>
+			'http://fonts.googleapis.com/css?family=Leckerli+One',
+			'bootstrap.min',
+			'font-awesome.min',
+			'admin'
+		]); ?>
 
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -43,10 +43,10 @@
         </div>
 
         <?= $this->Html->script([
-            'jquery.min',
-            'bootstrap.min',
-            'admin'
-        ]); ?>
+			'jquery.min',
+			'bootstrap.min',
+			'admin'
+		]); ?>
 
         <?= $this->fetch('scriptBottom'); ?>
     </body>

@@ -42,7 +42,7 @@ class UsersController extends AppController {
 	}
 
 /**
- * LogIn and register page.
+ * Login and register page.
  *
  * @return mixed
  */
@@ -80,8 +80,9 @@ class UsersController extends AppController {
 
 					$userRegister->register_ip = $this->request->clientIp();
 					$userRegister->last_login_ip = $this->request->clientIp();
+					$userRegister->last_login = new Time();
 
-					if ($newUser = $this->Users->save($userRegister, ['validate' => 'create'])) {
+					if ($this->Users->save($userRegister, ['validate' => 'create'])) {
 
 						$user = $this->Auth->identify();
 
@@ -112,7 +113,7 @@ class UsersController extends AppController {
 	}
 
 /**
- * LogOut an user.
+ * Logout an user.
  *
  * @return void
  */

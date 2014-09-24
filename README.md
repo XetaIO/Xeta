@@ -98,7 +98,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * Custom Validator
         * UploadValidator
         * PurifierValidator
-        * Validator for the Contact Page (Without Table/Entity)
+        * Validator for the Contact Page (With an ArrayContext)
 * View Cell
     * Blog sidebar
 
