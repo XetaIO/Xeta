@@ -10,7 +10,8 @@ $config = [
 	],
 	'Site' => [
 		'name' => 'Xeta',
-		'github_url' => 'https://github.com/Xety/Xeta'
+		'github_url' => 'https://github.com/Xety/Xeta',
+		'analytics_tracker_code' => 'UA-40328289-2'
 	],
 	'Home' => [
 		'articles' => 8,

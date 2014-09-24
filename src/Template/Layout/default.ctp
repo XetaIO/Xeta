@@ -27,6 +27,8 @@
 		<?= $this->fetch('meta'); ?>
 		<?= $this->fetch('css'); ?>
 		<?= $this->fetch('scriptTop'); ?>
+
+		<?= $this->element('google-analytics');?>
 	</head>
 	<body>
 		<!-- Notifications in JavaScript -->
