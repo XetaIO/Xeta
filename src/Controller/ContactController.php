@@ -29,10 +29,21 @@ class ContactController extends AppController {
 	public function index() {
 		$contact = [
 			'schema' => [
-				'name' => ['type' => 'string', 'length' => 100],
-				'email' => ['type' => 'string', 'length' => 100],
-				'subject' => ['type' => 'string', 'length' => 255],
-				'message' => ['type' => 'string']
+				'name' => [
+					'type' => 'string',
+					'length' => 100
+				],
+				'email' => [
+					'type' => 'string',
+					'length' => 100
+				],
+				'subject' => [
+					'type' => 'string',
+					'length' => 255
+				],
+				'message' => [
+					'type' => 'string'
+				]
 			],
 			'required' => [
 				'name' => 1,
@@ -57,10 +68,9 @@ class ContactController extends AppController {
 				->validatePresence('message')
 				->notEmpty('message', __("You need to give a message."))
 				->add('message', 'minLength', [
-						'rule' => ['minLength', 10],
-						'message' => __("Your message can not contain less than {0} characters.", 10)
-					]
-				);
+					'rule' => ['minLength', 10],
+					'message' => __("Your message can not contain less than {0} characters.", 10)
+				]);
 
 			$contact['errors'] = $validator->errors($this->request->data());
 

@@ -1,8 +1,8 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
 use Cake\I18n\Number;
+use Cake\ORM\Entity;
 
 class BlogCategory extends Entity {
 
@@ -20,7 +20,7 @@ class BlogCategory extends Entity {
  *
  * @return string
  */
-	public function _getArticleCountFormat() {
+	protected function _getArticleCountFormat() {
 		return Number::format($this->article_count, ['places' => 0, 'locale' => 'fr_FR']);
 	}
 }

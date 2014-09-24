@@ -16,16 +16,16 @@
 		<main class="col-md-9" role="main">
 
 			<section class="blog-main">
-				<?php foreach ($blogArticles as $blogArticle): ?>
+				<?php foreach ($Articles as $Article): ?>
 					<article class="post">
 
 						<div class="date">
 							<time>
 								<div class="day">
-									<?= h($blogArticle->created->format('d')) ?>
+									<?= h($Article->created->format('d')) ?>
 								</div>
 								<div class="month">
-									<?= h($blogArticle->created->format('M')) ?>
+									<?= h($Article->created->format('M')) ?>
 								</div>
 							</time>
 						</div>
@@ -33,10 +33,10 @@
 						<header>
 							<h2 class="title">
 								<?= $this->Html->link(
-									$blogArticle->title, [
+									$Article->title, [
 										'_name' => 'blog-article',
-										'slug' => $blogArticle->slug,
-										'?' => ['page' => $blogArticle->last_page]
+										'slug' => $Article->slug,
+										'?' => ['page' => $Article->last_page]
 									]
 								) ?>
 							</h2>
@@ -46,22 +46,20 @@
 							<ul>
 								<li class="author">
 									<i class="fa fa-user"></i>
-									<?php if (!empty($blogArticle->user->full_name)): ?>
+									<?php if (!empty($Article->user->full_name)): ?>
 										<?=
 										$this->Html->link(
-											$blogArticle->user->full_name,
-											[
+											$Article->user->full_name, [
 												'_name' => 'users-profile',
-												'slug' => $blogArticle->user->slug
+												'slug' => $Article->user->slug
 											]
 										) ?>
 									<?php else: ?>
 										<?=
 										$this->Html->link(
-											$blogArticle->user->username,
-											[
+											$Article->user->username, [
 												'_name' => 'users-profile',
-												'slug' => $blogArticle->user->slug
+												'slug' => $Article->user->slug
 											]
 										) ?>
 									<?php endif; ?>
@@ -70,22 +68,22 @@
 									<i class="fa fa-tag"></i>
 									<?=
 									$this->Html->link(
-										$blogArticle->blog_category->title,
+										$Article->blog_category->title,
 										[
 											'_name' => 'blog-category',
-											'slug' => $blogArticle->blog_category->slug
+											'slug' => $Article->blog_category->slug
 										]
 									) ?>
 								</li>
 								<li class="comments">
 									<i class="fa fa-comment"></i>
-									<?= h($blogArticle->comment_count_format) ?>
-									<?= ($blogArticle->comment_count > 1) ? __("Comments") : __("Comment") ?>
+									<?= h($Article->comment_count_format) ?>
+									<?= ($Article->comment_count > 1) ? __("Comments") : __("Comment") ?>
 								</li>
 								<li class="likes">
 									<i class="fa fa-heart"></i>
-									<?= h($blogArticle->like_count_format) ?>
-									<?= ($blogArticle->like_count > 1) ? __("Likes") : __("Like") ?>
+									<?= h($Article->like_count_format) ?>
+									<?= ($Article->like_count > 1) ? __("Likes") : __("Like") ?>
 								</li>
 							</ul>
 						</aside>
@@ -93,12 +91,12 @@
 						<div class="content">
 							<?=
 							$this->Text->truncate(
-								$blogArticle->content_empty,
+								$Article->content_empty,
 								200,
-								array(
+								[
 									'ellipsis' => '...',
 									'exact' => false
-								)
+								]
 							) ?>
 						</div>
 						<p>
@@ -107,8 +105,8 @@
 								__('Read More'),
 								[
 									'_name' => 'blog-article',
-									'slug' => $blogArticle->slug,
-									'?' => ['page' => $blogArticle->last_page]
+									'slug' => $Article->slug,
+									'?' => ['page' => $Article->last_page]
 								],
 								['class' => 'btn btn-primary']
 							);?>

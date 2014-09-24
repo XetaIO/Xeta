@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Utility\Inflector;
 
 class PagesController extends AppController {
 
@@ -53,16 +52,7 @@ class PagesController extends AppController {
 						);
 				},
 				'Users' => function($q) {
-					return $q
-						->select(
-							[
-								'first_name',
-								'last_name',
-								'username',
-								'avatar',
-								'slug'
-							]
-						);
+					return $q->find('medium');
 				}
 			])
 			->order([

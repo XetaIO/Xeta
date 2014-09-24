@@ -28,22 +28,17 @@ class UsersController extends AppController {
  */
 	public function index() {
 		$this->paginate = [
-			'fields' => [
-				'username',
-				'first_name',
-				'last_name',
-				'slug',
-				'role',
-				'avatar',
-				'created',
-				'last_login'
-			],
-			'maxLimit' => Configure::read('User.user_per_page'),
-			'order' => [
-				'Users.created' => 'desc'
-			]
+			'maxLimit' => Configure::read('User.user_per_page')
 		];
-		$this->set('Users', $this->paginate($this->Users));
+		$Users = $this->Users
+			->find('full')
+			->order([
+				'Users.created' => 'desc'
+			]);
+
+		$Users = $this->paginate($Users);
+
+		$this->set(compact('Users'));
 	}
 
 /**
@@ -218,28 +213,24 @@ class UsersController extends AppController {
  */
 	public function profile() {
 		$User = $this->Users
-			->find(
-				'slug', [
-					'slug' => $this->request->slug,
-					'slugField' => 'Users.slug'
-				]
-			)
-			->contain(
-				[
-					'BlogArticles' => function($q) {
-							return $q
-								->limit(Configure::read('User.Profile.max_articles'));
-					},
-					'BlogArticlesComments' => function($q) {
-							return $q
-								->limit(Configure::read('User.Profile.max_comments'));
-					},
-					'BlogArticlesLikes' => function($q) {
-							return $q
-								->limit(Configure::read('User.Profile.max_likes'));
-					},
-				]
-			)
+			->find('slug', [
+				'slug' => $this->request->slug,
+				'slugField' => 'Users.slug'
+			])
+			->contain([
+				'BlogArticles' => function($q) {
+						return $q
+							->limit(Configure::read('User.Profile.max_articles'));
+				},
+				'BlogArticlesComments' => function($q) {
+						return $q
+							->limit(Configure::read('User.Profile.max_comments'));
+				},
+				'BlogArticlesLikes' => function($q) {
+						return $q
+							->limit(Configure::read('User.Profile.max_likes'));
+				},
+			])
 			->first();
 
 		if (is_null($User)) {

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-
 use Cake\Core\Configure;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
@@ -39,26 +38,24 @@ class BlogController extends AppController {
 	public function index() {
 		$this->loadModel('BlogArticles');
 		$this->paginate = [
-			'contain' => [
+			'maxLimit' => Configure::read('Blog.article_per_page')
+		];
+
+		$Articles = $this->BlogArticles
+			->find()
+			->contain([
 				'BlogCategories',
 				'Users' => function ($q) {
-						return $q
-							->select(
-								[
-									'first_name',
-									'last_name',
-									'username',
-									'slug'
-								]
-							);
+					return $q->find('short');
 				}
-			],
-			'maxLimit' => Configure::read('Blog.article_per_page'),
-			'order' => [
+			])
+			->order([
 				'BlogArticles.created' => 'desc'
-			]
-		];
-		$this->set('blogArticles', $this->paginate($this->BlogArticles));
+			]);
+
+		$Articles = $this->paginate($Articles);
+
+		$this->set(compact('Articles'));
 	}
 
 /**
@@ -70,13 +67,13 @@ class BlogController extends AppController {
 		$this->loadModel('BlogCategories');
 
 		$Category = $this->BlogCategories
-			->find(
-				'slug', [
-					'slug' => $this->request->slug,
-					'slugField' => 'BlogCategories.slug'
-				]
-			)
-			->contain(['BlogArticles'])
+			->find('slug', [
+				'slug' => $this->request->slug,
+				'slugField' => 'BlogCategories.slug'
+			])
+			->contain([
+				'BlogArticles'
+			])
 			->first();
 
 		//Check if the category is found.
@@ -95,27 +92,16 @@ class BlogController extends AppController {
 		$CategoryArticles = $this->BlogArticles
 			->find()
 			->contain([
-					'Users' => function ($q) {
-							return $q
-								->select(
-									[
-										'first_name',
-										'last_name',
-										'username',
-										'slug'
-									]
-								);
-					}
-				]
-			)
+				'Users' => function ($q) {
+					return $q->find('short');
+				}
+			])
 			->where([
-					'BlogArticles.category_id' => $Category->id
-				]
-			)
+				'BlogArticles.category_id' => $Category->id
+			])
 			->order([
-					'BlogArticles.created' => 'desc'
-				]
-			);
+				'BlogArticles.created' => 'desc'
+			]);
 
 		$Articles = $this->paginate($CategoryArticles);
 
@@ -131,32 +117,16 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticles');
 
 		$Article = $this->BlogArticles
-			->find(
-				'slug', [
-					'slug' => $this->request->slug,
-					'slugField' => 'BlogArticles.slug'
-				]
-			)
-			->contain(
-				[
-					'BlogCategories',
-					'Users' => function ($q) {
-							return $q
-								->select(
-									[
-										'username',
-										'first_name',
-										'last_name',
-										'slug',
-										'avatar',
-										'facebook',
-										'twitter',
-										'signature'
-									]
-								);
-					}
-				]
-			)
+			->find('slug', [
+				'slug' => $this->request->slug,
+				'slugField' => 'BlogArticles.slug'
+			])
+			->contain([
+				'BlogCategories',
+				'Users' => function ($q) {
+						return $q->find('full');
+				}
+			])
 			->first();
 
 		//Check if the article is found.
@@ -185,12 +155,10 @@ class BlogController extends AppController {
 
 				$this->Flash->success(__('Your comment has been posted successfully !'));
 				//Redirect the user to the last page of the article.
-				$this->redirect(
-					[
-						'action' => 'go',
-						$insertComment->id
-					]
-				);
+				$this->redirect([
+					'action' => 'go',
+					$insertComment->id
+				]);
 			}
 		}
 
@@ -201,32 +169,17 @@ class BlogController extends AppController {
 
 		$ArticleComments = $this->BlogArticlesComments
 			->find()
-			->where(
-				[
-					'article_id' => $Article->id
-				]
-			)
-			->contain(
-				[
-					'Users' => function ($q) {
-							return $q
-								->select(
-									[
-										'username',
-										'first_name',
-										'last_name',
-										'slug',
-										'avatar'
-									]
-								);
-					}
-				]
-			)
-			->order(
-				[
-					'BlogArticlesComments.created' => 'asc'
-				]
-			);
+			->where([
+				'article_id' => $Article->id
+			])
+			->contain([
+				'Users' => function ($q) {
+					return $q->find('medium');
+				}
+			])
+			->order([
+				'BlogArticlesComments.created' => 'asc'
+			]);
 
 		$Comments = $this->paginate($ArticleComments);
 
@@ -234,12 +187,10 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticlesLikes');
 		$Like = $this->BlogArticlesLikes
 			->find()
-			->where(
-				[
-					'user_id' => ($this->Auth->user()) ? $this->Auth->user('id') : null,
-					'article_id' => $Article->id
-				]
-			)
+			->where([
+				'user_id' => ($this->Auth->user()) ? $this->Auth->user('id') : null,
+				'article_id' => $Article->id
+			])
 			->first();
 
 		//Build the newEntity for the comment form.
@@ -267,28 +218,15 @@ class BlogController extends AppController {
 
 		$Comment = $this->BlogArticlesComments
 			->find()
-			->where(
-				[
-					'BlogArticlesComments.article_id' => $ArticleId,
-					'BlogArticlesComments.id' => $CommentId
-				]
-			)
-			->contain(
-				[
-					'Users' => function ($q) {
-							return $q
-								->select(
-									[
-										'id',
-										'first_name',
-										'last_name',
-										'username',
-										'slug'
-									]
-								);
-					}
-				]
-			)
+			->where([
+				'BlogArticlesComments.article_id' => $ArticleId,
+				'BlogArticlesComments.id' => $CommentId
+			])
+			->contain([
+				'Users' => function ($q) {
+						return $q->find('short');
+				}
+			])
 			->first();
 
 		if (!is_null($Comment)) {
@@ -298,21 +236,14 @@ class BlogController extends AppController {
 			$json['comment'] =
 				'<div>'
 				. '     <div>'
-				. '         <a href="'
-				. Router::url(
-					[
-						'action' => 'go',
-						$Comment->id
-					]
-				)
-				.           '">'
+				. '         <a href="' . Router::url(['action' => 'go', $Comment->id]) . '">'
 				. '             <strong>' . $Comment->user->full_name . ' ' . __("has said :") . '</strong>'
 				. '         </a>'
 				. '	    </div>'
 				. '     <blockquote>'
 				.           $Comment->content
 				. '     </blockquote>'
-				. ' </div><p>&nbsp;</p><p>&nbsp;</p>';
+				. '</div><p>&nbsp;</p><p>&nbsp;</p>';
 
 			$json['error'] = false;
 
@@ -340,16 +271,12 @@ class BlogController extends AppController {
 
 		$Comment = $this->BlogArticlesComments
 			->find()
-			->contain(
-				[
-					'BlogArticles'
-				]
-			)
-			->where(
-				[
-					'BlogArticlesComments.id' => $CommentId
-				]
-			)
+			->contain([
+				'BlogArticles'
+			])
+			->where([
+				'BlogArticlesComments.id' => $CommentId
+			])
 			->first();
 
 		if (is_null($Comment)) {
@@ -363,12 +290,10 @@ class BlogController extends AppController {
 		//Count the number of message before this message.
 		$messagesBefore = $this->BlogArticlesComments
 			->find()
-			->where(
-				[
-					'BlogArticlesComments.article_id' => $Comment->article_id,
-					'BlogArticlesComments.created <' => $Comment->created
-				]
-			)
+			->where([
+				'BlogArticlesComments.article_id' => $Comment->article_id,
+				'BlogArticlesComments.created <' => $Comment->created
+			])
 			->count();
 
 		//Get the number of messages per page.
@@ -380,14 +305,12 @@ class BlogController extends AppController {
 		$page = ($page > 1) ? $page : 1;
 
 		//Redirect the user.
-		return $this->redirect(
-			[
-				'_name' => 'blog-article',
-				'slug' => $Comment->blog_article->slug,
-				'?' => ['page' => $page],
-				'#' => 'comment-' . $CommentId
-			]
-		);
+		return $this->redirect([
+			'_name' => 'blog-article',
+			'slug' => $Comment->blog_article->slug,
+			'?' => ['page' => $page],
+			'#' => 'comment-' . $CommentId
+		]);
 	}
 
 /**
@@ -401,35 +324,23 @@ class BlogController extends AppController {
 		//Paginate all Articles.
 		$this->loadModel('BlogArticles');
 		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.article_per_page'),
-			'order' => [
-				'BlogArticles.created' => 'desc'
-			]
+			'maxLimit' => Configure::read('Blog.article_per_page')
 		];
 
 		$ArchiveArticles = $this->BlogArticles
 			->find()
-			->where(
-				[
-					'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date
-				]
-			)
-			->contain(
-				[
-					'BlogCategories',
-					'Users' => function ($q) {
-							return $q
-								->select(
-									[
-										'first_name',
-										'last_name',
-										'username',
-										'slug'
-									]
-								);
-					}
-				]
-			);
+			->where([
+				'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date
+			])
+			->contain([
+				'BlogCategories',
+				'Users' => function ($q) {
+						return $q->find('short');
+				}
+			])
+			->order([
+				'BlogArticles.created' => 'desc'
+			]);
 
 		//Check if we have a result.
 		$CheckArticles = $ArchiveArticles->toArray();
@@ -480,21 +391,11 @@ class BlogController extends AppController {
 
 		$Articles = $this->BlogArticles
 			->find()
-			->contain(
-				[
-					'Users' => function ($q) {
-						return $q
-							->select(
-								[
-									'first_name',
-									'last_name',
-									'username',
-									'slug'
-								]
-							);
-					}
-				]
-			)
+			->contain([
+				'Users' => function ($q) {
+					return $q->find('short');
+				}
+			])
 			->where(function($q) use ($keyword) {
 					return $q
 						->like('title', "%$keyword%");
@@ -513,7 +414,7 @@ class BlogController extends AppController {
  *
  * @param int $ArticleId Id of the article to like.
  *
- * @throws \Cake\Error\NotFoundException
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
  * @return mixed
  */
@@ -526,12 +427,10 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticlesLikes');
 		$CheckLike = $this->BlogArticlesLikes
 			->find()
-			->where(
-				[
-					'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
-					'BlogArticlesLikes.article_id' => $ArticleId
-				]
-			)
+			->where([
+				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
+				'BlogArticlesLikes.article_id' => $ArticleId
+			])
 			->first();
 
 		if (!is_null($CheckLike)) {
@@ -547,11 +446,9 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticles');
 		$CheckArticle = $this->BlogArticles
 			->find()
-			->where(
-				[
-					'id' => $ArticleId
-				]
-			)
+			->where([
+				'id' => $ArticleId
+			])
 			->first();
 
 		if (is_null($CheckArticle)) {
@@ -595,7 +492,7 @@ class BlogController extends AppController {
  *
  * @param int|null $ArticleId Id of the article to like.
  *
- * @throws \Cake\Error\NotFoundException
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
  * @return mixed
  */
@@ -608,12 +505,10 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticlesLikes');
 		$Like = $this->BlogArticlesLikes
 			->find()
-			->where(
-				[
-					'user_id' => $this->Auth->user('id'),
-					'article_id' => $ArticleId
-				]
-			)
+			->where([
+				'user_id' => $this->Auth->user('id'),
+				'article_id' => $ArticleId
+			])
 			->first();
 
 		if (is_null($Like)) {
@@ -626,12 +521,10 @@ class BlogController extends AppController {
 		}
 
 		if ($this->BlogArticlesLikes->delete($Like)) {
-			$json['url'] = Router::url(
-				[
-					'action' => 'articleLike',
-					$ArticleId
-				]
-			);
+			$json['url'] = Router::url([
+								'action' => 'articleLike',
+								$ArticleId
+							]);
 			$json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
 			$json['error'] = false;
 		} else {

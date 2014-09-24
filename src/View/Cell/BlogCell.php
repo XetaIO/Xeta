@@ -37,13 +37,7 @@ class BlogCell extends Cell {
 			])
 			->contain([
 				'Users' => function($q) {
-					return $q
-						->select([
-							'first_name',
-							'last_name',
-							'username',
-							'slug'
-						]);
+					return $q->find('short');
 				}
 			])
 			->where([

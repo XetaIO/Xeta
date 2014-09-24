@@ -98,6 +98,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * Custom Validator
         * UploadValidator
         * PurifierValidator
+        * Validator for the Contact Page (Without Table/Entity)
 * View Cell
     * Blog sidebar
 
@@ -132,3 +133,6 @@ Ok, now you need to set up your editor with the CakePHP configuration :
     * Now : `File` -> `Settings` -> `Inspections`
         * In the tree : `PHP` -> `PHP Code Sniffer validation`
         * In the `Coding Standard` list, choose `CakePHP` (If you don't have CakePHP, try to refresh the list with the button at the right)
+
+# Special Thanks
+* [Antograssiot](https://github.com/antograssiot) (Cake Team Member) For all his help !

@@ -1,6 +1,7 @@
 /vendor/*
 /tmp/*
 /logs/*
+/plugins/*
 /node_modules/
 /webroot/css/less/
 /webroot/upload/avatar/1/
