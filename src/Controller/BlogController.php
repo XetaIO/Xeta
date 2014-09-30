@@ -247,9 +247,9 @@ class BlogController extends AppController {
 			$json['comment'] = <<<EOT
 <div>
      <div>
-         <a href="{$url}">
+        <a href="{$url}">
         	<strong>{$Comment->user->full_name} {$text}</strong>
-         </a>
+        </a>
 	</div>
     <blockquote>
     	$Comment->content
