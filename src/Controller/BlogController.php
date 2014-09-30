@@ -212,6 +212,7 @@ class BlogController extends AppController {
 	public function quote($ArticleId = null, $CommentId = null) {
 		if (!$this->request->is('ajax')) {
 			throw new NotFoundException();
+
 		}
 
 		$this->loadModel('BlogArticlesComments');
@@ -232,18 +233,22 @@ class BlogController extends AppController {
 		if (!is_null($Comment)) {
 			$Comment->toArray();
 
+			$url = Router::url(['action' => 'go', $Comment->id]);
+			$text = __("has said :");
+
 			//Build the quote.
-			$json['comment'] =
-				'<div>'
-				. '     <div>'
-				. '         <a href="' . Router::url(['action' => 'go', $Comment->id]) . '">'
-				. '             <strong>' . $Comment->user->full_name . ' ' . __("has said :") . '</strong>'
-				. '         </a>'
-				. '	    </div>'
-				. '     <blockquote>'
-				.           $Comment->content
-				. '     </blockquote>'
-				. '</div><p>&nbsp;</p><p>&nbsp;</p>';
+			$json['comment'] = <<<EOT
+<div>
+     <div>
+         <a href="{$url}">
+        	<strong>{$Comment->user->full_name} {$text}</strong>
+         </a>
+	</div>
+    <blockquote>
+    	$Comment->content
+    </blockquote>
+</div><p>&nbsp;</p><p>&nbsp;</p>
+EOT;
 
 			$json['error'] = false;
 
