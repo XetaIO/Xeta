@@ -93,6 +93,12 @@ blockquote {
   font-weight: bold;
   background-color: transparent;
 }
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #1abc9c;
+  background-color: transparent;
+}
 .navbar-inverse .navbar-nav li > a {
   position: relative;
   display: inline-block;
@@ -428,6 +434,9 @@ textarea.form-control {
   background: #FFF;
   border: 1px solid #E6E9ED;
   border-bottom-width: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 .breadcrumb .active {
   color: #bcc7d1;
@@ -624,6 +633,10 @@ fieldset[disabled] .btn-default.active {
 .btn-default.active,
 .btn-default .open > .dropdown-toggle {
   color: #1abc9c;
+}
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 5px 10px;
 }
 .alert {
   padding: 15px;
@@ -916,6 +929,45 @@ fieldset[disabled] .btn-default.active {
 .owl-item.loading {
   min-height: 150px;
   background: url("../img/owl-carousel/AjaxLoader.gif") no-repeat center center;
+}
+.bottom-5 {
+  margin-bottom: 5px;
+}
+.bottom-10 {
+  margin-bottom: 10px;
+}
+.bottom-15 {
+  margin-bottom: 15px;
+}
+.space-10 {
+  width: 100%;
+  height: 10px;
+  clear: both;
+}
+.space-20 {
+  width: 100%;
+  height: 20px;
+  clear: both;
+}
+.space-30 {
+  width: 100%;
+  height: 30px;
+  clear: both;
+}
+.space-40 {
+  width: 100%;
+  height: 40px;
+  clear: both;
+}
+.space-50 {
+  width: 100%;
+  height: 50px;
+  clear: both;
+}
+.space-70 {
+  width: 100%;
+  height: 50px;
+  clear: both;
 }
 .footer {
   position: absolute;

@@ -1,20 +1,48 @@
-<div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Overview</a></li>
-        <li><a href="#">Reports</a></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Export</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="">Nav item</a></li>
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-        <li><a href="">More navigation</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-    </ul>
+<div class="sidebar interface-blur">
+	<div class="sidebar-inner">
+		<ul class="sidebar-nav nav nav-pills nav-stacked">
+
+			<?php if($this->request->params['action'] == 'home'): ?>
+				<li class="active">
+			<?php else:?>
+				<li>
+			<?php endif;?>
+				<?= $this->html->link(__("{0} Dashboard {1}", '<i class="fa fa-dashboard"></i>',
+					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'admin', 'action' => 'home', 'prefix' => 'admin'],
+				['escape' => false]) ?>
+			</li>
+
+			<?php if($this->request->params['controller'] == 'Articles' || $this->request->params['controller'] == 'Categories')
+			: ?>
+				<li class="active">
+			<?php else:?>
+				<li>
+			<?php endif;?>
+
+				<?= $this->html->link(__("{0} Blog {1}", '<i class="fa fa-newspaper-o"></i>',
+						'<i class="fa fa-chevron-down"></i>'), '#submenu-blog', ['class' => 'active accordion-toggle collapsed',
+						'data-toggle' => 'collapse', 'escape' => false]) ?>
+
+				<ul id="submenu-blog" class="submenu nav collapse">
+					<?= ($this->request->params['controller'] == 'Articles') ? '<li class="active">' : '<li>' ?>
+						<?= $this->Html->link(__("Manage Articles"), ['controller' => 'articles', 'action' => 'index',
+								'prefix' => 'admin']) ?>
+					</li>
+
+					<?= ($this->request->params['controller'] == 'Categories') ? '<li class="active">' : '<li>' ?>
+						<?= $this->Html->link(__("Manage Categories"), ['controller' => 'categories', 'action' => 'index',
+					'prefix' => 'admin']) ?>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+
+	</div>
+</div>
+
+<div class="sidebar-bottom interface-blur">
+	<div class="copyright">
+		&copy; <span class="primary"><?= \Cake\Core\Configure::read('Site.name') ?></span> <?= date('Y', time()) ?>
+	</div>
 </div>

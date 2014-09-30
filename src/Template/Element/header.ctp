@@ -35,8 +35,10 @@
 						<?= $this->Html->link($this->Session->read('Auth.User.username'), '#', ['class' => 'user-menu-trigger']);?>
 					</p>
 				<?php else:?>
-					<?= $this->Html->link(__("Login"), ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-outline navbar-btn']);?>
-					<?= $this->Html->link(__("Sign up"), ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-primary navbar-btn']);?>
+					<?= $this->Html->link(__("Login"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
+						['class' => 'btn btn-outline navbar-btn']);?>
+					<?= $this->Html->link(__("Sign up"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
+						['class' => 'btn btn-primary navbar-btn']);?>
 				<?php endif;?>
 			</div>
 		</nav>
@@ -50,7 +52,7 @@
 		<ul>
 			<?php if($this->Session->read('Auth.User.role') == 'admin'): ?>
 				<li>
-					<?= $this->Html->link('<i class="fa fa-key"></i>&nbsp;' . __('Dashboard'), ['controller' => 'Admin',
+					<?= $this->Html->link('<i class="fa fa-key"></i>&nbsp;' . __('Dashboard'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]);?>
 				</li>
 			<?php endif;?>
@@ -67,9 +69,6 @@
 		<ul>
 			<li>
 				<a href="http://www.twitter.com/NozeAres"><i class="fa fa-twitter-square"></i></a>
-			</li>
-			<li>
-				<a href="https://plus.google.com/101095823814290637419"><i class="fa fa-google-plus-square"></i></a>
 			</li>
 			<li>
 				<a href="http://www.facebook.com/Emeric.ZoRRo"><i class="fa fa-facebook-square"></i></a>

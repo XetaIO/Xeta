@@ -55,7 +55,7 @@ class BlogCell extends Cell {
 				'date' => 'DATE_FORMAT(created,\'%d-%m-%Y\')',
 				'count' => 'COUNT(id)'
 			])
-			->group('DATE(created)')
+			->group('DATE_FORMAT(created,\'%m-%Y\')')
 			->order([
 				'date' => 'desc'
 			])

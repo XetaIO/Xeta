@@ -4,6 +4,7 @@
 /plugins/*
 /node_modules/
 /webroot/css/less/
+/webroot/css/adminless/
 /webroot/upload/avatar/1/
 config/app.php
 .idea

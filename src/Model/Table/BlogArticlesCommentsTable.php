@@ -10,6 +10,7 @@ class BlogArticlesCommentsTable extends Table {
  * Initialize method
  *
  * @param array $config The configuration for the Table.
+ *
  * @return void
  */
 	public function initialize(array $config) {
@@ -35,6 +36,7 @@ class BlogArticlesCommentsTable extends Table {
  * Create validation rules.
  *
  * @param \Cake\Validation\Validator $validator Instance of the validator.
+ *
  * @return \Cake\Validation\Validator
  */
 	public function validationCreate(Validator $validator) {
