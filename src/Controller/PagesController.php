@@ -37,6 +37,9 @@ class PagesController extends AppController {
 				'BlogArticles.created' => 'desc'
 			])
 			->limit(Configure::read('Home.articles'))
+			->where([
+				'BlogArticles.is_display' => 1
+			])
 			->toArray();
 
 		$Comments = $this->BlogArticlesComments
@@ -59,6 +62,9 @@ class PagesController extends AppController {
 					'BlogArticlesComments.created' => 'desc'
 			])
 			->limit(Configure::read('Home.comments'))
+			->where([
+				'BlogArticles.is_display' => 1
+			])
 			->toArray();
 
 		$this->set(compact('Articles', 'Comments'));

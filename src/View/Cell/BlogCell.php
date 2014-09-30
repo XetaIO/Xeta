@@ -41,7 +41,8 @@ class BlogCell extends Cell {
 				}
 			])
 			->where([
-				'BlogArticles.slug !=' => $this->request->slug
+				'BlogArticles.slug !=' => ($this->request->slug) ? $this->request->slug : '',
+				'BlogArticles.is_display' => 1
 			])
 			->order([
 				'BlogArticles.created' => 'desc'
@@ -58,6 +59,9 @@ class BlogCell extends Cell {
 			->group('DATE_FORMAT(created,\'%m-%Y\')')
 			->order([
 				'date' => 'desc'
+			])
+			->where([
+				'BlogArticles.is_display' => 1
 			])
 			->toArray();
 

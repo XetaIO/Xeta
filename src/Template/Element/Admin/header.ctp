@@ -29,7 +29,7 @@
 				    <ul class="dropdown-menu" role="menu">
 					    <li>
 						    <?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'),
-							    ['controller' => 'users', 'action' => 'logout', 'prefix' => false], ['escape' => false]);?>
+							['controller' => 'users', 'action' => 'logout', 'prefix' => false], ['escape' => false]);?>
 					    </li>
 				    </ul>
 			    </li>
