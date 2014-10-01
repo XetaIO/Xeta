@@ -139,6 +139,37 @@ Router::prefix('admin', function ($routes) {
 		]
 	);
 
+	//Categories Routes.
+	$routes->connect(
+		'/categories/edit/:slug',
+		[
+			'controller' => 'categories',
+			'action' => 'edit',
+
+		],
+		[
+			'_name' => 'categories-edit',
+			'pass' => [
+				'slug'
+			]
+		]
+	);
+
+	$routes->connect(
+		'/categories/delete/:slug',
+		[
+			'controller' => 'categories',
+			'action' => 'delete',
+
+		],
+		[
+			'_name' => 'categories-delete',
+			'pass' => [
+				'slug'
+			]
+		]
+	);
+
 	$routes->fallbacks();
 });
 

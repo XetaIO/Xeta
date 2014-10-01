@@ -84,7 +84,6 @@ CREATE TABLE IF NOT EXISTS blog_categories (
   description tinytext NOT NULL,
   slug varchar(255) NOT NULL,
   article_count int(11) NOT NULL DEFAULT '0',
-  last_article_id int(11) NOT NULL DEFAULT '0',
   created datetime NOT NULL,
   modified datetime NOT NULL,
   PRIMARY KEY (id),
@@ -96,7 +95,7 @@ CREATE TABLE IF NOT EXISTS blog_categories (
 --
 
 INSERT INTO blog_categories (id, title, description, slug, article_count, last_article_id, created, modified) VALUES
-(1, 'Xeta', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'xeta', 1, 0, '2014-09-22 10:00:00', '2014-09-22 10:00:00');
+(1, 'Xeta', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'xeta', 1, '2014-09-22 10:00:00', '2014-09-22 10:00:00');
 
 -- --------------------------------------------------------
 

@@ -11,10 +11,12 @@ class ArticlesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->loadModel('BlogArticles');
+
 		$this->paginate = [
 			'maxLimit' => 15
 		];
-		$this->loadModel('BlogArticles');
+
 		$articles = $this->BlogArticles
 			->find()
 			->contain([
