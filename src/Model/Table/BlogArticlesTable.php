@@ -56,6 +56,11 @@ class BlogArticlesTable extends Table {
 			->validatePresence('title')
 			->notEmpty('title', __("The title is required."))
 			->add('title', [
+				'unique' => [
+					'rule' => 'validateUnique',
+					'provider' => 'table',
+					'message' => __("This title is already used.")
+				],
 				'minLength' => [
 					'rule' => ['minLength', 5],
 					'message' => __("Please, {0} characters minimum for the title.", 5)
