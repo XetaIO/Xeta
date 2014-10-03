@@ -7,6 +7,7 @@
 /webroot/css/adminless/
 /webroot/upload/avatar/1/
 config/app.php
+config/analytics-certificate.p12
 .idea
 flo.js
 composer.lock

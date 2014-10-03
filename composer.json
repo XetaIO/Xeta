@@ -9,7 +9,8 @@
 		"cakephp/cakephp": "3.0.*-dev",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"cakephp/debug_kit": "3.0.*-dev",
-		"ezyang/htmlpurifier": "dev-master"
+		"ezyang/htmlpurifier": "dev-master",
+		"widop/google-analytics": "dev-master"
 	},
 	"require-dev": {
 		"d11wtq/boris": "1.0.*"

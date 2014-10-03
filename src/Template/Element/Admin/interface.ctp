@@ -26,8 +26,8 @@
 				<div class="col-sm-4">
 					<a href="<?= $this->Url->build(['controller' => 'cetagories', 'action' => 'index']);?>">
 						<div class="element padded">
-							<i class="fa fa fa-users fa-4x"></i>
-							<h5><?= __("Members");?></h5>
+							<i class="fa fa fa-tag fa-4x"></i>
+							<h5><?= __("Categories");?></h5>
 						</div>
 					</a>
 				</div>
