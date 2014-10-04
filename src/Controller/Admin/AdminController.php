@@ -73,6 +73,7 @@ class AdminController extends AppController {
 
 				return $service->query($graphVisitors);
 			}, 'analytics');
+
 			$this->set(compact('statistics', 'browsers', 'continents', 'graphVisitors'));
 		}
 

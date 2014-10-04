@@ -294,6 +294,34 @@
 			</div>
 			
 			<div class="space-30"></div>
+			
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<?= __("Browsers"); ?>
+					</div>
+					<div class="panel-body">
+						<?php foreach(array_reverse($browsers->getRows()) as $browser): ?>
+							<?php
+							$poucent = ($browser[1] * 100) / $browsers->getTotalsForAllResults()['ga:pageviews'];
+							?>
+							<div class="col-md-4">
+								<?= $this->Html->image(
+									'browsers/' . h($browser[0]) . '.png',
+									[
+										'class' => 'img-responsive',
+										'alt' => h($browser[0]),
+										'data-toggle' => 'tooltip',
+										'data-container' => 'body',
+										'title' => __("Pages views : {0}", $browser[1])
+									]
+								);?>
+								<div class="text-center"><?= round($poucent) . "%" ?></div>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			</div>
 
 			<div class="col-md-3">
 				<div class="panel panel-default">
