@@ -330,7 +330,7 @@
 						<?= __("Statistics"); ?>
 					</div>
 
-					<div class="panel-body">
+					<div class="panel-body" style="padding:0">
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -396,6 +396,67 @@
 						</table>
 					</div>
 
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<?= __("Continents"); ?>
+					</div>
+					<div class="panel-body">
+						<div id="stats-continents" style="height:218px"></div>
+
+						<?php $this->append('scriptBottom');?>
+						<script type="text/javascript">
+							var contients = <?= json_encode($continents) ?>;
+							
+							$(function () {
+								$.plot('#stats-continents', contients, {
+									series: {
+										pie: {
+											show: true,
+											label: {
+												show: false
+											},
+											innerRadius: .65,
+											highlight: {
+												opacity: .1
+											},
+											radius: 1,
+											stroke: {
+												width: 5
+											},
+											startAngle: 2.15
+										}
+									},
+									legend: {
+										show: !0,
+										labelFormatter: function(a) {
+											return '<div style="font-weight:bold;font-size:13px;">' + a + "</div>"
+										},
+										labelBoxBorderColor: null,
+										margin: 50,
+										width: 20,
+										padding: 1
+									},
+									grid: {
+										hoverable: true
+									},
+									tooltip: true,
+									tooltipOpts: {
+										content: "%p.0%, %s",
+										shifts: {
+											x: 20,
+											y: 0
+										},
+										defaultTheme: false
+									}
+								});
+							});
+						</script>
+						<?php $this->end();?>
+					</div>
 				</div>
 			</div>
 			

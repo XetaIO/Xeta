@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\I18n\Number;
+use Mexitek\PHPColors\Color;
 use Widop\GoogleAnalytics\Client;
 use Widop\GoogleAnalytics\Query;
 use Widop\GoogleAnalytics\Service;
@@ -51,15 +52,33 @@ class AdminController extends AppController {
 			}, 'analytics');
 
 			$continents = Cache::remember('continents', function () use ($service) {
-				$continents = new Query(Configure::read('Analytics.profile_id'));
-				$continents
+				$continentsRows = new Query(Configure::read('Analytics.profile_id'));
+				$continentsRows
 					->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
 					->setEndDate(new \DateTime())
 					->setDimensions(array('ga:continent'))
 					->setMetrics(array('ga:visitors'))
+					->setSorts(array('ga:visitors'))
 					->setFilters(array('ga:continent==Africa,ga:continent==Americas,ga:continent==Asia,ga:continent==Europe,ga:continent==Oceania'));
 
-				return $service->query($continents);
+				$continentsRows = $service->query($continentsRows);
+
+				$color = new Color("1abc9c");
+				$light = 1;
+
+				$continents = [];
+
+				foreach (array_reverse($continentsRows->getRows()) as $continentRow) {
+					$continent = [];
+					$continent['label'] = $continentRow[0];
+					$continent['data'] = $continentRow[1];
+					$continent['color'] = '#' . $color->lighten($light);
+
+					array_push($continents, $continent);
+					$light += 10;
+				}
+
+				return $continents;
 			}, 'analytics');
 
 			$graphVisitors = Cache::remember('graphVisitors', function () use ($service) {
