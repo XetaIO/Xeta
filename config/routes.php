@@ -6,9 +6,18 @@ use Cake\Routing\Router;
 Router::extensions(['json']);
 
 //Public routes.
-Router::scope('/', function($routes) {
+Router::scope('/', function ($routes) {
 
-	$routes->connect('/', ['controller' => 'pages', 'action' => 'home']);
+	$routes->connect(
+		'/',
+		[
+			'controller' => 'pages',
+			'action' => 'home'
+		],
+		[
+			'routeClass' => 'InflectedRoute'
+		]
+	);
 
 	//Blog Routes.
 	$routes->connect(
@@ -18,6 +27,7 @@ Router::scope('/', function($routes) {
 			'action' => 'article'
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-article',
 			'pass' => [
 				'slug'
@@ -33,6 +43,7 @@ Router::scope('/', function($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-category',
 			'pass' => [
 				'slug'
@@ -48,6 +59,7 @@ Router::scope('/', function($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-archive',
 			'pass' => [
 				'slug'
@@ -63,6 +75,7 @@ Router::scope('/', function($routes) {
 			'action' => 'profile'
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-profile',
 			'pass' => [
 				'slug'
@@ -75,7 +88,16 @@ Router::scope('/', function($routes) {
 
 //Admin routes.
 Router::prefix('admin', function ($routes) {
-	$routes->connect('/', ['controller' => 'admin', 'action' => 'home']);
+	$routes->connect(
+		'/',
+		[
+			'controller' => 'admin',
+			'action' => 'home'
+		],
+		[
+			'routeClass' => 'InflectedRoute'
+		]
+	);
 
 	//Users Routes.
 	$routes->connect(
@@ -85,6 +107,7 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'edit'
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-edit',
 			'pass' => [
 				'slug'
@@ -101,6 +124,7 @@ Router::prefix('admin', function ($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'categories-edit',
 			'pass' => [
 				'slug'
@@ -117,6 +141,7 @@ Router::prefix('admin', function ($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'articles-edit',
 			'pass' => [
 				'slug'
@@ -132,6 +157,7 @@ Router::prefix('admin', function ($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'articles-delete',
 			'pass' => [
 				'slug'
@@ -148,6 +174,7 @@ Router::prefix('admin', function ($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'categories-edit',
 			'pass' => [
 				'slug'
@@ -163,6 +190,7 @@ Router::prefix('admin', function ($routes) {
 
 		],
 		[
+			'routeClass' => 'InflectedRoute',
 			'_name' => 'categories-delete',
 			'pass' => [
 				'slug'
