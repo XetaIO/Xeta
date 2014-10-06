@@ -36,12 +36,13 @@ class BlogCell extends Cell {
 				'comment_count'
 			])
 			->contain([
-				'Users' => function($q) {
+				'Users' => function ($q) {
 					return $q->find('short');
 				}
 			])
 			->where([
-				'BlogArticles.slug !=' => $this->request->slug
+				'BlogArticles.slug !=' => ($this->request->slug) ? $this->request->slug : '',
+				'BlogArticles.is_display' => 1
 			])
 			->order([
 				'BlogArticles.created' => 'desc'
@@ -55,9 +56,12 @@ class BlogCell extends Cell {
 				'date' => 'DATE_FORMAT(created,\'%d-%m-%Y\')',
 				'count' => 'COUNT(id)'
 			])
-			->group('DATE(created)')
+			->group('DATE_FORMAT(created,\'%m-%Y\')')
 			->order([
 				'date' => 'desc'
+			])
+			->where([
+				'BlogArticles.is_display' => 1
 			])
 			->toArray();
 

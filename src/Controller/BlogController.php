@@ -51,6 +51,9 @@ class BlogController extends AppController {
 			])
 			->order([
 				'BlogArticles.created' => 'desc'
+			])
+			->where([
+				'BlogArticles.is_display' => 1
 			]);
 
 		$Articles = $this->paginate($Articles);
@@ -97,7 +100,8 @@ class BlogController extends AppController {
 				}
 			])
 			->where([
-				'BlogArticles.category_id' => $Category->id
+				'BlogArticles.category_id' => $Category->id,
+				'BlogArticles.is_display' => 1
 			])
 			->order([
 				'BlogArticles.created' => 'desc'
@@ -126,6 +130,9 @@ class BlogController extends AppController {
 				'Users' => function ($q) {
 						return $q->find('full');
 				}
+			])
+			->where([
+				'BlogArticles.is_display' => 1
 			])
 			->first();
 
@@ -212,6 +219,7 @@ class BlogController extends AppController {
 	public function quote($ArticleId = null, $CommentId = null) {
 		if (!$this->request->is('ajax')) {
 			throw new NotFoundException();
+
 		}
 
 		$this->loadModel('BlogArticlesComments');
@@ -232,18 +240,22 @@ class BlogController extends AppController {
 		if (!is_null($Comment)) {
 			$Comment->toArray();
 
+			$url = Router::url(['action' => 'go', $Comment->id]);
+			$text = __("has said :");
+
 			//Build the quote.
-			$json['comment'] =
-				'<div>'
-				. '     <div>'
-				. '         <a href="' . Router::url(['action' => 'go', $Comment->id]) . '">'
-				. '             <strong>' . $Comment->user->full_name . ' ' . __("has said :") . '</strong>'
-				. '         </a>'
-				. '	    </div>'
-				. '     <blockquote>'
-				.           $Comment->content
-				. '     </blockquote>'
-				. '</div><p>&nbsp;</p><p>&nbsp;</p>';
+			$json['comment'] = <<<EOT
+<div>
+     <div>
+        <a href="{$url}">
+        	<strong>{$Comment->user->full_name} {$text}</strong>
+        </a>
+	</div>
+    <blockquote>
+    	$Comment->content
+    </blockquote>
+</div><p>&nbsp;</p><p>&nbsp;</p>
+EOT;
 
 			$json['error'] = false;
 
@@ -330,7 +342,8 @@ class BlogController extends AppController {
 		$ArchiveArticles = $this->BlogArticles
 			->find()
 			->where([
-				'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date
+				'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date,
+				'BlogArticles.is_display' => 1
 			])
 			->contain([
 				'BlogCategories',
@@ -396,7 +409,10 @@ class BlogController extends AppController {
 					return $q->find('short');
 				}
 			])
-			->where(function($q) use ($keyword) {
+			->where([
+				'BlogArticles.is_display' => 1
+			])
+			->andWhere(function ($q) use ($keyword) {
 					return $q
 						->like('title', "%$keyword%");
 			})
@@ -447,7 +463,8 @@ class BlogController extends AppController {
 		$CheckArticle = $this->BlogArticles
 			->find()
 			->where([
-				'id' => $ArticleId
+				'id' => $ArticleId,
+				'BlogArticles.is_display' => 1
 			])
 			->first();
 
@@ -505,9 +522,13 @@ class BlogController extends AppController {
 		$this->loadModel('BlogArticlesLikes');
 		$Like = $this->BlogArticlesLikes
 			->find()
+			->contain([
+				'BlogArticles'
+			])
 			->where([
-				'user_id' => $this->Auth->user('id'),
-				'article_id' => $ArticleId
+				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
+				'BlogArticlesLikes.article_id' => $ArticleId,
+				'BlogArticles.is_display' => 1
 			])
 			->first();
 

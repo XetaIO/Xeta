@@ -12,6 +12,18 @@ Actually, I have developed this blog to try Cake3 and for my needs (personal blo
 http://xeta.io
 * User : test | Pass : 12345678
 
+### Screenshots of the Administration Panel
+##### Dashboard
+![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525906/5e355904-4d59-11e4-9ba5-f660c403e39c.png)
+![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525908/6663383a-4d59-11e4-9522-be42a69124f5.png)
+
+##### Articles Management
+![Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525857/e61fa3e8-4d58-11e4-8fa2-b71d13abab16.png)
+![Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525865/f5c1f56c-4d58-11e4-82c1-98ec08020455.png)
+
+##### Categories Management
+![Categories Management](https://cloud.githubusercontent.com/assets/8210023/4525878/18b56aae-4d59-11e4-87fb-30ee78e885ae.png)
+
 # Install
 If you need to install to try a function or any other things, just follow the steps bellow.
 
@@ -56,6 +68,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * To store user's information
 * Authentication
     * For login/logout an user
+    * To authorize an user to access in the Administration Panel
 * Flash
     * With custom message : Error, Success, Info, Primary
 * Cross Site Request Forgery (CSRF)
@@ -92,6 +105,8 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
 * Router
     * To build custom routes names
     * Prefix (admin)
+* Cache
+    * To cache all request on Google Analytics in the Administration Panel
 
 ### General
 * Validation & Validator
@@ -104,14 +119,12 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
 
 # Todo
 * Panel Administration
-    * Manage Articles
-    * Manage Categories
+    * ~~Manage Articles~~ ✔
+    * ~~Manage Categories~~ ✔
     * Manage Users
 * Captcha on the Register form
 
 # Information
-As i said before, if you want to install it, you **must** download the latest commit of [Cake3 on Github](https://github.com/cakephp/cakephp/tree/3.0) and **not only** the version Cake3 Beta1, because we have fixed some bugs with the Cake Team.
-
 If you want to contribute to the project by adding new features or just fix a bug, feel free to do a PR.
 
 Your code **must follow** the [Coding Standard of CakePHP](http://book.cakephp.org/3.0/en/contributing/cakephp-coding-conventions.html).

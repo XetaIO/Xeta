@@ -15,7 +15,7 @@ class UploadBehavior extends Behavior {
  *
  * @var array
  */
-	public $_defaultConfig = [
+	protected $_defaultConfig = [
 		'root' => WWW_ROOT,
 		'suffix' => '_file',
 		'fields' => []

@@ -10,6 +10,7 @@ class BlogArticlesLikesTable extends Table {
  * Initialize method
  *
  * @param array $config The configuration for the Table.
+ *
  * @return void
  */
 	public function initialize(array $config) {
@@ -33,6 +34,7 @@ class BlogArticlesLikesTable extends Table {
  * Default validation rules.
  *
  * @param \Cake\Validation\Validator $validator Instance of the validator.
+ *
  * @return \Cake\Validation\Validator
  */
 	public function validationDefault(Validator $validator) {

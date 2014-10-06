@@ -84,13 +84,23 @@ $config = [
 		],
 
 	/**
+	 * Configure the cache used for storing the request on Google Analytics.
+	 */
+		'analytics' => [
+			'className' => 'File',
+			'prefix' => 'Xeta_analytics_',
+			'path' => CACHE . 'views/',
+			'duration' => '+1 hours',
+		],
+
+	/**
 	 * Configure the cache used for general framework caching. Path information,
 	 * object listings, and translation cache files are stored with this
 	 * configuration.
 	 */
 		'_cake_core_' => [
 			'className' => 'File',
-			'prefix' => 'Xeta_cake_core_',
+			'prefix' => 'Xeta_core_',
 			'path' => CACHE . 'persistent/',
 			'serialize' => true,
 			'duration' => '+2 minutes',
@@ -103,7 +113,7 @@ $config = [
 	 */
 		'_cake_model_' => [
 			'className' => 'File',
-			'prefix' => 'Xeta_cake_model_',
+			'prefix' => 'Xeta_model_',
 			'path' => CACHE . 'models/',
 			'serialize' => true,
 			'duration' => '+2 minutes',
@@ -313,4 +323,26 @@ $config = [
 		'defaults' => 'php',
 		'cookie' => 'Xeta'
 	],
+
+/**
+ * Google Analytics configuration.
+ *
+ * More information on how to configure : https://github.com/widop/google-analytics/blob/master/doc/usage.md
+ */
+	'Analytics' => [
+		'enabled' => false,
+
+		/**
+		 * A \DateTime used to set since when we should get the information.
+		 *
+		 * Exemple format :
+		 * - 'Y-m-d' : 2014-08-01
+		 *
+		 * More information : http://php.net/manual/fr/datetime.construct.php
+		 */
+		'start_date' => '',
+		'client_id' => '',
+		'profile_id' => '',
+		'private_key' => ''
+	]
 ];

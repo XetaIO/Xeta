@@ -96,6 +96,19 @@
 						</article>
 					<?php endforeach; ?>
 				</section>
+
+				<div class="pagination-centered">
+					<ul class="pagination">
+						<?php if ($this->Paginator->hasPrev()): ?>
+							<?= $this->Paginator->prev('«'); ?>
+						<?php endif; ?>
+						<?= $this->Paginator->numbers(['modulus' => 5]); ?>
+						<?php if ($this->Paginator->hasNext()): ?>
+							<?= $this->Paginator->next('»'); ?>
+						<?php endif; ?>
+					</ul>
+				</div>
+
 			<?php else: ?>
 				<div class="infobox infobox-info">
 					<h4><?= __("No results found"); ?></h4>
@@ -113,18 +126,6 @@
 					</ul>
 				</div>
 			<?php endif; ?>
-
-			<div class="pagination-centered">
-				<ul class="pagination">
-					<?php if ($this->Paginator->hasPrev()): ?>
-						<?= $this->Paginator->prev('«'); ?>
-					<?php endif; ?>
-					<?= $this->Paginator->numbers(['modulus' => 5]); ?>
-					<?php if ($this->Paginator->hasNext()): ?>
-						<?= $this->Paginator->next('»'); ?>
-					<?php endif; ?>
-				</ul>
-			</div>
 		</main>
 
 		<?= $this->cell('Blog::sidebar') ?>

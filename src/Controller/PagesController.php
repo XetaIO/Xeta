@@ -37,12 +37,15 @@ class PagesController extends AppController {
 				'BlogArticles.created' => 'desc'
 			])
 			->limit(Configure::read('Home.articles'))
+			->where([
+				'BlogArticles.is_display' => 1
+			])
 			->toArray();
 
 		$Comments = $this->BlogArticlesComments
 			->find()
 			->contain([
-				'BlogArticles' => function($q) {
+				'BlogArticles' => function ($q) {
 					return $q
 						->select(
 							[
@@ -51,7 +54,7 @@ class PagesController extends AppController {
 							]
 						);
 				},
-				'Users' => function($q) {
+				'Users' => function ($q) {
 					return $q->find('medium');
 				}
 			])
@@ -59,6 +62,9 @@ class PagesController extends AppController {
 					'BlogArticlesComments.created' => 'desc'
 			])
 			->limit(Configure::read('Home.comments'))
+			->where([
+				'BlogArticles.is_display' => 1
+			])
 			->toArray();
 
 		$this->set(compact('Articles', 'Comments'));
