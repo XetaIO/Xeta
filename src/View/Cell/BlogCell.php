@@ -36,7 +36,7 @@ class BlogCell extends Cell {
 				'comment_count'
 			])
 			->contain([
-				'Users' => function($q) {
+				'Users' => function ($q) {
 					return $q->find('short');
 				}
 			])

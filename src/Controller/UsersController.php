@@ -219,15 +219,15 @@ class UsersController extends AppController {
 				'slugField' => 'Users.slug'
 			])
 			->contain([
-				'BlogArticles' => function($q) {
+				'BlogArticles' => function ($q) {
 						return $q
 							->limit(Configure::read('User.Profile.max_articles'));
 				},
-				'BlogArticlesComments' => function($q) {
+				'BlogArticlesComments' => function ($q) {
 						return $q
 							->limit(Configure::read('User.Profile.max_comments'));
 				},
-				'BlogArticlesLikes' => function($q) {
+				'BlogArticlesLikes' => function ($q) {
 						return $q
 							->limit(Configure::read('User.Profile.max_likes'));
 				},

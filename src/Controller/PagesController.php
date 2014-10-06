@@ -45,7 +45,7 @@ class PagesController extends AppController {
 		$Comments = $this->BlogArticlesComments
 			->find()
 			->contain([
-				'BlogArticles' => function($q) {
+				'BlogArticles' => function ($q) {
 					return $q
 						->select(
 							[
@@ -54,7 +54,7 @@ class PagesController extends AppController {
 							]
 						);
 				},
-				'Users' => function($q) {
+				'Users' => function ($q) {
 					return $q->find('medium');
 				}
 			])

@@ -24,7 +24,7 @@ class AdminController extends AppController {
 			$client = new Client(Configure::read('Analytics.client_id'), Configure::read('Analytics.private_key'), $httpAdapter);
 			$service = new Service($client);
 
-			$statistics = Cache::remember('statistics', function() use ($service) {
+			$statistics = Cache::remember('statistics', function () use ($service) {
 				$statistics = new Query(Configure::read('Analytics.profile_id'));
 				$statistics
 					->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
@@ -37,7 +37,7 @@ class AdminController extends AppController {
 				return $service->query($statistics);
 			}, 'analytics');
 
-			$browsers = Cache::remember('browsers', function() use ($service) {
+			$browsers = Cache::remember('browsers', function () use ($service) {
 				$browsers = new Query(Configure::read('Analytics.profile_id'));
 				$browsers
 					->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
@@ -50,7 +50,7 @@ class AdminController extends AppController {
 				return $service->query($browsers);
 			}, 'analytics');
 
-			$continents = Cache::remember('continents', function() use ($service) {
+			$continents = Cache::remember('continents', function () use ($service) {
 				$continents = new Query(Configure::read('Analytics.profile_id'));
 				$continents
 					->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
@@ -62,7 +62,7 @@ class AdminController extends AppController {
 				return $service->query($continents);
 			}, 'analytics');
 
-			$graphVisitors = Cache::remember('graphVisitors', function() use ($service) {
+			$graphVisitors = Cache::remember('graphVisitors', function () use ($service) {
 				$graphVisitors = new Query(Configure::read('Analytics.profile_id'));
 				$graphVisitors
 					->setStartDate(new \DateTime('-7 days'))

@@ -20,13 +20,13 @@ class ArticlesController extends AppController {
 		$articles = $this->BlogArticles
 			->find()
 			->contain([
-				'BlogCategories' => function($q) {
+				'BlogCategories' => function ($q) {
 					return $q->select([
 							'title',
 							'slug'
 						]);
 				},
-				'Users' => function($q) {
+				'Users' => function ($q) {
 					return $q->find('short');
 				}
 			])

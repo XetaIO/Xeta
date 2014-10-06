@@ -412,7 +412,7 @@ EOT;
 			->where([
 				'BlogArticles.is_display' => 1
 			])
-			->andWhere(function($q) use ($keyword) {
+			->andWhere(function ($q) use ($keyword) {
 					return $q
 						->like('title', "%$keyword%");
 			})
