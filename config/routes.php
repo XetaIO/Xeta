@@ -75,7 +75,7 @@ Router::scope('/', function($routes) {
 
 //Admin routes.
 Router::prefix('admin', function ($routes) {
-	$routes->connect('/home', ['controller' => 'admin', 'action' => 'home']);
+	$routes->connect('/', ['controller' => 'admin', 'action' => 'home']);
 
 	//Users Routes.
 	$routes->connect(

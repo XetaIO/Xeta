@@ -19,16 +19,23 @@ class AppController extends Controller {
 			'secure' => true
 		],
 		'Auth' => [
+			'authorize' => ['Controller'],
 			'loginAction' => [
 				'controller' => 'users',
-				'action' => 'login'
+				'action' => 'login',
+				'prefix' => false
+			],
+			'unauthorizedRedirect' => [
+				'controller' => 'pages',
+				'action' => 'home',
+				'prefix' => false
 			],
 			'loginRedirect' => [
-				'controller' => 'Pages',
+				'controller' => 'pages',
 				'action' => 'home'
 			],
 			'logoutRedirect' => [
-				'controller' => 'Pages',
+				'controller' => 'pages',
 				'action' => 'home'
 			]
 		]
@@ -50,7 +57,28 @@ class AppController extends Controller {
 	];
 
 /**
- * BeforeFilter handle.
+ * isAuthorized handle.
+ *
+ * @param array $user The current user.
+ *
+ * @return void
+ */
+	public function isAuthorized($user) {
+		if (!isset($this->request->params['prefix'])) {
+			return true;
+		}
+
+		// Admin can access every action
+		if (isset($user['role']) && $user['role'] === 'admin') {
+			return true;
+		}
+
+		// Default deny
+		return false;
+	}
+
+/**
+ * beforeFilter handle.
  *
  * @param Event $event The beforeFilter event that was fired.
  *
@@ -60,15 +88,6 @@ class AppController extends Controller {
  */
 	public function beforeFilter(Event $event) {
 		if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
-
-			if (!$this->Auth->user()) {
-				return $this->redirect(['controller' => 'users', 'action' => 'login', 'prefix' => false]);
-			}
-
-			if ($this->Auth->user('role') != 'admin') {
-				throw new NotFoundException;
-			}
-
 			$this->layout = 'admin';
 		}
 	}
