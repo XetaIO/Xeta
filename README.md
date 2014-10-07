@@ -30,6 +30,7 @@ If you need to install to try a function or any other things, just follow the st
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
 * :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
+* :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
 * :coffee: Some cups of coffee
 
 Steps to install :
@@ -38,6 +39,10 @@ Steps to install :
     * Follow the steps in the Console.
 * Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
+
+##### Install Google Analytics system in Dashboard
+If you want to install the Google Analytics (not required), please follow the tutorial in the wiki :
+https://github.com/Xety/Xeta/wiki
 
 #### Pre-installed Accounts
 * Admin account
