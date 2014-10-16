@@ -111,7 +111,7 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * To build custom routes names
     * Prefix (admin)
 * Cache
-    * To cache all request on Google Analytics in the Administration Panel
+    * To cache all Google Analytics requests in the Administration Panel
 
 ### General
 * Validation & Validator
@@ -126,7 +126,9 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
 * Panel Administration
     * ~~Manage Articles~~ ✔
     * ~~Manage Categories~~ ✔
-    * Manage Users
+    * ~~Manage Users~~ ✔
+* Title pages and meta social
+* Comments management
 * Captcha on the Register form
 
 # Information
