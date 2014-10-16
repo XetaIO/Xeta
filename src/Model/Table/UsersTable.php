@@ -37,12 +37,18 @@ class UsersTable extends Table {
 
 		$this->hasMany('BlogArticles', [
 			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
 		]);
 		$this->hasMany('BlogArticlesComments', [
 			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
 		]);
 		$this->hasMany('BlogArticlesLikes', [
 			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
 		]);
 	}
 
@@ -218,6 +224,49 @@ class UsersTable extends Table {
 					'message' => __("Your password confirm must match with your new password")
 				]
 			]);
+	}
+
+/**
+ * Update validation rules. (Administration)
+ *
+ * @param \Cake\Validation\Validator $validator The Validator instance.
+ *
+ * @return \Cake\Validation\Validator
+ */
+	public function validationUpdate(Validator $validator) {
+		$validator
+			->validatePresence('username', 'update')
+			->notEmpty('username', __("You must set an username"))
+			->add('username', [
+				'unique' => [
+					'rule' => 'validateUnique',
+					'provider' => 'table',
+					'message' => __("This username is already used.")
+				],
+				'alphanumeric' => [
+					'rule' => ['custom', '#^[A-Za-z0-9]+$#'],
+					'message' => __("Only alphanumeric characters.")
+				],
+				'lengthBetween' => [
+					'rule' => ['lengthBetween', 4, 20],
+					'message' => __("Your username must be between {0} and {1} characters.", 4, 20)
+				]
+			])
+			->validatePresence('email', 'update')
+			->notEmpty('email')
+			->add('email', [
+				'unique' => [
+					'rule' => 'validateUnique',
+					'provider' => 'table',
+					'message' => __("This E-mail is already used.")
+				],
+				'email' => [
+					'rule' => 'email',
+					'message' => __("You must specify a valid E-mail address.")
+				]
+			]);
+
+		return $validator;
 	}
 
 /**
