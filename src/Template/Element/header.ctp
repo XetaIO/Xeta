@@ -7,7 +7,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<?= $this->Html->link(\Cake\Core\Configure::read('Site.name'), '/', ['class' => 'navbar-brand', 'data-hover' => \Cake\Core\Configure::read('Site.name')]);?>
+			<?= $this->Html->image('logo50x50.png', ['class' => 'navbar-brand', 'alt' => \Cake\Core\Configure::read('Site.name')]) ?>
+			<?= $this->Html->link(\Cake\Core\Configure::read('Site.name'), '/', ['class' => 'navbar-brand', 'data-hover' => \Cake\Core\Configure::read('Site.name')]) ?>
 		</div>
 		<nav class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
