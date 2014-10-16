@@ -35,6 +35,16 @@
 					</li>
 				</ul>
 			</li>
+			
+			<?php if($this->request->params['controller'] == 'Users'): ?>
+				<li class="active">
+			<?php else:?>
+				<li>
+			<?php endif;?>
+				<?= $this->html->link(__("{0} Users {1}", '<i class="fa fa-users"></i>',
+					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'],
+				['escape' => false]) ?>
+			</li>
 
 		</ul>
 

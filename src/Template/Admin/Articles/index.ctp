@@ -131,11 +131,24 @@
 								<?php endforeach;?>
 							</tbody>
 						</table>
+						
+						<div class="pagination-centered">
+							<ul class="pagination">
+								<?php if ($this->Paginator->hasPrev()): ?>
+									<?= $this->Paginator->prev('«'); ?>
+								<?php endif; ?>
+								<?= $this->Paginator->numbers(['modulus' => 5]); ?>
+								<?php if ($this->Paginator->hasNext()): ?>
+									<?= $this->Paginator->next('»'); ?>
+								<?php endif; ?>
+							</ul>
+						</div>
 					<?php else: ?>
 						<div class="infobox infobox-info">
 							<h4>
 								<?= __("No articles was found."); ?>
 							</h4>
+						</div>
 					<?php endif; ?>
 				</div>
 

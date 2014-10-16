@@ -115,17 +115,30 @@ Router::prefix('admin', function ($routes) {
 		]
 	);
 
-	//Categories Routes.
 	$routes->connect(
-		'/categories/edit/:slug',
+		'/users/delete/:slug',
 		[
-			'controller' => 'categories',
-			'action' => 'edit',
-
+			'controller' => 'users',
+			'action' => 'delete'
 		],
 		[
 			'routeClass' => 'InflectedRoute',
-			'_name' => 'categories-edit',
+			'_name' => 'users-delete',
+			'pass' => [
+				'slug'
+			]
+		]
+	);
+
+	$routes->connect(
+		'/users/deleteAvatar/:slug',
+		[
+			'controller' => 'users',
+			'action' => 'deleteAvatar'
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'users-deleteAvatar',
 			'pass' => [
 				'slug'
 			]
