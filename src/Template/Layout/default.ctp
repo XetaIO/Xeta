@@ -7,7 +7,7 @@
 			'width=device-width, initial-scale=1.0, maximum-scale=1.0'
 		);?>
 		<title>
-			<?= $this->fetch('title') ?>
+			<?= $this->fetch('title') . ' - ' . \Cake\Core\Configure::read('Site.name') ?>
 		</title>
 		<?= $this->Html->meta('icon') ?>
 
