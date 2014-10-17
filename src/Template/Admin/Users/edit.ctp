@@ -1,3 +1,5 @@
+<?= $this->assign('title', __("Edit an User")); ?>
+
 <div class="profile interface-blur">
 	<div class="container-fluid">
 		<div class="box-content text-center">
