@@ -18,10 +18,10 @@ class CategoriesController extends AppController {
 		];
 
 		$categories = $this->BlogCategories
-		->find()
-		->order([
-			'created' => 'desc'
-		]);
+			->find()
+			->order([
+				'created' => 'desc'
+			]);
 
 		$categories = $this->paginate($categories);
 		$this->set(compact('categories'));
