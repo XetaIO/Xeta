@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("Blog Category : {0}", h($Category->title))
+]) ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

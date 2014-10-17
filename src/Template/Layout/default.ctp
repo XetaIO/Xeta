@@ -10,6 +10,8 @@
 			<?= $this->fetch('title') . ' - ' . \Cake\Core\Configure::read('Site.name') ?>
 		</title>
 		<?= $this->Html->meta('icon') ?>
+		
+		<?= $this->fetch('meta'); ?>
 
 		<!-- Styles -->
 		<?= $this->Html->css([
@@ -24,7 +26,6 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<?= $this->fetch('meta'); ?>
 		<?= $this->fetch('css'); ?>
 		<?= $this->fetch('scriptTop'); ?>
 

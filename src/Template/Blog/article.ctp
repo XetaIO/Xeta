@@ -1,3 +1,9 @@
+<?= $this->element('meta', [
+	'title' => $Article->title,
+	'description' => $Article->content_meta,
+	'author' => $Article->user->full_name
+]) ?>
+
 <?php $this->start('scriptBottom');
 
 echo $this->Html->script('ckeditor/ckeditor') ?>

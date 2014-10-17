@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("Login or Register")
+]) ?>
+
 <section class="login-features" id="login-features">
 	<div class="features-overlay"></div>
 	<div class="row">

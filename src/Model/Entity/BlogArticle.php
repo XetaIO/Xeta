@@ -35,13 +35,27 @@ class BlogArticle extends Entity {
 	}
 
 /**
- * Purify the content for display the articles on category/archives/index blog page.
+ * Purify the content for display the article on category/archives/index blog page.
  *
  * @return string
  */
 	protected function _getContentEmpty() {
 		$config = HTMLPurifier_Config::createDefault();
 		$config->loadArray(Configure::read('HtmlPurifier.Blog.article_empty'));
+
+		$HTMLPurifier = new HTMLPurifier($config);
+
+		return $HTMLPurifier->purify($this->content);
+	}
+
+/**
+ * Purify the content for display the article in meta tags.
+ *
+ * @return string
+ */
+	protected function _getContentMeta() {
+		$config = HTMLPurifier_Config::createDefault();
+		$config->loadArray(Configure::read('HtmlPurifier.Blog.article_meta'));
 
 		$HTMLPurifier = new HTMLPurifier($config);
 
