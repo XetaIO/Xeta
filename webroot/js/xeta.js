@@ -39,6 +39,15 @@ $(document).ready(function () {
 	/**
 	 * Blog.
 	 */
+	$(".confirmDeleteComment").bind("click", function() {
+		var url = $(this).attr("data-url");
+
+		$("#modalDeleteComment .btnDeleteComment").attr("href", url);
+		$('#modalDeleteComment').modal('show');
+		
+		return false;
+	});
+	
 	$(".ReplyQuote").bind("click", function () {
 		$.ajax({
 			type    : "POST",

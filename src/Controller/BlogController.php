@@ -558,4 +558,43 @@ EOT;
 
 		return $this->set('_serialize', 'json');
 	}
+
+/**
+ * Delete a comment.
+ *
+ * @param int $id Id of the comment to delete.
+ *
+ * @return void
+ */
+	public function deleteComment($id = null) {
+		$this->loadModel('BlogArticlesComments');
+
+		$comment = $this->BlogArticlesComments
+			->find()
+			->contain([
+				'BlogArticles'
+			])
+			->where([
+				'BlogArticlesComments.id' => $id
+			])
+			->first();
+
+		if (is_null($comment)) {
+			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+			$this->Flash->error(__("You don't have the authorization to delete this comment !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($this->BlogArticlesComments->delete($comment)) {
+			$this->Flash->success(__("This comment has been deleted successfully !"));
+		}
+
+		return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, '?' => ['page' => $comment->blog_article->last_page]]);
+	}
 }

@@ -277,6 +277,40 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 												) ?>
 											<?php endif; ?>
 										</li>
+										<?php if ($this->Session->read('Auth.User.id') == $Comment->user_id ||
+										$this->Session->read('Auth.User.role') == 'admin'): ?>
+											<li>
+												<?= $this->Html->link(
+													__("{0} Edit", '<i class="fa fa-edit"></i>'),
+													'#',
+													[
+														'class' => 'ReplyQuote',
+														'data-url' => $this->Url->build(
+																[
+																	'action' => 'quote',
+																	$Article->id,
+																	$Comment->id
+																]
+															),
+														'escape' => false
+													]
+												) ?>
+											</li>
+											<li>
+												<?= $this->Html->link(
+													__("{0} Delete", '<i class="fa fa-remove"></i>'),
+													'#',
+													[
+														'class' => 'confirmDeleteComment',
+														'data-url' => $this->Url->build([
+															'action' => 'deleteComment',
+															$Comment->id
+														]),
+														'escape' => false
+													]
+												) ?>
+											</li>
+										<?php endif; ?>
 									</ul>
 								</div>
 							</li>
@@ -325,4 +359,26 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 		<?= $this->cell('Blog::sidebar') ?>
 
 	</div>
+</div>
+<div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+			<span aria-hidden="true">&times;</span>
+			<span class="sr-only"><?= __("Close") ?></span>
+		</button>
+        <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
+      </div>
+      <div class="modal-body">
+		<p>
+			<?= __("Are you sure you want delete this comment ?") ?>
+		</p>
+      </div>
+      <div class="modal-footer">
+		<?= $this->Html->link(__("Delete"), '#', ['class' => 'btn btn-primary btnDeleteComment']) ?>
+		<button type="button" class="btn btn-danger" data-dismiss="modal"><?= __("Close") ?></button>
+      </div>
+    </div>
+  </div>
 </div>
