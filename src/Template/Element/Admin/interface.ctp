@@ -24,7 +24,7 @@
 				</div>
 
 				<div class="col-sm-4">
-					<a href="<?= $this->Url->build(['controller' => 'cetagories', 'action' => 'index']);?>">
+					<a href="<?= $this->Url->build(['controller' => 'categories', 'action' => 'index']);?>">
 						<div class="element padded">
 							<i class="fa fa fa-tag fa-4x"></i>
 							<h5><?= __("Categories");?></h5>
