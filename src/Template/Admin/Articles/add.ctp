@@ -1,3 +1,5 @@
+<?= $this->assign('title', __("Add an Article")); ?>
+
 <?php $this->start('scriptBottom');
 
 echo $this->Html->script('ckeditor/ckeditor') ?>

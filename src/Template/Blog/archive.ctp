@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("Blog Archive : {0}", $date->format('F Y'))
+]) ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -12,7 +16,7 @@
 					<?= $this->Html->link(__("Archive"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
-					<?= h($date->format('F Y')) ?>
+					<?= $date->format('F Y') ?>
 				</li>
 			</ol>
 			<?= $this->Flash->render() ?>

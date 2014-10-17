@@ -1,3 +1,4 @@
+<?= $this->element('meta') ?>
 <div class="sky jumbotron">
 	<div class="svg">
 		

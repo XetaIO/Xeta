@@ -1,3 +1,5 @@
+<?= $this->assign('title', __("Manage Articles")); ?>
+
 <div class="content-wrapper interface-blur">
 	<div class="row">
 

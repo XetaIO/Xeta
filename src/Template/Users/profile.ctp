@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("{0}'s profile", h($User->username))
+]) ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

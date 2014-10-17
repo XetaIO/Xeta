@@ -127,8 +127,9 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
     * ~~Manage Articles~~ ✔
     * ~~Manage Categories~~ ✔
     * ~~Manage Users~~ ✔
-* Title pages and meta social
+* ~~Title pages and meta social~~ ✔
 * Comments management
+* Flux RSS on articles
 * Captcha on the Register form
 
 # Information

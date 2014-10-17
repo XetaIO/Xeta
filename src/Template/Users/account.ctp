@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("My Account")
+]) ?>
+
 <?php $this->start('scriptBottom');
 
 echo $this->Html->script('ckeditor/ckeditor') ?>

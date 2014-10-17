@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+	'title' => __("Contact me")
+]) ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
