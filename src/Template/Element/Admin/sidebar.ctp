@@ -7,7 +7,7 @@
 			<?php else:?>
 				<li>
 			<?php endif;?>
-				<?= $this->html->link(__("{0} Dashboard {1}", '<i class="fa fa-dashboard"></i>',
+				<?= $this->Html->link(__("{0} Dashboard {1}", '<i class="fa fa-dashboard"></i>',
 					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'admin', 'action' => 'home', 'prefix' => 'admin'],
 				['escape' => false]) ?>
 			</li>
@@ -19,7 +19,7 @@
 				<li>
 			<?php endif;?>
 
-				<?= $this->html->link(__("{0} Blog {1}", '<i class="fa fa-newspaper-o"></i>',
+				<?= $this->Html->link(__("{0} Blog {1}", '<i class="fa fa-newspaper-o"></i>',
 						'<i class="fa fa-chevron-down"></i>'), '#submenu-blog', ['class' => 'active accordion-toggle collapsed',
 						'data-toggle' => 'collapse', 'escape' => false]) ?>
 
@@ -41,7 +41,7 @@
 			<?php else:?>
 				<li>
 			<?php endif;?>
-				<?= $this->html->link(__("{0} Users {1}", '<i class="fa fa-users"></i>',
+				<?= $this->Html->link(__("{0} Users {1}", '<i class="fa fa-users"></i>',
 					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'],
 				['escape' => false]) ?>
 			</li>

@@ -13,11 +13,11 @@
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
+					<?= $this->Html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li>
-					<?= $this->html->link(__("{0} Manage Categories", '<i class="fa fa-tag"></i>'), ['controller' => 'categories',
+					<?= $this->Html->link(__("{0} Manage Categories", '<i class="fa fa-tag"></i>'), ['controller' => 'categories',
 							'action' => 'index', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">

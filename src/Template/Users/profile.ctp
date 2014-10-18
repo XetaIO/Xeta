@@ -43,7 +43,7 @@
 		<div class="col-md-9">
 			<section class="section">
 				<?php if ($User->id == $this->Session->read('Auth.User.id')): ?>
-					<?= $this->html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
+					<?= $this->Html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
 				<?php endif;?>
 				<h4>
 					<?= __("His Biography") ?>
