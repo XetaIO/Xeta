@@ -39,12 +39,39 @@ $(document).ready(function () {
 	/**
 	 * Blog.
 	 */
-	$(".confirmDeleteComment").bind("click", function() {
+	$(".confirmDeleteComment").bind("click", function () {
 		var url = $(this).attr("data-url");
 
 		$("#modalDeleteComment .btnDeleteComment").attr("href", url);
 		$('#modalDeleteComment').modal('show');
 		
+		return false;
+	});
+	
+	$(".editComment").bind("click", function () {
+		var commentId = $(this).attr("data-id");
+		$.ajax({
+			type    : "POST",
+			url     : $(this).attr("data-url"),
+			data	: {
+				id : commentId
+			},
+			dataType: "html",
+			success : function (data) {
+				$("#comment-" + commentId + " .content").html(data);
+				CKEDITOR.replace('commentBox', {
+					customConfig: 'config/comment.js'
+				});
+			},
+			error   : function (e) {
+				$(".top-right").notify({
+					message: {
+						text: "Error to edit the comment."
+					},
+					type   : "danger"
+				}).show();
+			}
+		});
 		return false;
 	});
 	

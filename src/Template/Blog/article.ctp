@@ -284,14 +284,11 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 													__("{0} Edit", '<i class="fa fa-edit"></i>'),
 													'#',
 													[
-														'class' => 'ReplyQuote',
-														'data-url' => $this->Url->build(
-																[
-																	'action' => 'quote',
-																	$Article->id,
-																	$Comment->id
-																]
-															),
+														'class' => 'editComment',
+														'data-url' => $this->Url->build([
+															'action' => 'getEditComment'
+														]),
+														'data-id' => $Comment->id,
 														'escape' => false
 													]
 												) ?>
