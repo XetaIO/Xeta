@@ -19,8 +19,8 @@ $config = [
 		'comments' => 8
 	],
 	'Blog' => [
-		'article_per_page' => 5,
-		'comment_per_page' => 5
+		'article_per_page' => 10,
+		'comment_per_page' => 10
 	],
 	'User' => [
 		'Profile' => [
