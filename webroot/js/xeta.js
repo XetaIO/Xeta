@@ -217,4 +217,32 @@ $(document).ready(function () {
 		autoPlay : true,
 		stopOnHover : true
 	});
+	
+	
+	/**
+	 * Cookies.
+	 */
+	$('.closeCookies').bind("click", function () {
+		$.ajax({
+			type    : "POST",
+			url     : $(this).attr("data-url"),
+			dataType: "json",
+			success : function (data) {
+				$(".top-right").notify({
+					message: { text: data.message },
+					type   : "primary"
+				}).show();
+				$('.cookies').remove();
+			},
+			error : function (e) {
+				$(".top-right").notify({
+					message: {
+						text: "Unable to write the cookie, please try again later."
+					},
+					type   : "danger"
+				}).show();
+			}
+		});
+		return false;
+	});
 });

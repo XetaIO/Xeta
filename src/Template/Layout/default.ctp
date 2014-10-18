@@ -38,8 +38,11 @@
 		<?= $this->element('header') ?>
 
 		<?= $this->fetch('content') ?>
+		
+		<?php if ($allowCookies === false): ?>
+			<?= $this->element('cookies') ?>
+		<?php endif; ?>
 
-		<?= $this->element('cookies') ?>
 		<?= $this->element('footer') ?>
 
 		<?= $this->Html->script([
