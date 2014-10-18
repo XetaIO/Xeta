@@ -558,4 +558,115 @@ EOT;
 
 		return $this->set('_serialize', 'json');
 	}
+
+/**
+ * Delete a comment.
+ *
+ * @param int $id Id of the comment to delete.
+ *
+ * @return void
+ */
+	public function deleteComment($id = null) {
+		$this->loadModel('BlogArticlesComments');
+
+		$comment = $this->BlogArticlesComments
+			->find()
+			->contain([
+				'BlogArticles'
+			])
+			->where([
+				'BlogArticlesComments.id' => $id
+			])
+			->first();
+
+		if (is_null($comment)) {
+			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+			$this->Flash->error(__("You don't have the authorization to delete this comment !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($this->BlogArticlesComments->delete($comment)) {
+			$this->Flash->success(__("This comment has been deleted successfully !"));
+		}
+
+		return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, '?' => ['page' => $comment->blog_article->last_page]]);
+	}
+
+/**
+ * Get the form to edit a comment.
+ *
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ *
+ * @return void
+ */
+	public function getEditComment() {
+		if (!$this->request->is('ajax')) {
+			throw new NotFoundException();
+		}
+
+		$this->loadModel('BlogArticlesComments');
+
+		$comment = $this->BlogArticlesComments
+			->find()
+			->where([
+				'BlogArticlesComments.id' => $this->request->data['id']
+			])
+			->first();
+
+		if (is_null($comment)) {
+			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+		}
+
+		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+			$this->Flash->error(__("You don't have the authorization to edit this comment !"));
+		}
+
+		$this->set(compact('comment'));
+	}
+
+/**
+ * Edit a comment.
+ *
+ * @param int $id Id of the comment.
+ *
+ * @return void
+ */
+	public function editComment($id = null) {
+		$this->loadModel('BlogArticlesComments');
+
+		$comment = $this->BlogArticlesComments
+			->find()
+			->contain([
+				'BlogArticles'
+			])
+			->where([
+				'BlogArticlesComments.id' => $id
+			])
+			->first();
+
+		if (is_null($comment)) {
+			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+			$this->Flash->error(__("You don't have the authorization to edit this comment !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		$this->BlogArticlesComments->patchEntity($comment, $this->request->data());
+		if ($this->BlogArticlesComments->save($comment)) {
+			$this->Flash->success(__("This comment has been edited successfully !"));
+		}
+
+		return $this->redirect(['action' => 'go', $comment->id]);
+	}
 }
