@@ -2,9 +2,19 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 
 class PagesController extends AppController {
+
+/**
+ * Components.
+ *
+ * @var array
+ */
+	public $components = [
+		'RequestHandler'
+	];
 
 /**
  * Beforefilter.
@@ -68,5 +78,29 @@ class PagesController extends AppController {
 			->toArray();
 
 		$this->set(compact('Articles', 'Comments'));
+	}
+
+/**
+ * The user accept the use of cookies.
+ *
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ *
+ * @return void
+ */
+	public function acceptCookie() {
+		if (!$this->request->is('ajax')) {
+			throw new NotFoundException();
+		}
+
+		$this->Cookie->configKey('allowCookies', [
+			'expires' => '+1 year',
+			'httpOnly' => true
+		]);
+		$this->Cookie->write('allowCookies', 'true');
+
+		$json['message'] = __('Thanks for accepting to use the cookies !');
+		$this->set(compact('json'));
+
+		return $this->set('_serialize', 'json');
 	}
 }

@@ -14,7 +14,7 @@
 		) ?>
 	</div>
 	<div class="form-group">
-		<?= $this->Form->submit(__('Update Comment'), ['class' => 'btn btn-xs btn-primary']); ?>
+		<?= $this->Form->submit(__('Update Comment'), ['class' => 'btn btn-sm btn-primary']); ?>
 	</div>
 	<?= $this->Form->end(); ?>
 <?php endif;

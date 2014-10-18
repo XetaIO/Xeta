@@ -15,6 +15,7 @@ class AppController extends Controller {
 	public $components = [
 		'Flash',
 		'Session',
+		'Cookie',
 		'Csrf' => [
 			'secure' => true
 		],
@@ -82,13 +83,14 @@ class AppController extends Controller {
  *
  * @param Event $event The beforeFilter event that was fired.
  *
- * @throws \Cake\Error\NotFoundException When the user has not the required rank.
- *
  * @return void
  */
 	public function beforeFilter(Event $event) {
 		if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
 			$this->layout = 'admin';
 		}
+
+		$allowCookies = $this->Cookie->check('allowCookies');
+		$this->set(compact('allowCookies'));
 	}
 }
