@@ -59,7 +59,7 @@ $(document).ready(function () {
 			dataType: "html",
 			success : function (data) {
 				$("#comment-" + commentId + " .content").html(data);
-				CKEDITOR.replace('commentBox', {
+				CKEDITOR.replace('commentBox-' + commentId, {
 					customConfig: 'config/comment.js'
 				});
 			},

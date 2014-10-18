@@ -9,7 +9,7 @@
 			'content', [
 				'label' => false,
 				'class' => 'form-control commentBox',
-				'id' => 'commentBox'
+				'id' => 'commentBox-' . $comment->id
 			]
 		) ?>
 	</div>
