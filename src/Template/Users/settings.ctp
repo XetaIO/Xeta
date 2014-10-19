@@ -24,7 +24,7 @@
 			<?= $this->element('/Users/sidebar') ?>
 		</section>
 		<section class="col-md-9">
-			<?= $this->Form->create($User, ['class' => 'section', 'type' => 'file']); ?>
+			<?= $this->Form->create($User, ['class' => 'section']); ?>
 				<?= $this->Form->input('method', ['type' => 'hidden', 'value' => 'email']) ?>
 				<h4>
 					<?= __("Change your E-mail") ?>
@@ -46,7 +46,7 @@
 				<?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
 			<?= $this->Form->end() ?>
 
-			<?= $this->Form->create($User, ['class' => 'section', 'type' => 'file']); ?>
+			<?= $this->Form->create($User, ['class' => 'section']); ?>
 				<?= $this->Form->input('method', ['type' => 'hidden', 'value' => 'password']) ?>
 				<h4>
 					<?= __("Change your Password") ?>
@@ -69,6 +69,35 @@
 				</div>
 				<?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
 			<?= $this->Form->end() ?>
+			
+			<div class="section">
+				<h4>
+					<?= __("Delete your Account") ?>
+				</h4>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
+					<?= __("Delete my Account") ?>
+				</button>
+				<div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span>
+									<span class="sr-only"><?= __("Close") ?></span>
+								</button>
+								<h4 class="modal-title"><?= __("Delete my Account") ?></h4>
+							</div>
+							<div class="modal-body">
+								<?= __("Are you sure you want delete your account ? <strong>This operation is not reversible.</strong>") ?>
+							</div>
+							<div class="modal-footer">
+								<?= $this->Html->link(__("Yes, i confirm !"), ['controller' => 'users', 'action' => 'delete'], ['class' => 'btn btn-danger']) ?>
+								<button type="button" class="btn btn-primary" data-dismiss="modal"><?= __("Close") ?></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</div>
 </div>
