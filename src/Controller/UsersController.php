@@ -242,4 +242,24 @@ class UsersController extends AppController {
 
 		$this->set(compact('User'));
 	}
+
+/**
+ * Delete an user with all his comments, articles and likes.
+ *
+ * @return void
+ */
+	public function delete() {
+		$user = $this->Users->get($this->Auth->user('id'));
+
+		if ($this->Users->delete($user)) {
+
+			$this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
+
+			return $this->redirect($this->Auth->logout());
+		}
+
+		$this->Flash->error(__("Unable to delete your account, please try again."));
+
+		return $this->redirect(['action' => 'settings']);
+	}
 }
