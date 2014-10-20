@@ -291,11 +291,11 @@
 										<?= $this->Html->link(
 											$this->Text->truncate(
 												$Article->title,
-												20,
-												array(
+												30,
+												[
 													'ellipsis' => '...',
 													'exact' => false
-												)
+												]
 											),
 											[
 												'_name' => 'blog-article',
@@ -308,10 +308,10 @@
 										<?= $this->Text->truncate(
 											$Article->content_empty,
 											150,
-											array(
+											[
 												'ellipsis' => '...',
 												'exact' => false
-											)
+											]
 										) ?>
 									</div>
 									<p>
