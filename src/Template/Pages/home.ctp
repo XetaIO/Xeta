@@ -224,7 +224,7 @@
 	
 	<div class="container">
 		<h1 class="animated bounceInDown">
-			<?= __("Welcome on {0} !", '<span>Xeta</span>') ?>
+			<?= __("Welcome on {0} !", '<span>' . \Cake\Core\Configure::read('Site.name') . '</span>') ?>
 		</h1>
 		<p class="animated bounceInRight">
 			<?= __("Welcome to my personal website ! I use this site as my personal blog and for try my  experiences in development.") ?>
@@ -284,13 +284,13 @@
 			<div class="carousel">
 				<div class="container">
 					<div id="news-articles-slide" class="article">
-						<?php if ($Articles): ?>
-							<?php foreach ($Articles as $Article): ?>
+						<?php if ($articles->toArray()): ?>
+							<?php foreach ($articles as $article): ?>
 								<div class="article">
 									<h3>
 										<?= $this->Html->link(
 											$this->Text->truncate(
-												$Article->title,
+												$article->title,
 												30,
 												[
 													'ellipsis' => '...',
@@ -299,14 +299,14 @@
 											),
 											[
 												'_name' => 'blog-article',
-												'slug' => $Article->slug,
-												'?' => ['page' => $Article->last_page]
+												'slug' => $article->slug,
+												'?' => ['page' => $article->last_page]
 											]
 										) ?>
 									</h3>
 									<div class="content">
 										<?= $this->Text->truncate(
-											$Article->content_empty,
+											$article->content_empty,
 											150,
 											[
 												'ellipsis' => '...',
@@ -319,8 +319,8 @@
 											__("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
 											[
 												'_name' => 'blog-article',
-												'slug' => $Article->slug,
-												'?' => ['page' => $Article->last_page]
+												'slug' => $article->slug,
+												'?' => ['page' => $article->last_page]
 											],
 											[
 												'class' => 'text-primary',
@@ -333,20 +333,20 @@
 											<li>
 												<i class="fa fa-tag"></i>
 												<?= $this->Html->link(
-													h($Article->blog_category->title),
+													h($article->blog_category->title),
 													[
 														'_name' => 'blog-category',
-														'slug' => $Article->blog_category->slug
+														'slug' => $article->blog_category->slug
 													]
 												) ?>
 											</li>
 											<li>
 												<i class="fa fa-comment"></i>
-												<?= h($Article->comment_count_format) ?>
+												<?= h($article->comment_count_format) ?>
 											</li>
 											<li>
 												<i class="fa fa-heart"></i>
-												<?= h($Article->like_count_format) ?>
+												<?= h($article->like_count_format) ?>
 											</li>
 										</ul>
 									</div>
@@ -371,12 +371,12 @@
 				<?= __("Latest Comments") ?>
 			</h2>
 			<div id="news-comments-slide" class="owl-carousel owl-theme">
-				<?php if($Comments): ?>
-					<?php foreach($Comments as $Comment): ?>
+				<?php if($comments->toArray()): ?>
+					<?php foreach($comments as $comment): ?>
 						<div class="comments-box">
 							<div class="message">
 								<?= $this->Text->truncate(
-									$Comment->content_empty,
+									$comment->content_empty,
 									300,
 									array(
 										'ellipsis' => '...',
@@ -389,13 +389,13 @@
 									<i class="fa fa-quote-left"></i>
 								</div>
 								<div class="info">
-									<?= $this->Html->link($Comment->user->full_name, ['_name' => 'users-profile',
-											'slug' => $Comment->user->slug], ['class' => 'name']) ?>
+									<?= $this->Html->link($comment->user->full_name, ['_name' => 'users-profile',
+											'slug' => $comment->user->slug], ['class' => 'name']) ?>
 									<div class="article">
 										<i class="fa fa-newspaper-o"></i>
 										<?= $this->Html->link(
 											$this->Text->truncate(
-												$Comment->blog_article->title,
+												$comment->blog_article->title,
 												20,
 												array(
 													'ellipsis' => '...',
@@ -405,13 +405,13 @@
 											[
 												'controller' => 'blog',
 												'action' => 'go',
-												$Comment->id
+												$comment->id
 											]
 										) ?>
 									</div>
 								</div>
 								<div class="image visible-lg">
-									<?= $this->Html->image($Comment->user->avatar) ?>
+									<?= $this->Html->image($comment->user->avatar) ?>
 								</div>
 							</div>
 						</div>

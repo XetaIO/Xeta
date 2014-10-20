@@ -38,7 +38,7 @@ class PagesController extends AppController {
 		$this->loadModel('BlogArticles');
 		$this->loadModel('BlogArticlesComments');
 
-		$Articles = $this->BlogArticles
+		$articles = $this->BlogArticles
 			->find()
 			->contain([
 				'BlogCategories'
@@ -49,10 +49,9 @@ class PagesController extends AppController {
 			->limit(Configure::read('Home.articles'))
 			->where([
 				'BlogArticles.is_display' => 1
-			])
-			->toArray();
+			]);
 
-		$Comments = $this->BlogArticlesComments
+		$comments = $this->BlogArticlesComments
 			->find()
 			->contain([
 				'BlogArticles' => function ($q) {
@@ -74,10 +73,9 @@ class PagesController extends AppController {
 			->limit(Configure::read('Home.comments'))
 			->where([
 				'BlogArticles.is_display' => 1
-			])
-			->toArray();
+			]);
 
-		$this->set(compact('Articles', 'Comments'));
+		$this->set(compact('articles', 'comments'));
 	}
 
 /**

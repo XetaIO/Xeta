@@ -1,7 +1,7 @@
 <?= $this->element('meta', [
-	'title' => $Article->title,
-	'description' => $Article->content_meta,
-	'author' => $Article->user->full_name
+	'title' => $article->title,
+	'description' => $article->content_meta,
+	'author' => $article->user->full_name
 ]) ?>
 
 <?php $this->start('scriptBottom');
@@ -40,7 +40,7 @@
 					<?= $this->Html->link(__("Blog"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
-					<?= h($Article->title) ?>
+					<?= h($article->title) ?>
 				</li>
 			</ol>
 			<?= $this->Flash->render() ?>
@@ -56,17 +56,17 @@
 					<div class="date">
 						<time>
 							<div class="day">
-								<?= h($Article->created->format('d')) ?>
+								<?= h($article->created->format('d')) ?>
 							</div>
 							<div class="month">
-								<?= h($Article->created->format('M')) ?>
+								<?= h($article->created->format('M')) ?>
 							</div>
 						</time>
 					</div>
 
 					<header>
 						<h2 class="title">
-							<?= h($Article->title) ?>
+							<?= h($article->title) ?>
 						</h2>
 					</header>
 
@@ -75,21 +75,21 @@
 							<li class="categories">
 								<i class="fa fa-tag"></i>
 								<?= $this->Html->link(
-									$Article->blog_category->title, [
+									$article->blog_category->title, [
 										'_name' => 'blog-category',
-										'slug' => $Article->blog_category->slug
+										'slug' => $article->blog_category->slug
 									]
 								) ?>
 							</li>
 							<li class="comments">
 								<i class="fa fa-comment"></i>
-								<?= h($Article->comment_count_format) ?>
-								<?= ($Article->comment_count > 1) ? __("Comments") : __("Comment") ?>
+								<?= h($article->comment_count_format) ?>
+								<?= ($article->comment_count > 1) ? __("Comments") : __("Comment") ?>
 							</li>
 							<li class="likes">
 								<i class="fa fa-heart"></i>
-								<?= h($Article->like_count_format) ?>
-								<?= ($Article->like_count > 1) ? __("Likes") : __("Like") ?>
+								<?= h($article->like_count_format) ?>
+								<?= ($article->like_count > 1) ? __("Likes") : __("Like") ?>
 							</li>
 							<li class="facebook">
 								<div class="fb-share-button" data-layout="button_count"></div>
@@ -101,7 +101,7 @@
 					</aside>
 
 					<div class="content">
-						<?= $Article->content; ?>
+						<?= $article->content; ?>
 					</div>
 
 					<ul class="actions">
@@ -120,11 +120,11 @@
 							<?php endif; ?>
 						</li>
 						<li class="like-count">
-							<?= h($Article->like_count_format) ?>
+							<?= h($article->like_count_format) ?>
 						</li>
 						<li class="like">
 							<?php if ($this->Session->read('Auth.User')): ?>
-								<?php if(isset($Like)): ?>
+								<?php if(isset($like)): ?>
 									<?= $this->Html->link(
 										'<i class="fa fa-thumbs-o-up text-primary"></i>',
 										'#',
@@ -133,7 +133,7 @@
 											'data-url' => $this->Url->build(
 													[
 														'action' => 'ArticleUnlike',
-														$Article->id
+														$article->id
 													]
 												),
 											'data-type' => 'unlike',
@@ -151,7 +151,7 @@
 											'data-url' => $this->Url->build(
 													[
 														'action' => 'ArticleLike',
-														$Article->id
+														$article->id
 													]
 												),
 											'data-type' => 'like',
@@ -179,31 +179,31 @@
 			<section class="post-author">
 				<figure>
 					<div class="image">
-						<?= $this->Html->image($Article->user->avatar, ['alt' => $Article->user->full_name]) ?>
+						<?= $this->Html->image($article->user->avatar, ['alt' => $article->user->full_name]) ?>
 					</div>
 					<figcaption class="details">
 						<h3>
 							<?= $this->Html->link(
-								$Article->user->full_name,
+								$article->user->full_name,
 								[
 									'_name' => 'users-profile',
-									'slug' => $Article->user->slug
+									'slug' => $article->user->slug
 								]
 							) ?>
 						</h3>
 
-						<?php if ($Article->user->signature): ?>
+						<?php if ($article->user->signature): ?>
 							<div class="signature">
-								<?= $Article->user->signature ?>
+								<?= $article->user->signature ?>
 							</div>
 						<?php endif; ?>
 
-						<?php if ($Article->user->facebook || $Article->user->twitter): ?>
+						<?php if ($article->user->facebook || $article->user->twitter): ?>
 							<ul class="social">
-								<?php if ($Article->user->facebook): ?>
+								<?php if ($article->user->facebook): ?>
 									<li>
 										<?= $this->Html->link(
-											'<i class="fa fa-facebook"></i>', "http://facebook.com/" . h($Article->user->facebook), [
+											'<i class="fa fa-facebook"></i>', "http://facebook.com/" . h($article->user->facebook), [
 												'target' => '_blank',
 												'escape' => false
 											]
@@ -211,10 +211,10 @@
 									</li>
 								<?php endif; ?>
 
-								<?php if ($Article->user->twitter): ?>
+								<?php if ($article->user->twitter): ?>
 									<li>
 										<?= $this->Html->link(
-											'<i class="fa fa-twitter"></i>', "http://twitter.com/" . h($Article->user->twitter), [
+											'<i class="fa fa-twitter"></i>', "http://twitter.com/" . h($article->user->twitter), [
 												'target' => '_blank',
 												'escape' => false
 											]
@@ -227,22 +227,22 @@
 				</figure>
 			</section>
 
-			<?php if ($Article->comment_count): ?>
+			<?php if ($article->comment_count): ?>
 				<section class="post-comments">
 					<h2>
-						<?= h($Article->comment_count_format) ?>
-						<?= ($Article->comment_count > 1) ? __("Comments") : __("Comment") ?>
+						<?= h($article->comment_count_format) ?>
+						<?= ($article->comment_count > 1) ? __("Comments") : __("Comment") ?>
 					</h2>
 					<ol class="comments-list">
 
-						<?php foreach ($Comments as $Comment): ?>
-							<li class="comment" id="comment-<?= $Comment->id ?>">
+						<?php foreach ($comments as $comment): ?>
+							<li class="comment" id="comment-<?= $comment->id ?>">
 
 								<?= $this->Html->link(
-									$this->Html->image($Comment->user->avatar, ['alt' => $Comment->user->full_name]),
+									$this->Html->image($comment->user->avatar, ['alt' => $comment->user->full_name]),
 									[
 										'_name' => 'users-profile',
-										'slug' => $Comment->user->slug
+										'slug' => $comment->user->slug
 									],
 									[
 										'class' => 'avatar',
@@ -254,18 +254,18 @@
 									<div class="meta">
 										<h3 class="author">
 											<?= $this->Html->link(
-												$Comment->user->full_name, [
+												$comment->user->full_name, [
 													'_name' => 'users-profile',
-													'slug' => $Comment->user->slug
+													'slug' => $comment->user->slug
 												]
 											) ?>
 										</h3>
 										<time class="date">
-											<?= $Comment->created->format('d-m-Y') ?>
+											<?= $comment->created->format('d-m-Y') ?>
 										</time>
 									</div>
 									<div class="content">
-										<?= $Comment->content; ?>
+										<?= $comment->content; ?>
 									</div>
 									<ul class="actions">
 										<li>
@@ -279,8 +279,8 @@
 														'data-url' => $this->Url->build(
 																[
 																	'action' => 'quote',
-																	$Article->id,
-																	$Comment->id
+																	$article->id,
+																	$comment->id
 																]
 															),
 														'escape' => false
@@ -297,7 +297,7 @@
 												) ?>
 											<?php endif; ?>
 										</li>
-										<?php if ($this->Session->read('Auth.User.id') == $Comment->user_id ||
+										<?php if ($this->Session->read('Auth.User.id') == $comment->user_id ||
 										$this->Session->read('Auth.User.role') == 'admin'): ?>
 											<li>
 												<?= $this->Html->link(
@@ -308,7 +308,7 @@
 														'data-url' => $this->Url->build([
 															'action' => 'getEditComment'
 														]),
-														'data-id' => $Comment->id,
+														'data-id' => $comment->id,
 														'escape' => false
 													]
 												) ?>
@@ -321,7 +321,7 @@
 														'class' => 'confirmDeleteComment',
 														'data-url' => $this->Url->build([
 															'action' => 'deleteComment',
-															$Comment->id
+															$comment->id
 														]),
 														'escape' => false
 													]
@@ -354,7 +354,7 @@
 					<h2>
 						<?= __("Leave a Comment") ?>
 					</h2>
-					<?= $this->Form->create($FormComments) ?>
+					<?= $this->Form->create($formComments) ?>
 					<div class="form-group">
 						<?=
 						$this->Form->input(

@@ -33,14 +33,14 @@
 					</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($Users as $User): ?>
+					<?php foreach ($users as $user): ?>
 						<tr>
 							<td>
 								<?= $this->Html->link(
-									h($User->username),
+									h($user->username),
 									[
 										'_name' => 'users-profile',
-										'slug' => $User->slug
+										'slug' => $user->slug
 									],
 									[
 										'data-toggle' => 'tooltip',
@@ -50,16 +50,16 @@
 								) ?>
 							</td>
 							<td>
-								<?= h($User->full_name) ?>
+								<?= h($user->full_name) ?>
 							</td>
 							<td>
-								<?= ucfirst(h($User->role)) ?>
+								<?= ucfirst(h($user->role)) ?>
 							</td>
 							<td>
-								<?= $User->created->format('d-m-Y') ?>
+								<?= $user->created->format('d-m-Y') ?>
 							</td>
 							<td>
-								<?= $User->last_login->format('d-m-Y') ?>
+								<?= $user->last_login->format('d-m-Y') ?>
 							</td>
 						</tr>
 					<?php endforeach; ?>

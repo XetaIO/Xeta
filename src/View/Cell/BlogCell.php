@@ -14,10 +14,10 @@ class BlogCell extends Cell {
 		$this->loadModel('BlogCategories');
 		$this->loadModel('BlogArticles');
 
-		$ArticleSearch = $this->BlogArticles->newEntity($this->request->data);
+		$articleSearch = $this->BlogArticles->newEntity($this->request->data);
 
 		//Select all Categories.
-		$Categories = $this->BlogCategories
+		$categories = $this->BlogCategories
 			->find()
 			->select([
 				'title',
@@ -27,7 +27,7 @@ class BlogCell extends Cell {
 			->all();
 
 		//Select featured article.
-		$Featured = $this->BlogArticles
+		$featured = $this->BlogArticles
 			->find()
 			->select([
 				'title',
@@ -50,7 +50,7 @@ class BlogCell extends Cell {
 			->first();
 
 		//Select all articles and group them by monthly.
-		$Archives = $this->BlogArticles
+		$archives = $this->BlogArticles
 			->find('all')
 			->select([
 				'date' => 'DATE_FORMAT(created,\'%d-%m-%Y\')',
@@ -65,6 +65,6 @@ class BlogCell extends Cell {
 			])
 			->toArray();
 
-		$this->set(compact('Categories', 'Featured', 'Archives', 'ArticleSearch'));
+		$this->set(compact('categories', 'featured', 'archives', 'articleSearch'));
 	}
 }

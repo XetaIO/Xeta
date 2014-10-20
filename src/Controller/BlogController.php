@@ -41,7 +41,7 @@ class BlogController extends AppController {
 			'maxLimit' => Configure::read('Blog.article_per_page')
 		];
 
-		$Articles = $this->BlogArticles
+		$articles = $this->BlogArticles
 			->find()
 			->contain([
 				'BlogCategories',
@@ -56,9 +56,9 @@ class BlogController extends AppController {
 				'BlogArticles.is_display' => 1
 			]);
 
-		$Articles = $this->paginate($Articles);
+		$articles = $this->paginate($articles);
 
-		$this->set(compact('Articles'));
+		$this->set(compact('articles'));
 	}
 
 /**
@@ -69,7 +69,7 @@ class BlogController extends AppController {
 	public function category() {
 		$this->loadModel('BlogCategories');
 
-		$Category = $this->BlogCategories
+		$category = $this->BlogCategories
 			->find('slug', [
 				'slug' => $this->request->slug,
 				'slugField' => 'BlogCategories.slug'
@@ -80,7 +80,7 @@ class BlogController extends AppController {
 			->first();
 
 		//Check if the category is found.
-		if (empty($Category)) {
+		if (empty($category)) {
 			$this->Flash->error(__('This category doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
@@ -92,7 +92,7 @@ class BlogController extends AppController {
 			'maxLimit' => Configure::read('Blog.article_per_page')
 		];
 
-		$CategoryArticles = $this->BlogArticles
+		$articles = $this->BlogArticles
 			->find()
 			->contain([
 				'Users' => function ($q) {
@@ -100,16 +100,16 @@ class BlogController extends AppController {
 				}
 			])
 			->where([
-				'BlogArticles.category_id' => $Category->id,
+				'BlogArticles.category_id' => $category->id,
 				'BlogArticles.is_display' => 1
 			])
 			->order([
 				'BlogArticles.created' => 'desc'
 			]);
 
-		$Articles = $this->paginate($CategoryArticles);
+		$articles = $this->paginate($articles);
 
-		$this->set(compact('Category', 'Articles'));
+		$this->set(compact('category', 'articles'));
 	}
 
 /**
@@ -120,7 +120,7 @@ class BlogController extends AppController {
 	public function article() {
 		$this->loadModel('BlogArticles');
 
-		$Article = $this->BlogArticles
+		$article = $this->BlogArticles
 			->find('slug', [
 				'slug' => $this->request->slug,
 				'slugField' => 'BlogArticles.slug'
@@ -137,7 +137,7 @@ class BlogController extends AppController {
 			->first();
 
 		//Check if the article is found.
-		if (empty($Article)) {
+		if (empty($article)) {
 			$this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
@@ -153,12 +153,12 @@ class BlogController extends AppController {
 				return $this->Flash->error(__('You must be connected to post a comment.'));
 			}
 
-			$this->request->data['article_id'] = $Article->id;
+			$this->request->data['article_id'] = $article->id;
 			$this->request->data['user_id'] = $this->Auth->user('id');
 
-			$NewComment = $this->BlogArticlesComments->newEntity($this->request->data);
+			$newComment = $this->BlogArticlesComments->newEntity($this->request->data);
 
-			if ($insertComment = $this->BlogArticlesComments->save($NewComment, ['validate' => 'create'])) {
+			if ($insertComment = $this->BlogArticlesComments->save($newComment, ['validate' => 'create'])) {
 
 				$this->Flash->success(__('Your comment has been posted successfully !'));
 				//Redirect the user to the last page of the article.
@@ -174,10 +174,10 @@ class BlogController extends AppController {
 			'maxLimit' => Configure::read('Blog.comment_per_page')
 		];
 
-		$ArticleComments = $this->BlogArticlesComments
+		$comments = $this->BlogArticlesComments
 			->find()
 			->where([
-				'article_id' => $Article->id
+				'article_id' => $article->id
 			])
 			->contain([
 				'Users' => function ($q) {
@@ -188,35 +188,35 @@ class BlogController extends AppController {
 				'BlogArticlesComments.created' => 'asc'
 			]);
 
-		$Comments = $this->paginate($ArticleComments);
+		$comments = $this->paginate($comments);
 
 		//Select the like for the current auth user.
 		$this->loadModel('BlogArticlesLikes');
-		$Like = $this->BlogArticlesLikes
+		$like = $this->BlogArticlesLikes
 			->find()
 			->where([
 				'user_id' => ($this->Auth->user()) ? $this->Auth->user('id') : null,
-				'article_id' => $Article->id
+				'article_id' => $article->id
 			])
 			->first();
 
 		//Build the newEntity for the comment form.
-		$FormComments = $this->BlogArticlesComments->newEntity();
+		$formComments = $this->BlogArticlesComments->newEntity();
 
-		$this->set(compact('Article', 'FormComments', 'Comments', 'Like'));
+		$this->set(compact('article', 'formComments', 'comments', 'like'));
 	}
 
 /**
  * Quote a message.
  *
- * @param int $ArticleId Id of the article where is the message to quote.
- * @param int $CommentId Id of the message to quote.
+ * @param int $articleId Id of the article where is the message to quote.
+ * @param int $commentId Id of the message to quote.
  *
  * @throws \Cake\Error\NotFoundException
  *
  * @return mixed
  */
-	public function quote($ArticleId = null, $CommentId = null) {
+	public function quote($articleId = null, $commentId = null) {
 		if (!$this->request->is('ajax')) {
 			throw new NotFoundException();
 
@@ -224,11 +224,11 @@ class BlogController extends AppController {
 
 		$this->loadModel('BlogArticlesComments');
 
-		$Comment = $this->BlogArticlesComments
+		$comment = $this->BlogArticlesComments
 			->find()
 			->where([
-				'BlogArticlesComments.article_id' => $ArticleId,
-				'BlogArticlesComments.id' => $CommentId
+				'BlogArticlesComments.article_id' => $articleId,
+				'BlogArticlesComments.id' => $commentId
 			])
 			->contain([
 				'Users' => function ($q) {
@@ -237,10 +237,10 @@ class BlogController extends AppController {
 			])
 			->first();
 
-		if (!is_null($Comment)) {
-			$Comment->toArray();
+		if (!is_null($comment)) {
+			$comment->toArray();
 
-			$url = Router::url(['action' => 'go', $Comment->id]);
+			$url = Router::url(['action' => 'go', $comment->id]);
 			$text = __("has said :");
 
 			//Build the quote.
@@ -248,11 +248,11 @@ class BlogController extends AppController {
 <div>
      <div>
         <a href="{$url}">
-        	<strong>{$Comment->user->full_name} {$text}</strong>
+        	<strong>{$comment->user->full_name} {$text}</strong>
         </a>
 	</div>
     <blockquote>
-    	$Comment->content
+    	$comment->content
     </blockquote>
 </div><p>&nbsp;</p><p>&nbsp;</p>
 EOT;
@@ -274,37 +274,37 @@ EOT;
 /**
  * Redirect an user to an article, page and comment.
  *
- * @param int $CommentId Id of the comment.
+ * @param int $commentId Id of the comment.
  *
  * @return mixed
  */
-	public function go($CommentId = null) {
+	public function go($commentId = null) {
 		$this->loadModel('BlogArticlesComments');
 
-		$Comment = $this->BlogArticlesComments
+		$comment = $this->BlogArticlesComments
 			->find()
 			->contain([
 				'BlogArticles'
 			])
 			->where([
-				'BlogArticlesComments.id' => $CommentId
+				'BlogArticlesComments.id' => $commentId
 			])
 			->first();
 
-		if (is_null($Comment)) {
+		if (is_null($comment)) {
 			$this->Flash->error(__("This comment doesn't exist or has been deleted."));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
-		$Comment->toArray();
+		$comment->toArray();
 
 		//Count the number of message before this message.
 		$messagesBefore = $this->BlogArticlesComments
 			->find()
 			->where([
-				'BlogArticlesComments.article_id' => $Comment->article_id,
-				'BlogArticlesComments.created <' => $Comment->created
+				'BlogArticlesComments.article_id' => $comment->article_id,
+				'BlogArticlesComments.created <' => $comment->created
 			])
 			->count();
 
@@ -319,9 +319,9 @@ EOT;
 		//Redirect the user.
 		return $this->redirect([
 			'_name' => 'blog-article',
-			'slug' => $Comment->blog_article->slug,
+			'slug' => $comment->blog_article->slug,
 			'?' => ['page' => $page],
-			'#' => 'comment-' . $CommentId
+			'#' => 'comment-' . $commentId
 		]);
 	}
 
@@ -333,13 +333,13 @@ EOT;
  * @return mixed
  */
 	public function archive($date = null) {
-		//Paginate all Articles.
 		$this->loadModel('BlogArticles');
+
 		$this->paginate = [
 			'maxLimit' => Configure::read('Blog.article_per_page')
 		];
 
-		$ArchiveArticles = $this->BlogArticles
+		$archives = $this->BlogArticles
 			->find()
 			->where([
 				'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date,
@@ -355,22 +355,9 @@ EOT;
 				'BlogArticles.created' => 'desc'
 			]);
 
-		//Check if we have a result.
-		$CheckArticles = $ArchiveArticles->toArray();
+		$articles = $this->paginate($archives);
 
-		if (empty($CheckArticles)) {
-			$this->Flash->error(__('There is not articles for this date.'));
-
-			return $this->redirect(['action' => 'index']);
-		}
-
-		//Paginate articles.
-		$Articles = $this->paginate($ArchiveArticles);
-
-		//Get the Time object of the first item. (To display it the view.)
-		$date = $Articles->toArray()[0]->created;
-
-		$this->set(compact('Articles', 'date'));
+		$this->set(compact('articles', 'date'));
 	}
 
 /**
@@ -402,7 +389,7 @@ EOT;
 			'maxLimit' => Configure::read('Blog.article_per_page')
 		];
 
-		$Articles = $this->BlogArticles
+		$articles = $this->BlogArticles
 			->find()
 			->contain([
 				'Users' => function ($q) {
@@ -420,36 +407,36 @@ EOT;
 					'BlogArticles.created' => 'desc'
 			]);
 
-		$Articles = $this->paginate($Articles);
+		$articles = $this->paginate($articles);
 
-		$this->set(compact('Articles', 'keyword'));
+		$this->set(compact('articles', 'keyword'));
 	}
 
 /**
  * Like an article.
  *
- * @param int $ArticleId Id of the article to like.
+ * @param int $articleId Id of the article to like.
  *
  * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
  * @return mixed
  */
-	public function articleLike($ArticleId = null) {
+	public function articleLike($articleId = null) {
 		if (!$this->request->is('ajax')) {
 			throw new NotFoundException();
 		}
 
 		//Check if the user hasn't already liked this article.
 		$this->loadModel('BlogArticlesLikes');
-		$CheckLike = $this->BlogArticlesLikes
+		$checkLike = $this->BlogArticlesLikes
 			->find()
 			->where([
 				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
-				'BlogArticlesLikes.article_id' => $ArticleId
+				'BlogArticlesLikes.article_id' => $articleId
 			])
 			->first();
 
-		if (!is_null($CheckLike)) {
+		if (!is_null($checkLike)) {
 			$json['message'] = __('You already like this article !');
 			$json['error'] = true;
 
@@ -460,15 +447,15 @@ EOT;
 
 		//Check if the article exist.
 		$this->loadModel('BlogArticles');
-		$CheckArticle = $this->BlogArticles
+		$checkArticle = $this->BlogArticles
 			->find()
 			->where([
-				'id' => $ArticleId,
+				'id' => $articleId,
 				'BlogArticles.is_display' => 1
 			])
 			->first();
 
-		if (is_null($CheckArticle)) {
+		if (is_null($checkArticle)) {
 			$json['message'] = __("This article doesn't exist !");
 			$json['error'] = true;
 
@@ -479,7 +466,7 @@ EOT;
 
 		//Prepare data to be saved.
 		$data['BlogArticlesLikes']['user_id'] = $this->Auth->user('id');
-		$data['BlogArticlesLikes']['article_id'] = $ArticleId;
+		$data['BlogArticlesLikes']['article_id'] = $articleId;
 
 		$like = $this->BlogArticlesLikes->newEntity($data);
 
@@ -489,7 +476,7 @@ EOT;
 			$json['url'] = Router::url(
 				[
 					'action' => 'articleUnlike',
-					$ArticleId
+					$articleId
 				]
 			);
 			$json['error'] = false;
@@ -507,32 +494,32 @@ EOT;
 /**
  * Unlike an article.
  *
- * @param int|null $ArticleId Id of the article to like.
+ * @param int|null $articleId Id of the article to like.
  *
  * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
  * @return mixed
  */
-	public function articleUnlike($ArticleId = null) {
+	public function articleUnlike($articleId = null) {
 		if (!$this->request->is('ajax')) {
 			throw new NotFoundException();
 		}
 
 		//Check if the user like this article.
 		$this->loadModel('BlogArticlesLikes');
-		$Like = $this->BlogArticlesLikes
+		$like = $this->BlogArticlesLikes
 			->find()
 			->contain([
 				'BlogArticles'
 			])
 			->where([
 				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
-				'BlogArticlesLikes.article_id' => $ArticleId,
+				'BlogArticlesLikes.article_id' => $articleId,
 				'BlogArticles.is_display' => 1
 			])
 			->first();
 
-		if (is_null($Like)) {
+		if (is_null($like)) {
 			$json['message'] = __("You don't like this article !");
 			$json['error'] = true;
 
@@ -541,10 +528,10 @@ EOT;
 			return $this->set('_serialize', 'json');
 		}
 
-		if ($this->BlogArticlesLikes->delete($Like)) {
+		if ($this->BlogArticlesLikes->delete($like)) {
 			$json['url'] = Router::url([
 								'action' => 'articleLike',
-								$ArticleId
+								$articleId
 							]);
 			$json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
 			$json['error'] = false;

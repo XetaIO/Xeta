@@ -1,5 +1,5 @@
 <?= $this->element('meta', [
-	'title' => __("{0}'s profile", h($User->username))
+	'title' => __("{0}'s profile", h($user->username))
 ]) ?>
 
 <div class="container">
@@ -13,7 +13,7 @@
 					<?= $this->Html->link(__("Users"), ['controller' => 'users', 'action' => 'index']) ?>
 				</li>
 				<li class="active">
-					<?= h($User->username) ?>
+					<?= h($user->username) ?>
 				</li>
 			</ol>
 			<?= $this->Flash->render() ?>
@@ -22,19 +22,19 @@
 	<div class="row profile">
 		<div class="col-md-3">
 			<section class="sidebar section">
-				<?= $this->Html->image($User->avatar) ?>
+				<?= $this->Html->image($user->avatar) ?>
 				<h4>
-					<?= h($User->full_name) ?>
+					<?= h($user->full_name) ?>
 				</h4>
 				<ul class="social">
-					<?php if ($User->facebook): ?>
+					<?php if ($user->facebook): ?>
 						<li>
-							<?= $this->Html->link('<i class="fa fa-facebook"></i>', 'http://facebook.com/' . h($User->facebook), ['target' => '_blank', 'escape' => false]) ?>
+							<?= $this->Html->link('<i class="fa fa-facebook"></i>', 'http://facebook.com/' . h($user->facebook), ['target' => '_blank', 'escape' => false]) ?>
 						</li>
 					<?php endif; ?>
-					<?php if ($User->twitter): ?>
+					<?php if ($user->twitter): ?>
 						<li>
-							<?= $this->Html->link('<i class="fa fa-twitter"></i>', 'http://twitter.com/' . h($User->twitter), ['target' => '_blank', 'escape' => false]) ?>
+							<?= $this->Html->link('<i class="fa fa-twitter"></i>', 'http://twitter.com/' . h($user->twitter), ['target' => '_blank', 'escape' => false]) ?>
 						</li>
 					<?php endif; ?>
 				</ul>
@@ -42,14 +42,14 @@
 		</div>
 		<div class="col-md-9">
 			<section class="section">
-				<?php if ($User->id == $this->Session->read('Auth.User.id')): ?>
+				<?php if ($user->id == $this->Session->read('Auth.User.id')): ?>
 					<?= $this->Html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
 				<?php endif;?>
 				<h4>
 					<?= __("His Biography") ?>
 				</h4>
 				<div class="biography">
-					<?= $User->biography ?>
+					<?= $user->biography ?>
 				</div>
 			</section>
 		</div>

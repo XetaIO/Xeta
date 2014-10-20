@@ -30,15 +30,15 @@ class UsersController extends AppController {
 		$this->paginate = [
 			'maxLimit' => Configure::read('User.user_per_page')
 		];
-		$Users = $this->Users
+		$users = $this->Users
 			->find('full')
 			->order([
 				'Users.created' => 'desc'
 			]);
 
-		$Users = $this->paginate($Users);
+		$users = $this->paginate($users);
 
-		$this->set(compact('Users'));
+		$this->set(compact('users'));
 	}
 
 /**
@@ -127,18 +127,18 @@ class UsersController extends AppController {
  * @return void
  */
 	public function account() {
-		$User = $this->Users->get($this->Auth->user('id'));
+		$user = $this->Users->get($this->Auth->user('id'));
 
 		if ($this->request->is(['post', 'put'])) {
-			$User->accessible('avatar_file', true);
-			$this->Users->patchEntity($User, $this->request->data());
+			$user->accessible('avatar_file', true);
+			$this->Users->patchEntity($user, $this->request->data());
 
-			if ($this->Users->save($User, ['validate' => 'account'])) {
+			if ($this->Users->save($user, ['validate' => 'account'])) {
 				$this->Flash->success(__("Your information has been updated !"));
 			}
 		}
 
-		$this->set(compact('User'));
+		$this->set(compact('user'));
 	}
 
 /**
@@ -147,9 +147,9 @@ class UsersController extends AppController {
  * @return mixed
  */
 	public function settings() {
-		$User = $this->Users->get($this->Auth->user('id'));
+		$user = $this->Users->get($this->Auth->user('id'));
 
-		$oldEmail = $User->email;
+		$oldEmail = $user->email;
 
 		if ($this->request->is(['post', 'put'])) {
 			$method = ($this->request->data['method']) ? $this->request->data['method'] : false;
@@ -169,13 +169,13 @@ class UsersController extends AppController {
 						->first();
 
 					if (!is_null($check) || $oldEmail == $this->request->data['email']) {
-						$this->set(compact('User', 'oldEmail'));
+						$this->set(compact('user', 'oldEmail'));
 						return $this->Flash->error(__("This E-mail is already use or you don't have provided a new E-mail."));
 					}
 
-					$this->Users->patchEntity($User, $this->request->data());
+					$this->Users->patchEntity($user, $this->request->data());
 
-					if ($this->Users->save($User, ['validate' => 'settings'])) {
+					if ($this->Users->save($user, ['validate' => 'settings'])) {
 						$oldEmail = $this->request->data['email'];
 
 						$this->Flash->success(__("Your E-mail has been changed !"));
@@ -186,17 +186,17 @@ class UsersController extends AppController {
 
 					$data = $this->request->data;
 					if (!isset($data['old_password']) || !isset($data['password']) || !isset($data['password_confirm'])) {
-						$this->set(compact('User', 'oldEmail'));
+						$this->set(compact('user', 'oldEmail'));
 						return $this->Flash->error(__("Please, complete all fields !"));
 					}
 
-					if (!(new DefaultPasswordHasher)->check($data['old_password'], $User->password)) {
-						$this->set(compact('User', 'oldEmail'));
+					if (!(new DefaultPasswordHasher)->check($data['old_password'], $user->password)) {
+						$this->set(compact('user', 'oldEmail'));
 						return $this->Flash->error(__("Your old password don't match !"));
 					}
 
-					$this->Users->patchEntity($User, $this->request->data());
-					if ($this->Users->save($User, ['validate' => 'settings'])) {
+					$this->Users->patchEntity($user, $this->request->data());
+					if ($this->Users->save($user, ['validate' => 'settings'])) {
 
 						$this->Flash->success(__("Your password has been changed !"));
 					}
@@ -204,7 +204,7 @@ class UsersController extends AppController {
 			}
 		}
 
-		$this->set(compact('User', 'oldEmail'));
+		$this->set(compact('user', 'oldEmail'));
 	}
 
 /**
@@ -213,7 +213,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function profile() {
-		$User = $this->Users
+		$user = $this->Users
 			->find('slug', [
 				'slug' => $this->request->slug,
 				'slugField' => 'Users.slug'
@@ -234,13 +234,13 @@ class UsersController extends AppController {
 			])
 			->first();
 
-		if (is_null($User)) {
+		if (is_null($user)) {
 			$this->Flash->error(__('This user doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['controller' => 'pages', 'action' => 'home']);
 		}
 
-		$this->set(compact('User'));
+		$this->set(compact('user'));
 	}
 
 /**

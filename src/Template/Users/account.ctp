@@ -38,7 +38,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 			<?= $this->element('/Users/sidebar') ?>
 		</section>
 		<section class="col-md-9">
-			<?= $this->Form->create($User,
+			<?= $this->Form->create($user,
 				[
 					'class' => 'section',
 					'type' => 'file'
@@ -49,12 +49,12 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 					<div class="col-md-5 col-lg-4">
 						<div class="form-group">
 
-							<div class="fileinput fileinput-<?= (!empty($User->avatar) && $User->avatar != '../img/avatar.png') ? 'exists' : 'new' ?>" data-provides="fileinput">
+							<div class="fileinput fileinput-<?= (!empty($user->avatar) && $user->avatar != '../img/avatar.png') ? 'exists' : 'new' ?>" data-provides="fileinput">
 								<div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 150px;">
 									<?= $this->Html->image('avatar.png', ['alt' => __("Default Avatar")]) ?>
 								</div>
 								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
-									<?= $this->Html->image($User->avatar) ?>
+									<?= $this->Html->image($user->avatar) ?>
 								</div>
 								<div>
 									<span class="btn btn-default btn-file">

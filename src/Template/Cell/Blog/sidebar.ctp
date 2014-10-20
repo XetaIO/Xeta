@@ -2,7 +2,7 @@
     <div class="sidebox widget">
         <h4><?= __("Search Posts") ?></h4>
 
-	    <?= $this->Form->create($ArticleSearch,
+	    <?= $this->Form->create($articleSearch,
 			[
 				'action' => 'search',
 				'class' => 'navbar-form search',
@@ -15,7 +15,7 @@
 	    <?= $this->Form->end();?>
     </div>
 
-    <?php if($Featured):?>
+    <?php if($featured):?>
         <div class="sidebox widget">
             <h4><?= __("Featured Article") ?></h4>
 
@@ -23,7 +23,7 @@
 	            <h4 class="title">
 		            <?= $this->Html->link(
 						$this->Text->truncate(
-							$Featured->title,
+							$featured->title,
 							60,
 							[
 								'ellipsis' => '...',
@@ -32,8 +32,8 @@
 						),
 						[
 							'_name' => 'blog-article',
-							'slug' => $Featured->slug,
-							'?' => ['page' => $Featured->last_page]
+							'slug' => $featured->slug,
+							'?' => ['page' => $featured->last_page]
 						]
 					) ?>
 	            </h4>
@@ -41,39 +41,39 @@
 	            <ul class="meta">
 		            <li class="author">
 			            <i class="fa fa-user"></i>
-				            <?= $this->Html->link($Featured->user->full_name, ['_name' => 'users-profile', 'slug' => $Featured->user->slug]) ?>
+				            <?= $this->Html->link($featured->user->full_name, ['_name' => 'users-profile', 'slug' => $featured->user->slug]) ?>
 		            </li>
 		            <li class="date">
 			            <i class="fa fa-calendar"></i>
-			            <?= h($Featured->created->format('d M')) ?>
+			            <?= h($featured->created->format('d M')) ?>
 		            </li>
 	            </ul>
             </div>
         </div>
     <?php endif; ?>
 
-    <?php if($Categories): ?>
+    <?php if($categories): ?>
         <div class="sidebox widget">
             <h4><?= __("Categories") ?></h4>
 
             <ul class="circled">
-                <?php foreach($Categories as $Category): ?>
+                <?php foreach($categories as $category): ?>
                     <li>
-                        <?= $this->Html->link( h($Category->title) . " (" . $Category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $Category->slug]) ?>
+                        <?= $this->Html->link($category->title . " (" . $category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $category->slug]) ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
         </div>
     <?php endif; ?>
 
-	<?php if($Archives): ?>
+	<?php if($archives): ?>
 		<div class="sidebox widget">
 			<h4><?= __("Archives") ?></h4>
 
 			<ul class="circled">
-				<?php foreach($Archives as $Archive): ?>
+				<?php foreach($archives as $archive): ?>
 					<li>
-						<?= $this->Html->link(__("{0} ({1})", date('F Y', strtotime($Archive->date)), $this->Number->format($Archive->count, ['places' => 0, 'locale' => 'fr_FR'])), ['_name' => 'blog-archive', 'slug' => date('m-Y', strtotime($Archive->date))]) ?>
+						<?= $this->Html->link(__("{0} ({1})", date('F Y', strtotime($archive->date)), $this->Number->format($archive->count, ['locale' => 'fr_FR'])), ['_name' => 'blog-archive', 'slug' => date('m-Y', strtotime($archive->date))]) ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>
