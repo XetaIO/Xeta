@@ -1,5 +1,5 @@
 <?= $this->element('meta', [
-	'title' => __("Blog Category : {0}", h($Category->title))
+	'title' => __("Blog Category : {0}", h($category->title))
 ]) ?>
 
 <div class="container">
@@ -16,7 +16,7 @@
 					<?= $this->Html->link(__("Category"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
-					<?= h($Category->title) ?>
+					<?= h($category->title) ?>
 				</li>
 			</ol>
 			<?= $this->Flash->render() ?>
@@ -25,18 +25,18 @@
 
 	<div class="row">
 		<main class="col-md-9" role="main">
-			<?php if ($Articles->toArray()): ?>
+			<?php if ($articles->toArray()): ?>
 				<section class="blog-main">
-					<?php foreach ($Articles as $Article): ?>
+					<?php foreach ($articles as $article): ?>
 						<article class="post">
 
 							<div class="date">
 								<time>
 									<div class="day">
-										<?= h($Article->created->format('d')) ?>
+										<?= h($article->created->format('d')) ?>
 									</div>
 									<div class="month">
-										<?= h($Article->created->format('M')) ?>
+										<?= h($article->created->format('M')) ?>
 									</div>
 								</time>
 							</div>
@@ -44,10 +44,10 @@
 							<header>
 								<h2 class="title">
 									<?= $this->Html->link(
-										$Article->title, [
+										$article->title, [
 											'_name' => 'blog-article',
-											'slug' => $Article->slug,
-											'?' => ['page' => $Article->last_page]
+											'slug' => $article->slug,
+											'?' => ['page' => $article->last_page]
 										]
 									) ?>
 								</h2>
@@ -58,21 +58,21 @@
 									<li class="author">
 										<i class="fa fa-user"></i>
 										<?= $this->Html->link(
-											$Article->user->full_name, [
+											$article->user->full_name, [
 												'_name' => 'users-profile',
-												'slug' => $Article->user->slug
+												'slug' => $article->user->slug
 											]
 										) ?>
 									</li>
 									<li class="comments">
 										<i class="fa fa-comment"></i>
-										<?= h($Article->comment_count_format) ?>
-										<?= ($Article->comment_count > 1) ? __("Comments") : __("Comment") ?>
+										<?= h($article->comment_count_format) ?>
+										<?= ($article->comment_count > 1) ? __("Comments") : __("Comment") ?>
 									</li>
 									<li class="likes">
 										<i class="fa fa-heart"></i>
-										<?= h($Article->like_count_format) ?>
-										<?= ($Article->like_count > 1) ? __("Likes") : __("Like") ?>
+										<?= h($article->like_count_format) ?>
+										<?= ($article->like_count > 1) ? __("Likes") : __("Like") ?>
 									</li>
 								</ul>
 							</aside>
@@ -80,7 +80,7 @@
 							<div class="content">
 								<?=
 								$this->Text->truncate(
-									$Article->content_empty,
+									$article->content_empty,
 									200,
 									array(
 										'ellipsis' => '...',
@@ -94,8 +94,8 @@
 									__('Read More'),
 									[
 										'_name' => 'blog-article',
-										'slug' => $Article->slug,
-										'?' => ['page' => $Article->last_page]
+										'slug' => $article->slug,
+										'?' => ['page' => $article->last_page]
 									],
 									['class' => 'btn btn-primary']
 								) ?>
