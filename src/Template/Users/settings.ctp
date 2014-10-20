@@ -24,7 +24,7 @@
 			<?= $this->element('/Users/sidebar') ?>
 		</section>
 		<section class="col-md-9">
-			<?= $this->Form->create($User, ['class' => 'section']); ?>
+			<?= $this->Form->create($user, ['class' => 'section']); ?>
 				<?= $this->Form->input('method', ['type' => 'hidden', 'value' => 'email']) ?>
 				<h4>
 					<?= __("Change your E-mail") ?>
@@ -46,7 +46,7 @@
 				<?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
 			<?= $this->Form->end() ?>
 
-			<?= $this->Form->create($User, ['class' => 'section']); ?>
+			<?= $this->Form->create($user, ['class' => 'section']); ?>
 				<?= $this->Form->input('method', ['type' => 'hidden', 'value' => 'password']) ?>
 				<h4>
 					<?= __("Change your Password") ?>
