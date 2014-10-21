@@ -1,7 +1,8 @@
 {
-	"name": "cakephp/app",
-	"description": "CakePHP skeleton app",
-	"homepage": "http://cakephp.org",
+	"name": "xety/xeta",
+	"description": "A resource to help people starting with Cake3",
+	"keywords": ["CakePHP 3","Cake3"],
+	"homepage": "https://github.com/Xety/Xeta",
 	"type": "project",
 	"license": "MIT",
 	"require": {
