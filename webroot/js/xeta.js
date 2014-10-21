@@ -50,6 +50,7 @@ $(document).ready(function () {
 	
 	$(".editComment").bind("click", function () {
 		var commentId = $(this).attr("data-id");
+
 		$.ajax({
 			type    : "POST",
 			url     : $(this).attr("data-url"),
@@ -58,10 +59,16 @@ $(document).ready(function () {
 			},
 			dataType: "html",
 			success : function (data) {
-				$("#comment-" + commentId + " .content").html(data);
-				CKEDITOR.replace('commentBox-' + commentId, {
-					customConfig: 'config/comment.js'
-				});
+				if(!$("#editingComment-" + commentId).length) {
+					var commentContent = $("#comment-" + commentId + " .content");
+					
+					commentContent.fadeOut();
+					commentContent.after(data);
+					
+					CKEDITOR.replace('commentBox-' + commentId, {
+						customConfig: 'config/comment.js'
+					});
+				}
 			},
 			error   : function (e) {
 				$(".top-right").notify({
