@@ -19,7 +19,7 @@
 		</div>
 		<?= $this->Form->end(); ?>
 	<?php endif; ?>
-	<script>
+	<script type="text/javascript">
 	$(function() {
 		$("#cancelEditComment").click(function () {
 			var commentId = $(this).attr("data-id");
