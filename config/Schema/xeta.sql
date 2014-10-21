@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS blog_categories (
 -- Table data 'blog_categories'
 --
 
-INSERT INTO blog_categories (id, title, description, slug, article_count, last_article_id, created, modified) VALUES
+INSERT INTO blog_categories (id, title, description, slug, article_count, created, modified) VALUES
 (1, 'Xeta', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'xeta', 1, '2014-09-22 10:00:00', '2014-09-22 10:00:00');
 
 -- --------------------------------------------------------
