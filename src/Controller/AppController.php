@@ -4,6 +4,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 class AppController extends Controller {
 
@@ -86,6 +87,27 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter(Event $event) {
+		//Automaticaly Login.
+		if (!$this->Auth->user() && $this->Cookie->read('User')) {
+			$this->loadModel('Users');
+			$this->Auth->config('authenticate', ['Cookie']);
+
+			$user = $this->Auth->identify();
+			if ($user) {
+				$this->Auth->setUser($user);
+
+				$user = $this->Users->newEntity($user);
+				$user->isNew(false);
+
+				$user->last_login = new Time();
+				$user->last_login_ip = $this->request->clientIp();
+
+				$this->Users->save($user);
+			} else {
+				$this->Cookie->delete('User');
+			}
+		}
+
 		if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
 			$this->layout = 'admin';
 		}
