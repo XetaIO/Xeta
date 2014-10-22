@@ -51,9 +51,9 @@ https://github.com/Xety/Xeta/wiki
 
 #### Pre-installed Accounts
 * Admin account
-    * User : Admin | Pass : The password you have provided in the Console (Default `administrator`)
+    * User : Admin | Pass : `administrator`
 * Member account
-    * User : Test | Pass : The password you have provided in the Console (Default `testaccount`)
+    * User : Test | Pass : `testaccount`
 
 # Features
 Since I have decided to release it, I'm trying to use the maximum of Cake3's features :

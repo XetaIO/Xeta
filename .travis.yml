@@ -19,6 +19,9 @@ matrix:
     - php: 5.4
       env: PHPCS=1 DEFAULT=0
 
+    - php: 5.4
+      env: COVERALLS=1 DEFAULT=0
+
   fast_finish: true
 
   include:

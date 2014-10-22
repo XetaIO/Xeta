@@ -38,7 +38,7 @@ class Installer {
 		static::setFolderPermissions($rootDir, $io);
 		static::setDatabaseName($rootDir, $io);
 		$newKey = static::setSecuritySalt($rootDir, $io);
-		//static::setAccountPassword($rootDir, $io, $newKey);
+		static::setAccountPassword($rootDir, $io, $newKey);
 	}
 
 /**
@@ -179,8 +179,8 @@ class Installer {
 		$database = $dir . '/config/Schema/xeta.sql';
 		$content = file_get_contents($database);
 
-		$adminPass = $io->ask('Provide a password for the Admin account : ', 'administrator');
-		$memberPass = $io->ask('Provide a password for the Member account : ', 'testaccount');
+		$adminPass = 'administrator';
+		$memberPass = 'testaccount';
 
 		$replacement = [
 			(new DefaultPasswordHasher)->hash($adminPass),
