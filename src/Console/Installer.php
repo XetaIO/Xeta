@@ -38,7 +38,7 @@ class Installer {
 		static::setFolderPermissions($rootDir, $io);
 		static::setDatabaseName($rootDir, $io);
 		$newKey = static::setSecuritySalt($rootDir, $io);
-		static::setAccountPassword($rootDir, $io, $newKey);
+		//static::setAccountPassword($rootDir, $io, $newKey);
 	}
 
 /**
