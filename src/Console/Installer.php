@@ -182,9 +182,11 @@ class Installer {
 		$adminPass = 'administrator';
 		$memberPass = 'testaccount';
 
+		$hasher = new DefaultPasswordHasher();
+
 		$replacement = [
-			(new DefaultPasswordHasher)->hash($adminPass),
-			(new DefaultPasswordHasher)->hash($memberPass),
+			$hasher->hash($adminPass),
+			$hasher->hash($memberPass),
 		];
 
 		$search = [
