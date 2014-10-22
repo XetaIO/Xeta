@@ -1,6 +1,7 @@
 # Cake3 Blog Resource
 
 [![Build Status](https://travis-ci.org/Xety/Xeta.svg)](https://travis-ci.org/Xety/Xeta)
+[![Coverage Status](https://coveralls.io/repos/Xety/Xeta/badge.png)](https://coveralls.io/r/Xety/Xeta)
 
 Cake3 Blog Resource, is a resource to help people starting with Cake3.
 
