@@ -17,6 +17,10 @@ http://xeta.io
 ##### Dashboard
 ![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525906/5e355904-4d59-11e4-9ba5-f660c403e39c.png)
 ![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525908/6663383a-4d59-11e4-9522-be42a69124f5.png)
+[![Latest Stable Version](https://poser.pugx.org/xety/xeta/v/stable.svg)](https://packagist.org/packages/xety/xeta)
+[![Total Downloads](https://poser.pugx.org/xety/xeta/downloads.svg)](https://packagist.org/packages/xety/xeta)
+[![Latest Unstable Version](https://poser.pugx.org/xety/xeta/v/unstable.svg)](https://packagist.org/packages/xety/xeta)
+[![License](https://poser.pugx.org/xety/xeta/license.svg)](https://packagist.org/packages/xety/xeta)
 
 ##### Articles Management
 ![Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525857/e61fa3e8-4d58-11e4-8fa2-b71d13abab16.png)
