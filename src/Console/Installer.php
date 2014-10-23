@@ -162,7 +162,7 @@ class Installer {
 	}
 
 /**
- * Set up the admin and member password for the
+ * Set up the admin and member password for the database.
  *
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
