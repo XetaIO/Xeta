@@ -139,7 +139,7 @@ class Installer {
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
  *
- * @return void
+ * @return mixed void|string The new security.salt.
  */
 	public static function setSecuritySalt($dir, $io) {
 		$config = $dir . '/config/app.php';
@@ -166,7 +166,7 @@ class Installer {
  *
  * @param string $dir The application's root directory.
  * @param \Composer\IO\IOInterface $io IO interface to write to console.
- * @param string $newKey The new SALT.
+ * @param string $newKey The new security.salt.
  *
  * @return void
  */
