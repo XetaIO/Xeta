@@ -171,7 +171,7 @@ class Installer {
  * @return void
  */
 	public static function setAccountPassword($dir, $io, $newKey = null) {
-		if($newKey == null){
+		if ($newKey == null) {
 			$io->write('The new Security.salt value is empty in config/app.php, can\'t set up the password.');
 			return;
 		}
