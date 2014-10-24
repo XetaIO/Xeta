@@ -42,24 +42,6 @@ Configure::write('Session', [
 	'defaults' => 'php'
 ]);
 
-Cache::config([
-	'_cake_core_' => [
-		'engine' => 'File',
-		'prefix' => 'cake_core_',
-		'serialize' => true
-	],
-	'_cake_model_' => [
-		'engine' => 'File',
-		'prefix' => 'cake_model_',
-		'serialize' => true
-	],
-	'default' => [
-		'engine' => 'File',
-		'prefix' => 'default_',
-		'serialize' => true
-	]
-]);
-
 // Ensure default test connection is defined
 if (!getenv('db_class')) {
 	putenv('db_class=Cake\Database\Driver\Sqlite');
