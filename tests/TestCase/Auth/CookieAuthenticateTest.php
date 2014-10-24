@@ -17,6 +17,11 @@ use Cake\Utility\Security;
 
 class CookieAuthenticateTest extends TestCase {
 
+/**
+ * Fixtures
+ *
+ * @var array
+ */
 	public $fixtures = ['app.users'];
 
 /**
