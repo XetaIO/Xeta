@@ -101,7 +101,7 @@ $isCli = php_sapi_name() === 'cli';
 if ($isCli) {
 	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-	(new ErrorHandler(Configure::consume('Error')))->register();
+	(new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.

@@ -16,7 +16,8 @@
 	},
 	"require-dev": {
 		"d11wtq/boris": "1.0.*",
-		"phpunit/phpunit": "*"
+		"phpunit/phpunit": "*",
+		"gourmet/whoops": "*"
 	},
 	"suggest": {
 		"cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."
