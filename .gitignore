@@ -3,6 +3,7 @@
 /logs/*
 /plugins/*
 /node_modules/
+/webroot/coverage/
 /webroot/css/less/
 /webroot/css/adminless/
 /webroot/upload/avatar/1/
