@@ -23,7 +23,7 @@ class SluggableBehavior extends Behavior {
 /**
  * Slug a field passed in the default config with its replacement.
  *
- * @param \Cake\ORM\Entity $entity [description]
+ * @param \Cake\ORM\Entity $entity The entity that is going to be updated.
  *
  * @return void
  */
