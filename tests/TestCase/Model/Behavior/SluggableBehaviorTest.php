@@ -34,7 +34,7 @@ class SluggableBehaviorTest extends TestCase {
 		$table = TableRegistry::get('users');
 		$row = $table->find('slug', [
 						'slug' => 'mariano',
-						'slugField' => 'Users.slug'
+						'slugField' => 'users.slug'
 					])->first();
 		$this->assertEquals('mariano', $row->username);
 	}
