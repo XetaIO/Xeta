@@ -2,13 +2,11 @@
 namespace App\Test\TestCase\Auth;
 
 use App\Auth\CookieAuthenticate;
-use Cake\Auth\BasicAuthenticate;
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\Network\Request;
-use Cake\Network\Response;
 use Cake\Network\Session;
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;

@@ -6,7 +6,6 @@ use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
-use Cake\ORM\Table;
 
 class UploadBehavior extends Behavior {
 
@@ -57,18 +56,6 @@ class UploadBehavior extends Behavior {
 	protected $_defaultFile = false;
 
 /**
- * Constructor.
- *
- * @param \Cake\ORM\Table $table  The table this behavior is attached to.
- * @param array           $config The config for this behavior.
- */
-	public function __construct(Table $table, array $config = []) {
-		parent::__construct($table, $config);
-		$this->_table = $table;
-		$this->_folder = new Folder($this->_config['root']);
-	}
-
-/**
  * Check if there is some files to upload and modify the entity before
  * it is saved.
  *
@@ -90,7 +77,7 @@ class UploadBehavior extends Behavior {
 			$data = $entity->toArray();
 			$virtualField = $field . $config['suffix'];
 
-			if (!isset($data[$virtualField])) {
+			if (!isset($data[$virtualField]) || !is_array($data[$virtualField])) {
 				continue;
 			}
 
@@ -116,7 +103,8 @@ class UploadBehavior extends Behavior {
 				throw new \ErrorException(__('Error to get the uploadPath.'));
 			}
 
-			$this->_folder->create(dirname($uploadPath), 0755);
+			$folder = new Folder($this->_config['root']);
+			$folder->create($this->_config['root'] . dirname($uploadPath));
 
 			if ($this->_moveFile($entity, $file['tmp_name'], $uploadPath, $field, $fieldOption)) {
 
@@ -158,7 +146,7 @@ class UploadBehavior extends Behavior {
 			$this->_deleteOldUpload($entity, $field, $destination, $options);
 		}
 
-		if ($file->copy($destination, $this->_overwrite)) {
+		if ($file->copy($this->_config['root'] . $destination, $this->_overwrite)) {
 			return true;
 		}
 
@@ -232,7 +220,7 @@ class UploadBehavior extends Behavior {
 			return false;
 		}
 
-		$path = trim($path, '/');
+		$path = trim($path, DS);
 
 		$identifiers = [
 			':id' => $entity->id,
