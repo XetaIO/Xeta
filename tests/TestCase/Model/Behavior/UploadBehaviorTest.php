@@ -185,7 +185,6 @@ class UploadBehaviorTest extends TestCase {
 		$this->assertFalse(file_exists(TEST_WWW_ROOT . $before->avatar), 'The old file should be deleted when overwrite is true');
 		$this->assertTrue(file_exists(TEST_WWW_ROOT . $after->avatar), 'The new file should be created.');
 
-
 		$this->users->removeBehavior('Upload');
 		$this->users->addBehavior('Upload', [
 			'root' => TEST_WWW_ROOT,
@@ -302,7 +301,6 @@ class UploadBehaviorTest extends TestCase {
 
 		$this->assertEquals('upload' . DS . '1' . DS . '1.png', $result->avatar, 'The avatar should be created because both
 		suffix match.');
-
 
 		$this->users->removeBehavior('Upload');
 		$this->users->addBehavior('Upload', [
