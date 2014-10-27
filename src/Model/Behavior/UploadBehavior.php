@@ -21,20 +21,6 @@ class UploadBehavior extends Behavior {
 	];
 
 /**
- * Table instance.
- *
- * @var \Cake\ORM\Table
- */
-	protected $_table;
-
-/**
- * Folder instance.
- *
- * @var \Cake\Filesystem\Folder
- */
-	protected $_folder;
-
-/**
  * Overwrite all file on upload.
  *
  * @var bool
@@ -179,7 +165,8 @@ class UploadBehavior extends Behavior {
 			$this->_defaultFile = $options['defaultFile'];
 		}
 
-		if ($fileInfo['basename'] == $newFileInfo['basename'] || $fileInfo['basename'] == $this->_defaultFile) {
+		if ($fileInfo['basename'] == $newFileInfo['basename'] ||
+			$fileInfo['basename'] == pathinfo($this->_defaultFile)['basename']) {
 			return true;
 		}
 
@@ -187,7 +174,7 @@ class UploadBehavior extends Behavior {
 			$entity->$field = str_replace($this->_prefix, "", $entity->$field);
 		}
 
-		$file = new File($entity->$field, false);
+		$file = new File($this->_config['root'] . $entity->$field, false);
 
 		if ($file->exists()) {
 			$file->delete();
