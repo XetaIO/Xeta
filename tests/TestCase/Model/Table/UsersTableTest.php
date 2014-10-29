@@ -2,8 +2,8 @@
 namespace App\Test\TestCase\Model\Table;
 
 use Cake\Auth\DefaultPasswordHasher;
-use Cake\I18n\Time;
 use Cake\Filesystem\Folder;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
