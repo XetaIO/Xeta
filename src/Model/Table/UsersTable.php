@@ -91,7 +91,7 @@ class UsersTable extends Table {
 					'rule' => function ($value, $context) {
 							return (new DefaultPasswordHasher)->check($value, $context['data']['password']);
 					},
-					'message' => __("Your password confirm must match with your password")
+					'message' => __("Your password confirm must match with your password.")
 				]
 			])
 			->validatePresence('email', 'create')
@@ -175,7 +175,7 @@ class UsersTable extends Table {
 			])
 			->allowEmpty('biography')
 			->add('biography', [
-				'maxLength' => [
+				'purifierMaxLength' => [
 					'rule' => ['purifierMaxLength', 3000],
 					'provider' => 'purifier',
 					'message' => __('Your biography can not contain more than {0} characters.', 3000)
@@ -206,7 +206,12 @@ class UsersTable extends Table {
 				'email' => [
 					'rule' => 'email',
 					'message' => __("You must specify a valid E-mail address.")
-				]
+				],
+				'unique' => [
+					'rule' => 'validateUnique',
+					'provider' => 'table',
+					'message' => __("This E-mail is already used, please choose another E-mail.")
+				],
 			])
 			->validatePresence('password', false)
 			->notEmpty('password', __("You must specify your new password."))

@@ -172,16 +172,6 @@ class UsersController extends AppController {
 						return $this->redirect(['action' => 'settings']);
 					}
 
-					$check = $this->Users
-						->find()
-						->where(['email' => $this->request->data['email']])
-						->first();
-
-					if (!is_null($check) || $oldEmail == $this->request->data['email']) {
-						$this->set(compact('user', 'oldEmail'));
-						return $this->Flash->error(__("This E-mail is already use or you don't have provided a new E-mail."));
-					}
-
 					$this->Users->patchEntity($user, $this->request->data());
 
 					if ($this->Users->save($user, ['validate' => 'settings'])) {

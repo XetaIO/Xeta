@@ -72,6 +72,28 @@ class UsersFixture extends TestFixture {
 			'last_login' => '2014-03-17 01:23:31',
 			'created' => '2014-03-17 01:16:23',
 			'modified' => '2014-03-17 01:18:31'
+		],
+		[
+			'username' => 'larry',
+			'password' => '5f4dcc3b5aa765d61d8327deb882cf99',
+			'email' => 'larry@example.com',
+			'first_name' => 'Larry',
+			'last_name' => 'Page',
+			'avatar' => '../img/avatar.png',
+			'biography' => 'My awesome biography',
+			'signature' => 'My awesome signature',
+			'facebook' => 'larry',
+			'twitter' => 'larry',
+			'role' => 'member',
+			'slug' => 'larry',
+			'blog_articles_comment_count' => 0,
+			'blog_article_count' => 0,
+			'counter_id' => 1,
+			'register_ip' => '192.168.0.2',
+			'last_login_ip' => '192.168.0.2',
+			'last_login' => '2014-03-18 01:23:31',
+			'created' => '2014-03-18 01:16:23',
+			'modified' => '2014-03-18 01:18:31'
 		]
 	];
 
