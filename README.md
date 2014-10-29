@@ -1,11 +1,10 @@
 # Cake3 Blog Resource
 
-[![Build Status](https://travis-ci.org/Xety/Xeta.svg?branch=master)](https://travis-ci.org/Xety/Xeta)
-[![Coverage Status](https://coveralls.io/repos/xety/xeta/badge.png?branch=master)](https://coveralls.io/r/xety/xeta)
-[![Latest Stable Version](https://poser.pugx.org/xety/xeta/v/stable.svg)](https://packagist.org/packages/xety/xeta)
-[![Total Downloads](https://poser.pugx.org/xety/xeta/downloads.svg)](https://packagist.org/packages/xety/xeta)
-[![Latest Unstable Version](https://poser.pugx.org/xety/xeta/v/unstable.svg)](https://packagist.org/packages/xety/xeta)
-[![License](https://poser.pugx.org/xety/xeta/license.svg)](https://packagist.org/packages/xety/xeta)
+[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)
+[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/xety/xeta)
+[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
+[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
 
 Cake3 Blog Resource, is a resource to help people starting with Cake3.
 
