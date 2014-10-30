@@ -36,7 +36,6 @@ class BlogCategoriesFixture extends TestFixture {
  */
 	public $records = [
 		[
-			'id' => 1,
 			'title' => 'Categorie 1',
 			'description' => 'Lorem ipsum dolor sit amet.',
 			'slug' => 'categorie-1',
@@ -45,7 +44,6 @@ class BlogCategoriesFixture extends TestFixture {
 			'modified' => '2014-10-29 15:36:57'
 		],
 		[
-			'id' => 2,
 			'title' => 'Categorie 2',
 			'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat.',
 			'slug' => 'categorie-2',
