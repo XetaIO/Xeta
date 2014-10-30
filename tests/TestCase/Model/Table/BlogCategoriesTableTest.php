@@ -5,9 +5,6 @@ use App\Test\Lib\Utility;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Model\Table\BlogCategoriesTable Test Case
- */
 class BlogCategoriesTableTest extends TestCase {
 
 /**

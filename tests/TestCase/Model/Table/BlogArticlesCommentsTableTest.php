@@ -5,9 +5,6 @@ use App\Test\Lib\Utility;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Model\Table\BlogArticlesCommentsTable Test Case
- */
 class BlogArticlesCommentsTableTest extends TestCase {
 
 /**
@@ -22,7 +19,7 @@ class BlogArticlesCommentsTableTest extends TestCase {
 	];
 
 /**
- * setUp method
+ * setUp
  *
  * @return void
  */
@@ -33,7 +30,7 @@ class BlogArticlesCommentsTableTest extends TestCase {
 	}
 
 /**
- * Test validationCreate method
+ * Test validationCreate
  *
  * @return void
  */

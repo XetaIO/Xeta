@@ -5,9 +5,6 @@ use App\Test\Lib\Utility;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Model\Table\BlogArticlesLikesTable Test Case
- */
 class BlogArticlesLikesTableTest extends TestCase {
 
 /**
@@ -22,7 +19,7 @@ class BlogArticlesLikesTableTest extends TestCase {
 	];
 
 /**
- * setUp method
+ * setUp
  *
  * @return void
  */
@@ -33,7 +30,7 @@ class BlogArticlesLikesTableTest extends TestCase {
 	}
 
 /**
- * Test validationDefault method
+ * Test validationDefault
  *
  * @return void
  */
