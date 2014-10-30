@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
+use App\Test\Lib\Utility;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
@@ -24,6 +25,7 @@ class UsersTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->Users = TableRegistry::get('Users');
+		$this->Utility = new Utility;
 	}
 
 /**
@@ -132,7 +134,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'create']);
 
 		$this->assertFalse($result);
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()), 'Should return errors.');
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()), 'Should return errors.');
 
 		$data = [
 			'username' => 'mariano',
@@ -154,7 +156,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'create']);
 
 		$this->assertFalse($result);
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()), 'Should return errors.');
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()), 'Should return errors.');
 
 		$data = [
 			'username' => 'Xeta',
@@ -194,13 +196,13 @@ class UsersTest extends TestCase {
 			'size' => 6000000000
 		];
 		$data = [
-			'first_name' => $this->_generateRandomString(101),
-			'last_name' => $this->_generateRandomString(101),
+			'first_name' => $this->Utility->generateRandomString(101),
+			'last_name' => $this->Utility->generateRandomString(101),
 			'avatar_file' => $fakeImage,
-			'facebook' => $this->_generateRandomString(201),
-			'twitter' => $this->_generateRandomString(201),
-			'biography' => $this->_generateRandomString(3001),
-			'signature' => $this->_generateRandomString(301)
+			'facebook' => $this->Utility->generateRandomString(201),
+			'twitter' => $this->Utility->generateRandomString(201),
+			'biography' => $this->Utility->generateRandomString(3001),
+			'signature' => $this->Utility->generateRandomString(301)
 		];
 
 		$expected = [
@@ -233,7 +235,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'account']);
 
 		$this->assertFalse($result);
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$image = [
 			'name' => 'tmp_avatar.png',
@@ -308,7 +310,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'settings']);
 
 		$this->assertFalse($result, 'Should be false because this Email is already token.');
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$data = [
 			'email' => 'larry.com'
@@ -325,7 +327,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'settings']);
 
 		$this->assertFalse($result, 'Should be false because this Email is not correct.');
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$data = [
 			'email' => 'new@exemple.com'
@@ -356,7 +358,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'settings']);
 
 		$this->assertFalse($result, 'Should be false because the pass doesn not match and not 8 characters.');
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$data = [
 			'password' => '12345678',
@@ -396,7 +398,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'update']);
 
 		$this->assertFalse($result, 'Should be false because the username & Email are already used.');
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$data = [
 			'username' => 'la^',
@@ -418,7 +420,7 @@ class UsersTest extends TestCase {
 		$result = $this->Users->save($user, ['validate' => 'update']);
 
 		$this->assertFalse($result, 'Should be false because the username & Email are not correct.');
-		$this->assertEquals($expected, $this->_getL2Keys($user->errors()));
+		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
 
 		$data = [
 			'username' => 'newmariano',
@@ -432,35 +434,5 @@ class UsersTest extends TestCase {
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$this->assertEquals($data['username'], $result->username);
 		$this->assertEquals($data['email'], $result->email);
-	}
-
-/**
- * Extract keys on 2 levels.
- *
- * @param array $array The array to extract keys.
- *
- * @return array
- */
-	protected function _getL2Keys($array) {
-		foreach ($array as $key => $rules) {
-			$vals[$key] = array_keys($rules);
-		}
-
-		return $vals;
-	}
-
-/**
- * Generate a random string with a custom length.
- *
- * @param int $length The length of the string.
- *
- * @return string
- */
-	protected function _generateRandomString($length = 10) {
-		$string = '';
-		for ($i = 0; $i < $length; $i++) {
-			$string .= 'z';
-		}
-		return $string;
 	}
 }
