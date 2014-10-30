@@ -32,9 +32,6 @@ class UsersFixture extends TestFixture {
 		'last_login' => ['type' => 'datetime'],
 		'created' => ['type' => 'datetime'],
 		'modified' => ['type' => 'datetime'],
-		'_indexes' => [
-			'slug' => ['type' => 'index', 'columns' => ['slug']],
-		],
 		'_constraints' => [
 			'primary' => ['type' => 'primary', 'columns' => ['id']],
 			'username' => ['type' => 'unique', 'columns' => ['username']],

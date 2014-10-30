@@ -22,9 +22,6 @@ class BlogArticlesFixture extends TestFixture {
 		'is_display' => ['type' => 'integer', 'default' => '1'],
 		'created' => ['type' => 'datetime'],
 		'modified' => ['type' => 'datetime'],
-		'_indexes' => [
-			'slug' => ['type' => 'index', 'columns' => ['slug']],
-		],
 		'_constraints' => [
 			'primary' => ['type' => 'primary', 'columns' => ['id']],
 		],
@@ -40,7 +37,6 @@ class BlogArticlesFixture extends TestFixture {
  */
 	public $records = [
 		[
-			'id' => 1,
 			'category_id' => 1,
 			'user_id' => 1,
 			'title' => 'First article',
@@ -53,7 +49,6 @@ class BlogArticlesFixture extends TestFixture {
 			'modified' => '2014-10-28 15:48:53'
 		],
 		[
-			'id' => 2,
 			'category_id' => 1,
 			'user_id' => 1,
 			'title' => 'Second article',

@@ -18,9 +18,6 @@ class BlogCategoriesFixture extends TestFixture {
 		'article_count' => ['type' => 'integer'],
 		'created' => ['type' => 'datetime'],
 		'modified' => ['type' => 'datetime'],
-		'_indexes' => [
-			//'slug' => ['type' => 'index', 'columns' => ['slug']],
-		],
 		'_constraints' => [
 			'primary' => ['type' => 'primary', 'columns' => ['id']],
 		],

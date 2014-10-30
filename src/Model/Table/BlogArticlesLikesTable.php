@@ -39,12 +39,16 @@ class BlogArticlesLikesTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->add('article_id', 'valid', ['rule' => 'numeric'])
 			->validatePresence('article_id', 'create')
 			->notEmpty('article_id')
-			->add('user_id', 'valid', ['rule' => 'numeric'])
+			->add('article_id', 'numeric', [
+				'rule' => 'numeric'
+			])
 			->validatePresence('user_id', 'create')
-			->notEmpty('user_id');
+			->notEmpty('user_id')
+			->add('user_id', 'numeric', [
+				'rule' => 'numeric'
+			]);
 
 		return $validator;
 	}
