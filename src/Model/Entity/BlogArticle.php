@@ -78,7 +78,7 @@ class BlogArticle extends Entity {
  * @return string
  */
 	protected function _getCommentCountFormat() {
-		return Number::format($this->comment_count, ['places' => 0, 'locale' => 'fr_FR']);
+		return Number::format($this->comment_count);
 	}
 
 /**
@@ -87,6 +87,6 @@ class BlogArticle extends Entity {
  * @return string
  */
 	protected function _getLikeCountFormat() {
-		return Number::format($this->like_count, ['places' => 0, 'locale' => 'fr_FR']);
+		return Number::format($this->like_count);
 	}
 }
