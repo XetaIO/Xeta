@@ -21,6 +21,10 @@ class AppController extends Controller {
 			'secure' => true
 		],
 		'Auth' => [
+			'authenticate' => [
+				'Form',
+				'Cookie'
+			],
 			'authorize' => ['Controller'],
 			'loginAction' => [
 				'controller' => 'users',
@@ -90,7 +94,6 @@ class AppController extends Controller {
 		//Automaticaly Login.
 		if (!$this->Auth->user() && $this->Cookie->read('User')) {
 			$this->loadModel('Users');
-			$this->Auth->config('authenticate', ['Cookie']);
 
 			$user = $this->Auth->identify();
 			if ($user) {
