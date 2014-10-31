@@ -52,7 +52,9 @@ class BlogArticlesTable extends Table {
 		$validator
 			->validatePresence('category_id', 'create')
 			->notEmpty('category_id', __("You must select a category."))
-			->add('category_id', 'valid', ['rule' => 'numeric'])
+			->add('category_id', 'numeric', [
+				'rule' => 'numeric'
+			])
 			->validatePresence('title')
 			->notEmpty('title', __("The title is required."))
 			->add('title', [

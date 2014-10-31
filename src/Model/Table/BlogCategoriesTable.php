@@ -4,9 +4,6 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * BlogCategories Model
- */
 class BlogCategoriesTable extends Table {
 
 /**
