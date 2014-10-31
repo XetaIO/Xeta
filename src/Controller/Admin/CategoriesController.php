@@ -36,7 +36,7 @@ class CategoriesController extends AppController {
 		$this->loadModel('BlogCategories');
 		$category = $this->BlogCategories->newEntity($this->request->data);
 
-		if ($this->request->is('post', 'put')) {
+		if ($this->request->is('post')) {
 
 			if ($this->BlogCategories->save($category)) {
 
@@ -71,7 +71,7 @@ class CategoriesController extends AppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is('put')) {
 			$this->BlogCategories->patchEntity($category, $this->request->data());
 
 			if ($this->BlogCategories->save($category)) {

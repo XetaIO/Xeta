@@ -129,28 +129,16 @@ class AdminController extends AppController {
 		}
 		$usersGraph = array_reverse($usersGraph);
 
-		$usersCount = Number::format($this->Users
-			->find()
-			->count(),
-			['locale' => 'fr_FR']);
+		$usersCount = Number::format($this->Users->find()->count());
 
 		$this->loadModel('BlogArticles');
-		$articlesCount = Number::format($this->BlogArticles
-			->find()
-			->count(),
-			['locale' => 'fr_FR']);
+		$articlesCount = Number::format($this->BlogArticles->find()->count());
 
 		$this->loadModel('BlogArticlesComments');
-		$commentsCount = Number::format($this->BlogArticlesComments
-			->find()
-			->count(),
-			['locale' => 'fr_FR']);
+		$commentsCount = Number::format($this->BlogArticlesComments->find()->count());
 
 		$this->loadModel('BlogCategories');
-		$categoriesCount = Number::format($this->BlogCategories
-			->find()
-			->count(),
-			['locale' => 'fr_FR']);
+		$categoriesCount = Number::format($this->BlogCategories->find()->count());
 
 		$this->set(compact('usersCount', 'articlesCount', 'commentsCount', 'categoriesCount', 'usersGraph'));
 	}

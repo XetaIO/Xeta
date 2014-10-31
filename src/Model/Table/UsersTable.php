@@ -278,11 +278,10 @@ class UsersTable extends Table {
  * Custom finder for select only the required fields.
  *
  * @param \Cake\ORM\Query $query The query finder.
- * @param array $options The options passed in the query builder.
  *
  * @return array|bool
  */
-	public function findShort(Query $query, array $options) {
+	public function findShort(Query $query) {
 		return $query->select([
 				'first_name',
 				'last_name',
@@ -295,11 +294,10 @@ class UsersTable extends Table {
  * Custom finder for select the required fields and avatar.
  *
  * @param \Cake\ORM\Query $query The query finder.
- * @param array $options The options passed in the query builder.
  *
  * @return array|bool
  */
-	public function findMedium(Query $query, array $options) {
+	public function findMedium(Query $query) {
 		return $query->select([
 				'first_name',
 				'last_name',
@@ -313,11 +311,10 @@ class UsersTable extends Table {
  * Custom finder for select full fields.
  *
  * @param \Cake\ORM\Query $query The query finder.
- * @param array $options The options passed in the query builder.
  *
  * @return array|bool
  */
-	public function findFull(Query $query, array $options) {
+	public function findFull(Query $query) {
 		return $query->select([
 				'first_name',
 				'last_name',

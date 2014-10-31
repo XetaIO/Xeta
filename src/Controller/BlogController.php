@@ -237,6 +237,8 @@ class BlogController extends AppController {
 			])
 			->first();
 
+		$json = [];
+
 		if (!is_null($comment)) {
 			$comment->toArray();
 
@@ -436,6 +438,8 @@ EOT;
 			])
 			->first();
 
+		$json = [];
+
 		if (!is_null($checkLike)) {
 			$json['message'] = __('You already like this article !');
 			$json['error'] = true;
@@ -518,6 +522,8 @@ EOT;
 				'BlogArticles.is_display' => 1
 			])
 			->first();
+
+		$json = [];
 
 		if (is_null($like)) {
 			$json['message'] = __("You don't like this article !");

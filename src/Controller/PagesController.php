@@ -56,12 +56,10 @@ class PagesController extends AppController {
 			->contain([
 				'BlogArticles' => function ($q) {
 					return $q
-						->select(
-							[
-								'title',
-								'slug'
-							]
-						);
+						->select([
+							'title',
+							'slug'
+						]);
 				},
 				'Users' => function ($q) {
 					return $q->find('medium');
@@ -96,6 +94,7 @@ class PagesController extends AppController {
 		]);
 		$this->Cookie->write('allowCookies', 'true');
 
+		$json = [];
 		$json['message'] = __('Thanks for accepting to use the cookies !');
 		$this->set(compact('json'));
 

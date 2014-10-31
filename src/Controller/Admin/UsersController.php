@@ -120,7 +120,7 @@ class UsersController extends AppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is('put')) {
 			$this->Users->patchEntity($user, $this->request->data());
 
 			if ($this->Users->save($user, ['validate' => 'update'])) {

@@ -15,7 +15,6 @@ Actually, I have developed this blog to try Cake3 and for my needs (personal blo
 
 ## Demo
 http://xeta.io
-* User : test | Pass : 12345678
 
 ### Screenshots of the Administration Panel
 ##### Dashboard

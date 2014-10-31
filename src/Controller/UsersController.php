@@ -138,7 +138,7 @@ class UsersController extends AppController {
 	public function account() {
 		$user = $this->Users->get($this->Auth->user('id'));
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is('put')) {
 			$user->accessible('avatar_file', true);
 			$this->Users->patchEntity($user, $this->request->data());
 
@@ -160,7 +160,7 @@ class UsersController extends AppController {
 
 		$oldEmail = $user->email;
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is('put')) {
 			$method = ($this->request->data['method']) ? $this->request->data['method'] : false;
 
 			switch ($method)
