@@ -47,7 +47,7 @@ class ArticlesController extends AppController {
 		$this->loadModel('BlogArticles');
 		$article = $this->BlogArticles->newEntity($this->request->data);
 
-		if ($this->request->is('post', 'put')) {
+		if ($this->request->is('post')) {
 			$article->user_id = $this->Auth->user('id');
 
 			if ($this->BlogArticles->save($article)) {
@@ -90,7 +90,7 @@ class ArticlesController extends AppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is('put')) {
 			$this->BlogArticles->patchEntity($article, $this->request->data());
 
 			if ($this->BlogArticles->save($article)) {
