@@ -56,7 +56,7 @@ class BlogCell extends Cell {
 				'date' => 'DATE(created)',
 				'count' => 'COUNT(id)'
 			])
-			->group('SUBSTR(created, 1, 7)')
+			->group('SUBSTR(CAST(created AS char), 1, 7)')
 			->order([
 				'date' => 'desc'
 			])
