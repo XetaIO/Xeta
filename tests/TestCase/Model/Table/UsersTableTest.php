@@ -255,7 +255,7 @@ class UsersTest extends TestCase {
 		];
 
 		$this->Users->removeBehavior('Upload');
-		$this->Users->addBehavior('Upload', [
+		$this->Users->addBehavior('Xety/Cake3Upload.Upload', [
 			'root' => TEST_WWW_ROOT,
 			'fields' => [
 				'avatar' => [

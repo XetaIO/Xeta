@@ -12,7 +12,8 @@
 		"cakephp/debug_kit": "3.0.*-dev",
 		"ezyang/htmlpurifier": "dev-master",
 		"widop/google-analytics": "dev-master",
-		"mexitek/phpcolors": "dev-master"
+		"mexitek/phpcolors": "dev-master",
+		"xety/cake3-upload": "1.*"
 	},
 	"require-dev": {
 		"d11wtq/boris": "1.0.*",

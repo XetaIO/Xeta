@@ -21,7 +21,7 @@ class UsersTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Timestamp');
-		$this->addBehavior('Upload', [
+		$this->addBehavior('Xety/Cake3Upload.Upload', [
 			'fields' => [
 				'avatar' => [
 					'path' => 'upload/avatar/:id/:md5',
