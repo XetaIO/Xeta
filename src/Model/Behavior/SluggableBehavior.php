@@ -51,7 +51,7 @@ class SluggableBehavior extends Behavior {
  * @param \Cake\ORM\Query $query The query finder.
  * @param array $options The options passed in the query builder.
  *
- * @return array|bool
+ * @return \Cake\ORM\Query
  */
 	public function findSlug(Query $query, array $options) {
 		return $query->where([

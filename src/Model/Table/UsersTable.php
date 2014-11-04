@@ -279,7 +279,7 @@ class UsersTable extends Table {
  *
  * @param \Cake\ORM\Query $query The query finder.
  *
- * @return array|bool
+ * @return \Cake\ORM\Query
  */
 	public function findShort(Query $query) {
 		return $query->select([
@@ -295,7 +295,7 @@ class UsersTable extends Table {
  *
  * @param \Cake\ORM\Query $query The query finder.
  *
- * @return array|bool
+ * @return \Cake\ORM\Query
  */
 	public function findMedium(Query $query) {
 		return $query->select([
@@ -312,7 +312,7 @@ class UsersTable extends Table {
  *
  * @param \Cake\ORM\Query $query The query finder.
  *
- * @return array|bool
+ * @return \Cake\ORM\Query
  */
 	public function findFull(Query $query) {
 		return $query->select([

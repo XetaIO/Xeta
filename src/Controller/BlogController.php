@@ -64,7 +64,7 @@ class BlogController extends AppController {
 /**
  * Display a specific category with all its articles.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function category() {
 		$this->loadModel('BlogCategories');
@@ -115,7 +115,7 @@ class BlogController extends AppController {
 /**
  * Display a specific article.
  *
- * @return mixed
+ * @return \Cake\Network\Response|void
  */
 	public function article() {
 		$this->loadModel('BlogArticles');
@@ -278,7 +278,7 @@ EOT;
  *
  * @param int $commentId Id of the comment.
  *
- * @return mixed
+ * @return \Cake\Network\Response
  */
 	public function go($commentId = null) {
 		$this->loadModel('BlogArticlesComments');
@@ -332,7 +332,7 @@ EOT;
  *
  * @param string $date The date of the archive.
  *
- * @return mixed
+ * @return void
  */
 	public function archive($date = null) {
 		$this->loadModel('BlogArticles');
@@ -421,7 +421,7 @@ EOT;
  *
  * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
- * @return mixed
+ * @return void
  */
 	public function articleLike($articleId = null) {
 		if (!$this->request->is('ajax')) {
@@ -469,6 +469,7 @@ EOT;
 		}
 
 		//Prepare data to be saved.
+		$data = [];
 		$data['BlogArticlesLikes']['user_id'] = $this->Auth->user('id');
 		$data['BlogArticlesLikes']['article_id'] = $articleId;
 
@@ -502,7 +503,7 @@ EOT;
  *
  * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
  *
- * @return mixed
+ * @return void
  */
 	public function articleUnlike($articleId = null) {
 		if (!$this->request->is('ajax')) {
@@ -557,7 +558,7 @@ EOT;
  *
  * @param int $id Id of the comment to delete.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function deleteComment($id = null) {
 		$this->loadModel('BlogArticlesComments');
@@ -628,7 +629,7 @@ EOT;
  *
  * @param int $id Id of the comment.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function editComment($id = null) {
 		$this->loadModel('BlogArticlesComments');

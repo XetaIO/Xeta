@@ -6,7 +6,6 @@ use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Component\CookieComponent;
 use Cake\Network\Request;
 use Cake\Network\Response;
-use Cake\ORM\TableRegistry;
 
 class CookieAuthenticate extends BaseAuthenticate {
 

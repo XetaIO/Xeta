@@ -30,7 +30,7 @@ class CategoriesController extends AppController {
 /**
  * Add a category.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function add() {
 		$this->loadModel('BlogCategories');
@@ -52,7 +52,7 @@ class CategoriesController extends AppController {
 /**
  * Edit a category.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function edit() {
 		$this->loadModel('BlogCategories');
@@ -88,7 +88,7 @@ class CategoriesController extends AppController {
 /**
  * Delete a category and all his comments and likes.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function delete() {
 		$this->loadModel('BlogCategories');
