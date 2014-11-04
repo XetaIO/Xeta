@@ -23,7 +23,7 @@ class BlogArticlesTable extends Table {
 			'Users' => ['blog_article_count'],
 			'BlogCategories' => ['article_count']
 		]);
-		$this->addBehavior('Sluggable');
+		$this->addBehavior('Xety/Cake3Sluggable.Sluggable');
 
 		$this->belongsTo('BlogCategories', [
 			'foreignKey' => 'category_id',
