@@ -35,7 +35,7 @@ If you need to install to try a function or any other things, just follow the st
 * :package: [Composer](https://getcomposer.org)
 * :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
-* :coffee: Some cups of coffee
+* :coffee: Supported DBMS : MySQL & SQLite
 
 Steps to install :
 * Setup a new database on your server

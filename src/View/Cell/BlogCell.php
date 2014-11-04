@@ -56,12 +56,12 @@ class BlogCell extends Cell {
 				'date' => 'DATE(created)',
 				'count' => 'COUNT(id)'
 			])
-			->group('SUBSTR(CAST(created AS char), 1, 7)')
+			->group('SUBSTR(DATE(created), 1, 7)')
 			->order([
 				'date' => 'desc'
 			])
 			->where([
-				'BlogArticles.is_display' => 1
+				'is_display' => 1
 			])
 			->toArray();
 
