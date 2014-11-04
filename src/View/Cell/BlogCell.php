@@ -53,15 +53,15 @@ class BlogCell extends Cell {
 		$archives = $this->BlogArticles
 			->find('all')
 			->select([
-				'date' => 'DATE_FORMAT(created,\'%d-%m-%Y\')',
+				'date' => 'DATE(created)',
 				'count' => 'COUNT(id)'
 			])
-			->group('DATE_FORMAT(created,\'%m-%Y\')')
+			->group('SUBSTR(DATE(created), 1, 7)')
 			->order([
 				'date' => 'desc'
 			])
 			->where([
-				'BlogArticles.is_display' => 1
+				'is_display' => 1
 			])
 			->toArray();
 
