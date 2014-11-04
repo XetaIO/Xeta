@@ -469,6 +469,7 @@ EOT;
 		}
 
 		//Prepare data to be saved.
+		$data = [];
 		$data['BlogArticlesLikes']['user_id'] = $this->Auth->user('id');
 		$data['BlogArticlesLikes']['article_id'] = $articleId;
 
