@@ -55,8 +55,8 @@ class AppController extends Controller {
 		'Form' => [
 			'templates' => [
 				'error' => '<div class="text-danger">{{content}}</div>',
-				'inputContainer' => '{{content}}',
-				'inputContainerError' => '{{content}}{{error}}'
+				'radioWrapper' => '{{input}}{{label}}',
+				'nestingLabel' => '<label{{attrs}}>{{text}}</label>',
 			]
 		]
 	];

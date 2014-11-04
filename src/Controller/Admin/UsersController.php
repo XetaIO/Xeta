@@ -64,10 +64,10 @@ class UsersController extends AppController {
 				$this->paginate = [
 					'limit' => 15,
 					'conditions' => [
-						'Users.ip LIKE' => "%$keyword%"
+						'Users.last_login_ip LIKE' => "%$keyword%"
 					],
 					'order' => [
-						'Users.ip' => 'asc'
+						'Users.last_login_ip' => 'asc'
 					]
 				];
 			break;
@@ -76,10 +76,10 @@ class UsersController extends AppController {
 				$this->paginate = [
 					'limit' => 15,
 					'conditions' => [
-						'Users.mail LIKE' => "%$keyword%"
+						'Users.email LIKE' => "%$keyword%"
 					],
 					'order' => [
-						'Users.mail' => 'asc'
+						'Users.email' => 'asc'
 					]
 				];
 			break;
