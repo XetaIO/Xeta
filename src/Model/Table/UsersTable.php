@@ -31,7 +31,7 @@ class UsersTable extends Table {
 				]
 			]
 		]);
-		$this->addBehavior('Sluggable', [
+		$this->addBehavior('Xety/Cake3Sluggable.Sluggable', [
 			'field' => 'username'
 		]);
 

@@ -19,7 +19,7 @@ class BlogCategoriesTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Timestamp');
-		$this->addBehavior('Sluggable');
+		$this->addBehavior('Xety/Cake3Sluggable.Sluggable');
 
 		$this->hasMany('BlogArticles', [
 			'foreignKey' => 'category_id',
