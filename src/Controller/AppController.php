@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -67,7 +66,7 @@ class AppController extends Controller {
  *
  * @param array $user The current user.
  *
- * @return void
+ * @return bool
  */
 	public function isAuthorized($user) {
 		if (!isset($this->request->params['prefix'])) {

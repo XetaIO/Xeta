@@ -200,7 +200,7 @@ class UploadBehavior extends Behavior {
  * @param bool|string      $path      The path to upload the file with its identifiers.
  * @param bool|string      $extension The extension of the file.
  *
- * @return string|void
+ * @return bool|string
  */
 	protected function _getUploadPath(Entity $entity, $path = false, $extension = false) {
 		if ($extension === false || $path === false) {

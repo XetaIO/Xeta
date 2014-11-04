@@ -44,7 +44,7 @@ class UsersController extends AppController {
 /**
  * Login and register page.
  *
- * @return mixed
+ * @return \Cake\Network\Response|void
  */
 	public function login() {
 		$userRegister = $this->Users->newEntity($this->request->data);
@@ -124,7 +124,7 @@ class UsersController extends AppController {
 /**
  * Logout an user.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function logout() {
 		return $this->redirect($this->Auth->logout());
@@ -153,7 +153,7 @@ class UsersController extends AppController {
 /**
  * Page to configure our settings.
  *
- * @return mixed
+ * @return \Cake\Network\Response|void
  */
 	public function settings() {
 		$user = $this->Users->get($this->Auth->user('id'));
@@ -209,7 +209,7 @@ class UsersController extends AppController {
 /**
  * View a profile page of an user.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function profile() {
 		$user = $this->Users
@@ -245,7 +245,7 @@ class UsersController extends AppController {
 /**
  * Delete an user with all his comments, articles and likes.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function delete() {
 		$user = $this->Users->get($this->Auth->user('id'));

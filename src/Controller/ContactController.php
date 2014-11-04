@@ -24,7 +24,7 @@ class ContactController extends AppController {
 /**
  * Contact page.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function index() {
 		$contact = [

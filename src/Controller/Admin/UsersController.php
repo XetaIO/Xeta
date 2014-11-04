@@ -103,7 +103,7 @@ class UsersController extends AppController {
 /**
  * Edit an user.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function edit() {
 		$user = $this->Users
@@ -137,7 +137,7 @@ class UsersController extends AppController {
 /**
  * Delete an user and all his articles, comments and likes.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function delete() {
 		$user = $this->Users
@@ -169,7 +169,7 @@ class UsersController extends AppController {
 /**
  * Delete an avatar.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function deleteAvatar() {
 		$user = $this->Users

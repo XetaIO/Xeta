@@ -41,7 +41,7 @@ class ArticlesController extends AppController {
 /**
  * Add an article.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function add() {
 		$this->loadModel('BlogArticles');
@@ -65,7 +65,7 @@ class ArticlesController extends AppController {
 /**
  * Edit an Article.
  *
- * @return void
+ * @return \Cake\Network\Response|void
  */
 	public function edit() {
 		$this->loadModel('BlogArticles');
@@ -108,7 +108,7 @@ class ArticlesController extends AppController {
 /**
  * Delete an Article and all his comments and likes.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function delete() {
 		$this->loadModel('BlogArticles');
