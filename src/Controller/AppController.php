@@ -22,7 +22,7 @@ class AppController extends Controller {
 		'Auth' => [
 			'authenticate' => [
 				'Form',
-				'Cookie'
+				'Xety/Cake3CookieAuth.Cookie'
 			],
 			'authorize' => ['Controller'],
 			'loginAction' => [
@@ -91,7 +91,7 @@ class AppController extends Controller {
  */
 	public function beforeFilter(Event $event) {
 		//Automaticaly Login.
-		if (!$this->Auth->user() && $this->Cookie->read('User')) {
+		if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
 			$this->loadModel('Users');
 
 			$user = $this->Auth->identify();
@@ -106,7 +106,7 @@ class AppController extends Controller {
 
 				$this->Users->save($user);
 			} else {
-				$this->Cookie->delete('User');
+				$this->Cookie->delete('CookieAuth');
 			}
 		}
 
