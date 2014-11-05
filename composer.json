@@ -14,7 +14,8 @@
 		"widop/google-analytics": "dev-master",
 		"mexitek/phpcolors": "dev-master",
 		"xety/cake3-upload": "1.*",
-		"xety/cake3-sluggable": "1.*"
+		"xety/cake3-sluggable": "1.*",
+		"xety/cake3-cookieauth": "1.*"
 	},
 	"require-dev": {
 		"d11wtq/boris": "1.0.*",

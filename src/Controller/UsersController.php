@@ -69,11 +69,11 @@ class UsersController extends AppController {
 
 						$this->Users->save($user);
 
-						$this->Cookie->configKey('User', [
+						$this->Cookie->configKey('CookieAuth', [
 							'expires' => '+1 year',
 							'httpOnly' => true
 						]);
-						$this->Cookie->write('User', [
+						$this->Cookie->write('CookieAuth', [
 							'username' => $this->request->data('username'),
 							'password' => $this->request->data('password')
 						]);

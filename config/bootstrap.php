@@ -169,6 +169,7 @@ Request::addDetector('tablet', function ($request) {
 Plugin::load('DebugKit', ['bootstrap' => true]);
 Plugin::load('Xety/Cake3Upload');
 Plugin::load('Xety/Cake3Sluggable');
+Plugin::load('Xety/Cake3CookieAuth');
 
 /**
  * Connect middleware/dispatcher filters.
