@@ -39,7 +39,7 @@
 
 		<?= $this->fetch('content') ?>
 		
-		<?php if ($allowCookies === false): ?>
+		<?php if (!isset($allowCookies) || $allowCookies === false): ?>
 			<?= $this->element('cookies') ?>
 		<?php endif; ?>
 
