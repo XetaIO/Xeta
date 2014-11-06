@@ -39,10 +39,13 @@ If you need to install to try a function or any other things, just follow the st
 
 Steps to install :
 * Setup a new database on your server
-* Run the command `composer install` in the root directory.
-    * Follow the steps in the Console.
+* Run :
+```
+composer create-project --dev xety/xeta <application_name> 1.0.*
+```
 * Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
+
 
 ##### Install Google Analytics system in Dashboard
 If you want to install the Google Analytics (not required), please follow the tutorial in the wiki :
