@@ -143,7 +143,7 @@ class UsersTable extends Table {
 				],
 				'fileExtension' => [
 					'rule' => ['extension', ['jpg', 'jpeg', 'png']],
-					'message' => __("The extension allowed are {0}.", '.jpg, .jeg and .png'),
+					'message' => __("The extension allowed are {0}.", '.jpg, .jpeg and .png'),
 					'on' => function ($context) {
 							return !empty($context['data']['avatar_file']['name']);
 					}
