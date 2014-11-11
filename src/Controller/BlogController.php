@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Event\Badges;
 use Cake\Core\Configure;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
@@ -157,6 +158,9 @@ class BlogController extends AppController {
 			$this->request->data['user_id'] = $this->Auth->user('id');
 
 			$newComment = $this->BlogArticlesComments->newEntity($this->request->data);
+
+			//Attach Event.
+			$this->BlogArticlesComments->eventManager()->attach(new Badges($this));
 
 			if ($insertComment = $this->BlogArticlesComments->save($newComment, ['validate' => 'create'])) {
 

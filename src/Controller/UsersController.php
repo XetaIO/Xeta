@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Event\Badges;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -69,6 +70,7 @@ class UsersController extends AppController {
 
 						$this->Users->save($user);
 
+						//Cookies.
 						$this->Cookie->configKey('CookieAuth', [
 							'expires' => '+1 year',
 							'httpOnly' => true
@@ -77,6 +79,14 @@ class UsersController extends AppController {
 							'username' => $this->request->data('username'),
 							'password' => $this->request->data('password')
 						]);
+
+						//Event.
+						$this->eventManager()->attach(new Badges($this));
+
+						$user = new Event('Model.Users.register', $this, [
+							'user' => $user
+						]);
+						$this->eventManager()->dispatch($user);
 
 						return $this->redirect($this->Auth->redirectUrl());
 					}
@@ -219,17 +229,32 @@ class UsersController extends AppController {
 			])
 			->contain([
 				'BlogArticles' => function ($q) {
-						return $q
-							->limit(Configure::read('User.Profile.max_articles'));
+					return $q
+						->limit(Configure::read('User.Profile.max_articles'));
 				},
 				'BlogArticlesComments' => function ($q) {
-						return $q
-							->limit(Configure::read('User.Profile.max_comments'));
+					return $q
+						->limit(Configure::read('User.Profile.max_comments'));
 				},
 				'BlogArticlesLikes' => function ($q) {
-						return $q
-							->limit(Configure::read('User.Profile.max_likes'));
+					return $q
+						->limit(Configure::read('User.Profile.max_likes'));
 				},
+				'BadgesUsers' => function ($q) {
+					return $q
+						->contain([
+							'Badges' => function ($q) {
+								return $q
+									->select([
+										'name',
+										'picture'
+									]);
+							}
+						])
+						->order([
+							'BadgesUsers.id' => 'DESC'
+						]);
+				}
 			])
 			->first();
 

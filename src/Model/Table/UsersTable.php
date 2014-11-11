@@ -50,6 +50,11 @@ class UsersTable extends Table {
 			'dependent' => true,
 			'cascadeCallbacks' => true
 		]);
+		$this->hasMany('BadgesUsers', [
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
+		]);
 	}
 
 /**
@@ -136,7 +141,7 @@ class UsersTable extends Table {
 			->add('avatar_file', [
 				'mimeType' => [
 					'rule' => ['mimeType', ['image/jpeg', 'image/png']],
-					'message' => __("The mineType is not allowed."),
+					'message' => __("The mimeType is not allowed."),
 					'on' => function ($context) {
 							return !empty($context['data']['avatar_file']['name']);
 					}
