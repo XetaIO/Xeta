@@ -159,6 +159,7 @@ class Badges implements EventListenerInterface {
 			return true;
 		}
 
+		$data = [];
 		$data['badge_id'] = $badge['id'];
 		$data['user_id'] = $userId;
 		$newBadge = $this->BadgesUsers->newEntity($data);
