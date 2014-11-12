@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Event\Badges;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -105,6 +106,14 @@ class AppController extends Controller {
 				$user->last_login_ip = $this->request->clientIp();
 
 				$this->Users->save($user);
+
+				//Event.
+				$this->eventManager()->attach(new Badges($this));
+
+				$user = new Event('Model.Users.register', $this, [
+					'user' => $user
+				]);
+				$this->eventManager()->dispatch($user);
 			} else {
 				$this->Cookie->delete('CookieAuth');
 			}

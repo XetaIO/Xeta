@@ -40,6 +40,7 @@
 				</ul>
 			</section>
 		</div>
+
 		<div class="col-md-9">
 			<section class="section">
 				<?php if ($user->id == $this->Session->read('Auth.User.id')): ?>
@@ -51,6 +52,25 @@
 				<div class="biography">
 					<?= $user->biography ?>
 				</div>
+
+				<?php if (!empty($user->badges_users)): ?>
+					<h4>
+						<?= __("His Badges") ?>
+					</h4>
+					<div class="badges">
+						<div class="row">
+							<?php foreach ($user->badges_users as $badge): ?>
+								<div class="col-md-3">
+									<?= $this->Html->image($badge->badge->picture, [
+										'alt' => h($badge->badge->name),
+										'title' => h($badge->badge->name),
+										'data-toggle' => 'tooltip'
+									]) ?>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endif; ?>
 			</section>
 		</div>
 	</div>

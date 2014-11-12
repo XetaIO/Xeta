@@ -43,6 +43,7 @@
 					<?= h($article->title) ?>
 				</li>
 			</ol>
+			<?= $this->Flash->render('badge') ?>
 			<?= $this->Flash->render() ?>
 		</div>
 	</div>

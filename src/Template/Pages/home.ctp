@@ -237,6 +237,7 @@
 </div>
 
 <div class="container focus">
+	<?= $this->Flash->render('badge') ?>
 	<?= $this->Flash->render() ?>
 	<div class="row">
 		<div class="col-md-4">

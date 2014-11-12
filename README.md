@@ -68,9 +68,9 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
         * Comments count
         * Likes count
 * Custom Behavior :
-    * UploadBehavior
+    * UploadBehavior (Migrated into a plugin : [Cake3-Upload](https://github.com/Xety/Cake3-Upload))
         * To upload safely an avatar for user
-    * Sluggable Behavior
+    * Sluggable Behavior (Migrated into a plugin : [Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable))
         * Used to build slug when creating an user and creating an article
 
 ### Components
@@ -128,6 +128,13 @@ Since I have decided to release it, I'm trying to use the maximum of Cake3's fea
         * Validator for the Contact Page (With an ArrayContext)
 * View Cell
     * Blog sidebar
+* Events System
+    * Badge system
+        * Badge on comment
+        * Badge for register date
+* Authenticate
+    * Cookies (Migrated into a plugin : [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth))
+        * For auto-login
 
 # Information
 If you want to contribute to the project by adding new features or just fix a bug, feel free to do a PR.
