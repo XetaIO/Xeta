@@ -22,8 +22,8 @@
 			    <li class="dropdown">
 				    <?= $this->Html->link(
 						__('Hello,') . '&nbsp;'
-						. '<span data-hover="' . h($this->Session->read('Auth.User.username')) . '">'
-						. h($this->Session->read('Auth.User.username'))
+						. '<span data-hover="' . h($this->request->session()->read('Auth.User.username')) . '">'
+						. h($this->request->session()->read('Auth.User.username'))
 						. '</span><i class="caret"></i>',
 						'#',
 						['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'escape' => false]) ?>

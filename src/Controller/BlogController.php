@@ -378,12 +378,12 @@ EOT;
 		if (!empty($this->request->data['search'])) {
 
 			$keyword = $this->request->data['search'];
-			$this->Session->write('Search.Blog.Keyword', $keyword);
+			$this->request->session()->write('Search.Blog.Keyword', $keyword);
 		} else {
 
-			if ($this->Session->read('Search.Blog.Keyword')) {
+			if ($this->request->session()->read('Search.Blog.Keyword')) {
 
-				$keyword = $this->Session->read('Search.Blog.Keyword');
+				$keyword = $this->request->session()->read('Search.Blog.Keyword');
 			} else {
 
 				$keyword = '';

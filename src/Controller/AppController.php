@@ -15,7 +15,6 @@ class AppController extends Controller {
  */
 	public $components = [
 		'Flash',
-		'Session',
 		'Cookie',
 		'Csrf' => [
 			'secure' => true

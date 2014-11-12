@@ -121,7 +121,7 @@ class UsersController extends AppController {
 		} else {
 
 			//Save the referer URL before the user send the login/register request else it will delete the referer.
-			$this->Session->write('Auth.redirect', $this->referer());
+			$this->request->session()->write('Auth.redirect', $this->referer());
 		}
 
 		if ($this->Auth->user()) {

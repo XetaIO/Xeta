@@ -107,7 +107,7 @@
 
 					<ul class="actions">
 						<li class="reply">
-							<?php if ($this->Session->read('Auth.User')): ?>
+							<?php if ($this->request->session()->read('Auth.User')): ?>
 								<?= $this->Html->link(__("{0} Reply", '<i class="fa fa-reply"></i>'), '#comment-form', ['escape' => false]) ?>
 							<?php else: ?>
 								<?= $this->Html->link(
@@ -124,7 +124,7 @@
 							<?= h($article->like_count_format) ?>
 						</li>
 						<li class="like">
-							<?php if ($this->Session->read('Auth.User')): ?>
+							<?php if ($this->request->session()->read('Auth.User')): ?>
 								<?php if(isset($like)): ?>
 									<?= $this->Html->link(
 										'<i class="fa fa-thumbs-o-up text-primary"></i>',
@@ -270,7 +270,7 @@
 									</div>
 									<ul class="actions">
 										<li>
-											<?php if ($this->Session->read('Auth.User')): ?>
+											<?php if ($this->request->session()->read('Auth.User')): ?>
 												<?=
 												$this->Html->link(
 													__("{0} Reply", '<i class="fa fa-reply"></i>'),
@@ -298,8 +298,8 @@
 												) ?>
 											<?php endif; ?>
 										</li>
-										<?php if ($this->Session->read('Auth.User.id') == $comment->user_id ||
-										$this->Session->read('Auth.User.role') == 'admin'): ?>
+										<?php if ($this->request->session()->read('Auth.User.id') == $comment->user_id ||
+										$this->request->session()->read('Auth.User.role') == 'admin'): ?>
 											<li>
 												<?= $this->Html->link(
 													__("{0} Edit", '<i class="fa fa-edit"></i>'),
@@ -350,7 +350,7 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if ($this->Session->read('Auth.User')): ?>
+			<?php if ($this->request->session()->read('Auth.User')): ?>
 				<section class="post-comment-form" id="comment-form">
 					<h2>
 						<?= __("Leave a Comment") ?>

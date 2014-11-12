@@ -22,11 +22,11 @@ class UsersController extends AppController {
 		//Keyword to search. (For pagination)
 		if (!empty($this->request->data['search'])) {
 			$keyword = $this->request->data['search'];
-			$this->Session->write('Search.Admin.Users.Keyword', $keyword);
+			$this->request->session()->write('Search.Admin.Users.Keyword', $keyword);
 		} else {
 
-			if ($this->Session->read('Search.Admin.Users.Keyword')) {
-				$keyword = $this->Session->read('Search.Admin.Users.Keyword');
+			if ($this->request->session()->read('Search.Admin.Users.Keyword')) {
+				$keyword = $this->request->session()->read('Search.Admin.Users.Keyword');
 			} else {
 
 				$keyword = '';
@@ -36,11 +36,11 @@ class UsersController extends AppController {
 		//Search type. (For pagination)
 		if (!empty($this->request->data['type'])) {
 			$type = $this->request->data['type'];
-			$this->Session->write('Search.Admin.Users.Type', $type);
+			$this->request->session()->write('Search.Admin.Users.Type', $type);
 		} else {
 
-			if ($this->Session->read('Search.Admin.Users.Type')) {
-				$type = $this->Session->read('Search.Admin.Users.Type');
+			if ($this->request->session()->read('Search.Admin.Users.Type')) {
+				$type = $this->request->session()->read('Search.Admin.Users.Type');
 			} else {
 
 				$type = '';
