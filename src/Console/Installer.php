@@ -12,9 +12,10 @@
  * @since         3.0.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-require_once '../vendor/autoload.php';
 
 namespace App\Console;
+
+require_once '../../vendor/autoload.php';
 
 use Cake\Auth\DefaultPasswordHasher;
 use Composer\Script\Event;
