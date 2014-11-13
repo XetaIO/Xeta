@@ -128,7 +128,7 @@ class Badges implements EventListenerInterface {
 			->first();
 
 		foreach ($badges as $badge) {
-			if ($userComments >= $badge['rule']) {
+			if ($userComments['blog_articles_comment_count'] >= $badge['rule']) {
 				$this->_unlockBadge($badge, $userId);
 			}
 		}
