@@ -15,7 +15,6 @@
 namespace App\Console;
 
 use Cake\Auth\DefaultPasswordHasher;
-use Cake\Datasource\ConnectionManager;
 use Composer\Script\Event;
 
 /**
@@ -40,7 +39,6 @@ class Installer {
 		static::setDatabaseName($rootDir, $io);
 		$newKey = static::setSecuritySalt($rootDir, $io);
 		static::setAccountPassword($rootDir, $io, $newKey);
-		static::importDatabase($rootDir, $io);
 	}
 
 /**
@@ -211,24 +209,5 @@ class Installer {
 		}
 
 		$io->write('Unable to set up Admin & Member passwords.');
-	}
-
-/**
- * Import the databse.
- *
- * @param string $dir The application's root directory.
- * @param \Composer\IO\IOInterface $io IO interface to write to console.
- *
- * @return void
- */
-	public static function importDatabase($dir, $io) {
-		$database = $dir . '/config/Schema/xeta.sql';
-		$query = file_get_contents($database);
-
-		$connection = ConnectionManager::get('default');
-
-		$connection->query($query);
-
-		$io->write('The database has been imported successfully.');
 	}
 }
