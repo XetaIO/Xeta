@@ -1,5 +1,44 @@
 
 --
+-- Structure de la table `badges`
+--
+
+CREATE TABLE IF NOT EXISTS `badges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `rule` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `badges`
+--
+
+INSERT INTO `badges` (`id`, `name`, `picture`, `type`, `rule`, `created`) VALUES
+(1, 'First Comment', 'badges/comments-1.png', 'comments', 1, '2014-11-10 14:00:00'),
+(2, '10 Comments', 'badges/comments-10.png', 'comments', 10, '2014-11-10 14:00:00'),
+(3, '1 year old', 'badges/registration-1.png', 'registration', 1, '2014-11-10 16:00:00'),
+(4, '2 years old', 'badges/registration-2.png', 'registration', 2, '2014-11-10 16:00:00'),
+(5, '3 years old', 'badges/registration-3.png', 'registration', 3, '2014-11-10 16:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `badges_users`
+--
+
+CREATE TABLE IF NOT EXISTS `badges_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `badge_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
 -- Table structure 'blog_articles'
 --
 
