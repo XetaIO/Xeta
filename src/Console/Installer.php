@@ -40,7 +40,7 @@ class Installer {
 		static::setDatabaseName($rootDir, $io);
 		$newKey = static::setSecuritySalt($rootDir, $io);
 		static::setAccountPassword($rootDir, $io, $newKey);
-		static::importDataBase($rootDir, $io);
+		static::importDatabase($rootDir, $io);
 	}
 
 /**
@@ -221,7 +221,7 @@ class Installer {
  *
  * @return void
  */
-	public function importDataBase($dir, $io) {
+	public static function importDatabase($dir, $io) {
 		$database = $dir . '/config/Schema/xeta.sql';
 		$query = file_get_contents($database);
 
