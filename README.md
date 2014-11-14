@@ -41,7 +41,7 @@ Steps to install :
 * Setup a new database on your server
 * Run :
 ```
-composer create-project --dev xety/xeta <application_name> 1.0.*
+composer create-project --dev xety/xeta <application_name>
 ```
 * Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
