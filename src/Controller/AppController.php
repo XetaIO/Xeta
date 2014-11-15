@@ -90,6 +90,7 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter(Event $event) {
+		$this->request->trustProxy = true;
 		//Automaticaly Login.
 		if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
 			$this->loadModel('Users');
