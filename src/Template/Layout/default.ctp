@@ -15,7 +15,7 @@
 
 		<!-- Styles -->
 		<?= $this->Html->css([
-			'http://fonts.googleapis.com/css?family=Leckerli+One',
+			'https://fonts.googleapis.com/css?family=Leckerli+One',
 			'bootstrap.min',
 			'font-awesome.min',
 			'animate.min',
