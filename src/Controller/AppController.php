@@ -16,9 +16,14 @@ class AppController extends Controller {
 	public $components = [
 		'Flash',
 		'Cookie',
-		'Csrf' => [
+/**
+ * If you want enable CSRF uncomment this.
+ * I recommand to enable it. If i have disable it, it's because
+ * CloudFlare have some problem with the header X-CSRF-Token (AJAX Request).
+ */
+		/*'Csrf' => [
 			'secure' => true
-		],
+		],*/
 		'Auth' => [
 			'authenticate' => [
 				'Form',
@@ -90,7 +95,9 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter(Event $event) {
+		//Set trustProxy or get the original visitor IP.
 		$this->request->trustProxy = true;
+
 		//Automaticaly Login.
 		if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
 			$this->loadModel('Users');
