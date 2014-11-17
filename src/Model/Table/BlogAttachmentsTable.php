@@ -17,7 +17,7 @@ class BlogAttachmentsTable extends Table {
 		$this->table('blog_attachments');
 		$this->displayField('name');
 		$this->primaryKey('id');
-		
+
 		$this->addBehavior('Timestamp');
 
 		$this->belongsTo('BlogArticles', [
@@ -28,7 +28,7 @@ class BlogAttachmentsTable extends Table {
 /**
  * Default validation rules.
  *
- * @param \Cake\Validation\Validator $validator
+ * @param \Cake\Validation\Validator $validator The Validator instance.
  * @return \Cake\Validation\Validator
  */
 	public function validationDefault(Validator $validator) {
