@@ -39,6 +39,11 @@ class BlogArticlesTable extends Table {
 			'foreignKey' => 'article_id',
 			'dependent' => true
 		]);
+		$this->hasOne('BlogAttachments', [
+			'foreignKey' => 'article_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
+		]);
 	}
 
 /**
