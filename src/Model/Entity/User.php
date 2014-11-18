@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\ORM\Entity;
 use HTMLPurifier;
 use HTMLPurifier_Config;
@@ -20,7 +21,7 @@ class User extends Entity {
 	];
 
 /**
- * Has the password before to save.
+ * Hash the password before to save.
  *
  * @param string $password Password to be hashed.
  *
@@ -70,6 +71,15 @@ class User extends Entity {
 		$HTMLPurifier = new HTMLPurifier($config);
 
 		return $HTMLPurifier->purify($signature);
+	}
+
+/**
+ * Set if the user is premium or not.
+ *
+ * @return bool
+ */
+	protected function _getPremium() {
+		return $this->end_subscription > new Time();
 	}
 
 }

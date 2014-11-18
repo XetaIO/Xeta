@@ -70,6 +70,9 @@ class UsersController extends AppController {
 
 						$this->Users->save($user);
 
+						//Write in the session the virtual field.
+						$this->request->session()->write('Auth.User.premium', $user->premium);
+
 						//Cookies.
 						$this->Cookie->configKey('CookieAuth', [
 							'expires' => '+1 year',

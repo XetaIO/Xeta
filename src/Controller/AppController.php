@@ -114,6 +114,9 @@ class AppController extends Controller {
 
 				$this->Users->save($user);
 
+				//Write in the session the virtual field.
+				$this->request->session()->write('Auth.User.premium', $user->premium);
+
 				//Event.
 				$this->eventManager()->attach(new Badges($this));
 
