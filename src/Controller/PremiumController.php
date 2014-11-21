@@ -114,7 +114,7 @@ class PremiumController extends AppController {
 	public function notify() {
 		$this->loadComponent('Paypal');
 
-		$notify = $this->Paypal->notify();
+		$this->Paypal->notify();
 	}
 
 /**

@@ -26,6 +26,5 @@ class AttachmentsController extends AppController {
  * @return \Cake\Network\Response
  */
 	public function download() {
-		
 	}
 }

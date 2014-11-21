@@ -158,7 +158,7 @@ class PaypalComponent extends Component {
 
 				$data = $this->_controller->PremiumTransactions->newEntity($data);
 
-				$transaction = $this->_controller->PremiumTransactions->save($data);
+				$this->_controller->PremiumTransactions->save($data);
 
 				//We save the premium Badge.
 				EventManager::instance()->attach(new Badges($this->_controller));
