@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+
 ?>
 <main>
 	<div class="container">
@@ -22,16 +23,32 @@ use Cake\Core\Configure;
 					</header>
 				</div>
 			</div>
-			<?php debug($this->request->session()->read('Auth.User.end_subscription')) ?>
+
 			<?php if ($this->request->session()->read('Auth.User.premium')): ?>
 				<div class="infobox infobox-primary">
-					<?= __("You're already Premium, but you can extend your subscription if you want ! Your Premium will be ended at {0}", $this->request->session()->read('Auth.User.end_subscription')) ?>
+					<?= __("You're already Premium, but you can extend your subscription if you want ! Your Premium will be ended at {0}.", $this->request->session()->read('Auth.User.end_subscription')->format('H:i:s d-m-Y')) ?>
+				</div>
+			<?php endif; ?>
+			
+			<?php if (!$this->request->session()->read('Auth.User')): ?>
+				<div class="infobox infobox-primary">
+					<?= __("You need to be connected to purchase the Premium. {0}", $this->Html->link(
+						__('Login {0}', '<i class="fa fa-arrow-right"></i>'),
+						[
+							'controller' => 'users',
+							'action' => 'login'
+						],
+						[
+							'class' => 'btn btn-sm btn-primary',
+							'escape' => false
+						])
+					) ?>
 				</div>
 			<?php endif; ?>
 			
 			<div class="row pricing">
 				
-				<?php foreach (Configure::read('Premium.offers') as $period => $price) :?>
+				<?php foreach ($offers as $offer) :?>
 					<div class="col-lg-3 col-sm-6 inner-top-sm">
 						<div class="plan">
 							
@@ -39,27 +56,43 @@ use Cake\Core\Configure;
 								<h2><?= __("Premium") ?></h2>
 								
 								<div class="price">
-									<span class="currency"><?= Configure::read('Premium.currency_symbol') ?></span>
-									<span class="amount"><?= h($price) ?></span>
-									<span class="period">/ <?= __("Month") ?></span>
+									<span class="currency"><?= h($offer->currency_symbol) ?></span>
+									<span class="amount"><?= h($offer->price) ?></span>
+									<span class="period"><?= __x('Excluding VAT', 'Excl VAT') ?> / <?= __n('{0} Month', '{0} Months', $offer->period, $offer->period) ?></span>
 								</div>
 								
-								<?= $this->Form->create(null, [
-									'url' => ['action' => 'subscribe'],
-									'class' => 'text-center'
-								]) ?>
-									<?= $this->Form->hidden('plan', ['value' => $period]) ?>
-									<?= $this->Form->button(
-										$this->request->session()->read('Auth.User.premium') ? __('Extend {0}', '<i class="fa fa-arrow-right"></i>') : __('Subscribe {0}', '<i class="fa fa-arrow-right"></i>'),
-										['class' => 'btn btn-primary']
-									); ?>
-								<?= $this->Form->end(); ?>
 								
 							</header>
 							
 							<ul class="features">
 								<li><i class="fa fa-cloud-download"></i> <?= __("Resources in Tutorials") ?></li>
 								<li><i class="fa fa-trophy"></i> <?= __("Premium Badge") ?></li>
+								<li>
+									<?php if ($this->request->session()->read('Auth.User')): ?>
+										<?= $this->Form->create(null, [
+											'url' => ['action' => 'subscribe'],
+											'class' => 'text-center'
+										]) ?>
+											<?= $this->Form->hidden('period', ['value' => $offer->period]) ?>
+											<?= $this->Form->input('discount', ['class' => 'form-control', 'placeholder' => __("Discount Code"), 'label' => false]) ?>
+											<?= $this->Form->button(
+												$this->request->session()->read('Auth.User.premium') ? __('Extend {0}', '<i class="fa fa-arrow-right"></i>') : __('Subscribe {0}', '<i class="fa fa-arrow-right"></i>'),
+												['class' => 'btn btn-primary']
+											); ?>
+										<?= $this->Form->end(); ?>
+									<?php else: ?>
+										<?= $this->Html->link(
+											__('Login {0}', '<i class="fa fa-arrow-right"></i>'),
+											[
+												'controller' => 'users',
+												'action' => 'login'
+											],
+											[
+												'class' => 'btn btn-primary',
+												'escape' => false
+											]) ?>
+									<?php endif; ?>
+								</li>
 							</ul>
 							
 						</div>
@@ -70,6 +103,4 @@ use Cake\Core\Configure;
 			
 		</div>
 	</section>
-
-	
 </main>

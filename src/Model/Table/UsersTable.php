@@ -55,6 +55,15 @@ class UsersTable extends Table {
 			'dependent' => true,
 			'cascadeCallbacks' => true
 		]);
+		$this->hasMany('PremiumOffers', [
+			'foreignKey' => 'user_id'
+		]);
+		$this->hasMany('PremiumTransactions', [
+			'foreignKey' => 'user_id'
+		]);
+		$this->hasMany('PremiumDiscounts', [
+			'foreignKey' => 'user_id'
+		]);
 	}
 
 /**

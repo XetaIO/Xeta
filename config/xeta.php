@@ -3,7 +3,7 @@ $config = [
 	'Author' => [
 		'full_name' => 'Emeric Fèvre',
 		'pseudo' => 'Xeta',
-		'twitter' => 'https://twitter.com/NozeAres',
+		'twitter' => 'https://twitter.com/FMT_ZoRo',
 		'facebook' => 'https://facebook.com/Emeric.ZoRRo',
 		'email' => 'zoro.fmt@gmail.com',
 		'address' => 'Chalon sur Saône, 71100 France'
@@ -85,16 +85,5 @@ $config = [
 				'AutoFormat.RemoveEmpty' => true
 			]
 		]
-	],
-	'Premium' => [
-		'offers' => [
-			1 => 3,
-			3 => 8.5,
-			6 => 16.5,
-			12 => 32
-		],
-		'tax' => 19.6,
-		'currency' => 'EUR',
-		'currency_symbol' => '€'
 	]
 ];
