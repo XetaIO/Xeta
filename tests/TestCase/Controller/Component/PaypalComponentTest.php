@@ -306,4 +306,59 @@ class PaypalComponentTest extends TestCase {
 
 		$this->assertEquals($this->PaypalComponent->_action, 'extend');
 	}
+
+/**
+ * Test insertTransaction
+ *
+ * @return void
+ */
+	public function testInsertTransaction() {
+		$this->Transactions = TableRegistry::get('PremiumTransactions');
+
+		$custom = [
+			'user_id' => 1,
+			'offer_id' => 2,
+			'period' => 6,
+			'discount_id' => 2
+		];
+		$price = 5.68;
+		$tax = 0.93;
+		$txn = '86W10RHB130786228';
+		$name = 'My Name';
+		$country = 'FRANCE';
+		$city = 'Paris';
+		$address = 'My awesome address';
+
+		$result = $this->Utility->callProtectedMethod(
+			$this->PaypalComponent,
+			'_insertTransaction',
+			[$custom, $price, $tax, $txn, $name, $country, $city, $address]
+		);
+
+		$this->assertTrue($result);
+
+
+		$transaction = $this->Transactions->get(2);
+		$this->assertInstanceOf('App\Model\Entity\PremiumTransaction', $transaction);
+
+		$expected = [
+			'id' => 2,
+			'user_id' => 1,
+			'premium_offer_id' => 2,
+			'premium_discount_id' => 2,
+			'price' => 5.68,
+			'tax' => 0.93,
+			'txn' => '86W10RHB130786228',
+			'action' => 'new',
+			'period' => 6,
+			'name' => 'My Name',
+			'country' => 'FRANCE',
+			'city' => 'Paris',
+			'address' => 'My awesome address'
+		];
+		$transaction = $transaction->toArray();
+		unset($transaction['created'], $transaction['modified']);
+
+		$this->assertEquals($transaction, $expected);
+	}
 }

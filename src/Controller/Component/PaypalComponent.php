@@ -2,6 +2,7 @@
 namespace App\Controller\Component;
 
 use App\Event\Badges;
+use App\Utility\Arrayor;
 use Cake\Controller\Component;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
@@ -13,7 +14,6 @@ use Cake\Log\Log;
 use Cake\Network\Request;
 use Cake\ORM\Entity;
 use Cake\Routing\Router;
-use Cake\Utility\Inflector;
 
 class PaypalComponent extends Component {
 
@@ -67,15 +67,7 @@ class PaypalComponent extends Component {
 			return false;
 		}
 
-		$this->_request->data = array_combine(
-			array_map(
-				function ($key) {
-					return lcfirst(Inflector::camelize($key));
-				},
-				array_keys($this->_request->data)
-			),
-			array_values($this->_request->data)
-		);
+		$this->_request->data = Arrayor::camelizeIndex($this->_request->data);
 
 		extract($this->_request->data);
 
@@ -124,27 +116,11 @@ class PaypalComponent extends Component {
 					return false;
 				}
 
+				$custom['discount_id'] = isset($custom['discount_id']) ? $custom['discount_id'] : null;
+
 				//We save the transaction.
-				$$custom['discount_id'] = isset($custom['discount_id']) ? $custom['discount_id'] : null;
-
-				$data = [
-					'user_id' => $custom['user_id'],
-					'premium_offer_id' => $custom['offer_id'],
-					'premium_discount_id' => $custom['discount_id'],
-					'price' => $mcGross,
-					'tax' => $tax,
-					'txn' => $txnId,
-					'action' => $this->_action,
-					'period' => $custom['period'],
-					'name' => $firstName . ' ' . $lastName,
-					'country' => $addressCountry,
-					'city' => $addressCity,
-					'address' => $addressStreet
-				];
-
-				$data = $this->_controller->PremiumTransactions->newEntity($data);
-
-				$this->_controller->PremiumTransactions->save($data);
+				$transaction = $this->_insertTransaction($custom, $mcGross, $tax, $txnId,
+					$firstName . ' ' . $lastName, $addressCountry, $addressCity, $addressStreet);
 
 				//We save the premium Badge.
 				EventManager::instance()->attach(new Badges($this->_controller));
@@ -175,7 +151,6 @@ class PaypalComponent extends Component {
  * @return bool|\Cake\Model\Entity\User
  */
 	protected function _updateUser(array $custom) {
-		$this->_controller->loadModel('PremiumTransactions');
 		$this->_controller->loadModel('Users');
 
 		$user = $this->_controller->Users->find()->where(['id' => $custom['user_id']])->first();
@@ -203,6 +178,47 @@ class PaypalComponent extends Component {
 		$this->_controller->Users->patchEntity($user, $data);
 		if ($this->_controller->Users->save($user)) {
 			return $user;
+		}
+
+		return false;
+	}
+
+/**
+ * Insert the transaction in the database.
+ *
+ * @param array $custom 	The customs fields passed to Paypal.
+ * @param float $price 		The amount paid by the buyer.
+ * @param float $tax 		The tax paid by the buyer.
+ * @param string $txn 		The transaction ID.
+ * @param string $name 		The fullname of the buyer.
+ * @param string $country 	The country of the buyer.
+ * @param string $city 		The city of the buyer.
+ * @param string $address 	The address of the buyer.
+ *
+ * @return bool
+ */
+	protected function _insertTransaction(array $custom, $price, $tax, $txn, $name, $country, $city, $address) {
+		$this->_controller->loadModel('PremiumTransactions');
+
+		$data = [
+			'user_id' => $custom['user_id'],
+			'premium_offer_id' => $custom['offer_id'],
+			'premium_discount_id' => $custom['discount_id'],
+			'price' => $price,
+			'tax' => $tax,
+			'txn' => $txn,
+			'action' => $this->_action,
+			'period' => $custom['period'],
+			'name' => $name,
+			'country' => $country,
+			'city' => $city,
+			'address' => $address
+		];
+
+		$data = $this->_controller->PremiumTransactions->newEntity($data);
+
+		if ($this->_controller->PremiumTransactions->save($data)) {
+			return true;
 		}
 
 		return false;
