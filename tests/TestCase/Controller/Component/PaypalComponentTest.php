@@ -275,6 +275,17 @@ class PaypalComponentTest extends TestCase {
 		$this->assertFalse($entity->premium);
 
 		$custom = [
+			'user_id' => 69
+		];
+		$result = $this->Utility->callProtectedMethod(
+			$this->PaypalComponent,
+			'_updateUser',
+			[$custom]
+		);
+		$this->assertFalse($result);
+		$this->assertFalse($entity->premium);
+
+		$custom = [
 			'user_id' => 1,
 			'period' => 6
 		];

@@ -178,7 +178,7 @@ class PaypalComponent extends Component {
 		$this->_controller->loadModel('PremiumTransactions');
 		$this->_controller->loadModel('Users');
 
-		$user = $this->_controller->Users->get($custom['user_id']);
+		$user = $this->_controller->Users->find()->where(['id' => $custom['user_id']])->first();
 
 		if (!$user) {
 			Log::error(__('This user does not exist.'), 'paypal');
