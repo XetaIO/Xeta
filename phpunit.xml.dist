@@ -29,5 +29,17 @@
 			</arguments>
 		</listener>
 	</listeners>
+	
+	<filter>
+		<blacklist>
+			<directory>./config</directory>
+			<directory>./logs</directory>
+			<directory>./plugins</directory>
+			<directory>./tests</directory>
+			<directory>./tmp</directory>
+			<directory>./vendor</directory>
+			<directory>./webroot</directory>
+		</blacklist>
+	</filter>
 
 </phpunit>

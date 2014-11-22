@@ -37,6 +37,13 @@ class PaypalComponent extends Component {
 	protected $_controller;
 
 /**
+ * Action of the payment.
+ *
+ * @var string
+ */
+	protected $_action = 'new';
+
+/**
  * Initialize properties.
  *
  * @param array $config The config data.
@@ -109,34 +116,13 @@ class PaypalComponent extends Component {
 				}
 
 				//We update the end subscription date of the user.
-				$this->_controller->loadModel('PremiumTransactions');
-				$this->_controller->loadModel('Users');
-
-				$user = $this->_controller->Users->get($custom['user_id']);
+				$user = $this->_updateUser($custom);
 
 				if (!$user) {
-					Log::error(__('This user does not exist.'), 'paypal');
+					Log::error(__('Error to update the user.'), 'paypal');
 
 					return false;
 				}
-
-				if ($user->premium) {
-					$action = 'extend';
-					$end = $user->end_subscription;
-					$date = new Time($end);
-				} else {
-					$action = 'new';
-					$date = new Time();
-				}
-
-				$date->addMonths($custom['period']);
-
-				$data = [
-					'end_subscription' => $date
-				];
-
-				$this->_controller->Users->patchEntity($user, $data);
-				$this->_controller->Users->save($user);
 
 				//We save the transaction.
 				$$custom['discount_id'] = isset($custom['discount_id']) ? $custom['discount_id'] : null;
@@ -148,7 +134,7 @@ class PaypalComponent extends Component {
 					'price' => $mcGross,
 					'tax' => $tax,
 					'txn' => $txnId,
-					'action' => $action,
+					'action' => $this->_action,
 					'period' => $custom['period'],
 					'name' => $firstName . ' ' . $lastName,
 					'country' => $addressCountry,
@@ -179,6 +165,47 @@ class PaypalComponent extends Component {
 			Log::error(__('Response INVALID.'), 'paypal');
 			return false;
 		}
+	}
+
+/**
+ * Update the end subscription date of the user.
+ *
+ * @param array $custom The custom data passed to Paypal.
+ *
+ * @return bool|\Cake\Model\Entity\User
+ */
+	protected function _updateUser(array $custom) {
+		$this->_controller->loadModel('PremiumTransactions');
+		$this->_controller->loadModel('Users');
+
+		$user = $this->_controller->Users->get($custom['user_id']);
+
+		if (!$user) {
+			Log::error(__('This user does not exist.'), 'paypal');
+
+			return false;
+		}
+
+		if ($user->premium) {
+			$this->_action = 'extend';
+			$end = $user->end_subscription;
+			$date = new Time($end);
+		} else {
+			$date = new Time();
+		}
+
+		$date->addMonths($custom['period']);
+
+		$data = [
+			'end_subscription' => $date
+		];
+
+		$this->_controller->Users->patchEntity($user, $data);
+		if ($this->_controller->Users->save($user)) {
+			return $user;
+		}
+
+		return false;
 	}
 
 /**
@@ -272,22 +299,22 @@ class PaypalComponent extends Component {
 	protected function _isPriceValid(array $custom, $mcGross, $tax, $discount) {
 		$this->_controller->loadModel('PremiumOffers');
 
-		$total = Number::format(($mcGross - $tax) + $discount, ['locale' => 'en_US']);
-
 		$offer = $this->_controller->PremiumOffers->find('offerByIdAndPeriod', [
 			'id' => $custom['offer_id'],
 			'period' => $custom['period']
 		]);
 
 		if (!$offer) {
-			Log::error(__('Unable to get the offer with the ID {0} and the period {1}.', $custom['offer_id'], $custum['period']), 'paypal');
+			Log::error(__('Unable to get the offer with the ID {0} and the period {1}.', $custom['offer_id'], $custom['period']), 'paypal');
 
 			return false;
 		}
 
-		$offer->price = Number::format($offer->price, ['locale' => 'en_US']);
+		$total = Number::format(($mcGross - $tax) + $discount, ['precision' => 2, 'locale' => 'en_US']);
 
-		if ($offer->price != $total) {
+		$offer->price = Number::format($offer->price, ['precision' => 2, 'locale' => 'en_US']);
+
+		if ($offer->price != floatval($total)) {
 			Log::error(__('The price of the offer {0} is not the same as the Paypal price {1}.', $offer->price, $total), 'paypal');
 
 			return false;
@@ -307,6 +334,8 @@ class PaypalComponent extends Component {
  * @return bool
  */
 	protected function _isDiscountValid($custom, $mcGross, $tax, $discount) {
+		$discount = Number::format($discount, ['precision' => 2, 'locale' => 'en_US']);
+
 		if ($discount == 0.00 && !isset($custom['discount_id'])) {
 			return true;
 		}
@@ -324,8 +353,7 @@ class PaypalComponent extends Component {
 
 		$total = ($mcGross - $tax) + $discount;
 
-		$offerDiscount = Number::format(round($checkDiscount->discount / 100, 2) * $total, ['locale' => 'en_US']);
-		$discount = Number::format($discount, ['locale' => 'en_US']);
+		$offerDiscount = Number::format(round($checkDiscount->discount / 100, 2) * $total, ['precision' => 2, 'locale' => 'en_US']);
 
 		if ($offerDiscount != $discount) {
 			Log::error(__('The discount offer {0} does not match with the Paypal discount {1}.', $offerDiscount, $discount), 'paypal');

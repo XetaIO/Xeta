@@ -269,6 +269,12 @@ $config = [
  * Configures logging options
  */
 	'Log' => [
+		'paypal' => [
+			'className' => 'Cake\Log\Engine\FileLog',
+			'file' => 'paypal',
+			'levels' => [],
+			'scopes' => ['paypal']
+		],
 		'debug' => [
 			'className' => 'Cake\Log\Engine\FileLog',
 			'file' => 'debug',
@@ -344,5 +350,19 @@ $config = [
 		'client_id' => '',
 		'profile_id' => '',
 		'private_key' => ''
+	],
+
+/**
+ * Paypal configuration for Premium. (Classic API credentials)
+ *
+ * More information : https://developer.paypal.com/docs/classic/api/apiCredentials/
+ */
+	'Paypal' => [
+		'mail' => '',
+		'user' => '',
+		'pwd' => '',
+		'signature' => '',
+		//Enable/Disable sandbox
+		'sandbox' => false
 	]
 ];
