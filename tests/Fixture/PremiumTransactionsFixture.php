@@ -18,7 +18,7 @@ class PremiumTransactionsFixture extends TestFixture {
 		'price' => ['type' => 'float'],
 		'tax' => ['type' => 'float'],
 		'txn' => ['type' => 'string', 'length' => 255],
-		'action' => ['type' => 'text', 'default' => 'new'],
+		'action' => ['type' => 'string', 'length' => 255, 'default' => 'new'],
 		'period' => ['type' => 'integer'],
 		'name' => ['type' => 'string', 'length' => 50],
 		'country' => ['type' => 'string', 'length' => 50],
