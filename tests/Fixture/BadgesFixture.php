@@ -32,10 +32,23 @@ class BadgesFixture extends TestFixture {
  */
 	public $records = [
 		[
-			'id' => 1,
-			'name' => 'Badge1',
+			'name' => 'Comments',
 			'picture' => 'badge/badge1.png',
 			'type' => 'comments',
+			'rule' => 1,
+			'created' => '2014-11-10 14:43:54'
+		],
+		[
+			'name' => 'Premium',
+			'picture' => 'badge/badge1.png',
+			'type' => 'premium',
+			'rule' => 1,
+			'created' => '2014-11-10 14:43:54'
+		],
+		[
+			'name' => 'Registration',
+			'picture' => 'badge/badge1.png',
+			'type' => 'registration',
 			'rule' => 1,
 			'created' => '2014-11-10 14:43:54'
 		],

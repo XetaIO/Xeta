@@ -397,13 +397,13 @@ class PaypalComponentTest extends TestCase {
 			'payment_gross' => ''
 		];
 
-		$controller2 = new Controller(new Request(compact('post')), new Response());
-		$registry2 = new ComponentRegistry($controller2);
+		$controller = new Controller(new Request(compact('post')), new Response());
+		$registry = new ComponentRegistry($controller);
 
 		$this->Paypal = $this->getMock(
 			"App\Controller\Component\PaypalComponent",
 			array("_sendResponse"),
-			array($registry2)
+			array($registry)
 		);
 
 		$this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('VERIFIED'));
@@ -413,7 +413,7 @@ class PaypalComponentTest extends TestCase {
 		$this->Paypal = $this->getMock(
 			"App\Controller\Component\PaypalComponent",
 			array("_sendResponse"),
-			array($registry2)
+			array($registry)
 		);
 
 		$this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('INVALID'));
@@ -423,7 +423,7 @@ class PaypalComponentTest extends TestCase {
 		$this->Paypal = $this->getMock(
 			"App\Controller\Component\PaypalComponent",
 			array("_sendResponse"),
-			array($registry2)
+			array($registry)
 		);
 
 		$this->Paypal->_registry->getController()->request->data['paymentStatus'] = 'invalid';
