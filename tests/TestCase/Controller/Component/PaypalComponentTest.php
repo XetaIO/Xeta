@@ -22,7 +22,9 @@ class PaypalComponentTest extends TestCase {
 		'app.users',
 		'app.premium_offers',
 		'app.premium_discounts',
-		'app.premium_transactions'
+		'app.premium_transactions',
+		'app.badges',
+		'app.badges_users'
 	];
 
 /**
@@ -359,5 +361,100 @@ class PaypalComponentTest extends TestCase {
 		unset($transaction['created'], $transaction['modified']);
 
 		$this->assertEquals($transaction, $expected);
+	}
+
+/**
+ * test notifiy
+ *
+ * @return void
+ */
+	public function testNotify() {
+		$post = [
+			'mc_gross' => 3.59,
+			'tax' => 0.59,
+			'address_street' => 'Av. de la Pelouse, 87648672 Mayet',
+			'payment_status' => 'Completed',
+			'address_zip' => '75002',
+			'first_name' => 'SandboxTest',
+			'mc_fee' => 0.37,
+			'address_country_code' => 'FR',
+			'address_name' => 'SandboxTest Account',
+			'custom' => 'user_id=1&offer_id=1&period=1',
+			'payer_status' => 'unverified',
+			'business' => 'seller@paypal.com',
+			'address_country' => 'France',
+			'address_city' => 'Paris',
+			'quantity' => 1,
+			'payer_email' => 'buyer@frenchmoddingteam.com',
+			'txn_id' => '6Y558383LH909062H',
+			'last_name' => 'Account',
+			'receiver_email' => 'seller@paypal.com',
+			'item_name' => 'Premium 1 month',
+			'discount' => 0.00,
+			'mc_currency' => 'EUR',
+			'residence_country' => 'FR',
+			'transaction_subject' => 'user_id=1&offer_id=1&period=1',
+			'payment_gross' => ''
+		];
+
+		$controller2 = new Controller(new Request(compact('post')), new Response());
+		$registry2 = new ComponentRegistry($controller2);
+
+		$this->Paypal = $this->getMock(
+			"App\Controller\Component\PaypalComponent",
+			array("_sendResponse"),
+			array($registry2)
+		);
+
+		$this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('VERIFIED'));
+		$result = $this->Paypal->notify();
+		$this->assertTrue($result);
+
+		$this->Paypal = $this->getMock(
+			"App\Controller\Component\PaypalComponent",
+			array("_sendResponse"),
+			array($registry2)
+		);
+
+		$this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('INVALID'));
+		$result = $this->Paypal->notify();
+		$this->assertFalse($result);
+
+		$this->Paypal = $this->getMock(
+			"App\Controller\Component\PaypalComponent",
+			array("_sendResponse"),
+			array($registry2)
+		);
+
+		$this->Paypal->_registry->getController()->request->data['paymentStatus'] = 'invalid';
+		$this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('VERIFIED'));
+		$result = $this->Paypal->notify();
+		$this->assertFalse($result);
+	}
+
+/**
+ * test unlockbadges
+ *
+ * @return void
+ */
+	public function testUnlockbadges() {
+		$result = $this->Utility->callProtectedMethod(
+			$this->PaypalComponent,
+			'_unlockBadges',
+			['fail']
+		);
+
+		$this->assertFalse($result);
+
+		$this->Users = TableRegistry::get('Users');
+		$user = $this->Users->get(1);
+
+		$result = $this->Utility->callProtectedMethod(
+			$this->PaypalComponent,
+			'_unlockBadges',
+			[$user]
+		);
+
+		$this->assertTrue($result);
 	}
 }

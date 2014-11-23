@@ -2,6 +2,7 @@
 namespace App\Controller\Component;
 
 use App\Event\Badges;
+use App\Model\Entity\User;
 use App\Utility\Arrayor;
 use Cake\Controller\Component;
 use Cake\Controller\Controller;
@@ -123,12 +124,11 @@ class PaypalComponent extends Component {
 					$firstName . ' ' . $lastName, $addressCountry, $addressCity, $addressStreet);
 
 				//We save the premium Badge.
-				EventManager::instance()->attach(new Badges($this->_controller));
+				$badges = $this->_unlockBadges($user);
 
-				$premium = new Event('Model.Users.premium', $this->_controller, [
-					'user' => $user
-				]);
-				EventManager::instance()->dispatch($premium);
+				if (!$badges) {
+					return false;
+				}
 
 				return true;
 			} else {
@@ -144,11 +144,33 @@ class PaypalComponent extends Component {
 	}
 
 /**
+ * Create and dispath the Event for the premium badge.
+ *
+ * @param \App\Model\Entity\User $user The entity of the user.
+ *
+ * @return bool|\App\Model\Entity\User
+ */
+	protected function _unlockBadges($user) {
+		if (!$user instanceof User) {
+			return false;
+		}
+
+		EventManager::instance()->attach(new Badges($this->_controller));
+
+		$premium = new Event('Model.Users.premium', $this->_controller, [
+			'user' => $user
+		]);
+		EventManager::instance()->dispatch($premium);
+
+		return true;
+	}
+
+/**
  * Update the end subscription date of the user.
  *
  * @param array $custom The custom data passed to Paypal.
  *
- * @return bool|\Cake\Model\Entity\User
+ * @return bool|\App\Model\Entity\User
  */
 	protected function _updateUser(array $custom) {
 		$this->_controller->loadModel('Users');
@@ -176,11 +198,9 @@ class PaypalComponent extends Component {
 		];
 
 		$this->_controller->Users->patchEntity($user, $data);
-		if ($this->_controller->Users->save($user)) {
-			return $user;
-		}
+		$this->_controller->Users->save($user);
 
-		return false;
+		return $user;
 	}
 
 /**
@@ -217,11 +237,9 @@ class PaypalComponent extends Component {
 
 		$data = $this->_controller->PremiumTransactions->newEntity($data);
 
-		if ($this->_controller->PremiumTransactions->save($data)) {
-			return true;
-		}
+		$this->_controller->PremiumTransactions->save($data);
 
-		return false;
+		return true;
 	}
 
 /**
@@ -266,6 +284,7 @@ class PaypalComponent extends Component {
 			curl_close($ch);
 
 			unset($this->_request->data['cmd']);
+			Log::debug($response, 'paypal');
 			return $response;
 		}
 	}
@@ -283,7 +302,7 @@ class PaypalComponent extends Component {
 		$transaction = $this->_controller->PremiumTransactions->find('transactionByTxn', [
 			'txn' => $txn
 		]);
-		Log::debug($transaction, 'paypal');
+
 		if (!$transaction) {
 			return true;
 		}
@@ -378,13 +397,9 @@ class PaypalComponent extends Component {
 		}
 
 		//Update the discount.
-		$update = $this->_updateDiscount($checkDiscount);
+		$this->_updateDiscount($checkDiscount);
 
-		if ($update) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 
 /**
@@ -403,13 +418,9 @@ class PaypalComponent extends Component {
 
 		$this->_controller->PremiumDiscounts->patchEntity($discount, $data);
 
-		if ($this->_controller->PremiumDiscounts->save($discount)) {
-			return true;
-		}
+		$this->_controller->PremiumDiscounts->save($discount);
 
-		Log::error(__('Unable to update the discount code.'), 'paypal');
-
-		return false;
+		return true;
 	}
 
 /**
