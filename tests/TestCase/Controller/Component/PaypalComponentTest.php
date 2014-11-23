@@ -28,7 +28,7 @@ class PaypalComponentTest extends TestCase {
 	];
 
 /**
- * setUp method
+ * setUp
  *
  * @return void
  */
@@ -44,7 +44,7 @@ class PaypalComponentTest extends TestCase {
 	}
 
 /**
- * tearDown method
+ * tearDown
  *
  * @return void
  */

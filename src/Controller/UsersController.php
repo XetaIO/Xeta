@@ -156,6 +156,7 @@ class UsersController extends AppController {
 			$this->Users->patchEntity($user, $this->request->data());
 
 			if ($this->Users->save($user, ['validate' => 'account'])) {
+				$this->request->session()->write('Auth.User.avatar', $user->avatar);
 				$this->Flash->success(__("Your information has been updated !"));
 			}
 		}

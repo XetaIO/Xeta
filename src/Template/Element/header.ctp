@@ -35,10 +35,10 @@
 			</ul>
 
 			<div class="nav navbar-nav navbar-right">
-				<?php if ($this->Session->read('Auth.User')): ?>
+				<?php if ($this->request->session()->read('Auth.User')): ?>
 					<p class="navbar-text">
 						<?= __('Hello,') . '&nbsp;' ?>
-						<?= $this->Html->link($this->Session->read('Auth.User.username'), '#', ['class' => 'user-menu-trigger']) ?>
+						<?= $this->Html->link($this->request->session()->read('Auth.User.username'), '#', ['class' => 'user-menu-trigger']) ?>
 					</p>
 				<?php else:?>
 					<?= $this->Html->link(__("Login"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
@@ -51,10 +51,9 @@
 	</div>
 </header>
 
-<?php if($this->Session->read('Auth.User')): ?>
+<?php if($this->request->session()->read('Auth.User')): ?>
 	<nav id="user-menu" class="user-menu menu-close">
-
-		<?= $this->Html->image(h($this->Session->read('Auth.User.avatar')), ['class' => 'user-menu-img']) ?>
+		<?= $this->Html->image(h($this->request->session()->read('Auth.User.avatar')), ['class' => 'user-menu-img']) ?>
 		<ul>
 			<?php if($this->Session->read('Auth.User.role') == 'admin'): ?>
 				<li>
@@ -63,7 +62,7 @@
 				</li>
 			<?php endif;?>
 			<li>
-				<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profil'), ['_name' => 'users-profile', 'slug' => h($this->Session->read('Auth.User.slug'))], ['escape' => false]) ?>
+				<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profil'), ['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))], ['escape' => false]) ?>
 			</li>
 			<li>
 				<?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account'], ['escape' => false]) ?>
@@ -72,13 +71,13 @@
 				<?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'), ['controller' => 'users', 'action' => 'logout'], ['escape' => false]) ?>
 			</li>
 		</ul>
-		<ul>
+		<!--<ul>
 			<li>
 				<a href="http://www.twitter.com/NozeAres"><i class="fa fa-twitter-square"></i></a>
 			</li>
 			<li>
 				<a href="http://www.facebook.com/Emeric.ZoRRo"><i class="fa fa-facebook-square"></i></a>
 			</li>
-		</ul>
+		</ul>-->
 	</nav>
 <?php endif; ?>
