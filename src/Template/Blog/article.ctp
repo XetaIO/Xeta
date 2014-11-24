@@ -6,11 +6,18 @@
 
 <?php $this->start('scriptBottom');
 
-	echo $this->Html->script('ckeditor/ckeditor') ?>
+	echo $this->Html->script([
+		'moment.min',
+		'livestamp.min',
+		'ckeditor/ckeditor'
+	])
+?>
 	<script type="text/javascript">
 		CKEDITOR.replace('commentBox', {
 			customConfig: 'config/comment.js'
 		});
+		
+		moment.lang('<?= \Cake\I18n\I18n::locale() ?>');
 	</script>
 
 	<script>
@@ -331,7 +338,7 @@
 												]
 											) ?>
 										</h3>
-										<time class="date">
+										<time class="date" data-livestamp="<?= $comment->created->timestamp ?>">
 											<?= $comment->created->format('d-m-Y') ?>
 										</time>
 									</div>

@@ -74,7 +74,7 @@ class PaypalComponent extends Component {
 
 		parse_str($custom, $custom);
 
-		if (strcmp($response, "VERIFIED") == 0) {
+		if (is_string($response) && strcmp($response, 'VERIFIED') == 0) {
 
 			if ($paymentStatus == "Completed") {
 
@@ -120,7 +120,7 @@ class PaypalComponent extends Component {
 				$custom['discount_id'] = isset($custom['discount_id']) ? $custom['discount_id'] : null;
 
 				//We save the transaction.
-				$transaction = $this->_insertTransaction($custom, $mcGross, $tax, $txnId,
+				$this->_insertTransaction($custom, $mcGross, $tax, $txnId,
 					$firstName . ' ' . $lastName, $addressCountry, $addressCity, $addressStreet);
 
 				//We save the premium Badge.
@@ -137,7 +137,7 @@ class PaypalComponent extends Component {
 				return false;
 			}
 
-		} elseif (strcmp($response, "INVALID") == 0) {
+		} elseif (is_string($response) && strcmp($response, "INVALID") == 0) {
 			Log::error(__('Response INVALID.'), 'paypal');
 			return false;
 		}
