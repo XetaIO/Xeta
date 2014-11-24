@@ -327,7 +327,8 @@ $config = [
  */
 	'Session' => [
 		'defaults' => 'php',
-		'cookie' => 'Xeta'
+		'cookie' => 'Xeta',
+		'timeout' => 160
 	],
 
 /**

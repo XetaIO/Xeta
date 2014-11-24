@@ -118,11 +118,49 @@ class PremiumController extends AppController {
 	}
 
 /**
- * [success description]
+ * A payment has been done.
+ *
+ * @return \Cake\network\Response
+ */
+	public function success() {
+		if (isset($this->request->data['custom']) && isset($this->request->data['txn_id'])) {
+			parse_str($this->request->data['custom'], $custom);
+
+			$this->loadModel('Users');
+
+			$user = $this->Users
+			->find()
+			->where([
+				'id' => $custom['user_id']
+			])
+			->first();
+
+			if ($user) {
+				//Write in the session the virtual field.
+				$this->Auth->setUser($user->toArray());
+				$this->request->session()->write('Auth.User.premium', $user->premium);
+				$this->set(compact('user'));
+			}
+
+			$this->loadModel('PremiumTransactions');
+
+			$transaction = $this->PremiumTransactions->find('transactionByTxn', [
+				'txn' => $this->request->data['txn_id']
+			]);
+
+			if ($transaction) {
+				$this->set(compact('transaction'));
+			} else {
+				$this->request->session()->write('Premium.Check', $this->request->data['txn_id']);
+			}
+		}
+	}
+
+/**
+ * The user canceled the payment.
  *
  * @return void
  */
-	public function success() {
-		//Refresh the user Cookies.
+	public function cancel() {
 	}
 }

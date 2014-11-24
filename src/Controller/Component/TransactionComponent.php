@@ -54,12 +54,10 @@ class TransactionComponent extends Component {
 
 		$curlOptions = [
 			CURLOPT_URL => "https://api-3t." . $sandbox . "paypal.com/nvp",
-			//CURLOPT_VERBOSE => 1,
 			CURLOPT_POST => 1,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => 2,
 			//CURLOPT_CAINFO => APP . 'config' . DS . 'cacert.pem',
-			//CURLOPT_CAPATH => APP . 'config' . DS,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_POSTFIELDS => $request,
 			CURLOPT_CONNECTTIMEOUT => 30
