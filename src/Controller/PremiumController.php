@@ -107,7 +107,7 @@ class PremiumController extends AppController {
 	}
 
 /**
- * [notify description]
+ * Paypal has sent a notification.
  *
  * @return void
  */

@@ -67,11 +67,10 @@ use Cake\Core\Configure;
 							<ul class="features">
 								<li><i class="fa fa-cloud-download"></i> <?= __("Resources in Tutorials") ?></li>
 								<li><i class="fa fa-trophy"></i> <?= __("Premium Badge") ?></li>
-								<li>
+								<li class="text-center">
 									<?php if ($this->request->session()->read('Auth.User')): ?>
 										<?= $this->Form->create(null, [
-											'url' => ['action' => 'subscribe'],
-											'class' => 'text-center'
+											'url' => ['action' => 'subscribe']
 										]) ?>
 											<?= $this->Form->hidden('period', ['value' => $offer->period]) ?>
 											<?= $this->Form->input('discount', ['class' => 'form-control', 'placeholder' => __("Discount Code"), 'label' => false]) ?>

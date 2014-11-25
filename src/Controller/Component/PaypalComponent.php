@@ -57,9 +57,9 @@ class PaypalComponent extends Component {
 	}
 
 /**
- * [notify description]
+ * Paypal has sent a notification.
  *
- * @return void
+ * @return bool
  */
 	public function notify() {
 		$response = $this->_sendResponse();

@@ -115,7 +115,7 @@
 					<?php if (!is_null($article->blog_attachment)): ?>
 						<?php if(!$this->request->session()->read('Auth.User.premium')): ?>
 							<div class="infobox infobox-info">
-								<?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'),['controller' => 'premium'])) ?>
+								<?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'), ['controller' => 'premium'])) ?>
 							</div>
 						<?php endif; ?>
 							<div class="attachmentFiles">
@@ -125,9 +125,9 @@
 											<?= $this->Html->link(
 												'<i class="fa fa-cloud-download fa-2x"></i>',
 												[
-													'controller' => 'attachments',
-													'action' => 'download',
-													$article->blog_attachment->id
+													'_name' => 'attachment-download',
+													'type' => 'blog',
+													'id' => $article->blog_attachment->id
 												],
 												[
 													'class' => 'attachmentThumb',
@@ -151,9 +151,9 @@
 										<h6 class="attachmentName">
 											<?php if($this->request->session()->read('Auth.User.premium')): ?>
 												<?= $this->Html->link($article->blog_attachment->name, [
-													'controller' => 'attachments',
-													'action' => 'download',
-													$article->blog_attachment->id
+													'_name' => 'attachment-download',
+													'type' => 'blog',
+													'id' => $article->blog_attachment->id
 												]) ?>
 											<?php else: ?>
 												<?= $this->Html->link($article->blog_attachment->name, [

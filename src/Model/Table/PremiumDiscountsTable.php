@@ -24,10 +24,10 @@ class PremiumDiscountsTable extends Table {
 		$this->belongsTo('Users', [
 			'foreignKey' => 'user_id'
 		]);
-		$this->belongsTo('PremiumTransactions', [
+		$this->belongsToMany('PremiumTransactions', [
 			'foreignKey' => 'premium_discount_id'
 		]);
-		$this->belongsTo('PremiumOffers', [
+		$this->belongsToMany('PremiumOffers', [
 			'foreignKey' => 'premium_offer_id'
 		]);
 	}

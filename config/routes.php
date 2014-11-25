@@ -40,7 +40,6 @@ Router::scope('/', function ($routes) {
 		[
 			'controller' => 'blog',
 			'action' => 'category',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -56,7 +55,6 @@ Router::scope('/', function ($routes) {
 		[
 			'controller' => 'blog',
 			'action' => 'archive',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -79,6 +77,23 @@ Router::scope('/', function ($routes) {
 			'_name' => 'users-profile',
 			'pass' => [
 				'slug'
+			]
+		]
+	);
+	
+	//Attachments Routes.
+	$routes->connect(
+		'/attachments/download/:type/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'download',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachment-download',
+			'pass' => [
+				'type',
+				'id'
 			]
 		]
 	);
@@ -151,7 +166,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'articles',
 			'action' => 'edit',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -167,7 +181,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'articles',
 			'action' => 'delete',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -184,7 +197,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'categories',
 			'action' => 'edit',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -200,7 +212,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'categories',
 			'action' => 'delete',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',

@@ -27,7 +27,7 @@ class PremiumOffersTable extends Table {
 			'foreignKey' => 'premium_offer_id'
 		]);
 		$this->hasMany('PremiumDiscounts', [
-			'foreignKey' => 'premium_offer_id'
+			'foreignKey' => 'premium_discount_id'
 		]);
 	}
 

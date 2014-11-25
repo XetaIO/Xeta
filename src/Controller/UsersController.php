@@ -290,4 +290,34 @@ class UsersController extends AppController {
 
 		return $this->redirect(['action' => 'settings']);
 	}
+
+/**
+ * Display all premium transactions related to the user.
+ *
+ * @return \Cake\Network\Response
+ */
+	public function premium() {
+		$this->loadModel('PremiumTransactions');
+
+		$this->paginate = [
+			'maxLimit' => Configure::read('User.transaction_per_page')
+		];
+
+		$transactions = $this->PremiumTransactions
+			->find()
+			->contain([
+				'PremiumOffers',
+				'PremiumDiscounts'
+			])
+			->where([
+				'PremiumTransactions.user_id' => $this->Auth->user('id')
+			])
+			->order([
+				'PremiumTransactions.created' => 'desc'
+			]);
+
+		$transactions = $this->paginate($transactions);
+
+		$this->set(compact('transactions'));
+	}
 }
