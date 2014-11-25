@@ -339,11 +339,11 @@ class PaypalComponentTest extends TestCase {
 
 		$this->assertTrue($result);
 
-		$transaction = $this->Transactions->get(2);
+		$transaction = $this->Transactions->get(3);
 		$this->assertInstanceOf('App\Model\Entity\PremiumTransaction', $transaction);
 
 		$expected = [
-			'id' => 2,
+			'id' => 3,
 			'user_id' => 1,
 			'premium_offer_id' => 2,
 			'premium_discount_id' => 2,

@@ -41,7 +41,6 @@ class PremiumTransactionsFixture extends TestFixture {
  */
 	public $records = [
 		[
-			'id' => 1,
 			'user_id' => 1,
 			'premium_offer_id' => 1,
 			'premium_discount_id' => null,
@@ -56,7 +55,23 @@ class PremiumTransactionsFixture extends TestFixture {
 			'address' => 'Lorem ipsum dolor sit amet',
 			'created' => '2014-11-21 10:57:49',
 			'modified' => '2014-11-21 10:57:49'
-		]
+		],
+		[
+			'user_id' => 1,
+			'premium_offer_id' => 2,
+			'premium_discount_id' => 2,
+			'price' => 3.17,
+			'tax' => 0.17,
+			'txn' => 'RHB95W13228100786',
+			'action' => 'extend',
+			'period' => 6,
+			'name' => 'Lorem ipsum',
+			'country' => 'FRANCE',
+			'city' => 'Paris',
+			'address' => 'Lorem ipsum dolor sit amet',
+			'created' => '2014-11-21 10:57:49',
+			'modified' => '2014-11-21 10:57:49'
+			]
 	];
 
 }
