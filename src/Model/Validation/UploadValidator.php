@@ -25,7 +25,9 @@ class UploadValidator extends Validator {
 			return false;
 		}
 
-		$size = getimagesize($check['tmp_name']);
+		//@codingStandardsIgnoreStart
+		$size = @getimagesize($check['tmp_name']);
+		//@codingStandardsIgnoreEnd
 
 		if (!is_array($size)) {
 			throw new RuntimeException('Can not determine the size.');
