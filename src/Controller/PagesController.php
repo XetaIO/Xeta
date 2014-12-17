@@ -98,6 +98,6 @@ class PagesController extends AppController {
 		$json['message'] = __('Thanks for accepting to use the cookies !');
 		$this->set(compact('json'));
 
-		return $this->set('_serialize', 'json');
+		$this->set('_serialize', 'json');
 	}
 }

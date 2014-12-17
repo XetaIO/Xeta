@@ -39,8 +39,31 @@ class PremiumOffersTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->add('id', 'valid', ['rule' => 'numeric'])
-			->allowEmpty('id', 'create');
+			->notEmpty('period', __("You must set a period."))
+			->add('period', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The period must be numeric.")
+			])
+			->notEmpty('price', __("You must set a price."))
+			->add('price', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The price must be numeric.")
+			])
+			->notEmpty('tax', __("You must set a tax."))
+			->add('tax', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The tax must be numeric.")
+			])
+			->notEmpty('currency_code', __("You must set a currency code."))
+			->add('currency_code', 'maxLength', [
+				'rule' => ['maxLength', 10],
+				'message' => __("The currency code can not be more than {0} characters.", 10)
+			])
+			->notEmpty('currency_symbol', __("You must set a currency symbol."))
+			->add('currency_symbol', 'maxLength', [
+				'rule' => ['maxLength', 5],
+				'message' => __("The currency symbol can not be more than {0} characters.", 5)
+			]);
 
 		return $validator;
 	}

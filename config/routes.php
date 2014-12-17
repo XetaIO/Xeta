@@ -80,7 +80,7 @@ Router::scope('/', function ($routes) {
 			]
 		]
 	);
-	
+
 	//Attachments Routes.
 	$routes->connect(
 		'/attachments/download/:type/:id',
@@ -221,6 +221,54 @@ Router::prefix('admin', function ($routes) {
 			]
 		]
 	);
+
+/**
+ * Premium Routes.
+ */
+	$routes->prefix('premium', function ($routes) {
+		$routes->connect(
+			'/',
+			[
+				'controller' => 'premium',
+				'action' => 'home'
+			],
+			[
+				'routeClass' => 'InflectedRoute'
+			]
+		);
+
+		$routes->connect(
+			'/offers/edit/:id',
+			[
+				'controller' => 'offers',
+				'action' => 'edit',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'offers-edit',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+		$routes->connect(
+			'/offers/delete/:id',
+			[
+				'controller' => 'offers',
+				'action' => 'delete',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'offers-delete',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+		$routes->fallbacks();
+	});
 
 	$routes->fallbacks();
 });

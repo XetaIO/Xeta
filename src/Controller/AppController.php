@@ -152,7 +152,7 @@ class AppController extends Controller {
 			}
 		}
 
-		if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
+		if (isset($this->request->params['prefix']) && explode('/', $this->request->params['prefix'])[0] == 'admin') {
 			$this->layout = 'admin';
 		}
 
