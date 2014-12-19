@@ -27,7 +27,7 @@ class PremiumDiscountsTable extends Table {
 		$this->belongsToMany('PremiumTransactions', [
 			'foreignKey' => 'premium_discount_id'
 		]);
-		$this->belongsToMany('PremiumOffers', [
+		$this->belongsTo('PremiumOffers', [
 			'foreignKey' => 'premium_offer_id'
 		]);
 	}
@@ -40,8 +40,31 @@ class PremiumDiscountsTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->add('id', 'valid', ['rule' => 'numeric'])
-			->allowEmpty('id', 'create');
+			->notEmpty('premium_offer_id', __("You must set an offer."))
+			->add('premium_offer_id', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The offer must be numeric value.")
+			])
+			->notEmpty('code', __("You must set a code."))
+			->add('code', 'maxLength', [
+				'rule' => ['maxLength', 50],
+				'message' => __("The code can not be more than {0} characters.", 50)
+			])
+			->notEmpty('discount', __("You must set a discount."))
+			->add('discount', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The discount must be numeric value.")
+			])
+			->notEmpty('used', __("You must set the used number."))
+			->add('used', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The used value must be numeric value.")
+			])
+			->notEmpty('max_use', __("You must set the max use for the discount."))
+			->add('max_use', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The max use value must be numeric value.")
+			]);
 
 		return $validator;
 	}

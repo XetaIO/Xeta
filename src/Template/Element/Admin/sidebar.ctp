@@ -35,7 +35,7 @@
 					</li>
 				</ul>
 			</li>
-			
+
 			<?php if($this->request->params['controller'] == 'Users'): ?>
 				<li class="active">
 			<?php else:?>
@@ -55,23 +55,23 @@
 			<?php else:?>
 				<li>
 			<?php endif;?>
-				
+
 				<?= $this->Html->link(__("{0} Premium {1}", '<i class="fa fa-trophy"></i>',
 				'<i class="fa fa-chevron-down"></i>'), '#submenu-premium', ['class' => 'active accordion-toggle collapsed',
 				'data-toggle' => 'collapse', 'escape' => false]) ?>
-				
+
 				<ul id="submenu-premium" class="submenu nav collapse">
 					<?= ($this->request->params['controller'] == 'Premium' && $this->request->params['action'] == 'home') ? '<li class="active">' : '<li>' ?>
 						<?= $this->Html->link(__("Statistics"), ['controller' => 'premium', 'action' => 'home',
 						'prefix' => 'admin/premium']) ?>
 					</li>
-					
-					<?= ($this->request->params['controller'] == 'Offers') ? '<li class="active">' : '<li>' ?>
+
+					<?= ($this->request->params['controller'] == 'offers') ? '<li class="active">' : '<li>' ?>
 						<?= $this->Html->link(__("Manage Offers"), ['controller' => 'offers', 'action' => 'index',
 						'prefix' => 'admin/premium']) ?>
 					</li>
-					
-					<?= ($this->request->params['controller'] == 'Discounts') ? '<li class="active">' : '<li>' ?>
+
+					<?= ($this->request->params['controller'] == 'discounts') ? '<li class="active">' : '<li>' ?>
 						<?= $this->Html->link(__("Manage Discounts"), ['controller' => 'discounts', 'action' => 'index',
 						'prefix' => 'admin/premium']) ?>
 					</li>

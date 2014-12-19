@@ -237,6 +237,9 @@ Router::prefix('admin', function ($routes) {
 			]
 		);
 
+	/**
+	 * Premium/Offers
+	 */
 		$routes->connect(
 			'/offers/edit/:id',
 			[
@@ -261,6 +264,24 @@ Router::prefix('admin', function ($routes) {
 			[
 				'routeClass' => 'InflectedRoute',
 				'_name' => 'offers-delete',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+	/**
+	 * Premium/Discounts
+	 */
+		$routes->connect(
+			'/discounts/edit/:id',
+			[
+				'controller' => 'discounts',
+				'action' => 'edit',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'discounts-edit',
 				'pass' => [
 					'id'
 				]
