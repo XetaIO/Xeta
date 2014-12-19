@@ -14,7 +14,6 @@ use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Network\Request;
 use Cake\ORM\Entity;
-use Cake\Routing\Router;
 
 class PaypalComponent extends Component {
 

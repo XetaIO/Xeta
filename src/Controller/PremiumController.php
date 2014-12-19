@@ -1,10 +1,8 @@
 <?php
 namespace App\Controller;
 
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Number;
-use Cake\Log\Log;
 use Cake\Network\Response;
 
 class PremiumController extends AppController {

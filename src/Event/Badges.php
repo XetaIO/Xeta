@@ -13,7 +13,7 @@ class Badges implements EventListenerInterface {
 /**
  * Construct method.
  *
- * @param object $controller The controller instance where the Event is dispatched.
+ * @param \Cake\Controller\Controller $controller The controller instance where the Event is dispatched.
  *
  * @return void
  */
