@@ -12,8 +12,10 @@
 				['escape' => false]) ?>
 			</li>
 
-			<?php if($this->request->params['controller'] == 'Articles' || $this->request->params['controller'] == 'Categories')
-			: ?>
+			<?php if($this->request->params['controller'] == 'articles'
+					|| $this->request->params['controller'] == 'categories'
+					|| $this->request->params['controller'] == 'attachments'
+			): ?>
 				<li class="active">
 			<?php else:?>
 				<li>
@@ -24,19 +26,24 @@
 						'data-toggle' => 'collapse', 'escape' => false]) ?>
 
 				<ul id="submenu-blog" class="submenu nav collapse">
-					<?= ($this->request->params['controller'] == 'Articles') ? '<li class="active">' : '<li>' ?>
+					<?= ($this->request->params['controller'] == 'articles') ? '<li class="active">' : '<li>' ?>
 						<?= $this->Html->link(__("Manage Articles"), ['controller' => 'articles', 'action' => 'index',
 								'prefix' => 'admin']) ?>
 					</li>
 
-					<?= ($this->request->params['controller'] == 'Categories') ? '<li class="active">' : '<li>' ?>
+					<?= ($this->request->params['controller'] == 'categories') ? '<li class="active">' : '<li>' ?>
 						<?= $this->Html->link(__("Manage Categories"), ['controller' => 'categories', 'action' => 'index',
 					'prefix' => 'admin']) ?>
+					</li>
+
+					<?= ($this->request->params['controller'] == 'attachments') ? '<li class="active">' : '<li>' ?>
+						<?= $this->Html->link(__("Manage Attachments"), ['controller' => 'attachments', 'action' => 'index',
+						'prefix' => 'admin']) ?>
 					</li>
 				</ul>
 			</li>
 
-			<?php if($this->request->params['controller'] == 'Users'): ?>
+			<?php if($this->request->params['controller'] == 'users'): ?>
 				<li class="active">
 			<?php else:?>
 				<li>

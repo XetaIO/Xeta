@@ -90,7 +90,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 
 					<?= $this->Form->button(__('Edit Article'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
 					<?= $this->Form->end() ?>
-					
+
 				</div>
 
 			</div>

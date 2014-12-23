@@ -19,9 +19,20 @@ class BlogAttachmentsTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Timestamp');
+		$this->addBehavior('Xety/Cake3Upload.Upload', [
+			'fields' => [
+				'url' => [
+					'path' => 'upload/blog/attachment/:md5',
+					'overwrite' => true
+				]
+			]
+		]);
 
 		$this->belongsTo('BlogArticles', [
 			'foreignKey' => 'article_id'
+		]);
+		$this->belongsTo('Users', [
+			'foreignKey' => 'user_id'
 		]);
 	}
 
@@ -33,8 +44,26 @@ class BlogAttachmentsTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->add('id', 'valid', ['rule' => 'numeric'])
-			->allowEmpty('id', 'create');
+			->notEmpty('article_id', __("You must set an article."))
+			->add('article_id', 'numeric', [
+				'rule' => 'numeric',
+				'message' => __("The article must be numeric value.")
+			])
+			->notEmpty('url_file', __("You must upload a file."))
+			->add('url_file', [
+				'mimeType' => [
+					'rule' => ['mimeType', ['application/octet-stream', 'application/zip']],
+					'message' => __("The mimeType is not allowed.")
+				],
+				'fileExtension' => [
+					'rule' => ['extension', ['zip']],
+					'message' => __("The extension allowed are {0}.", '.zip')
+				],
+				'fileSize' => [
+					'rule' => ['fileSize', '<', '13MB'],
+					'message' => __("The file exceeded the max allowed size of {0}.", '13MB')
+				]
+			]);
 
 		return $validator;
 	}

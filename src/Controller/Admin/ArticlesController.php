@@ -76,6 +76,7 @@ class ArticlesController extends AppController {
 				'slugField' => 'BlogArticles.slug'
 			])
 			->contain([
+				'BlogAttachments',
 				'BlogCategories',
 				'Users' => function ($q) {
 						return $q->find('short');

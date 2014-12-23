@@ -222,6 +222,37 @@ Router::prefix('admin', function ($routes) {
 		]
 	);
 
+	//Attachments Routes.
+	$routes->connect(
+		'/attachments/edit/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'edit',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachments-edit',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
+	$routes->connect(
+		'/attachments/delete/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'delete',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachments-delete',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
 /**
  * Premium Routes.
  */
@@ -237,9 +268,7 @@ Router::prefix('admin', function ($routes) {
 			]
 		);
 
-	/**
-	 * Premium/Offers
-	 */
+		//Premium/Offers Routes.
 		$routes->connect(
 			'/offers/edit/:id',
 			[
@@ -270,9 +299,7 @@ Router::prefix('admin', function ($routes) {
 			]
 		);
 
-	/**
-	 * Premium/Discounts
-	 */
+		//Premium/Discounts Routes.
 		$routes->connect(
 			'/discounts/edit/:id',
 			[
