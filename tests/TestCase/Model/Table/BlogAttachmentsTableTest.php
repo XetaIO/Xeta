@@ -79,7 +79,7 @@ class BlogAttachmentsTableTest extends TestCase {
 			'user_id' => 1,
 			'url_file' => [
 				'name' => 'attachment.zip',
-				'tmp_name' => TEST_TMP . 'attachment.zip',
+				'tmp_name' => TEST_TMP . 'Attachment.zip',
 				'error' => UPLOAD_ERR_OK,
 				'type' => 'application/octet-stream',
 				'size' => 6969
