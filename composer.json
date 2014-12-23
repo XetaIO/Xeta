@@ -8,6 +8,7 @@
 	"require": {
 		"php": ">=5.4.16",
 		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/bake": "dev-master",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"cakephp/debug_kit": "3.0.*-dev",
 		"ezyang/htmlpurifier": "dev-master",

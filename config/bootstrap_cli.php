@@ -13,6 +13,8 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 use Cake\Core\Configure;
+use Cake\Core\Exception\MissingPluginException;
+use Cake\Core\Plugin;
 
 /**
  * Additional bootstrapping and configuration for CLI environments should
@@ -22,3 +24,9 @@ use Cake\Core\Configure;
 // Set logs to different files so they don't have permission conflicts.
 Configure::write('Log.debug.file', 'cli-debug');
 Configure::write('Log.error.file', 'cli-error');
+
+try {
+    Plugin::load('Bake');
+} catch (MissingPluginException $e) {
+    // Do not halt if the plugin is missing
+}
