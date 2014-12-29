@@ -10,7 +10,7 @@
 					<?= $this->Html->link(__("Home"), '/') ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__("Users"), ['controller' => 'users', 'action' => 'index']) ?>
+					<?= $this->Html->link(__("Users"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
 					<?= __("My Settings") ?>
@@ -69,7 +69,7 @@
 				</div>
 				<?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
 			<?= $this->Form->end() ?>
-			
+
 			<div class="section">
 				<h4>
 					<?= __("Delete your Account") ?>
@@ -91,7 +91,7 @@
 								<?= __("Are you sure you want delete your account ? <strong>This operation is not reversible.</strong>") ?>
 							</div>
 							<div class="modal-footer">
-								<?= $this->Html->link(__("Yes, i confirm !"), ['controller' => 'users', 'action' => 'delete'], ['class' => 'btn btn-danger']) ?>
+								<?= $this->Html->link(__("Yes, i confirm !"), ['action' => 'delete'], ['class' => 'btn btn-danger']) ?>
 								<button type="button" class="btn btn-primary" data-dismiss="modal"><?= __("Close") ?></button>
 							</div>
 						</div>

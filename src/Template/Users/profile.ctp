@@ -10,7 +10,7 @@
 					<?= $this->Html->link(__("Home"), '/') ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__("Users"), ['controller' => 'users', 'action' => 'index']) ?>
+					<?= $this->Html->link(__("Users"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
 					<?= h($user->username) ?>

@@ -98,7 +98,7 @@ Router::scope('/', function ($routes) {
 		]
 	);
 
-	$routes->fallbacks();
+	$routes->fallbacks('InflectedRoute');
 });
 
 //Admin routes.
@@ -315,10 +315,10 @@ Router::prefix('admin', function ($routes) {
 			]
 		);
 
-		$routes->fallbacks();
+		$routes->fallbacks('InflectedRoute');
 	});
 
-	$routes->fallbacks();
+	$routes->fallbacks('InflectedRoute');
 });
 
 /**

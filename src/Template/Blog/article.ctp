@@ -16,7 +16,7 @@
 		CKEDITOR.replace('commentBox', {
 			customConfig: 'config/comment.js'
 		});
-		
+
 		moment.lang('<?= \Cake\I18n\I18n::locale() ?>');
 	</script>
 
@@ -29,7 +29,7 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	
+
 	<script>
 	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 	</script>
@@ -111,7 +111,7 @@
 					<div class="content">
 						<?= $article->content; ?>
 					</div>
-					
+
 					<?php if (!is_null($article->blog_attachment)): ?>
 						<?php if(!$this->request->session()->read('Auth.User.premium')): ?>
 							<div class="infobox infobox-info">

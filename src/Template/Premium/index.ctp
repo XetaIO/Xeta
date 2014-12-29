@@ -24,7 +24,7 @@ use Cake\Core\Configure;
 				</div>
 			</div>
 
-			<?php if ($user->premium): ?>
+			<?php if ($user && $user->premium): ?>
 				<div class="infobox infobox-primary">
 					<?= __("You're already Premium, but you can extend your subscription if you want ! Your Premium will be ended at {0}.", $user->end_subscription->format('H:i:s d-m-Y')) ?>
 				</div>

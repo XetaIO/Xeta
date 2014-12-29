@@ -10,7 +10,7 @@
 					<?= $this->Html->link(__("Home"), '/') ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__("Users"), ['controller' => 'users', 'action' => 'index']) ?>
+					<?= $this->Html->link(__("Users"), ['action' => 'index']) ?>
 				</li>
 				<li class="active">
 					<?= __("Premium") ?>
@@ -24,7 +24,7 @@
 			<?= $this->element('/Users/sidebar') ?>
 		</section>
 		<section class="col-md-9">
-			
+
 			<div class="section">
 				<h4>
 					<?= __("Premium Purchases") ?>
@@ -83,7 +83,7 @@
 							<?php endforeach;?>
 						</tbody>
 					</table>
-					
+
 					<div class="pagination-centered">
 						<ul class="pagination">
 							<?php if ($this->Paginator->hasPrev()): ?>
@@ -111,4 +111,3 @@
 		</section>
 	</div>
 </div>
-	
