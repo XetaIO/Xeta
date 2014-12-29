@@ -1,7 +1,7 @@
 <?= $this->element('meta') ?>
 <div class="sky jumbotron">
 	<div class="svg">
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -24,7 +24,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -47,7 +47,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -70,7 +70,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -93,7 +93,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -116,7 +116,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -139,7 +139,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="cloudFill"
@@ -162,7 +162,7 @@
 				</g>
 			</g>
 		</svg>
-		
+
 		<svg
 			version="1.1"
 			id="sun"
@@ -221,7 +221,7 @@
 			</g>
 		</svg>
 	</div>
-	
+
 	<div class="container">
 		<h1 class="animated bounceInDown">
 			<?= __("Welcome on {0} !", '<span>' . \Cake\Core\Configure::read('Site.name') . '</span>') ?>
@@ -230,7 +230,11 @@
 			<?= __("Welcome to my personal website ! I use this site as my personal blog and for try my  experiences in development.") ?>
 		</p>
 		<p class="animated bounceInLeft">
-			<?= $this->Html->link(__("Sign Up now {0}", '<i class="fa fa-sign-in"></i>'), ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-default', 'role' => 'button', 'escape' => false]) ?>
+			<?php if (!$this->request->session()->read('Auth.User')): ?>
+				<?= $this->Html->link(__("Sign Up now {0}", '<i class="fa fa-sign-in"></i>'), ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-default', 'role' => 'button', 'escape' => false]) ?>
+			<?php else: ?>
+				<?= $this->Html->link(__("Visit the Blog {0}", '<i class="fa fa-sign-in"></i>'), ['controller' => 'blog', 'action' => 'index'], ['class' => 'btn btn-default', 'role' => 'button', 'escape' => false]) ?>
+			<?php endif; ?>
 		</p>
 	</div>
 	<span class="big-arrow"></span>
