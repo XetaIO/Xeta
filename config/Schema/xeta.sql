@@ -139,6 +139,108 @@ INSERT INTO blog_categories (id, title, description, slug, article_count, create
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `blog_attachments`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_attachments` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `article_id` int(11) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `size` int(11) NOT NULL,
+    `extension` varchar(15) NOT NULL,
+    `url` varchar(255) NOT NULL,
+    `download` bigint(20) NOT NULL DEFAULT '0',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `premium_discounts`
+--
+
+CREATE TABLE IF NOT EXISTS `premium_discounts` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `premium_offer_id` int(11) NOT NULL,
+    `code` varchar(50) NOT NULL,
+    `discount` float NOT NULL,
+    `used` int(11) NOT NULL DEFAULT '0',
+    `max_use` int(11) NOT NULL DEFAULT '0',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `code` (`code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `premium_discounts`
+--
+
+INSERT INTO `premium_discounts` (`id`, `user_id`, `premium_offer_id`, `code`, `discount`, `used`, `max_use`, `created`, `modified`) VALUES
+(1, 1, 4, 'XETAREDUC', 50, 2, 2, '2014-11-19 06:00:00', '2014-12-15 10:06:16'),
+(2, 1, 3, 'XETATEST', 11, 1, 3, '2014-11-21 06:00:00', '2014-12-19 13:44:40');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `premium_offers`
+--
+
+CREATE TABLE IF NOT EXISTS `premium_offers` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `period` int(11) NOT NULL,
+    `price` float NOT NULL,
+    `tax` float NOT NULL DEFAULT '19.6',
+    `currency_code` varchar(3) NOT NULL DEFAULT 'EUR',
+    `currency_symbol` varchar(4) NOT NULL DEFAULT '€',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `premium_offers`
+--
+
+INSERT INTO `premium_offers` (`id`, `user_id`, `period`, `price`, `tax`, `currency_code`, `currency_symbol`, `created`, `modified`) VALUES
+(1, 1, 1, 3, 19.6, 'EUR', '€', '2014-11-19 05:00:00', '2014-11-19 05:00:00'),
+(2, 1, 3, 8.5, 19.6, 'EUR', '€', '2014-11-19 05:00:00', '2014-11-19 05:00:00'),
+(3, 1, 6, 16.5, 19.6, 'EUR', '€', '2014-11-19 05:00:00', '2014-11-19 05:00:00'),
+(4, 1, 12, 32, 19.6, 'EUR', '€', '2014-11-19 05:00:00', '2014-11-19 05:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `premium_transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `premium_transactions` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `premium_offer_id` int(11) NOT NULL,
+    `premium_discount_id` int(11) DEFAULT NULL,
+    `price` float NOT NULL,
+    `tax` float NOT NULL,
+    `txn` varchar(255) NOT NULL,
+    `action` enum('new','extend') NOT NULL DEFAULT 'new',
+    `period` int(11) NOT NULL,
+    `name` varchar(50) NOT NULL,
+    `country` varchar(50) NOT NULL,
+    `city` varchar(50) NOT NULL,
+    `address` varchar(255) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure 'users'
 --
 
@@ -158,6 +260,7 @@ CREATE TABLE IF NOT EXISTS users (
   slug varchar(20) NOT NULL,
   blog_articles_comment_count int(11) DEFAULT '0',
   blog_article_count int(11) DEFAULT '0',
+  end_subscription datetime NOT NULL,
   register_ip varchar(15) DEFAULT NULL,
   last_login_ip varchar(15) DEFAULT NULL,
   last_login datetime NOT NULL,
@@ -173,8 +276,8 @@ CREATE TABLE IF NOT EXISTS users (
 -- Table data 'users'
 --
 
-INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, role, slug, blog_articles_comment_count, blog_article_count, register_ip, last_login_ip, last_login, created, modified) VALUES
-(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1,
+INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, role, slug, blog_articles_comment_count, blog_article_count, end_subscription, register_ip, last_login_ip, last_login, created, modified) VALUES
+(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1, '0000-00-00 00:00:00',
 '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
-(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0,
+(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0, '0000-00-00 00:00:00',
 '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');

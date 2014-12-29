@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -92,5 +93,20 @@ class UserTest extends TestCase {
 		$user = $this->Users->newEntity($data);
 
 		$this->assertEquals('Lorem <p>test</p>', $user->signature);
+	}
+
+/**
+ * Test getPremium
+ *
+ * @return void
+ */
+	public function testGetPremium() {
+		$data = [
+			'end_subscription' => new Time('+5 days')
+		];
+
+		$user = $this->Users->newEntity($data);
+
+		$this->assertTrue($user->premium);
 	}
 }

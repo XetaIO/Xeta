@@ -6,11 +6,18 @@
 
 <?php $this->start('scriptBottom');
 
-	echo $this->Html->script('ckeditor/ckeditor') ?>
+	echo $this->Html->script([
+		'moment.min',
+		'livestamp.min',
+		'ckeditor/ckeditor'
+	])
+?>
 	<script type="text/javascript">
 		CKEDITOR.replace('commentBox', {
 			customConfig: 'config/comment.js'
 		});
+		
+		moment.lang('<?= \Cake\I18n\I18n::locale() ?>');
 	</script>
 
 	<script>
@@ -104,6 +111,76 @@
 					<div class="content">
 						<?= $article->content; ?>
 					</div>
+					
+					<?php if (!is_null($article->blog_attachment)): ?>
+						<?php if(!$this->request->session()->read('Auth.User.premium')): ?>
+							<div class="infobox infobox-info">
+								<?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'), ['controller' => 'premium'])) ?>
+							</div>
+						<?php endif; ?>
+							<div class="attachmentFiles">
+								<div class="attachment">
+									<div class="attachmentThumbnail">
+										<?php if($this->request->session()->read('Auth.User.premium')): ?>
+											<?= $this->Html->link(
+												'<i class="fa fa-cloud-download fa-2x"></i>',
+												[
+													'_name' => 'attachment-download',
+													'type' => 'blog',
+													'id' => $article->blog_attachment->id
+												],
+												[
+													'class' => 'attachmentThumb',
+													'escape' => false
+												]
+											) ?>
+										<?php else: ?>
+											<?= $this->Html->link(
+												'<i class="fa fa-cloud-download fa-2x"></i>',
+												[
+													'controller' => 'premium'
+												],
+												[
+													'class' => 'attachmentThumb',
+													'escape' => false
+												]
+											) ?>
+										<?php endif; ?>
+									</div>
+									<div class="attachmentInfo">
+										<h6 class="attachmentName">
+											<?php if($this->request->session()->read('Auth.User.premium')): ?>
+												<?= $this->Html->link($article->blog_attachment->name, [
+													'_name' => 'attachment-download',
+													'type' => 'blog',
+													'id' => $article->blog_attachment->id
+												]) ?>
+											<?php else: ?>
+												<?= $this->Html->link($article->blog_attachment->name, [
+													'controller' => 'premium'
+												]) ?>
+											<?php endif; ?>
+										</h6>
+										<dl>
+											<dt>
+												<?= __("File Size :") ?>
+											</dt>
+											<dd>
+												<?= $this->Number->toReadableSize($article->blog_attachment->size) ?>
+											</dd>
+										</dl>
+										<dl>
+											<dt>
+												<?= __("Download :") ?>
+											</dt>
+											<dd>
+												<?= $article->blog_attachment->download ?>
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+					<?php endif; ?>
 
 					<ul class="actions">
 						<li class="reply">
@@ -261,7 +338,7 @@
 												]
 											) ?>
 										</h3>
-										<time class="date">
+										<time class="date" data-livestamp="<?= $comment->created->timestamp ?>">
 											<?= $comment->created->format('d-m-Y') ?>
 										</time>
 									</div>

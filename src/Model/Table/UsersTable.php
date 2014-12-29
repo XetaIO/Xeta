@@ -55,6 +55,15 @@ class UsersTable extends Table {
 			'dependent' => true,
 			'cascadeCallbacks' => true
 		]);
+		$this->hasMany('PremiumOffers', [
+			'foreignKey' => 'user_id'
+		]);
+		$this->hasMany('PremiumTransactions', [
+			'foreignKey' => 'user_id'
+		]);
+		$this->hasMany('PremiumDiscounts', [
+			'foreignKey' => 'user_id'
+		]);
 	}
 
 /**
@@ -148,7 +157,7 @@ class UsersTable extends Table {
 				],
 				'fileExtension' => [
 					'rule' => ['extension', ['jpg', 'jpeg', 'png']],
-					'message' => __("The extension allowed are {0}.", '.jpg, .jpeg and .png'),
+					'message' => __("The extensions allowed are {0}.", '.jpg, .jpeg and .png'),
 					'on' => function ($context) {
 							return !empty($context['data']['avatar_file']['name']);
 					}

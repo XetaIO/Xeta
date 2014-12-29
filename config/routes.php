@@ -40,7 +40,6 @@ Router::scope('/', function ($routes) {
 		[
 			'controller' => 'blog',
 			'action' => 'category',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -56,7 +55,6 @@ Router::scope('/', function ($routes) {
 		[
 			'controller' => 'blog',
 			'action' => 'archive',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -79,6 +77,23 @@ Router::scope('/', function ($routes) {
 			'_name' => 'users-profile',
 			'pass' => [
 				'slug'
+			]
+		]
+	);
+
+	//Attachments Routes.
+	$routes->connect(
+		'/attachments/download/:type/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'download',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachment-download',
+			'pass' => [
+				'type',
+				'id'
 			]
 		]
 	);
@@ -151,7 +166,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'articles',
 			'action' => 'edit',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -167,7 +181,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'articles',
 			'action' => 'delete',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -184,7 +197,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'categories',
 			'action' => 'edit',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -200,7 +212,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'categories',
 			'action' => 'delete',
-
 		],
 		[
 			'routeClass' => 'InflectedRoute',
@@ -210,6 +221,102 @@ Router::prefix('admin', function ($routes) {
 			]
 		]
 	);
+
+	//Attachments Routes.
+	$routes->connect(
+		'/attachments/edit/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'edit',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachments-edit',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
+	$routes->connect(
+		'/attachments/delete/:id',
+		[
+			'controller' => 'attachments',
+			'action' => 'delete',
+		],
+		[
+			'routeClass' => 'InflectedRoute',
+			'_name' => 'attachments-delete',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
+/**
+ * Premium Routes.
+ */
+	$routes->prefix('premium', function ($routes) {
+		$routes->connect(
+			'/',
+			[
+				'controller' => 'premium',
+				'action' => 'home'
+			],
+			[
+				'routeClass' => 'InflectedRoute'
+			]
+		);
+
+		//Premium/Offers Routes.
+		$routes->connect(
+			'/offers/edit/:id',
+			[
+				'controller' => 'offers',
+				'action' => 'edit',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'offers-edit',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+		$routes->connect(
+			'/offers/delete/:id',
+			[
+				'controller' => 'offers',
+				'action' => 'delete',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'offers-delete',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+		//Premium/Discounts Routes.
+		$routes->connect(
+			'/discounts/edit/:id',
+			[
+				'controller' => 'discounts',
+				'action' => 'edit',
+			],
+			[
+				'routeClass' => 'InflectedRoute',
+				'_name' => 'discounts-edit',
+				'pass' => [
+					'id'
+				]
+			]
+		);
+
+		$routes->fallbacks();
+	});
 
 	$routes->fallbacks();
 });

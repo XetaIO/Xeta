@@ -1,6 +1,8 @@
 <?php
 namespace App\Event;
 
+use App\Model\Entity\BlogArticlesComment;
+use App\Model\Entity\User;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\I18n\Time;
@@ -11,7 +13,7 @@ class Badges implements EventListenerInterface {
 /**
  * Construct method.
  *
- * @param object $controller The controller instance where the Event is dispatched.
+ * @param \Cake\Controller\Controller $controller The controller instance where the Event is dispatched.
  *
  * @return void
  */
@@ -27,8 +29,64 @@ class Badges implements EventListenerInterface {
 	public function implementedEvents() {
 		return array(
 			'Model.BlogArticlesComments.add' => 'commentsBadge',
-			'Model.Users.register' => 'registerBadge'
+			'Model.Users.register' => 'registerBadge',
+			'Model.Users.premium' => 'premiumBadge'
 		);
+	}
+
+/**
+ * Unlock all badges related to premium.
+ *
+ * @param \Cake\Event\Event $event The Model.Users.premium event that was fired.
+ *
+ * @return bool
+ */
+	public function premiumBadge(Event $event) {
+		$this->Badges = TableRegistry::get('Badges');
+
+		if (!$event->data['user'] instanceof User) {
+			return false;
+		}
+
+		$badges = $this->Badges
+			->find('all')
+			->select([
+				'id',
+				'name',
+				'picture',
+				'rule'
+			])
+			->where([
+				'type' => 'premium'
+			])
+			->hydrate(false)
+			->toArray();
+
+		if (empty($badges)) {
+			return true;
+		}
+
+		$this->Users = TableRegistry::get('Users');
+
+		$userId = $event->data['user']->id;
+
+		$user = $this->Users
+			->find()
+			->where([
+				'id' => $userId
+			])
+			->select([
+				'end_subscription'
+			])
+			->first();
+
+		foreach ($badges as $badge) {
+			if ($user->premium == $badge['rule']) {
+				$this->_unlockBadge($badge, $userId);
+			}
+		}
+
+		return true;
 	}
 
 /**
@@ -40,6 +98,10 @@ class Badges implements EventListenerInterface {
  */
 	public function registerBadge(Event $event) {
 		$this->Badges = TableRegistry::get('Badges');
+
+		if (!$event->data['user'] instanceof User) {
+			return false;
+		}
 
 		$badges = $this->Badges
 			->find('all')
@@ -94,6 +156,10 @@ class Badges implements EventListenerInterface {
  */
 	public function commentsBadge(Event $event) {
 		$this->Badges = TableRegistry::get('Badges');
+
+		if (!$event->data['comment'] instanceof BlogArticlesComment) {
+			return false;
+		}
 
 		$badges = $this->Badges
 			->find('all')

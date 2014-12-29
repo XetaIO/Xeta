@@ -70,6 +70,9 @@ class UsersController extends AppController {
 
 						$this->Users->save($user);
 
+						//Write in the session the virtual field.
+						$this->request->session()->write('Auth.User.premium', $user->premium);
+
 						//Cookies.
 						$this->Cookie->configKey('CookieAuth', [
 							'expires' => '+1 year',
@@ -153,6 +156,7 @@ class UsersController extends AppController {
 			$this->Users->patchEntity($user, $this->request->data());
 
 			if ($this->Users->save($user, ['validate' => 'account'])) {
+				$this->request->session()->write('Auth.User.avatar', $user->avatar);
 				$this->Flash->success(__("Your information has been updated !"));
 			}
 		}
@@ -285,5 +289,35 @@ class UsersController extends AppController {
 		$this->Flash->error(__("Unable to delete your account, please try again."));
 
 		return $this->redirect(['action' => 'settings']);
+	}
+
+/**
+ * Display all premium transactions related to the user.
+ *
+ * @return \Cake\Network\Response
+ */
+	public function premium() {
+		$this->loadModel('PremiumTransactions');
+
+		$this->paginate = [
+			'maxLimit' => Configure::read('User.transaction_per_page')
+		];
+
+		$transactions = $this->PremiumTransactions
+			->find()
+			->contain([
+				'PremiumOffers',
+				'PremiumDiscounts'
+			])
+			->where([
+				'PremiumTransactions.user_id' => $this->Auth->user('id')
+			])
+			->order([
+				'PremiumTransactions.created' => 'desc'
+			]);
+
+		$transactions = $this->paginate($transactions);
+
+		$this->set(compact('transactions'));
 	}
 }

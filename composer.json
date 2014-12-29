@@ -8,6 +8,7 @@
 	"require": {
 		"php": ">=5.4.16",
 		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/bake": "dev-master",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"cakephp/debug_kit": "3.0.*-dev",
 		"ezyang/htmlpurifier": "dev-master",
@@ -20,7 +21,8 @@
 	"require-dev": {
 		"d11wtq/boris": "1.0.*",
 		"phpunit/phpunit": "*",
-		"gourmet/whoops": "*"
+		"gourmet/whoops": "*",
+		"cakephp/cakephp-codesniffer": "*"
 	},
 	"suggest": {
 		"cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."

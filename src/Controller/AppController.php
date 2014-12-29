@@ -95,6 +95,29 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter(Event $event) {
+		//Check for the Premium.
+		$premium = $this->request->session()->read('Premium.Check') ? $this->request->session()->read('Premium.Check') : null;
+		if (!is_null($premium)) {
+			$this->loadModel('PremiumTransactions');
+
+			$transaction = $this->PremiumTransactions
+				->find()
+				->where([
+					'txn' => $this->request->session()->read('Premium.Check'),
+					'user_id' => $this->request->session()->read('Auth.User.id')
+				])
+				->contain(['Users'])
+				->first();
+
+			if ($transaction) {
+				//Write in the session the virtual field.
+				$this->Auth->setUser($transaction->user->toArray());
+				$this->request->session()->write('Auth.User.premium', $transaction->user->premium);
+
+				$this->request->session()->delete('Premium.Check');
+			}
+		}
+
 		//Set trustProxy or get the original visitor IP.
 		$this->request->trustProxy = true;
 
@@ -114,6 +137,9 @@ class AppController extends Controller {
 
 				$this->Users->save($user);
 
+				//Write in the session the virtual field.
+				$this->request->session()->write('Auth.User.premium', $user->premium);
+
 				//Event.
 				$this->eventManager()->attach(new Badges($this));
 
@@ -126,7 +152,7 @@ class AppController extends Controller {
 			}
 		}
 
-		if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
+		if (isset($this->request->params['prefix']) && explode('/', $this->request->params['prefix'])[0] == 'admin') {
 			$this->layout = 'admin';
 		}
 

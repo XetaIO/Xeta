@@ -3,7 +3,7 @@ $config = [
 	'Author' => [
 		'full_name' => 'Emeric Fèvre',
 		'pseudo' => 'Xeta',
-		'twitter' => 'https://twitter.com/NozeAres',
+		'twitter' => 'https://twitter.com/FMT_ZoRo',
 		'facebook' => 'https://facebook.com/Emeric.ZoRRo',
 		'email' => 'zoro.fmt@gmail.com',
 		'address' => 'Chalon sur Saône, 71100 France'
@@ -28,7 +28,8 @@ $config = [
 			'max_comments' => 10,
 			'max_likes' => 10
 		],
-		'user_per_page' => 15
+		'user_per_page' => 15,
+		'transaction_per_page' => 15
 	],
 	'HtmlPurifier' => [
 		'User' => [

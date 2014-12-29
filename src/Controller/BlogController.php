@@ -128,6 +128,7 @@ class BlogController extends AppController {
 			])
 			->contain([
 				'BlogCategories',
+				'BlogAttachments',
 				'Users' => function ($q) {
 						return $q->find('full');
 				}
