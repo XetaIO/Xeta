@@ -209,7 +209,7 @@ class BlogController extends AppController {
 		$formComments = $this->BlogArticlesComments->newEntity();
 
 		//Search related articles
-		$keywords = preg_split("/[\s,]+/", $article->title);
+		$keywords = preg_split("/([\s,\W])+/", $article->title);
 
 		$articles = $this->BlogArticles
 			->find()
@@ -221,7 +221,7 @@ class BlogController extends AppController {
 				'BlogArticles.id !=' => $article->id
 			])
 			->andWhere([
-				'BlogArticles.title RLIKE' => implode('|', $keywords)
+				'BlogArticles.title RLIKE' => rtrim(implode('|', $keywords), '|')
 			]);
 
 		$this->set(compact('article', 'formComments', 'comments', 'like', 'articles'));
