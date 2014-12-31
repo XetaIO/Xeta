@@ -44,10 +44,10 @@ $(document).ready(function () {
 
 		$("#modalDeleteComment .btnDeleteComment").attr("href", url);
 		$('#modalDeleteComment').modal('show');
-		
+
 		return false;
 	});
-	
+
 	$(".editComment").bind("click", function () {
 		var commentId = $(this).attr("data-id");
 
@@ -61,10 +61,10 @@ $(document).ready(function () {
 			success : function (data) {
 				if(!$("#editingComment-" + commentId).length) {
 					var commentContent = $("#comment-" + commentId + " .content");
-					
+
 					commentContent.fadeOut();
 					commentContent.after(data);
-					
+
 					CKEDITOR.replace('commentBox-' + commentId, {
 						customConfig: 'config/comment.js'
 					});
@@ -81,7 +81,7 @@ $(document).ready(function () {
 		});
 		return false;
 	});
-	
+
 	$(".ReplyQuote").bind("click", function () {
 		$.ajax({
 			type    : "POST",
@@ -188,8 +188,8 @@ $(document).ready(function () {
 			}
 		}
 	});
-	
-	
+
+
 	/**
 	 * Carousel Articles on Home page.
 	 */
@@ -224,8 +224,20 @@ $(document).ready(function () {
 		autoPlay : true,
 		stopOnHover : true
 	});
-	
-	
+
+	$("#owl-related-posts").owlCarousel({
+		autoPlay: 5000,
+		stopOnHover: true,
+		navigation: true,
+		pagination: true,
+		rewindNav: true,
+		items: 2,
+		itemsDesktopSmall: [1199, 2],
+		itemsTablet: [977, 2],
+		navigationText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"]
+	});
+
+
 	/**
 	 * Cookies.
 	 */

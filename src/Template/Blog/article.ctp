@@ -305,6 +305,104 @@
 				</figure>
 			</section>
 
+			<?php if ($articles->toArray()): ?>
+				<section class="related-posts">
+					<div id="accordion-related-posts" class="panel-group">
+						<div class="panel panel-default">
+
+							<div class="panel-heading">
+								<h2 class="panel-title">
+									<a class="panel-toggle" data-toggle="collapse" data-parent="#accordion-related-posts" href="#content-related-posts">
+										<span><?= __("Related Articles") ?></span>
+									</a>
+								</h2>
+							</div>
+
+							<div id="content-related-posts" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div id="owl-related-posts" class="owl-carousel owl-item-gap">
+
+										<?php foreach ($articles as $post): ?>
+											<div class="item">
+												<figure>
+													<figcaption>
+														<div class="info">
+															<h4>
+																<?= $this->Html->link(
+																	$this->Text->truncate(
+																		$post->title,
+																		30,
+																		[
+																			'ellipsis' => '...',
+																			'exact' => false
+																		]
+																	),
+																	[
+																		'_name' => 'blog-article',
+																		'slug' => $post->slug,
+																		'?' => ['page' => $post->last_page]
+																	]
+																) ?>
+															</h4>
+															<p>
+																<?= $this->Text->truncate(
+																	$post->content_empty,
+																	150,
+																	[
+																		'ellipsis' => '...',
+																		'exact' => false
+																	]
+																) ?>
+															</p>
+														</div>
+														<div class="meta">
+															<ul>
+																<li>
+																	<i class="fa fa-tag"></i>
+																	<?= $this->Html->link(
+																		h($post->blog_category->title),
+																		[
+																			'_name' => 'blog-category',
+																			'slug' => $post->blog_category->slug
+																		]
+																	) ?>
+																</li>
+																<li>
+																	<i class="fa fa-comment"></i>
+																	<?= h($post->comment_count_format) ?>
+																</li>
+																<li>
+																	<i class="fa fa-heart"></i>
+																	<?= h($post->like_count_format) ?>
+																</li>
+															</ul>
+														</div>
+														<?= $this->Html->link(
+															__("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
+															[
+																'_name' => 'blog-article',
+																'slug' => $post->slug,
+																'?' => ['page' => $post->last_page]
+															],
+															[
+																'class' => 'btn btn-primary btn-xs',
+																'escape' => false
+															]
+														) ?>
+													</figcaption>
+												</figure>
+											</div>
+										<?php endforeach;?>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</section>
+			<?php endif; ?>
+
 			<?php if ($article->comment_count): ?>
 				<section class="post-comments">
 					<h2>

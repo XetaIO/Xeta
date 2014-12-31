@@ -208,7 +208,23 @@ class BlogController extends AppController {
 		//Build the newEntity for the comment form.
 		$formComments = $this->BlogArticlesComments->newEntity();
 
-		$this->set(compact('article', 'formComments', 'comments', 'like'));
+		//Search related articles
+		$keywords = preg_split("/[\s,]+/", $article->title);
+
+		$articles = $this->BlogArticles
+			->find()
+			->contain([
+				'BlogCategories'
+			])
+			->where([
+				'BlogArticles.is_display' => 1,
+				'BlogArticles.id !=' => $article->id
+			])
+			->andWhere([
+				'BlogArticles.title RLIKE' => implode('|', $keywords)
+			]);
+
+		$this->set(compact('article', 'formComments', 'comments', 'like', 'articles'));
 	}
 
 /**
