@@ -467,7 +467,7 @@ EOT;
 
 			$this->set(compact('json'));
 
-			return $this->set('_serialize', 'json');
+			$this->set('_serialize', 'json');
 		}
 
 		//Check if the article exist.
@@ -486,7 +486,7 @@ EOT;
 
 			$this->set(compact('json'));
 
-			return $this->set('_serialize', 'json');
+			$this->set('_serialize', 'json');
 		}
 
 		//Prepare data to be saved.
@@ -514,7 +514,7 @@ EOT;
 
 		$this->set(compact('json'));
 
-		return $this->set('_serialize', 'json');
+		$this->set('_serialize', 'json');
 	}
 
 /**
@@ -553,7 +553,7 @@ EOT;
 
 			$this->set(compact('json'));
 
-			return $this->set('_serialize', 'json');
+			$this->set('_serialize', 'json');
 		}
 
 		if ($this->BlogArticlesLikes->delete($like)) {
@@ -571,7 +571,7 @@ EOT;
 
 		$this->set(compact('json'));
 
-		return $this->set('_serialize', 'json');
+		$this->set('_serialize', 'json');
 	}
 
 /**
