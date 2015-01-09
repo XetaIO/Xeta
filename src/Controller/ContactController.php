@@ -56,16 +56,12 @@ class ContactController extends AppController {
 
 			$validator = new Validator();
 			$validator
-				->validatePresence('email')
 				->notEmpty('email', __('You need to put your E-mail.'))
 				->add('email', 'validFormat', [
 					'rule' => 'email',
 					'message' => __("You must specify a valid E-mail address.")
 				])
-				->validatePresence('name')
 				->notEmpty('name', __('You need to put your name.'))
-
-				->validatePresence('message')
 				->notEmpty('message', __("You need to give a message."))
 				->add('message', 'minLength', [
 					'rule' => ['minLength', 10],

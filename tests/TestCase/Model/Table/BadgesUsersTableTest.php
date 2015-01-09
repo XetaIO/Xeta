@@ -48,7 +48,7 @@ class BadgesUsersTableTest extends TestCase {
 		];
 
 		$badge = $this->BadgesUsers->newEntity($data);
-		$result = $this->BadgesUsers->save($badge, ['validate' => 'default']);
+		$result = $this->BadgesUsers->save($badge);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($badge->errors()), 'Should return errors.');
@@ -59,7 +59,7 @@ class BadgesUsersTableTest extends TestCase {
 		];
 
 		$badge = $this->BadgesUsers->newEntity($data);
-		$result = $this->BadgesUsers->save($badge, ['validate' => 'default']);
+		$result = $this->BadgesUsers->save($badge);
 
 		$this->assertInstanceOf('App\Model\Entity\BadgesUser', $result);
 		$this->assertEmpty($badge->errors());

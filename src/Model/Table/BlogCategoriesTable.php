@@ -35,7 +35,6 @@ class BlogCategoriesTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->validatePresence('title')
 			->notEmpty('title', __("The title is required."))
 			->add('title', [
 				'unique' => [
@@ -48,7 +47,6 @@ class BlogCategoriesTable extends Table {
 					'message' => __("Please, {0} characters minimum for the title.", 3)
 				]
 			])
-			->validatePresence('description')
 			->add('description', [
 				'maxLength' => [
 					'rule' => ['maxLength', 255],

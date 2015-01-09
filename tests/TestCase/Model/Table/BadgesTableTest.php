@@ -77,8 +77,8 @@ class BadgesTableTest extends TestCase {
 			]
 		];
 
-		$badge = $this->Badges->newEntity($data);
-		$result = $this->Badges->save($badge, ['validate' => 'create']);
+		$badge = $this->Badges->newEntity($data, ['validate' => 'create']);
+		$result = $this->Badges->save($badge);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($badge->errors()), 'Should return errors.');
@@ -115,8 +115,8 @@ class BadgesTableTest extends TestCase {
 			]
 		]);
 
-		$badge = $this->Badges->newEntity($data);
-		$result = $this->Badges->save($badge, ['validate' => 'create']);
+		$badge = $this->Badges->newEntity($data, ['validate' => 'create']);
+		$result = $this->Badges->save($badge);
 
 		$this->assertInstanceOf('App\Model\Entity\Badge', $result);
 		$badge = $this->Badges

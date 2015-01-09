@@ -33,6 +33,11 @@ require ROOT . DS . 'vendor' . DS . 'autoload.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
+// You can remove this if you are confident you have intl installed.
+if (!extension_loaded('intl')) {
+	trigger_error('You must enable the intl extension to use CakePHP.', E_USER_ERROR);
+}
+
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\App;
@@ -58,8 +63,8 @@ use Cake\Utility\Security;
  */
 try {
 	Configure::config('default', new PhpConfig());
-	Configure::load('app.php', 'default', false);
-	Configure::load('xeta.php', 'default');
+	Configure::load('app', 'default', false);
+	Configure::load('xeta', 'default');
 } catch (\Exception $e) {
 	die('Unable to load config/app.php. Create it by copying config/app.default.php to config/app.php.');
 }
@@ -166,7 +171,9 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 
-Plugin::load('DebugKit', ['bootstrap' => true]);
+if (Configure::read('debug')) {
+	Plugin::load('DebugKit', ['bootstrap' => true]);
+}
 Plugin::load('Xety/Cake3Upload');
 Plugin::load('Xety/Cake3Sluggable');
 Plugin::load('Xety/Cake3CookieAuth');

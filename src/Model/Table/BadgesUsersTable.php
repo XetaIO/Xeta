@@ -35,12 +35,10 @@ class BadgesUsersTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->validatePresence('badge_id', 'create')
 			->notEmpty('badge_id', __("You must select a badge."))
 			->add('badge_id', 'numeric', [
 				'rule' => 'numeric'
 			])
-			->validatePresence('user_id', 'create')
 			->notEmpty('user_id', __("You must select an user."))
 			->add('user_id', 'numeric', [
 				'rule' => 'numeric'

@@ -45,8 +45,8 @@ class BlogArticlesCommentsTableTest extends TestCase {
 			]
 		];
 
-		$comment = $this->BlogArticlesComments->newEntity($data);
-		$result = $this->BlogArticlesComments->save($comment, ['validate' => 'create']);
+		$comment = $this->BlogArticlesComments->newEntity($data, ['validate' => 'create']);
+		$result = $this->BlogArticlesComments->save($comment);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($comment->errors()), 'Should return errors.');
@@ -55,8 +55,8 @@ class BlogArticlesCommentsTableTest extends TestCase {
 			'content' => 'not fail'
 		];
 
-		$comment = $this->BlogArticlesComments->newEntity($data);
-		$result = $this->BlogArticlesComments->save($comment, ['validate' => 'create']);
+		$comment = $this->BlogArticlesComments->newEntity($data, ['validate' => 'create']);
+		$result = $this->BlogArticlesComments->save($comment);
 
 		$this->assertInstanceOf('App\Model\Entity\BlogArticlesComment', $result);
 		$this->assertEmpty($comment->errors());

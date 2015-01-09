@@ -58,7 +58,7 @@ class BlogArticlesTableTest extends TestCase {
 		];
 
 		$article = $this->BlogArticles->newEntity($data);
-		$result = $this->BlogArticles->save($article, ['validate' => 'default']);
+		$result = $this->BlogArticles->save($article);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($article->errors()), 'Should return errors.');
@@ -90,7 +90,7 @@ class BlogArticlesTableTest extends TestCase {
 		];
 
 		$article = $this->BlogArticles->newEntity($data);
-		$result = $this->BlogArticles->save($article, ['validate' => 'default']);
+		$result = $this->BlogArticles->save($article);
 
 		$this->assertInstanceOf('App\Model\Entity\BlogArticle', $result);
 		$this->assertEmpty($article->errors());

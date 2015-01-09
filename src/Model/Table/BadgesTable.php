@@ -44,7 +44,6 @@ class BadgesTable extends Table {
 	public function validationCreate(Validator $validator) {
 		$validator
 			->provider('upload', 'App\Model\Validation\UploadValidator')
-			->validatePresence('name', 'create')
 			->notEmpty('name', __("You must select a name."))
 			->add('name', 'minLength', [
 				'rule' => ['minLength', 5],
@@ -81,13 +80,11 @@ class BadgesTable extends Table {
 					),
 				]
 			])
-			->validatePresence('type', 'create')
 			->notEmpty('type', __("You must select a type."))
 			->add('type', 'inList', [
 				'rule' => ['inList', ['comments', 'registration']],
 				'message' => __("This type is not allowed. Allowed types : {0}", implode(", ", ['comments', 'registration'])),
 			])
-			->validatePresence('rule', 'create')
 			->notEmpty('rule', __("You must select a rule."))
 			->add('rule', 'numeric', [
 				'rule' => 'numeric'

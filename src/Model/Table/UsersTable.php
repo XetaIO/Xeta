@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -75,7 +74,6 @@ class UsersTable extends Table {
  */
 	public function validationCreate(Validator $validator) {
 		$validator
-			->validatePresence('username', 'create')
 			->notEmpty('username', __("You must set an username"))
 			->add('username', [
 				'unique' => [
@@ -92,9 +90,7 @@ class UsersTable extends Table {
 					'message' => __("Your username must be between {0} and {1} characters.", 4, 20)
 				]
 			])
-			->validatePresence('password', 'create')
 			->notEmpty('password', __("You must specify your password."))
-			->validatePresence('password_confirm', 'create')
 			->notEmpty('password_confirm', __("You must specify your password (confirmation)."))
 			->add('password_confirm', [
 				'lengthBetween' => [
@@ -103,12 +99,11 @@ class UsersTable extends Table {
 				],
 				'equalToPassword' => [
 					'rule' => function ($value, $context) {
-							return (new DefaultPasswordHasher)->check($value, $context['data']['password']);
+						return $value == $context['data']['password'];
 					},
 					'message' => __("Your password confirm must match with your password.")
 				]
 			])
-			->validatePresence('email', 'create')
 			->notEmpty('email')
 			->add('email', [
 				'unique' => [
@@ -214,7 +209,6 @@ class UsersTable extends Table {
  */
 	public function validationSettings(Validator $validator) {
 		return $validator
-			->validatePresence('email', false)
 			->notEmpty('email', __("Your E-mail can not be empty."))
 			->add('email', [
 				'email' => [
@@ -227,9 +221,7 @@ class UsersTable extends Table {
 					'message' => __("This E-mail is already used, please choose another E-mail.")
 				],
 			])
-			->validatePresence('password', false)
 			->notEmpty('password', __("You must specify your new password."))
-			->validatePresence('password_confirm', false)
 			->notEmpty('password_confirm', __("You must specify your password (confirmation)."))
 			->add('password_confirm', [
 				'lengthBetween' => [
@@ -238,7 +230,7 @@ class UsersTable extends Table {
 				],
 				'equalToPassword' => [
 					'rule' => function ($value, $context) {
-							return (new DefaultPasswordHasher)->check($value, $context['data']['password']);
+							return $value == $context['data']['password'];
 					},
 					'message' => __("Your password confirm must match with your new password")
 				]
@@ -254,7 +246,7 @@ class UsersTable extends Table {
  */
 	public function validationUpdate(Validator $validator) {
 		$validator
-			->validatePresence('username', 'update')
+			->requirePresence('username', 'update')
 			->notEmpty('username', __("You must set an username"))
 			->add('username', [
 				'unique' => [
@@ -271,7 +263,7 @@ class UsersTable extends Table {
 					'message' => __("Your username must be between {0} and {1} characters.", 4, 20)
 				]
 			])
-			->validatePresence('email', 'update')
+			->requirePresence('email', 'update')
 			->notEmpty('email')
 			->add('email', [
 				'unique' => [

@@ -55,12 +55,10 @@ class BlogArticlesTable extends Table {
  */
 	public function validationDefault(Validator $validator) {
 		$validator
-			->validatePresence('category_id', 'create')
 			->notEmpty('category_id', __("You must select a category."))
 			->add('category_id', 'numeric', [
 				'rule' => 'numeric'
 			])
-			->validatePresence('title')
 			->notEmpty('title', __("The title is required."))
 			->add('title', [
 				'unique' => [
@@ -73,13 +71,11 @@ class BlogArticlesTable extends Table {
 					'message' => __("Please, {0} characters minimum for the title.", 5)
 				]
 			])
-			->validatePresence('content')
 			->notEmpty('content', __("The content is required."))
 			->add('content', 'minLength', [
 				'rule' => ['minLength', 15],
 				'message' => __("Please, {0} characters minimum for the content.", 15)
 			])
-			->validatePresence('is_display', 'create')
 			->notEmpty('is_display')
 			->add('is_display', 'inList', [
 				'rule' => ['inList', [0, 1]],

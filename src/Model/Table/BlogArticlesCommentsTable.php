@@ -44,7 +44,6 @@ class BlogArticlesCommentsTable extends Table {
  */
 	public function validationCreate(Validator $validator) {
 		$validator
-			->validatePresence('content', 'create')
 			->notEmpty('content')
 			->add('content', [
 				'minLength' => [

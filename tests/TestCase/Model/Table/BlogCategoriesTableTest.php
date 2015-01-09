@@ -46,7 +46,7 @@ class BlogCategoriesTableTest extends TestCase {
 		];
 
 		$category = $this->BlogCategories->newEntity($data);
-		$result = $this->BlogCategories->save($category, ['validate' => 'default']);
+		$result = $this->BlogCategories->save($category);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($category->errors()), 'Should return errors.');
@@ -63,7 +63,7 @@ class BlogCategoriesTableTest extends TestCase {
 		];
 
 		$category = $this->BlogCategories->newEntity($data);
-		$result = $this->BlogCategories->save($category, ['validate' => 'default']);
+		$result = $this->BlogCategories->save($category);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($category->errors()), 'Should return errors.');
@@ -74,7 +74,7 @@ class BlogCategoriesTableTest extends TestCase {
 		];
 
 		$category = $this->BlogCategories->newEntity($data);
-		$result = $this->BlogCategories->save($category, ['validate' => 'default']);
+		$result = $this->BlogCategories->save($category);
 
 		$this->assertInstanceOf('App\Model\Entity\BlogCategory', $result);
 		$this->assertEmpty($category->errors());

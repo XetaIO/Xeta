@@ -230,7 +230,7 @@ class Badges implements EventListenerInterface {
 		$data['user_id'] = $userId;
 		$newBadge = $this->BadgesUsers->newEntity($data);
 
-		$this->BadgesUsers->save($newBadge, ['validate' => 'default']);
+		$this->BadgesUsers->save($newBadge);
 
 		$this->Flash->badge('You have unlock a badge !', [
 			'key' => 'badge',

@@ -69,7 +69,7 @@ class BlogAttachmentsTableTest extends TestCase {
 
 		$attachment = $this->Attachments->get(1);
 		$this->Attachments->patchEntity($attachment, $data);
-		$result = $this->Attachments->save($attachment, ['validate' => 'default']);
+		$result = $this->Attachments->save($attachment);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($attachment->errors()));
@@ -98,7 +98,7 @@ class BlogAttachmentsTableTest extends TestCase {
 
 		$attachment = $this->Attachments->get(1);
 		$this->Attachments->patchEntity($attachment, $data);
-		$result = $this->Attachments->save($attachment, ['validate' => 'default']);
+		$result = $this->Attachments->save($attachment);
 
 		$this->assertInstanceOf('App\Model\Entity\BlogAttachment', $result);
 		$this->assertEmpty($attachment->errors());

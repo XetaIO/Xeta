@@ -158,12 +158,12 @@ class BlogController extends AppController {
 			$this->request->data['article_id'] = $article->id;
 			$this->request->data['user_id'] = $this->Auth->user('id');
 
-			$newComment = $this->BlogArticlesComments->newEntity($this->request->data);
+			$newComment = $this->BlogArticlesComments->newEntity($this->request->data, ['validate' => 'create']);
 
 			//Attach Event.
 			$this->BlogArticlesComments->eventManager()->attach(new Badges($this));
 
-			if ($insertComment = $this->BlogArticlesComments->save($newComment, ['validate' => 'create'])) {
+			if ($insertComment = $this->BlogArticlesComments->save($newComment)) {
 
 				$this->Flash->success(__('Your comment has been posted successfully !'));
 				//Redirect the user to the last page of the article.

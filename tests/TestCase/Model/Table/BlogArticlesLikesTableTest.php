@@ -50,7 +50,7 @@ class BlogArticlesLikesTableTest extends TestCase {
 		];
 
 		$like = $this->BlogArticlesLikes->newEntity($data);
-		$result = $this->BlogArticlesLikes->save($like, ['validate' => 'default']);
+		$result = $this->BlogArticlesLikes->save($like);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($like->errors()), 'Should return errors.');
@@ -61,7 +61,7 @@ class BlogArticlesLikesTableTest extends TestCase {
 		];
 
 		$like = $this->BlogArticlesLikes->newEntity($data);
-		$result = $this->BlogArticlesLikes->save($like, ['validate' => 'default']);
+		$result = $this->BlogArticlesLikes->save($like);
 
 		$this->assertInstanceOf('App\Model\Entity\BlogArticlesLike', $result);
 		$this->assertEmpty($like->errors());

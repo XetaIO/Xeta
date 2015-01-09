@@ -48,7 +48,7 @@ class UsersController extends AppController {
  * @return \Cake\Network\Response|void
  */
 	public function login() {
-		$userRegister = $this->Users->newEntity($this->request->data);
+		$userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
 
 		if ($this->request->is('post')) {
 			$method = ($this->request->data['method']) ? $this->request->data['method'] : false;
@@ -104,7 +104,7 @@ class UsersController extends AppController {
 					$userRegister->last_login_ip = $this->request->clientIp();
 					$userRegister->last_login = new Time();
 
-					if ($this->Users->save($userRegister, ['validate' => 'create'])) {
+					if ($this->Users->save($userRegister)) {
 
 						$user = $this->Auth->identify();
 
@@ -153,9 +153,9 @@ class UsersController extends AppController {
 
 		if ($this->request->is('put')) {
 			$user->accessible('avatar_file', true);
-			$this->Users->patchEntity($user, $this->request->data());
+			$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'account']);
 
-			if ($this->Users->save($user, ['validate' => 'account'])) {
+			if ($this->Users->save($user)) {
 				$this->request->session()->write('Auth.User.avatar', $user->avatar);
 				$this->Flash->success(__("Your information has been updated !"));
 			}
@@ -186,9 +186,9 @@ class UsersController extends AppController {
 						return $this->redirect(['action' => 'settings']);
 					}
 
-					$this->Users->patchEntity($user, $this->request->data());
+					$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'settings']);
 
-					if ($this->Users->save($user, ['validate' => 'settings'])) {
+					if ($this->Users->save($user)) {
 						$oldEmail = $this->request->data['email'];
 
 						$this->Flash->success(__("Your E-mail has been changed !"));
@@ -208,8 +208,8 @@ class UsersController extends AppController {
 						return $this->Flash->error(__("Your old password don't match !"));
 					}
 
-					$this->Users->patchEntity($user, $this->request->data());
-					if ($this->Users->save($user, ['validate' => 'settings'])) {
+					$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'settings']);
+					if ($this->Users->save($user)) {
 
 						$this->Flash->success(__("Your password has been changed !"));
 					}

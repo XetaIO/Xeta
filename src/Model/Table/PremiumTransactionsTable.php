@@ -32,19 +32,6 @@ class PremiumTransactionsTable extends Table {
 	}
 
 /**
- * Default validation rules.
- *
- * @param \Cake\Validation\Validator $validator The Validator instance.
- * @return \Cake\Validation\Validator
- */
-	public function validationDefault(Validator $validator) {
-		$validator
-			->allowEmpty('id', 'create');
-
-		return $validator;
-	}
-
-/**
  * Custom finder for select an offer by period.
  *
  * @param \Cake\ORM\Query $query The query finder.

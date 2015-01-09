@@ -130,8 +130,8 @@ class UsersTest extends TestCase {
 			]
 		];
 
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user, ['validate' => 'create']);
+		$user = $this->Users->newEntity($data, ['validate' => 'create']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()), 'Should return errors.');
@@ -152,8 +152,8 @@ class UsersTest extends TestCase {
 			]
 		];
 
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user, ['validate' => 'create']);
+		$user = $this->Users->newEntity($data, ['validate' => 'create']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()), 'Should return errors.');
@@ -172,8 +172,8 @@ class UsersTest extends TestCase {
 			'slug' => 'xeta',
 		];
 
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user, ['validate' => 'create']);
+		$user = $this->Users->newEntity($data, ['validate' => 'create']);
+		$result = $this->Users->save($user);
 
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$user = $this->Users->find('short')->where(['id' => $result->id])->first()->toArray();
@@ -231,8 +231,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'account']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'account']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result);
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -265,8 +265,8 @@ class UsersTest extends TestCase {
 		]);
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'account']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'account']);
+		$result = $this->Users->save($user);
 
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$this->assertEmpty($user->errors());
@@ -306,8 +306,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'settings']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'settings']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result, 'Should be false because this Email is already token.');
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -323,8 +323,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'settings']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'settings']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result, 'Should be false because this Email is not correct.');
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -334,8 +334,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'settings']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'settings']);
+		$result = $this->Users->save($user);
 
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$this->assertEmpty($user->errors());
@@ -354,8 +354,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'settings']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'settings']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result, 'Should be false because the pass doesn not match and not 8 characters.');
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -366,8 +366,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'settings']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'settings']);
+		$result = $this->Users->save($user);
 
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$this->assertTrue((new DefaultPasswordHasher)->check($data['password'], $result->password));
@@ -394,8 +394,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'update']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'update']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result, 'Should be false because the username & Email are already used.');
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -416,8 +416,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'update']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'update']);
+		$result = $this->Users->save($user);
 
 		$this->assertFalse($result, 'Should be false because the username & Email are not correct.');
 		$this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
@@ -428,8 +428,8 @@ class UsersTest extends TestCase {
 		];
 
 		$user = $this->Users->get(1);
-		$this->Users->patchEntity($user, $data);
-		$result = $this->Users->save($user, ['validate' => 'update']);
+		$this->Users->patchEntity($user, $data, ['validate' => 'update']);
+		$result = $this->Users->save($user);
 
 		$this->assertInstanceOf('App\Model\Entity\User', $result);
 		$this->assertEquals($data['username'], $result->username);

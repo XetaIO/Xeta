@@ -121,9 +121,9 @@ class UsersController extends AppController {
 		}
 
 		if ($this->request->is('put')) {
-			$this->Users->patchEntity($user, $this->request->data());
+			$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'update']);
 
-			if ($this->Users->save($user, ['validate' => 'update'])) {
+			if ($this->Users->save($user)) {
 
 				$this->Flash->success(__("This user has been updated successfully !"));
 
