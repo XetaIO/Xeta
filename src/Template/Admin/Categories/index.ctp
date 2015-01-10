@@ -1,4 +1,4 @@
-<?= $this->assign('title', __("Manage Categories")); ?>
+<?= $this->assign('title', __d('admin', 'Manage Categories')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
@@ -9,15 +9,15 @@
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-tag"></i> <?= __("Manage Categories");?>
+				<i class="fa fa-tag"></i> <?= __d('admin', 'Manage Categories') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
+					<?= $this->Html->link(__d('admin', '{0} Dashboard', '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-tag"></i> <?= __("Manage Categories");?>
+					<i class="fa fa-tag"></i> <?= __d('admin', 'Manage Categories') ?>
 				</li>
 			</ol>
 		</div>
@@ -26,13 +26,13 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Manage Categories"); ?>
+					<?= __d('admin', 'Manage Categories') ?>
 				</div>
 
 				<div class="panel-body">
 
 					<div class="panel-body-header">
-						<?= $this->Html->link(__("{0} New Category", '<i class="fa fa-plus"></i>'),
+						<?= $this->Html->link(__d('admin', '{0} New Category', '<i class="fa fa-plus"></i>'),
 							['controller' => 'categories', 'action' => 'add', 'prefix' => 'admin'],
 							['class' => 'btn btn-primary', 'escape' => false]) ?>
 					</div>
@@ -41,12 +41,12 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __('#Id') ?></th>
-									<th><?= __('Title') ?></th>
-									<th><?= __('Description') ?></th>
-									<th><?= __('Articles') ?></th>
-									<th><?= __('Created') ?></th>
-									<th><?= __('Action') ?></th>
+									<th><?= __d('admin', '#Id') ?></th>
+									<th><?= __d('admin', 'Title') ?></th>
+									<th><?= __d('admin', 'Description') ?></th>
+									<th><?= __d('admin', 'Articles') ?></th>
+									<th><?= __d('admin', 'Created') ?></th>
+									<th><?= __d('admin', 'Action') ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,7 +73,7 @@
 												[
 													'target' => '_blank',
 													'data-toggle' => 'tooltip',
-													'title' => __("View this category and its articles"),
+													'title' => __d('admin', 'View this category and its articles'),
 												]
 											) ?>
 										</td>
@@ -103,7 +103,7 @@
 												[
 													'class' => 'btn btn-sm btn-primary',
 													'data-toggle' => 'tooltip',
-													'title' => __("Edit this category"),
+													'title' => __d('admin', 'Edit this category'),
 													'escape' => false
 												]
 											)?>
@@ -116,7 +116,7 @@
 												[
 													'class' => 'btn btn-sm btn-danger',
 													'data-toggle' => 'tooltip',
-													'title' => __("Delete this category"),
+													'title' => __d('admin', 'Delete this category'),
 													'escape' => false
 												]
 											)?>
@@ -125,7 +125,7 @@
 								<?php endforeach;?>
 							</tbody>
 						</table>
-						
+
 						<div class="pagination-centered">
 							<ul class="pagination">
 								<?php if ($this->Paginator->hasPrev()): ?>
@@ -140,7 +140,7 @@
 					<?php else: ?>
 						<div class="infobox infobox-info">
 							<h4>
-								<?= __("No categories was found."); ?>
+								<?= __d('admin', 'No categories was found.') ?>
 							</h4>
 						</div>
 					<?php endif; ?>

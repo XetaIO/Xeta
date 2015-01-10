@@ -1,4 +1,4 @@
-<?= $this->assign('title', __("Manage Attachments")); ?>
+<?= $this->assign('title', __d('admin', 'Manage Attachments')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
@@ -9,15 +9,15 @@
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-file-archive-o"></i> <?= __("Manage Attachments");?>
+				<i class="fa fa-file-archive-o"></i> <?= __d('admin', 'Manage Attachments') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
+					<?= $this->Html->link(__d('admin', '{0} Dashboard', '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
 					'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-file-archive-o"></i> <?= __("Manage Attachments");?>
+					<i class="fa fa-file-archive-o"></i> <?= __d('admin', 'Manage Attachments') ?>
 				</li>
 			</ol>
 		</div>
@@ -26,13 +26,13 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Manage Attachments"); ?>
+					<?= __d('admin', 'Manage Attachments') ?>
 				</div>
 
 				<div class="panel-body">
 
 					<div class="panel-body-header">
-						<?= $this->Html->link(__("{0} New Attachment", '<i class="fa fa-plus"></i>'),
+						<?= $this->Html->link(__d('admin', '{0} New Attachment', '<i class="fa fa-plus"></i>'),
 						['controller' => 'attachments', 'action' => 'add', 'prefix' => 'admin'],
 						['class' => 'btn btn-primary', 'escape' => false]) ?>
 					</div>
@@ -41,15 +41,15 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __('#Id') ?></th>
-									<th><?= __('Author') ?></th>
-									<th><?= __('Article') ?></th>
-									<th><?= __('Name') ?></th>
-									<th><?= __('Size') ?></th>
-									<th><?= __('Extension') ?></th>
-									<th><?= __('Download') ?></th>
-									<th><?= __('Created') ?></th>
-									<th><?= __('Action') ?></th>
+									<th><?= __d('admin', '#Id') ?></th>
+									<th><?= __d('admin', 'Author') ?></th>
+									<th><?= __d('admin', 'Article') ?></th>
+									<th><?= __d('admin', 'Name') ?></th>
+									<th><?= __d('admin', 'Size') ?></th>
+									<th><?= __d('admin', 'Extension') ?></th>
+									<th><?= __d('admin', 'Download') ?></th>
+									<th><?= __d('admin', 'Created') ?></th>
+									<th><?= __d('admin', 'Action') ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -81,7 +81,7 @@
 												[
 													'target' => '_blank',
 													'data-toggle' => 'tooltip',
-													'title' => __("View this Article"),
+													'title' => __d('admin', 'View this Article'),
 												]
 											) ?>
 										</td>
@@ -111,7 +111,7 @@
 												[
 													'class' => 'btn btn-sm',
 													'data-toggle' => 'tooltip',
-													'title' => __("Download this attachment"),
+													'title' => __d('admin', 'Download this attachment'),
 													'escape' => false
 												]
 											)?>
@@ -124,7 +124,7 @@
 												[
 													'class' => 'btn btn-sm btn-primary',
 													'data-toggle' => 'tooltip',
-													'title' => __("Edit this attachment"),
+													'title' => __d('admin', 'Edit this attachment'),
 													'escape' => false
 												]
 											)?>
@@ -137,7 +137,7 @@
 												[
 													'class' => 'btn btn-sm btn-danger',
 													'data-toggle' => 'tooltip',
-													'title' => __("Delete this attachment"),
+													'title' => __d('admin', 'Delete this attachment'),
 													'escape' => false
 												]
 											)?>
@@ -161,7 +161,7 @@
 					<?php else: ?>
 						<div class="infobox infobox-info">
 							<h4>
-								<?= __("No attachments was found."); ?>
+								<?= __d('admin', 'No attachments was found.') ?>
 							</h4>
 						</div>
 					<?php endif; ?>

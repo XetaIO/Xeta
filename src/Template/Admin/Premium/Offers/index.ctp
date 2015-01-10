@@ -1,23 +1,23 @@
-<?= $this->assign('title', __("Premium : Manage Offers")); ?>
+<?= $this->assign('title', __d('admin', 'Premium : Manage Offers')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
 
 		<div class="col-md-12">
-			<?= $this->Flash->render(); ?>
+			<?= $this->Flash->render() ?>
 		</div>
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-barcode"></i> <?= __("Premium : Manage Offers");?>
+				<i class="fa fa-barcode"></i> <?= __d('admin', 'Premium : Manage Offers') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Premium", '<i class="fa fa-trophy"></i>'), ['controller' => 'premium',
+					<?= $this->Html->link(__d('admin', '{0} Premium', '<i class="fa fa-trophy"></i>'), ['controller' => 'premium',
 					'action' => 'home', 'prefix' => 'admin/premium'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-barcode"></i> <?= __("Manage Offers");?>
+					<i class="fa fa-barcode"></i> <?= __d('admin', 'Manage Offers') ?>
 				</li>
 			</ol>
 		</div>
@@ -26,13 +26,13 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Manage Offers"); ?>
+					<?= __d('admin', 'Manage Offers') ?>
 				</div>
 
 				<div class="panel-body">
 
 					<div class="panel-body-header">
-						<?= $this->Html->link(__("{0} New Offer", '<i class="fa fa-plus"></i>'),
+						<?= $this->Html->link(__d('admin', '{0} New Offer', '<i class="fa fa-plus"></i>'),
 						['controller' => 'offers', 'action' => 'add', 'prefix' => 'admin/premium'],
 						['class' => 'btn btn-primary', 'escape' => false]) ?>
 					</div>
@@ -41,15 +41,15 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __('#Id') ?></th>
-									<th><?= __('Created by') ?></th>
-									<th><?= __('Period') ?></th>
-									<th><?= __('Price (Excl VAT)') ?></th>
-									<th><?= __('Tax') ?></th>
-									<th><?= __('Currency Code') ?></th>
-									<th><?= __('Currency Symbol') ?></th>
-									<th><?= __('Created') ?></th>
-									<th><?= __('Action') ?></th>
+									<th><?= __d('admin', '#Id') ?></th>
+									<th><?= __d('admin', 'Created by') ?></th>
+									<th><?= __d('admin', 'Period') ?></th>
+									<th><?= __d('admin', 'Price (Excl VAT)') ?></th>
+									<th><?= __d('admin', 'Tax') ?></th>
+									<th><?= __d('admin', 'Currency Code') ?></th>
+									<th><?= __d('admin', 'Currency Symbol') ?></th>
+									<th><?= __d('admin', 'Created') ?></th>
+									<th><?= __d('admin', 'Action') ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -90,7 +90,7 @@
 												[
 													'class' => 'btn btn-sm btn-primary',
 													'data-toggle' => 'tooltip',
-													'title' => __("Edit this offer"),
+													'title' => __d('admin', 'Edit this offer'),
 													'escape' => false
 												]
 											) ?>
@@ -103,7 +103,7 @@
 												[
 													'class' => 'btn btn-sm btn-danger',
 													'data-toggle' => 'tooltip',
-													'title' => __("Delete this offer"),
+													'title' => __d('admin', 'Delete this offer'),
 													'escape' => false
 												]
 											) ?>
@@ -127,7 +127,7 @@
 					<?php else: ?>
 						<div class="infobox infobox-info">
 							<h4>
-								<?= __("No offers was found."); ?>
+								<?= __d('admin', 'No offers was found.') ?>
 							</h4>
 						</div>
 					<?php endif; ?>
@@ -135,7 +135,6 @@
 
 			</div>
 		</div>
-
 
 	</div>
 </div>

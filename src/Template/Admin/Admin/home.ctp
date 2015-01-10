@@ -1,4 +1,4 @@
-<?= $this->assign('title', __("Dashboard")); ?>
+<?= $this->assign('title', __d('admin', 'Dashboard')) ?>
 
 <?= $this->Html->script(['jquery.flot.min'], ['block' => 'scriptBottom']) ?>
 <div class="content-wrapper interface-blur">
@@ -10,22 +10,22 @@
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-newspaper-o"></i> <?= __("Dashboard");?>
+				<i class="fa fa-newspaper-o"></i> <?= __d('admin', 'Dashboard') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active">
-					<i class="fa fa-dashboard"></i> <?= __("Dashboard");?>
+					<i class="fa fa-dashboard"></i> <?= __d('admin', 'Dashboard') ?>
 				</li>
 			</ol>
 		</div>
-		
+
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Members");?>
+								<?= __d('admin', 'Members') ?>
 								<i class="fa fa-users pull-right"></i>
 							</h5>
 						</div>
@@ -40,7 +40,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Articles");?>
+								<?= __d('admin', 'Articles') ?>
 								<i class="fa fa-newspaper-o pull-right"></i>
 							</h5>
 						</div>
@@ -55,7 +55,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Comments");?>
+								<?= __d('admin', 'Comments') ?>
 								<i class="fa fa-comments-o pull-right"></i>
 							</h5>
 						</div>
@@ -70,7 +70,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Categories");?>
+								<?= __d('admin', 'Categories') ?>
 								<i class="fa fa-tag pull-right"></i>
 							</h5>
 						</div>
@@ -83,17 +83,17 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="space-30"></div>
-		
+
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<?= __("Members"); ?>
+					<?= __d('admin', 'Members') ?>
 				</div>
 				<div class="panel-body">
 					<div id="stats-members" style="width: 100%; height:250px;"></div>
-					
+
 					<?php $this->append('scriptBottom');?>
 					<script type="text/javascript">
 
@@ -173,7 +173,7 @@
 								}
 							};
 							$.plot($("#stats-members"), [{
-								label: "Members",
+								label: <?= __d('admin', 'Members') ?>,
 								data: data
 							}], i)
 
@@ -183,21 +183,21 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<?php if (\Cake\Core\Configure::read('Analytics.enabled') === true): ?>
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<?= __("Visitors"); ?>
+						<?= __d('admin', 'Visitors') ?>
 					</div>
 					<div class="panel-body">
 						<div id="stats-pageviews" style="width: 100%; height:250px;"></div>
-						
+
 						<?php $this->append('scriptBottom') ?>
 						<script type="text/javascript">
 
 							var Visits = [];
-							
+
 							var PageViews = [];
 
 							<?php foreach($graphVisitors->getRows() as $result): ?>
@@ -205,7 +205,7 @@
 									<?= strtotime($result[0]) * 1000;?>,
 									<?= $result[1];?>
 								]);
-								
+
 								PageViews.push([
 									<?= strtotime($result[0]) * 1000;?>,
 									<?= $result[2];?>
@@ -282,10 +282,10 @@
 									};
 
 								$.plot($("#stats-pageviews"), [{
-									label: "Visitors",
+									label: <?= __d('admin', 'Visitors') ?>,
 									data: Visits
 								}, {
-									label: "Page Views",
+									label: <?= __d('admin', 'Page Views') ?>,
 									data: PageViews
 								}], d)
 							});
@@ -294,13 +294,13 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="space-30"></div>
-			
+
 			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<?= __("Browsers"); ?>
+						<?= __d('admin', 'Browsers'); ?>
 					</div>
 					<div class="panel-body">
 						<?php foreach(array_reverse($browsers->getRows()) as $browser): ?>
@@ -315,7 +315,7 @@
 										'alt' => h($browser[0]),
 										'data-toggle' => 'tooltip',
 										'data-container' => 'body',
-										'title' => __("Pages views : {0}", $browser[1])
+										'title' => __d('admin', 'Pages views : {0,number,integer}', $browser[1])
 									]
 								);?>
 								<div class="text-center"><?= round($poucent) . "%" ?></div>
@@ -329,21 +329,21 @@
 				<div class="panel panel-default">
 
 					<div class="panel-heading">
-						<?= __("Statistics"); ?>
+						<?= __d('admin', 'Statistics') ?>
 					</div>
 
 					<div class="panel-body" style="padding:0">
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __("Type"); ?></th>
-									<th><?= __("Value"); ?></th>
+									<th><?= __d('admin', 'Type') ?></th>
+									<th><?= __d('admin', 'Value') ?></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>
-										<?= __("Pages Views"); ?>
+										<?= __d('admin', 'Pages Views') ?>
 									</td>
 									<td>
 										<?= $this->Number->format($statistics->getTotalsForAllResults()['ga:pageviews'],
@@ -352,7 +352,7 @@
 								</tr>
 								<tr>
 									<td>
-										<?= __("Pages/Visit"); ?>
+										<?= __d('admin', 'Pages/Visit') ?>
 									</td>
 									<td>
 										<?= $this->Number->format($statistics->getTotalsForAllResults()['ga:pageviewsPerVisit'],
@@ -361,7 +361,7 @@
 								</tr>
 								<tr>
 									<td>
-										<?= __("Average length/Visit"); ?>
+										<?= __d('admin', 'Average length/Visit') ?>
 									</td>
 									<td>
 										<?= gmdate("H:i:s", $statistics->getTotalsForAllResults()['ga:avgtimeOnSite']); ?>
@@ -369,7 +369,7 @@
 								</tr>
 								<tr>
 									<td>
-										<?= __("Bounce Rate"); ?>
+										<?= __d('admin', 'Bounce Rate') ?>
 									</td>
 									<td>
 										<?= $this->Number->format($statistics->getTotalsForAllResults()['ga:visitBounceRate'],
@@ -378,7 +378,7 @@
 								</tr>
 								<tr>
 									<td>
-										<?= __("Visits"); ?>
+										<?= __d('admin', 'Visits') ?>
 									</td>
 									<td>
 										<?= $this->Number->format($statistics->getTotalsForAllResults()['ga:visits'],
@@ -387,7 +387,7 @@
 								</tr>
 								<tr>
 									<td>
-										<?= __("Unique Visitors"); ?>
+										<?= __d('admin', 'Unique Visitors') ?>
 									</td>
 									<td>
 										<?= $this->Number->format($statistics->getTotalsForAllResults()['ga:visitors'],
@@ -400,11 +400,11 @@
 
 				</div>
 			</div>
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<?= __("Continents"); ?>
+						<?= __d('admin', 'Continents') ?>
 					</div>
 					<div class="panel-body">
 						<div id="stats-continents" style="height:218px"></div>
@@ -412,7 +412,7 @@
 						<?php $this->append('scriptBottom');?>
 						<script type="text/javascript">
 							var contients = <?= json_encode($continents) ?>;
-							
+
 							$(function () {
 								$.plot('#stats-continents', contients, {
 									series: {
@@ -461,7 +461,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		<?php endif; ?>
 
 

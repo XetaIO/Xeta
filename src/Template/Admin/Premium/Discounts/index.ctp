@@ -1,23 +1,23 @@
-<?= $this->assign('title', __("Premium : Manage Discounts")); ?>
+<?= $this->assign('title', __d('admin', 'Premium : Manage Discounts')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
 
 		<div class="col-md-12">
-			<?= $this->Flash->render(); ?>
+			<?= $this->Flash->render() ?>
 		</div>
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-gift"></i> <?= __("Premium : Manage Discounts");?>
+				<i class="fa fa-gift"></i> <?= __d('admin', 'Premium : Manage Discounts') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Premium", '<i class="fa fa-trophy"></i>'), ['controller' => 'premium',
+					<?= $this->Html->link(__d('admin', '{0} Premium', '<i class="fa fa-trophy"></i>'), ['controller' => 'premium',
 					'action' => 'home', 'prefix' => 'admin/premium'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-gift"></i> <?= __("Manage Discounts");?>
+					<i class="fa fa-gift"></i> <?= __d('admin', 'Manage Discounts') ?>
 				</li>
 			</ol>
 		</div>
@@ -26,13 +26,13 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Manage Discounts"); ?>
+					<?= __d('admin', 'Manage Discounts') ?>
 				</div>
 
 				<div class="panel-body">
 
 					<div class="panel-body-header">
-						<?= $this->Html->link(__("{0} New Discount", '<i class="fa fa-plus"></i>'),
+						<?= $this->Html->link(__d('admin', '{0} New Discount', '<i class="fa fa-plus"></i>'),
 						['controller' => 'discounts', 'action' => 'add', 'prefix' => 'admin/premium'],
 						['class' => 'btn btn-primary', 'escape' => false]) ?>
 					</div>
@@ -41,16 +41,16 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __('#Id') ?></th>
-									<th><?= __('Created by') ?></th>
-									<th><?= __('Offer') ?></th>
-									<th><?= __('Code') ?></th>
-									<th><?= __('Discount (%)') ?></th>
-									<th><?= __('Used') ?></th>
-									<th><?= __('Max Use') ?></th>
-									<th><?= __('Available') ?></th>
-									<th><?= __('Created') ?></th>
-									<th><?= __('Action') ?></th>
+									<th><?= __d('admin', '#Id') ?></th>
+									<th><?= __d('admin', 'Created by') ?></th>
+									<th><?= __d('admin', 'Offer') ?></th>
+									<th><?= __d('admin', 'Code') ?></th>
+									<th><?= __d('admin', 'Discount (%)') ?></th>
+									<th><?= __d('admin', 'Used') ?></th>
+									<th><?= __d('admin', 'Max Use') ?></th>
+									<th><?= __d('admin', 'Available') ?></th>
+									<th><?= __d('admin', 'Created') ?></th>
+									<th><?= __d('admin', 'Action') ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -64,7 +64,7 @@
 											'slug' => $discount->user->slug]) ?>
 										</td>
 										<td>
-											<?= __n('{0} Month', '{0} Months', $discount->premium_offer->period, $discount->premium_offer->period) . ' (' . $discount->premium_offer->price . $discount->premium_offer->currency_symbol . ')' ?>
+											<?= __dn('admin', '{0} Month', '{0} Months', $discount->premium_offer->period, $discount->premium_offer->period) . ' (' . $discount->premium_offer->price . $discount->premium_offer->currency_symbol . ')' ?>
 										</td>
 										<td>
 											<?= $discount->code ?>
@@ -81,11 +81,11 @@
 										<td>
 											<?php if ($discount->used == $discount->max_use): ?>
 												<span class="label label-danger">
-													<?= __('No') ?>
+													<?= __d('admin', 'No') ?>
 												</span>
 											<?php else: ?>
 												<span class="label label-success">
-													<?= __('Yes') ?>
+													<?= __d('admin', 'Yes') ?>
 												</span>
 											<?php endif; ?>
 										</td>
@@ -102,7 +102,7 @@
 												[
 													'class' => 'btn btn-sm btn-primary',
 													'data-toggle' => 'tooltip',
-													'title' => __("Edit this discount"),
+													'title' => __d('admin', 'Edit this discount'),
 													'escape' => false
 												]
 											) ?>
@@ -126,7 +126,7 @@
 					<?php else: ?>
 						<div class="infobox infobox-info">
 							<h4>
-								<?= __("No discounts was found."); ?>
+								<?= __d('admin', 'No discounts was found.') ?>
 							</h4>
 						</div>
 					<?php endif; ?>
