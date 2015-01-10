@@ -91,7 +91,7 @@
 											<?= $category->article_count_format ?>
 										</td>
 										<td>
-											<?= $category->created->format('d-m-Y') ?>
+											<?= $category->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(

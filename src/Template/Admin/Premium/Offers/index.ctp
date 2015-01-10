@@ -78,7 +78,7 @@
 											<?= $offer->currency_symbol ?>
 										</td>
 										<td>
-											<?= $offer->created->format('d-m-Y') ?>
+											<?= $offer->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(

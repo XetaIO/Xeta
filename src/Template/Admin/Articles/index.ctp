@@ -99,7 +99,7 @@
 											<?php endif; ?>
 										</td>
 										<td>
-											<?= $article->created->format('d-m-Y') ?>
+											<?= $article->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(

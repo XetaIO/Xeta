@@ -98,7 +98,7 @@
 											<?= $this->Number->format($attachment->download, ['precision' => 2, 'locale' => 'en_US']) ?>
 										</td>
 										<td>
-											<?= $attachment->created->format('d-m-Y') ?>
+											<?= $attachment->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(

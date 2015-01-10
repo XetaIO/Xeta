@@ -90,7 +90,7 @@
 											<?php endif; ?>
 										</td>
 										<td>
-											<?= $discount->created->format('d-m-Y') ?>
+											<?= $discount->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(
