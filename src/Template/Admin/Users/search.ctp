@@ -1,4 +1,4 @@
-<?= $this->assign('title', __("Search Users")); ?>
+<?= $this->assign('title', __d('admin', 'Search Users')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
@@ -9,19 +9,19 @@
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-search"></i> <?= __("Search Users") ?>
+				<i class="fa fa-search"></i> <?= __d('admin', 'Search Users') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
+					<?= $this->Html->link(__d('admin', '{0} Dashboard', '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__("{0} Manage Users", '<i class="fa fa-users"></i>'), ['controller' => 'users',
+					<?= $this->Html->link(__d('admin', '{0} Manage Users', '<i class="fa fa-users"></i>'), ['controller' => 'users',
 							'action' => 'index', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-search"></i> <?= __("Search Users") ?>
+					<i class="fa fa-search"></i> <?= __d('admin', 'Search Users') ?>
 				</li>
 			</ol>
 		</div>
@@ -30,36 +30,36 @@
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Search Users") ?>
+					<?= __d('admin', 'Search Users') ?>
 				</div>
 
 				<div class="panel-body">
-					
+
 					<div class="panel-body-header">
 						<p>
-							<?= __("Search : {0}", h($keyword)) ?>
+							<?= __d('admin', 'Search : {0}', h($keyword)) ?>
 						</p>
 						<p>
-							<?= __("Type : {0}", h($type)) ?>
+							<?= __d('admin', 'Type : {0}', h($type)) ?>
 						</p>
 					</div>
-					
+
 					<?php if($users->toArray()): ?>
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th><?= __('#Id') ?></th>
-									<th><?= __('Username') ?></th>
-									<th><?= __('Email') ?></th>
-									<th><?= __('Full name') ?></th>
-									<th><?= __('Last login') ?></th>
-									<th><?= __('Last login IP') ?></th>
-									<th><?= __('Created') ?></th>
-									<th><?= __('Action') ?></th>
+									<th><?= __d('admin', '#Id') ?></th>
+									<th><?= __d('admin', 'Username') ?></th>
+									<th><?= __d('admin', 'Email') ?></th>
+									<th><?= __d('admin', 'Full name') ?></th>
+									<th><?= __d('admin', 'Last login') ?></th>
+									<th><?= __d('admin', 'Last login IP') ?></th>
+									<th><?= __d('admin', 'Created') ?></th>
+									<th><?= __d('admin', 'Action') ?></th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach($users as $user):?>
+								<?php foreach($users as $user): ?>
 									<tr>
 										<td>
 											#<?= $user->id ?>
@@ -75,13 +75,13 @@
 													'slug' => $user->slug]) ?>
 										</td>
 										<td>
-											<?= $user->last_login->format('d-m-Y') ?>
+											<?= $user->last_login->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= h($user->last_login_ip) ?>
 										</td>
 										<td>
-											<?= $user->created->format('d-m-Y') ?>
+											<?= $user->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(
@@ -93,40 +93,40 @@
 												[
 													'class' => 'btn btn-sm btn-primary',
 													'data-toggle' => 'tooltip',
-													'title' => __("Edit this user"),
+													'title' => __d('admin', 'Edit this user'),
 													'escape' => false
 												]
-											)?>
+											) ?>
 										</td>
 									</tr>
-								<?php endforeach;?>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
-						
+
 						<div class="pagination-centered">
 							<ul class="pagination">
 								<?php if ($this->Paginator->hasPrev()): ?>
-									<?= $this->Paginator->prev('«'); ?>
+									<?= $this->Paginator->prev('«') ?>
 								<?php endif; ?>
-								<?= $this->Paginator->numbers(['modulus' => 5]); ?>
+								<?= $this->Paginator->numbers(['modulus' => 5]) ?>
 								<?php if ($this->Paginator->hasNext()): ?>
-									<?= $this->Paginator->next('»'); ?>
+									<?= $this->Paginator->next('»') ?>
 								<?php endif; ?>
 							</ul>
 						</div>
 					<?php else: ?>
 						<div class="infobox infobox-info">
-							<h4><?= __("No results found"); ?></h4>
+							<h4><?= __d('admin', 'No results found') ?></h4>
 							<p>
-								<?= __("No users were found for your search, please try again with a different word."); ?>
+								<?= __d('admin', 'No users were found for your search, please try again with a different word.') ?>
 							</p>
-							<?= __("Suggestions :"); ?>
+							<?= __d('admin', 'Suggestions :') ?>
 							<ul>
 								<li>
-									<?= __("Check the spelling of your search words."); ?>
+									<?= __d('admin', 'Check the spelling of your search words.') ?>
 								</li>
 								<li>
-									<?= __("Try more general keywords."); ?>
+									<?= __d('admin', 'Try more general keywords.') ?>
 								</li>
 							</ul>
 						</div>

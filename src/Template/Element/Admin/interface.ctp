@@ -6,19 +6,19 @@
 		<div class="container-fluid">
 			<div class="row text-center">
 				<div class="col-sm-4">
-					<a href="<?= $this->Url->build(['controller' => 'admin', 'action' => 'home']);?>">
+					<a href="<?= $this->Url->build(['controller' => 'admin', 'action' => 'home']) ?>">
 						<div class="element padded">
 							<i class="fa fa fa-dashboard fa-4x"></i>
-							<h5><?= __("Dashboard");?></h5>
+							<h5><?= __d('admin', 'Dashboard') ?></h5>
 						</div>
 					</a>
 				</div>
 
 				<div class="col-sm-4">
-					<a href="<?= $this->Url->build(['controller' => 'articles', 'action' => 'index']);?>">
+					<a href="<?= $this->Url->build(['controller' => 'articles', 'action' => 'index']) ?>">
 						<div class="element padded">
 							<i class="fa fa fa-newspaper-o fa-4x"></i>
-							<h5><?= __("Articles");?></h5>
+							<h5><?= __d('admin', 'Articles') ?></h5>
 						</div>
 					</a>
 				</div>
@@ -27,7 +27,34 @@
 					<a href="<?= $this->Url->build(['controller' => 'categories', 'action' => 'index']);?>">
 						<div class="element padded">
 							<i class="fa fa fa-tag fa-4x"></i>
-							<h5><?= __("Categories");?></h5>
+							<h5><?= __d('admin', 'Categories') ?></h5>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-sm-4">
+					<a href="<?= $this->Url->build(['controller' => 'attachments', 'action' => 'index']);?>">
+						<div class="element padded">
+							<i class="fa fa-file-archive-o fa-4x"></i>
+							<h5><?= __d('admin', 'Attachments') ?></h5>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-sm-4">
+					<a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'index']);?>">
+						<div class="element padded">
+							<i class="fa fa fa-users fa-4x"></i>
+							<h5><?= __d('admin', 'Users') ?></h5>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-sm-4">
+					<a href="<?= $this->Url->build(['controller' => 'premium', 'action' => 'home']);?>">
+						<div class="element padded">
+							<i class="fa fa-trophy fa-4x"></i>
+							<h5><?= __d('admin', 'Premium') ?></h5>
 						</div>
 					</a>
 				</div>

@@ -1,4 +1,4 @@
-<?= $this->assign('title', __("Add an Article")); ?>
+<?= $this->assign('title', __d('admin', 'Add an Article')) ?>
 
 <?php $this->start('scriptBottom');
 
@@ -20,19 +20,19 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-newspaper-o"></i> <?= __("Add an Article");?>
+				<i class="fa fa-newspaper-o"></i> <?= __d('admin', 'Add an Article') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
-					<?= $this->Html->link(__("{0} Dashboard", '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
+					<?= $this->Html->link(__d('admin', '{0} Dashboard', '<i class="fa fa-dashboard"></i>'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__("{0} Manage Articles", '<i class="fa fa-newspaper-o"></i>'), ['controller' => 'articles',
+					<?= $this->Html->link(__d('admin', '{0} Manage Articles', '<i class="fa fa-newspaper-o"></i>'), ['controller' => 'articles',
 							'action' => 'index', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-plus"></i> <?= __("Add an Article");?>
+					<i class="fa fa-plus"></i> <?= __d('admin', 'Add an Article') ?>
 				</li>
 			</ol>
 		</div>
@@ -41,7 +41,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
-					<?= __("Add an Article"); ?>
+					<?= __d('admin', 'Add an Article') ?>
 				</div>
 
 				<div class="panel-body">
@@ -50,23 +50,23 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 						'role' => 'form'
 					]) ?>
 					<div class="form-group">
-						<?= $this->Form->label('title', __("Title"), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('title', __d('admin', 'Title'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5">
 							<?= $this->Form->input('title', ['class' => 'form-control', 'label' => false]) ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<?= $this->Form->label('category_id', __("Category"), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('category_id', __d('admin', 'Category'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5">
 							<?= $this->Form->input('category_id', ['options' => $categories, 'class' => 'form-control', 'label' => false]) ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<?= $this->Form->label('is_display', __("Is display"), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('is_display', __d('admin', 'Is display'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5 radio-check">
 							<?= $this->Form->radio('is_display', [
-									'1' => __("Yes"),
-									'0' => __("No")
+									'1' => __d('admin', 'Yes'),
+									'0' => __d('admin', 'No')
 								],
 								[
 									'value' => '1',
@@ -77,7 +77,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<?= $this->Form->label('content', __("Content"), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('content', __d('admin', 'Content'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-8">
 							<?= $this->Form->input(
 									'content', [
@@ -89,9 +89,9 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 						</div>
 					</div>
 
-					<?= $this->Form->button(__('Create Article'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
+					<?= $this->Form->button(__d('admin', 'Create Article'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
 					<?= $this->Form->end() ?>
-					
+
 				</div>
 
 			</div>

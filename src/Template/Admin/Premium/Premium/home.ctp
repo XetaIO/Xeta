@@ -1,19 +1,19 @@
-<?= $this->assign('title', __("Premium : Dashboard")); ?>
+<?= $this->assign('title', __d('admin', 'Premium : Dashboard')) ?>
 
 <div class="content-wrapper interface-blur">
 	<div class="row">
 
 		<div class="col-md-12">
-			<?= $this->Flash->render(); ?>
+			<?= $this->Flash->render() ?>
 		</div>
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-trophy"></i> <?= __("Premium : Dashboard");?>
+				<i class="fa fa-trophy"></i> <?= __d('admin', 'Premium : Dashboard') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li class="active">
-					<i class="fa fa-dashboard"></i> <?= __("Premium : Dashboard");?>
+					<i class="fa fa-dashboard"></i> <?= __d('admin', 'Premium : Dashboard') ?>
 				</li>
 			</ol>
 		</div>
@@ -24,7 +24,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Premium Members");?>
+								<?= __d('admin', 'Premium Members') ?>
 								<i class="fa fa-users pull-right"></i>
 							</h5>
 						</div>
@@ -39,7 +39,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Amount total");?>
+								<?= __d('admin', 'Amount total') ?>
 								<i class="fa fa-line-chart pull-right"></i>
 							</h5>
 						</div>
@@ -54,7 +54,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Registered Discounts");?>
+								<?= __d('admin', 'Registered Discounts') ?>
 								<i class="fa fa-gift pull-right"></i>
 							</h5>
 						</div>
@@ -69,7 +69,7 @@
 					<div class="info-box">
 						<div class="title">
 							<h5>
-								<?= __("Discount amount total");?>
+								<?= __d('admin', 'Discount amount total') ?>
 								<i class="fa fa-euro pull-right"></i>
 							</h5>
 						</div>

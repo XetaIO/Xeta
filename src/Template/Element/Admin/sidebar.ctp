@@ -7,7 +7,7 @@
 			<?php else:?>
 				<li>
 			<?php endif;?>
-				<?= $this->Html->link(__("{0} Dashboard {1}", '<i class="fa fa-dashboard"></i>',
+				<?= $this->Html->link(__d('admin', '{0} Dashboard {1}', '<i class="fa fa-dashboard"></i>',
 					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'admin', 'action' => 'home', 'prefix' => 'admin'],
 				['escape' => false]) ?>
 			</li>
@@ -21,23 +21,23 @@
 				<li>
 			<?php endif;?>
 
-				<?= $this->Html->link(__("{0} Blog {1}", '<i class="fa fa-newspaper-o"></i>',
+				<?= $this->Html->link(__d('admin', '{0} Blog {1}', '<i class="fa fa-newspaper-o"></i>',
 						'<i class="fa fa-chevron-down"></i>'), '#submenu-blog', ['class' => 'active accordion-toggle collapsed',
 						'data-toggle' => 'collapse', 'escape' => false]) ?>
 
 				<ul id="submenu-blog" class="submenu nav collapse">
 					<?= ($this->request->params['controller'] == 'Articles') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Manage Articles"), ['controller' => 'articles', 'action' => 'index',
+						<?= $this->Html->link(__d('admin', 'Manage Articles'), ['controller' => 'articles', 'action' => 'index',
 								'prefix' => 'admin']) ?>
 					</li>
 
 					<?= ($this->request->params['controller'] == 'Categories') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Manage Categories"), ['controller' => 'categories', 'action' => 'index',
+						<?= $this->Html->link(__d('admin', 'Manage Categories'), ['controller' => 'categories', 'action' => 'index',
 					'prefix' => 'admin']) ?>
 					</li>
 
 					<?= ($this->request->params['controller'] == 'Attachments') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Manage Attachments"), ['controller' => 'attachments', 'action' => 'index',
+						<?= $this->Html->link(__d('admin', 'Manage Attachments'), ['controller' => 'attachments', 'action' => 'index',
 						'prefix' => 'admin']) ?>
 					</li>
 				</ul>
@@ -48,7 +48,7 @@
 			<?php else:?>
 				<li>
 			<?php endif;?>
-				<?= $this->Html->link(__("{0} Users {1}", '<i class="fa fa-users"></i>',
+				<?= $this->Html->link(__d('admin', '{0} Users {1}', '<i class="fa fa-users"></i>',
 					'<i class="fa fa-chevron-right"></i>'), ['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'],
 				['escape' => false]) ?>
 			</li>
@@ -63,23 +63,23 @@
 				<li>
 			<?php endif;?>
 
-				<?= $this->Html->link(__("{0} Premium {1}", '<i class="fa fa-trophy"></i>',
+				<?= $this->Html->link(__d('admin', '{0} Premium {1}', '<i class="fa fa-trophy"></i>',
 				'<i class="fa fa-chevron-down"></i>'), '#submenu-premium', ['class' => 'active accordion-toggle collapsed',
 				'data-toggle' => 'collapse', 'escape' => false]) ?>
 
 				<ul id="submenu-premium" class="submenu nav collapse">
 					<?= ($this->request->params['controller'] == 'Premium' && $this->request->params['action'] == 'home') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Statistics"), ['controller' => 'premium', 'action' => 'home',
+						<?= $this->Html->link(__d('admin', 'Statistics'), ['controller' => 'premium', 'action' => 'home',
 						'prefix' => 'admin/premium']) ?>
 					</li>
 
 					<?= ($this->request->params['controller'] == 'Offers') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Manage Offers"), ['controller' => 'offers', 'action' => 'index',
+						<?= $this->Html->link(__d('admin', 'Manage Offers'), ['controller' => 'offers', 'action' => 'index',
 						'prefix' => 'admin/premium']) ?>
 					</li>
 
 					<?= ($this->request->params['controller'] == 'Discounts') ? '<li class="active">' : '<li>' ?>
-						<?= $this->Html->link(__("Manage Discounts"), ['controller' => 'discounts', 'action' => 'index',
+						<?= $this->Html->link(__d('admin', 'Manage Discounts'), ['controller' => 'discounts', 'action' => 'index',
 						'prefix' => 'admin/premium']) ?>
 					</li>
 				</ul>

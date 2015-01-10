@@ -29,7 +29,7 @@
 						['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'escape' => false]) ?>
 				    <ul class="dropdown-menu" role="menu">
 					    <li>
-						    <?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'),
+						    <?= $this->Html->link(__d('admin', '{0} Logout', '<i class="fa fa-sign-out"></i>'),
 							['controller' => 'users', 'action' => 'logout', 'prefix' => false], ['escape' => false]);?>
 					    </li>
 				    </ul>
