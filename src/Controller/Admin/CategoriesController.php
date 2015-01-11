@@ -40,7 +40,7 @@ class CategoriesController extends AppController {
 
 			if ($this->BlogCategories->save($category)) {
 
-				$this->Flash->success(__("The category has been created successfully !"));
+				$this->Flash->success(__d('admin', 'The category has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -66,7 +66,7 @@ class CategoriesController extends AppController {
 
 		//Check if the category is found.
 		if (empty($category)) {
-			$this->Flash->error(__('This category doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This category doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -76,7 +76,7 @@ class CategoriesController extends AppController {
 
 			if ($this->BlogCategories->save($category)) {
 
-				$this->Flash->success(__("This category has been updated successfully !"));
+				$this->Flash->success(__d('admin', 'This category has been updated successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -102,26 +102,26 @@ class CategoriesController extends AppController {
 
 		//Check if the category is found.
 		if (empty($category)) {
-			$this->Flash->error(__('This category doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This category doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
 		//Check if the category has one article or more
 		if ($category->article_count >= 1) {
-			$this->Flash->error(__('You can not deleted this category because one article or more is assigned to this category.'));
+			$this->Flash->error(__d('admin', 'You can not deleted this category because one article or more is assigned to this category.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
 		if ($this->BlogCategories->delete($category)) {
 
-			$this->Flash->success(__("This category has been deleted successfully !"));
+			$this->Flash->success(__d('admin', 'This category has been deleted successfully !'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
-		$this->Flash->error(__("Unable to delete this category."));
+		$this->Flash->error(__d('admin', 'Unable to delete this category.'));
 
 		return $this->redirect(['action' => 'index']);
 	}

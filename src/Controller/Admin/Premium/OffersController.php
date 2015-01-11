@@ -40,7 +40,7 @@ class OffersController extends AppController {
 
 			if ($this->PremiumOffers->save($offer)) {
 
-				$this->Flash->success(__("Your offer has been created successfully !"));
+				$this->Flash->success(__d('admin', 'Your offer has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -71,7 +71,7 @@ class OffersController extends AppController {
 
 		//Check if the offer is found.
 		if (empty($offer)) {
-			$this->Flash->error(__('This offer doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This offer doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -81,7 +81,7 @@ class OffersController extends AppController {
 
 			if ($this->PremiumOffers->save($offer)) {
 
-				$this->Flash->success(__("This offer has been updated successfully !"));
+				$this->Flash->success(__d('admin', 'This offer has been updated successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -107,19 +107,19 @@ class OffersController extends AppController {
 
 		//Check if the offer is found.
 		if (empty($offer)) {
-			$this->Flash->error(__('This offer doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This offer doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
 		if ($this->PremiumOffers->delete($offer)) {
 
-			$this->Flash->success(__("This offer has been deleted successfully !"));
+			$this->Flash->success(__d('admin', 'This offer has been deleted successfully !'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
-		$this->Flash->error(__("Unable to delete this offer."));
+		$this->Flash->error(__d('admin', 'Unable to delete this offer.'));
 
 		return $this->redirect(['action' => 'index']);
 	}

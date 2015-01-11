@@ -71,11 +71,13 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 						</div>
 					</div>
 					<div class="col-md-7 col-lg-8">
+						<?= $this->Form->label('first_name', __("First Name")) ?>
 						<div class="form-group">
-							<?= $this->Form->input('first_name', ['class' => 'form-control']) ?>
+							<?= $this->Form->input('first_name', ['class' => 'form-control', 'label' => false]) ?>
 						</div>
+						<?= $this->Form->label('last_name', __("Last Name")) ?>
 						<div class="form-group">
-							<?= $this->Form->input('last_name', ['class' => 'form-control']) ?>
+							<?= $this->Form->input('last_name', ['class' => 'form-control', 'label' => false]) ?>
 						</div>
 					</div>
 				</div>
@@ -95,7 +97,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 				</div>
 			</div>
 			<div class="form-group">
-				<?= $this->Form->label('biography') ?>
+				<?= $this->Form->label('biography', __("Biography")) ?>
 				<div>
 					<small><?= __("The biography will be displayed on your profile page.") ?></small>
 				</div>

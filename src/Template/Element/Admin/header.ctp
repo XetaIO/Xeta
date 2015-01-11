@@ -21,7 +21,7 @@
 		    <ul class="nav navbar-nav navbar-right">
 			    <li class="dropdown">
 				    <?= $this->Html->link(
-						__('Hello,') . '&nbsp;'
+                        __d('admin', 'Hello,') . '&nbsp;'
 						. '<span data-hover="' . h($this->request->session()->read('Auth.User.username')) . '">'
 						. h($this->request->session()->read('Auth.User.username'))
 						. '</span><i class="caret"></i>',

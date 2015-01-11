@@ -41,7 +41,7 @@ class DiscountsController extends AppController {
 
 			if ($this->PremiumDiscounts->save($discount)) {
 
-				$this->Flash->success(__("Your discount has been created successfully !"));
+				$this->Flash->success(__d('admin', 'Your discount has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -76,7 +76,7 @@ class DiscountsController extends AppController {
 
 		//Check if the discount is found.
 		if (empty($discount)) {
-			$this->Flash->error(__('This discount doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This discount doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -86,7 +86,7 @@ class DiscountsController extends AppController {
 
 			if ($this->PremiumDiscounts->save($discount)) {
 
-				$this->Flash->success(__("This discount has been updated successfully !"));
+				$this->Flash->success(__d('admin', 'This discount has been updated successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}

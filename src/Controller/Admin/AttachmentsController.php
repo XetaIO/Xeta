@@ -65,7 +65,7 @@ class AttachmentsController extends AppController {
 			//Check if the article has already an attachment
 			if (!is_null($article->blog_attachment)) {
 				$this->Flash->error(
-					__('This article has already an attachment, you can edit it <a href="{0}" class="btn btn-sm btn-danger">here</a>.',
+					__d('admin', 'This article has already an attachment, you can edit it <a href="{0}" class="btn btn-sm btn-danger">here</a>.',
 					Router::url(['_name' => 'attachments-edit', 'id' => $article->blog_attachment->id]))
 				);
 
@@ -84,7 +84,7 @@ class AttachmentsController extends AppController {
 
 				$this->BlogAttachments->save($newAttachment);
 
-				$this->Flash->success(__("Your attachment has been created successfully !"));
+				$this->Flash->success(__d('admin', 'Your attachment has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -113,7 +113,7 @@ class AttachmentsController extends AppController {
 
 		//Check if the attachment is found.
 		if (empty($attachment)) {
-			$this->Flash->error(__('This attachment doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This attachment doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -134,7 +134,7 @@ class AttachmentsController extends AppController {
 
 			if (!is_null($article->blog_attachment) && $article->blog_attachment->id != $this->request->id) {
 				$this->Flash->error(
-					__('This article has already an attachment, you can edit it <a href="{0}" class="btn btn-sm btn-danger">here</a>.',
+					__d('admin', 'This article has already an attachment, you can edit it <a href="{0}" class="btn btn-sm btn-danger">here</a>.',
 					Router::url(['_name' => 'attachments-edit', 'id' => $article->blog_attachment->id]))
 				);
 
@@ -153,7 +153,7 @@ class AttachmentsController extends AppController {
 
 				$this->BlogAttachments->save($editedAttachment);
 
-				$this->Flash->success(__("Your attachment has been edited successfully !"));
+				$this->Flash->success(__d('admin', 'Your attachment has been edited successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -181,19 +181,19 @@ class AttachmentsController extends AppController {
 
 		//Check if the attachment is found.
 		if (empty($attachment)) {
-			$this->Flash->error(__('This attachment doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This attachment doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
 		if ($this->BlogAttachments->delete($attachment)) {
 
-			$this->Flash->success(__("This attachment has been deleted successfully !"));
+			$this->Flash->success(__d('admin', 'This attachment has been deleted successfully !'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
-		$this->Flash->error(__("Unable to delete this attachment."));
+		$this->Flash->error(__d('admin', 'Unable to delete this attachment.'));
 
 		return $this->redirect(['action' => 'index']);
 	}

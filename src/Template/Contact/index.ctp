@@ -23,8 +23,7 @@
 					<?= __("Contact me !") ?>
 				</h2>
 				<p class="text-center">
-					<?= __("You have found a problem on the site or you just want to contact me ? Use the form below and i will
-					 answer you shortly !") ?>
+					<?= __("You have found a problem on the site or you just want to contact me ? Use the form below and i will answer you shortly !") ?>
 				</p>
 				<div class="row">
 					<div class="col-md-6">

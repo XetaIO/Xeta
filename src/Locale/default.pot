@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-02 20:58+0000\n"
+"POT-Creation-Date: 2015-01-11 10:12+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,291 +14,1222 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/UsersController.php:30
+#: Controller/BlogController.php:85
+msgid "This category doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/BlogController.php:143
+msgid "This article doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/BlogController.php:155
+msgid "You must be connected to post a comment."
+msgstr ""
+
+#: Controller/BlogController.php:168
+msgid "Your comment has been posted successfully !"
+msgstr ""
+
+#: Controller/BlogController.php:267
+msgid "has said :"
+msgstr ""
+
+#: Controller/BlogController.php:287
+msgid "This comment doesn't exist."
+msgstr ""
+
+#: Controller/BlogController.php:318
+msgid "This comment doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/BlogController.php:465
+msgid "You already like this article !"
+msgstr ""
+
+#: Controller/BlogController.php:484
+msgid "This article doesn't exist !"
+msgstr ""
+
+#: Controller/BlogController.php:500
+msgid "Thanks for {0} this article ! "
+msgstr ""
+
+#: Controller/BlogController.php:501
+#: Template/Blog/article.ctp:219
+msgid "You {0} this article."
+msgstr ""
+
+#: Controller/BlogController.php:511;568
+msgid "An error occurred, please try again later."
+msgstr ""
+
+#: Controller/BlogController.php:551
+msgid "You don't like this article !"
+msgstr ""
+
+#: Controller/BlogController.php:564
+#: Template/Blog/article.ctp:237
+msgid "Like {0}"
+msgstr ""
+
+#: Controller/BlogController.php:598;638;669
+msgid "This comment doesn't exist or has been deleted !"
+msgstr ""
+
+#: Controller/BlogController.php:604
+msgid "You don't have the authorization to delete this comment !"
+msgstr ""
+
+#: Controller/BlogController.php:610
+msgid "This comment has been deleted successfully !"
+msgstr ""
+
+#: Controller/BlogController.php:642;675
+msgid "You don't have the authorization to edit this comment !"
+msgstr ""
+
+#: Controller/BlogController.php:682
+msgid "This comment has been edited successfully !"
+msgstr ""
+
+#: Controller/ContactController.php:59
+msgid "You need to put your E-mail."
+msgstr ""
+
+#: Controller/ContactController.php:62
+#: Model/Table/UsersTable.php:116;216;276
+msgid "You must specify a valid E-mail address."
+msgstr ""
+
+#: Controller/ContactController.php:64
+msgid "You need to put your name."
+msgstr ""
+
+#: Controller/ContactController.php:65
+msgid "You need to give a message."
+msgstr ""
+
+#: Controller/ContactController.php:68
+msgid "Your message can not contain less than {0} characters."
+msgstr ""
+
+#: Controller/ContactController.php:90
+msgid "Your message has been sent successfully, you will get a response shortly !"
+msgstr ""
+
+#: Controller/PagesController.php:98
+msgid "Thanks for accepting to use the cookies !"
+msgstr ""
+
+#: Controller/PremiumController.php:58
+msgid "This offer does not exist."
+msgstr ""
+
+#: Controller/PremiumController.php:73
+msgid "Your discount code isn't valid or has already been used."
+msgstr ""
+
+#: Controller/PremiumController.php:99
+msgid "Unable to get the Paypal URL, please contact an administrator or try again later."
+msgstr ""
+
+#: Controller/PremiumController.php:93
+msgid "Premium {0} month"
+msgid_plural "Premium {0} months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/UsersController.php:97
 msgid "Your username or password doesn't match."
 msgstr ""
 
-#: Controller/UsersController.php:47
+#: Controller/UsersController.php:115
 msgid "Your account has been created successfully !"
 msgstr ""
 
-#: Controller/UsersController.php:52
+#: Controller/UsersController.php:120
 msgid "Please, correct your mistake."
+msgstr ""
+
+#: Controller/UsersController.php:160
+msgid "Your information has been updated !"
+msgstr ""
+
+#: Controller/UsersController.php:194
+msgid "Your E-mail has been changed !"
+msgstr ""
+
+#: Controller/UsersController.php:203
+msgid "Please, complete all fields !"
+msgstr ""
+
+#: Controller/UsersController.php:208
+msgid "Your old password don't match !"
+msgstr ""
+
+#: Controller/UsersController.php:214
+msgid "Your password has been changed !"
+msgstr ""
+
+#: Controller/UsersController.php:266
+msgid "This user doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:284
+msgid "Your account has been deleted successfully ! Thanks for your visit !"
+msgstr ""
+
+#: Controller/UsersController.php:289
+msgid "Unable to delete your account, please try again."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:81
+msgid "The txn {0} has already been used."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:87
+msgid "The Email {0} is not the same as the config Email {0}."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:93
+msgid "The price does not match with the offer price."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:99
+msgid "The currency offer does not match with the Paypal currency."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:105
+msgid "The discount offer does not match with the Paypal discount."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:114
+msgid "Error to update the user."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:135
+msgid "Status Payment invalid : {0}"
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:140
+msgid "Response INVALID."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:180
+msgid "This user does not exist."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:269
+msgid "Failed to initialize cURL : {0}"
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:279
+msgid "cURL falied to get the Paypal URL Button : {0}"
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:342
+msgid "Unable to get the offer with the ID {0} and the period {1}."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:352
+msgid "The price of the offer {0} is not the same as the Paypal price {1}."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:393
+msgid "The discount offer {0} does not match with the Paypal discount {1}."
+msgstr ""
+
+#: Controller/Component/PaypalComponent.php:442
+msgid "The currency offer {0} does not match with the Paypal currency {1}."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:47
+msgid "You must select a name."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:50
+msgid "Please, {0} characters minimum for the name."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:56
+#: Model/Table/BlogAttachmentsTable.php:56
+#: Model/Table/UsersTable.php:148
+msgid "The mimeType is not allowed."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:63
+#: Model/Table/BlogAttachmentsTable.php:60
+msgid "The extension allowed are {0}."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:70
+#: Model/Table/UsersTable.php:162
+msgid "The file exceeded the max allowed size of {0}"
+msgstr ""
+
+#: Model/Table/BadgesTable.php:78
+#: Model/Table/UsersTable.php:170
+msgid "The file exceeded the max allowed dimension. Max height : {0} Max width : {1}"
+msgstr ""
+
+#: Model/Table/BadgesTable.php:83
+msgid "You must select a type."
+msgstr ""
+
+#: Model/Table/BadgesTable.php:86
+msgid "This type is not allowed. Allowed types : {0}"
+msgstr ""
+
+#: Model/Table/BadgesTable.php:88
+msgid "You must select a rule."
+msgstr ""
+
+#: Model/Table/BadgesUsersTable.php:38
+msgid "You must select a badge."
+msgstr ""
+
+#: Model/Table/BadgesUsersTable.php:42
+msgid "You must select an user."
 msgstr ""
 
 #: Model/Table/BlogArticlesCommentsTable.php:51
 msgid "Please, {0} characters minimum for your comment."
 msgstr ""
 
-#: Model/Table/UsersTable.php:52
+#: Model/Table/BlogArticlesTable.php:58
+msgid "You must select a category."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:62
+#: Model/Table/BlogCategoriesTable.php:38
+msgid "The title is required."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:67
+#: Model/Table/BlogCategoriesTable.php:43
+msgid "This title is already used."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:71
+#: Model/Table/BlogCategoriesTable.php:47
+msgid "Please, {0} characters minimum for the title."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:74
+msgid "The content is required."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:77
+msgid "Please, {0} characters minimum for the content."
+msgstr ""
+
+#: Model/Table/BlogArticlesTable.php:82
+msgid "Incorrect value, please do not attempt to modify the HTML, little hacker. ;)"
+msgstr ""
+
+#: Model/Table/BlogAttachmentsTable.php:47
+msgid "You must set an article."
+msgstr ""
+
+#: Model/Table/BlogAttachmentsTable.php:50
+msgid "The article must be numeric value."
+msgstr ""
+
+#: Model/Table/BlogAttachmentsTable.php:52
+msgid "You must upload a file."
+msgstr ""
+
+#: Model/Table/BlogAttachmentsTable.php:64
+msgid "The file exceeded the max allowed size of {0}."
+msgstr ""
+
+#: Model/Table/BlogCategoriesTable.php:53
+msgid "Please, {0} characters maximum for the description."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:43
+msgid "You must set an offer."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:46
+msgid "The offer must be numeric value."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:48
+msgid "You must set a code."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:51
+msgid "The code can not be more than {0} characters."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:53
+msgid "You must set a discount."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:56
+msgid "The discount must be numeric value."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:58
+msgid "You must set the used number."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:61
+msgid "The used value must be numeric value."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:63
+msgid "You must set the max use for the discount."
+msgstr ""
+
+#: Model/Table/PremiumDiscountsTable.php:66
+msgid "The max use value must be numeric value."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:42
+msgid "You must set a period."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:45
+msgid "The period must be numeric."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:47
+msgid "You must set a price."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:50
+msgid "The price must be numeric."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:52
+msgid "You must set a tax."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:55
+msgid "The tax must be numeric."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:57
+msgid "You must set a currency code."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:60
+msgid "The currency code can not be more than {0} characters."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:62
+msgid "You must set a currency symbol."
+msgstr ""
+
+#: Model/Table/PremiumOffersTable.php:65
+msgid "The currency symbol can not be more than {0} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:77;250
 msgid "You must set an username"
 msgstr ""
 
-#: Model/Table/UsersTable.php:57
+#: Model/Table/UsersTable.php:82;255
 msgid "This username is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:61
+#: Model/Table/UsersTable.php:86;259
 msgid "Only alphanumeric characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:65
+#: Model/Table/UsersTable.php:90;263
 msgid "Your username must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:69
+#: Model/Table/UsersTable.php:93
 msgid "You must specify your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:71
+#: Model/Table/UsersTable.php:94;225
 msgid "You must specify your password (confirmation)."
 msgstr ""
 
-#: Model/Table/UsersTable.php:75
+#: Model/Table/UsersTable.php:98;229
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:81
-msgid "Your password confirm must match with your password"
+#: Model/Table/UsersTable.php:104
+msgid "Your password confirm must match with your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:90
+#: Model/Table/UsersTable.php:112;272
 msgid "This E-mail is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:94
-msgid "You must specify a valid E-mail address."
+#: Model/Table/UsersTable.php:137
+msgid "Your First Name can not contain more than {0} characters."
 msgstr ""
 
-#: Template/Blog/add.ctp:7
-msgid "Add Blog Article"
+#: Model/Table/UsersTable.php:142
+msgid "Your Last Name can not contain more than {0} characters."
 msgstr ""
 
-#: Template/Blog/add.ctp:16
-#: Template/Blog/edit.ctp:18
-msgid "Submit"
+#: Model/Table/UsersTable.php:155
+msgid "The extensions allowed are {0}."
 msgstr ""
 
-#: Template/Blog/article.ctp:6
-#: Template/Blog/category.ctp:6
-#: Template/Blog/index.ctp:6
-#: Template/Element/header.ctp:16
+#: Model/Table/UsersTable.php:178
+msgid "Your Facebook can not contain more than {0} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:183
+msgid "Your Twitter can not contain more than {0} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:190;198
+msgid "Your biography can not contain more than {0} characters."
+msgstr ""
+
+#: Model/Table/UsersTable.php:212
+msgid "Your E-mail can not be empty."
+msgstr ""
+
+#: Model/Table/UsersTable.php:221
+msgid "This E-mail is already used, please choose another E-mail."
+msgstr ""
+
+#: Model/Table/UsersTable.php:224
+msgid "You must specify your new password."
+msgstr ""
+
+#: Model/Table/UsersTable.php:235
+msgid "Your password confirm must match with your new password"
+msgstr ""
+
+#: Template/Admin/Categories/edit.ctp:24
+msgid "Edit a Category"
+msgstr ""
+
+#: Template/Blog/archive.ctp:2
+msgid "Blog Archive : {0}"
+msgstr ""
+
+#: Template/Blog/archive.ctp:10
+#: Template/Blog/article.ctp:44
+#: Template/Blog/category.ctp:10
+#: Template/Blog/index.ctp:10
+#: Template/Blog/search.ctp:10
+#: Template/Contact/index.ctp:10
+#: Template/Element/header.ctp:17
+#: Template/Users/account.ctp:24
+#: Template/Users/index.ctp:9
+#: Template/Users/premium.ctp:10
+#: Template/Users/profile.ctp:10
+#: Template/Users/settings.ctp:10
 msgid "Home"
 msgstr ""
 
-#: Template/Blog/article.ctp:9
-#: Template/Blog/category.ctp:9
-#: Template/Blog/index.ctp:9
-#: Template/Element/header.ctp:21
+#: Template/Blog/archive.ctp:13
+#: Template/Blog/article.ctp:47
+#: Template/Blog/category.ctp:13
+#: Template/Blog/index.ctp:2;13
+#: Template/Blog/search.ctp:13
+#: Template/Element/header.ctp:22
 msgid "Blog"
 msgstr ""
 
-#: Template/Blog/article.ctp:51;131
-#: Template/Blog/category.ctp:58
-#: Template/Blog/index.ctp:71
+#: Template/Blog/archive.ctp:16
+msgid "Archive"
+msgstr ""
+
+#: Template/Blog/archive.ctp:81
+#: Template/Blog/article.ctp:95;410
+#: Template/Blog/category.ctp:70
+#: Template/Blog/index.ctp:85
+#: Template/Blog/search.ctp:67
 msgid "Comments"
 msgstr ""
 
-#: Template/Blog/article.ctp:51;131
-#: Template/Blog/category.ctp:58
-#: Template/Blog/index.ctp:71
+#: Template/Blog/archive.ctp:81
+#: Template/Blog/article.ctp:95;410
+#: Template/Blog/category.ctp:70
+#: Template/Blog/index.ctp:85
+#: Template/Blog/search.ctp:67
 msgid "Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:56
-#: Template/Blog/category.ctp:63
-#: Template/Blog/index.ctp:76
+#: Template/Blog/archive.ctp:87
+#: Template/Blog/article.ctp:100
+#: Template/Blog/category.ctp:75
+#: Template/Blog/index.ctp:90
+#: Template/Blog/search.ctp:72
 msgid "Likes"
 msgstr ""
 
-#: Template/Blog/article.ctp:56
-#: Template/Blog/category.ctp:63
-#: Template/Blog/index.ctp:76
+#: Template/Blog/archive.ctp:87
+#: Template/Blog/article.ctp:100
+#: Template/Blog/category.ctp:75
+#: Template/Blog/index.ctp:90
+#: Template/Blog/search.ctp:72
 msgid "Like"
 msgstr ""
 
-#: Template/Blog/article.ctp:67;156
-msgid "{0} Reply"
-msgstr ""
-
-#: Template/Blog/article.ctp:118
-msgid "Leave a Comment"
-msgstr ""
-
-#: Template/Blog/article.ctp:122
-msgid "Post Comment"
-msgstr ""
-
-#: Template/Blog/article.ctp:184
-msgid "Reply"
-msgstr ""
-
-#: Template/Blog/category.ctp:12
-msgid "Category"
-msgstr ""
-
-#: Template/Blog/category.ctp:79
-#: Template/Blog/index.ctp:92
+#: Template/Blog/archive.ctp:104
+#: Template/Blog/category.ctp:94
+#: Template/Blog/index.ctp:109
+#: Template/Blog/search.ctp:91
 msgid "Read More"
 msgstr ""
 
-#: Template/Blog/edit.ctp:4
-msgid "Edit Blog Article"
+#: Template/Blog/archive.ctp:131
+#: Template/Blog/category.ctp:121
+#: Template/Blog/index.ctp:135
+msgid "No articles found"
 msgstr ""
 
-#: Template/Blog/edit.ctp:22
-msgid "Actions"
+#: Template/Blog/archive.ctp:133
+msgid "No articles were found for this date."
 msgstr ""
 
-#: Template/Blog/edit.ctp:24
+#: Template/Blog/article.ctp:118
+msgid "You need to be <strong>{0}</strong> to download the file."
+msgstr ""
+
+#: Template/Blog/article.ctp:118
+#: Template/Element/header.ctp:27
+#: Template/Premium/cancel.ctp:16
+#: Template/Premium/index.ctp:20;21;56
+#: Template/Premium/success.ctp:24;25;39
+#: Template/Users/premium.ctp:2;16
+msgid "Premium"
+msgstr ""
+
+#: Template/Blog/article.ctp:166
+msgid "File Size :"
+msgstr ""
+
+#: Template/Blog/article.ctp:174
+msgid "Download :"
+msgstr ""
+
+#: Template/Blog/article.ctp:188;191;451;467
+msgid "{0} Reply"
+msgstr ""
+
+#: Template/Blog/article.ctp:316
+msgid "Related Articles"
+msgstr ""
+
+#: Template/Blog/article.ctp:381
+#: Template/Pages/home.ctp:324
+msgid "Read More {0}"
+msgstr ""
+
+#: Template/Blog/article.ctp:480
+msgid "{0} Edit"
+msgstr ""
+
+#: Template/Blog/article.ctp:494
+msgid "{0} Delete"
+msgstr ""
+
+#: Template/Blog/article.ctp:531
+msgid "Leave a Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:545
+msgid "Post Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:562;573
+#: Template/Users/settings.ctp:86;95
+msgid "Close"
+msgstr ""
+
+#: Template/Blog/article.ctp:564
+msgid "Delete a Comment"
+msgstr ""
+
+#: Template/Blog/article.ctp:568
+msgid "Are you sure you want delete this comment ?"
+msgstr ""
+
+#: Template/Blog/article.ctp:572
 msgid "Delete"
 msgstr ""
 
-#: Template/Blog/edit.ctp:24
-msgid "Are you sure you want to delete # %s?"
+#: Template/Blog/category.ctp:2
+msgid "Blog Category : {0}"
 msgstr ""
 
-#: Template/Blog/edit.ctp:25
-msgid "List Blog Articles"
+#: Template/Blog/category.ctp:16
+msgid "Category"
 msgstr ""
 
-#: Template/Blog/edit.ctp:26
-msgid "List BlogCategories"
+#: Template/Blog/category.ctp:123
+msgid "No articles were found for this category."
 msgstr ""
 
-#: Template/Blog/edit.ctp:27
-msgid "New Blog Category"
+#: Template/Blog/get_edit_comment.ctp:17
+msgid "Update Comment"
 msgstr ""
 
-#: Template/Blog/edit.ctp:28
-msgid "List Users"
+#: Template/Blog/get_edit_comment.ctp:18
+msgid "Cancel"
 msgstr ""
 
-#: Template/Blog/edit.ctp:29
-msgid "New User"
+#: Template/Blog/index.ctp:137
+msgid "No articles were found."
 msgstr ""
 
-#: Template/Blog/edit.ctp:30
-msgid "List BlogArticlesComments"
+#: Template/Blog/search.ctp:2
+msgid "Blog Search : {0}"
 msgstr ""
 
-#: Template/Blog/edit.ctp:31
-msgid "New Blog Articles Comment"
+#: Template/Blog/search.ctp:16
+msgid "Search : {0}"
 msgstr ""
 
-#: Template/Blog/edit.ctp:32
-msgid "List BlogArticlesLikes"
+#: Template/Blog/search.ctp:118
+msgid "No results found"
 msgstr ""
 
-#: Template/Blog/edit.ctp:33
-msgid "New Blog Articles Like"
+#: Template/Blog/search.ctp:120
+msgid "No articles were found for your search, please try again with a different word."
+msgstr ""
+
+#: Template/Blog/search.ctp:122
+msgid "Suggestions :"
+msgstr ""
+
+#: Template/Blog/search.ctp:125
+msgid "Check the spelling of your search words."
+msgstr ""
+
+#: Template/Blog/search.ctp:128
+msgid "Try more general keywords."
 msgstr ""
 
 #: Template/Cell/Blog/sidebar.ctp:3
 msgid "Search Posts"
 msgstr ""
 
-#: Template/Cell/Blog/sidebar.ctp:6
+#: Template/Cell/Blog/sidebar.ctp:13
 msgid "Type your search..."
 msgstr ""
 
-#: Template/Cell/Blog/sidebar.ctp:13
+#: Template/Cell/Blog/sidebar.ctp:20
 msgid "Featured Article"
 msgstr ""
 
-#: Template/Cell/Blog/sidebar.ctp:50
+#: Template/Cell/Blog/sidebar.ctp:57
 msgid "Categories"
 msgstr ""
 
-#: Template/Cell/Blog/sidebar.ctp:64
+#: Template/Cell/Blog/sidebar.ctp:71
 msgid "Archives"
 msgstr ""
 
-#: Template/Cell/Blog/sidebar.ctp:69
+#: Template/Cell/Blog/sidebar.ctp:76
 msgid "{0} ({1})"
 msgstr ""
 
-#: Template/Element/footer.ctp:8
-msgid "&copy; {0} {1}. All rights reserved."
+#: Template/Contact/index.ctp:2
+msgid "Contact me"
 msgstr ""
 
-#: Template/Element/footer.ctp:11
-msgid "Designed & developed by"
-msgstr ""
-
-#: Template/Element/header.ctp:26
+#: Template/Contact/index.ctp:13;51
+#: Template/Element/header.ctp:32
 msgid "Contact"
 msgstr ""
 
-#: Template/Element/header.ctp:34
+#: Template/Contact/index.ctp:23
+msgid "Contact me !"
+msgstr ""
+
+#: Template/Contact/index.ctp:26
+msgid "You have found a problem on the site or you just want to contact me ? Use the form below and i will answer you shortly !"
+msgstr ""
+
+#: Template/Contact/index.ctp:32
+msgid "Name {0}"
+msgstr ""
+
+#: Template/Contact/index.ctp:32;36;43
+msgid "Required."
+msgstr ""
+
+#: Template/Contact/index.ctp:33
+msgid "Name"
+msgstr ""
+
+#: Template/Contact/index.ctp:36
+msgid "Email {0}"
+msgstr ""
+
+#: Template/Contact/index.ctp:37
+msgid "Email"
+msgstr ""
+
+#: Template/Contact/index.ctp:40
+msgid "Subject"
+msgstr ""
+
+#: Template/Contact/index.ctp:43
+msgid "Message {0}"
+msgstr ""
+
+#: Template/Contact/index.ctp:44
+msgid "Enter your message..."
+msgstr ""
+
+#: Template/Contact/index.ctp:46
+msgid "Send"
+msgstr ""
+
+#: Template/Contact/index.ctp:60
+msgid "Secret"
+msgstr ""
+
+#: Template/Contact/index.ctp:68
+msgid "Social"
+msgstr ""
+
+#: Template/Element/cookies.ctp:3
+msgid "Cookies ensure the proper functioning of the site. By using this site, you accept the use of cookies."
+msgstr ""
+
+#: Template/Element/cookies.ctp:5
+msgid "{0} I understood."
+msgstr ""
+
+#: Template/Element/footer.ctp:9
+msgid "&copy; {0} {1}."
+msgstr ""
+
+#: Template/Element/footer.ctp:10
+msgid "Source Code available on {0}"
+msgstr ""
+
+#: Template/Element/footer.ctp:13
+msgid "{0} with {1} by"
+msgstr ""
+
+#: Template/Element/header.ctp:40
 msgid "Hello,"
 msgstr ""
 
-#: Template/Element/header.ctp:39
+#: Template/Element/header.ctp:44
 msgid "Login"
 msgstr ""
 
-#: Template/Element/header.ctp:49
+#: Template/Element/header.ctp:46
 msgid "Sign up"
 msgstr ""
 
-#: Template/Element/header.ctp:70
+#: Template/Element/header.ctp:60
+msgid "Dashboard"
+msgstr ""
+
+#: Template/Element/header.ctp:65
 msgid "My Profil"
 msgstr ""
 
-#: Template/Element/header.ctp:73
+#: Template/Element/header.ctp:68
+#: Template/Users/account.ctp:2;30
 msgid "My Account"
 msgstr ""
 
-#: Template/Element/header.ctp:76
+#: Template/Element/header.ctp:71
 msgid "Logout"
 msgstr ""
 
-#: Template/Users/add.ctp:7
-msgid "Ajouter un utilisateur"
+#: Template/Element/meta.ctp:4;24;40
+msgid "Welcome on Xeta"
 msgstr ""
 
-#: Template/Users/add.ctp:12
-msgid "Ajouter"
+#: Template/Element/Users/sidebar.ctp:8
+msgid "{0} Account {1}"
 msgstr ""
 
-#: Template/Users/login.ctp:6
-msgid "Why create an account ?"
+#: Template/Element/Users/sidebar.ctp:16
+msgid "{0} Settings {1}"
 msgstr ""
 
-#: Template/Users/login.ctp:9
-msgid "With an account you can download all the sources provided in tutorials and you can interact with all the community !"
+#: Template/Element/Users/sidebar.ctp:24
+msgid "{0} Premium {1}"
 msgstr ""
 
-#: Template/Users/login.ctp:25
-msgid "Create an Account"
+#: Template/Pages/home.ctp:227
+msgid "Welcome on {0} !"
 msgstr ""
 
-#: Template/Users/login.ctp:42;130
+#: Template/Pages/home.ctp:230
+msgid "Welcome to my personal website ! I use this site as my personal blog and for try my  experiences in development."
+msgstr ""
+
+#: Template/Pages/home.ctp:234
+msgid "Sign Up now {0}"
+msgstr ""
+
+#: Template/Pages/home.ctp:236
+msgid "Visit the Blog {0}"
+msgstr ""
+
+#: Template/Pages/home.ctp:252
+msgid "Open Source"
+msgstr ""
+
+#: Template/Pages/home.ctp:255
+msgid "The code source of this website is open source and available on {0}. If you want to contribute, feel free to do a PR."
+msgstr ""
+
+#: Template/Pages/home.ctp:263
+msgid "Experiences"
+msgstr ""
+
+#: Template/Pages/home.ctp:266
+msgid "I use this site for my personal experiences in development, to try new things like JS libraries, or PHP libraries."
+msgstr ""
+
+#: Template/Pages/home.ctp:274
+msgid "Interact"
+msgstr ""
+
+#: Template/Pages/home.ctp:277
+msgid "You can interact with {0}'s members in the blog or directly with me in the comments of an article."
+msgstr ""
+
+#: Template/Pages/home.ctp:286
+msgid "Latest Articles"
+msgstr ""
+
+#: Template/Pages/home.ctp:376
+msgid "Latest Comments"
+msgstr ""
+
+#: Template/Premium/cancel.ctp:18
+msgid "Your payment has been canceled !"
+msgstr ""
+
+#: Template/Premium/cancel.ctp:21
+msgid "Your payment has been canceled, you can make a new payment in the page Premium. {0}"
+msgstr ""
+
+#: Template/Premium/cancel.ctp:22
+msgid "Premium {0}"
+msgstr ""
+
+#: Template/Premium/cancel.ctp:26
+#: Template/Premium/success.ctp:45
+msgid "Go Home {0}"
+msgstr ""
+
+#: Template/Premium/index.ctp:22
+msgid "Become a Premium and access to tutorials resources, win a badge and more in the future !"
+msgstr ""
+
+#: Template/Premium/index.ctp:29
+msgid "You're already Premium, but you can extend your subscription if you want ! Your Premium will be ended at {0}."
+msgstr ""
+
+#: Template/Premium/index.ctp:35
+msgid "You need to be connected to purchase the Premium. {0}"
+msgstr ""
+
+#: Template/Premium/index.ctp:36;84
+msgid "Login {0}"
+msgstr ""
+
+#: Template/Premium/index.ctp:68
+msgid "Resources in Tutorials"
+msgstr ""
+
+#: Template/Premium/index.ctp:69
+msgid "Premium Badge"
+msgstr ""
+
+#: Template/Premium/index.ctp:76
+msgid "Discount Code"
+msgstr ""
+
+#: Template/Premium/index.ctp:78
+msgid "Extend {0}"
+msgstr ""
+
+#: Template/Premium/index.ctp:78
+msgid "Subscribe {0}"
+msgstr ""
+
+#: Template/Premium/index.ctp:61
+#: Template/Users/premium.ctp:52
+msgid "{0} Month"
+msgid_plural "{0} Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Template/Premium/index.ctp:61
+msgctxt "Excluding VAT"
+msgid "Excl VAT"
+msgstr ""
+
+#: Template/Premium/success.ctp:18;41
+msgid "Thanks for purchasing the Premium !"
+msgstr ""
+
+#: Template/Premium/success.ctp:21
+msgid "You have unlock the badge Premium"
+msgstr ""
+
+#: Template/Premium/success.ctp:29
+msgid "Your Premium will be ended at {0}."
+msgstr ""
+
+#: Template/Premium/success.ctp:31
+msgid "My Profil {0}"
+msgstr ""
+
+#: Template/Premium/success.ctp:43
+msgid "Your account will be upgraded when the transaction will be completed ! It can take 2-3 hours, it depend of Paypal."
+msgstr ""
+
+#: Template/Users/account.ctp:27
+#: Template/Users/index.ctp:12
+#: Template/Users/premium.ctp:13
+#: Template/Users/profile.ctp:13
+#: Template/Users/settings.ctp:13
+msgid "Users"
+msgstr ""
+
+#: Template/Users/account.ctp:54
+msgid "Default Avatar"
+msgstr ""
+
+#: Template/Users/account.ctp:61
+msgid "Select image"
+msgstr ""
+
+#: Template/Users/account.ctp:62
+msgid "Change"
+msgstr ""
+
+#: Template/Users/account.ctp:68
+msgid "Remove"
+msgstr ""
+
+#: Template/Users/account.ctp:74
+msgid "First Name"
+msgstr ""
+
+#: Template/Users/account.ctp:78
+msgid "Last Name"
+msgstr ""
+
+#: Template/Users/account.ctp:86
+msgid "Twitter"
+msgstr ""
+
+#: Template/Users/account.ctp:93
+msgid "Facebook"
+msgstr ""
+
+#: Template/Users/account.ctp:100
+msgid "Biography"
+msgstr ""
+
+#: Template/Users/account.ctp:102
+msgid "The biography will be displayed on your profile page."
+msgstr ""
+
+#: Template/Users/account.ctp:115
+msgid "The signature will be displayed on each article that you have wrotten on the blog."
+msgstr ""
+
+#: Template/Users/account.ctp:126
+#: Template/Users/settings.ctp:46;70
+msgid "Save"
+msgstr ""
+
+#: Template/Users/index.ctp:2
+msgid "Xeta's members"
+msgstr ""
+
+#: Template/Users/index.ctp:23
+msgid "All {0}'s members"
+msgstr ""
+
+#: Template/Users/index.ctp:28
+#: Template/Users/login.ctp:46;134
 msgid "Username"
 msgstr ""
 
-#: Template/Users/login.ctp:59
+#: Template/Users/index.ctp:29
+msgid "Full Name"
+msgstr ""
+
+#: Template/Users/index.ctp:30
+msgid "Rank"
+msgstr ""
+
+#: Template/Users/index.ctp:31
+msgid "Registered date"
+msgstr ""
+
+#: Template/Users/index.ctp:32
+msgid "Last login"
+msgstr ""
+
+#: Template/Users/index.ctp:47
+msgid "Visit his profile."
+msgstr ""
+
+#: Template/Users/login.ctp:2
+msgid "Login or Register"
+msgstr ""
+
+#: Template/Users/login.ctp:10
+msgid "Why create an account ?"
+msgstr ""
+
+#: Template/Users/login.ctp:13
+msgid "With an account you can download all the sources provided in tutorials and you can interact with all the community !"
+msgstr ""
+
+#: Template/Users/login.ctp:29
+msgid "Create an Account"
+msgstr ""
+
+#: Template/Users/login.ctp:63
+#: Template/Users/settings.ctp:35
 msgid "E-mail"
 msgstr ""
 
-#: Template/Users/login.ctp:76;145
+#: Template/Users/login.ctp:80;149
 msgid "Password"
 msgstr ""
 
-#: Template/Users/login.ctp:94
+#: Template/Users/login.ctp:98
 msgid "Password (Confirmation)"
 msgstr ""
 
-#: Template/Users/login.ctp:103
+#: Template/Users/login.ctp:107
 msgid "SignUp {0}"
 msgstr ""
 
-#: Template/Users/login.ctp:117
-msgid "LogIn to your Account"
+#: Template/Users/login.ctp:121
+msgid "Login to your Account"
 msgstr ""
 
-#: Template/Users/login.ctp:152
+#: Template/Users/login.ctp:156
 msgid "LogIn {0}"
+msgstr ""
+
+#: Template/Users/premium.ctp:30
+msgid "Premium Purchases"
+msgstr ""
+
+#: Template/Users/premium.ctp:33
+msgid "You can see here all your premium purchases."
+msgstr ""
+
+#: Template/Users/premium.ctp:39
+msgid "Offer"
+msgstr ""
+
+#: Template/Users/premium.ctp:40
+msgid "Offer Amount"
+msgstr ""
+
+#: Template/Users/premium.ctp:41
+msgid "Amount HT"
+msgstr ""
+
+#: Template/Users/premium.ctp:42
+msgid "Tax"
+msgstr ""
+
+#: Template/Users/premium.ctp:43
+msgid "Discount"
+msgstr ""
+
+#: Template/Users/premium.ctp:44
+msgid "Discount Amount"
+msgstr ""
+
+#: Template/Users/premium.ctp:45
+msgid "Date"
+msgstr ""
+
+#: Template/Users/premium.ctp:68
+msgid "No"
+msgstr ""
+
+#: Template/Users/premium.ctp:76
+msgid "0{0}"
+msgstr ""
+
+#: Template/Users/premium.ctp:101
+msgid "You haven't purchased the Premium yet. {0}"
+msgstr ""
+
+#: Template/Users/premium.ctp:102
+msgid "Check the offers {0}"
+msgstr ""
+
+#: Template/Users/profile.ctp:2
+msgid "{0}'s profile"
+msgstr ""
+
+#: Template/Users/profile.ctp:47
+msgid "Edit my profile {0}"
+msgstr ""
+
+#: Template/Users/profile.ctp:50
+msgid "His Biography"
+msgstr ""
+
+#: Template/Users/profile.ctp:58
+msgid "His Badges"
+msgstr ""
+
+#: Template/Users/settings.ctp:2;16
+msgid "My Settings"
+msgstr ""
+
+#: Template/Users/settings.ctp:30
+msgid "Change your E-mail"
+msgstr ""
+
+#: Template/Users/settings.ctp:41
+msgid "New E-mail"
+msgstr ""
+
+#: Template/Users/settings.ctp:52
+msgid "Change your Password"
+msgstr ""
+
+#: Template/Users/settings.ctp:57
+msgid "Current Password"
+msgstr ""
+
+#: Template/Users/settings.ctp:61
+msgid "New Password"
+msgstr ""
+
+#: Template/Users/settings.ctp:65
+msgid "New Password (confirm)"
+msgstr ""
+
+#: Template/Users/settings.ctp:75
+msgid "Delete your Account"
+msgstr ""
+
+#: Template/Users/settings.ctp:78;88
+msgid "Delete my Account"
+msgstr ""
+
+#: Template/Users/settings.ctp:91
+msgid "Are you sure you want delete your account ? <strong>This operation is not reversible.</strong>"
+msgstr ""
+
+#: Template/Users/settings.ctp:94
+msgid "Yes, i confirm !"
 msgstr ""
 

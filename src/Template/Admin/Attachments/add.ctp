@@ -40,7 +40,7 @@
 						'type' => 'file'
 					]) ?>
 					<div class="form-group">
-						<?= $this->Form->label('article_id', __d('admin', 'Category'), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('article_id', __d('admin', 'Article'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5">
 							<?= $this->Form->input('article_id', ['options' => $articles, 'class' => 'form-control', 'label' => false]) ?>
 						</div>

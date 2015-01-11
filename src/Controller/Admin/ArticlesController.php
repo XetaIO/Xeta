@@ -52,7 +52,7 @@ class ArticlesController extends AppController {
 
 			if ($this->BlogArticles->save($article)) {
 
-				$this->Flash->success(__("Your article has been created successfully !"));
+				$this->Flash->success(__d('admin', 'Your article has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -86,7 +86,7 @@ class ArticlesController extends AppController {
 
 		//Check if the article is found.
 		if (empty($article)) {
-			$this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -96,7 +96,7 @@ class ArticlesController extends AppController {
 
 			if ($this->BlogArticles->save($article)) {
 
-				$this->Flash->success(__("This article has been updated successfully !"));
+				$this->Flash->success(__d('admin', 'This article has been updated successfully !'));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -123,19 +123,19 @@ class ArticlesController extends AppController {
 
 		//Check if the article is found.
 		if (empty($article)) {
-			$this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
+			$this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
 		if ($this->BlogArticles->delete($article)) {
 
-			$this->Flash->success(__("This article has been deleted successfully !"));
+			$this->Flash->success(__d('admin', 'This article has been deleted successfully !'));
 
 			return $this->redirect(['action' => 'index']);
 		}
 
-		$this->Flash->error(__("Unable to delete this article."));
+		$this->Flash->error(__d('admin', 'Unable to delete this article.'));
 
 		return $this->redirect(['action' => 'index']);
 	}
