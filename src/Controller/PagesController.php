@@ -101,6 +101,11 @@ class PagesController extends AppController {
 		$this->set('_serialize', 'json');
 	}
 
+/**
+ * Redirect to the referer.
+ *
+ * @return void
+ */
 	public function lang() {
 		$this->redirect($this->referer());
 	}
