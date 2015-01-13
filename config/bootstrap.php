@@ -100,6 +100,20 @@ mb_internal_encoding(Configure::read('App.encoding'));
 ini_set('intl.default_locale', 'fr_FR');
 
 /**
+ * Set the default locale. This option doesn't change in the application.
+ * Used to determine what language is set by default in translations.
+ */
+Configure::write('I18n.locale', 'fr_FR');
+
+/**
+ * Set the locales accepted.
+ */
+Configure::write('I18n.locales', [
+	'en_US' => 'English',
+	'fr_FR' => 'Français'
+]);
+
+/**
  * Register application error and exception handlers.
  */
 $isCli = php_sapi_name() === 'cli';

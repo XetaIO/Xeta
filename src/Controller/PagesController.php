@@ -26,7 +26,7 @@ class PagesController extends AppController {
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
-		$this->Auth->allow(['home', 'acceptCookie']);
+		$this->Auth->allow(['home', 'acceptCookie', 'lang']);
 	}
 
 /**
@@ -99,5 +99,14 @@ class PagesController extends AppController {
 		$this->set(compact('json'));
 
 		$this->set('_serialize', 'json');
+	}
+
+/**
+ * Redirect to the referer.
+ *
+ * @return void
+ */
+	public function lang() {
+		$this->redirect($this->referer());
 	}
 }

@@ -6,6 +6,13 @@ use App\Controller\AppController;
 class ArticlesController extends AppController {
 
 /**
+ * Helpers.
+ *
+ * @var array
+ */
+	public $helpers = ['I18n'];
+
+/**
  * Display all articles.
  *
  * @return void
@@ -49,6 +56,7 @@ class ArticlesController extends AppController {
 
 		if ($this->request->is('post')) {
 			$article->user_id = $this->Auth->user('id');
+			$article->setTranslations($this->request->data);
 
 			if ($this->BlogArticles->save($article)) {
 
@@ -70,10 +78,11 @@ class ArticlesController extends AppController {
 	public function edit() {
 		$this->loadModel('BlogArticles');
 
+		$this->BlogArticles->locale(\Cake\Core\Configure::read('I18n.locale'));
 		$article = $this->BlogArticles
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'BlogArticles.slug'
+			->find('translations')
+			->where([
+				'BlogArticles.slug' => $this->request->slug
 			])
 			->contain([
 				'BlogAttachments',
@@ -93,6 +102,7 @@ class ArticlesController extends AppController {
 
 		if ($this->request->is('put')) {
 			$this->BlogArticles->patchEntity($article, $this->request->data());
+			$article->setTranslations($this->request->data);
 
 			if ($this->BlogArticles->save($article)) {
 

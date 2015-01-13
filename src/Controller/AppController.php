@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Event\Badges;
+use App\I18n\Language;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -95,6 +96,10 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter(Event $event) {
+		//Define the language.
+		$language = new Language($this);
+		$language->setLanguage();
+
 		//Check for the Premium.
 		$premium = $this->request->session()->read('Premium.Check') ? $this->request->session()->read('Premium.Check') : null;
 		if (!is_null($premium)) {

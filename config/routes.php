@@ -4,18 +4,30 @@ use Cake\Core\Plugin;
 use Cake\Routing\Router;
 
 Router::extensions(['json']);
+Router::defaultRouteClass('InflectedRoute');
 
 //Public routes.
 Router::scope('/', function ($routes) {
+
+	$routes->connect(
+		'/:lang/pages/lang',
+		[
+			'controller' => 'pages',
+			'action' => 'lang'
+		],
+		[
+			'_name' => 'set-lang',
+			'pass' => [
+				'lang'
+			]
+		]
+	);
 
 	$routes->connect(
 		'/',
 		[
 			'controller' => 'pages',
 			'action' => 'home'
-		],
-		[
-			'routeClass' => 'InflectedRoute'
 		]
 	);
 
@@ -27,7 +39,6 @@ Router::scope('/', function ($routes) {
 			'action' => 'article'
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-article',
 			'pass' => [
 				'slug'
@@ -42,7 +53,6 @@ Router::scope('/', function ($routes) {
 			'action' => 'category',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-category',
 			'pass' => [
 				'slug'
@@ -57,7 +67,6 @@ Router::scope('/', function ($routes) {
 			'action' => 'archive',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'blog-archive',
 			'pass' => [
 				'slug'
@@ -73,7 +82,6 @@ Router::scope('/', function ($routes) {
 			'action' => 'profile'
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-profile',
 			'pass' => [
 				'slug'
@@ -89,7 +97,6 @@ Router::scope('/', function ($routes) {
 			'action' => 'download',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'attachment-download',
 			'pass' => [
 				'type',
@@ -98,7 +105,7 @@ Router::scope('/', function ($routes) {
 		]
 	);
 
-	$routes->fallbacks('InflectedRoute');
+	$routes->fallbacks();
 });
 
 //Admin routes.
@@ -108,9 +115,6 @@ Router::prefix('admin', function ($routes) {
 		[
 			'controller' => 'admin',
 			'action' => 'home'
-		],
-		[
-			'routeClass' => 'InflectedRoute'
 		]
 	);
 
@@ -122,7 +126,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'edit'
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-edit',
 			'pass' => [
 				'slug'
@@ -137,7 +140,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'delete'
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-delete',
 			'pass' => [
 				'slug'
@@ -152,7 +154,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'deleteAvatar'
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'users-deleteAvatar',
 			'pass' => [
 				'slug'
@@ -168,7 +169,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'edit',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'articles-edit',
 			'pass' => [
 				'slug'
@@ -183,7 +183,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'delete',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'articles-delete',
 			'pass' => [
 				'slug'
@@ -199,7 +198,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'edit',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'categories-edit',
 			'pass' => [
 				'slug'
@@ -214,7 +212,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'delete',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'categories-delete',
 			'pass' => [
 				'slug'
@@ -230,7 +227,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'edit',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'attachments-edit',
 			'pass' => [
 				'id'
@@ -245,7 +241,6 @@ Router::prefix('admin', function ($routes) {
 			'action' => 'delete',
 		],
 		[
-			'routeClass' => 'InflectedRoute',
 			'_name' => 'attachments-delete',
 			'pass' => [
 				'id'
@@ -262,9 +257,6 @@ Router::prefix('admin', function ($routes) {
 			[
 				'controller' => 'premium',
 				'action' => 'home'
-			],
-			[
-				'routeClass' => 'InflectedRoute'
 			]
 		);
 
@@ -276,7 +268,6 @@ Router::prefix('admin', function ($routes) {
 				'action' => 'edit',
 			],
 			[
-				'routeClass' => 'InflectedRoute',
 				'_name' => 'offers-edit',
 				'pass' => [
 					'id'
@@ -291,7 +282,6 @@ Router::prefix('admin', function ($routes) {
 				'action' => 'delete',
 			],
 			[
-				'routeClass' => 'InflectedRoute',
 				'_name' => 'offers-delete',
 				'pass' => [
 					'id'
@@ -307,7 +297,6 @@ Router::prefix('admin', function ($routes) {
 				'action' => 'edit',
 			],
 			[
-				'routeClass' => 'InflectedRoute',
 				'_name' => 'discounts-edit',
 				'pass' => [
 					'id'
@@ -315,10 +304,10 @@ Router::prefix('admin', function ($routes) {
 			]
 		);
 
-		$routes->fallbacks('InflectedRoute');
+		$routes->fallbacks();
 	});
 
-	$routes->fallbacks('InflectedRoute');
+	$routes->fallbacks();
 });
 
 /**

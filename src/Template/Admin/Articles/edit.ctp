@@ -8,6 +8,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 		customConfig: 'config/article.js'
 	});
 </script>
+<?= $this->I18n->i18nScript(['file' => 'article']); ?>
 
 <?php $this->end() ?>
 
@@ -55,6 +56,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 							<?= $this->Form->input('title', ['class' => 'form-control', 'label' => false]) ?>
 						</div>
 					</div>
+					<?= $this->I18n->i18nInput($article, 'title', ['class' => 'form-control']); ?>
 					<div class="form-group">
 						<?= $this->Form->label('category_id', __d('admin', 'Category'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5">
@@ -87,6 +89,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 								) ?>
 						</div>
 					</div>
+					<?= $this->I18n->i18nInput($article, 'content', ['CkEditor' => true, 'class' => 'form-control'], 'col-sm-8'); ?>
 
 					<?= $this->Form->button(__d('admin', 'Edit Article'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
 					<?= $this->Form->end() ?>
