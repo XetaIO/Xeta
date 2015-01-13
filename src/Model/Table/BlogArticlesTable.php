@@ -23,6 +23,10 @@ class BlogArticlesTable extends Table {
 			'Users' => ['blog_article_count'],
 			'BlogCategories' => ['article_count']
 		]);
+		$this->addBehavior('Translate', [
+			'fields' => ['title', 'content'],
+			'translationTable' => 'BlogArticlesI18n'
+		]);
 		$this->addBehavior('Xety/Cake3Sluggable.Sluggable');
 
 		$this->belongsTo('BlogCategories', [

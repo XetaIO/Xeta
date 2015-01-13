@@ -1,6 +1,6 @@
 
 --
--- Structure de la table `badges`
+-- Table structure `badges`
 --
 
 CREATE TABLE IF NOT EXISTS `badges` (
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `badges` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `badges`
+-- Table data `badges`
 --
 
 INSERT INTO `badges` (`id`, `name`, `picture`, `type`, `rule`, `created`) VALUES
@@ -27,7 +27,7 @@ INSERT INTO `badges` (`id`, `name`, `picture`, `type`, `rule`, `created`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `badges_users`
+-- Table structure `badges_users`
 --
 
 CREATE TABLE IF NOT EXISTS `badges_users` (
@@ -64,6 +64,32 @@ CREATE TABLE IF NOT EXISTS blog_articles (
 
 INSERT INTO blog_articles (id, category_id, user_id, title, content, slug, comment_count, like_count, is_display, created, modified) VALUES
 (1, 1, 1, 'Lorem ipsum dolor sit amet', '<p><strong>Lorem ipsum</strong> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>\r\n\r\n<blockquote>\r\n<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>\r\n</blockquote>\r\n\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat : </p>\r\n\r\n<ul><li>vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto</li>\r\n	<li>odio dignissim qui blandit praesent luptatum zzril</li>\r\n	<li>delenit augue duis dolore te feugait nulla facilisi</li>\r\n</ul><p> </p>\r\n\r\n<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. <img alt="heureux" src="http://xeta.io/js/ckeditor/plugins/smiley/images/heureux.png" style="height:19px;width:19px;" title="heureux" /></p>\r\n', 'lorem-ipsum-dolor-sit-amet', 2, 1, 1, '2014-09-22 10:10:00', '2014-09-22 10:10:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `blog_articles_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_articles_i18n` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `locale` varchar(6) NOT NULL,
+    `model` varchar(255) NOT NULL,
+    `foreign_key` int(10) NOT NULL,
+    `field` varchar(255) NOT NULL,
+    `content` text,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+    KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Table data 'blog_articles_i18n'
+--
+
+INSERT INTO `blog_articles_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
+(1, 'en_US', 'BlogArticles', 1, 'title', 'Title in english'),
+(2, 'en_US', 'BlogArticles', 1, 'content', '<p>Content in english</p>');
 
 -- --------------------------------------------------------
 
@@ -139,7 +165,7 @@ INSERT INTO blog_categories (id, title, description, slug, article_count, create
 -- --------------------------------------------------------
 
 --
--- Structure de la table `blog_attachments`
+-- Table structure `blog_attachments`
 --
 
 CREATE TABLE IF NOT EXISTS `blog_attachments` (
@@ -159,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `blog_attachments` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `premium_discounts`
+-- Table structure `premium_discounts`
 --
 
 CREATE TABLE IF NOT EXISTS `premium_discounts` (
@@ -177,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `premium_discounts` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `premium_discounts`
+-- Table data `premium_discounts`
 --
 
 INSERT INTO `premium_discounts` (`id`, `user_id`, `premium_offer_id`, `code`, `discount`, `used`, `max_use`, `created`, `modified`) VALUES
@@ -187,7 +213,7 @@ INSERT INTO `premium_discounts` (`id`, `user_id`, `premium_offer_id`, `code`, `d
 -- --------------------------------------------------------
 
 --
--- Structure de la table `premium_offers`
+-- Table structure `premium_offers`
 --
 
 CREATE TABLE IF NOT EXISTS `premium_offers` (
@@ -204,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `premium_offers` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `premium_offers`
+-- Table data `premium_offers`
 --
 
 INSERT INTO `premium_offers` (`id`, `user_id`, `period`, `price`, `tax`, `currency_code`, `currency_symbol`, `created`, `modified`) VALUES
@@ -216,7 +242,7 @@ INSERT INTO `premium_offers` (`id`, `user_id`, `period`, `price`, `tax`, `curren
 -- --------------------------------------------------------
 
 --
--- Structure de la table `premium_transactions`
+-- Table structure `premium_transactions`
 --
 
 CREATE TABLE IF NOT EXISTS `premium_transactions` (

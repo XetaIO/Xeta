@@ -10,6 +10,20 @@ Router::defaultRouteClass('InflectedRoute');
 Router::scope('/', function ($routes) {
 
 	$routes->connect(
+		'/:lang/pages/lang',
+		[
+			'controller' => 'pages',
+			'action' => 'lang'
+		],
+		[
+			'_name' => 'set-lang',
+			'pass' => [
+				'lang'
+			]
+		]
+	);
+
+	$routes->connect(
 		'/',
 		[
 			'controller' => 'pages',

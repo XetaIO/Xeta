@@ -54,7 +54,7 @@ class BlogCell extends Cell {
 			->find('all')
 			->select([
 				'date' => 'DATE(created)',
-				'count' => 'COUNT(id)'
+				'count' => 'COUNT(*)'
 			])
 			->group('SUBSTR(DATE(created), 1, 7)')
 			->order([
