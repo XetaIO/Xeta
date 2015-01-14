@@ -44,10 +44,12 @@
 									'label' => false,
 									'class' => 'form-control',
 									'placeholder' => __("Username"),
-									'required' => 'required'
+									'required' => 'required',
+									'error' => false
 								]
 							) ?>
 					</div>
+            				<?= $this->Form->error('username') ?>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
