@@ -44,10 +44,12 @@
 									'label' => false,
 									'class' => 'form-control',
 									'placeholder' => __("Username"),
-									'required' => 'required'
+									'required' => 'required',
+                            						'error' => false
 								]
 							) ?>
 					</div>
+            				<?= $this->Form->error('username') ?>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
@@ -61,10 +63,12 @@
 									'label' => false,
 									'class' => 'form-control',
 									'placeholder' => __("E-mail"),
-									'required' => 'required'
+									'required' => 'required',
+                            						'error' => false
 								]
 							) ?>
 					</div>
+            				<?= $this->Form->error('email') ?>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
@@ -78,10 +82,12 @@
 									'label' => false,
 									'class' => 'form-control',
 									'placeholder' => __("Password"),
-									'required' => 'required'
+									'required' => 'required',
+                            						'error' => false
 								]
 							) ?>
 					</div>
+            				<?= $this->Form->error('password') ?>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
@@ -96,10 +102,12 @@
 									'label' => false,
 									'class' => 'form-control',
 									'placeholder' => __("Password (Confirmation)"),
-									'required' => 'required'
+									'required' => 'required',
+                            						'error' => false
 								]
 							) ?>
 					</div>
+            				<?= $this->Form->error('password-confirm') ?>
 				</div>
 				<div class="form-group">
 					<?=
@@ -131,10 +139,12 @@
 								[
 									'label' => false,
 									'class' => 'form-control',
-									'placeholder' => __("Username")
+									'placeholder' => __("Username"),
+                            						'error' => false
 								]
 							) ?>
 						</div>
+            					<?= $this->Form->error('username') ?>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
@@ -146,10 +156,12 @@
 								[
 									'label' => false,
 									'class' => 'form-control',
-									'placeholder' => __("Password")
+									'placeholder' => __("Password"),
+                            						'error' => false
 								]
 							) ?>
 						</div>
+            					<?= $this->Form->error('password') ?>
 					</div>
 					<div class="form-group">
 						<?= $this->Form->button(
