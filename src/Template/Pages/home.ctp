@@ -381,7 +381,7 @@
 						<div class="comments-box">
 							<div class="message">
 								<?= $this->Text->truncate(
-									$comment->content_empty,
+									$comment['content_empty'],
 									300,
 									array(
 										'ellipsis' => '...',
@@ -394,13 +394,13 @@
 									<i class="fa fa-quote-left"></i>
 								</div>
 								<div class="info">
-									<?= $this->Html->link($comment->user->full_name, ['_name' => 'users-profile',
-											'slug' => $comment->user->slug], ['class' => 'name']) ?>
+									<?= $this->Html->link($comment->user['full_name'], ['_name' => 'users-profile',
+											'slug' => $comment->user['slug']], ['class' => 'name']) ?>
 									<div class="article">
 										<i class="fa fa-newspaper-o"></i>
 										<?= $this->Html->link(
 											$this->Text->truncate(
-												$comment->blog_article->title,
+												$comment->blog_article['title'],
 												20,
 												array(
 													'ellipsis' => '...',
@@ -410,13 +410,13 @@
 											[
 												'controller' => 'blog',
 												'action' => 'go',
-												$comment->id
+												$comment['id']
 											]
 										) ?>
 									</div>
 								</div>
 								<div class="image visible-lg">
-									<?= $this->Html->image($comment->user->avatar) ?>
+									<?= $this->Html->image($comment->user['avatar']) ?>
 								</div>
 							</div>
 						</div>
