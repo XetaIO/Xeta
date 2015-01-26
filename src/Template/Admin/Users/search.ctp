@@ -17,7 +17,7 @@
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li>
-					<?= $this->Html->link(__d('admin', '{0} Manage Users', '<i class="fa fa-users"></i>'), ['controller' => 'users',
+					<?= $this->Html->link(__d('admin', '{0} Manage Users', '<i class="fa fa-user"></i>'), ['controller' => 'users',
 							'action' => 'index', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">

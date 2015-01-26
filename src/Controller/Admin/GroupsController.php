@@ -1,0 +1,94 @@
+<?php
+namespace App\Controller\Admin;
+
+use App\Controller\AppController;
+use Cake\I18n\I18n;
+
+class GroupsController extends AppController {
+
+/**
+ * Helpers.
+ *
+ * @var array
+ */
+	public $helpers = ['I18n'];
+
+/**
+ * Display all Groups.
+ *
+ * @return void
+ */
+	public function index() {
+		$this->paginate = [
+			'maxLimit' => 15
+		];
+
+		$groups = $this->Groups
+			->find()
+			->order([
+				'Groups.created' => 'desc'
+			]);
+
+		$groups = $this->paginate($groups);
+		$this->set(compact('groups'));
+	}
+
+/**
+ * Add a Group.
+ *
+ * @return \Cake\Network\Response|void
+ */
+	public function add() {
+		$this->Groups->locale(I18n::defaultLocale());
+		$group = $this->Groups->newEntity($this->request->data);
+
+		if ($this->request->is('post')) {
+			$group->setTranslations($this->request->data);
+
+			if ($this->Groups->save($group)) {
+
+				$this->Flash->success(__d('admin', 'Your group has been created successfully !'));
+
+				return $this->redirect(['action' => 'index']);
+			}
+		}
+
+		$this->set(compact('group'));
+	}
+
+/**
+ * Edit a Group.
+ *
+ * @return \Cake\Network\Response|void
+ */
+	public function edit() {
+		$this->Groups->locale(I18n::defaultLocale());
+		$group = $this->Groups
+			->find('translations')
+			->where([
+				'Groups.id' => $this->request->id
+			])
+			->first();
+
+		//Check if the group is found.
+		if (empty($group)) {
+			$this->Flash->error(__d('admin', 'This group doesn\'t exist or has been deleted.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
+		if ($this->request->is('put')) {
+			$this->Groups->patchEntity($group, $this->request->data());
+			$group->setTranslations($this->request->data);
+
+			if ($this->Groups->save($group)) {
+
+				$this->Flash->success(__d('admin', 'This group has been updated successfully !'));
+
+				return $this->redirect(['action' => 'index']);
+			}
+		}
+
+		$this->set(compact('group'));
+	}
+}

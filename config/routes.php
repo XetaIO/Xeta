@@ -248,6 +248,35 @@ Router::prefix('admin', function ($routes) {
 		]
 	);
 
+	//Groups Routes.
+	$routes->connect(
+		'/groups/edit/:id',
+		[
+			'controller' => 'groups',
+			'action' => 'edit',
+		],
+		[
+			'_name' => 'groups-edit',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
+	$routes->connect(
+		'/groups/delete/:id',
+		[
+			'controller' => 'groups',
+			'action' => 'delete',
+		],
+		[
+			'_name' => 'groups-delete',
+			'pass' => [
+				'id'
+			]
+		]
+	);
+
 /**
  * Premium Routes.
  */

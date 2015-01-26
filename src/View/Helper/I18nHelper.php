@@ -11,6 +11,13 @@ use Cake\View\View;
 class I18nHelper extends Helper {
 
 /**
+ * Helpers used.
+ *
+ * @var array
+ */
+	public $helpers = ['Form'];
+
+/**
  * Default config.
  *
  * @var array
@@ -18,13 +25,6 @@ class I18nHelper extends Helper {
 	protected $_defaultConfig = [
 		'locales' => null
 	];
-
-/**
- * Helpers used.
- *
- * @var array
- */
-	public $helpers = ['Form'];
 
 /**
  * The locales used in the application.
@@ -65,22 +65,21 @@ class I18nHelper extends Helper {
 		$i = 0;
 
 		foreach ($this->_locales as $locale => $lang) {
-			if ($locale == Configure::read('I18n.locale')) {
+			if ($locale == I18n::defaultLocale()) {
 				continue;
 			}
 
 			$i ++;
-			$translationOption = $options;
-			$translationOption['label'] = Inflector::humanize($lang);
-			$translationOption['value'] = $entity->translation($locale)->{$field};
+			$options['label'] = Inflector::humanize($lang);
+			$options['value'] = $entity->translation($locale)->{$field};
 
 			if (isset($options['CkEditor']) && $options['CkEditor'] == true) {
-				$translationOption['id'] = $id . '-' . $i;
+				$options['id'] = $id . '-' . $i;
 			}
 
 			$html .= '<div class="form-group">';
 			$html .= '<div class="col-sm-offset-2 ' . $divClass . '">';
-			$html .= $this->Form->input('translations.' . $locale . '.' . $field, $translationOption);
+			$html .= $this->Form->input('translations.' . $locale . '.' . $field, $options);
 			$html .= '</div></div>';
 		}
 
@@ -101,7 +100,7 @@ class I18nHelper extends Helper {
 		$i = 0;
 
 		foreach ($this->_locales as $locale => $lang) {
-			if ($locale == Configure::read('I18n.locale')) {
+			if ($locale == I18n::defaultLocale()) {
 				continue;
 			}
 

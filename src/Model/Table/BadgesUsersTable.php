@@ -16,6 +16,7 @@ class BadgesUsersTable extends Table {
 		$this->table('badges_users');
 		$this->displayField('id');
 		$this->primaryKey('id');
+
 		$this->addBehavior('Timestamp');
 
 		$this->belongsTo('Badges', [

@@ -67,10 +67,10 @@
 									</li>
 									<li class="text-center">
 										<h4 class="base-header">
-											<?= __d('admin', 'Role') ?>
+											<?= __d('admin', 'Group') ?>
 										</h4>
 										<h5 class="base-header major">
-											<?= h(ucfirst($user->role)) ?>
+											<?= h(ucfirst($user->group->name)) ?>
 										</h5>
 									</li>
 								</ul>
@@ -151,9 +151,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<?= $this->Form->label('role', __d('admin', 'Role'), ['class' => 'col-sm-2 control-label']) ?>
+								<?= $this->Form->label('group_id', __d('admin', 'Group'), ['class' => 'col-sm-2 control-label']) ?>
 								<div class="col-sm-6">
-									<?= $this->Form->input('role', ['class' => 'form-control', 'label' => false]) ?>
+									<?= $this->Form->input('group_id', ['options' => $groups, 'class' => 'form-control', 'label' => false]) ?>
 								</div>
 							</div>
 							<div class="form-group">

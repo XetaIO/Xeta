@@ -5,6 +5,7 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
@@ -16,7 +17,6 @@ class User extends Entity {
  * @var array
  */
 	protected $_accessible = [
-		'role' => false,
 		'*' => true
 	];
 
@@ -80,6 +80,29 @@ class User extends Entity {
  */
 	protected function _getPremium() {
 		return $this->end_subscription > new Time();
+	}
+
+	public function parentNode() {
+		if (!$this->id) {
+			return null;
+		}
+		if (isset($this->group_id)) {
+			$groupId = $this->group_id;
+		} else {
+			$Users = TableRegistry::get('Users');
+			$user = $Users->find('all', ['fields' => ['group_id']])->where(['id' => $this->id])->first();
+			$groupId = $user->group_id;
+		}
+
+		if (!$groupId) {
+			return null;
+		}
+
+		return ['Groups' => ['id' => $groupId]];
+	}
+
+	public function bindNode($user) {
+		return ['model' => 'Groups', 'foreign_key' => $user['Users']['group_id']];
 	}
 
 }

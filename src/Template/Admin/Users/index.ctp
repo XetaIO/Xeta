@@ -9,7 +9,7 @@
 
 		<div class="col-md-12 heading">
 			<h1 class="page-header">
-				<i class="fa fa-users"></i> <?= __d('admin', 'Manage Users') ?>
+				<i class="fa fa-user"></i> <?= __d('admin', 'Manage Users') ?>
 			</h1>
 			<ol class="breadcrumb">
 				<li>
@@ -17,7 +17,7 @@
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
 				<li class="active">
-					<i class="fa fa-users"></i> <?= __d('admin', 'Manage Users') ?>
+					<i class="fa fa-user"></i> <?= __d('admin', 'Manage Users') ?>
 				</li>
 			</ol>
 		</div>

@@ -55,25 +55,34 @@
 	<nav id="user-menu" class="user-menu menu-close">
 		<?= $this->Html->image(h($this->request->session()->read('Auth.User.avatar')), ['class' => 'user-menu-img']) ?>
 		<ul>
-			<?php if($this->Session->read('Auth.User.role') == 'admin'): ?>
+			<?php if ($this->Acl->check(['controller' => 'admin', 'action' => 'home', 'prefix' => 'admin'])): ?>
 				<li>
 					<?= $this->Html->link('<i class="fa fa-key"></i>&nbsp;' . __('Dashboard'), ['controller' => 'admin',
 							'action' => 'home', 'prefix' => 'admin'], ['escape' => false]) ?>
 				</li>
-			<?php endif;?>
-			<li>
-				<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profil'), ['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))], ['escape' => false]) ?>
-			</li>
-			<li>
-				<?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account'], ['escape' => false]) ?>
-			</li>
-			<li>
-				<?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'), ['controller' => 'users', 'action' => 'logout'], ['escape' => false]) ?>
-			</li>
+			<?php endif; ?>
+
+			<?php if ($this->Acl->check(['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))])): ?>
+				<li>
+					<?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profile'), ['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))], ['escape' => false]) ?>
+				</li>
+			<?php endif; ?>
+
+			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'account'])): ?>
+				<li>
+					<?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account'], ['escape' => false]) ?>
+				</li>
+			<?php endif; ?>
+
+			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'logout'])): ?>
+				<li>
+					<?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'), ['controller' => 'users', 'action' => 'logout'], ['escape' => false]) ?>
+				</li>
+			<?php endif; ?>
 		</ul>
 		<!--<ul>
 			<li>
-				<a href="http://www.twitter.com/NozeAres"><i class="fa fa-twitter-square"></i></a>
+				<a href="http://www.twitter.comFMT_ZoRo"><i class="fa fa-twitter-square"></i></a>
 			</li>
 			<li>
 				<a href="http://www.facebook.com/Emeric.ZoRRo"><i class="fa fa-facebook-square"></i></a>
