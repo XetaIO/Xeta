@@ -267,6 +267,62 @@ CREATE TABLE IF NOT EXISTS `premium_transactions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure `groups`
+--
+
+CREATE TABLE IF NOT EXISTS `groups` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(100) NOT NULL,
+    `created` datetime DEFAULT NULL,
+    `modified` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Table data `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'Banni', '2015-01-16 16:51:12', '2015-01-21 02:03:10'),
+(2, 'Membre', '2015-01-16 16:51:22', '2015-01-21 02:02:21'),
+(3, 'Editeur', '2015-01-16 16:51:30', '2015-01-21 02:02:12'),
+(4, 'Modérateur', '2015-01-16 16:51:51', '2015-01-21 02:02:03'),
+(5, 'Administrateur', '2015-01-16 16:52:00', '2015-01-21 02:01:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `groups_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `groups_i18n` (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `locale` varchar(6) NOT NULL,
+    `model` varchar(255) NOT NULL,
+    `foreign_key` int(10) NOT NULL,
+    `field` varchar(255) NOT NULL,
+    `content` mediumtext,
+    PRIMARY KEY (`id`),
+    KEY `locale` (`locale`),
+    KEY `model` (`model`),
+    KEY `row_id` (`foreign_key`),
+    KEY `field` (`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Table data `groups_i18n`
+--
+
+INSERT INTO `groups_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
+(1, 'en_US', 'Groups', 1, 'name', 'Banned'),
+(2, 'en_US', 'Groups', 2, 'name', 'Member'),
+(3, 'en_US', 'Groups', 3, 'name', 'Editor'),
+(4, 'en_US', 'Groups', 4, 'name', 'Moderator'),
+(5, 'en_US', 'Groups', 5, 'name', 'Administrator');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure 'users'
 --
 
@@ -282,7 +338,7 @@ CREATE TABLE IF NOT EXISTS users (
   signature text NOT NULL,
   facebook varchar(200) NOT NULL,
   twitter varchar(200) NOT NULL,
-  role varchar(20) DEFAULT 'member',
+  group_id int(11) NOT NULL DEFAULT '2',
   slug varchar(20) NOT NULL,
   blog_articles_comment_count int(11) DEFAULT '0',
   blog_article_count int(11) DEFAULT '0',
@@ -302,8 +358,8 @@ CREATE TABLE IF NOT EXISTS users (
 -- Table data 'users'
 --
 
-INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, role, slug, blog_articles_comment_count, blog_article_count, end_subscription, register_ip, last_login_ip, last_login, created, modified) VALUES
-(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'admin', 'admin', 1, 1, '0000-00-00 00:00:00',
+INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, group_id, slug, blog_articles_comment_count, blog_article_count, end_subscription, register_ip, last_login_ip, last_login, created, modified) VALUES
+(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 5, 'admin', 1, 1, '0000-00-00 00:00:00',
 '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
-(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 'member', 'test', 1, 0, '0000-00-00 00:00:00',
+(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 2, 'test', 1, 0, '0000-00-00 00:00:00',
 '::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');
