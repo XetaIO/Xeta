@@ -82,6 +82,11 @@ class User extends Entity {
 		return $this->end_subscription > new Time();
 	}
 
+/**
+ * The parendNode for ACL.
+ *
+ * @return null|array
+ */
 	public function parentNode() {
 		if (!$this->id) {
 			return null;
@@ -101,6 +106,13 @@ class User extends Entity {
 		return ['Groups' => ['id' => $groupId]];
 	}
 
+/**
+ * The bindNode method for ACL.
+ *
+ * @param array $user The current user.
+ *
+ * @return array The model and foreign_key to check.
+ */
 	public function bindNode($user) {
 		return ['model' => 'Groups', 'foreign_key' => $user['Users']['group_id']];
 	}

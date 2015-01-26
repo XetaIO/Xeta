@@ -19,6 +19,11 @@ class Group extends Entity {
 		'*' => true
 	];
 
+/**
+ * The parendNode for ACL.
+ *
+ * @return null
+ */
 	public function parentNode() {
 		return null;
 	}

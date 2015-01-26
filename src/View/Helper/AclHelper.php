@@ -49,12 +49,11 @@ class AclHelper extends Helper {
 /**
  * Check if the user can access to the given URL.
  *
- * @param  array $params The params to check.
+ * @param array $params The params to check.
  *
  * @return string
  */
 	public function check(array $params = []) {
-
 		$params += ['_base' => false];
 
 		$url = Router::url($params);
@@ -68,10 +67,10 @@ class AclHelper extends Helper {
 /**
  * Generate the link only if the user has access to the given url.
  *
- * @param  string $title The content to be wrapped by <a> tags.
- * @param  string|array|null $url Cake-relative URL or array of URL parameters, or
+ * @param string $title The content to be wrapped by <a> tags.
+ * @param string|array|null $url Cake-relative URL or array of URL parameters, or
  * external URL (starts with http://)
- * @param  array $options Array of options and HTML attributes.
+ * @param array $options Array of options and HTML attributes.
  *
  * @return string
  */
@@ -89,7 +88,6 @@ class AclHelper extends Helper {
 	}
 
 /**
- *
  * Start a block.
  *
  * @return void
