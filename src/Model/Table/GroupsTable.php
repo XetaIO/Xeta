@@ -2,6 +2,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 class GroupsTable extends Table {
 
@@ -31,4 +32,21 @@ class GroupsTable extends Table {
 		]);
 	}
 
+/**
+ * Default validation rules.
+ *
+ * @param \Cake\Validation\Validator $validator The Validator instance.
+ *
+ * @return \Cake\Validation\Validator
+ */
+	public function validationDefault(Validator $validator) {
+		$validator
+			->notEmpty('name', __("You must set a name."))
+			->add('name', 'minLength', [
+				'rule' => ['minLength', 3],
+				'message' => __("The name can not be less than {0} characters.", 3)
+			]);
+
+		return $validator;
+	}
 }
