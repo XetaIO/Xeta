@@ -72,16 +72,16 @@ INSERT INTO blog_articles (id, category_id, user_id, title, content, slug, comme
 --
 
 CREATE TABLE IF NOT EXISTS `blog_articles_i18n` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `locale` varchar(6) NOT NULL,
-    `model` varchar(255) NOT NULL,
-    `foreign_key` int(10) NOT NULL,
-    `field` varchar(255) NOT NULL,
-    `content` text,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
-    KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`locale` varchar(6) NOT NULL,
+	`model` varchar(255) NOT NULL,
+	`foreign_key` int(10) NOT NULL,
+	`field` varchar(255) NOT NULL,
+	`content` text,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+	KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Table data 'blog_articles_i18n'
@@ -169,17 +169,17 @@ INSERT INTO blog_categories (id, title, description, slug, article_count, create
 --
 
 CREATE TABLE IF NOT EXISTS `blog_attachments` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `article_id` int(11) NOT NULL,
-    `name` varchar(255) NOT NULL,
-    `size` int(11) NOT NULL,
-    `extension` varchar(15) NOT NULL,
-    `url` varchar(255) NOT NULL,
-    `download` bigint(20) NOT NULL DEFAULT '0',
-    `created` datetime NOT NULL,
-    `modified` datetime NOT NULL,
-    PRIMARY KEY (`id`)
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`article_id` int(11) NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`size` int(11) NOT NULL,
+	`extension` varchar(15) NOT NULL,
+	`url` varchar(255) NOT NULL,
+	`download` bigint(20) NOT NULL DEFAULT '0',
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL,
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -189,17 +189,17 @@ CREATE TABLE IF NOT EXISTS `blog_attachments` (
 --
 
 CREATE TABLE IF NOT EXISTS `premium_discounts` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `premium_offer_id` int(11) NOT NULL,
-    `code` varchar(50) NOT NULL,
-    `discount` float NOT NULL,
-    `used` int(11) NOT NULL DEFAULT '0',
-    `max_use` int(11) NOT NULL DEFAULT '0',
-    `created` datetime NOT NULL,
-    `modified` datetime NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `code` (`code`)
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`premium_offer_id` int(11) NOT NULL,
+	`code` varchar(50) NOT NULL,
+	`discount` float NOT NULL,
+	`used` int(11) NOT NULL DEFAULT '0',
+	`max_use` int(11) NOT NULL DEFAULT '0',
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -217,16 +217,16 @@ INSERT INTO `premium_discounts` (`id`, `user_id`, `premium_offer_id`, `code`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `premium_offers` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `period` int(11) NOT NULL,
-    `price` float NOT NULL,
-    `tax` float NOT NULL DEFAULT '19.6',
-    `currency_code` varchar(3) NOT NULL DEFAULT 'EUR',
-    `currency_symbol` varchar(4) NOT NULL DEFAULT '€',
-    `created` datetime NOT NULL,
-    `modified` datetime NOT NULL,
-    PRIMARY KEY (`id`)
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`period` int(11) NOT NULL,
+	`price` float NOT NULL,
+	`tax` float NOT NULL DEFAULT '19.6',
+	`currency_code` varchar(3) NOT NULL DEFAULT 'EUR',
+	`currency_symbol` varchar(4) NOT NULL DEFAULT '€',
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL,
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -246,22 +246,22 @@ INSERT INTO `premium_offers` (`id`, `user_id`, `period`, `price`, `tax`, `curren
 --
 
 CREATE TABLE IF NOT EXISTS `premium_transactions` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `premium_offer_id` int(11) NOT NULL,
-    `premium_discount_id` int(11) DEFAULT NULL,
-    `price` float NOT NULL,
-    `tax` float NOT NULL,
-    `txn` varchar(255) NOT NULL,
-    `action` enum('new','extend') NOT NULL DEFAULT 'new',
-    `period` int(11) NOT NULL,
-    `name` varchar(50) NOT NULL,
-    `country` varchar(50) NOT NULL,
-    `city` varchar(50) NOT NULL,
-    `address` varchar(255) NOT NULL,
-    `created` datetime NOT NULL,
-    `modified` datetime NOT NULL,
-    PRIMARY KEY (`id`)
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`premium_offer_id` int(11) NOT NULL,
+	`premium_discount_id` int(11) DEFAULT NULL,
+	`price` float NOT NULL,
+	`tax` float NOT NULL,
+	`txn` varchar(255) NOT NULL,
+	`action` enum('new','extend') NOT NULL DEFAULT 'new',
+	`period` int(11) NOT NULL,
+	`name` varchar(50) NOT NULL,
+	`country` varchar(50) NOT NULL,
+	`city` varchar(50) NOT NULL,
+	`address` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL,
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -271,12 +271,12 @@ CREATE TABLE IF NOT EXISTS `premium_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(100) NOT NULL,
-    `created` datetime DEFAULT NULL,
-    `modified` datetime DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` varchar(100) NOT NULL,
+	`created` datetime DEFAULT NULL,
+	`modified` datetime DEFAULT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Table data `groups`
@@ -296,18 +296,18 @@ INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `groups_i18n` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `locale` varchar(6) NOT NULL,
-    `model` varchar(255) NOT NULL,
-    `foreign_key` int(10) NOT NULL,
-    `field` varchar(255) NOT NULL,
-    `content` mediumtext,
-    PRIMARY KEY (`id`),
-    KEY `locale` (`locale`),
-    KEY `model` (`model`),
-    KEY `row_id` (`foreign_key`),
-    KEY `field` (`field`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`locale` varchar(6) NOT NULL,
+	`model` varchar(255) NOT NULL,
+	`foreign_key` int(10) NOT NULL,
+	`field` varchar(255) NOT NULL,
+	`content` mediumtext,
+	PRIMARY KEY (`id`),
+	KEY `locale` (`locale`),
+	KEY `model` (`model`),
+	KEY `row_id` (`foreign_key`),
+	KEY `field` (`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Table data `groups_i18n`

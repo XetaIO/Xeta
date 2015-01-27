@@ -82,7 +82,7 @@
 		</ul>
 		<!--<ul>
 			<li>
-				<a href="http://www.twitter.comFMT_ZoRo"><i class="fa fa-twitter-square"></i></a>
+				<a href="http://www.twitter.com/FMT_ZoRo"><i class="fa fa-twitter-square"></i></a>
 			</li>
 			<li>
 				<a href="http://www.facebook.com/Emeric.ZoRRo"><i class="fa fa-facebook-square"></i></a>
