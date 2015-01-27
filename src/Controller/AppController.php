@@ -40,7 +40,9 @@ class AppController extends Controller {
 			'flash' => [
 				'element' => 'error',
 				'key' => 'flash',
-				'params' => ['class' => 'error']
+				'params' => [
+					'class' => 'error'
+				]
 			],
 			'authorize' => [
 				'Acl.Actions' => [
