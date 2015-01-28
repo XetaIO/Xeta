@@ -151,7 +151,7 @@
 								shadowSize: 0,
 								tooltip: !0,
 								tooltipOpts: {
-									content: "%y members",
+									content: "%y <?= __d('admin', 'Members') ?>",
 									xDateFormat: "%d/%m/%Y",
 									shifts: {
 										x: -30,
@@ -173,7 +173,7 @@
 								}
 							};
 							$.plot($("#stats-members"), [{
-								label: <?= __d('admin', 'Members') ?>,
+								label: '<?= __d('admin', 'Members') ?>',
 								data: data
 							}], i)
 
@@ -282,10 +282,10 @@
 									};
 
 								$.plot($("#stats-pageviews"), [{
-									label: <?= __d('admin', 'Visitors') ?>,
+									label: '<?= __d('admin', 'Visitors') ?>',
 									data: Visits
 								}, {
-									label: <?= __d('admin', 'Page Views') ?>,
+									label: '<?= __d('admin', 'Page Views') ?>',
 									data: PageViews
 								}], d)
 							});
