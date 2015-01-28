@@ -25,13 +25,6 @@ class AclHelper extends Helper {
 	public $Acl;
 
 /**
- * List of current blocks.
- *
- * @var array
- */
-	protected $_blocks = [];
-
-/**
  * Construct method.
  *
  * @param \Cake\View\View $view The view that was fired.
@@ -79,39 +72,7 @@ class AclHelper extends Helper {
 			return '';
 		}
 
-		//Set all the block to true so they will get displayed
-		foreach ($this->_blocks as $id => $val) {
-			$this->_blocks[$id] = true;
-		}
-
 		return $this->Html->link($title, $url, $options);
-	}
-
-/**
- * Start a block.
- *
- * @return void
- */
-	public function startBlock() {
-		$this->_blocks[] = false;
-		ob_start();
-	}
-
-/**
- * End a block.
- *
- * @return void
- */
-	public function endBlock() {
-		$lastid = count($this->_blocks) - 1;
-
-		if (isset($this->_blocks[$lastid]) && $this->_blocks[$lastid] == true) {
-			ob_end_flush();
-		} else {
-			ob_end_clean();
-		}
-
-		unset($this->_blocks[$lastid]);
 	}
 
 /**
