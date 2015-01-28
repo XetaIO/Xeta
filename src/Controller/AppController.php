@@ -156,8 +156,18 @@ class AppController extends Controller {
 			}
 		}
 
-		if (isset($this->request->params['prefix']) && explode('/', $this->request->params['prefix'])[0] == 'admin') {
-			$this->layout = 'admin';
+		if (isset($this->request->params['prefix'])) {
+			$prefix = explode('/', $this->request->params['prefix'])[0];
+
+			switch($prefix) {
+				case 'admin':
+					$this->layout = 'admin';
+				break;
+
+				case 'forum':
+					$this->layout = 'forum';
+				break;
+			}
 		}
 
 		$allowCookies = $this->Cookie->check('allowCookies');

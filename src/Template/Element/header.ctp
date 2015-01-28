@@ -68,13 +68,13 @@
 				</li>
 			<?php endif; ?>
 
-			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'account'])): ?>
+			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'account', 'prefix' => false])): ?>
 				<li>
 					<?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account'], ['escape' => false]) ?>
 				</li>
 			<?php endif; ?>
 
-			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'logout'])): ?>
+			<?php if ($this->Acl->check(['controller' => 'users', 'action' => 'logout', 'prefix' => false])): ?>
 				<li>
 					<?= $this->Html->link('<i class="fa fa-sign-out"></i>&nbsp;' . __('Logout'), ['controller' => 'users', 'action' => 'logout'], ['escape' => false]) ?>
 				</li>

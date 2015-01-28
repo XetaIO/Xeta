@@ -108,6 +108,19 @@ Router::scope('/', function ($routes) {
 	$routes->fallbacks();
 });
 
+//Forum routes.
+Router::prefix('forum', function ($routes) {
+	$routes->connect(
+		'/',
+		[
+			'controller' => 'forum',
+			'action' => 'home'
+		]
+	);
+
+	$routes->fallbacks();
+});
+
 //Admin routes.
 Router::prefix('admin', function ($routes) {
 	$routes->connect(
