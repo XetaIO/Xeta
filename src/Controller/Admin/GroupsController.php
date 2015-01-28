@@ -91,4 +91,48 @@ class GroupsController extends AppController {
 
 		$this->set(compact('group'));
 	}
+
+/**
+ * Delete a group.
+ *
+ * @return \Cake\Network\Response
+ */
+	public function delete() {
+		$group = $this->Groups
+			->find()
+			->where([
+				'Groups.id' => $this->request->id
+			])
+			->contain([
+				'Users' => function ($q) {
+					return $q->limit(1);
+				}
+			])
+			->first();
+
+		//Check if the group is found.
+		if (empty($group)) {
+			$this->Flash->error(__d('admin', 'This group doesn\'t exist or has been deleted.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
+		//Check if the group is assigned to one or more user(s).
+		if (!empty($group->users)) {
+			$this->Flash->error(__d('admin', 'This group is assigned to one or more user(s). You must change their group before to delete this group.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
+		if ($this->Groups->delete($group)) {
+
+			$this->Flash->success(__d('admin', 'This group has been deleted successfully !'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
+		$this->Flash->error(__d('admin', 'Unable to delete this group.'));
+
+		return $this->redirect(['action' => 'index']);
+	}
 }
