@@ -453,11 +453,11 @@ CREATE TABLE IF NOT EXISTS `aros` (
 --
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Groups', 1, '', 11, 12),
-(2, NULL, 'Groups', 2, '', 9, 10),
-(3, NULL, 'Groups', 3, '', 7, 8),
-(4, NULL, 'Groups', 4, '', 5, 6),
-(5, NULL, 'Groups', 5, '', 3, 4);
+(1, NULL, 'Groups', 1, '', 9, 10),
+(2, NULL, 'Groups', 2, '', 7, 8),
+(3, NULL, 'Groups', 3, '', 5, 6),
+(4, NULL, 'Groups', 4, '', 3, 4),
+(5, NULL, 'Groups', 5, '', 1, 2);
 
 -- --------------------------------------------------------
 
