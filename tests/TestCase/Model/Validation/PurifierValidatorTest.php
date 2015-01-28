@@ -22,8 +22,9 @@ class PurifierValidatorTest extends TestCase {
 			]);
 
 		$expected = ['biography' => ['maxLength' => 'You fail']];
-		$this->assertEquals($expected, $validator->errors(['biography' => 'more than 10 characteres']));
 
+		$this->assertEquals($expected, $validator->errors(['biography' => 'more than 10 characteres']));
+		$this->assertEquals($expected, $validator->errors(['biography' => false]));
 		$this->assertEmpty($validator->errors(['biography' => 'LessThan9']));
 	}
 
@@ -44,7 +45,7 @@ class PurifierValidatorTest extends TestCase {
 
 		$expected = ['biography' => ['minLength' => 'You fail']];
 		$this->assertEquals($expected, $validator->errors(['biography' => 'LessThan9']));
-
+		$this->assertEquals($expected, $validator->errors(['biography' => false]));
 		$this->assertEmpty($validator->errors(['biography' => 'more than 10 characteres']));
 	}
 }

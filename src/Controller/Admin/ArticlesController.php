@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\I18n\I18n;
 
 class ArticlesController extends AppController {
 
@@ -52,6 +53,8 @@ class ArticlesController extends AppController {
  */
 	public function add() {
 		$this->loadModel('BlogArticles');
+
+		$this->BlogArticles->locale(I18n::defaultLocale());
 		$article = $this->BlogArticles->newEntity($this->request->data);
 
 		if ($this->request->is('post')) {
@@ -78,7 +81,7 @@ class ArticlesController extends AppController {
 	public function edit() {
 		$this->loadModel('BlogArticles');
 
-		$this->BlogArticles->locale(\Cake\Core\Configure::read('I18n.locale'));
+		$this->BlogArticles->locale(I18n::defaultLocale());
 		$article = $this->BlogArticles
 			->find('translations')
 			->where([

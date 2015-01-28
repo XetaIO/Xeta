@@ -22,6 +22,7 @@ class UserTest extends TestCase {
  */
 	public function setUp() {
 		parent::setUp();
+
 		$this->Users = TableRegistry::get('Users');
 	}
 
@@ -108,5 +109,41 @@ class UserTest extends TestCase {
 		$user = $this->Users->newEntity($data);
 
 		$this->assertTrue($user->premium);
+	}
+
+/**
+ * Test parendNode
+ *
+ * @return void
+ */
+	public function testParendNode() {
+		$entity = $this->Users->get(1);
+		unset($entity->id);
+		$result = $entity->parentNode();
+		$this->assertNull($result);
+
+		$entity = $this->Users->get(1);
+		$result = $entity->parentNode();
+		$expected = [
+			'Groups' => [
+				'id' => 1
+			]
+		];
+		$this->assertEquals($expected, $result);
+
+		$entity = $this->Users->get(1);
+		unset($entity->group_id);
+		$result = $entity->parentNode();
+		$expected = [
+			'Groups' => [
+				'id' => 1
+			]
+		];
+		$this->assertEquals($expected, $result);
+
+		$entity = $this->Users->get(1);
+		$entity->group_id = false;
+		$result = $entity->parentNode();
+		$this->assertNull($result);
 	}
 }

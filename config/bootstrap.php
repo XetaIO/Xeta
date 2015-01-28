@@ -78,8 +78,8 @@ try {
 // for a very very long time, as we don't want
 // to refresh the cache while users are doing requests.
 if (!Configure::read('debug')) {
-	Configure::write('Cache._cake_model_.duration', '+99 years');
-	Configure::write('Cache._cake_core_.duration', '+99 years');
+	Configure::write('Cache._cake_model_.duration', '+1 years');
+	Configure::write('Cache._cake_core_.duration', '+1 years');
 }
 
 /**
@@ -98,12 +98,6 @@ mb_internal_encoding(Configure::read('App.encoding'));
  * formatted and sets the default language to use for translations.
  */
 ini_set('intl.default_locale', 'fr_FR');
-
-/**
- * Set the default locale. This option doesn't change in the application.
- * Used to determine what language is set by default in translations.
- */
-Configure::write('I18n.locale', 'fr_FR');
 
 /**
  * Set the locales accepted.
@@ -185,12 +179,17 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 
-if (Configure::read('debug')) {
-	Plugin::load('DebugKit', ['bootstrap' => true]);
-}
+Plugin::load('Migrations');
+Plugin::load('Acl', ['bootstrap' => true]);
 Plugin::load('Xety/Cake3Upload');
 Plugin::load('Xety/Cake3Sluggable');
 Plugin::load('Xety/Cake3CookieAuth');
+
+// Only try to load DebugKit in development mode
+// Debug Kit should not be installed on a production system
+if (Configure::read('debug')) {
+	Plugin::load('DebugKit', ['bootstrap' => true]);
+}
 
 /**
  * Connect middleware/dispatcher filters.

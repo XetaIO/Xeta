@@ -33,6 +33,10 @@ class UsersTable extends Table {
 		$this->addBehavior('Xety/Cake3Sluggable.Sluggable', [
 			'field' => 'username'
 		]);
+		$this->addBehavior('Acl.Acl', [
+			'type' => 'requester',
+			'enabled' => false
+		]);
 
 		$this->hasMany('BlogArticles', [
 			'foreignKey' => 'user_id',
@@ -62,6 +66,9 @@ class UsersTable extends Table {
 		]);
 		$this->hasMany('PremiumDiscounts', [
 			'foreignKey' => 'user_id'
+		]);
+		$this->belongsTo('Groups', [
+			'foreignKey' => 'group_id'
 		]);
 	}
 
@@ -99,7 +106,7 @@ class UsersTable extends Table {
 				],
 				'equalToPassword' => [
 					'rule' => function ($value, $context) {
-						return $value == $context['data']['password'];
+						return $value === $context['data']['password'];
 					},
 					'message' => __("Your password confirm must match with your password.")
 				]
@@ -230,7 +237,7 @@ class UsersTable extends Table {
 				],
 				'equalToPassword' => [
 					'rule' => function ($value, $context) {
-							return $value == $context['data']['password'];
+							return $value === $context['data']['password'];
 					},
 					'message' => __("Your password confirm must match with your new password")
 				]
@@ -327,7 +334,7 @@ class UsersTable extends Table {
 				'username',
 				'avatar',
 				'slug',
-				'role',
+				'group_id',
 				'facebook',
 				'twitter',
 				'signature',

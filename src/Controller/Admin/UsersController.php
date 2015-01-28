@@ -111,6 +111,9 @@ class UsersController extends AppController {
 				'slug' => $this->request->slug,
 				'slugField' => 'Users.slug'
 			])
+			->contain([
+				'Groups'
+			])
 			->first();
 
 		//Check if the user is found.
@@ -131,7 +134,11 @@ class UsersController extends AppController {
 			}
 		}
 
-		$this->set(compact('user'));
+		$this->loadModel('Groups');
+
+		$groups = $this->Groups->find('list');
+
+		$this->set(compact('user', 'groups'));
 	}
 
 /**

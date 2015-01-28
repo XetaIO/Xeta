@@ -1,6 +1,7 @@
 /vendor/*
 /tmp/*
 /logs/*
+/bin/*
 /plugins/*
 /node_modules/
 /webroot/coverage/

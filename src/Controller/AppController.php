@@ -17,6 +17,7 @@ class AppController extends Controller {
 	public $components = [
 		'Flash',
 		'Cookie',
+		'Acl.Acl',
 /**
  * If you want enable CSRF uncomment this.
  * I recommand to enable it. If i have disable it, it's because
@@ -26,11 +27,28 @@ class AppController extends Controller {
 			'secure' => true
 		],*/
 		'Auth' => [
+			'className' => 'AclAuth',
+			'allowedActionsForBanned' => [
+				'Pages' => [
+					'home'
+				]
+			],
 			'authenticate' => [
 				'Form',
 				'Xety/Cake3CookieAuth.Cookie'
 			],
-			'authorize' => ['Controller'],
+			'flash' => [
+				'element' => 'error',
+				'key' => 'flash',
+				'params' => [
+					'class' => 'error'
+				]
+			],
+			'authorize' => [
+				'Acl.Actions' => [
+					'actionPath' => 'app/'
+				]
+			],
 			'loginAction' => [
 				'controller' => 'users',
 				'action' => 'login',
@@ -48,7 +66,8 @@ class AppController extends Controller {
 			'logoutRedirect' => [
 				'controller' => 'pages',
 				'action' => 'home'
-			]
+			],
+			'authError' => 'You are not authorized to access that location !'
 		]
 	];
 
@@ -62,31 +81,11 @@ class AppController extends Controller {
 			'templates' => [
 				'error' => '<div class="text-danger">{{content}}</div>',
 				'radioWrapper' => '{{input}}{{label}}',
-				'nestingLabel' => '<label{{attrs}}>{{text}}</label>',
+				'nestingLabel' => '<label{{attrs}}>{{text}}</label>'
 			]
-		]
+		],
+		'Acl'
 	];
-
-/**
- * isAuthorized handle.
- *
- * @param array $user The current user.
- *
- * @return bool
- */
-	public function isAuthorized($user) {
-		if (!isset($this->request->params['prefix'])) {
-			return true;
-		}
-
-		// Admin can access every action
-		if (isset($user['role']) && $user['role'] === 'admin') {
-			return true;
-		}
-
-		// Default deny
-		return false;
-	}
 
 /**
  * beforeFilter handle.

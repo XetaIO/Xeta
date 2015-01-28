@@ -11,6 +11,7 @@ class PremiumOffersTable extends Table {
  * Initialize method
  *
  * @param array $config The configuration for the Table.
+ *
  * @return void
  */
 	public function initialize(array $config) {
@@ -35,6 +36,7 @@ class PremiumOffersTable extends Table {
  * Default validation rules.
  *
  * @param \Cake\Validation\Validator $validator The Validator instance.
+ *
  * @return \Cake\Validation\Validator
  */
 	public function validationDefault(Validator $validator) {

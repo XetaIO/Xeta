@@ -1,5 +1,5 @@
 <?php
-$config = [
+return [
 	'Author' => [
 		'full_name' => 'Emeric Fèvre',
 		'pseudo' => 'Xeta',
