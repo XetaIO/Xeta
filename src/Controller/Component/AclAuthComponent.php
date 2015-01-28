@@ -18,7 +18,7 @@ class AclAuthComponent extends AuthComponent {
  *
  * @param string|array $actions Controller action name or array of actions.
  *
- * @return void.
+ * @return void
  */
 	public function allow($actions = null) {
 		if ($actions === null) {
