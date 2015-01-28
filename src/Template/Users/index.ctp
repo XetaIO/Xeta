@@ -27,7 +27,7 @@
 					<tr>
 						<th><?= __("Username") ?></th>
 						<th><?= __("Full Name") ?></th>
-						<th><?= __("Rank") ?></th>
+						<th><?= __("Group") ?></th>
 						<th><?= __("Registered date") ?></th>
 						<th><?= __("Last login") ?></th>
 					</tr>
@@ -53,7 +53,7 @@
 								<?= h($user->full_name) ?>
 							</td>
 							<td>
-								<?= ucfirst(h($user->role)) ?>
+								<?= ucfirst(h($user->group->name)) ?>
 							</td>
 							<td>
 								<?= $user->created->format('d-m-Y') ?>

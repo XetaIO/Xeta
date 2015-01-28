@@ -32,7 +32,10 @@ class UsersController extends AppController {
 			'maxLimit' => Configure::read('User.user_per_page')
 		];
 		$users = $this->Users
-			->find('full')
+			->find()
+			->contain([
+				'Groups'
+			])
 			->order([
 				'Users.created' => 'desc'
 			]);
