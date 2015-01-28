@@ -111,9 +111,6 @@ class UsersController extends AppController {
 				'slug' => $this->request->slug,
 				'slugField' => 'Users.slug'
 			])
-			->contain([
-				'Groups'
-			])
 			->first();
 
 		//Check if the user is found.
