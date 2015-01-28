@@ -70,7 +70,7 @@
 											<?= __d('admin', 'Group') ?>
 										</h4>
 										<h5 class="base-header major">
-											<?= h(ucfirst($user->group->name)) ?>
+											<?= h(ucfirst($groups->toArray()[$user->group_id])) ?>
 										</h5>
 									</li>
 								</ul>
