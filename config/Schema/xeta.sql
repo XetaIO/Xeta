@@ -165,6 +165,32 @@ INSERT INTO blog_categories (id, title, description, slug, article_count, create
 -- --------------------------------------------------------
 
 --
+-- Table structure `blog_categories_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_categories_i18n` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`locale` varchar(6) NOT NULL,
+	`model` varchar(255) NOT NULL,
+	`foreign_key` int(10) NOT NULL,
+	`field` varchar(255) NOT NULL,
+	`content` text,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+	KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Table data 'blog_categories_i18n'
+--
+
+INSERT INTO `blog_articles_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
+(1, 'en_US', 'BlogCategories', 1, 'title', 'Xeta English'),
+(2, 'en_US', 'BlogCategories', 1, 'description', 'Lorem ipsum dolor sit amet english.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure `blog_attachments`
 --
 
