@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\I18n\I18n;
 
 class CategoriesController extends AppController {
 
@@ -34,12 +35,14 @@ class CategoriesController extends AppController {
  */
 	public function add() {
 		$this->loadModel('BlogCategories');
+
+		$this->BlogCategories->locale(I18n::defaultLocale());
 		$category = $this->BlogCategories->newEntity($this->request->data);
 
 		if ($this->request->is('post')) {
+			$category->setTranslations($this->request->data);
 
 			if ($this->BlogCategories->save($category)) {
-
 				$this->Flash->success(__d('admin', 'The category has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
@@ -57,11 +60,13 @@ class CategoriesController extends AppController {
 	public function edit() {
 		$this->loadModel('BlogCategories');
 
+		$this->BlogCategories->locale(I18n::defaultLocale());
 		$category = $this->BlogCategories
 			->find('slug', [
 				'slug' => $this->request->slug,
 				'slugField' => 'BlogCategories.slug'
 			])
+			->find('translations')
 			->first();
 
 		//Check if the category is found.
@@ -73,6 +78,7 @@ class CategoriesController extends AppController {
 
 		if ($this->request->is('put')) {
 			$this->BlogCategories->patchEntity($category, $this->request->data());
+			$category->setTranslations($this->request->data);
 
 			if ($this->BlogCategories->save($category)) {
 
