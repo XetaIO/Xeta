@@ -125,6 +125,7 @@ class SessionsActivityComponent extends Component {
 		$this->Sessions = TableRegistry::get('Sessions');
 		$online = $this->Sessions
 			->find('expires')
+			->select(['Sessions.expires', 'Sessions.user_id'])
 			->where([
 				'Sessions.user_id' => $user->id
 			])

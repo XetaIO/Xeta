@@ -3,11 +3,18 @@ namespace App\Controller\Forum;
 
 use App\Controller\AppController;
 use App\Event\Badges;
+use App\Event\Forum\Statistics;
+use Cake\Event\Event;
 use Cake\I18n\Time;
 use Cake\utility\Inflector;
 
 class ThreadsController extends AppController {
 
+/**
+ * Edit a thread.
+ *
+ * @return \Cake\Network\Response
+ */
 	public function edit() {
 		$this->loadModel('ForumThreads');
 
@@ -52,7 +59,6 @@ class ThreadsController extends AppController {
 					'id' => $thread->id
 				]);
 			}
-
 		}
 
 		$this->redirect($this->referer());
@@ -83,8 +89,6 @@ class ThreadsController extends AppController {
 				$post->forum_thread->isNew(false);
 			}
 
-			//Attach Event.
-			$this->ForumPosts->eventManager()->attach(new Badges($this));
 
 			if ($newPost = $this->ForumPosts->save($post)) {
 				//Update the last post id.
@@ -93,6 +97,14 @@ class ThreadsController extends AppController {
 				$thread = $this->ForumThreads->get($this->request->params['id']);
 				$thread->last_post_id = $newPost->id;
 				$this->ForumThreads->save($thread);
+
+				//Event.
+				$this->eventManager()->attach(new Statistics());
+				$stats = new Event('Model.ForumPosts.new', $this);
+				$this->eventManager()->dispatch($stats);
+
+				//Attach Event.
+				$this->ForumPosts->eventManager()->attach(new Badges($this));
 
 				if ($this->request->data['forum_thread']['thread_open'] == false) {
 					$this->Flash->success(__('Your reply has been posted successfully and the thread has been closed !'));

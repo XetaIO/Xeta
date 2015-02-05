@@ -66,7 +66,6 @@ class ForumPostsTable extends Table {
  */
 	public function afterSave(Event $event, Entity $entity, ArrayObject $options) {
 		if ($entity->isNew()) {
-			debug($entity);
 			$event = new Event('Model.ForumPosts.reply', $this, [
 				'post' => $entity
 			]);

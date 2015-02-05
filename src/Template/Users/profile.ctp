@@ -64,8 +64,7 @@
 									<?= $this->Html->image($badge->badge->picture, [
 										'alt' => h($badge->badge->name),
 										'title' => h($badge->badge->name),
-										'data-toggle' => 'tooltip',
-										'style' => ''
+										'data-toggle' => 'tooltip'
 									]) ?>
 								</div>
 							<?php endforeach; ?>
