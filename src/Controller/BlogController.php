@@ -269,14 +269,14 @@ class BlogController extends AppController {
 			//Build the quote.
 			$json['comment'] = <<<EOT
 <div>
-     <div>
-        <a href="{$url}">
-        	<strong>{$comment->user->full_name} {$text}</strong>
-        </a>
+	 <div>
+		<a href="{$url}">
+			<strong>{$comment->user->full_name} {$text}</strong>
+		</a>
 	</div>
-    <blockquote>
-    	$comment->content
-    </blockquote>
+	<blockquote>
+		$comment->content
+	</blockquote>
 </div><p>&nbsp;</p><p>&nbsp;</p>
 EOT;
 

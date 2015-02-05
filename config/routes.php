@@ -114,7 +114,143 @@ Router::prefix('forum', function ($routes) {
 		'/',
 		[
 			'controller' => 'forum',
+			'action' => 'index'
+		]
+	);
+
+	$routes->connect(
+		'/home',
+		[
+			'controller' => 'forum',
 			'action' => 'home'
+		]
+	);
+
+	$routes->connect(
+		'/categories/:slug.:id',
+		[
+			'controller' => 'forum',
+			'action' => 'categories'
+		],
+		[
+			'_name' => 'forum-categories',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	$routes->connect(
+		'/threads/:slug.:id',
+		[
+			'controller' => 'forum',
+			'action' => 'threads'
+		],
+		[
+			'_name' => 'forum-threads',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	//Threads Routes
+	$routes->connect(
+		'/threads/edit/:slug.:id',
+		[
+			'controller' => 'threads',
+			'action' => 'edit'
+		],
+		[
+			'_name' => 'threads-edit',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	$routes->connect(
+		'/threads/reply/:slug.:id',
+		[
+			'controller' => 'threads',
+			'action' => 'reply'
+		],
+		[
+			'_name' => 'threads-reply',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	$routes->connect(
+		'/threads/lock/:slug.:id',
+		[
+			'controller' => 'threads',
+			'action' => 'lock'
+		],
+		[
+			'_name' => 'threads-lock',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	$routes->connect(
+		'/threads/unlock/:slug.:id',
+		[
+			'controller' => 'threads',
+			'action' => 'unlock'
+		],
+		[
+			'_name' => 'threads-unlock',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	//Posts Routes.
+	$routes->connect(
+		'/posts/edit/:id',
+		[
+			'controller' => 'posts',
+			'action' => 'edit'
+		],
+		[
+			'_name' => 'posts-edit',
+			'pass' => [
+				'id'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
+	$routes->connect(
+		'/posts/delete/:id',
+		[
+			'controller' => 'posts',
+			'action' => 'delete'
+		],
+		[
+			'_name' => 'posts-delete',
+			'pass' => [
+				'id'
+			],
+			'id' => '[0-9]+'
 		]
 	);
 

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Event\Badges;
+use App\Event\Forum\Statistics;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -114,6 +115,12 @@ class UsersController extends AppController {
 						if ($user) {
 							$this->Auth->setUser($user);
 						}
+
+						//Event.
+						$this->eventManager()->attach(new Statistics());
+
+						$stats = new Event('Model.Users.register', $this);
+						$this->eventManager()->dispatch($stats);
 
 						$this->Flash->success(__("Your account has been created successfully !"));
 

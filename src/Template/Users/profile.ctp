@@ -60,11 +60,12 @@
 					<div class="badges">
 						<div class="row">
 							<?php foreach ($user->badges_users as $badge): ?>
-								<div class="col-md-3">
+								<div style="display:inline-block;margin: 10px 20px;">
 									<?= $this->Html->image($badge->badge->picture, [
 										'alt' => h($badge->badge->name),
 										'title' => h($badge->badge->name),
-										'data-toggle' => 'tooltip'
+										'data-toggle' => 'tooltip',
+										'style' => ''
 									]) ?>
 								</div>
 							<?php endforeach; ?>

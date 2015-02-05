@@ -85,6 +85,58 @@ return [
 				'HTML.Allowed' => '',
 				'AutoFormat.RemoveEmpty' => true
 			]
+		],
+		'Forum' => [
+			'post' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
+				a[href], br, blockquote, pre[class]',
+				'CSS.AllowedProperties' => 'font-size,height,width',
+				'Attr.AllowedClasses' => 'prettyprint, linenums',
+				'AutoFormat.RemoveEmpty' => true
+			],
+			'post_empty' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => 'p',
+				'AutoFormat.RemoveEmpty' => true
+			],
+			'post_meta' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => '',
+				'AutoFormat.RemoveEmpty' => true
+			],
+			'thread' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
+				a[href], br, blockquote, pre[class]',
+				'CSS.AllowedProperties' => 'font-size,height,width',
+				'Attr.AllowedClasses' => 'prettyprint, linenums',
+				'AutoFormat.RemoveEmpty' => true
+			],
+			'thread_empty' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => 'p',
+				'AutoFormat.RemoveEmpty' => true
+			],
+			'thread_meta' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => '',
+				'AutoFormat.RemoveEmpty' => true
+			]
+		]
+	],
+	'Forum' => [
+		'Categories' => [
+			'threads_per_page' => 20
+		],
+		'Threads' => [
+			'posts_per_page' => 10
 		]
 	]
 ];

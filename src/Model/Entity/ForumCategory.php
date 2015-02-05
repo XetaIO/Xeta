@@ -2,25 +2,26 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
+
+class ForumCategory extends Entity {
 
 /**
- * ForumCategory Entity.
+ * Fields that can be mass assigned using newEntity() or patchEntity().
+ *
+ * @var array
  */
-class ForumCategory extends Entity
-{
+	protected $_accessible = [
+		'*' => true
+	];
 
-    /**
-     * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * @var array
-     */
-    protected $_accessible = [
-        'title' => true,
-        'description' => true,
-        'parent_id' => true,
-        'lft' => true,
-        'rght' => true,
-        'parent_forum_category' => true,
-        'child_forum_categories' => true,
-    ];
+/**
+ * Get the number of child for this node.
+ *
+ * @return int
+ */
+	protected function _getChildCount() {
+		$category = TableRegistry::get('ForumCategories');
+		return $category->childCount($this);
+	}
 }

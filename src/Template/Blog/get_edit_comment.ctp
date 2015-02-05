@@ -25,7 +25,7 @@
 			var commentId = $(this).attr("data-id");
 			$("#comment-" + commentId + " .content").fadeIn();
 			$("#editingComment-" + commentId).remove();
-			
+
 			return false;
 		});
 	});

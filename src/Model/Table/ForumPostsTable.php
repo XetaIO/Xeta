@@ -1,8 +1,10 @@
 <?php
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Event\Event;
+use Cake\ORM\Entity;
 use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -21,14 +23,19 @@ class ForumPostsTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Timestamp');
+		$this->addBehavior('CounterCache', [
+			'Users' => ['forum_post_count'],
+			'ForumThreads' => ['reply_count']
+		]);
 
-		$this->belongsTo('Threads', [
+		$this->belongsTo('ForumThreads', [
 			'foreignKey' => 'thread_id'
 		]);
 		$this->belongsTo('Users', [
 			'foreignKey' => 'user_id'
 		]);
 		$this->belongsTo('LastEditUsers', [
+			'className' => 'Users',
 			'foreignKey' => 'last_edit_user_id'
 		]);
 	}
@@ -49,17 +56,23 @@ class ForumPostsTable extends Table {
 	}
 
 /**
- * Returns a rules checker object that will be used for validating
- * application integrity.
+ * AfterSave callback.
  *
- * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+ * @param \Cake\Event\Event $event   The afterSave event that was fired.
+ * @param \Cake\ORM\Entity $entity  The entity that was saved.
+ * @param \ArrayObject $options The options passed to the callback.
  *
- * @return \Cake\ORM\RulesChecker
+ * @return bool
  */
-	public function buildRules(RulesChecker $rules) {
-		$rules->add($rules->existsIn(['thread_id'], 'Threads'));
-		$rules->add($rules->existsIn(['user_id'], 'Users'));
-		$rules->add($rules->existsIn(['last_edit_user_id'], 'LastEditUsers'));
-		return $rules;
+	public function afterSave(Event $event, Entity $entity, ArrayObject $options) {
+		if ($entity->isNew()) {
+			debug($entity);
+			$event = new Event('Model.ForumPosts.reply', $this, [
+				'post' => $entity
+			]);
+			$this->eventManager()->dispatch($event);
+		}
+
+		return true;
 	}
 }

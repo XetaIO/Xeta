@@ -21,6 +21,10 @@ class ForumThreadsTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Timestamp');
+		$this->addBehavior('CounterCache', [
+			'Users' => ['forum_thread_count'],
+			'ForumCategories' => ['thread_count']
+		]);
 
 		$this->belongsTo('ForumCategories', [
 			'foreignKey' => 'category_id'
@@ -40,8 +44,10 @@ class ForumThreadsTable extends Table {
 			'className' => 'Users',
 			'foreignKey' => 'last_post_user_id'
 		]);
-		$this->hasMany('ForumsPosts', [
-			'foreignKey' => 'thread_id'
+		$this->hasMany('ForumPosts', [
+			'foreignKey' => 'thread_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
 		]);
 	}
 
@@ -68,12 +74,12 @@ class ForumThreadsTable extends Table {
  *
  * @return \Cake\ORM\RulesChecker
  */
-	public function buildRules(RulesChecker $rules) {
+/*	public function buildRules(RulesChecker $rules) {
 		$rules->add($rules->existsIn(['category_id'], 'Categories'));
 		$rules->add($rules->existsIn(['user_id'], 'Users'));
 		$rules->add($rules->existsIn(['first_post_id'], 'FirstPosts'));
 		$rules->add($rules->existsIn(['last_post_id'], 'LastPosts'));
 		$rules->add($rules->existsIn(['last_post_user_id'], 'LastPostUsers'));
 		return $rules;
-	}
+	}*/
 }

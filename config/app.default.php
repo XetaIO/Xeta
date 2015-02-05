@@ -49,6 +49,7 @@ return [
 		'paths' => [
 			'plugins' => [ROOT . DS . 'plugins' . DS],
 			'templates' => [APP . 'Template' . DS],
+			'locales' => [APP . 'Locale' . DS],
 		],
 	],
 
@@ -76,11 +77,40 @@ return [
 	],
 
 /**
+* Acl configuration.
+*/
+	'Acl' => [
+		'classname' => 'CachedDbAcl',
+		'cacheConfig' => 'acl'
+	],
+
+/**
  * Configure the cache adapters.
  */
 	'Cache' => [
 		'default' => [
 			'className' => 'File',
+			'path' => CACHE,
+		],
+
+	/**
+	 * Configure the cache used for storing the acl request.
+	 */
+		'acl' => [
+			'className' => 'File',
+			'prefix' => 'Xeta_acl_',
+			'path' => CACHE . 'acl/',
+			'duration' => '+1 days',
+		],
+
+	/**
+	 * Configure the cache used for storing the statistics request for Forum.
+	 */
+		'forum' => [
+			'className' => 'File',
+			'prefix' => 'Xeta_forum_',
+			'path' => CACHE . 'views/',
+			'duration' => '+1 days',
 		],
 
 	/**
@@ -89,6 +119,16 @@ return [
 		'analytics' => [
 			'className' => 'File',
 			'prefix' => 'Xeta_analytics_',
+			'path' => CACHE . 'views/',
+			'duration' => '+1 hours',
+		],
+
+	/**
+	 * Configure the cache used for short caching.
+	 */
+		'short' => [
+			'className' => 'File',
+			'prefix' => 'Xeta_short_',
 			'path' => CACHE . 'views/',
 			'duration' => '+1 hours',
 		],
@@ -326,8 +366,12 @@ return [
  * To use database sessions, load the SQL file located at config/Schema/sessions.sql
  */
 	'Session' => [
-		'defaults' => 'php',
+		'defaults' => 'database',
 		'cookie' => 'Xeta',
+		'handler' => [
+			'model' => 'Sessions',
+			'timeoutOnline' => 5
+		],
 		'timeout' => 160
 	],
 

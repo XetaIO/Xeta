@@ -70,6 +70,16 @@ class UsersTable extends Table {
 		$this->belongsTo('Groups', [
 			'foreignKey' => 'group_id'
 		]);
+		$this->hasMany('ForumThreads', [
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
+		]);
+		$this->hasMany('ForumPosts', [
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'cascadeCallbacks' => true
+		]);
 	}
 
 /**
@@ -296,11 +306,11 @@ class UsersTable extends Table {
  */
 	public function findShort(Query $query) {
 		return $query->select([
-				'first_name',
-				'last_name',
-				'username',
-				'slug'
-			]);
+			'first_name',
+			'last_name',
+			'username',
+			'slug'
+		]);
 	}
 
 /**
@@ -312,12 +322,12 @@ class UsersTable extends Table {
  */
 	public function findMedium(Query $query) {
 		return $query->select([
-				'first_name',
-				'last_name',
-				'username',
-				'avatar',
-				'slug'
-			]);
+			'first_name',
+			'last_name',
+			'username',
+			'avatar',
+			'slug'
+		]);
 	}
 
 /**
@@ -329,17 +339,22 @@ class UsersTable extends Table {
  */
 	public function findFull(Query $query) {
 		return $query->select([
-				'first_name',
-				'last_name',
-				'username',
-				'avatar',
-				'slug',
-				'group_id',
-				'facebook',
-				'twitter',
-				'signature',
-				'created',
-				'last_login'
-			]);
+			'id',
+			'first_name',
+			'last_name',
+			'username',
+			'avatar',
+			'slug',
+			'group_id',
+			'forum_post_count',
+			'forum_thread_count',
+			'blog_articles_comment_count',
+			'blog_article_count',
+			'facebook',
+			'twitter',
+			'signature',
+			'created',
+			'last_login'
+		]);
 	}
 }

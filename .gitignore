@@ -6,6 +6,7 @@
 /node_modules/
 /webroot/coverage/
 /webroot/css/less/
+/webroot/css/forumless/
 /webroot/css/adminless/
 /webroot/upload/avatar/1/
 /webroot/upload/blog/attachment/*

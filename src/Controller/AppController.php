@@ -18,6 +18,7 @@ class AppController extends Controller {
 		'Flash',
 		'Cookie',
 		'Acl.Acl',
+		'SessionsActivity',
 /**
  * If you want enable CSRF uncomment this.
  * I recommand to enable it. If i have disable it, it's because

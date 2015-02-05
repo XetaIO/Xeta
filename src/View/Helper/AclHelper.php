@@ -2,7 +2,9 @@
 namespace App\View\Helper;
 
 use Acl\Controller\Component\AclComponent;
+use Acl\Auth\ActionsAuthorize;
 use Cake\Controller\ComponentRegistry;
+use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 use Cake\View\Helper;
@@ -25,6 +27,13 @@ class AclHelper extends Helper {
 	public $Acl;
 
 /**
+ * ActionsAuthorize Instance.
+ *
+ * @var object
+ */
+	public $Authorize;
+
+/**
  * Construct method.
  *
  * @param \Cake\View\View $view The view that was fired.
@@ -35,6 +44,12 @@ class AclHelper extends Helper {
 
 		$collection = new ComponentRegistry();
 		$this->Acl = new AclComponent($collection);
+
+		$this->Authorize = new ActionsAuthorize($collection);
+		$this->Authorize->config([
+			'actionPath' => 'app/',
+			'userModel' => 'Users'
+		]);
 	}
 
 /**
@@ -50,9 +65,14 @@ class AclHelper extends Helper {
 		$url = Router::url($params);
 		$params = Router::parse($url);
 
-		$user = ['Users' => $this->request->session()->read('Auth.User')];
+		$user = [$this->Authorize->config('userModel') => $this->request->session()->read('Auth.User')];
 
-		return $this->Acl->check($user, $this->_getPath($params));
+		$request = new Request();
+		$request->addParams($params);
+
+		$action = $this->Authorize->action($request);
+
+		return $this->Acl->check($user, $action);
 	}
 
 /**
@@ -72,26 +92,4 @@ class AclHelper extends Helper {
 
 		return $this->Html->link($title, $url, $options);
 	}
-
-/**
- * Get the action path for a given url.
- *
- * @param array  $params An array of the request params.
- * @param string $path Path.
- *
- * @return string
- */
-	protected function _getPath(array $params, $path = '/:plugin/:prefix/:controller/:action') {
-		$plugin = empty($params['plugin']) ? null : Inflector::camelize($params['plugin']) . '/';
-		$prefix = empty($params['prefix']) ? null : $params['prefix'] . '/';
-		$path = str_replace(
-			[':controller', ':action', ':plugin/', ':prefix/'],
-			[Inflector::camelize($params['controller']), $params['action'], $plugin, $prefix],
-			'app/' . $path
-		);
-		$path = str_replace('//', '/', $path);
-
-		return trim($path, '/');
-	}
-
 }

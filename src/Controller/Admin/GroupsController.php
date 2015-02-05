@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Event\Forum\Statistics;
+use Cake\Event\Event;
 use Cake\I18n\I18n;
 
 class GroupsController extends AppController {
@@ -47,6 +49,12 @@ class GroupsController extends AppController {
 
 			if ($this->Groups->save($group)) {
 
+				//Event.
+				$this->eventManager()->attach(new Statistics());
+
+				$stats = new Event('Model.Groups.update', $this);
+				$this->eventManager()->dispatch($stats);
+
 				$this->Flash->success(__d('admin', 'Your group has been created successfully !'));
 
 				return $this->redirect(['action' => 'index']);
@@ -82,6 +90,12 @@ class GroupsController extends AppController {
 			$group->setTranslations($this->request->data);
 
 			if ($this->Groups->save($group)) {
+
+				//Event.
+				$this->eventManager()->attach(new Statistics());
+
+				$stats = new Event('Model.Groups.update', $this);
+				$this->eventManager()->dispatch($stats);
 
 				$this->Flash->success(__d('admin', 'This group has been updated successfully !'));
 
@@ -125,6 +139,12 @@ class GroupsController extends AppController {
 		}
 
 		if ($this->Groups->delete($group)) {
+
+			//Event.
+			$this->eventManager()->attach(new Statistics());
+
+			$stats = new Event('Model.Groups.update', $this);
+			$this->eventManager()->dispatch($stats);
 
 			$this->Flash->success(__d('admin', 'This group has been deleted successfully !'));
 

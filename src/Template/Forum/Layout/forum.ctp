@@ -53,7 +53,8 @@
 			'scrollUp',
 			'prettify',
 			'user-menu',
-			'xeta'
+			'xeta',
+			'forum'
 		]); ?>
 
 		<?= $this->fetch('scriptBottom') ?>

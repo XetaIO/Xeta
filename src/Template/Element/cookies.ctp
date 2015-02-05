@@ -6,7 +6,7 @@
 			'#',
 			[
 				'class' => 'btn btn-sm btn-primary closeCookies',
-				'data-url' => $this->Url->build(['controller' => 'pages', 'action' => 'acceptCookie']),
+				'data-url' => $this->Url->build(['controller' => 'pages', 'action' => 'acceptCookie', 'prefix' => false]),
 				'escape' => false
 			]
 		) ?>

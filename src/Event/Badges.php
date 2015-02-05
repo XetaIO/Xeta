@@ -2,6 +2,7 @@
 namespace App\Event;
 
 use App\Model\Entity\BlogArticlesComment;
+use App\Model\Entity\ForumPost;
 use App\Model\Entity\User;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
@@ -30,8 +31,64 @@ class Badges implements EventListenerInterface {
 		return array(
 			'Model.BlogArticlesComments.add' => 'commentsBadge',
 			'Model.Users.register' => 'registerBadge',
-			'Model.Users.premium' => 'premiumBadge'
+			'Model.Users.premium' => 'premiumBadge',
+			'Model.ForumPosts.reply' => 'postsReplyBadge'
 		);
+	}
+
+/**
+ * Unlock all badges related to the posts in the Forum.
+ *
+ * @param \Cake\Event\Event $event The Model.Users.premium event that was fired.
+ *
+ * @return bool
+ */
+	public function postsReplyBadge(Event $event) {
+		$this->Badges = TableRegistry::get('Badges');
+
+		if (!$event->data['post'] instanceof ForumPost) {
+			return false;
+		}
+
+		$badges = $this->Badges
+			->find('all')
+			->select([
+				'id',
+				'name',
+				'picture',
+				'rule'
+			])
+			->where([
+				'type' => 'postsForum'
+			])
+			->hydrate(false)
+			->toArray();
+
+		if (empty($badges)) {
+			return true;
+		}
+
+		$this->Users = TableRegistry::get('Users');
+
+		$userId = $event->data['post']->user_id;
+
+		$user = $this->Users
+			->find()
+			->where([
+				'id' => $userId
+			])
+			->select([
+				'forum_post_count'
+			])
+			->first();
+
+		foreach ($badges as $badge) {
+			if ($user['forum_post_count'] >= $badge['rule']) {
+				$this->_unlockBadge($badge, $userId);
+			}
+		}
+
+		return true;
 	}
 
 /**
