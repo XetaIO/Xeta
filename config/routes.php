@@ -126,6 +126,7 @@ Router::prefix('forum', function ($routes) {
 		]
 	);
 
+	//Forum Routes.
 	$routes->connect(
 		'/categories/:slug.:id',
 		[
@@ -159,6 +160,21 @@ Router::prefix('forum', function ($routes) {
 	);
 
 	//Threads Routes
+	$routes->connect(
+		'/threads/create/:slug.:id',
+		[
+			'controller' => 'threads',
+			'action' => 'create'
+		],
+		[
+			'_name' => 'threads-create',
+			'pass' => [
+				'id',
+				'slug'
+			],
+			'id' => '[0-9]+'
+		]
+	);
 	$routes->connect(
 		'/threads/edit/:slug.:id',
 		[

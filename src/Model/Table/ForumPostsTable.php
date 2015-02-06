@@ -47,7 +47,7 @@ class ForumPostsTable extends Table {
  *
  * @return \Cake\Validation\Validator
  */
-	public function validationDefault(Validator $validator) {
+	public function validationCreate(Validator $validator) {
 		$validator
 			->add('id', 'valid', ['rule' => 'numeric'])
 			->allowEmpty('id', 'create');

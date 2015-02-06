@@ -133,7 +133,7 @@ return [
 	],
 	'Forum' => [
 		'Categories' => [
-			'threads_per_page' => 20
+			'threads_per_page' => 15
 		],
 		'Threads' => [
 			'posts_per_page' => 10

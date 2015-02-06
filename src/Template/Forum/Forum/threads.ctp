@@ -1,5 +1,6 @@
 <?php
 use Cake\Utility\Inflector;
+
 ?>
 <?= $this->element('meta', [
 	'title' => $thread->title,
@@ -37,7 +38,7 @@ use Cake\Utility\Inflector;
 <div class="container-fluid">
 	<div class="row">
 
-		<div class="col-md-10">
+		<div class="col-md-12">
 			<ol class="breadcrumb">
 				<li>
 					<?= $this->Html->link(__("Home"), '/') ?>

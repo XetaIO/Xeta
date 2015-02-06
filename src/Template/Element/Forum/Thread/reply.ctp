@@ -1,5 +1,6 @@
 <?php
 use Cake\Utility\Inflector;
+
 ?>
 <?php if ($thread->thread_open == true): ?>
 	<?php if ($this->Acl->check(['controller' => 'threads', 'action' => 'reply', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum'])): ?>

@@ -1,5 +1,6 @@
 <?php
 use Cake\Utility\Inflector;
+
 ?>
 <div class="threadActions">
 	<?php if ($thread->thread_open == true): ?>

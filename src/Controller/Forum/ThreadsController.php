@@ -11,6 +11,78 @@ use Cake\utility\Inflector;
 class ThreadsController extends AppController {
 
 /**
+ * Create a new thread.
+ *
+ * @return \Cake\Network\Response
+ */
+	public function create() {
+		$this->loadModel('ForumThreads');
+		$this->loadModel('ForumCategories');
+
+		$thread = $this->ForumThreads->newEntity($this->request->data, ['validate' => 'create']);
+
+		$category = $this->ForumCategories
+			->find()
+			->select(['id', 'title', 'category_open'])
+			->where([
+				'ForumCategories.id' => $this->request->id
+			])
+			->first();
+
+		//Check if the category if found is found.
+		if (is_null($category)) {
+			$this->Flash->error(__("This category doesn't exist or has been deleted !"));
+
+			return $this->redirect($this->referer());
+		}
+
+		//Check if the category is not closed to threads.
+		if ($category->category_open == false) {
+			$this->Flash->error(__("You can't create a thread in the category <strong>{0}</strong> because this category is closed !", h($category->title)));
+
+			return $this->redirect($this->referer());
+		}
+
+		if ($this->request->is('post')) {
+
+			$thread->category_id = $this->request->id;
+			$thread->last_post_user_id = $this->Auth->user('id');
+			$thread->user_id = $this->Auth->user('id');
+
+			if ($newThread = $this->ForumThreads->save($thread)) {
+				$this->loadModel('ForumPosts');
+
+				$post = [];
+				$post['thread_id'] = $newThread->id;
+				$post['user_id'] = $this->Auth->user('id');
+				$post['message'] = $this->request->data['message'];
+				$post = $this->ForumPosts->newEntity($post);
+				$newPost = $this->ForumPosts->save($post);
+
+				$newThread->first_post_id = $newPost->id;
+				$newThread->last_post_date = $newPost->created;
+				$newThread->last_post_id = $newPost->id;
+				$newThread->reply_count = 0;
+				$this->ForumThreads->save($newThread);
+
+				$this->Flash->success(__('Your thread has been created successfully !'));
+
+				return $this->redirect([
+					'controller' => 'posts',
+					'action' => 'go',
+					$newPost->id
+				]);
+
+			}
+		}
+
+		//Breadcrumbs.
+		$breadcrumbs = $this->ForumCategories->find('path', ['for' => $this->request->id])->toArray();
+
+		$this->set(compact('thread', 'breadcrumbs'));
+	}
+
+/**
  * Edit a thread.
  *
  * @return \Cake\Network\Response
