@@ -46,12 +46,7 @@
 		<?= $this->element('footer') ?>
 
 		<?= $this->Html->script([
-			'jquery.min',
-			'bootstrap.min',
-			'jquery.easing.1.3.min',
-			'owl.carousel',
-			'scrollUp',
-			'prettify',
+			'lib.min',
 			'user-menu',
 			'xeta',
 			'forum'

@@ -670,10 +670,10 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
 		 * job.sourceCode in order.
 		 *
 		 * @param {Object} job an object like <pre>{
-     *    sourceCode: {string} sourceText plain text,
-     *    basePos: {int} position of job.sourceCode in the larger chunk of
-     *        sourceCode.
-     * }</pre>
+	 *    sourceCode: {string} sourceText plain text,
+	 *    basePos: {int} position of job.sourceCode in the larger chunk of
+	 *        sourceCode.
+	 * }</pre>
 		 */
 		var decorate = function (job) {
 			var sourceCode = job.sourceCode, basePos = job.basePos;
@@ -1018,8 +1018,8 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
 
 		// Split lines while there are lines left to split.
 		for (var i = 0;  // Number of lines that have been split so far.
-		     i < listItems.length;  // length updated by breakAfter calls.
-		     ++i) {
+			 i < listItems.length;  // length updated by breakAfter calls.
+			 ++i) {
 			walk(listItems[i]);
 		}
 
@@ -1163,7 +1163,7 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
 	 *      of decorations.  Takes a single argument job which describes the
 	 *      state of the computation.   The single parameter has the form
 	 *      {@code {
-    *        sourceCode: {string} as plain text.
+	*        sourceCode: {string} as plain text.
 	 *        decorations: {Array.<number|string>} an array of style classes
 	 *                     preceded by the position at which they start in
 	 *                     job.sourceCode in order.

@@ -7,8 +7,6 @@
 <?php $this->start('scriptBottom');
 
 	echo $this->Html->script([
-		'moment.min',
-		'livestamp.min',
 		'ckeditor/ckeditor'
 	])
 ?>
@@ -555,23 +553,23 @@
 </div>
 <div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">
 			<span aria-hidden="true">&times;</span>
 			<span class="sr-only"><?= __("Close") ?></span>
 		</button>
-        <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
-      </div>
-      <div class="modal-body">
+		<h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
+	  </div>
+	  <div class="modal-body">
 		<p>
 			<?= __("Are you sure you want delete this comment ?") ?>
 		</p>
-      </div>
-      <div class="modal-footer">
+	  </div>
+	  <div class="modal-footer">
 		<?= $this->Html->link(__("Delete"), '#', ['class' => 'btn btn-primary btnDeleteComment']) ?>
 		<button type="button" class="btn btn-danger" data-dismiss="modal"><?= __("Close") ?></button>
-      </div>
-    </div>
+	  </div>
+	</div>
   </div>
 </div>

@@ -25,7 +25,7 @@ class ThreadsController extends AppController {
 					'ForumThreads.id' => $this->request->id
 				])
 				->first();
-			debug($thread);
+
 			//Check if the thread is found.
 			if (is_null($thread)) {
 				$this->Flash->error(__("This thread doesn't exist or has been deleted !"));
@@ -43,6 +43,30 @@ class ThreadsController extends AppController {
 					'id' => $thread->id
 				]);
 			}
+
+			$this->loadModel('ForumCategories');
+			$category = $this->ForumCategories
+				->find()
+				->select(['id', 'title', 'category_open'])
+				->where([
+					'ForumCategories.id' => $this->request->data['category_id']
+				])
+				->first();
+
+			//Check if the category if found is found.
+			if (is_null($category)) {
+				$this->Flash->error(__("This category doesn't exist or has been deleted !"));
+
+				return $this->redirect($this->referer());
+			}
+
+			//Check if the category is not closed to threads.
+			if ($category->category_open == false) {
+				$this->Flash->error(__("You can't assign this thread to the category <strong>{0}</strong> because this category is closed !", h($category->title)));
+
+				return $this->redirect($this->referer());
+			}
+
 			$this->ForumThreads->patchEntity($thread, $this->request->data);
 
 			if ($this->ForumThreads->save($thread)) {

@@ -75,6 +75,20 @@ use Cake\Utility\Inflector;
 								) ?>
 							</div>
 						</div>
+						<div class="form-group">
+							<?= $this->Form->label('thread_open', __('Lock Thread'), ['class' => 'control-label']) ?>
+							<div class="radio-check">
+								<?= $this->Form->radio('thread_open', [
+										'0' => __('Yes'),
+										'1' => __('No')
+									],
+									[
+										'legend' => false,
+										'class' => 'form-control'
+									]
+								) ?>
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<?= $this->Form->button(
