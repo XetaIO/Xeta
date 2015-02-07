@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 use Cake\I18n\Time;
+use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 
 class PostsController extends AppController {
@@ -30,6 +31,69 @@ class PostsController extends AppController {
 		parent::beforeFilter($event);
 
 		$this->Auth->allow(['go']);
+	}
+
+/**
+ * Quote a post.
+ *
+ * @throws \Cake\Error\NotFoundException
+ *
+ * @return mixed
+ */
+	public function quote() {
+		if (!$this->request->is('ajax')) {
+			throw new NotFoundException();
+
+		}
+
+		$this->loadModel('ForumPosts');
+
+		$post = $this->ForumPosts
+			->find()
+			->where([
+				'ForumPosts.id' => $this->request->data['id']
+			])
+			->contain([
+				'Users' => function ($q) {
+						return $q->find('short');
+				}
+			])
+			->first();
+
+		$json = [];
+
+		if (!is_null($post)) {
+			$post->toArray();
+
+			$url = Router::url(['action' => 'go', $post->id]);
+			$text = __("has said :");
+
+			//Build the quote.
+			$json['post'] = <<<EOT
+<div>
+	<div>
+		<a href="{$url}">
+			<strong>{$post->user->full_name} {$text}</strong>
+		</a>
+	</div>
+	<blockquote>
+		$post->message
+	</blockquote>
+</div><p>&nbsp;</p><p>&nbsp;</p>
+EOT;
+
+			$json['error'] = false;
+
+			$this->set(compact('json'));
+		} else {
+			$json['post'] = __("This comment doesn't exist.");
+			$json['error'] = true;
+
+			$this->set(compact('json'));
+		}
+
+		//Send response in JSON.
+		$this->set('_serialize', 'json');
 	}
 
 /**

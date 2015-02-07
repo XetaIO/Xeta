@@ -444,8 +444,7 @@
 									<ul class="actions">
 										<li>
 											<?php if ($this->request->session()->read('Auth.User')): ?>
-												<?=
-												$this->Html->link(
+												<?= $this->Html->link(
 													__("{0} Reply", '<i class="fa fa-reply"></i>'),
 													'#',
 													[

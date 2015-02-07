@@ -270,6 +270,21 @@ Router::prefix('forum', function ($routes) {
 		]
 	);
 
+	$routes->connect(
+		'/posts/quote/:id',
+		[
+			'controller' => 'posts',
+			'action' => 'quote'
+		],
+		[
+			'_name' => 'posts-quote',
+			'pass' => [
+				'id'
+			],
+			'id' => '[0-9]+'
+		]
+	);
+
 	$routes->fallbacks();
 });
 

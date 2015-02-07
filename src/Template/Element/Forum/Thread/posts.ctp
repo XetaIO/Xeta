@@ -141,7 +141,8 @@ use Cake\Utility\Inflector;
 						]
 					) ?>
 				<?php endif; ?>
-				<?php if ($firstPost != true): ?>
+
+				<?php if ($firstPost === false): ?>
 					<?php if ($this->Acl->check(['_name' => 'posts-delete', 'id' => $post->id])): ?>
 						<?= $this->Html->link(__('{0} Delete', '<i class="fa fa-remove"></i>'), ['_name' => 'posts-delete', 'id' => $post->id], ['class' => 'btn btn-sm btn-danger', 'escape' => false]) ?>
 					<?php endif; ?>
@@ -163,6 +164,26 @@ use Cake\Utility\Inflector;
 								['class' => 'text-primary', 'escape' => false]
 							),
 							ucwords($post->last_edit_date->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::MEDIUM]))
+						) ?>
+					</div>
+				<?php endif; ?>
+
+				<?php if ($this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id])): ?>
+					<div class="quote">
+						<?= $this->Html->link(
+							__("{0} Quote", '<i class="fa fa-quote-left "></i>'),
+							'#',
+							[
+								'class' => 'QuotePost btn btn-sm btn-primary',
+								'data-id' => $post->id,
+								'data-url' => $this->Url->build(
+									[
+										'_name' => 'posts-quote',
+										'id' => $post->id
+									]
+								),
+								'escape' => false
+							]
 						) ?>
 					</div>
 				<?php endif; ?>
