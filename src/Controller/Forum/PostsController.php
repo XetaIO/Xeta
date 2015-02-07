@@ -34,6 +34,102 @@ class PostsController extends AppController {
 	}
 
 /**
+ * Delete a post.
+ *
+ * @return \Cake\Network\Response
+ */
+	public function delete() {
+		$this->loadModel('ForumPosts');
+
+		$post = $this->ForumPosts
+			->find()
+			->contain([
+				'ForumThreads' => function ($q) {
+					return $q->select([
+						'id',
+						'last_post_id',
+						'first_post_id'
+					]);
+				}
+			])
+			->where(['ForumPosts.id' => $this->request->id])
+			->first();
+
+		//The post doesn't exist or has been deleted.
+		if (is_null($post)) {
+			$this->Flash->error(__("This post doesn't exist or has been deleted."));
+
+			return $this->redirect(['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum']);
+		}
+
+		//We can't delete the first post of a thread.
+		if ($post->id == $post->forum_thread->first_post_id) {
+			$this->Flash->error(__("You cannot delete the first post of a thread."));
+
+			return $this->redirect([
+				'controller' => 'posts',
+				'action' => 'go',
+				$post->forum_thread->first_post_id
+			]);
+		}
+
+		//Delete the comment.
+		if (!$this->ForumPosts->delete($post)) {
+			$this->Flash->success(__("An error occurred while deleting the post. Please, try again."));
+
+			return $this->redirect($this->referer());
+		}
+
+		//If it was the last post of the thread, find the new "last post" and edit the thread.
+		if ($post->id == $post->forum_thread->last_post_id) {
+			$lastPost = $this->ForumPosts
+				->find()
+				->select([
+					'ForumPosts.id',
+					'ForumPosts.user_id'
+				])
+				->where(['ForumPosts.thread_id' => $post->forum_thread->id])
+				->order(['ForumPosts.created' => 'DESC'])
+				->first();
+
+			$this->loadModel('ForumThreads');
+			$thread = $this->ForumThreads
+				->find()
+				->select([
+					'ForumThreads.id',
+					'ForumThreads.title',
+					'ForumThreads.last_post_id',
+					'ForumThreads.first_post_id'
+				])
+				->where(['ForumThreads.id' => $post->forum_thread->id])
+				->first();
+
+			//Update the last post for the thread.
+			$thread->last_post_id = $lastPost->id;
+			$thread->last_post_user_id = $lastPost->user_id;
+
+			$this->ForumThreads->save($thread);
+
+			$this->Flash->success(__("The post has been deleted successfully !"));
+
+			return $this->redirect([
+				'controller' => 'posts',
+				'action' => 'go',
+				$lastPost->id
+			]);
+		}
+
+		$this->Flash->success(__("The post has been deleted successfully !"));
+
+		//Redirect the user.
+		return $this->redirect([
+			'controller' => 'posts',
+			'action' => 'go',
+			$post->forum_thread->last_post_id
+		]);
+	}
+
+/**
  * Quote a post.
  *
  * @throws \Cake\Error\NotFoundException
