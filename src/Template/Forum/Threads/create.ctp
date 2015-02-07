@@ -101,7 +101,7 @@ use Cake\Utility\Inflector;
 							<?= $this->Form->label('message', __('Message'), ['class' => 'col-sm-2 control-label']) ?>
 							<div class="col-sm-9">
 								<?=
-								$this->Form->input(
+								$this->Form->textarea(
 									'message', [
 										'label' => false,
 										'class' => 'form-control postBox',

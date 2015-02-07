@@ -11,6 +11,17 @@ use Cake\utility\Inflector;
 class ThreadsController extends AppController {
 
 /**
+ * Components.
+ *
+ * @var array
+ */
+	public $components = [
+		'ForumAntiSpam' => [
+			'className' => 'App\Controller\Component\Forum\AntiSpamComponent'
+		]
+	];
+
+/**
  * Create a new thread.
  *
  * @return \Cake\Network\Response
@@ -44,6 +55,12 @@ class ThreadsController extends AppController {
 		}
 
 		if ($this->request->is('post')) {
+			//Spamming Restrictions.
+			if (!$this->ForumAntiSpam->check('ForumThreads', $this->request->session()->read('Auth.User'))) {
+				$this->Flash->error(__("You can't not create a thread in the next 5 minutes due to spamming restrictions."));
+
+				return $this->redirect($this->referer());
+			}
 
 			$thread->category_id = $this->request->id;
 			$thread->last_post_user_id = $this->Auth->user('id');
@@ -64,6 +81,11 @@ class ThreadsController extends AppController {
 				$newThread->last_post_id = $newPost->id;
 				$newThread->reply_count = 0;
 				$this->ForumThreads->save($newThread);
+
+				//Event.
+				$this->eventManager()->attach(new Statistics());
+				$event = new Event('Model.ForumThreads.new', $this);
+				$this->eventManager()->dispatch($event);
 
 				$this->Flash->success(__('Your thread has been created successfully !'));
 
