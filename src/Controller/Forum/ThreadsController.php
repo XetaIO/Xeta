@@ -191,6 +191,12 @@ class ThreadsController extends AppController {
 		$this->loadModel('ForumPosts');
 
 		if ($this->request->is('post')) {
+			//Spamming Restrictions.
+			if (!$this->ForumAntiSpam->check('ForumPosts', $this->request->session()->read('Auth.User'))) {
+				$this->Flash->error(__("You can't not reply to a thread in the next 5 minutes due to spamming restrictions."));
+
+				return $this->redirect($this->referer());
+			}
 
 			//Build the newEntity for the post form.
 			$this->request->data['forum_thread']['id'] = $this->request->params['id'];
@@ -206,7 +212,6 @@ class ThreadsController extends AppController {
 			if ($post->forum_thread->isNew() === true) {
 				$post->forum_thread->isNew(false);
 			}
-
 
 			if ($newPost = $this->ForumPosts->save($post)) {
 				//Update the last post id.

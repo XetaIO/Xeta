@@ -60,7 +60,7 @@ class Statistics implements EventListenerInterface {
 	public function newThreadStats(Event $event) {
 		$this->ForumThreads = TableRegistry::get('ForumThreads');
 
-		$totalThreads = $this->ForumThreads->find()->where(['ForumThreads.thread_open' => 1])->count();
+		$totalThreads = $this->ForumThreads->find()->count();
 		$totalThreads = Number::format($totalThreads);
 
 		if ($this->_writeCache($totalThreads, 'TotalThreads')) {

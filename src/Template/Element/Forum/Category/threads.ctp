@@ -92,7 +92,14 @@ use Cake\Utility\Inflector;
 	<div class="infobox infobox-primary">
 		<h4><?= __("No threads found"); ?></h4>
 		<p>
-			<?= __("No threads were found for this category. {0}", $this->Html->link(__('{0} Create a Thread', '<i class="fa fa-plus"></i>'), ['controller' => 'threads', 'action' => 'new'], ['class' => 'btn btn-sm btn-primary', 'escape' => false])); ?>
+			<?= __(
+				"No threads were found for this category. {0}",
+				$this->Html->link(
+					__('{0} Create a Thread', '<i class="fa fa-plus"></i>'),
+					['_name' => 'threads-create', 'id' => $category->id, 'slug' => Inflector::slug($category->title, '-')],
+					['class' => 'btn btn-sm btn-primary', 'escape' => false]
+				)
+			); ?>
 		</p>
 	</div>
 <?php endif; ?>
