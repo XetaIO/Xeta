@@ -256,6 +256,10 @@ class ForumController extends AppController {
 		//Build the newEntity for the comment form.
 		$postForm = $this->ForumPosts->newEntity();
 
+		//Increment the Views Counter.
+		$thread->view_count++;
+		$this->ForumThreads->save($thread);
+
 		$this->set(compact('thread', 'breadcrumbs', 'posts', 'postForm', 'categories'));
 	}
 }
