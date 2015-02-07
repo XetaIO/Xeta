@@ -9,13 +9,8 @@ use Cake\Utility\Inflector;
 			<div class="avatar">
 				<?= $this->Html->link(
 					$this->Html->image($post->user->avatar, ['width' => '100', 'height' => '100']),
-					'#',
-					[
-						'title' => __('User Profile'),
-						'data-toggle' => 'modal',
-						'data-target' => '#mini' . $post->id,
-						'escape' => false
-					]
+					['_name' => 'users-profile', 'slug' => $post->user->slug, 'prefix' => false],
+					['escape' => false]
 				) ?>
 				<span class="status">
 					<?php if ($post->user->online === true): ?>
@@ -27,7 +22,7 @@ use Cake\Utility\Inflector;
 			</div>
 
 			<span class="username">
-				<?= h($post->user->full_name) ?>
+				<?= $this->Html->link($post->user->full_name, ['_name' => 'users-profile', 'slug' => $post->user->slug, 'prefix' => false]) ?>
 			</span>
 
 			<span class="group" style="<?= h($post->user->group->css) ?>">
