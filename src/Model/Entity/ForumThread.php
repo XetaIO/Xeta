@@ -21,6 +21,8 @@ class ForumThread extends Entity {
 /**
  * Get the number of threads.
  *
+ * @param int $threads The number of threads.
+ *
  * @return int
  */
 	protected function _getThreadCount($threads) {

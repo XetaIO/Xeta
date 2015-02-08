@@ -1,8 +1,8 @@
 <?php
 namespace App\View\Helper;
 
-use Acl\Controller\Component\AclComponent;
 use Acl\Auth\ActionsAuthorize;
+use Acl\Controller\Component\AclComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Request;
 use Cake\Routing\Router;

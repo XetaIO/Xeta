@@ -6,6 +6,11 @@ use Cake\View\Cell;
 
 class ForumCell extends Cell {
 
+/**
+ * Display the suggestions.
+ *
+ * @return \Cake\Network\Response
+ */
 	public function suggestion() {
 		$this->loadModel('Sessions');
 		$this->loadModel('ForumThreads');
@@ -51,6 +56,11 @@ class ForumCell extends Cell {
 		$this->set(compact('suggestions', 'online'));
 	}
 
+/**
+ * Display the sidebar.
+ *
+ * @return \Cake\Network\Response
+ */
 	public function sidebar() {
 		$this->loadModel('Sessions');
 

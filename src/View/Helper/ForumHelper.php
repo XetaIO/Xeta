@@ -33,6 +33,13 @@ class ForumHelper extends Helper {
 		parent::__construct($view, $config);
 	}
 
+/**
+ * Generate all the sub-catgories.
+ *
+ * @param object $categories The categories to generate.
+ *
+ * @return string
+ */
 	public function generateCategories(array $categories = []) {
 		if (empty($categories)) {
 			return;
@@ -45,10 +52,10 @@ class ForumHelper extends Helper {
 			$this->html .= $this->Html->link($child->title, [
 				'_name' => 'forum-categories',
 				'id' => $child->id,
-				'slug' => strtolower(Inflector::slug($child->title, '-'))
+				'slug' => $child->title
 			]);
 			$this->html .= '</li>';
-			if(is_array($child->children) && !empty($child->children)) {
+			if (is_array($child->children) && !empty($child->children)) {
 				$this->generateCategories($child->children);
 			}
 		}

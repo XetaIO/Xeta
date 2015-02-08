@@ -35,7 +35,7 @@ class ForumController extends AppController {
 /**
  * Index page.
  *
- * @return void
+ * @return \Cake\Network\Response
  */
 	public function index() {
 		$this->loadModel('ForumCategories');
@@ -82,6 +82,11 @@ class ForumController extends AppController {
 		$this->set(compact('categories', 'statistics', 'online'));
 	}
 
+/**
+ * Display all sub-categories and all threads for this category.
+ *
+ * @return \Cake\Network\Response
+ */
 	public function categories() {
 		$this->loadModel('ForumCategories');
 
@@ -142,7 +147,11 @@ class ForumController extends AppController {
 		$this->set(compact('category', 'threads', 'breadcrumbs', 'categories'));
 	}
 
-
+/**
+ * Dispay a thread and all its posts.
+ *
+ * @return \Cake\Network\Response
+ */
 	public function threads() {
 		$this->loadModel('ForumThreads');
 
