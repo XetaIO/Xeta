@@ -21,8 +21,8 @@
 				<?= $this->Html->link($post->user->full_name, ['_name' => 'users-profile', 'slug' => $post->user->slug, 'prefix' => false]) ?>
 			</span>
 
-			<span class="group" style="<?= h($post->user->group->css) ?>">
-				<?= h($post->user->group->name) ?>
+			<span class="group" style="<?= h($post->user->group_css) ?>">
+				<?= h($post->user->group_name) ?>
 			</span>
 
 			<span class="joinedDate">

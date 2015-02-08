@@ -83,6 +83,40 @@ class User extends Entity {
 	}
 
 /**
+ * Set the user group name.
+ *
+ * @return string
+ */
+	protected function _getGroupName() {
+		if (!isset($this->group)) {
+			\Execption(__('You must select the Groups for the function User::_getGroupName().'));
+		}
+
+		if ($this->group->is_member == true && $this->premium === true) {
+			return __('Premium');
+		}
+
+		return $this->group->name;
+	}
+
+/**
+ * Set the user group css.
+ *
+ * @return string
+ */
+	protected function _getGroupCss() {
+		if (!isset($this->group)) {
+			\Execption(__('You must select the Groups for the function User::_getGroupName().'));
+		}
+
+		if ($this->group->is_member == true && $this->premium === true) {
+			return 'color:' . Configure::read('Premium.color') . ';font-weight: bold;';
+		}
+
+		return $this->group->css;
+	}
+
+/**
  * The parendNode for ACL.
  *
  * @return null|array

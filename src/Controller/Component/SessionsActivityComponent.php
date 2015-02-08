@@ -81,10 +81,15 @@ class SessionsActivityComponent extends Component {
 			->find('expires')
 			->contain([
 				'Users' => function ($q) {
-					return $q->find('short');
+					return $q->select([
+						'id',
+						'username',
+						'slug',
+						'end_subscription'
+					]);
 				},
 				'Users.Groups' => function ($q) {
-					return $q->select(['css']);
+					return $q->select(['css', 'is_member']);
 				},
 			])
 			->select(['Sessions.user_id', 'Sessions.expires'])

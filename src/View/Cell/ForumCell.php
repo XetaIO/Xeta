@@ -17,9 +17,16 @@ class ForumCell extends Cell {
 			->contain([
 				'FirstPosts',
 				'FirstPosts.Users' => function ($q) {
-					return $q->find('short');
+					return $q->select([
+						'id',
+						'username',
+						'slug',
+						'end_subscription'
+					]);
 				},
-				'FirstPosts.Users.Groups',
+				'FirstPosts.Users.Groups' => function ($q) {
+					return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
+				},
 			])
 			->where([
 				'ForumThreads.thread_open' => 1,

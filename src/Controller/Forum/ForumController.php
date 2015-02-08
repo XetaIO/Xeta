@@ -159,7 +159,7 @@ class ForumController extends AppController {
 					});
 				},
 				'FirstPosts.Users.Groups' => function ($q) {
-					return $q->select(['id', 'name', 'css', 'is_staff']);
+					return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
 				},
 				'FirstPosts.Users.BadgesUsers' => function ($q) {
 					return $q
@@ -210,7 +210,7 @@ class ForumController extends AppController {
 					});
 				},
 				'Users.Groups' => function ($q) {
-					return $q->select(['id', 'name', 'css', 'is_staff']);
+					return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
 				},
 				'Users.BadgesUsers' => function ($q) {
 					return $q

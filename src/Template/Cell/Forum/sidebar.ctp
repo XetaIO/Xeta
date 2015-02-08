@@ -18,8 +18,8 @@
 								['_name' => 'users-profile', 'slug' => $staff->user->slug, 'prefix' => false],
 								['class' => 'username']
 							) ?>
-							<small class="userGroup" style="<?= h($staff->user->group->css) ?>">
-								<?= h($staff->user->group->name) ?>
+							<small class="userGroup" style="<?= h($staff->user->group_css) ?>">
+								<?= h($staff->user->group_name) ?>
 							</small>
 						</li>
 					<?php endforeach; ?>

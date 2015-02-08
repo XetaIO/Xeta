@@ -106,7 +106,7 @@ class Statistics implements EventListenerInterface {
 	public function updateGroupStats(Event $event) {
 		$this->Groups = TableRegistry::get('Groups');
 
-		$groups = $this->Groups->find()->order(['Groups.id' => 'DESC'])->toArray();
+		$groups = $this->Groups->find('translations')->order(['Groups.id' => 'DESC'])->toArray();
 
 		if ($this->_writeCache($groups, 'Groups')) {
 			return $groups;

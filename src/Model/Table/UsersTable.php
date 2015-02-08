@@ -353,6 +353,7 @@ class UsersTable extends Table {
 			'facebook',
 			'twitter',
 			'signature',
+			'end_subscription',
 			'created',
 			'last_login'
 		]);

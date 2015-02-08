@@ -138,5 +138,8 @@ return [
 		'Threads' => [
 			'posts_per_page' => 10
 		]
+	],
+	'Premium' => [
+		'color' => '#F2C732'
 	]
 ];

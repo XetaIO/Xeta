@@ -75,14 +75,14 @@
 				$lastGroup = $statistics['Groups'];
 				?>
 				<?php foreach ($statistics['Groups'] as $group): ?>
-					<?= $this->Html->link($group->name, ['controller' => 'groups', 'action' => 'view', 'id' => $group->id], ['style' => h($group->css)]) ?><?= ($lastGroup[count($lastGroup) - 1]->id == $group->id) ? '' : ',' ?>
+					<?= $this->Html->link((\Cake\I18n\I18n::locale() == \Cake\I18n\I18n::defaultLocale()) ? $group->name : $group->translation(\Cake\I18n\I18n::locale())->name, ['controller' => 'groups', 'action' => 'view', 'id' => $group->id], ['style' => h($group->css)]) ?><?= ($lastGroup[count($lastGroup) - 1]->id == $group->id) ? '' : ',' ?>
 				<?php endforeach; ?>
 			</span>
 			<?php if (!empty($online['records'])): ?>
 				<p>
 					<?= __n('Registered user:', 'Registered users:', $online['members'], $online['members']) ?>
 					<?php foreach ($online['records'] as $key => $record): ?>
-						<?= $this->Html->link($record->user->username, ['_name' => 'users-profile', 'slug' => $record->user->slug, 'prefix' => false], ['style' => h($record->user->group->css)]) ?><?= ($online['records'][count($online['records']) - 1]->user->slug == $record->user->slug) ? '' : ',' ?>
+						<?= $this->Html->link($record->user->username, ['_name' => 'users-profile', 'slug' => $record->user->slug, 'prefix' => false], ['style' => h($record->user->group_css)]) ?><?= ($online['records'][count($online['records']) - 1]->user->slug == $record->user->slug) ? '' : ',' ?>
 					<?php endforeach; ?>
 				</p>
 			<?php endif; ?>
