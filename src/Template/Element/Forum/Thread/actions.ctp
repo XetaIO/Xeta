@@ -1,38 +1,34 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <div class="threadActions">
 	<?php if ($thread->thread_open == true): ?>
 		<?= $this->Html->link(
 			__('{0} Reply', '<i class="fa fa-plus"></i>'),
-			['controller' => 'threads', 'action' => 'reply', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-')],
+			['controller' => 'threads', 'action' => 'reply', 'id' => $thread->id, 'slug' => $thread->title],
 			['class' => 'btn btn-xs btn-primary', 'escape' => false]
 		) ?>
 
 		<?php if (
-			$this->Acl->check(['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum']) ||
+			$this->Acl->check(['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum']) ||
 			$this->request->session()->read('Auth.User.id') == $thread->user_id
 		): ?>
 			<?= $this->Html->link(
 				__('{0} Lock', '<i class="fa fa-lock"></i>'),
-				['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-')],
+				['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => $thread->title],
 				['class' => 'btn btn-xs btn-danger', 'escape' => false]
 			) ?>
 		<?php endif; ?>
 	<?php else: ?>
 		<button class="btn btn-xs btn-danger"><?= __('{0} Closed', '<i class="fa fa-lock"></i>') ?></button>
 
-		<?php if ($this->Acl->check(['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum'])): ?>
+		<?php if ($this->Acl->check(['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
 			<?= $this->Html->link(
 				__('{0} Unlock', '<i class="fa fa-unlock"></i>'),
-				['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-')],
+				['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => $thread->title],
 				['class' => 'btn btn-xs btn-success', 'escape' => false]
 			) ?>
 		<?php endif; ?>
 	<?php endif; ?>
 
-	<?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum'])): ?>
+	<?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
 		<?= $this->Html->link(
 			__('{0} Edit Thread', '<i class="fa fa-edit"></i>'),
 			'#',
@@ -43,7 +39,7 @@ use Cake\Utility\Inflector;
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<?= $this->Form->create($thread, [
-						'url' => ['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum']
+						'url' => ['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum']
 					]) ?>
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="<?= __('Close') ?>">

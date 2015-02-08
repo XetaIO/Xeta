@@ -135,6 +135,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'forum-categories',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -151,6 +152,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'forum-threads',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -168,6 +170,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'threads-create',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -183,6 +186,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'threads-edit',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -199,6 +203,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'threads-reply',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -215,6 +220,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'threads-lock',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'
@@ -231,6 +237,7 @@ Router::prefix('forum', function ($routes) {
 		],
 		[
 			'_name' => 'threads-unlock',
+			'routeClass' => 'SlugRoute',
 			'pass' => [
 				'id',
 				'slug'

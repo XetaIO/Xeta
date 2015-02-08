@@ -1,7 +1,6 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
+<?= $this->element('meta', [
+	'title' => __('New Thread')
+]) ?>
 <?php $this->start('scriptBottom');
 
 	echo $this->Html->script([
@@ -32,13 +31,13 @@ use Cake\Utility\Inflector;
 							[
 								'_name' => 'forum-categories',
 								'id' => $breadcrumb->id,
-								'slug' => Inflector::slug($breadcrumb->title, '-')
+								'slug' => $breadcrumb->title
 							]
 						) ?>
 					</li>
 				<?php endforeach; ?>
 				<li class="active">
-					<?= __("New Thread") ?>
+					<?= __('New Thread') ?>
 				</li>
 			</ol>
 			<?= $this->Flash->render('badge') ?>
@@ -65,7 +64,7 @@ use Cake\Utility\Inflector;
 								<?= $this->Form->input('title', ['class' => 'form-control', 'label' => false, 'placeholder' => __('Title...')]) ?>
 							</div>
 						</div>
-						<?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-'), 'prefix' => 'forum'])): ?>
+						<?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
 							<div class="form-group">
 								<?= $this->Form->label('sticky', __('Sticky Thread'), ['class' => 'col-sm-2 control-label']) ?>
 								<div class="col-sm-8 radio-check">

@@ -1,15 +1,11 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <div class="threadActions">
 	<?php if (
 			$category->category_open == true &&
-			$this->Acl->check(['_name' => 'threads-create', 'id' => $category->id, 'slug' => Inflector::slug($category->title, '-'), 'prefix' => 'forum'])
+			$this->Acl->check(['_name' => 'threads-create', 'id' => $category->id, 'slug' => $category->title, 'prefix' => 'forum'])
 	): ?>
 		<?= $this->Html->link(
 			__('{0} New Thread', '<i class="fa fa-plus"></i>'),
-			['_name' => 'threads-create', 'id' => $category->id, 'slug' => Inflector::slug($category->title, '-')],
+			['_name' => 'threads-create', 'id' => $category->id, 'slug' => $category->title],
 			['class' => 'btn btn-xs btn-primary', 'escape' => false]
 		) ?>
 	<?php endif; ?>

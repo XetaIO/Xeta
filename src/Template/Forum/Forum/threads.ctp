@@ -1,7 +1,3 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <?= $this->element('meta', [
 	'title' => $thread->title,
 	'description' => $thread->first_post->message_meta,
@@ -53,7 +49,7 @@ use Cake\Utility\Inflector;
 							[
 								'_name' => 'forum-categories',
 								'id' => $breadcrumb->id,
-								'slug' => strtolower(Inflector::slug($breadcrumb->title, '-'))
+								'slug' => $breadcrumb->title
 							]
 						) ?>
 					</li>

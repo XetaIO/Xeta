@@ -1,7 +1,3 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <article role="article" id="post-<?= $post->id ?>">
 	<div class="threadPost clearfix">
 		<div class="threadUser">

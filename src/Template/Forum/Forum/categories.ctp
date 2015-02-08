@@ -1,7 +1,3 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <?= $this->element('meta', [
 	'title' => $category->title,
 	'description' => empty($category->description) ? null : $category->description
@@ -24,7 +20,7 @@ use Cake\Utility\Inflector;
 							[
 								'_name' => 'forum-categories',
 								'id' => $breadcrumb->id,
-								'slug' => Inflector::slug($breadcrumb->title, '-')
+								'slug' => $breadcrumb->title
 							]
 						) ?>
 					</li>

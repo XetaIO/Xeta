@@ -1,10 +1,7 @@
-<?php
-use Cake\Utility\Inflector;
-?>
 <div class="panel panel-forum">
 	<div class="panel-heading">
 		<div class="categoryTitle">
-			<?= $this->Html->link($category->title, ['_name' => 'forum-categories', 'id' => $category->id, 'slug' => Inflector::slug($category->title, '-')]) ?>
+			<?= $this->Html->link($category->title, ['_name' => 'forum-categories', 'id' => $category->id, 'slug' => $category->title]) ?>
 		</div>
 	</div>
 	<div class="panel-inner">
@@ -31,7 +28,7 @@ use Cake\Utility\Inflector;
 							</span>
 							<div class="forumText">
 								<div class="forumTitle">
-									<?= $this->Html->link($forum->title, ['_name' => 'forum-categories', 'id' => $forum->id, 'slug' => Inflector::slug($forum->title, '-')]) ?>
+									<?= $this->Html->link($forum->title, ['_name' => 'forum-categories', 'id' => $forum->id, 'slug' => $forum->title]) ?>
 								</div>
 								<span class="forumDescription">
 									<?= $forum->description ?>
@@ -44,7 +41,7 @@ use Cake\Utility\Inflector;
 										<ul class="dropdown-menu" role="menu">
 											<?php foreach ($forum->children as $child): ?>
 												<li class="node subCategory">
-													<?= $this->Html->link($child->title, ['_name' => 'forum-categories', 'id' => $child->id, 'slug' => Inflector::slug($child->title, '-')]) ?>
+													<?= $this->Html->link($child->title, ['_name' => 'forum-categories', 'id' => $child->id, 'slug' => $child->title]) ?>
 												</li>
 
 												<?php if (is_array($child->children) && !empty($child->children)) : ?>

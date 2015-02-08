@@ -86,7 +86,8 @@ class PostsController extends AppController {
 				->find()
 				->select([
 					'ForumPosts.id',
-					'ForumPosts.user_id'
+					'ForumPosts.user_id',
+					'ForumPosts.created'
 				])
 				->where(['ForumPosts.thread_id' => $post->forum_thread->id])
 				->order(['ForumPosts.created' => 'DESC'])
@@ -99,6 +100,7 @@ class PostsController extends AppController {
 					'ForumThreads.id',
 					'ForumThreads.title',
 					'ForumThreads.last_post_id',
+					'ForumThreads.last_post_date',
 					'ForumThreads.first_post_id'
 				])
 				->where(['ForumThreads.id' => $post->forum_thread->id])
@@ -106,6 +108,7 @@ class PostsController extends AppController {
 
 			//Update the last post for the thread.
 			$thread->last_post_id = $lastPost->id;
+			$thread->last_post_date = $lastPost->created;
 			$thread->last_post_user_id = $lastPost->user_id;
 
 			$this->ForumThreads->save($thread);

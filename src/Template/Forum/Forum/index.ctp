@@ -1,7 +1,3 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <?= $this->element('meta', [
 	'title' => __('Forum')
 ]) ?>

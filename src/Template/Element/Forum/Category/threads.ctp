@@ -1,7 +1,3 @@
-<?php
-use Cake\Utility\Inflector;
-
-?>
 <?php if (isset($threads) && !empty($threads->toArray())): ?>
 	<div class="panel panel-forum">
 		<div class="panel-heading">
@@ -41,7 +37,7 @@ use Cake\Utility\Inflector;
 								</span>
 								<div class="threadText">
 									<div class="threadTitle">
-										<?= $this->Html->link($thread->title, ['_name' => 'forum-threads', 'id' => $thread->id, 'slug' => Inflector::slug($thread->title, '-')]) ?>
+										<?= $this->Html->link($thread->title, ['_name' => 'forum-threads', 'id' => $thread->id, 'slug' => $thread->title]) ?>
 									</div>
 									<span class="threadDescription">
 										<?= __('By') ?>
@@ -67,7 +63,7 @@ use Cake\Utility\Inflector;
 										[
 											'_name' => 'forum-threads',
 											'id' => $thread->id,
-											'slug' => Inflector::slug($thread->title, '-')
+											'slug' => $thread->title
 										],
 										[
 											'escape' => false,
@@ -96,7 +92,7 @@ use Cake\Utility\Inflector;
 				"No threads were found for this category. {0}",
 				$this->Html->link(
 					__('{0} Create a Thread', '<i class="fa fa-plus"></i>'),
-					['_name' => 'threads-create', 'id' => $category->id, 'slug' => Inflector::slug($category->title, '-')],
+					['_name' => 'threads-create', 'id' => $category->id, 'slug' => $category->title],
 					['class' => 'btn btn-sm btn-primary', 'escape' => false]
 				)
 			); ?>
