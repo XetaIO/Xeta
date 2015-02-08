@@ -27,6 +27,10 @@ class BadgesTable extends Table {
 				]
 			]
 		]);
+		$this->addBehavior('Translate', [
+			'fields' => ['name'],
+			'translationTable' => 'BadgesI18n'
+		]);
 
 		$this->belongsToMany('Users', [
 			'foreignKey' => 'badge_id',
