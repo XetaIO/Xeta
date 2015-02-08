@@ -2,6 +2,9 @@
 use Cake\Utility\Inflector;
 
 ?>
+<?= $this->element('meta', [
+	'title' => __('Forum')
+]) ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">

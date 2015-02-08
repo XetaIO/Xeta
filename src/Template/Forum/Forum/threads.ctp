@@ -4,7 +4,7 @@ use Cake\Utility\Inflector;
 ?>
 <?= $this->element('meta', [
 	'title' => $thread->title,
-	'description' => $thread->message_meta,
+	'description' => $thread->first_post->message_meta,
 	'author' => $thread->first_post->user->full_name
 ]) ?>
 

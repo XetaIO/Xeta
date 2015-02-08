@@ -2,6 +2,11 @@
 use Cake\Utility\Inflector;
 
 ?>
+<?= $this->element('meta', [
+	'title' => $category->title,
+	'description' => empty($category->description) ? null : $category->description
+]) ?>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
