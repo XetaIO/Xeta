@@ -187,6 +187,11 @@ class ForumController extends AppController {
 				},
 				'FirstPosts.LastEditUsers' => function ($q) {
 					return $q->find('short');
+				},
+				'FirstPosts.ForumPostsLikes' => function ($q) {
+					return $q->where([
+						'ForumPostsLikes.user_id' => $this->Auth->user('id')
+					]);
 				}
 			])
 			->where([
@@ -238,6 +243,11 @@ class ForumController extends AppController {
 				},
 				'LastEditUsers' => function ($q) {
 					return $q->find('short');
+				},
+				'ForumPostsLikes' => function ($q) {
+					return $q->where([
+						'ForumPostsLikes.user_id' => $this->Auth->user('id')
+					]);
 				}
 			])
 			->where([

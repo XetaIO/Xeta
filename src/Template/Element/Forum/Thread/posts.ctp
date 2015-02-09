@@ -145,6 +145,7 @@
 			</div>
 
 			<div class="bottom">
+
 				<?php if ($post->edit_count): ?>
 					<div class="edited">
 						<?= __('{0} Last Edit: {1}, {2}',
@@ -159,23 +160,73 @@
 					</div>
 				<?php endif; ?>
 
-				<?php if ($this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id])): ?>
-					<div class="quote">
-						<?= $this->Html->link(
-							__("{0} Quote", '<i class="fa fa-quote-left "></i>'),
-							'#',
-							[
-								'class' => 'QuotePost btn btn-sm btn-primary',
-								'data-id' => $post->id,
-								'data-url' => $this->Url->build(
+				<?php if (
+						$this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id]) ||
+						$this->Acl->check(['controller' => 'posts', 'action' => 'like'])
+				): ?>
+					<div class="actions text-right">
+						<?php if ($this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id])): ?>
+							<?= $this->Html->link(
+								__("{0} Quote", '<i class="fa fa-quote-left"></i>'),
+								'#',
+								[
+									'class' => 'QuotePost btn btn-sm btn-link text-primary',
+									'data-id' => $post->id,
+									'data-url' => $this->Url->build(
+										[
+											'_name' => 'posts-quote',
+											'id' => $post->id
+										]
+									),
+									'escape' => false
+								]
+							) ?>
+						<?php endif; ?>
+
+						<?php if ($this->Acl->check(['controller' => 'posts', 'action' => 'like'])): ?>
+							<span class="likeCounter-<?= $post->id ?>">
+								<?= h($post->like_count) ?>
+							</span>
+							<?php if (!empty($post->forum_posts_likes)): ?>
+								<?= $this->Html->link(
+									__("{0} Like", '<i class="fa fa-thumbs-o-up"></i>'),
+									'#',
 									[
-										'_name' => 'posts-quote',
-										'id' => $post->id
+										'class' => 'LikePost btn btn-sm btn-link text-success',
+										'data-id' => $post->id,
+										'data-url' => $this->Url->build(
+											[
+												'controller' => 'posts',
+												'action' => 'unlike'
+											]
+										),
+										'data-type' => 'unlike',
+										'data-toggle' => 'tooltip',
+										'title' => __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>"),
+										'escape' => false
 									]
-								),
-								'escape' => false
-							]
-						) ?>
+								) ?>
+							<?php else: ?>
+								<?= $this->Html->link(
+									__("{0} Like", '<i class="fa fa-thumbs-o-up"></i>'),
+									'#',
+									[
+										'class' => 'LikePost btn btn-sm btn-link text-primary',
+										'data-id' => $post->id,
+										'data-url' => $this->Url->build(
+											[
+												'controller' => 'posts',
+												'action' => 'like'
+											]
+										),
+										'data-type' => 'like',
+										'data-toggle' => 'tooltip',
+										'title' => __('Like {0}', "<i class='fa fa-heart text-danger'></i>"),
+										'escape' => false
+									]
+								) ?>
+							<?php endif; ?>
+						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 
@@ -184,6 +235,7 @@
 						<?= $post->user->signature ?>
 					</div>
 				<?php endif; ?>
+
 			</div>
 
 		</div>

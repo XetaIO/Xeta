@@ -69,4 +69,69 @@ $(document).ready(function () {
 		});
 		return false;
 	});
+
+	$(".LikePost").bind("click", function () {
+		var like = $(this),
+			type = like.attr("data-type"),
+			id = like.attr("data-id");
+
+		$.ajax({
+			type    : "POST",
+			url     : like.attr("data-url"),
+			data : {
+				id : id,
+				type : type
+			},
+			dataType: "json",
+			success : function (data) {
+				if (!data.error) {
+
+					if(type === 'like') {
+
+						like.removeClass('text-primary').addClass('text-success');
+						like.attr("data-original-title", data.title);
+						like.attr("data-url", data.url);
+						like.attr("data-type", "unlike");
+
+						$(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) + 1);
+
+						/**
+						* Display message.
+						*/
+						$(".top-right").notify({
+							message: { html: data.message },
+							type   : "primary"
+						}).show();
+					} else if(type === "unlike") {
+
+						like.removeClass('text-success').addClass('text-primary');
+
+						like.attr("data-original-title", data.title);
+						like.attr("data-url", data.url);
+						like.attr("data-type", "like");
+
+						$(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) - 1);
+					}
+
+				} else {
+
+					$(".top-right").notify({
+						message: {
+							text: data.message
+						},
+						type   : "danger"
+					}).show();
+				}
+			},
+			error   : function () {
+				$(".top-right").notify({
+					message: {
+						text: "Error to like/unlike the article."
+					},
+					type   : "danger"
+				}).show();
+			}
+		});
+		return false;
+	});
 });

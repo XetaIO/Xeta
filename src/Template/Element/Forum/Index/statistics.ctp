@@ -42,7 +42,7 @@
 					</strong>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-4 text-center">
-					<span class="output text-orange">
+					<span class="output text-yellow">
 						<?= $statistics['Users']['TotalUsers'] ?>
 					</span>
 					<strong>
@@ -50,7 +50,7 @@
 					</strong>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-4 text-center">
-					<span class="output text-red">
+					<span class="output text-danger">
 						<?= $this->Html->link($statistics['Users']['LastRegistered']->username, ['_name' => 'users-profile', 'slug' => $statistics['Users']['LastRegistered']->slug, 'prefix' => false]) ?>
 					</span>
 					<strong>

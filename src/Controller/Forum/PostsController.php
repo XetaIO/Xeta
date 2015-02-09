@@ -34,6 +34,132 @@ class PostsController extends AppController {
 	}
 
 /**
+ * Unlike a post.
+ *
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ *
+ * @return void
+ */
+	public function unlike() {
+		if (!$this->request->is('ajax')) {
+			throw new NotFoundException();
+		}
+
+		//Check if the user like this article.
+		$this->loadModel('ForumPostsLikes');
+		$like = $this->ForumPostsLikes
+			->find()
+			->where([
+				'ForumPostsLikes.user_id' => $this->Auth->user('id'),
+				'ForumPostsLikes.post_id' => $this->request->data['id']
+			])
+			->first();
+
+		$json = [];
+
+		if (is_null($like)) {
+			$json['message'] = __("You don't like this post !");
+			$json['error'] = true;
+
+			$this->set(compact('json'));
+
+			$this->set('_serialize', 'json');
+		}
+
+		if ($this->ForumPostsLikes->delete($like)) {
+			$json['url'] = Router::url([
+				'action' => 'like'
+			]);
+			$json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
+			$json['error'] = false;
+		} else {
+
+			$json['message'] = __('An error occurred, please try again later.');
+			$json['error'] = true;
+		}
+
+		$this->set(compact('json'));
+
+		$this->set('_serialize', 'json');
+	}
+
+/**
+ * Like a post.
+ *
+ * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ *
+ * @return void
+ */
+	public function like() {
+		if (!$this->request->is('ajax')) {
+			throw new NotFoundException();
+		}
+
+		//Check if the user hasn't already liked this post.
+		$this->loadModel('ForumPostsLikes');
+		$like = $this->ForumPostsLikes
+			->find()
+			->where([
+				'ForumPostsLikes.user_id' => $this->Auth->user('id'),
+				'ForumPostsLikes.post_id' => $this->request->data['id']
+			])
+			->first();
+
+		$json = [];
+
+		if (!is_null($like)) {
+			$json['message'] = __('You already like this post !');
+			$json['error'] = true;
+
+			$this->set(compact('json'));
+
+			$this->set('_serialize', 'json');
+		}
+
+		//Check if the post exist.
+		$this->loadModel('ForumPosts');
+		$post = $this->ForumPosts
+			->find()
+			->where([
+				'ForumPosts.id' => $this->request->data['id'],
+			])
+			->first();
+
+		if (is_null($post)) {
+			$json['message'] = __("This article doesn't exist !");
+			$json['error'] = true;
+
+			$this->set(compact('json'));
+
+			$this->set('_serialize', 'json');
+		}
+
+		//Prepare data to be saved.
+		$data = [];
+		$data['ForumPostsLikes']['user_id'] = $this->Auth->user('id');
+		$data['ForumPostsLikes']['post_id'] = $this->request->data['id'];
+
+		$like = $this->ForumPostsLikes->newEntity($data);
+
+		if ($this->ForumPostsLikes->save($like)) {
+			$json['message'] = __('Thanks for {0} this post ! ', "<i class='fa fa-heart text-danger'></i>");
+			$json['title'] = __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>");
+			$json['url'] = Router::url([
+				'action' => 'unlike'
+			]);
+			$json['error'] = false;
+		} else {
+
+			$json['message'] = __('An error occurred, please try again later.');
+			$json['error'] = true;
+		}
+
+		$this->set(compact('json'));
+
+		$this->set('_serialize', 'json');
+	}
+
+/**
  * Delete a post.
  *
  * @return \Cake\Network\Response

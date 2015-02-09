@@ -88,11 +88,16 @@ class UsersTest extends TestCase {
 		$this->assertInstanceOf('App\Model\Entity\User', $query);
 		$result = $query->toArray();
 		$expected = [
+			'id' => 1,
 			'first_name' => 'Maria',
 			'last_name' => 'Riano',
 			'username' => 'mariano',
 			'avatar' => '../img/avatar.png',
 			'slug' => 'mariano',
+			'forum_post_count' => 2,
+			'forum_thread_count' => 2,
+			'blog_articles_comment_count' => 2,
+			'blog_article_count' => 2,
 			'group_id' => 1,
 			'facebook' => 'mariano',
 			'twitter' => 'mariano',
@@ -100,6 +105,8 @@ class UsersTest extends TestCase {
 			'created' => new Time('2014-03-17 01:16:23'),
 			'last_login' => new Time('2014-03-17 01:23:31')
 		];
+
+		unset($result['end_subscription']);
 
 		$this->assertEquals($expected, $result);
 	}

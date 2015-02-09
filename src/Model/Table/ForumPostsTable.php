@@ -38,6 +38,10 @@ class ForumPostsTable extends Table {
 			'className' => 'Users',
 			'foreignKey' => 'last_edit_user_id'
 		]);
+		$this->hasMany('ForumPostsLikes', [
+			'foreignKey' => 'post_id',
+			'dependent' => true
+		]);
 	}
 
 /**
