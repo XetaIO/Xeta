@@ -45,6 +45,46 @@
 						</div>
 					</div>
 					<?= $this->I18n->i18nInput($group, 'name', ['class' => 'form-control']); ?>
+					<div class="form-group">
+						<?= $this->Form->label('css', __d('admin', 'CSS'), ['class' => 'col-sm-2 control-label']) ?>
+						<div class="col-sm-5">
+							<?= $this->Form->input('css', ['class' => 'form-control', 'label' => false]) ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<?= $this->Form->label('is_staff', __d('admin', 'Is Staff'), ['class' => 'col-sm-2 control-label']) ?>
+						<div class="col-sm-5 radio-check">
+							<?= $this->Form->radio('is_staff', [
+									'1' => __d('admin', 'Yes'),
+									'0' => __d('admin', 'No')
+								],
+								[
+									'legend' => false,
+									'class' => 'form-control'
+								]
+							) ?>
+							<span>
+								<?= __d('admin', 'Used to display the Staff Online') ?>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<?= $this->Form->label('is_member', __d('admin', 'Is Member'), ['class' => 'col-sm-2 control-label']) ?>
+						<div class="col-sm-5 radio-check">
+							<?= $this->Form->radio('is_member', [
+									'1' => __d('admin', 'Yes'),
+									'0' => __d('admin', 'No')
+								],
+								[
+									'legend' => false,
+									'class' => 'form-control'
+								]
+							) ?>
+							<span>
+								<?= __d('admin', 'Used to display the Group Premium intead of the real group.') ?>
+							</span>
+						</div>
+					</div>
 
 					<?= $this->Form->button(__d('admin', 'Edit Group'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
 					<?= $this->Form->end() ?>
