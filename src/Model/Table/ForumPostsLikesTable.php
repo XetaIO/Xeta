@@ -19,7 +19,8 @@ class ForumPostsLikesTable extends Table {
 
 		$this->addBehavior('Timestamp');
 		$this->addBehavior('CounterCache', [
-			'ForumPosts' => ['like_count']
+			'ForumPosts' => ['like_count'],
+			'ReceiversUsers' => ['forum_like_received']
 		]);
 
 		$this->belongsTo('ForumPosts', [
@@ -27,6 +28,10 @@ class ForumPostsLikesTable extends Table {
 		]);
 		$this->belongsTo('Users', [
 			'foreignKey' => 'user_id'
+		]);
+		$this->belongsTo('ReceiversUsers', [
+			'className' => 'Users',
+			'foreignKey' => 'receiver_id'
 		]);
 	}
 }

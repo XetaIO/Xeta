@@ -70,7 +70,8 @@
 				]) ?>
 
 				<!-- Polls -->
-				<?= $this->element('Forum\Thread\polls') ?>
+				<!-- Disabled until the polls system is done -->
+				<?php //echo $this->element('Forum\Thread\polls') ?>
 
 				<!-- First Post -->
 				<?= $this->element('Forum\Thread\posts', [

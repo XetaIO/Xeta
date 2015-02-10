@@ -138,6 +138,7 @@ class PostsController extends AppController {
 		$data = [];
 		$data['ForumPostsLikes']['user_id'] = $this->Auth->user('id');
 		$data['ForumPostsLikes']['post_id'] = $this->request->data['id'];
+		$data['ForumPostsLikes']['receiver_id'] = $post->user_id;
 
 		$like = $this->ForumPostsLikes->newEntity($data);
 

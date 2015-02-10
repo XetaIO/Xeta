@@ -202,7 +202,7 @@
 										),
 										'data-type' => 'unlike',
 										'data-toggle' => 'tooltip',
-										'title' => __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>"),
+										'title' => __('You {0} this post.', "<i class='fa fa-heart text-danger'></i>"),
 										'escape' => false
 									]
 								) ?>
