@@ -1,7 +1,7 @@
 <?= $this->element('meta', [
 	'title' => __('Forum')
 ]) ?>
-<div class="container-fluid">
+<div class="container-fluid forum-container">
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
@@ -20,6 +20,10 @@
 	<div class="row">
 
 		<div class="col-md-10">
+			<?php if(\Cake\Core\Configure::read('Chat.enabled') === true): ?>
+				<?= $this->element('chat\mini-chat') ?>
+			<?php endif; ?>
+
 			<main role="main" class="main">
 				<?php foreach ($categories as $category): ?>
 					<?= $this->element('forum\categories', [

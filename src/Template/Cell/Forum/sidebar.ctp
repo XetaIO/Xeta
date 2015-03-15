@@ -2,7 +2,7 @@
 	<div class="sidebox widget">
 		<div class="panel panel-forum panel-staff-online">
 			<div class="panel-heading">
-				<?= __("Staff Online") ?>
+				<?= __('Staff Online') ?>
 			</div>
 			<div class="panel-body">
 				<ul>
@@ -23,6 +23,20 @@
 							</small>
 						</li>
 					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+
+<?php if(\Cake\Core\Configure::read('Chat.enabled') === true): ?>
+	<div class="sidebox widget">
+		<div class="panel panel-forum panel-chat-online">
+			<div class="panel-heading">
+				<?= __d('chat', 'Members in Chat') ?>
+			</div>
+			<div class="panel-body">
+				<ul id="chatboxOnline">
 				</ul>
 			</div>
 		</div>

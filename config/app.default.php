@@ -92,6 +92,15 @@ return [
 			'className' => 'File',
 			'path' => CACHE,
 		],
+	/**
+	 * Configure the cache used for storing the chat request.
+	 */
+		'chat' => [
+			'className' => 'File',
+			'prefix' => 'Xeta_chat_',
+			'path' => CACHE . 'chat/',
+			'duration' => '+999 days',
+		],
 
 	/**
 	 * Configure the cache used for storing the acl request.

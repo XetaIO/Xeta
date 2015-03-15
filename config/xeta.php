@@ -129,6 +129,15 @@ return [
 				'HTML.Allowed' => '',
 				'AutoFormat.RemoveEmpty' => true
 			]
+		],
+		'Chat' => [
+			'notice' => [
+				'Core.Encoding' => 'UTF-8',
+				'URI.Base' => 'https://xeta.io',
+				'HTML.Allowed' => 'p, strong, b, em, u, a[href|target], br, span[style], img[alt|src|style|title]',
+				'CSS.AllowedProperties' => 'font-size,color,height,width',
+				'AutoFormat.RemoveEmpty' => true
+			]
 		]
 	],
 	'Forum' => [
@@ -141,5 +150,23 @@ return [
 	],
 	'Premium' => [
 		'color' => '#F2C732'
+	],
+	'Chat' => [
+		//Enable/Disable the chat.
+		'enabled' => true,
+		//Time out in seconds before to delete an user from the Online list.
+		'usersTimeOut' => 10,
+		//The refrest time in seconds.
+		'refreshTime' => 3,
+		//Max messages to display in the chat.
+		'maxMessages' => 25,
+		//Max times to retry to get the messages after an error.
+		'maxRetrying' => 5,
+		//The seconds to wait between sending 2 mesages.
+		'floodRule' => 3,
+		//The spam rule in %. (By similarity)
+		'spamRule' => 95,
+		//Max characters per message.
+		'messageMaxLength' => 400
 	]
 ];

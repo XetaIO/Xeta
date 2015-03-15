@@ -3,7 +3,7 @@
 	'description' => empty($category->description) ? null : $category->description
 ]) ?>
 
-<div class="container-fluid">
+<div class="container-fluid forum-container">
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">

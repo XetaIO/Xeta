@@ -3,7 +3,7 @@
 use Cake\Core\Plugin;
 use Cake\Routing\Router;
 
-Router::extensions(['json']);
+Router::extensions(['json', 'xml']);
 Router::defaultRouteClass('InflectedRoute');
 
 //Public routes.
@@ -105,6 +105,11 @@ Router::scope('/', function ($routes) {
 		]
 	);
 
+	$routes->fallbacks();
+});
+
+//Chat routes.
+Router::prefix('chat', function ($routes) {
 	$routes->fallbacks();
 });
 

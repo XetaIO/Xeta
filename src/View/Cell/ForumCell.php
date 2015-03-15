@@ -75,7 +75,7 @@ class ForumCell extends Cell {
 			->toArray();
 
 		foreach ($staffOnline as $key => $staff) {
-			if ($staff->user->group->is_staff == false) {
+			if ((isset($staff->user) && isset($staff->user->group) && $staff->user->group->is_staff == false) || !isset($staff->user)) {
 				unset($staffOnline[$key]);
 			}
 		}
