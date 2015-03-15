@@ -209,7 +209,6 @@ class CommandsComponent extends Component {
 						$json['message'] = __d('chat', 'Error while saving the new message after deleting all messages.');
 					}
 
-					return $json;
 				break;
 
 			case 'ban':
@@ -362,7 +361,6 @@ class CommandsComponent extends Component {
 
 					$this->_controller->ChatMessages->save($message);
 
-					return $json;
 				break;
 
 			case 'unban':
@@ -474,9 +472,9 @@ class CommandsComponent extends Component {
 
 						$this->_controller->ChatMessages->save($message);
 					}
-
-					return $json;
 				break;
 		}
+
+		return $json;
 	}
 }
