@@ -259,7 +259,7 @@ xetaChat = {
 				xetaChat._handleXML(response);
 			},
 			error: function () {
-				xetaChat._notify('danger', xetaChat.lang.getServerResponse);
+				//xetaChat._notify('danger', xetaChat.lang.getServerResponse);
 
 				retrying++;
 			}
