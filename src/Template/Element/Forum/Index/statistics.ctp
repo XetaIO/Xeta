@@ -66,7 +66,7 @@
 			<span class="stats-heading">
 				<?= __n('In total there is <strong>{0}</strong> user online :', 'In total there are <strong>{0}</strong> users online :', $online['total'], $online['total']) ?>
 				<?= __('{0} registered and {1} guests (based on users active over the past 5 minutes)', $online['members'], $online['guests']) ?>
-				<?= $this->Html->link('<i class="fa fa-question-circle"></i>', ['controller' => 'forum', 'action' => 'viewonline'], ['title' => __('Who is online'), 'escape' => false]) ?>
+				<?php //echo $this->Html->link('<i class="fa fa-question-circle"></i>', ['controller' => 'forum', 'action' => 'viewonline'], ['title' => __('Who is online'), 'escape' => false]) ?>
 			</span>
 			<br>
 			<span>
@@ -80,7 +80,7 @@
 			</span>
 			<?php if (!empty($online['records'])): ?>
 				<p>
-					<?= __n('Registered user:', 'Registered users:', $online['members'], $online['members']) ?>
+					<?= __n('Registered user :', 'Registered users :', $online['members'], $online['members']) ?>
 					<?php foreach ($online['records'] as $key => $record): ?>
 						<?= $this->Html->link($record->user->username, ['_name' => 'users-profile', 'slug' => $record->user->slug, 'prefix' => false], ['style' => h($record->user->group_css)]) ?><?= ($online['records'][count($online['records']) - 1]->user->slug == $record->user->slug) ? '' : ',' ?>
 					<?php endforeach; ?>

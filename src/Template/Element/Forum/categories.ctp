@@ -96,7 +96,6 @@
 						<td class="forumStats hidden-xs">
 							<span class="stats-wrapper">
 								<?= __n('{0} Topic', '{0} Topics', $threadCount, $threadCount) ?><br>
-								0 Posts
 							</span>
 						</td>
 
