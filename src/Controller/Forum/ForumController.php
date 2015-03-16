@@ -67,6 +67,14 @@ class ForumController extends AppController {
 			return $event->result;
 		}, 'forum');
 
+		$statistics['TotalPostsLikes'] = Cache::remember('statisticsTotalPostsLikes', function () {
+			$this->eventManager()->attach(new Statistics());
+			$event = new Event('Model.ForumPostsLikes.update');
+			$this->eventManager()->dispatch($event);
+
+			return $event->result;
+		}, 'forum');
+
 		$statistics['Users'] = Cache::remember('statisticsUsers', function () {
 			$this->eventManager()->attach(new Statistics());
 			$event = new Event('Model.Users.register');

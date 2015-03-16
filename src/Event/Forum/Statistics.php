@@ -26,8 +26,29 @@ class Statistics implements EventListenerInterface {
 			'Model.ForumThreads.new' => 'newThreadStats',
 			'Model.ForumPosts.new' => 'newPostStats',
 			'Model.Users.register' => 'newUserStats',
-			'Model.Groups.update' => 'updateGroupStats'
+			'Model.Groups.update' => 'updateGroupStats',
+			'Model.ForumPostsLikes.update' => 'newPostsLikeStats'
 		);
+	}
+
+/**
+ * Re-count the number of posts likes and write it in the Cache.
+ *
+ * @param \Cake\Event\Event $event The event that was fired.
+ *
+ * @return int|false
+ */
+	public function newPostsLikeStats(Event $event) {
+		$this->ForumPostsLikes = TableRegistry::get('ForumPostsLikes');
+
+		$totalPostsLikes = $this->ForumPostsLikes->find()->count();
+		$totalPostsLikes = Number::format($totalPostsLikes);
+
+		if ($this->_writeCache($totalPostsLikes, 'TotalPostsLikes')) {
+			return $totalPostsLikes;
+		}
+
+		return false;
 	}
 
 /**

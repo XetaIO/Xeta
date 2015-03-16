@@ -18,11 +18,11 @@
 					</strong>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-4 text-center">
-					<span class="output text-seppia">
-						16
+					<span class="output text-yellow">
+						<?= $statistics['TotalPostsLikes'] ?>
 					</span>
 					<strong>
-						<?= __('Most Users Online') ?>
+						<?= __('Total Likes') ?>
 					</strong>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-4 text-center">
@@ -42,7 +42,7 @@
 					</strong>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-4 text-center">
-					<span class="output text-yellow">
+					<span class="output text-seppia">
 						<?= $statistics['Users']['TotalUsers'] ?>
 					</span>
 					<strong>

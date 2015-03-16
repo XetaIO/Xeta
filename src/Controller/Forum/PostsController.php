@@ -2,6 +2,7 @@
 namespace App\Controller\Forum;
 
 use App\Controller\AppController;
+use App\Event\Forum\Statistics;
 use Cake\Core\Configure;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
@@ -67,6 +68,11 @@ class PostsController extends AppController {
 		}
 
 		if ($this->ForumPostsLikes->delete($like)) {
+			//Event.
+			$this->eventManager()->attach(new Statistics());
+			$event = new Event('Model.ForumPostsLikes.update', $this);
+			$this->eventManager()->dispatch($event);
+
 			$json['url'] = Router::url([
 				'action' => 'like'
 			]);
@@ -143,6 +149,11 @@ class PostsController extends AppController {
 		$like = $this->ForumPostsLikes->newEntity($data);
 
 		if ($this->ForumPostsLikes->save($like)) {
+			//Event.
+			$this->eventManager()->attach(new Statistics());
+			$event = new Event('Model.ForumPostsLikes.update', $this);
+			$this->eventManager()->dispatch($event);
+
 			$json['message'] = __('Thanks for {0} this post ! ', "<i class='fa fa-heart text-danger'></i>");
 			$json['title'] = __('You {0} this post.', "<i class='fa fa-heart text-danger'></i>");
 			$json['url'] = Router::url([
@@ -238,6 +249,11 @@ class PostsController extends AppController {
 			$thread->last_post_user_id = $lastPost->user_id;
 
 			$this->ForumThreads->save($thread);
+
+			//Event.
+			$this->eventManager()->attach(new Statistics());
+			$event = new Event('Model.ForumPosts.new', $this);
+			$this->eventManager()->dispatch($event);
 
 			$this->Flash->success(__("The post has been deleted successfully !"));
 
