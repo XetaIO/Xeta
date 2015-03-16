@@ -20,21 +20,23 @@
 							]
 						) ?>
 					</div>
-					<div class="form-group">
-						<?= $this->Form->label('forum_thread.thread_open', __('Lock the Thread with the response ?'), ['class' => 'control-label']) ?>
-						<div class="radio-check">
-							<?= $this->Form->radio('forum_thread.thread_open', [
-									'0' => __('Yes'),
-									'1' => __('No')
-								],
-								[
-									'value' => '1',
-									'legend' => false,
-									'class' => 'form-control'
-								]
-							) ?>
+					<?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
+						<div class="form-group">
+							<?= $this->Form->label('forum_thread.thread_open', __('Lock the Thread with the response ?'), ['class' => 'control-label']) ?>
+							<div class="radio-check">
+								<?= $this->Form->radio('forum_thread.thread_open', [
+										'0' => __('Yes'),
+										'1' => __('No')
+									],
+									[
+										'value' => '1',
+										'legend' => false,
+										'class' => 'form-control'
+									]
+								) ?>
+							</div>
 						</div>
-					</div>
+					<?php endif; ?>
 					<div class="form-group">
 						<?= $this->Form->submit(__('Post Comment'), ['class' => 'btn btn-primary']); ?>
 					</div>

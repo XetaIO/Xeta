@@ -24,7 +24,7 @@
 				</li>
 				<?= (isset($this->request->params['prefix']) && strtolower($this->request->params['prefix']) == 'forum') ? '<li class="active">' : '<li>' ?>
 					<a href="<?= $this->Url->build(['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum']) ?>">
-						<span data-hover="<?=__("Forum") ?>"><?= __("Forum") ?></span>
+						<span data-hover="<?=__("Forum") ?>"><?= __("Forum") ?></span><i class="hidden-xs"><?=__("Beta") ?></i>
 					</a>
 				</li>
 				<?= (strtolower($this->request->params['controller']) == 'premium') ? '<li class="active">' : '<li>' ?>

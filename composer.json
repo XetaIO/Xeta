@@ -25,7 +25,7 @@
 		"d11wtq/boris": "1.0.*",
 		"phpunit/phpunit": "*",
 		"gourmet/whoops": "*",
-		"cakephp/cakephp-codesniffer": "*"
+		"cakephp/cakephp-codesniffer": "1.*"
 	},
 	"autoload": {
 		"psr-4": {

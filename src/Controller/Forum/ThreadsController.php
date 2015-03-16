@@ -286,7 +286,7 @@ class ThreadsController extends AppController {
 			]);
 		}
 
-		//Check if the user has the permission to unlock it.
+		//Check if the user has the permission to lock it.
 		if ($this->Auth->isAuthorized() === false) {
 			$this->Flash->error(__("You don't have the authorization to lock this post !"));
 
