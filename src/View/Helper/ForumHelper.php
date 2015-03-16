@@ -44,12 +44,18 @@ class ForumHelper extends Helper {
  * Generate all the sub-catgories.
  *
  * @param object $categories The categories to generate.
+ * @param bool $reset Reset the HTML and the thread counter.
  *
  * @return string
  */
-	public function generateCategories(array $categories = []) {
+	public function generateCategories(array $categories = [], $reset = false) {
 		if (empty($categories)) {
 			return;
+		}
+
+		if ($reset === true) {
+			$this->html = '';
+			$this->threadCount = 0;
 		}
 
 		$this->html .= '<ul style="list-style: outside none none;box-sizing: content-box;min-width: 160px;">';

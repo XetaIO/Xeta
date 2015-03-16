@@ -51,7 +51,7 @@
 
 												<?php if (is_array($child->children) && !empty($child->children)): ?>
 													<?php
-														$result = $this->Forum->generateCategories($child->children);
+														$result = $this->Forum->generateCategories($child->children, true);
 														echo $result['html'];
 
 														$threadCount += $result['thread_count'];

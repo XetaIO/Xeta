@@ -41,17 +41,7 @@ class ForumController extends AppController {
 		$this->loadModel('ForumCategories');
 
 		$categories = $this->ForumCategories
-			->find('threaded')
-			->formatResults(function ($categories) {
-				return $categories->map(function ($categorie) {
-					$cat = $this->ForumCategories->find('children', ['for' => $categorie->id]);
-
-					$threadCountTotal = $cat->select(['thread_count_total' => $cat->func()->sum('thread_count')])->first();
-
-					$categorie['thread_count_total'] = $threadCountTotal->thread_count_total;
-					return $categorie;
-				});
-			});
+			->find('threaded');
 
 		$statistics = [];
 
