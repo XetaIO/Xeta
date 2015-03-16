@@ -67,6 +67,7 @@ use Cake\Core\Configure;
 							<ul class="features">
 								<li><i class="fa fa-cloud-download"></i> <?= __("Resources in Tutorials") ?></li>
 								<li><i class="fa fa-trophy"></i> <?= __("Premium Badge") ?></li>
+								<li><i class="fa fa-star"></i> <?= __("Yellow color in Chat & Forum") ?></li>
 								<li class="text-center">
 									<?php if ($this->request->session()->read('Auth.User')): ?>
 										<?= $this->Form->create(null, [
