@@ -37,6 +37,7 @@ class ForumCell extends Cell {
 				'ForumThreads.thread_open' => 1,
 				'ForumThreads.id !=' => $id
 			])
+			->order(['ForumThreads.created' => 'DESC'])
 			->limit(3)
 			->toArray();
 
