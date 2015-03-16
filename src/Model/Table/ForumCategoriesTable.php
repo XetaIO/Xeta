@@ -34,6 +34,10 @@ class ForumCategoriesTable extends Table {
 		$this->hasMany('ForumThreads', [
 			'foreignKey' => 'category_id'
 		]);
+		$this->belongsTo('LastPost', [
+			'className' => 'ForumPosts',
+			'foreignKey' => 'last_post_id'
+		]);
 	}
 
 /**

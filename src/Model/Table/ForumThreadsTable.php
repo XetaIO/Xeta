@@ -23,7 +23,11 @@ class ForumThreadsTable extends Table {
 		$this->addBehavior('Timestamp');
 		$this->addBehavior('CounterCache', [
 			'Users' => ['forum_thread_count'],
-			'ForumCategories' => ['thread_count']
+			'ForumCategories' => [
+				'thread_count' => [
+					'conditions' => ['ForumThreads.thread_open !=' => 2]
+				]
+			]
 		]);
 
 		$this->belongsTo('ForumCategories', [

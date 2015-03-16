@@ -23,6 +23,7 @@
 				<?php foreach ($forums as $forum): ?>
 					<?php
 					$threadCount = $forum->thread_count;
+					$lastPost = $forum->last_post;
 					?>
 					<tr>
 						<td class="forumInfo">
@@ -34,7 +35,7 @@
 									<?= $this->Html->link($forum->title, ['_name' => 'forum-categories', 'id' => $forum->id, 'slug' => $forum->title]) ?>
 								</div>
 								<span class="forumDescription">
-									<?= $forum->description ?>
+									<?= h($forum->description) ?>
 								</span>
 								<div class="btn-group">
 									<?php if($forum->child_count >= 1): ?>
@@ -47,16 +48,44 @@
 													<?= $this->Html->link($child->title, ['_name' => 'forum-categories', 'id' => $child->id, 'slug' => $child->title]) ?>
 												</li>
 
-												<?php $threadCount += $child->thread_count; ?>
+												<?php
+												//Add to the thread counter.
+												$threadCount += $child->thread_count;
+
+												//Process the last post.
+												if (!is_null($child->last_post)) {
+													if (!is_null($lastPost)) {
+														if ($lastPost->id < $child->last_post->id) {
+															$lastPost = $child->last_post;
+														}
+													} else {
+														$lastPost = $child->last_post;
+													}
+												}
+												?>
 
 												<?php if (is_array($child->children) && !empty($child->children)): ?>
 													<?php
 														$result = $this->Forum->generateCategories($child->children, true);
 														echo $result['html'];
 
+														//Add to the thread counter.
 														$threadCount += $result['thread_count'];
 													?>
 												<?php endif; ?>
+
+												<?php
+												//Process the last post.
+												if (isset($result['last_post'])) {
+													if (!is_null($lastPost)) {
+														if ($lastPost->id < $result['last_post']->id) {
+															$lastPost = $result['last_post'];
+														}
+													} else {
+														$lastPost = $result['last_post'];
+													}
+												}
+												?>
 											<?php endforeach; ?>
 
 										</ul>
@@ -70,18 +99,32 @@
 								0 Posts
 							</span>
 						</td>
+
 						<td class="forumLastPost hidden-xs">
-							<!--<span class="noMessages muted">(Contains no messages)</span>-->
-							<span class="lastMessage">
-								By <a title="" data-original-title="" href="./memberlist.php?mode=viewprofile&amp;u=2" style="color: #26BCB5;" class="username-coloured">
-										Xeta
-									</a>
-								<a data-original-title="View the latest post" class="moderator-item" href="./viewtopic.php?f=6&amp;p=17#p17" title="">
-									<i class="mobile-post fa fa-sign-out"></i>
-								</a>
-								<br>
-								<span class="lastMessagetime">10 Aug 2014, 21:41</span>
-							</span>
+							<?php if (($lastPost === null)): ?>
+								<span class="noMessages muted">(Contains no messages)</span>
+							<?php else: ?>
+								<span class="lastMessage">
+									<?= __('By') ?>
+									<?= $this->Html->link($lastPost->user->full_name, ['_name' => 'users-profile', 'slug' => $lastPost->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
+									<?= $this->Html->link(
+										'<i class="fa fa-sign-out"></i>',
+										[
+											'controller' => 'posts',
+											'action' => 'go',
+											$lastPost->id
+										],
+										[
+											'escape' => false,
+											'class' => 'text-primary'
+										]
+									)?>
+									<br>
+									<span class="lastMessagetime">
+										<?= $lastPost->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
+									</span>
+								</span>
+							<?php endif; ?>
 						</td>
 						<td class="forumLastPost-phone visible-xs">
 							<i class="fa fa-plus fa-2x"></i>

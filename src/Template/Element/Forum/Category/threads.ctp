@@ -61,9 +61,9 @@
 									<?= $this->Html->link(
 										'<i class="fa fa-sign-out"></i>',
 										[
-											'_name' => 'forum-threads',
-											'id' => $thread->id,
-											'slug' => $thread->title
+											'controller' => 'posts',
+											'action' => 'go',
+											$thread->last_post_id
 										],
 										[
 											'escape' => false,

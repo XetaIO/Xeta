@@ -198,8 +198,29 @@ class ThreadsController extends AppController {
 				return $this->redirect($this->referer());
 			}
 
+			$this->loadModel('ForumThreads');
+
+			$thread = $this->ForumThreads
+				->find()
+				->where(['ForumThreads.id' => $this->request->id])
+				->first();
+
+			//Check if the thread is found.
+			if (is_null($thread)) {
+				$this->Flash->error(__("This thread doesn't exist or has been deleted !"));
+
+				return $this->redirect($this->referer());
+			}
+
+			//Check if the thread is open.
+			if ($thread->thread_open != 1) {
+				$this->Flash->error(__("This thread is closed or has been deleted !"));
+
+				return $this->redirect($this->referer());
+			}
+
 			//Build the newEntity for the post form.
-			$this->request->data['forum_thread']['id'] = $this->request->params['id'];
+			$this->request->data['forum_thread']['id'] = $this->request->id;
 			$this->request->data['forum_thread']['last_post_date'] = new Time();
 			$this->request->data['forum_thread']['last_post_user_id'] = $this->Auth->user('id');
 			$this->request->data['user_id'] = $this->Auth->user('id');
@@ -214,12 +235,19 @@ class ThreadsController extends AppController {
 			}
 
 			if ($newPost = $this->ForumPosts->save($post)) {
-				//Update the last post id.
+				//Update the last post id for the thread.
 				$this->loadModel('ForumThreads');
 
-				$thread = $this->ForumThreads->get($this->request->params['id']);
+				$thread = $this->ForumThreads->get($this->request->id);
 				$thread->last_post_id = $newPost->id;
 				$this->ForumThreads->save($thread);
+
+				//Update the last post id for the category.
+				$this->loadModel('ForumCategories');
+
+				$category = $this->ForumCategories->get($thread->category_id);
+				$category->last_post_id = $newPost->id;
+				$this->ForumCategories->save($category);
 
 				//Event.
 				$this->eventManager()->attach(new Statistics());

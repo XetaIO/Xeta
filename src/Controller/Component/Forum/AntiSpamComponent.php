@@ -100,7 +100,6 @@ class AntiSpamComponent extends Component {
 				->first();
 
 			if (!is_null($group) && $group->is_staff == true) {
-				debug('staff');
 				return true;
 			}
 		}

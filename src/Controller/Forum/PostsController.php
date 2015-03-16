@@ -126,7 +126,7 @@ class PostsController extends AppController {
 			->first();
 
 		if (is_null($post)) {
-			$json['message'] = __("This article doesn't exist !");
+			$json['message'] = __("This post doesn't exist !");
 			$json['error'] = true;
 
 			$this->set(compact('json'));
@@ -144,7 +144,7 @@ class PostsController extends AppController {
 
 		if ($this->ForumPostsLikes->save($like)) {
 			$json['message'] = __('Thanks for {0} this post ! ', "<i class='fa fa-heart text-danger'></i>");
-			$json['title'] = __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>");
+			$json['title'] = __('You {0} this post.', "<i class='fa fa-heart text-danger'></i>");
 			$json['url'] = Router::url([
 				'action' => 'unlike'
 			]);
@@ -225,7 +225,6 @@ class PostsController extends AppController {
 				->find()
 				->select([
 					'ForumThreads.id',
-					'ForumThreads.title',
 					'ForumThreads.last_post_id',
 					'ForumThreads.last_post_date',
 					'ForumThreads.first_post_id'

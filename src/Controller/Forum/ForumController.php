@@ -41,7 +41,13 @@ class ForumController extends AppController {
 		$this->loadModel('ForumCategories');
 
 		$categories = $this->ForumCategories
-			->find('threaded');
+			->find('threaded')
+			->contain([
+				'LastPost',
+				'LastPost.Users' => function ($q) {
+					return $q->find('short');
+				}
+			]);
 
 		$statistics = [];
 
@@ -126,7 +132,8 @@ class ForumController extends AppController {
 				'LastPosts'
 			])
 			->where([
-				'ForumThreads.category_id' => $category->id
+				'ForumThreads.category_id' => $category->id,
+				'ForumThreads.thread_open !=' => 2
 			])
 			->order([
 				'ForumThreads.sticky' => 'DESC',
@@ -138,7 +145,13 @@ class ForumController extends AppController {
 		//Categories.
 		$categories = $this->ForumCategories
 			->find('children', ['for' => $this->request->id])
-			->find('threaded');
+			->find('threaded')
+			->contain([
+				'LastPost',
+				'LastPost.Users' => function ($q) {
+					return $q->find('short');
+				}
+			]);
 
 		//Breadcrumbs.
 		$breadcrumbs = $this->ForumCategories->find('path', ['for' => $category->id])->toArray();
