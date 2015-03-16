@@ -29,7 +29,10 @@
 	</div>
 <?php endif; ?>
 
-<?php if(\Cake\Core\Configure::read('Chat.enabled') === true): ?>
+<?php $params = $this->request->params; ?>
+<?php if(\Cake\Core\Configure::read('Chat.enabled') === true &&
+		($params['controller'] === 'Forum' && $params['action'] === 'index' && $params['prefix'] === 'forum')
+): ?>
 	<div class="sidebox widget">
 		<div class="panel panel-forum panel-chat-online">
 			<div class="panel-heading">
