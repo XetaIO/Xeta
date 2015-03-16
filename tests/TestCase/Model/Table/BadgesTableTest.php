@@ -49,7 +49,7 @@ class BadgesTableTest extends TestCase {
 		$fakeImage = [
 			'name' => 'tmp_avatar.php',
 			'tmp_name' => TEST_WWW_ROOT . 'img' . DS . 'fakeImage.png',
-			'error' => UPLOAD_ERR_NO_FILE,
+			'error' => UPLOAD_ERR_OK,
 			'type' => 'image/gif',
 			'size' => 6000000000
 		];
@@ -67,7 +67,8 @@ class BadgesTableTest extends TestCase {
 			],
 			'picture_file' => [
 				'mimeType',
-				'fileExtension'
+				'fileExtension',
+				'maxDimension'
 			],
 			'type' => [
 				'inList'

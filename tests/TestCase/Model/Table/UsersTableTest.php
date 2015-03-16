@@ -198,7 +198,7 @@ class UsersTest extends TestCase {
 		$fakeImage = [
 			'name' => 'tmp_avatar.php',
 			'tmp_name' => TEST_WWW_ROOT . 'img' . DS . 'fakeImage.png',
-			'error' => UPLOAD_ERR_NO_FILE,
+			'error' => UPLOAD_ERR_OK,
 			'type' => 'image/gif',
 			'size' => 6000000000
 		];
@@ -221,7 +221,8 @@ class UsersTest extends TestCase {
 			],
 			'avatar_file' => [
 				'mimeType',
-				'fileExtension'
+				'fileExtension',
+				'maxDimension'
 			],
 			'facebook' => [
 				'maxLength'
@@ -283,15 +284,9 @@ class UsersTest extends TestCase {
 			'last_name' => 'my lastname',
 			'username' => 'mariano',
 			'avatar' => 'upload' . DS . '1' . DS . '1.png',
-			'slug' => 'mariano',
-			'group_id' => 1,
-			'facebook' => 'my facebook',
-			'twitter' => 'my twitter',
-			'signature' => 'my signature',
-			'created' => new Time('2014-03-17 01:16:23'),
-			'last_login' => new Time('2014-03-17 01:23:31')
+			'slug' => 'mariano'
 		];
-		$user = $this->Users->find('full')->where(['id' => 1])->first()->toArray();
+		$user = $this->Users->find('medium')->where(['id' => 1])->first()->toArray();
 
 		$this->assertEquals($expected, $user);
 	}

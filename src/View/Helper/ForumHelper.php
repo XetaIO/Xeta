@@ -22,6 +22,13 @@ class ForumHelper extends Helper {
 	public $html;
 
 /**
+ * The thread counter for sub categories.
+ *
+ * @var int
+ */
+	public $threadCount = 0;
+
+/**
  * Construct method.
  *
  * @param \Cake\View\View $view The view that was fired.
@@ -48,6 +55,8 @@ class ForumHelper extends Helper {
 		$this->html .= '<ul style="list-style: outside none none;box-sizing: content-box;min-width: 160px;">';
 
 		foreach ($categories as $index => $child) {
+			$this->threadCount += $child->thread_count;
+
 			$this->html .= '<li class="main-cat-child">';
 			$this->html .= $this->Html->link($child->title, [
 				'_name' => 'forum-categories',
@@ -62,6 +71,9 @@ class ForumHelper extends Helper {
 
 		$this->html .= '</ul>';
 
-		return $this->html;
+		$data['thread_count'] = $this->threadCount;
+		$data['html'] = $this->html;
+
+		return $data;
 	}
 }

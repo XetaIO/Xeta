@@ -2,7 +2,6 @@
 namespace App\Model\Validation;
 
 use Cake\Validation\Validator;
-use RuntimeException;
 
 class UploadValidator extends Validator {
 
@@ -14,7 +13,6 @@ class UploadValidator extends Validator {
  * @param int   $width  Max width dimension.
  *
  * @return bool
- * @throws \RuntimeException When can not get the image size.
  */
 	public static function maxDimension($check, $height, $width) {
 		if (is_array($check) && isset($check['error']) && (int)$check['error'] === UPLOAD_ERR_NO_FILE) {
@@ -30,7 +28,7 @@ class UploadValidator extends Validator {
 		//@codingStandardsIgnoreEnd
 
 		if (!is_array($size)) {
-			throw new RuntimeException('Can not determine the size.');
+			return false;
 		}
 
 		return ($size[0] <= (int)$width && $size[1] <= (int)$height);

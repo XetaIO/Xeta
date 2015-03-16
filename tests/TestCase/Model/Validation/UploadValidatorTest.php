@@ -15,6 +15,7 @@ class UploadValidatorTest extends TestCase {
 		$this->validator = new Validator;
 		$this->validator
 			->provider('upload', 'App\Model\Validation\UploadValidator')
+			->allowEmpty('avatar_file')
 			->add('avatar_file', 'maxDimension', [
 				'rule' => ['maxDimension', 140, 140],
 				'provider' => 'upload',
@@ -70,9 +71,8 @@ class UploadValidatorTest extends TestCase {
 			'type' => 'text/plain',
 			'size' => 201
 		];
-
-		$this->setExpectedException('RuntimeException');
-		$this->validator->errors(['avatar_file' => $file]);
+		$expected = ['avatar_file' => ['maxDimension' => 'You fail']];
+		$this->assertEquals($expected, $this->validator->errors(['avatar_file' => $file]));
 	}
 
 /**

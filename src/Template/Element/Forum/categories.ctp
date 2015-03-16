@@ -21,6 +21,9 @@
 			</thead>
 			<tbody>
 				<?php foreach ($forums as $forum): ?>
+					<?php
+					$threadCount = $forum->thread_count;
+					?>
 					<tr>
 						<td class="forumInfo">
 							<span class="forumIcon">
@@ -44,8 +47,15 @@
 													<?= $this->Html->link($child->title, ['_name' => 'forum-categories', 'id' => $child->id, 'slug' => $child->title]) ?>
 												</li>
 
-												<?php if (is_array($child->children) && !empty($child->children)) : ?>
-													<?php echo $this->Forum->generateCategories($child->children) ?>
+												<?php $threadCount += $child->thread_count; ?>
+
+												<?php if (is_array($child->children) && !empty($child->children)): ?>
+													<?php
+														$result = $this->Forum->generateCategories($child->children);
+														echo $result['html'];
+
+														$threadCount += $result['thread_count'];
+													?>
 												<?php endif; ?>
 											<?php endforeach; ?>
 
@@ -56,7 +66,7 @@
 						</td>
 						<td class="forumStats hidden-xs">
 							<span class="stats-wrapper">
-								0 Topics <br>
+								<?= __n('{0} Topic', '{0} Topics', $threadCount, $threadCount) ?><br>
 								0 Posts
 							</span>
 						</td>
