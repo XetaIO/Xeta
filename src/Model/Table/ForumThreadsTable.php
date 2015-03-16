@@ -64,8 +64,22 @@ class ForumThreadsTable extends Table {
  */
 	public function validationCreate(Validator $validator) {
 		$validator
-			->add('id', 'valid', ['rule' => 'numeric'])
-			->allowEmpty('id', 'create');
+			->provider('purifier', 'App\Model\Validation\PurifierValidator')
+			->notEmpty('title', __('You must set a title for your thread.'))
+			->add('title', [
+				'lengthBetween' => [
+					'rule' => ['lengthBetween', 5, 150],
+					'message' => __("The title must be between {0} and {1} characters.", 5, 150)
+				]
+			])
+			->notEmpty('message', __('You must specify a message for your thread.'))
+			->add('message', [
+				'purifierMinLength' => [
+					'rule' => ['purifierMinLength', 10],
+					'provider' => 'purifier',
+					'message' => __('Your message must contain at least {0} characters.', 10)
+				]
+			]);
 
 		return $validator;
 	}

@@ -45,7 +45,7 @@ class ForumPostsTable extends Table {
 	}
 
 /**
- * Default validation rules.
+ * Create validation rules.
  *
  * @param \Cake\Validation\Validator $validator Validator instance.
  *
@@ -53,8 +53,15 @@ class ForumPostsTable extends Table {
  */
 	public function validationCreate(Validator $validator) {
 		$validator
-			->add('id', 'valid', ['rule' => 'numeric'])
-			->allowEmpty('id', 'create');
+			->provider('purifier', 'App\Model\Validation\PurifierValidator')
+			->notEmpty('message', __('You must specify a message for your response.'))
+			->add('message', [
+				'purifierMinLength' => [
+					'rule' => ['purifierMinLength', 5],
+					'provider' => 'purifier',
+					'message' => __('Your message must contain at least {0} characters.', 5)
+				]
+			]);
 
 		return $validator;
 	}

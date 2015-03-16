@@ -33,40 +33,19 @@
 			<span class="statistics">
 				<dl>
 					<dt>
-						<?= __n('Forum Messsage:', 'Forum Messsages:', $post->user->forum_post_count, $post->user->forum_post_count) ?>
+						<i class="fa fa-comment-o" data-toggle="tooltip" title="<?= __('Messsages created') ?>"></i> <?= $post->user->forum_post_count ?>
 					</dt>
-					<dd>
-						<?= $post->user->forum_post_count ?>
-					</dd>
 				</dl>
 				<dl>
 					<dt>
-						<?= __n('Forum Thread:', 'Forum Threads:', $post->user->forum_thread_count, $post->user->forum_thread_count) ?>
+						<i class="fa fa-file-o" data-toggle="tooltip" title="<?= __('Threads created') ?>"></i> <?= $post->user->forum_thread_count ?>
 					</dt>
-					<dd>
-						<?= $post->user->forum_thread_count ?>
-					</dd>
 				</dl>
-				<?php if ($post->user->blog_article_count >= 1): ?>
-					<dl>
-						<dt>
-							<?= __n('Blog Article:', 'Blog Articles:', $post->user->blog_article_count, $post->user->blog_article_count) ?>
-						</dt>
-						<dd>
-							<?= $post->user->blog_article_count ?>
-						</dd>
-					</dl>
-				<?php endif; ?>
-				<?php if ($post->user->blog_article_count >= 1): ?>
-					<dl>
-						<dt>
-							<?= __n('Blog Comment:', 'Blog Comments:', $post->user->blog_articles_comment_count, $post->user->blog_articles_comment_count) ?>
-						</dt>
-						<dd>
-							<?= $post->user->blog_articles_comment_count ?>
-						</dd>
-					</dl>
-				<?php endif; ?>
+				<dl>
+					<dt>
+						<i class="fa fa-thumbs-o-up" data-toggle="tooltip" title="<?= __('Likes received') ?>"></i> <?= $post->user->forum_like_received ?>
+					</dt>
+				</dl>
 			</span>
 			<?php if (!empty($post->user->badges_users)): ?>
 				<div class="badges">

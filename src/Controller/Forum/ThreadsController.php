@@ -227,7 +227,8 @@ class ThreadsController extends AppController {
 			$this->request->data['thread_id'] = $this->request->id;
 
 			$post = $this->ForumPosts->newEntity($this->request->data, [
-				'associated' => ['ForumThreads']
+				'associated' => ['ForumThreads'],
+				'validate' => 'create'
 				]);
 
 			if ($post->forum_thread->isNew() === true) {

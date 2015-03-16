@@ -111,7 +111,7 @@
 						</div>
 						<div class="form-group">
 							<?= $this->Form->button(__('{0} Create Thread', '<i class="fa fa-plus"></i>'), ['class' => 'col-sm-offset-2 btn btn-primary', 'escape' => false]); ?>
-							<?= $this->Form->button(__('{0} Save Draft', '<i class="fa fa-save"></i>'), ['class' => 'btn btn-primary', 'escape' => false]); ?>
+							<?php //echo $this->Form->button(__('{0} Save Draft', '<i class="fa fa-save"></i>'), ['class' => 'btn btn-primary', 'escape' => false]); ?>
 							<?= $this->Html->link(__('{0} Cancel', '<i class="fa fa-remove"></i>'), '#', ['class' => 'btn btn-danger', 'escape' => false]); ?>
 						</div>
 					<?= $this->Form->end(); ?>

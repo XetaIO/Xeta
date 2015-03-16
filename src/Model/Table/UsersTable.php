@@ -217,7 +217,7 @@ class UsersTable extends Table {
 				'purifierMaxLength' => [
 					'rule' => ['purifierMaxLength', 300],
 					'provider' => 'purifier',
-					'message' => __('Your biography can not contain more than {0} characters.', 3000)
+					'message' => __('Your biography can not contain more than {0} characters.', 300)
 				]
 			]);
 	}
@@ -353,6 +353,7 @@ class UsersTable extends Table {
 			'group_id',
 			'forum_post_count',
 			'forum_thread_count',
+			'forum_like_received',
 			'blog_articles_comment_count',
 			'blog_article_count',
 			'facebook',

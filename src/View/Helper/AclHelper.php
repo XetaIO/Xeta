@@ -60,6 +60,10 @@ class AclHelper extends Helper {
  * @return string
  */
 	public function check(array $params = []) {
+		if (!$this->request->session()->read('Auth.User')) {
+			return false;
+		}
+
 		$params += ['_base' => false];
 
 		$url = Router::url($params);
