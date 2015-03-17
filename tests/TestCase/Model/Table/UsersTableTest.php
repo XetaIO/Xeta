@@ -98,6 +98,7 @@ class UsersTest extends TestCase {
 			'forum_thread_count' => 2,
 			'blog_articles_comment_count' => 2,
 			'blog_article_count' => 2,
+			'forum_like_received' => 2,
 			'group_id' => 1,
 			'facebook' => 'mariano',
 			'twitter' => 'mariano',
