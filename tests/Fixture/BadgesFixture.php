@@ -52,6 +52,13 @@ class BadgesFixture extends TestFixture {
 			'rule' => 1,
 			'created' => '2014-11-10 14:43:54'
 		],
+		[
+			'name' => 'PostsForum',
+			'picture' => 'badge/badge1.png',
+			'type' => 'postsForum',
+			'rule' => 1,
+			'created' => '2014-11-10 14:43:54'
+		],
 	];
 
 }
