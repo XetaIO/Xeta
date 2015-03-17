@@ -1,7 +1,6 @@
 <?php
 namespace App\View\Cell;
 
-use Cake\Core\Configure;
 use Cake\View\Cell;
 
 class ForumCell extends Cell {

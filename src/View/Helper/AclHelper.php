@@ -6,7 +6,6 @@ use Acl\Controller\Component\AclComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Request;
 use Cake\Routing\Router;
-use Cake\Utility\Inflector;
 use Cake\View\Helper;
 use Cake\View\View;
 
@@ -57,7 +56,7 @@ class AclHelper extends Helper {
  *
  * @param array $params The params to check.
  *
- * @return string
+ * @return bool
  */
 	public function check(array $params = []) {
 		if (!$this->request->session()->read('Auth.User')) {

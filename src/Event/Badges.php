@@ -15,8 +15,6 @@ class Badges implements EventListenerInterface {
  * Construct method.
  *
  * @param \Cake\Controller\Controller $controller The controller instance where the Event is dispatched.
- *
- * @return void
  */
 	public function __construct($controller) {
 		$this->Flash = $controller->loadComponent('Flash');

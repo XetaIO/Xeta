@@ -6,7 +6,6 @@ use App\Event\Forum\Statistics;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\I18n\Number;
 
 class ForumController extends AppController {
 

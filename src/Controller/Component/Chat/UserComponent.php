@@ -45,7 +45,7 @@ class UserComponent extends Component {
 /**
  * Handle a connected User.
  *
- * @return void
+ * @return false|void
  */
 	public function handleUsers() {
 		if (!$this->_controller->Auth->user()) {

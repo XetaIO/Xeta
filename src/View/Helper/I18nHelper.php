@@ -38,8 +38,6 @@ class I18nHelper extends Helper {
  *
  * @param \Cake\View\View $view The view that was fired.
  * @param array $config The config passed to the class.
- *
- * @return void
  */
 	public function __construct(View $view, $config = []) {
 		parent::__construct($view, $config);

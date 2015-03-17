@@ -2,7 +2,6 @@
 namespace App\Model\Entity;
 
 use Cake\Core\Configure;
-use Cake\I18n\Number;
 use Cake\ORM\Entity;
 use HTMLPurifier;
 use HTMLPurifier_Config;

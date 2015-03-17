@@ -46,8 +46,6 @@ class Language {
  * Construct method.
  *
  * @param \Cake\Controller\Controller $controller The controller that was fired.
- *
- * @return void
  */
 	public function __construct(Controller $controller) {
 		$this->_controller = $controller;

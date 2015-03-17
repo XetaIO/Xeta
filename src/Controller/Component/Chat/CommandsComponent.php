@@ -2,7 +2,6 @@
 namespace App\Controller\Component\Chat;
 
 use Cake\Controller\Component;
-use Cake\Core\Configure;
 use Cake\I18n\Time;
 
 class CommandsComponent extends Component {

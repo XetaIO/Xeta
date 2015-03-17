@@ -40,8 +40,6 @@ class ForumHelper extends Helper {
  *
  * @param \Cake\View\View $view The view that was fired.
  * @param array $config The config passed to the class.
- *
- * @return void
  */
 	public function __construct(View $view, $config = []) {
 		parent::__construct($view, $config);
@@ -70,6 +68,7 @@ class ForumHelper extends Helper {
 		foreach ($categories as $index => $child) {
 			$this->threadCount += $child->thread_count;
 
+			//Handle the last post.
 			if (!is_null($child->last_post)) {
 				if (!is_null($this->lastPost)) {
 					if ($this->lastPost->id < $child->last_post->id) {
@@ -94,6 +93,7 @@ class ForumHelper extends Helper {
 
 		$this->html .= '</ul>';
 
+		$data = [];
 		$data['thread_count'] = $this->threadCount;
 		$data['html'] = $this->html;
 

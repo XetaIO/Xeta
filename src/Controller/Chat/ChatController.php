@@ -298,6 +298,8 @@ class ChatController extends AppController {
 			throw new NotFoundException();
 		}
 
+		$json = [];
+
 		//Check the permissions.
 		if ($this->Chat->hasPermission(['action' => 'canDelete']) === false) {
 			$json['error'] = true;

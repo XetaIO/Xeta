@@ -3,11 +3,9 @@ namespace App\Controller\Component;
 
 use App\Model\Entity\User;
 use Cake\Controller\Component;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
-use Cake\Utility\Inflector;
 
 class SessionsActivityComponent extends Component {
 
