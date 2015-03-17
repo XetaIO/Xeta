@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use Cake\Core\Configure;
 use Cake\Error\ForbiddenException;
 use Cake\Error\NotFoundException;
 use Cake\Event\Event;
