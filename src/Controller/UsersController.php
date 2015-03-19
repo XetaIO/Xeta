@@ -57,8 +57,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$method = ($this->request->data['method']) ? $this->request->data['method'] : false;
 
-			switch ($method)
-			{
+			switch ($method) {
 				case "login":
 
 					$userLogin = $this->Auth->identify();
@@ -187,12 +186,11 @@ class UsersController extends AppController {
 		if ($this->request->is('put')) {
 			$method = ($this->request->data['method']) ? $this->request->data['method'] : false;
 
-			switch ($method)
-			{
+			switch ($method) {
 				case "email":
 
 					if (!isset($this->request->data['email'])) {
-						$this->set(compact('User', 'oldEmail'));
+						$this->set(compact('user', 'oldEmail'));
 						return $this->redirect(['action' => 'settings']);
 					}
 
@@ -220,7 +218,6 @@ class UsersController extends AppController {
 
 					$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'settings']);
 					if ($this->Users->save($user)) {
-
 						$this->Flash->success(__("Your password has been changed !"));
 					}
 					break;

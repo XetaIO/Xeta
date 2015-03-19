@@ -29,6 +29,7 @@ class ForumPostsTableTest extends TestCase {
  */
 	public function setUp() {
 		parent::setUp();
+
 		$this->ForumPosts = TableRegistry::get('ForumPosts');
 		$this->Utility = new Utility;
 		$this->Session = new Session();

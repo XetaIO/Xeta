@@ -4,9 +4,13 @@ namespace App\Event;
 use App\Model\Entity\BlogArticlesComment;
 use App\Model\Entity\ForumPost;
 use App\Model\Entity\User;
+use Cake\Controller\ComponentRegistry;
+use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\I18n\Time;
+use Cake\Network\Request;
+use Cake\Network\Response;
 use Cake\ORM\TableRegistry;
 
 class Badges implements EventListenerInterface {
@@ -16,8 +20,14 @@ class Badges implements EventListenerInterface {
  *
  * @param \Cake\Controller\Controller $controller The controller instance where the Event is dispatched.
  */
-	public function __construct($controller) {
-		$this->Flash = $controller->loadComponent('Flash');
+	public function __construct($controller = null) {
+		if (is_null($controller)) {
+			$this->registry = new ComponentRegistry(new Controller(new Request(), new Response()));
+			$this->registry->load('Flash');
+			$this->Flash = $this->registry->Flash;
+		} else {
+			$this->Flash = $controller->loadComponent('Flash');
+		}
 	}
 
 /**
@@ -37,7 +47,7 @@ class Badges implements EventListenerInterface {
 /**
  * Unlock all badges related to the posts in the Forum.
  *
- * @param \Cake\Event\Event $event The Model.Users.premium event that was fired.
+ * @param \Cake\Event\Event $event The Model.ForumPosts.reply event that was fired.
  *
  * @return bool
  */
@@ -147,7 +157,7 @@ class Badges implements EventListenerInterface {
 /**
  * Unlock all badges related to comments.
  *
- * @param \Cake\Event\Event $event The Model.BlogArticlesComments.add event that was fired.
+ * @param \Cake\Event\Event $event The Model.Users.register event that was fired.
  *
  * @return bool
  */

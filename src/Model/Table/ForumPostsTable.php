@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Event\Badges;
 use ArrayObject;
 use Cake\Event\Event;
 use Cake\ORM\Entity;
@@ -76,6 +77,7 @@ class ForumPostsTable extends Table {
  */
 	public function afterSave(Event $event, Entity $entity, ArrayObject $options) {
 		if ($entity->isNew()) {
+			$this->eventManager()->attach(new Badges());
 			$event = new Event('Model.ForumPosts.reply', $this, [
 				'post' => $entity
 			]);
