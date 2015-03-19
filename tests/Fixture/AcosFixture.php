@@ -35,49 +35,6 @@ class AcosFixture extends TestFixture {
  *
  * @var array
  */
-	/*public $records = [
-		[
-			'parent_id' => null,
-			'model' => '',
-			'foreign_key' => null,
-			'alias' => 'app',
-			'lft' => 1,
-			'rght' => 10
-		],
-		[
-			'parent_id' => 1,
-			'model' => '',
-			'foreign_key' => null,
-			'alias' => 'Blog',
-			'lft' => 2,
-			'rght' => 5
-		],
-		[
-			'parent_id' => 2,
-			'model' => '',
-			'foreign_key' => null,
-			'alias' => 'index',
-			'lft' => 3,
-			'rght' => 4
-		],
-		[
-			'parent_id' => 1,
-			'model' => '',
-			'foreign_key' => null,
-			'alias' => 'Pages',
-			'lft' => 6,
-			'rght' => 9
-		],
-		[
-			'parent_id' => 4,
-			'model' => '',
-			'foreign_key' => null,
-			'alias' => 'home',
-			'lft' => 7,
-			'rght' => 8
-		]
-	];*/
-
 	public $records = array(
 		array('id' => '1', 'parent_id' => null, 'model' => '', 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '252'),
 		array('id' => '2', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Attachments', 'lft' => '4', 'rght' => '7'),

@@ -35,25 +35,6 @@ class ArosFixture extends TestFixture {
  *
  * @var array
  */
-	/*public $records = [
-		[
-			'parent_id' => null,
-			'model' => 'Groups',
-			'foreign_key' => 1,
-			'alias' => '',
-			'lft' => 1,
-			'rght' => 2
-		],
-		[
-			'parent_id' => null,
-			'model' => 'Groups',
-			'foreign_key' => 2,
-			'alias' => '',
-			'lft' => 3,
-			'rght' => 4
-		]
-	];*/
-
 	public $records = array(
 		array('id' => '1', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '1', 'alias' => '', 'lft' => '7', 'rght' => '8'),
 		array('id' => '2', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '2', 'alias' => '', 'lft' => '5', 'rght' => '6'),

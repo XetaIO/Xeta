@@ -34,36 +34,9 @@ class ArosAcosFixture extends TestFixture {
  *
  * @var array
  */
-	/*public $records = [
-		[
-			'aro_id' => 1,
-			'aco_id' => 1,
-			'_create' => '1',
-			'_read' => '1',
-			'_update' => '1',
-			'_delete' => '1'
-		],
-		[
-			'aro_id' => 2,
-			'aco_id' => 1,
-			'_create' => '-1',
-			'_read' => '-1',
-			'_update' => '-1',
-			'_delete' => '-1'
-		],
-		[
-			'aro_id' => 2,
-			'aco_id' => 4,
-			'_create' => '1',
-			'_read' => '1',
-			'_update' => '1',
-			'_delete' => '1'
-		]
-	];*/
-
 	public $records = array(
 		array('id' => '1', 'aro_id' => '5', 'aco_id' => '1', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
-		array('id' => '2', 'aro_id' => '1', 'aco_id' => '1', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '2', 'aro_id' => '1', 'aco_id' => '1', '_create' => '-1', '_read' => '-1', '_update' => '-1', '_delete' => '-1'),
 		array('id' => '3', 'aro_id' => '2', 'aco_id' => '1', '_create' => '-1', '_read' => '-1', '_update' => '-1', '_delete' => '-1'),
 		array('id' => '4', 'aro_id' => '2', 'aco_id' => '2', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
 		array('id' => '5', 'aro_id' => '2', 'aco_id' => '4', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),

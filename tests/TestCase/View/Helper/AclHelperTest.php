@@ -38,8 +38,8 @@ class BadgesTableTest extends TestCase {
 		$this->session->write([
 			'Auth' => [
 				'User' => [
-					'id' => 2,
-					'group_id' => 2
+					'id' => 1,
+					'group_id' => 1
 				]
 			]
 		]);
@@ -62,7 +62,7 @@ class BadgesTableTest extends TestCase {
  */
 	public function testCheck() {
 		$result = $this->Acl->check(['controller' => 'pages', 'action' => 'home']);
-		$this->assertTrue($result);
+		$this->assertFalse($result);
 
 		$result = $this->Acl->check(['controller' => 'blog', 'action' => 'index']);
 		$this->assertFalse($result);
@@ -70,8 +70,8 @@ class BadgesTableTest extends TestCase {
 		$this->session->write([
 			'Auth' => [
 				'User' => [
-					'id' => 1,
-					'group_id' => 1
+					'id' => 2,
+					'group_id' => 5
 				]
 			]
 		]);
@@ -85,24 +85,18 @@ class BadgesTableTest extends TestCase {
 
 /**
  * Test link
+ *
+ * @return void
  */
 	public function testLink() {
-		$result = $this->Acl->link('test', ['controller' => 'pages', 'action' => 'home']);
-		$expected = [
-			'a' => ['href' => '/'],
-			'test',
-			'/a'
-		];
-		$this->assertHtml($expected, $result);
-
 		$result = $this->Acl->link('test', ['controller' => 'blog', 'action' => 'index']);
 		$this->assertEmpty($result);
 
 		$this->session->write([
 			'Auth' => [
 				'User' => [
-					'id' => 1,
-					'group_id' => 1
+					'id' => 2,
+					'group_id' => 5
 				]
 			]
 		]);
