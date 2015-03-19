@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
@@ -61,7 +62,7 @@ class UsersControllerTest extends IntegrationTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->get('/users/index');
+		$this->get(['controller' => 'users', 'action' => 'index']);
 
 		$this->assertResponseOk();
 		$this->assertResponseContains('mariano');
@@ -80,7 +81,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			'password' => 'password'
 		];
 
-		$this->post('/users/login', $data);
+		$this->post(['controller' => 'users', 'action' => 'login'], $data);
 
 		$this->assertResponseSuccess();
 		$this->assertSession(1, 'Auth.User.id');
@@ -93,7 +94,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			'password' => 'passfail'
 		];
 
-		$this->post('/users/login', $data);
+		$this->post(['controller' => 'users', 'action' => 'login'], $data);
 
 		$this->assertResponseOk();
 		$this->assertSession(null, 'Auth.User.id');
@@ -107,7 +108,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			'password_confirm' => '12345678',
 		];
 
-		$this->post('/users/login', $data);
+		$this->post(['controller' => 'users', 'action' => 'login'], $data);
 
 		$this->assertResponseSuccess();
 		$this->assertSession(3, 'Auth.User.id');
@@ -122,12 +123,52 @@ class UsersControllerTest extends IntegrationTestCase {
 			'password_confirm' => '12345678',
 		];
 
-		$this->post('/users/login', $data);
+		$this->post(['controller' => 'users', 'action' => 'login'], $data);
 
 		$this->assertResponseSuccess();
 		$this->assertSession(null, 'Auth.User.id');
 		//We can't test the flash test due to the translation system.
 		$this->assertResponseContains('infobox-danger');
+	}
+
+/**
+ * Test login method with saved referer
+ *
+ * @return void
+ */
+	public function testLoginSavedReferer() {
+		Configure::write('App.fullBaseUrl', 'http://localhost');
+		$this->configRequest([
+			'headers' => [
+				'Referer' => 'http://localhost/blog/view'
+			]
+		]);
+
+		$this->get(['controller' => 'users', 'action' => 'login']);
+		$this->assertResponseOk();
+		$this->assertSession('http://localhost/blog/view', 'Auth.redirect');
+	}
+
+/**
+ * Test login method already logged
+ *
+ * @return void
+ */
+	public function testLoginAlreadyLogged() {
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'mariano',
+					'avatar' => '../img/avatar.png',
+					'group_id' => 5,
+				]
+			]
+		]);
+
+		$this->get(['controller' => 'users', 'action' => 'login']);
+		$this->assertResponseSuccess();
+		$this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
 	}
 
 /**
@@ -147,7 +188,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->assertResponseSuccess();
 		$this->assertSession(1, 'Auth.User.id');
 
-		$this->get('/users/logout');
+		$this->get(['controller' => 'users', 'action' => 'logout']);
 		$this->assertSession(null, 'Auth.User.id');
 
 		$this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
@@ -159,7 +200,7 @@ class UsersControllerTest extends IntegrationTestCase {
  * @return void
  */
 	public function testAccountUnauthorized() {
-		$this->get('/users/account');
+		$this->get(['controller' => 'users', 'action' => 'account']);
 		$this->assertResponseSuccess();
 		$this->assertRedirect(['controller' => 'users', 'action' => 'login']);
 	}
@@ -181,7 +222,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			]
 		]);
 
-		$this->get('/users/account');
+		$this->get(['controller' => 'users', 'action' => 'account']);
 
 		$this->assertResponseOk();
 	}
@@ -219,7 +260,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			]
 		];
 
-		$this->put('/users/account', $data);
+		$this->put(['controller' => 'users', 'action' => 'account'], $data);
 
 		$this->assertResponseOk();
 
@@ -239,7 +280,7 @@ class UsersControllerTest extends IntegrationTestCase {
  * @return void
  */
 	public function testSettingsUnauthorized() {
-		$this->get('/users/settings');
+		$this->get(['controller' => 'users', 'action' => 'settings']);
 		$this->assertResponseSuccess();
 		$this->assertRedirect(['controller' => 'users', 'action' => 'login']);
 	}
@@ -261,7 +302,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			]
 		]);
 
-		$this->get('/users/settings');
+		$this->get(['controller' => 'users', 'action' => 'settings']);
 
 		$this->assertResponseOk();
 	}
@@ -288,7 +329,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			'email' => 'mynew@email.io',
 		];
 
-		$this->put('/users/settings', $data);
+		$this->put(['controller' => 'users', 'action' => 'settings'], $data);
 
 		$this->assertResponseOk();
 		$this->assertResponseContains('infobox-success');
@@ -304,7 +345,34 @@ class UsersControllerTest extends IntegrationTestCase {
 	}
 
 /**
- * Test account authorized with put method for Email
+ * Test account authorized with put method for Email with no Email
+ *
+ * @return void
+ */
+	public function testSettingsAuthorizedWithPutForEmailWithNoEmail() {
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'mariano',
+					'avatar' => '../img/avatar.png',
+					'group_id' => 5,
+				]
+			]
+		]);
+
+		$data = [
+			'method' => 'email',
+		];
+
+		$this->put(['controller' => 'users', 'action' => 'settings'], $data);
+
+		$this->assertResponseSuccess();
+		$this->assertRedirect(['controller' => 'users', 'action' => 'settings']);
+	}
+
+/**
+ * Test account authorized with put method for Password
  *
  * @return void
  */
@@ -327,7 +395,7 @@ class UsersControllerTest extends IntegrationTestCase {
 			'password_confirm' => '12345678'
 		];
 
-		$this->put('/users/settings', $data);
+		$this->put(['controller' => 'users', 'action' => 'settings'], $data);
 
 		$this->assertResponseOk();
 		$this->assertResponseContains('infobox-success');
@@ -343,6 +411,65 @@ class UsersControllerTest extends IntegrationTestCase {
 	}
 
 /**
+ * Test account authorized with put method for Password with no Password
+ *
+ * @return void
+ */
+	public function testSettingsAuthorizedWithPutForPasswordWithNoPassword() {
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'mariano',
+					'avatar' => '../img/avatar.png',
+					'group_id' => 5,
+				]
+			]
+		]);
+
+		$data = [
+			'method' => 'password',
+			'old_password' => 'password',
+			'password' => '12345678'
+		];
+
+		$this->put(['controller' => 'users', 'action' => 'settings'], $data);
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('infobox-danger');
+	}
+
+/**
+ * Test account authorized with put method for Password with old Password fail
+ *
+ * @return void
+ */
+	public function testSettingsAuthorizedWithPutForPasswordWithOldPasswordFail() {
+		$this->session([
+			'Auth' => [
+				'User' => [
+					'id' => 1,
+					'username' => 'mariano',
+					'avatar' => '../img/avatar.png',
+					'group_id' => 5,
+				]
+			]
+		]);
+
+		$data = [
+			'method' => 'password',
+			'old_password' => 'OldPasswordFail',
+			'password' => '12345678',
+			'password_confirm' => '12345678'
+		];
+
+		$this->put(['controller' => 'users', 'action' => 'settings'], $data);
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('infobox-danger');
+	}
+
+/**
  * Test profile method
  *
  * @return void
@@ -351,6 +478,19 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->get(['_name' => 'users-profile', 'slug' => 'mariano']);
 		$this->assertResponseOk();
 		$this->assertResponseContains('My awesome biography');
+	}
+
+/**
+ * Test profile method with fake user
+ *
+ * @return void
+ */
+	public function testProfileWithFakeUser() {
+		$this->get(['_name' => 'users-profile', 'slug' => 'marianoFail']);
+		$this->assertResponseSuccess();
+		//We can't test the flash message due to the translation system.
+		$this->assertSession('flash', 'Flash.flash.key');
+		$this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
 	}
 
 /**
