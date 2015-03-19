@@ -1,5 +1,10 @@
 /vendor/*
-/tmp/*
+/tmp/sessions/
+/tmp/tests/
+/tmp/cache/chat/
+/tmp/cache/models/
+/tmp/cache/persistent/
+/tmp/cache/views/
 /logs/*
 /bin/*
 /plugins/*

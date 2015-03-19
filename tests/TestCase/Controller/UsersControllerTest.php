@@ -361,8 +361,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	public function testPremiumUnauthorized() {
 		$this->get(['controller' => 'users', 'action' => 'premium']);
 		$this->assertResponseSuccess();
-		//$this->assertResponseContains('My awesome biography');
-		debug($this->_response->body());
+		$this->assertRedirect(['controller' => 'users', 'action' => 'login']);
 	}
 
 /**
@@ -385,6 +384,5 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->get(['controller' => 'users', 'action' => 'premium']);
 		$this->assertResponseSuccess();
 		$this->assertResponseContains('€');
-		debug($this->_response->body());
 	}
 }
