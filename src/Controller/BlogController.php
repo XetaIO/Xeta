@@ -3,8 +3,8 @@ namespace App\Controller;
 
 use App\Event\Badges;
 use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
 
 class BlogController extends AppController {

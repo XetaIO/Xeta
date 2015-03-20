@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
@@ -106,8 +107,13 @@ class PremiumControllerTest extends IntegrationTestCase {
 		$this->post(['controller' => 'premium', 'action' => 'subscribe'], $data);
 
 		$this->assertResponseSuccess();
-		$result = $this->_response->header();
-		$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+
+		if (!empty(Configure::read('Paypal.user')) && !empty(Configure::read('Paypal.pwd'))) {
+			$result = $this->_response->header();
+			$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+		} else {
+			$this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
+		}
 	}
 
 /**
@@ -164,8 +170,13 @@ class PremiumControllerTest extends IntegrationTestCase {
 		$this->post(['controller' => 'premium', 'action' => 'subscribe'], $data);
 
 		$this->assertResponseSuccess();
-		$result = $this->_response->header();
-		$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+
+		if (!empty(Configure::read('Paypal.user')) && !empty(Configure::read('Paypal.pwd'))) {
+			$result = $this->_response->header();
+			$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+		} else {
+			$this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
+		}
 	}
 
 /**
