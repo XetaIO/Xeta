@@ -2,8 +2,8 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Error\NotFoundException;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 class PagesController extends AppController {
 
@@ -79,7 +79,7 @@ class PagesController extends AppController {
 /**
  * The user accept the use of cookies.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */

@@ -3,9 +3,9 @@ namespace App\Controller\Chat;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
-use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 use Cake\I18n\Time;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
 
 class ChatController extends AppController {
@@ -46,7 +46,7 @@ class ChatController extends AppController {
  *
  * @return \Cake\Network\Response The XML generated.
  *
- * @throws \Cake\Error\NotFoundException When the request is not in AJAX.
+ * @throws \Cake\Network\Exception\NotFoundException When the request is not in AJAX.
  */
 	public function index() {
 		if (!$this->request->is('ajax')) {
@@ -146,7 +146,7 @@ class ChatController extends AppController {
  *
  * @return \Cake\Network\Response
  *
- * @throws \Cake\Error\NotFoundException When the request is not in AJAX.
+ * @throws \Cake\Network\Exception\NotFoundException When the request is not in AJAX.
  */
 	public function shout() {
 		if (!$this->request->is('ajax')) {
@@ -248,7 +248,7 @@ class ChatController extends AppController {
  *
  * @return \Cake\Networtk\Response
  *
- * @throws \Cake\Error\NotFoundException When the request is not in AJAX.
+ * @throws \Cake\Network\Exception\NotFoundException When the request is not in AJAX.
  */
 	public function getNotice() {
 		if (!$this->request->is('ajax')) {
@@ -271,7 +271,7 @@ class ChatController extends AppController {
  *
  * @return \Cake\Networtk\Response
  *
- * @throws \Cake\Error\NotFoundException When the request is not in AJAX.
+ * @throws \Cake\Network\Exception\NotFoundException When the request is not in AJAX.
  */
 	public function editNotice() {
 		if (!$this->request->is('ajax')) {
@@ -291,7 +291,7 @@ class ChatController extends AppController {
  *
  * @return \Cake\Networtk\Response
  *
- * @throws \Cake\Error\NotFoundException When the request is not in AJAX.
+ * @throws \Cake\Network\Exception\NotFoundException When the request is not in AJAX.
  */
 	public function delete() {
 		if (!$this->request->is('ajax')) {

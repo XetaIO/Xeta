@@ -67,6 +67,10 @@ class PaypalComponent extends Component {
 			return false;
 		}
 
+		if (empty($this->_request->data)) {
+			return false;
+		}
+
 		$this->_request->data = Arrayor::camelizeIndex($this->_request->data);
 
 		extract($this->_request->data);

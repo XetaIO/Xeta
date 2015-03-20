@@ -4,9 +4,9 @@ namespace App\Controller\Forum;
 use App\Controller\AppController;
 use App\Event\Forum\Statistics;
 use Cake\Core\Configure;
-use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 use Cake\I18n\Time;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 
@@ -37,7 +37,7 @@ class PostsController extends AppController {
 /**
  * Unlike a post.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */
@@ -92,7 +92,7 @@ class PostsController extends AppController {
 /**
  * Like a post.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */
@@ -277,7 +277,7 @@ class PostsController extends AppController {
 /**
  * Quote a post.
  *
- * @throws \Cake\Error\NotFoundException
+ * @throws \Cake\Network\Exception\NotFoundException
  *
  * @return mixed
  */
@@ -436,7 +436,7 @@ EOT;
 /**
  * Get the form to edit a post.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */

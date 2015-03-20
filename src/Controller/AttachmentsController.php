@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller;
 
-use Cake\Error\ForbiddenException;
-use Cake\Error\NotFoundException;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
+use Cake\Network\Exception\ForbiddenException;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Network\Response;
 
 class AttachmentsController extends AppController {
@@ -25,11 +25,11 @@ class AttachmentsController extends AppController {
 /**
  * Download an attachment realated to an article.
  *
- * @throws \Cake\Error\NotFoundException When it missing an arguments or when the file doesn't exist.
- * @throws \Cake\Error\ForbiddenException When the user is not premium.
+ * @throws \Cake\Network\Exception\NotFoundException When it missing an arguments or when the file doesn't exist.
+ * @throws \Cake\Network\Exception\ForbiddenException When the user is not premium.
  *
- * @return \Cake\Error\ForbiddenException
- *         \Cake\Error\NotFoundException
+ * @return \Cake\Network\Exception\ForbiddenException
+ *         \Cake\Network\Exception\NotFoundException
  *         \Cake\Network\Response
  */
 	public function download() {

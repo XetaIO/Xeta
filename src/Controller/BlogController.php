@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Event\Badges;
 use Cake\Core\Configure;
-use Cake\Error\NotFoundException;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
 
@@ -233,7 +233,7 @@ class BlogController extends AppController {
  * @param int $articleId Id of the article where is the message to quote.
  * @param int $commentId Id of the message to quote.
  *
- * @throws \Cake\Error\NotFoundException
+ * @throws \Cake\Network\Exception\NotFoundException
  *
  * @return mixed
  */
@@ -440,7 +440,7 @@ EOT;
  *
  * @param int $articleId Id of the article to like.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */
@@ -522,7 +522,7 @@ EOT;
  *
  * @param int|null $articleId Id of the article to like.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */
@@ -616,7 +616,7 @@ EOT;
 /**
  * Get the form to edit a comment.
  *
- * @throws \Cake\Error\NotFoundException When it's not an AJAX request.
+ * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
  *
  * @return void
  */

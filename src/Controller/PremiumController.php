@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Cake\I18n\Number;
+use Cake\Network\Exception\NotFoundException;
 use Cake\Network\Response;
 
 class PremiumController extends AppController {
@@ -57,7 +58,7 @@ class PremiumController extends AppController {
 		if (!$offer) {
 			$this->Flash->error(__("This offer does not exist."));
 
-			$this->redirect(['action' => 'index']);
+			return $this->redirect(['action' => 'index']);
 		}
 
 		//Check the discount code.
@@ -72,7 +73,7 @@ class PremiumController extends AppController {
 			if (is_null($discount) || !$this->PremiumDiscounts->isDiscountValid($discount)) {
 				$this->Flash->error(__("Your discount code isn't valid or has already been used."));
 
-				$this->redirect(['action' => 'index']);
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$discountPercentage = $discount->discount;
 			}
@@ -98,7 +99,7 @@ class PremiumController extends AppController {
 		if (!$paypalUrl) {
 			$this->Flash->error(__("Unable to get the Paypal URL, please contact an administrator or try again later."));
 
-			$this->redirect(['action' => 'index']);
+			return $this->redirect(['action' => 'index']);
 		}
 
 		$this->redirect($paypalUrl);
@@ -108,11 +109,17 @@ class PremiumController extends AppController {
  * Paypal has sent a notification.
  *
  * @return void
+ *
+ * @throws \Cake\Network\Exception\NotFoundException
  */
 	public function notify() {
 		$this->loadComponent('Paypal');
 
-		$this->Paypal->notify();
+		$response = $this->Paypal->notify();
+
+		if ($response === false) {
+			throw new NotFoundException();
+		}
 	}
 
 /**
