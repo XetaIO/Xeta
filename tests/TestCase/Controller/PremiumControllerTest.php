@@ -109,10 +109,10 @@ class PremiumControllerTest extends IntegrationTestCase {
 		$this->assertResponseSuccess();
 
 		if (!empty(Configure::read('Paypal.user')) && !empty(Configure::read('Paypal.pwd'))) {
-			$result = $this->_response->header();
-			$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+			$this->assertRedirectContains('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=');
 		} else {
 			$this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
+			$this->assertSession('flash', 'Flash.flash.key');
 		}
 	}
 
@@ -172,10 +172,10 @@ class PremiumControllerTest extends IntegrationTestCase {
 		$this->assertResponseSuccess();
 
 		if (!empty(Configure::read('Paypal.user')) && !empty(Configure::read('Paypal.pwd'))) {
-			$result = $this->_response->header();
-			$this->assertEquals('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=', substr($result['Location'], 0, 77));
+			$this->assertRedirectContains('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=');
 		} else {
 			$this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
+			$this->assertSession('flash', 'Flash.flash.key');
 		}
 	}
 
