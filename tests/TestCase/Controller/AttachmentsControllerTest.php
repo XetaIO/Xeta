@@ -51,7 +51,7 @@ class AttachmentsControllerTest extends IntegrationTestCase {
 			]
 		]);
 
-		$this->get(['controller' => 'attachments', 'action' => 'download']);
+		$this->get(['_name' => 'attachment-download', 'type' => 'blog', 'id' => 1]);
 		$this->assertResponseCode(403);
 	}
 
