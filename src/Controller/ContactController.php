@@ -83,7 +83,7 @@ class ContactController extends AppController {
 					->emailFormat('html')
 					->from(['contact@xeta.io' => 'Contact Form'])
 					->to(Configure::read('Author.email'))
-					->subject(($viewVars['subject']) ? $viewVars['subject'] : 'Someone has contacted you')
+					->subject(isset($viewVars['subject']) ? $viewVars['subject'] : 'Someone has contacted you')
 					->viewVars($viewVars)
 					->send();
 
