@@ -7,10 +7,10 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=5.4.16",
-		"cakephp/cakephp": "3.0.*-dev",
+		"cakephp/cakephp": "~3.0",
 		"cakephp/bake": "dev-master",
 		"cakephp/acl": "dev-master",
-		"cakephp/migrations": "dev-master",
+		"cakephp/migrations": "~1.0",
 		"cakephp/plugin-installer": "*",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"cakephp/debug_kit": "3.0.*-dev",
@@ -22,6 +22,7 @@
 		"xety/cake3-cookieauth": "1.*"
 	},
 	"require-dev": {
+		"psy/psysh": "@stable",
 		"d11wtq/boris": "1.0.*",
 		"phpunit/phpunit": "*",
 		"gourmet/whoops": "*",
