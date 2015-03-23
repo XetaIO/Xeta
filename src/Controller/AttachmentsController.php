@@ -35,9 +35,9 @@ class AttachmentsController extends AppController {
 	public function download() {
 		$this->loadModel('Users');
 
-		$user = $this->Users->get($this->request->session()->read('Auth.User.id'));
+		$user = $this->Users->find()->where(['id' => $this->request->session()->read('Auth.User.id')])->first()->toArray();
 
-		if (!$user->premium) {
+		if (is_null($user) || !$user->premium) {
 			throw new ForbiddenException();
 		}
 
