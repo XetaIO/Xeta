@@ -20,7 +20,6 @@ class AttachmentsControllerTest extends IntegrationTestCase {
 		'app.acos',
 		'app.aros_acos',
 		'app.sessions',
-		'app.blog_articles',
 		'app.blog_attachments'
 	];
 
@@ -30,7 +29,7 @@ class AttachmentsControllerTest extends IntegrationTestCase {
  * @return void
  */
 	public function testDownloadUnauthorized() {
-		$this->get(['controller' => 'attachments', 'action' => 'download']);
+		$this->get(['_name' => 'attachment-download', 'type' => 'blog', 'id' => 1]);
 		$this->assertResponseSuccess();
 		$this->assertRedirect(['controller' => 'users', 'action' => 'login']);
 	}
