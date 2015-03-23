@@ -20,6 +20,7 @@ class AttachmentsControllerTest extends IntegrationTestCase {
 		'app.acos',
 		'app.aros_acos',
 		'app.sessions',
+		'app.blog_articles',
 		'app.blog_attachments'
 	];
 

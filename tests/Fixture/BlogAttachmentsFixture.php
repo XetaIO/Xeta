@@ -3,10 +3,6 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-/**
- * BlogAttachmentsFixture
- *
- */
 class BlogAttachmentsFixture extends TestFixture {
 
 /**
