@@ -14,7 +14,7 @@ define('TEST_APP', TESTS . 'test_app' . DS);
 define('TEST_TMP', TEST_APP . 'tmp' . DS);
 define('TEST_WWW_ROOT', TEST_APP . 'webroot' . DS);
 
-if (!getenv('db_class')) {
+if (!getenv('db_dsn')) {
 	putenv('db_class=Cake\Database\Driver\Sqlite');
 	putenv('db_dsn=sqlite::memory:');
 }
