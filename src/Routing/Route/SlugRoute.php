@@ -35,7 +35,7 @@ class SlugRoute extends Route {
 	}
 
 /**
- * Underscores the prefix, controller and plugin params before passing them on to the
+ * Slug the prefix, controller and plugin params before passing them on to the
  * parent class
  *
  * @param array $url Array of parameters to convert to a string.
