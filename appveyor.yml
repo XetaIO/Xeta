@@ -29,6 +29,8 @@ install:
   - echo extension=php_fileinfo.dll >> php.ini
   - echo extension=php_pdo_sqlite.dll >> php.ini
   - echo extension=php_sqlite3.dll >> php.ini
+  - echo extension=php_curl.dll >> php.ini
+  - echo curl.cainfo = "C:\projects\xeta\config\cacert.pem" >> php.ini
   - cd C:\projects\xeta
   - php -r "readfile('https://getcomposer.org/installer');" | php
   - php composer.phar install --prefer-dist --no-interaction --dev
