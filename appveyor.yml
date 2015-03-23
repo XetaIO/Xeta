@@ -27,6 +27,7 @@ install:
   - echo extension=php_intl.dll >> php.ini
   - echo extension=php_mbstring.dll >> php.ini
   - echo extension=php_fileinfo.dll >> php.ini
+  - echo extension=php_sqlite3.dll >> php.ini
   - cd C:\projects\xeta
   - php -r "readfile('https://getcomposer.org/installer');" | php
   - php composer.phar install --prefer-dist --no-interaction --dev

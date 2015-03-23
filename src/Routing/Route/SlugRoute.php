@@ -62,10 +62,8 @@ class SlugRoute extends Route {
  * @return array
  */
 	protected function _slugerize($url) {
-		foreach (['slug'] as $element) {
-			if (!empty($url[$element])) {
-				$url[$element] = strtolower(Inflector::slug($url[$element]));
-			}
+		if (isset($url['slug']) && !empty($url['slug'])) {
+			$url['slug'] = strtolower(Inflector::slug($url['slug']));
 		}
 		return $url;
 	}
