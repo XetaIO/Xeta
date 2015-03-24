@@ -5,7 +5,7 @@ use App\View\Cell\BlogCell;
 use Cake\Network\Request;
 use Cake\TestSuite\TestCase;
 
-class TestCellTest extends TestCase {
+class BlogCellTest extends TestCase {
 
 /**
  * Fixtures

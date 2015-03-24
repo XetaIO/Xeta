@@ -64,7 +64,10 @@ class GroupsTableTest extends TestCase {
 
 		$expected = [
 			'id' => 3,
-			'name' => 'Moderateur'
+			'name' => 'Moderateur',
+			'css' => null,
+			'is_staff' => 0,
+			'is_member' => 0
 		];
 
 		$group = $this->Groups->newEntity($data);
