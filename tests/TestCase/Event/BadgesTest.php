@@ -10,7 +10,7 @@ use Cake\Network\Response;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class PaypalComponentTest extends TestCase {
+class BadgesTest extends TestCase {
 
 /**
  * Fixtures

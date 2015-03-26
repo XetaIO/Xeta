@@ -10,7 +10,7 @@ use Cake\ORM\TableRegistry;
 class Statistics implements EventListenerInterface {
 
 /**
- * Prefix used for the Cahe keys.
+ * Prefix used for the Cache keys.
  *
  * @var string
  */

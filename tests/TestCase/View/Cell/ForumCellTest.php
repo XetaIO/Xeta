@@ -1,11 +1,11 @@
 <?php
 namespace App\Test\TestCase\View\Cell;
 
-use App\View\Cell\ForumCell;
 use Cake\I18n\Time;
 use Cake\Network\Request;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\View\View;
 
 class ForumCellTest extends TestCase {
 
@@ -30,7 +30,7 @@ class ForumCellTest extends TestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->request = new Request(['params' => [
+			$this->request = new Request(['params' => [
 			'pass' => [2, 'title-2'],
 			'id' => 2,
 			'slug' => 'title-2',
@@ -39,7 +39,7 @@ class ForumCellTest extends TestCase {
 			'action' => 'threads'
 		]]);
 		$this->response = $this->getMock('Cake\Network\Response');
-		$this->View = new \Cake\View\View($this->request, $this->response);
+		$this->View = new View($this->request, $this->response);
 
 		$this->Sessions = TableRegistry::get('Sessions');
 	}
@@ -89,7 +89,7 @@ class ForumCellTest extends TestCase {
 			'controller' => 'forum',
 			'action' => 'threads'
 		]]);
-		$this->View = new \Cake\View\View($request, $this->response);
+		$this->View = new View($request, $this->response);
 
 		$cell = $this->View->cell('Forum::suggestion');
 		$render = "{$cell}";
