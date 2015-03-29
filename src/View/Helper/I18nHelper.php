@@ -58,7 +58,7 @@ class I18nHelper extends Helper {
  */
 	public function i18nInput(Entity $entity, $field, $options = [], $divClass = 'col-sm-5', $id = 'CkEditorBox') {
 		$html = '';
-		$CkEditor = (isset($options['CkEditor'])) ? $options['CkEditor'] : false;
+		$options['CkEditor'] = (isset($options['CkEditor'])) ? $options['CkEditor'] : false;
 
 		$i = 0;
 
@@ -71,8 +71,9 @@ class I18nHelper extends Helper {
 			$options['label'] = Inflector::humanize($lang);
 			$options['value'] = $entity->translation($locale)->{$field};
 
-			if (isset($options['CkEditor']) && $options['CkEditor'] == true) {
+			if ($options['CkEditor'] === true) {
 				$options['id'] = $id . '-' . $i;
+				unset($options['CkEditor']);
 			}
 
 			$html .= '<div class="form-group">';

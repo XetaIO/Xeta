@@ -126,7 +126,7 @@ class AppController extends Controller {
 		//Set trustProxy or get the original visitor IP.
 		$this->request->trustProxy = true;
 
-		//Automaticaly Login.
+		//Automatically Login.
 		if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
 			$this->loadModel('Users');
 

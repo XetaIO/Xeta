@@ -36,30 +36,32 @@ class SessionsActivityComponent extends Component {
 	}
 
 /**
- * [beforeRender description]
+ * Startup event to trace the user on the website.
  *
- * @param Event $event [description]
+ * @param Event $event The event that was fired.
  *
  * @return void
  */
-	public function beforeRender(Event $event) {
+	public function startup(Event $event) {
 		if (empty($this->_session->id())) {
-			$this->_session->write('Session.initialize', 1);
+			$this->_session->start();
 			return;
 		}
-		$this->Sessions = TableRegistry::get('Sessions');
+		$sessions = TableRegistry::get('Sessions');
 
 		$prefix = isset($this->_request['prefix']) ? $this->_request['prefix'] . '/' : '';
 		$controller = $prefix . $this->_request['controller'];
 		$action = $this->_request['action'];
 		$params = serialize($this->_request->pass);
+		$expires = time() + ini_get('session.gc_maxlifetime');
 
-		$userId = $this->_session->read('Auth.User.id');
-		$record = compact('controller', 'action', 'params');
-		$record['user_id'] = $userId;
+		//@codingStandardsIgnoreStart
+		$user_id = $this->_session->read('Auth.User.id');
+		//@codingStandardIgnoreEnd
+		$record = compact('controller', 'action', 'params', 'expires', 'user_id');
 
-		$record[$this->Sessions->primaryKey()] = $this->_session->id();
-		$result = $this->Sessions->save(new Entity($record));
+		$record[$sessions->primaryKey()] = $this->_session->id();
+		$sessions->save(new Entity($record));
 	}
 
 /**
@@ -68,14 +70,14 @@ class SessionsActivityComponent extends Component {
  * @return array
  */
 	public function getOnlineUsers() {
-		$this->Sessions = TableRegistry::get('Sessions');
+		$sessions = TableRegistry::get('Sessions');
 
 		$output = [
 			'guests' => 0,
 			'members' => 0,
 		];
 
-		$records = $this->Sessions
+		$records = $sessions
 			->find('expires')
 			->contain([
 				'Users' => function ($q) {
@@ -125,8 +127,8 @@ class SessionsActivityComponent extends Component {
 			return false;
 		}
 
-		$this->Sessions = TableRegistry::get('Sessions');
-		$online = $this->Sessions
+		$sessions = TableRegistry::get('Sessions');
+		$online = $sessions
 			->find('expires')
 			->select(['Sessions.expires', 'Sessions.user_id'])
 			->where([

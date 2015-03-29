@@ -45,9 +45,9 @@ class ForumHelper extends Helper {
 	}
 
 /**
- * Generate all the sub-catgories.
+ * Generate all the sub-categories.
  *
- * @param object $categories The categories to generate.
+ * @param array $categories The categories to generate.
  * @param bool $reset Reset the HTML and the thread counter.
  *
  * @return string

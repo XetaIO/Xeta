@@ -7,7 +7,7 @@ use Cake\Network\Session;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
-class BadgesTableTest extends TestCase {
+class AclHelperTest extends TestCase {
 
 /**
  * Fixtures

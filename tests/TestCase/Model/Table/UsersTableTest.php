@@ -8,7 +8,7 @@ use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class UsersTest extends TestCase {
+class UsersTableTest extends TestCase {
 
 /**
  * Fixtures
