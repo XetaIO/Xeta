@@ -26,7 +26,7 @@ class PremiumController extends AppController
     /**
      * Download an attachment realated to an article.
      *
-     * @return \Cake\Network\Response
+     * @return void
      */
     public function index()
     {
@@ -130,7 +130,7 @@ class PremiumController extends AppController
     /**
      * A payment has been done.
      *
-     * @return \Cake\network\Response
+     * @return void
      */
     public function success()
     {

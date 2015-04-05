@@ -211,14 +211,14 @@ class PaypalComponent extends Component
     /**
      * Insert the transaction in the database.
      *
-     * @param array $custom 	The customs fields passed to Paypal.
-     * @param float $price 		The amount paid by the buyer.
-     * @param float $tax 		The tax paid by the buyer.
-     * @param string $txn 		The transaction ID.
-     * @param string $name 		The fullname of the buyer.
-     * @param string $country 	The country of the buyer.
-     * @param string $city 		The city of the buyer.
-     * @param string $address 	The address of the buyer.
+     * @param array $custom The customs fields passed to Paypal.
+     * @param float $price The amount paid by the buyer.
+     * @param float $tax The tax paid by the buyer.
+     * @param string $txn The transaction ID.
+     * @param string $name The fullname of the buyer.
+     * @param string $country The country of the buyer.
+     * @param string $city The city of the buyer.
+     * @param string $address The address of the buyer.
      *
      * @return bool
      */

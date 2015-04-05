@@ -8,12 +8,10 @@
     "require": {
         "php": ">=5.4.16",
         "cakephp/cakephp": "~3.0",
-        "cakephp/bake": "dev-master",
         "cakephp/acl": "dev-master",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "mobiledetect/mobiledetectlib": "2.*",
-        "cakephp/debug_kit": "~3.0",
         "ezyang/htmlpurifier": "dev-master",
         "widop/google-analytics": "dev-master",
         "mexitek/phpcolors": "dev-master",
@@ -26,7 +24,9 @@
         "d11wtq/boris": "1.0.*",
         "phpunit/phpunit": "*",
         "gourmet/whoops": "*",
-        "cakephp/cakephp-codesniffer": "dev-master"
+        "cakephp/cakephp-codesniffer": "dev-master",
+        "cakephp/debug_kit": "~3.0",
+        "cakephp/bake": "~1.0"
     },
     "autoload": {
         "psr-4": {

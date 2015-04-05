@@ -28,9 +28,9 @@ class TransactionComponent extends Component
     {
         $request = [
             'METHOD' => 'BMCreateButton',
-            'VERSION'	=> '87',
-            'USER'	=> Configure::read('Paypal.user'),
-            'PWD'	=> Configure::read('Paypal.pwd'),
+            'VERSION' => '87',
+            'USER' => Configure::read('Paypal.user'),
+            'PWD' => Configure::read('Paypal.pwd'),
             'SIGNATURE'	=> Configure::read('Paypal.signature'),
             'BUTTONCODE' => 'HOSTED',
             'BUTTONTYPE' => 'BUYNOW',
