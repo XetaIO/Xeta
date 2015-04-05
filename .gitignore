@@ -13,5 +13,6 @@
 config/app.php
 config/analytics-certificate.p12
 .idea
+.brackets.json
 flo.js
 composer.lock
