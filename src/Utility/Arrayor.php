@@ -11,14 +11,14 @@ class Arrayor
      *
      * Passed :
      * $array = [
-     *      'Index key' => 1,
-     * 	    'key-index' => 2
+     *     'Index key' => 1,
+     *     'key-index' => 2
      * ];
      *
      * Return :
      * $array = [
-     * 	    'indexKey' => 1,
-     * 	    'keyIndex' => 2
+     *     'indexKey' => 1,
+     *     'keyIndex' => 2
      * ];
      *
      * @param array $array The array to be camelized.
