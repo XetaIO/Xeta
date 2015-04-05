@@ -12,7 +12,8 @@ class UploadValidatorTest extends TestCase
      *
      * @return void
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->validator = new Validator;
         $this->validator
             ->provider('upload', 'App\Model\Validation\UploadValidator')

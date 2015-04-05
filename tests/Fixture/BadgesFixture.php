@@ -61,5 +61,4 @@ class BadgesFixture extends TestFixture
             'created' => '2014-11-10 14:43:54'
         ],
     ];
-
 }
