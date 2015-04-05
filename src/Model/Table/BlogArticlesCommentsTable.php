@@ -61,9 +61,9 @@ class BlogArticlesCommentsTable extends Table
     /**
      * AfterSave callback.
      *
-     * @param \Cake\Event\Event     $event   The afterSave event that was fired.
-     * @param \Cake\ORM\Entity      $entity  The entity that was saved.
-     * @param \ArrayObject 			$options The options passed to the callback.
+     * @param \Cake\Event\Event $event   The afterSave event that was fired.
+     * @param \Cake\ORM\Entity $entity  The entity that was saved.
+     * @param \ArrayObject $options The options passed to the callback.
      *
      * @return bool
      */
