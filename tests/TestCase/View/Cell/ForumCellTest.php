@@ -32,16 +32,16 @@ class ForumCellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-            $this->request = new Request([
-                'params' => [
-                    'pass' => [2, 'title-2'],
-                    'id' => 2,
-                    'slug' => 'title-2',
-                    'prefix' => 'forum',
-                    'controller' => 'forum',
-                    'action' => 'threads'
-                ]
-            ]);
+        $this->request = new Request([
+            'params' => [
+                'pass' => [2, 'title-2'],
+                'id' => 2,
+                'slug' => 'title-2',
+                'prefix' => 'forum',
+                'controller' => 'forum',
+                'action' => 'threads'
+            ]
+        ]);
         $this->response = $this->getMock('Cake\Network\Response');
         $this->View = new View($this->request, $this->response);
 
