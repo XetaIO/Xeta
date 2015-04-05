@@ -13,7 +13,7 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "mobiledetect/mobiledetectlib": "2.*",
-        "cakephp/debug_kit": "3.0.*-dev",
+        "cakephp/debug_kit": "~3.0",
         "ezyang/htmlpurifier": "dev-master",
         "widop/google-analytics": "dev-master",
         "mexitek/phpcolors": "dev-master",

@@ -7,681 +7,687 @@ use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
 
-class BlogController extends AppController {
+class BlogController extends AppController
+{
 
-/**
- * Components.
- *
- * @var array
- */
-	public $components = [
-		'RequestHandler'
-	];
+    /**
+     * Components.
+     *
+     * @var array
+     */
+    public $components = [
+        'RequestHandler'
+    ];
 
-/**
- * BeforeFilter handle.
- *
- * @param Event $event The beforeFilter event that was fired.
- *
- * @return void
- */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
+    /**
+     * BeforeFilter handle.
+     *
+     * @param Event $event The beforeFilter event that was fired.
+     *
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
 
-		$this->Auth->allow(['index', 'category', 'article', 'go', 'archive', 'search']);
-	}
+        $this->Auth->allow(['index', 'category', 'article', 'go', 'archive', 'search']);
+    }
 
-/**
- * Display all Articles.
- *
- * @return void
- */
-	public function index() {
-		$this->loadModel('BlogArticles');
-		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.article_per_page')
-		];
+    /**
+     * Display all Articles.
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $this->loadModel('BlogArticles');
+        $this->paginate = [
+            'maxLimit' => Configure::read('Blog.article_per_page')
+        ];
 
-		$articles = $this->BlogArticles
-			->find()
-			->contain([
-				'BlogCategories',
-				'Users' => function ($q) {
-					return $q->find('short');
-				}
-			])
-			->order([
-				'BlogArticles.created' => 'desc'
-			])
-			->where([
-				'BlogArticles.is_display' => 1
-			]);
+        $articles = $this->BlogArticles
+            ->find()
+            ->contain([
+                'BlogCategories',
+                'Users' => function ($q) {
+                    return $q->find('short');
+                }
+            ])
+            ->order([
+                'BlogArticles.created' => 'desc'
+            ])
+            ->where([
+                'BlogArticles.is_display' => 1
+            ]);
 
-		$articles = $this->paginate($articles);
+        $articles = $this->paginate($articles);
 
-		$this->set(compact('articles'));
-	}
+        $this->set(compact('articles'));
+    }
 
-/**
- * Display a specific category with all its articles.
- *
- * @return \Cake\Network\Response|void
- */
-	public function category() {
-		$this->loadModel('BlogCategories');
+    /**
+     * Display a specific category with all its articles.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function category()
+    {
+        $this->loadModel('BlogCategories');
 
-		$category = $this->BlogCategories
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'BlogCategories.slug'
-			])
-			->contain([
-				'BlogArticles'
-			])
-			->first();
+        $category = $this->BlogCategories
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'BlogCategories.slug'
+            ])
+            ->contain([
+                'BlogArticles'
+            ])
+            ->first();
 
-		//Check if the category is found.
-		if (empty($category)) {
-			$this->Flash->error(__('This category doesn\'t exist or has been deleted.'));
+        //Check if the category is found.
+        if (empty($category)) {
+            $this->Flash->error(__('This category doesn\'t exist or has been deleted.'));
 
-			return $this->redirect(['action' => 'index']);
-		}
+            return $this->redirect(['action' => 'index']);
+        }
 
-		//Paginate all Articles.
-		$this->loadModel('BlogArticles');
-		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.article_per_page')
-		];
+        //Paginate all Articles.
+        $this->loadModel('BlogArticles');
+        $this->paginate = [
+            'maxLimit' => Configure::read('Blog.article_per_page')
+        ];
 
-		$articles = $this->BlogArticles
-			->find()
-			->contain([
-				'Users' => function ($q) {
-					return $q->find('short');
-				}
-			])
-			->where([
-				'BlogArticles.category_id' => $category->id,
-				'BlogArticles.is_display' => 1
-			])
-			->order([
-				'BlogArticles.created' => 'desc'
-			]);
+        $articles = $this->BlogArticles
+            ->find()
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->find('short');
+                }
+            ])
+            ->where([
+                'BlogArticles.category_id' => $category->id,
+                'BlogArticles.is_display' => 1
+            ])
+            ->order([
+                'BlogArticles.created' => 'desc'
+            ]);
 
-		$articles = $this->paginate($articles);
+        $articles = $this->paginate($articles);
 
-		$this->set(compact('category', 'articles'));
-	}
+        $this->set(compact('category', 'articles'));
+    }
 
-/**
- * Display a specific article.
- *
- * @return \Cake\Network\Response|void
- */
-	public function article() {
-		$this->loadModel('BlogArticles');
+    /**
+     * Display a specific article.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function article()
+    {
+        $this->loadModel('BlogArticles');
 
-		$article = $this->BlogArticles
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'BlogArticles.slug'
-			])
-			->contain([
-				'BlogCategories',
-				'BlogAttachments',
-				'Users' => function ($q) {
-						return $q->find('full');
-				}
-			])
-			->where([
-				'BlogArticles.is_display' => 1
-			])
-			->first();
+        $article = $this->BlogArticles
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'BlogArticles.slug'
+            ])
+            ->contain([
+                'BlogCategories',
+                'BlogAttachments',
+                'Users' => function ($q) {
+                        return $q->find('full');
+                }
+            ])
+            ->where([
+                'BlogArticles.is_display' => 1
+            ])
+            ->first();
 
-		//Check if the article is found.
-		if (empty($article)) {
-			$this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
+        //Check if the article is found.
+        if (empty($article)) {
+            $this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
 
-			return $this->redirect(['action' => 'index']);
-		}
+            return $this->redirect(['action' => 'index']);
+        }
 
-		$this->loadModel('BlogArticlesComments');
+        $this->loadModel('BlogArticlesComments');
 
-		//A comment has been posted.
-		if ($this->request->is('post')) {
+        //A comment has been posted.
+        if ($this->request->is('post')) {
+            //Check if the user is connected.
+            if (!$this->Auth->user()) {
+                return $this->Flash->error(__('You must be connected to post a comment.'));
+            }
 
-			//Check if the user is connected.
-			if (!$this->Auth->user()) {
-				return $this->Flash->error(__('You must be connected to post a comment.'));
-			}
+            $this->request->data['article_id'] = $article->id;
+            $this->request->data['user_id'] = $this->Auth->user('id');
 
-			$this->request->data['article_id'] = $article->id;
-			$this->request->data['user_id'] = $this->Auth->user('id');
+            $newComment = $this->BlogArticlesComments->newEntity($this->request->data, ['validate' => 'create']);
 
-			$newComment = $this->BlogArticlesComments->newEntity($this->request->data, ['validate' => 'create']);
+            //Attach Event.
+            $this->BlogArticlesComments->eventManager()->attach(new Badges($this));
 
-			//Attach Event.
-			$this->BlogArticlesComments->eventManager()->attach(new Badges($this));
+            if ($insertComment = $this->BlogArticlesComments->save($newComment)) {
+                $this->Flash->success(__('Your comment has been posted successfully !'));
+                //Redirect the user to the last page of the article.
+                $this->redirect([
+                    'action' => 'go',
+                    $insertComment->id
+                ]);
+            }
+        }
 
-			if ($insertComment = $this->BlogArticlesComments->save($newComment)) {
+        //Paginate all comments related to the article.
+        $this->paginate = [
+            'maxLimit' => Configure::read('Blog.comment_per_page')
+        ];
 
-				$this->Flash->success(__('Your comment has been posted successfully !'));
-				//Redirect the user to the last page of the article.
-				$this->redirect([
-					'action' => 'go',
-					$insertComment->id
-				]);
-			}
-		}
+        $comments = $this->BlogArticlesComments
+            ->find()
+            ->where([
+                'article_id' => $article->id
+            ])
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->find('medium');
+                }
+            ])
+            ->order([
+                'BlogArticlesComments.created' => 'asc'
+            ]);
 
-		//Paginate all comments related to the article.
-		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.comment_per_page')
-		];
+        $comments = $this->paginate($comments);
 
-		$comments = $this->BlogArticlesComments
-			->find()
-			->where([
-				'article_id' => $article->id
-			])
-			->contain([
-				'Users' => function ($q) {
-					return $q->find('medium');
-				}
-			])
-			->order([
-				'BlogArticlesComments.created' => 'asc'
-			]);
+        //Select the like for the current auth user.
+        $this->loadModel('BlogArticlesLikes');
+        $like = $this->BlogArticlesLikes
+            ->find()
+            ->where([
+                'user_id' => ($this->Auth->user()) ? $this->Auth->user('id') : null,
+                'article_id' => $article->id
+            ])
+            ->first();
 
-		$comments = $this->paginate($comments);
+        //Build the newEntity for the comment form.
+        $formComments = $this->BlogArticlesComments->newEntity();
 
-		//Select the like for the current auth user.
-		$this->loadModel('BlogArticlesLikes');
-		$like = $this->BlogArticlesLikes
-			->find()
-			->where([
-				'user_id' => ($this->Auth->user()) ? $this->Auth->user('id') : null,
-				'article_id' => $article->id
-			])
-			->first();
+        //Search related articles
+        $keywords = preg_split("/([\s,\W])+/", $article->title);
 
-		//Build the newEntity for the comment form.
-		$formComments = $this->BlogArticlesComments->newEntity();
+        $articles = $this->BlogArticles
+            ->find()
+            ->contain([
+                'BlogCategories'
+            ])
+            ->where([
+                'BlogArticles.is_display' => 1,
+                'BlogArticles.id !=' => $article->id
+            ])
+            ->andWhere([
+                'BlogArticles.title RLIKE' => rtrim(implode('|', $keywords), '|')
+            ]);
 
-		//Search related articles
-		$keywords = preg_split("/([\s,\W])+/", $article->title);
+        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles'));
+    }
 
-		$articles = $this->BlogArticles
-			->find()
-			->contain([
-				'BlogCategories'
-			])
-			->where([
-				'BlogArticles.is_display' => 1,
-				'BlogArticles.id !=' => $article->id
-			])
-			->andWhere([
-				'BlogArticles.title RLIKE' => rtrim(implode('|', $keywords), '|')
-			]);
+    /**
+     * Quote a message.
+     *
+     * @param int $articleId Id of the article where is the message to quote.
+     * @param int $commentId Id of the message to quote.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException
+     *
+     * @return mixed
+     */
+    public function quote($articleId = null, $commentId = null)
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
 
-		$this->set(compact('article', 'formComments', 'comments', 'like', 'articles'));
-	}
+        }
 
-/**
- * Quote a message.
- *
- * @param int $articleId Id of the article where is the message to quote.
- * @param int $commentId Id of the message to quote.
- *
- * @throws \Cake\Network\Exception\NotFoundException
- *
- * @return mixed
- */
-	public function quote($articleId = null, $commentId = null) {
-		if (!$this->request->is('ajax')) {
-			throw new NotFoundException();
+        $this->loadModel('BlogArticlesComments');
 
-		}
+        $comment = $this->BlogArticlesComments
+            ->find()
+            ->where([
+                'BlogArticlesComments.article_id' => $articleId,
+                'BlogArticlesComments.id' => $commentId
+            ])
+            ->contain([
+                'Users' => function ($q) {
+                        return $q->find('short');
+                }
+            ])
+            ->first();
 
-		$this->loadModel('BlogArticlesComments');
+        $json = [];
 
-		$comment = $this->BlogArticlesComments
-			->find()
-			->where([
-				'BlogArticlesComments.article_id' => $articleId,
-				'BlogArticlesComments.id' => $commentId
-			])
-			->contain([
-				'Users' => function ($q) {
-						return $q->find('short');
-				}
-			])
-			->first();
+        if (!is_null($comment)) {
+            $comment->toArray();
 
-		$json = [];
+            $url = Router::url(['action' => 'go', $comment->id]);
+            $text = __("has said :");
 
-		if (!is_null($comment)) {
-			$comment->toArray();
-
-			$url = Router::url(['action' => 'go', $comment->id]);
-			$text = __("has said :");
-
-			//Build the quote.
-			$json['comment'] = <<<EOT
+            //Build the quote.
+            $json['comment'] = <<<EOT
 <div>
-	 <div>
-		<a href="{$url}">
-			<strong>{$comment->user->full_name} {$text}</strong>
-		</a>
-	</div>
-	<blockquote>
-		$comment->content
-	</blockquote>
+     <div>
+        <a href="{$url}">
+            <strong>{$comment->user->full_name} {$text}</strong>
+        </a>
+    </div>
+    <blockquote>
+        $comment->content
+    </blockquote>
 </div><p>&nbsp;</p><p>&nbsp;</p>
 EOT;
 
-			$json['error'] = false;
-
-			$this->set(compact('json'));
-		} else {
-			$json['comment'] = __("This comment doesn't exist.");
-			$json['error'] = true;
-
-			$this->set(compact('json'));
-		}
-
-		//Send response in JSON.
-		$this->set('_serialize', 'json');
-	}
-
-/**
- * Redirect an user to an article, page and comment.
- *
- * @param int $commentId Id of the comment.
- *
- * @return \Cake\Network\Response
- */
-	public function go($commentId = null) {
-		$this->loadModel('BlogArticlesComments');
-
-		$comment = $this->BlogArticlesComments
-			->find()
-			->contain([
-				'BlogArticles'
-			])
-			->where([
-				'BlogArticlesComments.id' => $commentId
-			])
-			->first();
-
-		if (is_null($comment)) {
-			$this->Flash->error(__("This comment doesn't exist or has been deleted."));
-
-			return $this->redirect(['action' => 'index']);
-		}
-
-		$comment->toArray();
-
-		//Count the number of message before this message.
-		$messagesBefore = $this->BlogArticlesComments
-			->find()
-			->where([
-				'BlogArticlesComments.article_id' => $comment->article_id,
-				'BlogArticlesComments.created <' => $comment->created
-			])
-			->count();
-
-		//Get the number of messages per page.
-		$messagesPerPage = Configure::read('Blog.comment_per_page');
-
-		//Calculate the page.
-		$page = floor($messagesBefore / $messagesPerPage) + 1;
-
-		$page = ($page > 1) ? $page : 1;
-
-		//Redirect the user.
-		return $this->redirect([
-			'_name' => 'blog-article',
-			'slug' => $comment->blog_article->slug,
-			'?' => ['page' => $page],
-			'#' => 'comment-' . $commentId
-		]);
-	}
-
-/**
- * Get all articles by a date formatted to "m-Y".
- *
- * @param string $date The date of the archive.
- *
- * @return void
- */
-	public function archive($date = null) {
-		$this->loadModel('BlogArticles');
-
-		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.article_per_page')
-		];
-
-		$archives = $this->BlogArticles
-			->find()
-			->where([
-				'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date,
-				'BlogArticles.is_display' => 1
-			])
-			->contain([
-				'BlogCategories',
-				'Users' => function ($q) {
-						return $q->find('short');
-				}
-			])
-			->order([
-				'BlogArticles.created' => 'desc'
-			]);
-
-		$articles = $this->paginate($archives);
-
-		$this->set(compact('articles', 'date'));
-	}
-
-/**
- * Search articles.
- *
- * @return void
- */
-	public function search() {
-		$this->loadModel('BlogArticles');
-
-		//Check the keyword to search. (For pagination)
-		if (!empty($this->request->data['search'])) {
-
-			$keyword = $this->request->data['search'];
-			$this->request->session()->write('Search.Blog.Keyword', $keyword);
-		} else {
-
-			if ($this->request->session()->read('Search.Blog.Keyword')) {
-
-				$keyword = $this->request->session()->read('Search.Blog.Keyword');
-			} else {
-
-				$keyword = '';
-			}
-		}
-
-		//Pagination
-		$this->paginate = [
-			'maxLimit' => Configure::read('Blog.article_per_page')
-		];
-
-		$articles = $this->BlogArticles
-			->find()
-			->contain([
-				'Users' => function ($q) {
-					return $q->find('short');
-				}
-			])
-			->where([
-				'BlogArticles.is_display' => 1
-			])
-			->andWhere(function ($q) use ($keyword) {
-					return $q
-						->like('title', "%$keyword%");
-			})
-			->order([
-					'BlogArticles.created' => 'desc'
-			]);
-
-		$articles = $this->paginate($articles);
-
-		$this->set(compact('articles', 'keyword'));
-	}
-
-/**
- * Like an article.
- *
- * @param int $articleId Id of the article to like.
- *
- * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
- *
- * @return void
- */
-	public function articleLike($articleId = null) {
-		if (!$this->request->is('ajax')) {
-			throw new NotFoundException();
-		}
-
-		//Check if the user hasn't already liked this article.
-		$this->loadModel('BlogArticlesLikes');
-		$checkLike = $this->BlogArticlesLikes
-			->find()
-			->where([
-				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
-				'BlogArticlesLikes.article_id' => $articleId
-			])
-			->first();
-
-		$json = [];
-
-		if (!is_null($checkLike)) {
-			$json['message'] = __('You already like this article !');
-			$json['error'] = true;
-
-			$this->set(compact('json'));
-
-			$this->set('_serialize', 'json');
-		}
-
-		//Check if the article exist.
-		$this->loadModel('BlogArticles');
-		$checkArticle = $this->BlogArticles
-			->find()
-			->where([
-				'id' => $articleId,
-				'BlogArticles.is_display' => 1
-			])
-			->first();
-
-		if (is_null($checkArticle)) {
-			$json['message'] = __("This article doesn't exist !");
-			$json['error'] = true;
-
-			$this->set(compact('json'));
-
-			$this->set('_serialize', 'json');
-		}
-
-		//Prepare data to be saved.
-		$data = [];
-		$data['BlogArticlesLikes']['user_id'] = $this->Auth->user('id');
-		$data['BlogArticlesLikes']['article_id'] = $articleId;
-
-		$like = $this->BlogArticlesLikes->newEntity($data);
-
-		if ($this->BlogArticlesLikes->save($like)) {
-			$json['message'] = __('Thanks for {0} this article ! ', "<i class='fa fa-heart text-danger'></i>");
-			$json['title'] = __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>");
-			$json['url'] = Router::url(
-				[
-					'action' => 'articleUnlike',
-					$articleId
-				]
-			);
-			$json['error'] = false;
-		} else {
-
-			$json['message'] = __('An error occurred, please try again later.');
-			$json['error'] = true;
-		}
-
-		$this->set(compact('json'));
-
-		$this->set('_serialize', 'json');
-	}
-
-/**
- * Unlike an article.
- *
- * @param int|null $articleId Id of the article to like.
- *
- * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
- *
- * @return void
- */
-	public function articleUnlike($articleId = null) {
-		if (!$this->request->is('ajax')) {
-			throw new NotFoundException();
-		}
-
-		//Check if the user like this article.
-		$this->loadModel('BlogArticlesLikes');
-		$like = $this->BlogArticlesLikes
-			->find()
-			->contain([
-				'BlogArticles'
-			])
-			->where([
-				'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
-				'BlogArticlesLikes.article_id' => $articleId,
-				'BlogArticles.is_display' => 1
-			])
-			->first();
-
-		$json = [];
-
-		if (is_null($like)) {
-			$json['message'] = __("You don't like this article !");
-			$json['error'] = true;
-
-			$this->set(compact('json'));
-
-			$this->set('_serialize', 'json');
-		}
-
-		if ($this->BlogArticlesLikes->delete($like)) {
-			$json['url'] = Router::url([
-								'action' => 'articleLike',
-								$articleId
-							]);
-			$json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
-			$json['error'] = false;
-		} else {
-
-			$json['message'] = __('An error occurred, please try again later.');
-			$json['error'] = true;
-		}
-
-		$this->set(compact('json'));
-
-		$this->set('_serialize', 'json');
-	}
-
-/**
- * Delete a comment.
- *
- * @param int $id Id of the comment to delete.
- *
- * @return \Cake\Network\Response
- */
-	public function deleteComment($id = null) {
-		$this->loadModel('BlogArticlesComments');
-
-		$comment = $this->BlogArticlesComments
-			->find()
-			->contain([
-				'BlogArticles'
-			])
-			->where([
-				'BlogArticlesComments.id' => $id
-			])
-			->first();
-
-		if (is_null($comment)) {
-			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
-
-			return $this->redirect($this->referer());
-		}
-
-		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
-			$this->Flash->error(__("You don't have the authorization to delete this comment !"));
-
-			return $this->redirect($this->referer());
-		}
-
-		if ($this->BlogArticlesComments->delete($comment)) {
-			$this->Flash->success(__("This comment has been deleted successfully !"));
-		}
-
-		return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, '?' => ['page' => $comment->blog_article->last_page]]);
-	}
-
-/**
- * Get the form to edit a comment.
- *
- * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
- *
- * @return void
- */
-	public function getEditComment() {
-		if (!$this->request->is('ajax')) {
-			throw new NotFoundException();
-		}
-
-		$this->loadModel('BlogArticlesComments');
-
-		$comment = $this->BlogArticlesComments
-			->find()
-			->where([
-				'BlogArticlesComments.id' => $this->request->data['id']
-			])
-			->first();
-
-		if (is_null($comment)) {
-			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
-		}
-
-		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
-			$this->Flash->error(__("You don't have the authorization to edit this comment !"));
-		}
-
-		$this->set(compact('comment'));
-	}
-
-/**
- * Edit a comment.
- *
- * @param int $id Id of the comment.
- *
- * @return \Cake\Network\Response
- */
-	public function editComment($id = null) {
-		$this->loadModel('BlogArticlesComments');
-
-		$comment = $this->BlogArticlesComments
-			->find()
-			->contain([
-				'BlogArticles'
-			])
-			->where([
-				'BlogArticlesComments.id' => $id
-			])
-			->first();
-
-		if (is_null($comment)) {
-			$this->Flash->error(__("This comment doesn't exist or has been deleted !"));
-
-			return $this->redirect($this->referer());
-		}
-
-		if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
-			$this->Flash->error(__("You don't have the authorization to edit this comment !"));
-
-			return $this->redirect($this->referer());
-		}
-
-		$this->BlogArticlesComments->patchEntity($comment, $this->request->data());
-		if ($this->BlogArticlesComments->save($comment)) {
-			$this->Flash->success(__("This comment has been edited successfully !"));
-		}
-
-		return $this->redirect(['action' => 'go', $comment->id]);
-	}
+            $json['error'] = false;
+
+            $this->set(compact('json'));
+        } else {
+            $json['comment'] = __("This comment doesn't exist.");
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+        }
+
+        //Send response in JSON.
+        $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Redirect an user to an article, page and comment.
+     *
+     * @param int $commentId Id of the comment.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function go($commentId = null)
+    {
+        $this->loadModel('BlogArticlesComments');
+
+        $comment = $this->BlogArticlesComments
+            ->find()
+            ->contain([
+                'BlogArticles'
+            ])
+            ->where([
+                'BlogArticlesComments.id' => $commentId
+            ])
+            ->first();
+
+        if (is_null($comment)) {
+            $this->Flash->error(__("This comment doesn't exist or has been deleted."));
+
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $comment->toArray();
+
+        //Count the number of message before this message.
+        $messagesBefore = $this->BlogArticlesComments
+            ->find()
+            ->where([
+                'BlogArticlesComments.article_id' => $comment->article_id,
+                'BlogArticlesComments.created <' => $comment->created
+            ])
+            ->count();
+
+        //Get the number of messages per page.
+        $messagesPerPage = Configure::read('Blog.comment_per_page');
+
+        //Calculate the page.
+        $page = floor($messagesBefore / $messagesPerPage) + 1;
+
+        $page = ($page > 1) ? $page : 1;
+
+        //Redirect the user.
+        return $this->redirect([
+            '_name' => 'blog-article',
+            'slug' => $comment->blog_article->slug,
+            '?' => ['page' => $page],
+            '#' => 'comment-' . $commentId
+        ]);
+    }
+
+    /**
+     * Get all articles by a date formatted to "m-Y".
+     *
+     * @param string $date The date of the archive.
+     *
+     * @return void
+     */
+    public function archive($date = null)
+    {
+        $this->loadModel('BlogArticles');
+
+        $this->paginate = [
+            'maxLimit' => Configure::read('Blog.article_per_page')
+        ];
+
+        $archives = $this->BlogArticles
+            ->find()
+            ->where([
+                'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date,
+                'BlogArticles.is_display' => 1
+            ])
+            ->contain([
+                'BlogCategories',
+                'Users' => function ($q) {
+                        return $q->find('short');
+                }
+            ])
+            ->order([
+                'BlogArticles.created' => 'desc'
+            ]);
+
+        $articles = $this->paginate($archives);
+
+        $this->set(compact('articles', 'date'));
+    }
+
+    /**
+     * Search articles.
+     *
+     * @return void
+     */
+    public function search()
+    {
+        $this->loadModel('BlogArticles');
+
+        //Check the keyword to search. (For pagination)
+        if (!empty($this->request->data['search'])) {
+            $keyword = $this->request->data['search'];
+            $this->request->session()->write('Search.Blog.Keyword', $keyword);
+        } else {
+            if ($this->request->session()->read('Search.Blog.Keyword')) {
+                $keyword = $this->request->session()->read('Search.Blog.Keyword');
+            } else {
+                $keyword = '';
+            }
+        }
+
+        //Pagination
+        $this->paginate = [
+            'maxLimit' => Configure::read('Blog.article_per_page')
+        ];
+
+        $articles = $this->BlogArticles
+            ->find()
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->find('short');
+                }
+            ])
+            ->where([
+                'BlogArticles.is_display' => 1
+            ])
+            ->andWhere(function ($q) use ($keyword) {
+                    return $q
+                        ->like('title', "%$keyword%");
+            })
+            ->order([
+                    'BlogArticles.created' => 'desc'
+            ]);
+
+        $articles = $this->paginate($articles);
+
+        $this->set(compact('articles', 'keyword'));
+    }
+
+    /**
+     * Like an article.
+     *
+     * @param int $articleId Id of the article to like.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
+     *
+     * @return void
+     */
+    public function articleLike($articleId = null)
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        //Check if the user hasn't already liked this article.
+        $this->loadModel('BlogArticlesLikes');
+        $checkLike = $this->BlogArticlesLikes
+            ->find()
+            ->where([
+                'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
+                'BlogArticlesLikes.article_id' => $articleId
+            ])
+            ->first();
+
+        $json = [];
+
+        if (!is_null($checkLike)) {
+            $json['message'] = __('You already like this article !');
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+
+            $this->set('_serialize', 'json');
+        }
+
+        //Check if the article exist.
+        $this->loadModel('BlogArticles');
+        $checkArticle = $this->BlogArticles
+            ->find()
+            ->where([
+                'id' => $articleId,
+                'BlogArticles.is_display' => 1
+            ])
+            ->first();
+
+        if (is_null($checkArticle)) {
+            $json['message'] = __("This article doesn't exist !");
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+
+            $this->set('_serialize', 'json');
+        }
+
+        //Prepare data to be saved.
+        $data = [];
+        $data['BlogArticlesLikes']['user_id'] = $this->Auth->user('id');
+        $data['BlogArticlesLikes']['article_id'] = $articleId;
+
+        $like = $this->BlogArticlesLikes->newEntity($data);
+
+        if ($this->BlogArticlesLikes->save($like)) {
+            $json['message'] = __('Thanks for {0} this article ! ', "<i class='fa fa-heart text-danger'></i>");
+            $json['title'] = __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>");
+            $json['url'] = Router::url(
+                [
+                    'action' => 'articleUnlike',
+                    $articleId
+                ]
+            );
+            $json['error'] = false;
+        } else {
+            $json['message'] = __('An error occurred, please try again later.');
+            $json['error'] = true;
+        }
+
+        $this->set(compact('json'));
+
+        $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Unlike an article.
+     *
+     * @param int|null $articleId Id of the article to like.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
+     *
+     * @return void
+     */
+    public function articleUnlike($articleId = null)
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        //Check if the user like this article.
+        $this->loadModel('BlogArticlesLikes');
+        $like = $this->BlogArticlesLikes
+            ->find()
+            ->contain([
+                'BlogArticles'
+            ])
+            ->where([
+                'BlogArticlesLikes.user_id' => $this->Auth->user('id'),
+                'BlogArticlesLikes.article_id' => $articleId,
+                'BlogArticles.is_display' => 1
+            ])
+            ->first();
+
+        $json = [];
+
+        if (is_null($like)) {
+            $json['message'] = __("You don't like this article !");
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+
+            $this->set('_serialize', 'json');
+        }
+
+        if ($this->BlogArticlesLikes->delete($like)) {
+            $json['url'] = Router::url([
+                                'action' => 'articleLike',
+                                $articleId
+                            ]);
+            $json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
+            $json['error'] = false;
+        } else {
+            $json['message'] = __('An error occurred, please try again later.');
+            $json['error'] = true;
+        }
+
+        $this->set(compact('json'));
+
+        $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Delete a comment.
+     *
+     * @param int $id Id of the comment to delete.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function deleteComment($id = null)
+    {
+        $this->loadModel('BlogArticlesComments');
+
+        $comment = $this->BlogArticlesComments
+            ->find()
+            ->contain([
+                'BlogArticles'
+            ])
+            ->where([
+                'BlogArticlesComments.id' => $id
+            ])
+            ->first();
+
+        if (is_null($comment)) {
+            $this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+            $this->Flash->error(__("You don't have the authorization to delete this comment !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($this->BlogArticlesComments->delete($comment)) {
+            $this->Flash->success(__("This comment has been deleted successfully !"));
+        }
+
+        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, '?' => ['page' => $comment->blog_article->last_page]]);
+    }
+
+    /**
+     * Get the form to edit a comment.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
+     *
+     * @return void
+     */
+    public function getEditComment()
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        $this->loadModel('BlogArticlesComments');
+
+        $comment = $this->BlogArticlesComments
+            ->find()
+            ->where([
+                'BlogArticlesComments.id' => $this->request->data['id']
+            ])
+            ->first();
+
+        if (is_null($comment)) {
+            $this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+        }
+
+        if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+            $this->Flash->error(__("You don't have the authorization to edit this comment !"));
+        }
+
+        $this->set(compact('comment'));
+    }
+
+    /**
+     * Edit a comment.
+     *
+     * @param int $id Id of the comment.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function editComment($id = null)
+    {
+        $this->loadModel('BlogArticlesComments');
+
+        $comment = $this->BlogArticlesComments
+            ->find()
+            ->contain([
+                'BlogArticles'
+            ])
+            ->where([
+                'BlogArticlesComments.id' => $id
+            ])
+            ->first();
+
+        if (is_null($comment)) {
+            $this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+            $this->Flash->error(__("You don't have the authorization to edit this comment !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->BlogArticlesComments->patchEntity($comment, $this->request->data());
+        if ($this->BlogArticlesComments->save($comment)) {
+            $this->Flash->success(__("This comment has been edited successfully !"));
+        }
+
+        return $this->redirect(['action' => 'go', $comment->id]);
+    }
 }

@@ -6,26 +6,28 @@ use Cake\I18n\Number;
 use Cake\ORM\Behavior\Translate\TranslateTrait;
 use Cake\ORM\Entity;
 
-class BlogCategory extends Entity {
+class BlogCategory extends Entity
+{
 
-	use AppTranslateTrait;
-	use TranslateTrait;
+    use AppTranslateTrait;
+    use TranslateTrait;
 
-/**
- * Fields that can be mass assigned using newEntity() or patchEntity().
- *
- * @var array
- */
-	protected $_accessible = [
-		'*' => true
-	];
+    /**
+     * Fields that can be mass assigned using newEntity() or patchEntity().
+     *
+     * @var array
+     */
+    protected $_accessible = [
+        '*' => true
+    ];
 
-/**
- * Get the number of articles formatted.
- *
- * @return string
- */
-	protected function _getArticleCountFormat() {
-		return Number::format($this->article_count);
-	}
+    /**
+     * Get the number of articles formatted.
+     *
+     * @return string
+     */
+    protected function _getArticleCountFormat()
+    {
+        return Number::format($this->article_count);
+    }
 }
