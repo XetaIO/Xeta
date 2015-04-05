@@ -48,5 +48,29 @@ class GroupsFixture extends TestFixture {
 			'created' => '2015-01-16 16:49:24',
 			'modified' => '2015-01-16 16:49:24'
 		],
+		[
+			'name' => 'Random Group',
+			'css' => 'color:#FF4A43;font-weight:bold;',
+			'is_staff' => 0,
+			'is_member' => 0,
+			'created' => '2015-01-16 16:49:24',
+			'modified' => '2015-01-16 16:49:24'
+		],
+		[
+			'name' => 'Random Group',
+			'css' => 'font-weight:bold;',
+			'is_staff' => 0,
+			'is_member' => 0,
+			'created' => '2015-01-16 16:49:24',
+			'modified' => '2015-01-16 16:49:24'
+		],
+		[
+			'name' => 'Administrator',
+			'css' => 'color:#FF4A43;font-weight:bold;',
+			'is_staff' => 1,
+			'is_member' => 0,
+			'created' => '2015-01-16 16:49:24',
+			'modified' => '2015-01-16 16:49:24'
+		]
 	];
 }

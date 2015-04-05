@@ -147,7 +147,7 @@ class ThreadsController extends AppController {
 				])
 				->first();
 
-			//Check if the category if found is found.
+			//Check if the category is found.
 			if (is_null($category)) {
 				$this->Flash->error(__("This category doesn't exist or has been deleted !"));
 
@@ -258,7 +258,9 @@ class ThreadsController extends AppController {
 				//Attach Event.
 				$this->ForumPosts->eventManager()->attach(new Badges($this));
 
-				if ($this->request->data['forum_thread']['thread_open'] == false) {
+				$threadOpen = isset($this->request->data['forum_thread']['thread_open']) ? $this->request->data['forum_thread']['thread_open'] : true;
+
+				if ($threadOpen == false) {
 					$this->Flash->success(__('Your reply has been posted successfully and the thread has been closed !'));
 				} else {
 					$this->Flash->success(__('Your reply has been posted successfully !'));
@@ -304,7 +306,7 @@ class ThreadsController extends AppController {
 			return $this->redirect($this->referer());
 		}
 
-		//Chgeck if the thread is not already open.
+		//Check if the thread is not already open.
 		if ($thread->thread_open == false) {
 			$this->Flash->error(__("This thread is already closed !"));
 
@@ -368,7 +370,7 @@ class ThreadsController extends AppController {
 			return $this->redirect($this->referer());
 		}
 
-		//Chgeck if the thread is not already open.
+		//Check if the thread is not already open.
 		if ($thread->thread_open == true) {
 			$this->Flash->error(__("This thread is already open !"));
 
