@@ -50,7 +50,7 @@ class ThreadsControllerTest extends IntegrationTestCase
             'sticky' => '1',
             'thread_open' => '0'
         ];
-        $this->post(['_name' => 'threads-edit', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->put(['_name' => 'threads-edit', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], $data);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title 1 modified', 'id' => 1, 'prefix' => 'forum']);
@@ -77,7 +77,7 @@ class ThreadsControllerTest extends IntegrationTestCase
         $data = [
             'message' => 'My awesome message.'
         ];
-        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], $data);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 3]);
@@ -96,7 +96,7 @@ class ThreadsControllerTest extends IntegrationTestCase
                 'thread_open' => '0'
             ]
         ];
-        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], $data);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 4]);
@@ -119,9 +119,9 @@ class ThreadsControllerTest extends IntegrationTestCase
         $data = [
             'message' => 'My awesome message.'
         ];
-        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], $data);
         $this->assertResponseSuccess();
-        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], $data);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home', 'prefix' => false]);
@@ -145,19 +145,19 @@ class ThreadsControllerTest extends IntegrationTestCase
             ]
         ]);
         //Test non-existent
-        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 3]);
+        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 3, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home', 'prefix' => false]);
 
         //Test already locked
-        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 2]);
+        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 2, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title-2', 'id' => 2]);
 
         //Test lock
-        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 1]);
+        $this->get(['_name' => 'threads-lock', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title-1', 'id' => 1]);
@@ -181,19 +181,19 @@ class ThreadsControllerTest extends IntegrationTestCase
             ]
         ]);
         //Test non-existent
-        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 3]);
+        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 3, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home', 'prefix' => false]);
 
         //Test already unlocked
-        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 1]);
+        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title-1', 'id' => 1]);
 
         //Test unlock
-        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 2]);
+        $this->get(['_name' => 'threads-unlock', 'slug' => 'my slug', 'id' => 2, 'prefix' => 'forum']);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title-2', 'id' => 2]);

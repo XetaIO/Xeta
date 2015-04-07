@@ -115,7 +115,7 @@ class ThreadsController extends AppController
     {
         $this->loadModel('ForumThreads');
 
-        if ($this->request->is(['put', 'post'])) {
+        if ($this->request->is('put')) {
             $thread = $this->ForumThreads
                 ->find()
                 ->where([
@@ -175,7 +175,7 @@ class ThreadsController extends AppController
 
                 return $this->redirect([
                     '_name' => 'forum-threads',
-                    'slug' => Inflector::slug($thread->title, '-'),
+                    'slug' => $thread->title,
                     'id' => $thread->id
                 ]);
             }

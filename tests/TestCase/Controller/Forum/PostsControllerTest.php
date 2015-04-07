@@ -117,4 +117,21 @@ class PostsControllerTest extends IntegrationTestCase
         $this->assertTrue($response['error']);
         $this->assertTrue(isset($response['message']));
     }
+
+    /**
+     * Test delete method
+     */
+    public function testDelete()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 5,
+                ]
+            ]
+        ]);
+    }
 }
