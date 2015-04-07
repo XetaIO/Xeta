@@ -68,6 +68,7 @@ class PostsController extends AppController
             $this->set(compact('json'));
 
             $this->set('_serialize', 'json');
+            return;
         }
 
         if ($this->ForumPostsLikes->delete($like)) {
@@ -123,6 +124,7 @@ class PostsController extends AppController
             $this->set(compact('json'));
 
             $this->set('_serialize', 'json');
+            return;
         }
 
         //Check if the post exist.

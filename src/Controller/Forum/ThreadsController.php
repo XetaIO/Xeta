@@ -115,7 +115,7 @@ class ThreadsController extends AppController
     {
         $this->loadModel('ForumThreads');
 
-        if ($this->request->is('put')) {
+        if ($this->request->is(['put', 'post'])) {
             $thread = $this->ForumThreads
                 ->find()
                 ->where([

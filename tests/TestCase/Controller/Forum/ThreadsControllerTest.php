@@ -50,7 +50,7 @@ class ThreadsControllerTest extends IntegrationTestCase
             'sticky' => '1',
             'thread_open' => '0'
         ];
-        $this->put(['_name' => 'threads-edit', 'slug' => 'my slug', 'id' => 1], $data);
+        $this->post(['_name' => 'threads-edit', 'slug' => 'my slug', 'id' => 1], $data);
         $this->assertResponseSuccess();
         $this->assertSession('flash', 'Flash.flash.key');
         $this->assertRedirect(['_name' => 'forum-threads', 'slug' => 'title 1 modified', 'id' => 1, 'prefix' => 'forum']);
