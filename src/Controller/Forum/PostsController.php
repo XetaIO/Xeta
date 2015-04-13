@@ -298,7 +298,7 @@ class PostsController extends AppController
         $post = $this->ForumPosts
             ->find()
             ->where([
-                'ForumPosts.id' => $this->request->data['id']
+                'ForumPosts.id' => $this->request->id
             ])
             ->contain([
                 'Users' => function ($q) {
@@ -408,6 +408,10 @@ EOT;
      */
     public function edit($id = null)
     {
+        if (!$this->request->is(['post', 'put'])) {
+            throw new NotFoundException();
+        }
+
         $this->loadModel('ForumPosts');
 
         $post = $this->ForumPosts

@@ -1,137 +1,135 @@
 $(document).ready(function () {
+    "use strict";
 
-	$(".editPost").bind("click", function () {
-		var postId = $(this).attr("data-id");
+    $(".editPost").bind("click", function () {
+        var postId = $(this).attr("data-id");
 
-		$.ajax({
-			type : "POST",
-			url : $(this).attr("data-url"),
-			data : {
-				id : postId
-			},
-			dataType: "html",
-			success : function (data) {
-				if(!$("#editingPost-" + postId).length) {
-					var postContent = $("#post-" + postId + " .message");
+        $.ajax({
+            type : "POST",
+            url : $(this).attr("data-url"),
+            data : {
+                id : postId
+            },
+            dataType: "html",
+            success : function (data) {
+                if (!$("#editingPost-" + postId).length) {
+                    var postContent = $("#post-" + postId + " .message");
 
-					postContent.fadeOut();
-					postContent.after(data);
+                    postContent.fadeOut();
+                    postContent.after(data);
 
-					CKEDITOR.replace('postBox-' + postId, {
-						customConfig: 'config/forum.js'
-					});
-				}
-			},
-			error   : function (e) {
-				$(".top-right").notify({
-					message: {
-						text: "Error to edit the post."
-					},
-					type   : "danger"
-				}).show();
-			}
-		});
-		return false;
-	});
+                    CKEDITOR.replace('postBox-' + postId, {
+                        customConfig: 'config/forum.js'
+                    });
+                }
+            },
+            error   : function (e) {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to edit the post."
+                    },
+                    type   : "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
 
-	$(".QuotePost").bind("click", function () {
-		$.ajax({
-			type    : "POST",
-			url     : $(this).attr("data-url"),
-			data : {
-				id : $(this).attr("data-id")
-			},
-			dataType: "json",
-			success : function (data) {
-				if (!data.error) {
-					CKEDITOR.instances.postBox.insertHtml(data.post);
-					$('html,body').animate({
-						scrollTop: $(".threadComment").offset().top
-					}, 'slow');
-				} else {
+    $(".QuotePost").bind("click", function () {
+        $.ajax({
+            type    : "GET",
+            url     : $(this).attr("data-url"),
+            dataType: "json",
+            success : function (data) {
+                if (!data.error) {
+                    CKEDITOR.instances.postBox.insertHtml(data.post);
+                    $('html,body').animate({
+                        scrollTop: $(".threadComment").offset().top
+                    }, 'slow');
+                } else {
 
-					$(".top-right").notify({
-						message: {
-							text: data.post
-						},
-						type   : "danger"
-					}).show();
-				}
-			},
-			error   : function (e) {
-				$(".top-right").notify({
-					message: {
-						text: "Error to quote the post."
-					},
-					type   : "danger"
-				}).show();
-			}
-		});
-		return false;
-	});
+                    $(".top-right").notify({
+                        message: {
+                            text: data.post
+                        },
+                        type   : "danger"
+                    }).show();
+                }
+            },
+            error   : function (e) {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to quote the post."
+                    },
+                    type   : "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
 
-	$(".LikePost").bind("click", function () {
-		var like = $(this),
-			type = like.attr("data-type"),
-			id = like.attr("data-id");
+    $(".LikePost").bind("click", function () {
+        var like = $(this),
+            type = like.attr("data-type"),
+            id = like.attr("data-id");
 
-		$.ajax({
-			type    : "POST",
-			url     : like.attr("data-url"),
-			data : {
-				id : id,
-				type : type
-			},
-			dataType: "json",
-			success : function (data) {
-				if (!data.error) {
+        $.ajax({
+            type    : "GET",
+            url     : like.attr("data-url"),
+            data : {
+                id : id,
+                type : type
+            },
+            dataType: "json",
+            success : function (data) {
+                if (!data.error) {
 
-					if(type === 'like') {
+                    if (type === 'like') {
 
-						like.removeClass('text-primary').addClass('text-success');
-						like.attr("data-original-title", data.title);
-						like.attr("data-url", data.url);
-						like.attr("data-type", "unlike");
+                        like.removeClass('text-primary').addClass('text-success');
+                        like.attr("data-original-title", data.title);
+                        like.attr("data-url", data.url);
+                        like.attr("data-type", "unlike");
 
-						$(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) + 1);
+                        $(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) + 1);
 
-						/**
-						* Display message.
-						*/
-						$(".top-right").notify({
-							message: { html: data.message },
-							type   : "primary"
-						}).show();
-					} else if(type === "unlike") {
+                        /**
+                        * Display message.
+                        */
+                        $(".top-right").notify({
+                            message: { html: data.message },
+                            type   : "primary"
+                        }).show();
+                    } else if (type === "unlike") {
 
-						like.removeClass('text-success').addClass('text-primary');
+                        like.removeClass('text-success').addClass('text-primary');
 
-						like.attr("data-original-title", data.title);
-						like.attr("data-url", data.url);
-						like.attr("data-type", "like");
+                        like.attr("data-original-title", data.title);
+                        like.attr("data-url", data.url);
+                        like.attr("data-type", "like");
 
-						$(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) - 1);
-					}
+                        $(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) - 1);
+                    }
 
-				} else {
+                } else {
 
-					$(".top-right").notify({
-						message: {
-							text: data.message
-						},
-						type   : "danger"
-					}).show();
-				}
-			},
-			error   : function () {
-				$(".top-right").notify({
-					message: {
-						text: "Error to like/unlike the article."
-					},
-					type   : "danger"
-				}).show();
-			}
-		});
-		return false;
-	});
+                    $(".top-right").notify({
+                        message: {
+                            text: data.message
+                        },
+                        type   : "danger"
+                    }).show();
+                }
+            },
+            error   : function () {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to like/unlike the article."
+                    },
+                    type   : "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
 });

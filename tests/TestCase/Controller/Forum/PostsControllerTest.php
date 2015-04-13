@@ -133,5 +133,101 @@ class PostsControllerTest extends IntegrationTestCase
                 ]
             ]
         ]);
+        //Simple delete
+        $this->post(['_name' => 'threads-reply', 'slug' => 'my slug', 'id' => 1, 'prefix' => 'forum'], ['message' => 'My awesome message.']);
+        $this->get(['_name' => 'posts-delete', 'prefix' => 'forum', 'id' => 3]);
+        $this->assertResponseSuccess();
+        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/success', 'Flash.flash.element');
+        $this->assertRedirect(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 1]);
+    }
+
+    /**
+     * Test quote method
+     */
+    public function testQuote()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 5,
+                ]
+            ]
+        ]);
+        $this->configRequest([
+            'headers' => [
+                'Accept' => 'application/json',
+                'X-Requested-With' => 'XMLHttpRequest'
+            ]
+        ]);
+
+        $this->post(['_name' => 'posts-quote', 'prefix' => 'forum', 'id' => 1], ['id' => 1]);
+        $this->assertResponseOk();
+        $this->assertResponseNotEmpty();
+        $response = json_decode($this->_response->body(), JSON_PRETTY_PRINT);
+        $this->assertFalse($response['error']);
+        $this->assertContains('<blockquote>', $response['post']);
+    }
+
+    /**
+     * Test method go
+     */
+    public function testGo()
+    {
+        $this->get(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 1]);
+        $this->assertResponseSuccess();
+        $this->assertRedirect([
+            '_name' => 'forum-threads',
+            'slug' => 'title 1',
+            'id' => 1,
+            'prefix' => 'forum',
+            '?' => ['page' => 1],
+            '#' => 'post-' . '1'
+        ]);
+
+        $this->get(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 3]);
+        $this->assertResponseSuccess();
+        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.element');
+        $this->assertRedirect(['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum']);
+    }
+
+    /**
+     * Test edit method
+     */
+    public function testEdit()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 5,
+                ]
+            ]
+        ]);
+        $this->post(['_name' => 'posts-edit', 'prefix' => 'forum', 'id' => 1], ['message' => '<i>This is my awesome message</i>']);
+        $this->assertResponseSuccess();
+        $this->assertSession('Flash/success', 'Flash.flash.element');
+        $this->assertRedirect(['controller' => 'posts', 'action' => 'go', 'prefix' => 'forum', 1]);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 2,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 1,
+                ]
+            ]
+        ]);
+        $this->post(['_name' => 'posts-edit', 'prefix' => 'forum', 'id' => 1], ['message' => '<i>This is my awesome message</i>']);
+        $this->assertResponseSuccess();
+        $this->assertSession('Flash/error', 'Flash.flash.element');
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home', 'prefix' => false]);
     }
 }

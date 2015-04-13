@@ -16,3 +16,6 @@ config/analytics-certificate.p12
 .brackets.json
 flo.js
 composer.lock
+cli-debug.log
+cli-error.log
+paypal.log
