@@ -25,7 +25,7 @@ matrix:
 
 before_script:
   - composer self-update
-  - composer install --prefer-dist --no-interaction --dev
+  - composer install --prefer-dist --no-interaction
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE xeta_test;'; fi"
   - sh -c "if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi"
   - sh -c "if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi"
