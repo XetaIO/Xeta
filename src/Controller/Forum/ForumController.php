@@ -49,7 +49,8 @@ class ForumController extends AppController
                 'LastPost.Users' => function ($q) {
                     return $q->find('short');
                 }
-            ]);
+            ])
+            ->order(['ForumCategories.lft' => 'ASC']);
 
         $statistics = [];
 

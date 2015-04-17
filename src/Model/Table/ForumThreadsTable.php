@@ -85,4 +85,25 @@ class ForumThreadsTable extends Table
 
         return $validator;
     }
+
+    /**
+     * Edit validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     *
+     * @return \Cake\Validation\Validator
+     */
+    public function validationEdit(Validator $validator)
+    {
+        $validator
+            ->notEmpty('title', __('You must set a title for your thread.'))
+            ->add('title', [
+                'lengthBetween' => [
+                    'rule' => ['lengthBetween', 5, 150],
+                    'message' => __("The title must be between {0} and {1} characters.", 5, 150)
+                ]
+            ]);
+
+        return $validator;
+    }
 }

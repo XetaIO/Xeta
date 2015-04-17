@@ -528,6 +528,71 @@ Router::prefix('admin', function ($routes) {
         $routes->fallbacks();
     });
 
+    /**
+     * Forum Routes.
+     */
+    $routes->prefix('forum', function ($routes) {
+
+        //Forum/Categories Routes.
+        $routes->connect(
+            '/categories/moveup/:id',
+            [
+                'controller' => 'categories',
+                'action' => 'moveup',
+            ],
+            [
+                '_name' => 'forum-categories-moveup',
+                'pass' => [
+                    'id'
+                ]
+            ]
+        );
+
+        $routes->connect(
+            '/categories/movedown/:id',
+            [
+                'controller' => 'categories',
+                'action' => 'movedown',
+            ],
+            [
+                '_name' => 'forum-categories-movedown',
+                'pass' => [
+                    'id'
+                ]
+            ]
+        );
+
+        $routes->connect(
+            '/categories/edit/:id',
+            [
+                'controller' => 'categories',
+                'action' => 'edit',
+            ],
+            [
+                '_name' => 'forum-categories-edit',
+                'pass' => [
+                    'id'
+                ]
+            ]
+        );
+
+        $routes->connect(
+            '/categories/delete/:id',
+            [
+                'controller' => 'categories',
+                'action' => 'delete',
+            ],
+            [
+                '_name' => 'forum-categories-delete',
+                'pass' => [
+                    'id'
+                ]
+            ]
+        );
+
+        $routes->fallbacks();
+    });
+
     $routes->fallbacks();
 });
 

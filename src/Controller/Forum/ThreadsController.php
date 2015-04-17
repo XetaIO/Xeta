@@ -164,7 +164,7 @@ class ThreadsController extends AppController
                 return $this->redirect($this->referer());
             }
 
-            $this->ForumThreads->patchEntity($thread, $this->request->data);
+            $this->ForumThreads->patchEntity($thread, $this->request->data, ['validate' => 'edit']);
 
             if ($this->ForumThreads->save($thread)) {
                 if ($thread->sticky == true) {
