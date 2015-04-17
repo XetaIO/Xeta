@@ -9,7 +9,7 @@ class CategoriesController extends AppController
     /**
      * Display all categories.
      *
-     * @return \Cake\Network\Response
+     * @return void
      */
     public function index()
     {
@@ -56,7 +56,7 @@ class CategoriesController extends AppController
         $categories = [0 => __d('admin', 'Root')] + $categories;
 
         //Apply a map fonction to add a correct indentation for the categories.
-        $map = function($value) {
+        $map = function ($value) {
             if ($value !== __d('admin', 'Root')) {
                 return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
             }
@@ -166,7 +166,7 @@ class CategoriesController extends AppController
         $categories = [0 => __d('admin', 'Root')] + $categories;
 
         //Apply a map fonction to add a correct indentation for the categories.
-        $map = function($value) {
+        $map = function ($value) {
             if ($value !== __d('admin', 'Root')) {
                 return '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
             }
