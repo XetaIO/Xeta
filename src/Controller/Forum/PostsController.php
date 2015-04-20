@@ -111,7 +111,7 @@ class PostsController extends AppController
             ->find()
             ->where([
                 'ForumPostsLikes.user_id' => $this->Auth->user('id'),
-                'ForumPostsLikes.post_id' => $this->request->id
+                'ForumPostsLikes.post_id' => $this->request->data['id']
             ])
             ->first();
 
