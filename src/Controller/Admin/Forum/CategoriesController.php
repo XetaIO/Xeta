@@ -88,7 +88,7 @@ class CategoriesController extends AppController
             return $this->redirect(['action' => 'index']);
         }
 
-        $result = $this->ForumCategories->moveUp($category);
+        $this->ForumCategories->moveUp($category);
 
         $this->redirect($this->referer());
     }
@@ -114,7 +114,7 @@ class CategoriesController extends AppController
             return $this->redirect(['action' => 'index']);
         }
 
-        $result = $this->ForumCategories->moveDown($category);
+        $this->ForumCategories->moveDown($category);
 
         $this->redirect($this->referer());
     }
