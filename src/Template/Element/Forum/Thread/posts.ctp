@@ -95,7 +95,7 @@
             </div>
 
             <div class="postActions">
-                <?php if ($this->Acl->check(['_name' => 'posts-edit', 'id' => $post->id]) || $this->request->session()->read('Auth.user.id') == $post->user_id): ?>
+                <?php if (($this->Acl->check(['_name' => 'posts-edit', 'id' => $post->id]) && $this->request->session()->read('Auth.User.id') == $post->user_id) || $currentUser->group->is_staff): ?>
                     <?= $this->Html->link(
                         __('{0} Edit', '<i class="fa fa-edit"></i>'),
                         '#',

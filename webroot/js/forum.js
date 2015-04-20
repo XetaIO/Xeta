@@ -74,7 +74,7 @@ $(document).ready(function () {
             id = like.attr("data-id");
 
         $.ajax({
-            type    : "GET",
+            type    : "POST",
             url     : like.attr("data-url"),
             data : {
                 id : id,

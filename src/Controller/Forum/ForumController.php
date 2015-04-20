@@ -305,6 +305,21 @@ class ForumController extends AppController
         $thread->view_count++;
         $this->ForumThreads->save($thread);
 
-        $this->set(compact('thread', 'breadcrumbs', 'posts', 'postForm', 'categories'));
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        $this->set(compact('thread', 'breadcrumbs', 'posts', 'postForm', 'categories', 'currentUser'));
     }
 }

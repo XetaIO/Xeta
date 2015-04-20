@@ -284,6 +284,16 @@ class ChatController extends AppController
             throw new NotFoundException();
         }
 
+        //Check the permissions.
+        if ($this->Chat->hasPermission(['action' => 'canNotice']) === false) {
+            $json['error'] = true;
+            $json['message'] = __d('chat', 'You don\'t have the permission to execute this action.');
+
+            $this->set(compact('json'));
+            $this->set('_serialize', 'json');
+            return;
+        }
+
         $json = $this->Chat->editNotice($this->request->data['notice']);
 
         $this->set(compact('json'));
@@ -314,6 +324,7 @@ class ChatController extends AppController
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+            return;
         }
 
         $this->loadModel('ChatMessages');
