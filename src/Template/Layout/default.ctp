@@ -10,7 +10,7 @@
 			<?= $this->fetch('title') . ' - ' . \Cake\Core\Configure::read('Site.name') ?>
 		</title>
 		<?= $this->Html->meta('icon') ?>
-		
+
 		<?= $this->fetch('meta') ?>
 
 		<!-- Styles -->
@@ -38,7 +38,7 @@
 		<?= $this->element('header') ?>
 
 		<?= $this->fetch('content') ?>
-		
+
 		<?php if (!isset($allowCookies) || $allowCookies === false): ?>
 			<?= $this->element('cookies') ?>
 		<?php endif; ?>
@@ -46,14 +46,9 @@
 		<?= $this->element('footer') ?>
 
 		<?= $this->Html->script([
-			'jquery.min',
-			'bootstrap.min',
-			'jquery.easing.1.3.min',
-			'owl.carousel',
-			'scrollUp',
-			'prettify',
-			'user-menu',
-			'xeta'
+			'lib.min',
+			'user-menu.min',
+			'xeta.min'
 		]); ?>
 
 		<?= $this->fetch('scriptBottom') ?>

@@ -1,6 +1,5 @@
 <?= $this->assign('title', __d('admin', 'Dashboard')) ?>
 
-<?= $this->Html->script(['jquery.flot.min'], ['block' => 'scriptBottom']) ?>
 <div class="content-wrapper interface-blur">
 	<div class="row">
 

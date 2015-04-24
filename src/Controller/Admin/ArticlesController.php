@@ -4,152 +4,154 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use Cake\I18n\I18n;
 
-class ArticlesController extends AppController {
+class ArticlesController extends AppController
+{
 
-/**
- * Helpers.
- *
- * @var array
- */
-	public $helpers = ['I18n'];
+    /**
+     * Helpers.
+     *
+     * @var array
+     */
+    public $helpers = ['I18n'];
 
-/**
- * Display all articles.
- *
- * @return void
- */
-	public function index() {
-		$this->loadModel('BlogArticles');
+    /**
+     * Display all articles.
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $this->loadModel('BlogArticles');
 
-		$this->paginate = [
-			'maxLimit' => 15
-		];
+        $this->paginate = [
+            'maxLimit' => 15
+        ];
 
-		$articles = $this->BlogArticles
-			->find()
-			->contain([
-				'BlogCategories' => function ($q) {
-					return $q->select([
-							'title',
-							'slug'
-						]);
-				},
-				'Users' => function ($q) {
-					return $q->find('short');
-				}
-			])
-			->order([
-				'BlogArticles.created' => 'desc'
-			]);
+        $articles = $this->BlogArticles
+            ->find()
+            ->contain([
+                'BlogCategories' => function ($q) {
+                    return $q->select([
+                            'title',
+                            'slug'
+                        ]);
+                },
+                'Users' => function ($q) {
+                    return $q->find('short');
+                }
+            ])
+            ->order([
+                'BlogArticles.created' => 'desc'
+            ]);
 
-		$articles = $this->paginate($articles);
-		$this->set(compact('articles'));
-	}
+        $articles = $this->paginate($articles);
+        $this->set(compact('articles'));
+    }
 
-/**
- * Add an article.
- *
- * @return \Cake\Network\Response|void
- */
-	public function add() {
-		$this->loadModel('BlogArticles');
+    /**
+     * Add an article.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function add()
+    {
+        $this->loadModel('BlogArticles');
 
-		$this->BlogArticles->locale(I18n::defaultLocale());
-		$article = $this->BlogArticles->newEntity($this->request->data);
+        $this->BlogArticles->locale(I18n::defaultLocale());
+        $article = $this->BlogArticles->newEntity($this->request->data);
 
-		if ($this->request->is('post')) {
-			$article->user_id = $this->Auth->user('id');
-			$article->setTranslations($this->request->data);
+        if ($this->request->is('post')) {
+            $article->user_id = $this->Auth->user('id');
+            $article->setTranslations($this->request->data);
 
-			if ($this->BlogArticles->save($article)) {
+            if ($this->BlogArticles->save($article)) {
+                $this->Flash->success(__d('admin', 'Your article has been created successfully !'));
 
-				$this->Flash->success(__d('admin', 'Your article has been created successfully !'));
+                return $this->redirect(['action' => 'index']);
+            }
+        }
 
-				return $this->redirect(['action' => 'index']);
-			}
-		}
+        $categories = $this->BlogArticles->BlogCategories->find('list');
+        $this->set(compact('article', 'categories'));
+    }
 
-		$categories = $this->BlogArticles->BlogCategories->find('list');
-		$this->set(compact('article', 'categories'));
-	}
+    /**
+     * Edit an Article.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function edit()
+    {
+        $this->loadModel('BlogArticles');
 
-/**
- * Edit an Article.
- *
- * @return \Cake\Network\Response|void
- */
-	public function edit() {
-		$this->loadModel('BlogArticles');
+        $this->BlogArticles->locale(I18n::defaultLocale());
+        $article = $this->BlogArticles
+            ->find('translations')
+            ->where([
+                'BlogArticles.slug' => $this->request->slug
+            ])
+            ->contain([
+                'BlogAttachments',
+                'BlogCategories',
+                'Users' => function ($q) {
+                        return $q->find('short');
+                }
+            ])
+            ->first();
 
-		$this->BlogArticles->locale(I18n::defaultLocale());
-		$article = $this->BlogArticles
-			->find('translations')
-			->where([
-				'BlogArticles.slug' => $this->request->slug
-			])
-			->contain([
-				'BlogAttachments',
-				'BlogCategories',
-				'Users' => function ($q) {
-						return $q->find('short');
-				}
-			])
-			->first();
+        //Check if the article is found.
+        if (empty($article)) {
+            $this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
 
-		//Check if the article is found.
-		if (empty($article)) {
-			$this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
+            return $this->redirect(['action' => 'index']);
+        }
 
-			return $this->redirect(['action' => 'index']);
-		}
+        if ($this->request->is('put')) {
+            $this->BlogArticles->patchEntity($article, $this->request->data());
+            $article->setTranslations($this->request->data);
 
-		if ($this->request->is('put')) {
-			$this->BlogArticles->patchEntity($article, $this->request->data());
-			$article->setTranslations($this->request->data);
+            if ($this->BlogArticles->save($article)) {
+                $this->Flash->success(__d('admin', 'This article has been updated successfully !'));
 
-			if ($this->BlogArticles->save($article)) {
+                return $this->redirect(['action' => 'index']);
+            }
+        }
 
-				$this->Flash->success(__d('admin', 'This article has been updated successfully !'));
+        $categories = $this->BlogArticles->BlogCategories->find('list');
+        $this->set(compact('article', 'categories'));
+    }
 
-				return $this->redirect(['action' => 'index']);
-			}
-		}
+    /**
+     * Delete an Article and all his comments and likes.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function delete()
+    {
+        $this->loadModel('BlogArticles');
 
-		$categories = $this->BlogArticles->BlogCategories->find('list');
-		$this->set(compact('article', 'categories'));
-	}
+        $article = $this->BlogArticles
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'BlogArticles.slug'
+            ])
+            ->first();
 
-/**
- * Delete an Article and all his comments and likes.
- *
- * @return \Cake\Network\Response
- */
-	public function delete() {
-		$this->loadModel('BlogArticles');
+        //Check if the article is found.
+        if (empty($article)) {
+            $this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
 
-		$article = $this->BlogArticles
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'BlogArticles.slug'
-			])
-			->first();
+            return $this->redirect(['action' => 'index']);
+        }
 
-		//Check if the article is found.
-		if (empty($article)) {
-			$this->Flash->error(__d('admin', 'This article doesn\'t exist or has been deleted.'));
+        if ($this->BlogArticles->delete($article)) {
+            $this->Flash->success(__d('admin', 'This article has been deleted successfully !'));
 
-			return $this->redirect(['action' => 'index']);
-		}
+            return $this->redirect(['action' => 'index']);
+        }
 
-		if ($this->BlogArticles->delete($article)) {
+        $this->Flash->error(__d('admin', 'Unable to delete this article.'));
 
-			$this->Flash->success(__d('admin', 'This article has been deleted successfully !'));
-
-			return $this->redirect(['action' => 'index']);
-		}
-
-		$this->Flash->error(__d('admin', 'Unable to delete this article.'));
-
-		return $this->redirect(['action' => 'index']);
-	}
+        return $this->redirect(['action' => 'index']);
+    }
 }

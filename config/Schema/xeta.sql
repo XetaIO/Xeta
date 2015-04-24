@@ -4,25 +4,68 @@
 --
 
 CREATE TABLE IF NOT EXISTS `badges` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `rule` int(11) NOT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `picture` varchar(255) NOT NULL,
+    `type` varchar(255) NOT NULL,
+    `rule` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Table data `badges`
 --
 
 INSERT INTO `badges` (`id`, `name`, `picture`, `type`, `rule`, `created`) VALUES
-(1, 'First Comment', 'badges/comments-1.png', 'comments', 1, '2014-11-10 14:00:00'),
-(2, '10 Comments', 'badges/comments-10.png', 'comments', 10, '2014-11-10 14:00:00'),
-(3, '1 year old', 'badges/registration-1.png', 'registration', 1, '2014-11-10 16:00:00'),
-(4, '2 years old', 'badges/registration-2.png', 'registration', 2, '2014-11-10 16:00:00'),
-(5, '3 years old', 'badges/registration-3.png', 'registration', 3, '2014-11-10 16:00:00');
+(1, 'Premier Commentaire', 'badges/comments-1.png', 'comments', 1, '2014-11-10 14:00:00'),
+(2, '10 Commentaires', 'badges/comments-10.png', 'comments', 10, '2014-11-10 14:00:00'),
+(3, 'Inscrit depuis 1 an', 'badges/registration-1.png', 'registration', 1, '2014-11-10 16:00:00'),
+(4, 'Inscrit depuis 2 ans', 'badges/registration-2.png', 'registration', 2, '2014-11-10 16:00:00'),
+(5, 'Inscrit depuis 3 ans', 'badges/registration-3.png', 'registration', 3, '2014-11-10 16:00:00'),
+(6, 'Premium', 'badges/premium.png', 'premium', 1, '2014-11-17 13:00:00'),
+(7, 'Premier Post', 'badges/posts_forum-1.png', 'postsForum', 1, '2015-02-05 08:00:00'),
+(8, '10 Posts', 'badges/posts_forum-10.png', 'postsForum', 10, '2015-02-05 09:00:00'),
+(9, '50 Posts', 'badges/posts_forum-50.png', 'postsForum', 50, '2015-02-05 08:00:00'),
+(10, '100 Posts', 'badges/posts_forum-100.png', 'postsForum', 100, '2015-02-05 08:00:00'),
+(11, '500 Posts', 'badges/posts_forum-500.png', 'postsForum', 500, '2015-01-28 11:00:00'),
+(12, '1000 Posts', 'badges/posts_forum-1000.png', 'postsForum', 1000, '2015-01-28 11:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `badges_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `badges_i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(6) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `foreign_key` int(10) NOT NULL,
+  `field` varchar(255) NOT NULL,
+  `content` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+  KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- Table data `badges_i18n`
+--
+
+INSERT INTO `badges_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
+(1, 'en_US', 'Badges', 1, 'name', 'First Comments'),
+(2, 'en_US', 'Badges', 2, 'name', '10 Comments'),
+(3, 'en_US', 'Badges', 3, 'name', '1 year old'),
+(4, 'en_US', 'Badges', 4, 'name', '2 years old'),
+(5, 'en_US', 'Badges', 5, 'name', '3 years old'),
+(6, 'en_US', 'Badges', 6, 'name', 'Premium'),
+(7, 'en_US', 'Badges', 7, 'name', 'First Post'),
+(8, 'en_US', 'Badges', 8, 'name', '10 Posts'),
+(9, 'en_US', 'Badges', 9, 'name', '50 Posts'),
+(10, 'en_US', 'Badges', 10, 'name', '100 Posts'),
+(11, 'en_US', 'Badges', 11, 'name', '500 Posts'),
+(12, 'en_US', 'Badges', 12, 'name', '1000 Posts');
 
 -- --------------------------------------------------------
 
@@ -72,15 +115,15 @@ INSERT INTO blog_articles (id, category_id, user_id, title, content, slug, comme
 --
 
 CREATE TABLE IF NOT EXISTS `blog_articles_i18n` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`locale` varchar(6) NOT NULL,
-	`model` varchar(255) NOT NULL,
-	`foreign_key` int(10) NOT NULL,
-	`field` varchar(255) NOT NULL,
-	`content` text,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
-	KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `locale` varchar(6) NOT NULL,
+    `model` varchar(255) NOT NULL,
+    `foreign_key` int(10) NOT NULL,
+    `field` varchar(255) NOT NULL,
+    `content` text,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+    KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -169,15 +212,15 @@ INSERT INTO blog_categories (id, title, description, slug, article_count, create
 --
 
 CREATE TABLE IF NOT EXISTS `blog_categories_i18n` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`locale` varchar(6) NOT NULL,
-	`model` varchar(255) NOT NULL,
-	`foreign_key` int(10) NOT NULL,
-	`field` varchar(255) NOT NULL,
-	`content` text,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
-	KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `locale` varchar(6) NOT NULL,
+    `model` varchar(255) NOT NULL,
+    `foreign_key` int(10) NOT NULL,
+    `field` varchar(255) NOT NULL,
+    `content` text,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `I18N_LOCALE_FIELD` (`locale`,`model`,`foreign_key`,`field`),
+    KEY `I18N_FIELD` (`model`,`foreign_key`,`field`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -185,8 +228,8 @@ CREATE TABLE IF NOT EXISTS `blog_categories_i18n` (
 --
 
 INSERT INTO `blog_articles_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
-(1, 'en_US', 'BlogCategories', 1, 'title', 'Xeta English'),
-(2, 'en_US', 'BlogCategories', 1, 'description', 'Lorem ipsum dolor sit amet english.');
+(NULL, 'en_US', 'BlogCategories', 1, 'title', 'Xeta English'),
+(NULL, 'en_US', 'BlogCategories', 1, 'description', 'Lorem ipsum dolor sit amet english.');
 
 -- --------------------------------------------------------
 
@@ -195,17 +238,17 @@ INSERT INTO `blog_articles_i18n` (`id`, `locale`, `model`, `foreign_key`, `field
 --
 
 CREATE TABLE IF NOT EXISTS `blog_attachments` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`user_id` int(11) NOT NULL,
-	`article_id` int(11) NOT NULL,
-	`name` varchar(255) NOT NULL,
-	`size` int(11) NOT NULL,
-	`extension` varchar(15) NOT NULL,
-	`url` varchar(255) NOT NULL,
-	`download` bigint(20) NOT NULL DEFAULT '0',
-	`created` datetime NOT NULL,
-	`modified` datetime NOT NULL,
-	PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `article_id` int(11) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `size` int(11) NOT NULL,
+    `extension` varchar(15) NOT NULL,
+    `url` varchar(255) NOT NULL,
+    `download` bigint(20) NOT NULL DEFAULT '0',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -215,17 +258,17 @@ CREATE TABLE IF NOT EXISTS `blog_attachments` (
 --
 
 CREATE TABLE IF NOT EXISTS `premium_discounts` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`user_id` int(11) NOT NULL,
-	`premium_offer_id` int(11) NOT NULL,
-	`code` varchar(50) NOT NULL,
-	`discount` float NOT NULL,
-	`used` int(11) NOT NULL DEFAULT '0',
-	`max_use` int(11) NOT NULL DEFAULT '0',
-	`created` datetime NOT NULL,
-	`modified` datetime NOT NULL,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `code` (`code`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `premium_offer_id` int(11) NOT NULL,
+    `code` varchar(50) NOT NULL,
+    `discount` float NOT NULL,
+    `used` int(11) NOT NULL DEFAULT '0',
+    `max_use` int(11) NOT NULL DEFAULT '0',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -243,16 +286,16 @@ INSERT INTO `premium_discounts` (`id`, `user_id`, `premium_offer_id`, `code`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `premium_offers` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`user_id` int(11) NOT NULL,
-	`period` int(11) NOT NULL,
-	`price` float NOT NULL,
-	`tax` float NOT NULL DEFAULT '19.6',
-	`currency_code` varchar(3) NOT NULL DEFAULT 'EUR',
-	`currency_symbol` varchar(4) NOT NULL DEFAULT '€',
-	`created` datetime NOT NULL,
-	`modified` datetime NOT NULL,
-	PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `period` int(11) NOT NULL,
+    `price` float NOT NULL,
+    `tax` float NOT NULL DEFAULT '19.6',
+    `currency_code` varchar(3) NOT NULL DEFAULT 'EUR',
+    `currency_symbol` varchar(4) NOT NULL DEFAULT '€',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -272,22 +315,22 @@ INSERT INTO `premium_offers` (`id`, `user_id`, `period`, `price`, `tax`, `curren
 --
 
 CREATE TABLE IF NOT EXISTS `premium_transactions` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`user_id` int(11) NOT NULL,
-	`premium_offer_id` int(11) NOT NULL,
-	`premium_discount_id` int(11) DEFAULT NULL,
-	`price` float NOT NULL,
-	`tax` float NOT NULL,
-	`txn` varchar(255) NOT NULL,
-	`action` enum('new','extend') NOT NULL DEFAULT 'new',
-	`period` int(11) NOT NULL,
-	`name` varchar(50) NOT NULL,
-	`country` varchar(50) NOT NULL,
-	`city` varchar(50) NOT NULL,
-	`address` varchar(255) NOT NULL,
-	`created` datetime NOT NULL,
-	`modified` datetime NOT NULL,
-	PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `premium_offer_id` int(11) NOT NULL,
+    `premium_discount_id` int(11) DEFAULT NULL,
+    `price` float NOT NULL,
+    `tax` float NOT NULL,
+    `txn` varchar(255) NOT NULL,
+    `action` enum('new','extend') NOT NULL DEFAULT 'new',
+    `period` int(11) NOT NULL,
+    `name` varchar(50) NOT NULL,
+    `country` varchar(50) NOT NULL,
+    `city` varchar(50) NOT NULL,
+    `address` varchar(255) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -297,23 +340,26 @@ CREATE TABLE IF NOT EXISTS `premium_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`name` varchar(100) NOT NULL,
-	`created` datetime DEFAULT NULL,
-	`modified` datetime DEFAULT NULL,
-	PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(100) NOT NULL,
+    `css` varchar(255) NOT NULL,
+    `is_staff` int(2) NOT NULL DEFAULT '0',
+    `is_member` int(2) NOT NULL COMMENT 'Used to define if we display Premium group instead of the real group',
+    `created` datetime DEFAULT NULL,
+    `modified` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Table data `groups`
 --
 
-INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
-(1, 'Banni', '2015-01-16 16:51:12', '2015-01-21 02:03:10'),
-(2, 'Membre', '2015-01-16 16:51:22', '2015-01-21 02:02:21'),
-(3, 'Editeur', '2015-01-16 16:51:30', '2015-01-21 02:02:12'),
-(4, 'Modérateur', '2015-01-16 16:51:51', '2015-01-21 02:02:03'),
-(5, 'Administrateur', '2015-01-16 16:52:00', '2015-01-21 02:01:45');
+INSERT INTO `groups` (`id`, `name`, `css`, `is_staff`, `is_member`, `created`, `modified`) VALUES
+(1, 'Banni', 'color:#A1705D;font-weight:bold;', 0, 0, '2015-01-16 16:51:12', '2015-01-21 02:03:10'),
+(2, 'Membre', 'font-weight:bold;', 0, 1, '2015-01-16 16:51:22', '2015-01-21 02:02:21'),
+(3, 'Éditeur', 'color:#9ADD7D;font-weight:bold;', 1, 0, '2015-01-16 16:51:30', '2015-01-21 02:02:12'),
+(4, 'Modérateur', 'color:#FF6B43;font-weight:bold;', 1, 0, '2015-01-16 16:51:51', '2015-01-21 02:02:03'),
+(5, 'Administrateur', 'color:#FF4A43;font-weight:bold;', 1, 0, '2015-01-16 16:52:00', '2015-02-09 17:28:12');
 
 -- --------------------------------------------------------
 
@@ -322,17 +368,17 @@ INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `groups_i18n` (
-	`id` int(10) NOT NULL AUTO_INCREMENT,
-	`locale` varchar(6) NOT NULL,
-	`model` varchar(255) NOT NULL,
-	`foreign_key` int(10) NOT NULL,
-	`field` varchar(255) NOT NULL,
-	`content` mediumtext,
-	PRIMARY KEY (`id`),
-	KEY `locale` (`locale`),
-	KEY `model` (`model`),
-	KEY `row_id` (`foreign_key`),
-	KEY `field` (`field`)
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `locale` varchar(6) NOT NULL,
+    `model` varchar(255) NOT NULL,
+    `foreign_key` int(10) NOT NULL,
+    `field` varchar(255) NOT NULL,
+    `content` mediumtext,
+    PRIMARY KEY (`id`),
+    KEY `locale` (`locale`),
+    KEY `model` (`model`),
+    KEY `row_id` (`foreign_key`),
+    KEY `field` (`field`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
@@ -353,24 +399,24 @@ INSERT INTO `groups_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `con
 --
 
 CREATE TABLE IF NOT EXISTS `acos` (
-	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-	`parent_id` int(10) DEFAULT NULL,
-	`model` varchar(255) DEFAULT '',
-	`foreign_key` int(10) unsigned DEFAULT NULL,
-	`alias` varchar(255) DEFAULT '',
-	`lft` int(10) DEFAULT NULL,
-	`rght` int(10) DEFAULT NULL,
-	PRIMARY KEY (`id`),
-	KEY `idx_acos_lft_rght` (`lft`,`rght`),
-	KEY `idx_acos_alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `parent_id` int(10) DEFAULT NULL,
+    `model` varchar(255) DEFAULT '',
+    `foreign_key` int(10) unsigned DEFAULT NULL,
+    `alias` varchar(255) DEFAULT '',
+    `lft` int(10) DEFAULT NULL,
+    `rght` int(10) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_acos_lft_rght` (`lft`,`rght`),
+    KEY `idx_acos_alias` (`alias`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=129 ;
 
 --
 -- Table data `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, '', NULL, 'app', 1, 180),
+(1, NULL, '', NULL, 'app', 1, 268),
 (2, 1, '', NULL, 'Attachments', 4, 7),
 (3, 2, '', NULL, 'download', 5, 6),
 (4, 1, '', NULL, 'Blog', 8, 33),
@@ -413,7 +459,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (41, 38, '', NULL, 'add', 81, 82),
 (42, 38, '', NULL, 'edit', 83, 84),
 (43, 38, '', NULL, 'delete', 85, 86),
-(44, 1, '', NULL, 'admin', 88, 179),
+(44, 1, '', NULL, 'admin', 88, 195),
 (45, 44, '', NULL, 'premium', 89, 112),
 (46, 45, '', NULL, 'Offers', 90, 99),
 (47, 46, '', NULL, 'index', 91, 92),
@@ -453,7 +499,51 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (81, 80, '', NULL, 'index', 166, 167),
 (82, 80, '', NULL, 'add', 168, 169),
 (83, 80, '', NULL, 'edit', 170, 171),
-(84, 80, '', NULL, 'delete', 172, 173);
+(84, 80, '', NULL, 'delete', 172, 173),
+(85, 1, '', NULL, 'forum', 196, 241),
+(86, 85, '', NULL, 'Forum', 197, 206),
+(87, 86, '', NULL, 'index', 198, 199),
+(88, 86, '', NULL, 'categories', 200, 201),
+(89, 86, '', NULL, 'home', 202, 203),
+(90, 86, '', NULL, 'threads', 204, 205),
+(91, 85, '', NULL, 'Threads', 207, 222),
+(92, 91, '', NULL, 'close', 208, 209),
+(93, 91, '', NULL, 'new', 210, 211),
+(94, 85, '', NULL, 'Posts', 223, 240),
+(95, 94, '', NULL, 'new', 224, 225),
+(96, 91, '', NULL, 'reply', 212, 213),
+(97, 91, '', NULL, 'lock', 214, 215),
+(98, 91, '', NULL, 'unlock', 216, 217),
+(99, 94, '', NULL, 'edit', 226, 227),
+(100, 91, '', NULL, 'edit', 218, 219),
+(101, 94, '', NULL, 'delete', 228, 229),
+(102, 94, '', NULL, 'go', 230, 231),
+(103, 94, '', NULL, 'getEditPost', 232, 233),
+(104, 91, '', NULL, 'create', 220, 221),
+(105, 94, '', NULL, 'quote', 234, 235),
+(106, 94, '', NULL, 'like', 236, 237),
+(107, 94, '', NULL, 'unlike', 238, 239),
+(108, 1, '', NULL, 'chat', 242, 267),
+(109, 108, '', NULL, 'Chat', 243, 254),
+(110, 109, '', NULL, 'index', 244, 245),
+(111, 109, '', NULL, 'getNotice', 246, 247),
+(112, 109, '', NULL, 'editNotice', 248, 249),
+(113, 109, '', NULL, 'shout', 250, 251),
+(114, 108, '', NULL, 'Permissions', 255, 266),
+(115, 114, '', NULL, 'canPrune', 256, 257),
+(116, 114, '', NULL, 'canBan', 258, 259),
+(117, 114, '', NULL, 'canUnban', 260, 261),
+(118, 114, '', NULL, 'canDelete', 262, 263),
+(119, 114, '', NULL, 'canNotice', 264, 265),
+(120, 109, '', NULL, 'delete', 252, 253),
+(121, 44, '', NULL, 'forum', 179, 194),
+(122, 121, '', NULL, 'Categories', 180, 193),
+(123, 122, '', NULL, 'index', 181, 182),
+(124, 122, '', NULL, 'add', 183, 184),
+(125, 122, '', NULL, 'moveup', 185, 186),
+(126, 122, '', NULL, 'movedown', 187, 188),
+(127, 122, '', NULL, 'delete', 189, 190),
+(128, 122, '', NULL, 'edit', 191, 192);
 
 -- --------------------------------------------------------
 
@@ -462,16 +552,16 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 
 CREATE TABLE IF NOT EXISTS `aros` (
-	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-	`parent_id` int(10) DEFAULT NULL,
-	`model` varchar(255) DEFAULT '',
-	`foreign_key` int(10) unsigned DEFAULT NULL,
-	`alias` varchar(255) DEFAULT '',
-	`lft` int(10) DEFAULT NULL,
-	`rght` int(10) DEFAULT NULL,
-	PRIMARY KEY (`id`),
-	KEY `idx_aros_lft_rght` (`lft`,`rght`),
-	KEY `idx_aros_alias` (`alias`)
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `parent_id` int(10) DEFAULT NULL,
+    `model` varchar(255) DEFAULT '',
+    `foreign_key` int(10) unsigned DEFAULT NULL,
+    `alias` varchar(255) DEFAULT '',
+    `lft` int(10) DEFAULT NULL,
+    `rght` int(10) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_aros_lft_rght` (`lft`,`rght`),
+    KEY `idx_aros_alias` (`alias`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
@@ -492,16 +582,16 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 
 CREATE TABLE IF NOT EXISTS `aros_acos` (
-	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-	`aro_id` int(10) unsigned NOT NULL,
-	`aco_id` int(10) unsigned NOT NULL,
-	`_create` char(2) NOT NULL DEFAULT '0',
-	`_read` char(2) NOT NULL DEFAULT '0',
-	`_update` char(2) NOT NULL DEFAULT '0',
-	`_delete` char(2) NOT NULL DEFAULT '0',
-	PRIMARY KEY (`id`),
-	KEY `idx_aco_id` (`aco_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `aro_id` int(10) unsigned NOT NULL,
+    `aco_id` int(10) unsigned NOT NULL,
+    `_create` char(2) NOT NULL DEFAULT '0',
+    `_read` char(2) NOT NULL DEFAULT '0',
+    `_update` char(2) NOT NULL DEFAULT '0',
+    `_delete` char(2) NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`),
+    KEY `idx_aco_id` (`aco_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Table data `aros_acos`
@@ -528,57 +618,271 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (28, 3, 57, '1', '1', '1', '1'),
 (29, 3, 62, '1', '1', '1', '1'),
 (30, 3, 78, '1', '1', '1', '1'),
-(31, 4, 1, '-1', '-1', '-1', '-1'),
-(32, 4, 2, '1', '1', '1', '1'),
-(33, 4, 4, '1', '1', '1', '1'),
-(34, 4, 17, '1', '1', '1', '1'),
-(35, 4, 19, '1', '1', '1', '1'),
-(36, 4, 23, '1', '1', '1', '1'),
-(37, 4, 29, '1', '1', '1', '1'),
-(38, 4, 44, '1', '1', '1', '1'),
+(31, 4, 1, '1', '1', '1', '1'),
 (39, 4, 45, '-1', '-1', '-1', '-1'),
-(40, 4, 80, '-1', '-1', '-1', '-1');
+(40, 4, 80, '-1', '-1', '-1', '-1'),
+(41, 4, 121, '-1', '-1', '-1', '-1'),
+(42, 3, 85, '1', '1', '1', '1'),
+(43, 3, 92, '-1', '-1', '-1', '-1'),
+(44, 3, 97, '1', '1', '1', '1'),
+(45, 3, 98, '-1', '-1', '-1', '-1'),
+(46, 3, 100, '-1', '-1', '-1', '-1'),
+(47, 3, 101, '-1', '-1', '-1', '-1'),
+(48, 3, 108, '1', '1', '1', '1'),
+(49, 2, 85, '1', '1', '1', '1'),
+(50, 2, 92, '-1', '-1', '-1', '-1'),
+(51, 2, 97, '-1', '-1', '-1', '-1'),
+(52, 2, 98, '-1', '-1', '-1', '-1'),
+(53, 2, 100, '-1', '-1', '-1', '-1'),
+(54, 2, 101, '-1', '-1', '-1', '-1'),
+(55, 2, 108, '1', '1', '1', '1'),
+(56, 2, 120, '1', '1', '1', '1'),
+(57, 2, 114, '-1', '-1', '-1', '-1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure 'users'
+-- Table structure `sessions`
 --
 
-CREATE TABLE IF NOT EXISTS users (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(20) NOT NULL,
-  password varchar(255) NOT NULL,
-  email varchar(50) NOT NULL,
-  first_name varchar(100) NOT NULL,
-  last_name varchar(100) NOT NULL,
-  avatar varchar(255) NOT NULL DEFAULT '../img/avatar.png',
-  biography text NOT NULL,
-  signature text NOT NULL,
-  facebook varchar(200) NOT NULL,
-  twitter varchar(200) NOT NULL,
-  group_id int(11) NOT NULL DEFAULT '2',
-  slug varchar(20) NOT NULL,
-  blog_articles_comment_count int(11) DEFAULT '0',
-  blog_article_count int(11) DEFAULT '0',
-  end_subscription datetime NOT NULL,
-  register_ip varchar(15) DEFAULT NULL,
-  last_login_ip varchar(15) DEFAULT NULL,
-  last_login datetime NOT NULL,
-  created datetime NOT NULL,
-  modified datetime NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY username (username),
-  UNIQUE KEY mail (email),
-  KEY slug (slug)
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` varchar(255) NOT NULL DEFAULT '',
+  `user_id` int(11) DEFAULT NULL,
+  `data` text,
+  `controller` varchar(255) NOT NULL,
+  `action` varchar(255) NOT NULL,
+  `params` text NOT NULL,
+  `expires` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `forum_threads`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_threads` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `category_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `title` varchar(150) NOT NULL,
+    `reply_count` int(11) NOT NULL,
+    `view_count` bigint(20) NOT NULL,
+    `thread_open` tinyint(3) NOT NULL DEFAULT '1' COMMENT 'Display: 1, Closed: 0, Deleted: 2',
+    `sticky` int(3) NOT NULL DEFAULT '0' COMMENT 'Epinglé',
+    `first_post_id` int(11) NOT NULL,
+    `last_post_date` datetime NOT NULL,
+    `last_post_id` int(11) NOT NULL,
+    `last_post_user_id` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data `forum_threads`
+--
+
+INSERT INTO `forum_threads` (`id`, `category_id`, `user_id`, `title`, `reply_count`, `view_count`, `thread_open`, `sticky`, `first_post_id`, `last_post_date`, `last_post_id`, `last_post_user_id`, `created`, `modified`) VALUES
+(1, 9, 1, 'Problem in PHP', 0, 1, 1, 0, 1, '2015-03-30 10:00:00', 1, 1, '2015-03-30 10:00:00', '2015-03-30 10:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `forum_posts`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_posts` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `thread_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `message` mediumtext NOT NULL,
+    `like_count` int(11) NOT NULL,
+    `last_edit_date` datetime NOT NULL,
+    `last_edit_user_id` int(11) NOT NULL,
+    `edit_count` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data `forum_posts`
+--
+
+INSERT INTO `forum_posts` (`id`, `thread_id`, `user_id`, `message`, `like_count`, `last_edit_date`, `last_edit_user_id`, `edit_count`, `created`, `modified`) VALUES
+(1, 1, 1, '<p>Hi, this is the first message in the forum.</p>\r\n', 1, '2015-03-30 10:30:00', 1, 1, '2015-03-30 10:00:00', '2015-03-30 10:30:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `forum_posts_likes`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_posts_likes` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `post_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `receiver_id` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data `forum_posts_likes`
+--
+
+INSERT INTO `forum_posts_likes` (`id`, `post_id`, `user_id`, `receiver_id`, `created`, `modified`) VALUES
+(1, 1, 2, 1, '2015-03-30 10:30:00', '2015-03-30 10:30:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `forum_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_categories` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `title` varchar(255) NOT NULL,
+    `description` text NOT NULL,
+    `category_open` tinyint(2) NOT NULL DEFAULT '1',
+    `thread_count` int(11) NOT NULL,
+    `last_post_id` int(11) NOT NULL,
+    `parent_id` int(11) DEFAULT NULL,
+    `lft` int(11) DEFAULT NULL,
+    `rght` int(11) DEFAULT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Table data `forum_categories`
+--
+
+INSERT INTO `forum_categories` (`id`, `title`, `description`, `category_open`, `thread_count`, `last_post_id`, `parent_id`, `lft`, `rght`, `created`, `modified`) VALUES
+(1, 'Forums Généraux', 'Description Forums Généraux', 0, 0, 0, NULL, 1, 14, '2015-01-28 08:00:00', '2015-01-28 08:00:00'),
+(2, 'Xeta', 'Description Xeta', 0, 0, 0, 1, 2, 13, '2015-01-28 08:01:00', '2015-01-28 08:01:00'),
+(3, 'Annonces du Site', 'Description Annonces du Site', 1, 0, 0, 2, 3, 4, '2015-01-28 10:00:00', '2015-03-30 09:06:30'),
+(4, 'Suggestions, bugs et aide du forum', 'Description Suggestions, bugs et aide du forum', 0, 0, 0, 2, 5, 12, '2015-01-28 11:00:00', '2015-01-28 11:00:00'),
+(5, 'Suggestions', 'Description Suggestions', 1, 0, 0, 4, 6, 7, '2015-01-28 11:00:00', '2015-04-17 07:04:08'),
+(6, 'Bugs', 'Description Bugs', 1, 0, 0, 4, 8, 9, '2015-01-28 11:00:00', '2015-01-28 11:00:00'),
+(7, 'Aide', 'Description Aide', 1, 0, 0, 4, 10, 11, '2015-01-29 08:00:00', '2015-03-16 17:25:56'),
+(8, 'Développement Web', 'Description Développement', 0, 0, 0, NULL, 15, 22, '2015-01-29 09:00:00', '2015-04-20 11:40:37'),
+(9, 'PHP', 'Description PHP', 1, 1, 1, 8, 16, 17, '2015-01-29 10:00:00', '2015-04-20 10:03:32'),
+(10, 'Ruby', 'Description Ruby', 1, 0, 0, 8, 18, 19, '2015-04-20 11:40:18', '2015-04-20 11:40:18'),
+(11, 'Python', 'Description Python', 1, 0, 0, 8, 20, 21, '2015-04-20 11:41:00', '2015-04-20 11:41:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `chat_online`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_online` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `username` varchar(50) NOT NULL,
+    `slug` varchar(50) NOT NULL,
+    `group_id` int(11) NOT NULL,
+    `css` varchar(255) NOT NULL,
+    `is_banned` tinyint(1) NOT NULL DEFAULT '0',
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `chat_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `username` varchar(50) NOT NULL,
+    `slug` varchar(50) NOT NULL,
+    `css` varchar(255) NOT NULL,
+    `group_id` tinyint(2) NOT NULL,
+    `text` text NOT NULL,
+    `status` tinyint(3) NOT NULL DEFAULT '1' COMMENT '0=deleted, 1=normal',
+    `command` varchar(150) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Table data `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`id`, `user_id`, `username`, `slug`, `css`, `group_id`, `text`, `status`, `command`, `created`, `modified`) VALUES
+(1, 1, 'Admin', 'admin', 'color:#FF4A43;font-weight:bold;', 5, 'This is a test.', 1, '', '2015-03-13 12:15:12', '2015-03-13 12:15:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `chat_bans`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_bans` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `banisher_id` int(11) NOT NULL,
+    `end_date` datetime NOT NULL,
+    `forever` tinyint(1) NOT NULL DEFAULT '0',
+    `reason` tinytext NOT NULL,
+    `created` datetime NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `username` varchar(20) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `email` varchar(50) NOT NULL,
+    `first_name` varchar(100) NOT NULL,
+    `last_name` varchar(100) NOT NULL,
+    `avatar` varchar(255) NOT NULL DEFAULT '../img/avatar.png',
+    `biography` text NOT NULL,
+    `signature` text NOT NULL,
+    `facebook` varchar(200) NOT NULL,
+    `twitter` varchar(200) NOT NULL,
+    `group_id` int(11) NOT NULL DEFAULT '2',
+    `slug` varchar(20) NOT NULL,
+    `language` varchar(7) NOT NULL DEFAULT 'fr_FR',
+    `blog_articles_comment_count` int(11) DEFAULT '0',
+    `blog_article_count` int(11) DEFAULT '0',
+    `forum_thread_count` int(11) NOT NULL DEFAULT '0',
+    `forum_post_count` int(11) NOT NULL DEFAULT '0',
+    `forum_like_received` int(11) NOT NULL DEFAULT '0',
+    `end_subscription` datetime NOT NULL,
+    `register_ip` varchar(15) DEFAULT NULL,
+    `last_login_ip` varchar(15) DEFAULT NULL,
+    `last_login` datetime NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `username` (`username`),
+    UNIQUE KEY `mail` (`email`),
+    KEY `slug` (`slug`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Table data 'users'
+-- Table data `users`
 --
 
-INSERT INTO users (id, username, password, email, first_name, last_name, avatar, biography, signature, facebook, twitter, group_id, slug, blog_articles_comment_count, blog_article_count, end_subscription, register_ip, last_login_ip, last_login, created, modified) VALUES
-(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 5, 'admin', 1, 1, '0000-00-00 00:00:00',
-'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
-(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 2, 'test', 1, 0, '0000-00-00 00:00:00',
-'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `avatar`, `biography`, `signature`, `facebook`, `twitter`, `group_id`, `slug`, `language`, `blog_articles_comment_count`, `blog_article_count`, `forum_thread_count`, `forum_post_count`, `forum_like_received`, `end_subscription`, `register_ip`, `last_login_ip`, `last_login`, `created`, `modified`) VALUES
+(1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 5, 'admin', 'fr_FR', 1, 1, 1, 1, 1, '0000-00-00 00:00:00',
+'::1', '::1', '2014-09-22 10:04:56', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
+(2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 2, 'test', 'fr_FR', 1, 0, 0, 0, 0, '0000-00-00 00:00:00',
+'::1', '::1', '2014-09-22 10:18:08', '2014-09-22 10:18:08', '2014-09-22 10:18:08');

@@ -10,87 +10,92 @@ use Cake\Network\Response;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class PaypalComponentTest extends TestCase {
+class BadgesTest extends TestCase
+{
 
-/**
- * Fixtures
- *
- * @var array
- */
-	public $fixtures = [
-		'app.users',
-		'app.blog_articles_comments',
-		'app.badges',
-		'app.badges_users'
-	];
+    /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.users',
+        'app.blog_articles_comments',
+        'app.badges',
+        'app.badges_users'
+    ];
 
-/**
- * setUp method
- *
- * @return void
- */
-	public function setUp() {
-		parent::setUp();
+    /**
+     * setUp method
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
 
-		$this->controller = new Controller(new Request(), new Response());
-	}
+        $this->controller = new Controller(new Request(), new Response());
+    }
 
-/**
- * test premiumBadge
- *
- * @return void
- */
-	public function testPremiumBadge() {
-		$this->Users = TableRegistry::get('Users');
-		$user = $this->Users->get(1);
+    /**
+     * test premiumBadge
+     *
+     * @return void
+     */
+    public function testPremiumBadge()
+    {
+        $this->Users = TableRegistry::get('Users');
+        $user = $this->Users->get(1);
 
-		$badge = new Badges($this->controller);
-		$event = new Event('Model.Users.premium', $this->controller, array('user' => $user));
-		$this->assertTrue($badge->premiumBadge($event));
+        $badge = new Badges($this->controller);
+        $event = new Event('Model.Users.premium', $this->controller, ['user' => $user]);
+        $this->assertTrue($badge->premiumBadge($event));
 
-		$event = new Event('Model.Users.premium', $this->controller, array('user' => 'fail'));
-		$this->assertFalse($badge->premiumBadge($event));
-	}
+        $event = new Event('Model.Users.premium', $this->controller, ['user' => 'fail']);
+        $this->assertFalse($badge->premiumBadge($event));
+    }
 
-/**
- * test registerBadge
- *
- * @return void
- */
-	public function testRegisterBadge() {
-		$this->Users = TableRegistry::get('Users');
-		$user = $this->Users->get(1);
+    /**
+     * test registerBadge
+     *
+     * @return void
+     */
+    public function testRegisterBadge()
+    {
+        $this->Users = TableRegistry::get('Users');
+        $user = $this->Users->get(1);
 
-		$data = [
-			'created' => new Time('2013-11-10 14:43:54')
-		];
+        $data = [
+            'created' => new Time('2013-11-10 14:43:54')
+        ];
 
-		$this->Users->patchEntity($user, $data);
-		$this->Users->save($user);
-		$user = $this->Users->get(1);
+        $this->Users->patchEntity($user, $data);
+        $this->Users->save($user);
+        $user = $this->Users->get(1);
 
-		$badge = new Badges($this->controller);
-		$event = new Event('Model.Users.register', $this->controller, array('user' => $user));
-		$this->assertTrue($badge->registerBadge($event));
+        $badge = new Badges($this->controller);
+        $event = new Event('Model.Users.register', $this->controller, ['user' => $user]);
+        $this->assertTrue($badge->registerBadge($event));
 
-		$event = new Event('Model.Users.register', $this->controller, array('user' => 'fail'));
-		$this->assertFalse($badge->registerBadge($event));
-	}
+        $event = new Event('Model.Users.register', $this->controller, ['user' => 'fail']);
+        $this->assertFalse($badge->registerBadge($event));
+    }
 
-/**
- * test commentsBadge
- *
- * @return void
- */
-	public function testCommentsBadge() {
-		$this->Comments = TableRegistry::get('BlogArticlesComments');
-		$comment = $this->Comments->get(1);
+    /**
+     * test commentsBadge
+     *
+     * @return void
+     */
+    public function testCommentsBadge()
+    {
+        $this->Comments = TableRegistry::get('BlogArticlesComments');
+        $comment = $this->Comments->get(1);
 
-		$badge = new Badges($this->controller);
-		$event = new Event('Model.BlogArticlesComments.add', $this->controller, array('comment' => $comment));
-		$this->assertTrue($badge->commentsBadge($event));
+        $badge = new Badges($this->controller);
+        $event = new Event('Model.BlogArticlesComments.add', $this->controller, ['comment' => $comment]);
+        $this->assertTrue($badge->commentsBadge($event));
 
-		$event = new Event('Model.BlogArticlesComments.add', $this->controller, array('comment' => 'fail'));
-		$this->assertFalse($badge->commentsBadge($event));
-	}
+        $event = new Event('Model.BlogArticlesComments.add', $this->controller, ['comment' => 'fail']);
+        $this->assertFalse($badge->commentsBadge($event));
+    }
 }

@@ -5,66 +5,68 @@ use App\Test\Lib\Utility;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class BlogArticlesLikesTableTest extends TestCase {
+class BlogArticlesLikesTableTest extends TestCase
+{
 
-/**
- * Fixtures
- *
- * @var array
- */
-	public $fixtures = [
-		'app.blog_articles',
-		'app.blog_articles_likes',
-		'app.users'
-	];
+    /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.blog_articles',
+        'app.blog_articles_likes',
+        'app.users'
+    ];
 
-/**
- * setUp
- *
- * @return void
- */
-	public function setUp() {
-		parent::setUp();
-		$this->BlogArticlesLikes = TableRegistry::get('BlogArticlesLikes');
-		$this->Utility = new Utility;
-	}
+    /**
+     * setUp
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->BlogArticlesLikes = TableRegistry::get('BlogArticlesLikes');
+        $this->Utility = new Utility;
+    }
 
-/**
- * Test validationDefault
- *
- * @return void
- */
-	public function testValidationDefault() {
-		$data = [
-			'article_id' => 'abc',
-			'user_id' => 'def',
-		];
+    /**
+     * Test validationDefault
+     *
+     * @return void
+     */
+    public function testValidationDefault()
+    {
+        $data = [
+            'article_id' => 'abc',
+            'user_id' => 'def',
+        ];
 
-		$expected = [
-			'article_id' => [
-				'numeric'
-			],
-			'user_id' => [
-				'numeric'
-			]
-		];
+        $expected = [
+            'article_id' => [
+                'numeric'
+            ],
+            'user_id' => [
+                'numeric'
+            ]
+        ];
 
-		$like = $this->BlogArticlesLikes->newEntity($data);
-		$result = $this->BlogArticlesLikes->save($like);
+        $like = $this->BlogArticlesLikes->newEntity($data);
+        $result = $this->BlogArticlesLikes->save($like);
 
-		$this->assertFalse($result);
-		$this->assertEquals($expected, $this->Utility->getL2Keys($like->errors()), 'Should return errors.');
+        $this->assertFalse($result);
+        $this->assertEquals($expected, $this->Utility->getL2Keys($like->errors()), 'Should return errors.');
 
-		$data = [
-			'article_id' => 1,
-			'user_id' => 1,
-		];
+        $data = [
+            'article_id' => 1,
+            'user_id' => 1,
+        ];
 
-		$like = $this->BlogArticlesLikes->newEntity($data);
-		$result = $this->BlogArticlesLikes->save($like);
+        $like = $this->BlogArticlesLikes->newEntity($data);
+        $result = $this->BlogArticlesLikes->save($like);
 
-		$this->assertInstanceOf('App\Model\Entity\BlogArticlesLike', $result);
-		$this->assertEmpty($like->errors());
-	}
-
+        $this->assertInstanceOf('App\Model\Entity\BlogArticlesLike', $result);
+        $this->assertEmpty($like->errors());
+    }
 }

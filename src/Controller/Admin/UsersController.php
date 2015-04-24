@@ -3,204 +3,203 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
-class UsersController extends AppController {
+class UsersController extends AppController
+{
 
-/**
- * Search users form.
- *
- * @return void
- */
-	public function index() {
-	}
+    /**
+     * Search users form.
+     *
+     * @return void
+     */
+    public function index()
+    {
+    }
 
-/**
- * Search users.
- *
- * @return void
- */
-	public function search() {
-		//Keyword to search. (For pagination)
-		if (!empty($this->request->data['search'])) {
-			$keyword = $this->request->data['search'];
-			$this->request->session()->write('Search.Admin.Users.Keyword', $keyword);
-		} else {
+    /**
+     * Search users.
+     *
+     * @return void
+     */
+    public function search()
+    {
+        //Keyword to search. (For pagination)
+        if (!empty($this->request->data['search'])) {
+            $keyword = $this->request->data['search'];
+            $this->request->session()->write('Search.Admin.Users.Keyword', $keyword);
+        } else {
+            if ($this->request->session()->read('Search.Admin.Users.Keyword')) {
+                $keyword = $this->request->session()->read('Search.Admin.Users.Keyword');
+            } else {
+                $keyword = '';
+            }
+        }
 
-			if ($this->request->session()->read('Search.Admin.Users.Keyword')) {
-				$keyword = $this->request->session()->read('Search.Admin.Users.Keyword');
-			} else {
+        //Search type. (For pagination)
+        if (!empty($this->request->data['type'])) {
+            $type = $this->request->data['type'];
+            $this->request->session()->write('Search.Admin.Users.Type', $type);
+        } else {
+            if ($this->request->session()->read('Search.Admin.Users.Type')) {
+                $type = $this->request->session()->read('Search.Admin.Users.Type');
+            } else {
+                $type = '';
+            }
+        }
 
-				$keyword = '';
-			}
-		}
+        switch($type) {
+            case "username":
+                $this->paginate = [
+                    'limit' => 15,
+                    'conditions' => [
+                        'Users.username LIKE' => "%$keyword%"
+                    ],
+                    'order' => [
+                        'Users.username' => 'asc'
+                    ]
+                ];
+                break;
 
-		//Search type. (For pagination)
-		if (!empty($this->request->data['type'])) {
-			$type = $this->request->data['type'];
-			$this->request->session()->write('Search.Admin.Users.Type', $type);
-		} else {
+            case "ip":
+                $this->paginate = [
+                    'limit' => 15,
+                    'conditions' => [
+                        'Users.last_login_ip LIKE' => "%$keyword%"
+                    ],
+                    'order' => [
+                        'Users.last_login_ip' => 'asc'
+                    ]
+                ];
+                break;
 
-			if ($this->request->session()->read('Search.Admin.Users.Type')) {
-				$type = $this->request->session()->read('Search.Admin.Users.Type');
-			} else {
+            case "mail":
+                $this->paginate = [
+                    'limit' => 15,
+                    'conditions' => [
+                        'Users.email LIKE' => "%$keyword%"
+                    ],
+                    'order' => [
+                        'Users.email' => 'asc'
+                    ]
+                ];
+                break;
 
-				$type = '';
-			}
-		}
+            default:
+                $this->paginate = [
+                    'limit' => 15,
+                    'conditions' => [
+                        'Users.username LIKE' => "%$keyword%"
+                    ],
+                    'order' => [
+                        'Users.username' => 'asc'
+                    ]
+                ];
+        }
 
-		switch($type) {
-			case "username":
-				$this->paginate = [
-					'limit' => 15,
-					'conditions' => [
-						'Users.username LIKE' => "%$keyword%"
-					],
-					'order' => [
-						'Users.username' => 'asc'
-					]
-				];
-			break;
+        $users = $this->paginate($this->Users->find());
+        $this->set(compact('users', 'keyword', 'type'));
+    }
 
-			case "ip":
-				$this->paginate = [
-					'limit' => 15,
-					'conditions' => [
-						'Users.last_login_ip LIKE' => "%$keyword%"
-					],
-					'order' => [
-						'Users.last_login_ip' => 'asc'
-					]
-				];
-			break;
+    /**
+     * Edit an user.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function edit()
+    {
+        $user = $this->Users
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'Users.slug'
+            ])
+            ->first();
 
-			case "mail":
-				$this->paginate = [
-					'limit' => 15,
-					'conditions' => [
-						'Users.email LIKE' => "%$keyword%"
-					],
-					'order' => [
-						'Users.email' => 'asc'
-					]
-				];
-			break;
+        //Check if the user is found.
+        if (empty($user)) {
+            $this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
 
-			default:
-				$this->paginate = [
-					'limit' => 15,
-					'conditions' => [
-						'Users.username LIKE' => "%$keyword%"
-					],
-					'order' => [
-						'Users.username' => 'asc'
-					]
-				];
-		}
+            return $this->redirect(['action' => 'index']);
+        }
 
-		$users = $this->paginate($this->Users->find());
-		$this->set(compact('users', 'keyword', 'type'));
-	}
+        if ($this->request->is('put')) {
+            $this->Users->patchEntity($user, $this->request->data(), ['validate' => 'update']);
 
-/**
- * Edit an user.
- *
- * @return \Cake\Network\Response|void
- */
-	public function edit() {
-		$user = $this->Users
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'Users.slug'
-			])
-			->first();
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__d('admin', 'This user has been updated successfully !'));
 
-		//Check if the user is found.
-		if (empty($user)) {
-			$this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
+                return $this->redirect(['action' => 'index']);
+            }
+        }
 
-			return $this->redirect(['action' => 'index']);
-		}
+        $this->loadModel('Groups');
 
-		if ($this->request->is('put')) {
-			$this->Users->patchEntity($user, $this->request->data(), ['validate' => 'update']);
+        $groups = $this->Groups->find('list');
 
-			if ($this->Users->save($user)) {
+        $this->set(compact('user', 'groups'));
+    }
 
-				$this->Flash->success(__d('admin', 'This user has been updated successfully !'));
+    /**
+     * Delete an user and all his articles, comments and likes.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function delete()
+    {
+        $user = $this->Users
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'Users.slug'
+            ])
+            ->first();
 
-				return $this->redirect(['action' => 'index']);
-			}
-		}
+        //Check if the user is found.
+        if (empty($user)) {
+            $this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
 
-		$this->loadModel('Groups');
+            return $this->redirect(['action' => 'index']);
+        }
 
-		$groups = $this->Groups->find('list');
+        if ($this->Users->delete($user)) {
+            $this->Flash->success(__d('admin', 'This user has been deleted successfully !'));
 
-		$this->set(compact('user', 'groups'));
-	}
+            return $this->redirect(['action' => 'index']);
+        }
 
-/**
- * Delete an user and all his articles, comments and likes.
- *
- * @return \Cake\Network\Response
- */
-	public function delete() {
-		$user = $this->Users
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'Users.slug'
-			])
-			->first();
+        $this->Flash->error(__d('admin', 'Unable to delete this user.'));
 
-		//Check if the user is found.
-		if (empty($user)) {
-			$this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
+        return $this->redirect(['action' => 'index']);
+    }
 
-			return $this->redirect(['action' => 'index']);
-		}
+    /**
+     * Delete an avatar.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function deleteAvatar()
+    {
+        $user = $this->Users
+            ->find('slug', [
+                'slug' => $this->request->slug,
+                'slugField' => 'Users.slug'
+            ])
+            ->first();
 
-		if ($this->Users->delete($user)) {
+        //Check if the user is found.
+        if (empty($user)) {
+            $this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
 
-			$this->Flash->success(__d('admin', 'This user has been deleted successfully !'));
+            return $this->redirect(['action' => 'index']);
+        }
 
-			return $this->redirect(['action' => 'index']);
-		}
+        $user->avatar = '../img/avatar.png';
 
-		$this->Flash->error(__d('admin', 'Unable to delete this user.'));
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__d('admin', 'His avatar has been deleted successfully !'));
 
-		return $this->redirect(['action' => 'index']);
-	}
+            return $this->redirect($this->referer());
+        }
 
-/**
- * Delete an avatar.
- *
- * @return \Cake\Network\Response
- */
-	public function deleteAvatar() {
-		$user = $this->Users
-			->find('slug', [
-				'slug' => $this->request->slug,
-				'slugField' => 'Users.slug'
-			])
-			->first();
+        $this->Flash->error(__d('admin', 'Unable to delete his avatar.'));
 
-		//Check if the user is found.
-		if (empty($user)) {
-			$this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
-
-			return $this->redirect(['action' => 'index']);
-		}
-
-		$user->avatar = '../img/avatar.png';
-
-		if ($this->Users->save($user)) {
-
-			$this->Flash->success(__d('admin', 'His avatar has been deleted successfully !'));
-
-			return $this->redirect($this->referer());
-		}
-
-		$this->Flash->error(__d('admin', 'Unable to delete his avatar.'));
-
-		return $this->redirect($this->referer());
-	}
+        return $this->redirect($this->referer());
+    }
 }

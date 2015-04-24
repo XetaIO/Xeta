@@ -6,11 +6,16 @@
 /node_modules/
 /webroot/coverage/
 /webroot/css/less/
+/webroot/css/forumless/
 /webroot/css/adminless/
 /webroot/upload/avatar/1/
 /webroot/upload/blog/attachment/*
 config/app.php
 config/analytics-certificate.p12
 .idea
+.brackets.json
 flo.js
 composer.lock
+cli-debug.log
+cli-error.log
+paypal.log
