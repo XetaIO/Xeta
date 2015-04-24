@@ -228,8 +228,8 @@ CREATE TABLE IF NOT EXISTS `blog_categories_i18n` (
 --
 
 INSERT INTO `blog_articles_i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
-(1, 'en_US', 'BlogCategories', 1, 'title', 'Xeta English'),
-(2, 'en_US', 'BlogCategories', 1, 'description', 'Lorem ipsum dolor sit amet english.');
+(NULL, 'en_US', 'BlogCategories', 1, 'title', 'Xeta English'),
+(NULL, 'en_US', 'BlogCategories', 1, 'description', 'Lorem ipsum dolor sit amet english.');
 
 -- --------------------------------------------------------
 
@@ -409,14 +409,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
     PRIMARY KEY (`id`),
     KEY `idx_acos_lft_rght` (`lft`,`rght`),
     KEY `idx_acos_alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=129 ;
 
 --
 -- Table data `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, '', NULL, 'app', 1, 180),
+(1, NULL, '', NULL, 'app', 1, 268),
 (2, 1, '', NULL, 'Attachments', 4, 7),
 (3, 2, '', NULL, 'download', 5, 6),
 (4, 1, '', NULL, 'Blog', 8, 33),
@@ -459,7 +459,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (41, 38, '', NULL, 'add', 81, 82),
 (42, 38, '', NULL, 'edit', 83, 84),
 (43, 38, '', NULL, 'delete', 85, 86),
-(44, 1, '', NULL, 'admin', 88, 179),
+(44, 1, '', NULL, 'admin', 88, 195),
 (45, 44, '', NULL, 'premium', 89, 112),
 (46, 45, '', NULL, 'Offers', 90, 99),
 (47, 46, '', NULL, 'index', 91, 92),
@@ -499,7 +499,51 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (81, 80, '', NULL, 'index', 166, 167),
 (82, 80, '', NULL, 'add', 168, 169),
 (83, 80, '', NULL, 'edit', 170, 171),
-(84, 80, '', NULL, 'delete', 172, 173);
+(84, 80, '', NULL, 'delete', 172, 173),
+(85, 1, '', NULL, 'forum', 196, 241),
+(86, 85, '', NULL, 'Forum', 197, 206),
+(87, 86, '', NULL, 'index', 198, 199),
+(88, 86, '', NULL, 'categories', 200, 201),
+(89, 86, '', NULL, 'home', 202, 203),
+(90, 86, '', NULL, 'threads', 204, 205),
+(91, 85, '', NULL, 'Threads', 207, 222),
+(92, 91, '', NULL, 'close', 208, 209),
+(93, 91, '', NULL, 'new', 210, 211),
+(94, 85, '', NULL, 'Posts', 223, 240),
+(95, 94, '', NULL, 'new', 224, 225),
+(96, 91, '', NULL, 'reply', 212, 213),
+(97, 91, '', NULL, 'lock', 214, 215),
+(98, 91, '', NULL, 'unlock', 216, 217),
+(99, 94, '', NULL, 'edit', 226, 227),
+(100, 91, '', NULL, 'edit', 218, 219),
+(101, 94, '', NULL, 'delete', 228, 229),
+(102, 94, '', NULL, 'go', 230, 231),
+(103, 94, '', NULL, 'getEditPost', 232, 233),
+(104, 91, '', NULL, 'create', 220, 221),
+(105, 94, '', NULL, 'quote', 234, 235),
+(106, 94, '', NULL, 'like', 236, 237),
+(107, 94, '', NULL, 'unlike', 238, 239),
+(108, 1, '', NULL, 'chat', 242, 267),
+(109, 108, '', NULL, 'Chat', 243, 254),
+(110, 109, '', NULL, 'index', 244, 245),
+(111, 109, '', NULL, 'getNotice', 246, 247),
+(112, 109, '', NULL, 'editNotice', 248, 249),
+(113, 109, '', NULL, 'shout', 250, 251),
+(114, 108, '', NULL, 'Permissions', 255, 266),
+(115, 114, '', NULL, 'canPrune', 256, 257),
+(116, 114, '', NULL, 'canBan', 258, 259),
+(117, 114, '', NULL, 'canUnban', 260, 261),
+(118, 114, '', NULL, 'canDelete', 262, 263),
+(119, 114, '', NULL, 'canNotice', 264, 265),
+(120, 109, '', NULL, 'delete', 252, 253),
+(121, 44, '', NULL, 'forum', 179, 194),
+(122, 121, '', NULL, 'Categories', 180, 193),
+(123, 122, '', NULL, 'index', 181, 182),
+(124, 122, '', NULL, 'add', 183, 184),
+(125, 122, '', NULL, 'moveup', 185, 186),
+(126, 122, '', NULL, 'movedown', 187, 188),
+(127, 122, '', NULL, 'delete', 189, 190),
+(128, 122, '', NULL, 'edit', 191, 192);
 
 -- --------------------------------------------------------
 
@@ -547,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
     `_delete` char(2) NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     KEY `idx_aco_id` (`aco_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Table data `aros_acos`
@@ -574,16 +618,26 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (28, 3, 57, '1', '1', '1', '1'),
 (29, 3, 62, '1', '1', '1', '1'),
 (30, 3, 78, '1', '1', '1', '1'),
-(31, 4, 1, '-1', '-1', '-1', '-1'),
-(32, 4, 2, '1', '1', '1', '1'),
-(33, 4, 4, '1', '1', '1', '1'),
-(34, 4, 17, '1', '1', '1', '1'),
-(35, 4, 19, '1', '1', '1', '1'),
-(36, 4, 23, '1', '1', '1', '1'),
-(37, 4, 29, '1', '1', '1', '1'),
-(38, 4, 44, '1', '1', '1', '1'),
+(31, 4, 1, '1', '1', '1', '1'),
 (39, 4, 45, '-1', '-1', '-1', '-1'),
-(40, 4, 80, '-1', '-1', '-1', '-1');
+(40, 4, 80, '-1', '-1', '-1', '-1'),
+(41, 4, 121, '-1', '-1', '-1', '-1'),
+(42, 3, 85, '1', '1', '1', '1'),
+(43, 3, 92, '-1', '-1', '-1', '-1'),
+(44, 3, 97, '1', '1', '1', '1'),
+(45, 3, 98, '-1', '-1', '-1', '-1'),
+(46, 3, 100, '-1', '-1', '-1', '-1'),
+(47, 3, 101, '-1', '-1', '-1', '-1'),
+(48, 3, 108, '1', '1', '1', '1'),
+(49, 2, 85, '1', '1', '1', '1'),
+(50, 2, 92, '-1', '-1', '-1', '-1'),
+(51, 2, 97, '-1', '-1', '-1', '-1'),
+(52, 2, 98, '-1', '-1', '-1', '-1'),
+(53, 2, 100, '-1', '-1', '-1', '-1'),
+(54, 2, 101, '-1', '-1', '-1', '-1'),
+(55, 2, 108, '1', '1', '1', '1'),
+(56, 2, 120, '1', '1', '1', '1'),
+(57, 2, 114, '-1', '-1', '-1', '-1');
 
 -- --------------------------------------------------------
 
@@ -829,6 +883,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `avatar`, `biography`, `signature`, `facebook`, `twitter`, `group_id`, `slug`, `language`, `blog_articles_comment_count`, `blog_article_count`, `forum_thread_count`, `forum_post_count`, `forum_like_received`, `end_subscription`, `register_ip`, `last_login_ip`, `last_login`, `created`, `modified`) VALUES
 (1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 5, 'admin', 'fr_FR', 1, 1, 1, 1, 1, '0000-00-00 00:00:00',
-'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
+'::1', '::1', '2014-09-22 10:04:56', '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
 (2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 2, 'test', 'fr_FR', 1, 0, 0, 0, 0, '0000-00-00 00:00:00',
-'::1', '::1', '0000-00-00 00:00:00', '2014-09-22 10:18:08', '2014-09-22 10:18:08');
+'::1', '::1', '2014-09-22 10:18:08', '2014-09-22 10:18:08', '2014-09-22 10:18:08');

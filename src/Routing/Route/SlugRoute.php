@@ -33,6 +33,12 @@ class SlugRoute extends Route
         if (!empty($params['slug'])) {
             $params['slug'] = strtolower(Inflector::slug($params['slug']));
         }
+        if (!empty($params['controller'])) {
+            $params['controller'] = Inflector::camelize($params['controller']);
+        }
+        if (!empty($params['plugin'])) {
+            $params['plugin'] = Inflector::camelize($params['plugin']);
+        }
         return $params;
     }
 

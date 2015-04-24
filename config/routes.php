@@ -115,6 +115,7 @@ Router::prefix('chat', function ($routes) {
 
 //Forum routes.
 Router::prefix('forum', function ($routes) {
+
     $routes->connect(
         '/',
         [
@@ -183,6 +184,7 @@ Router::prefix('forum', function ($routes) {
             'id' => '[0-9]+'
         ]
     );
+
     $routes->connect(
         '/threads/edit/:slug.:id',
         [

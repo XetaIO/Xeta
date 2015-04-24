@@ -50,13 +50,13 @@ class SlugRouteTest extends TestCase
         $route = new SlugRoute('/:controller/:action/:slug.:id', [], ['id' => Router::ID]);
         $route->compile();
         $result = $route->parse('/threads/edit/my-awesome-slug.1');
-        $this->assertEquals('threads', $result['controller']);
+        $this->assertEquals('Threads', $result['controller']);
         $this->assertEquals('edit', $result['action']);
         $this->assertEquals('my-awesome-slug', $result['slug']);
         $this->assertEquals('1', $result['id']);
 
         $result = $route->parse('/threads/edit/my-awesome-sl.ug.1');
-        $this->assertEquals('threads', $result['controller']);
+        $this->assertEquals('Threads', $result['controller']);
         $this->assertEquals('edit', $result['action']);
         $this->assertEquals('my-awesome-sl-ug', $result['slug']);
         $this->assertEquals('1', $result['id']);
