@@ -414,8 +414,8 @@ class PaypalComponentTest extends TestCase
 
         $this->Paypal = $this->getMock(
             "App\Controller\Component\PaypalComponent",
-            array("_sendResponse"),
-            array($registry)
+            ["_sendResponse"],
+            [$registry]
         );
 
         $this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('VERIFIED'));
@@ -424,8 +424,8 @@ class PaypalComponentTest extends TestCase
 
         $this->Paypal = $this->getMock(
             "App\Controller\Component\PaypalComponent",
-            array("_sendResponse"),
-            array($registry)
+            ["_sendResponse"],
+            [$registry]
         );
 
         $this->Paypal->expects($this->any())->method('_sendResponse')->will($this->returnValue('INVALID'));
@@ -434,8 +434,8 @@ class PaypalComponentTest extends TestCase
 
         $this->Paypal = $this->getMock(
             "App\Controller\Component\PaypalComponent",
-            array("_sendResponse"),
-            array($registry)
+            ["_sendResponse"],
+            [$registry]
         );
 
         $this->Paypal->_registry->getController()->request->data['paymentStatus'] = 'invalid';

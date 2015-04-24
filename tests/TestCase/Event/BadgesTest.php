@@ -48,10 +48,10 @@ class BadgesTest extends TestCase
         $user = $this->Users->get(1);
 
         $badge = new Badges($this->controller);
-        $event = new Event('Model.Users.premium', $this->controller, array('user' => $user));
+        $event = new Event('Model.Users.premium', $this->controller, ['user' => $user]);
         $this->assertTrue($badge->premiumBadge($event));
 
-        $event = new Event('Model.Users.premium', $this->controller, array('user' => 'fail'));
+        $event = new Event('Model.Users.premium', $this->controller, ['user' => 'fail']);
         $this->assertFalse($badge->premiumBadge($event));
     }
 
@@ -74,10 +74,10 @@ class BadgesTest extends TestCase
         $user = $this->Users->get(1);
 
         $badge = new Badges($this->controller);
-        $event = new Event('Model.Users.register', $this->controller, array('user' => $user));
+        $event = new Event('Model.Users.register', $this->controller, ['user' => $user]);
         $this->assertTrue($badge->registerBadge($event));
 
-        $event = new Event('Model.Users.register', $this->controller, array('user' => 'fail'));
+        $event = new Event('Model.Users.register', $this->controller, ['user' => 'fail']);
         $this->assertFalse($badge->registerBadge($event));
     }
 
@@ -92,10 +92,10 @@ class BadgesTest extends TestCase
         $comment = $this->Comments->get(1);
 
         $badge = new Badges($this->controller);
-        $event = new Event('Model.BlogArticlesComments.add', $this->controller, array('comment' => $comment));
+        $event = new Event('Model.BlogArticlesComments.add', $this->controller, ['comment' => $comment]);
         $this->assertTrue($badge->commentsBadge($event));
 
-        $event = new Event('Model.BlogArticlesComments.add', $this->controller, array('comment' => 'fail'));
+        $event = new Event('Model.BlogArticlesComments.add', $this->controller, ['comment' => 'fail']);
         $this->assertFalse($badge->commentsBadge($event));
     }
 }

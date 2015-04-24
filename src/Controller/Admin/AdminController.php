@@ -31,10 +31,10 @@ class AdminController extends AppController
                 $statistics
                     ->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
                     ->setEndDate(new \DateTime())
-                    ->setMetrics(array(
+                    ->setMetrics([
                         'ga:visits', 'ga:visitors', 'ga:pageviews', 'ga:pageviewsPerVisit',
                         'ga:avgtimeOnSite', 'ga:visitBounceRate', 'ga:percentNewVisits'
-                    ));
+                    ]);
 
                 return $service->query($statistics);
             }, 'analytics');
@@ -44,10 +44,10 @@ class AdminController extends AppController
                 $browsers
                     ->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
                     ->setEndDate(new \DateTime())
-                    ->setDimensions(array('ga:browser'))
-                    ->setMetrics(array('ga:pageviews'))
-                    ->setSorts(array('ga:pageviews'))
-                    ->setFilters(array('ga:browser==Chrome,ga:browser==Firefox,ga:browser==Internet Explorer,ga:browser==Safari,ga:browser==Opera'));
+                    ->setDimensions(['ga:browser'])
+                    ->setMetrics(['ga:pageviews'])
+                    ->setSorts(['ga:pageviews'])
+                    ->setFilters(['ga:browser==Chrome,ga:browser==Firefox,ga:browser==Internet Explorer,ga:browser==Safari,ga:browser==Opera']);
 
                 return $service->query($browsers);
             }, 'analytics');
@@ -57,10 +57,10 @@ class AdminController extends AppController
                 $continentsRows
                     ->setStartDate(new \DateTime(Configure::read('Analytics.start_date')))
                     ->setEndDate(new \DateTime())
-                    ->setDimensions(array('ga:continent'))
-                    ->setMetrics(array('ga:visitors'))
-                    ->setSorts(array('ga:visitors'))
-                    ->setFilters(array('ga:continent==Africa,ga:continent==Americas,ga:continent==Asia,ga:continent==Europe,ga:continent==Oceania'));
+                    ->setDimensions(['ga:continent'])
+                    ->setMetrics(['ga:visitors'])
+                    ->setSorts(['ga:visitors'])
+                    ->setFilters(['ga:continent==Africa,ga:continent==Americas,ga:continent==Asia,ga:continent==Europe,ga:continent==Oceania']);
 
                 $continentsRows = $service->query($continentsRows);
 
@@ -87,9 +87,9 @@ class AdminController extends AppController
                 $graphVisitors
                     ->setStartDate(new \DateTime('-7 days'))
                     ->setEndDate(new \DateTime())
-                    ->setDimensions(array('ga:date'))
-                    ->setMetrics(array('ga:visits', 'ga:pageviews'))
-                    ->setSorts(array('ga:date'));
+                    ->setDimensions(['ga:date'])
+                    ->setMetrics(['ga:visits', 'ga:pageviews'])
+                    ->setSorts(['ga:date']);
 
                 return $service->query($graphVisitors);
             }, 'analytics');
@@ -114,7 +114,7 @@ class AdminController extends AppController
             ])
             ->toArray();
 
-        $usersGraph = array();
+        $usersGraph = [];
 
         //Fill the new array with the date of the 8 past days and give them the value 0.
         for ($i = 0; $i < 8; $i++) {

@@ -24,13 +24,13 @@ class Statistics implements EventListenerInterface
      */
     public function implementedEvents()
     {
-        return array(
+        return [
             'Model.ForumThreads.new' => 'newThreadStats',
             'Model.ForumPosts.new' => 'newPostStats',
             'Model.Users.register' => 'newUserStats',
             'Model.Groups.update' => 'updateGroupStats',
             'Model.ForumPostsLikes.update' => 'newPostsLikeStats'
-        );
+        ];
     }
 
     /**

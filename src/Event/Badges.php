@@ -39,12 +39,12 @@ class Badges implements EventListenerInterface
      */
     public function implementedEvents()
     {
-        return array(
+        return [
             'Model.BlogArticlesComments.add' => 'commentsBadge',
             'Model.Users.register' => 'registerBadge',
             'Model.Users.premium' => 'premiumBadge',
             'Model.ForumPosts.reply' => 'postsReplyBadge'
-        );
+        ];
     }
 
     /**
