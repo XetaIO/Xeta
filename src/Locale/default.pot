@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-25 18:58+0000\n"
+"POT-Creation-Date: 2015-04-25 19:36+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1081,14 +1081,18 @@ msgstr ""
 msgid "Last post"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:107
+#: Template/Element/Forum/categories.ctp:105
+msgid "(Contains no threads)"
+msgstr ""
+
+#: Template/Element/Forum/categories.ctp:109
 #: Template/Element/Forum/Category/threads.ctp:43;59
 msgid "By"
 msgstr ""
 
 #: Template/Element/Forum/categories.ctp:98
-msgid "{0} Topic"
-msgid_plural "{0} Topics"
+msgid "{0} Thread"
+msgid_plural "{0} Threads"
 msgstr[0] ""
 msgstr[1] ""
 
