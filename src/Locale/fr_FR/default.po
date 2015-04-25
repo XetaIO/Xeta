@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-01-11 10:12+0000\n"
-"PO-Revision-Date: 2015-01-11 11:15+0100\n"
+"PO-Revision-Date: 2015-04-25 17:18+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.6\n"
 
 #: Controller/BlogController.php:85
 msgid "This category doesn't exist or has been deleted."
@@ -797,7 +797,7 @@ msgstr ""
 
 #: Template/Element/cookies.ctp:5
 msgid "{0} I understood."
-msgstr "{0} J'ais compris."
+msgstr "{0} J'ai compris."
 
 #: Template/Element/footer.ctp:9
 msgid "&copy; {0} {1}."
