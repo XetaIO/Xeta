@@ -11,22 +11,22 @@ Cake3 Blog Resource, is a resource to help people starting with Cake3.
 
 Actually, I have developed this blog to try Cake3 and for my needs (personal blog), and I have decided to release it to help people with Cake3, so there is probably some custom configurations/functions that only fit my needs.
 
-**It is not recommended to do a website with Cake3 until the first stable Cake3 version will be released.**
-
 ## Demo
-http://xeta.io
+https://xeta.io
 
 ### Screenshots of the Administration Panel
 ##### Dashboard
-![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525906/5e355904-4d59-11e4-9ba5-f660c403e39c.png)
-![Dashboard](https://cloud.githubusercontent.com/assets/8210023/4525908/6663383a-4d59-11e4-9522-be42a69124f5.png)
+![Dashboard](https://cloud.githubusercontent.com/assets/8210023/7332853/4fceaaaa-eb56-11e4-8563-9afd7e7701ef.png)
 
-##### Articles Management
-![Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525857/e61fa3e8-4d58-11e4-8fa2-b71d13abab16.png)
-![Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525865/f5c1f56c-4d58-11e4-82c1-98ec08020455.png)
+##### Blog Articles Management
+![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525857/e61fa3e8-4d58-11e4-8fa2-b71d13abab16.png)
+![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525865/f5c1f56c-4d58-11e4-82c1-98ec08020455.png)
 
-##### Categories Management
-![Categories Management](https://cloud.githubusercontent.com/assets/8210023/4525878/18b56aae-4d59-11e4-87fb-30ee78e885ae.png)
+##### Blog Categories Management
+![Blog Categories Management](https://cloud.githubusercontent.com/assets/8210023/4525878/18b56aae-4d59-11e4-87fb-30ee78e885ae.png)
+
+##### Forum Categories Management
+![Forum Categories Management](https://cloud.githubusercontent.com/assets/8210023/7332863/db94563e-eb56-11e4-9210-5032ad3f1820.png)
 
 # Install
 If you need to install to try a function or any other things, just follow the steps bellow.
@@ -41,7 +41,7 @@ Steps to install :
 * Setup a new database on your server
 * Run :
 ```
-composer create-project --prefer-dist -s dev xety/xeta <application_name>
+composer create-project --prefer-dist xety/xeta <application_name>
 ```
 * Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
