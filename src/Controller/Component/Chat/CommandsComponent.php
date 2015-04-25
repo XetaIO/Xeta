@@ -133,7 +133,7 @@ class CommandsComponent extends Component
         } elseif (count($this->_arguments) < $this->_commands[$this->_parts[0]]['params']) {
             $json['error'] = false;
             $json['hasCmd'] = false;
-            $json['message'] = __d('chat', 'Not enought paramters given. Syntax : {0}', $this->_commands[$this->_parts[0]]['syntax']);
+            $json['message'] = __d('chat', 'Not enough parameters given. Syntax : {0}', $this->_commands[$this->_parts[0]]['syntax']);
 
             return $json;
         }

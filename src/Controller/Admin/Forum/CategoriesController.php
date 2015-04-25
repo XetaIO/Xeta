@@ -207,8 +207,7 @@ class CategoriesController extends AppController
             ->count();
 
         if ($threads > 0) {
-            $this->Flash->error(__d('admin', 'This category is not empty, you must delete/transfer all the threads
-            assigned to this category before to delete it.'));
+            $this->Flash->error(__d('admin', 'This category is not empty, you must delete/transfer all the threads assigned to this category before to delete it.'));
 
             return $this->redirect(['action' => 'index']);
         }

@@ -442,7 +442,7 @@
                                         <li>
                                             <?php if ($this->request->session()->read('Auth.User')): ?>
                                                 <?= $this->Html->link(
-                                                    __("{0} Reply", '<i class="fa fa-reply"></i>'),
+                                                    __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     '#',
                                                     [
                                                         'class' => 'ReplyQuote',
@@ -458,7 +458,7 @@
                                                 ) ?>
                                             <?php else: ?>
                                                 <?= $this->Html->link(
-                                                    __("{0} Reply", '<i class="fa fa-reply"></i>'),
+                                                    __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     [
                                                         'controller' => 'users',
                                                         'action' => 'login'
