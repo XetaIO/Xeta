@@ -1,0 +1,208 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-04-25 18:58+0000\n"
+"PO-Revision-Date: 2015-04-25 21:04+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team:  <EMAIL@ADDRESS>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.7.6\n"
+
+#: Controller/Chat/ChatController.php:165
+#: Template/Element/Chat/mini-chat.ctp:28
+msgid "You need to be logged in to send a message in the chat."
+msgstr "Vous devez être connecté pour envoyer un message dans le chat."
+
+#: Controller/Chat/ChatController.php:178
+msgid " without reason."
+msgstr " sans raison."
+
+#: Controller/Chat/ChatController.php:178
+msgid ". Reason : {0}"
+msgstr ". Raison : {0}"
+
+#: Controller/Chat/ChatController.php:179
+#: Controller/Component/Chat/CommandsComponent.php:322
+msgid "forever"
+msgstr "pour toujours"
+
+#: Controller/Chat/ChatController.php:179
+msgid "until {0}"
+msgstr "jusqu'à {0}"
+
+#: Controller/Chat/ChatController.php:181
+msgid "You are banned from the chat {0}{1}"
+msgstr "Vous êtes banni du chat {0}{1}"
+
+#: Controller/Chat/ChatController.php:243
+#: Template/Element/Chat/mini-chat.ctp:32
+msgid "Error to post your message, please try again."
+msgstr "Impossible de poster votre message, s'il vous plaît essayer à nouveau."
+
+#: Controller/Chat/ChatController.php:290;323
+msgid "You don't have the permission to execute this action."
+msgstr "Vous n'avez pas l'autorisation d'exécuter cette action."
+
+#: Controller/Chat/ChatController.php:340
+msgid "This message doesn't exist or has already been deleted."
+msgstr "Ce message n'existe pas ou a déjà été supprimée."
+
+#: Controller/Chat/ChatController.php:351
+msgid "This message has been deleted successfully."
+msgstr "Ce message a été supprimé avec succès."
+
+#: Controller/Chat/ChatController.php:354
+#: Template/Element/Chat/mini-chat.ctp:35
+msgid "Error to delete the message."
+msgstr "Erreur lors de la suppression du message."
+
+#: Controller/Component/Chat/ChatComponent.php:76
+msgid "Welcome on <strong>{0}</strong> ! :heart:"
+msgstr "Bienvenue sur <strong>{0}</strong> ! :heart:"
+
+#: Controller/Component/Chat/ChatComponent.php:112
+msgid "Error to save the notice in the Cache."
+msgstr "Erreur lors de l'enregistrement de la notice dans le Cache."
+
+#: Controller/Component/Chat/ChatComponent.php:143
+#: Template/Element/Chat/mini-chat.ctp:29
+msgid "Please, don't flood the chat."
+msgstr "S'il vous plaît, ne flooder pas le chat."
+
+#: Controller/Component/Chat/ChatComponent.php:154
+#: Template/Element/Chat/mini-chat.ctp:30
+msgid "Your last message is very similar, please change it."
+msgstr "Votre dernier message est très similaire, s'il vous plaît changer le."
+
+#: Controller/Component/Chat/ChatComponent.php:162
+#: Template/Element/Chat/mini-chat.ctp:31
+msgid "You can't send an empty message."
+msgstr "Vous ne pouvez pas envoyer un message vide."
+
+#: Controller/Component/Chat/ChatComponent.php:170
+#: Template/Element/Chat/mini-chat.ctp:33
+msgid "You can't send a message with more than {0} characters."
+msgstr "Vous ne pouvez pas envoyer un message avec plus de {0} caractères."
+
+#: Controller/Component/Chat/CommandsComponent.php:90
+msgid "Clear all message in the chat."
+msgstr "Effacer tous les messages dans le chat."
+
+#: Controller/Component/Chat/CommandsComponent.php:95
+msgid "Ban an user from the chat."
+msgstr "Bannir un utilisateur du chat."
+
+#: Controller/Component/Chat/CommandsComponent.php:100
+msgid "Unban an user from the chat."
+msgstr "Débannir un utilisateur du chat."
+
+#: Controller/Component/Chat/CommandsComponent.php:136
+msgid "Not enough parameters given. Syntax : {0}"
+msgstr "Pas assez de paramètres donnés. Syntaxe : {0}"
+
+#: Controller/Component/Chat/CommandsComponent.php:160
+msgid "You don't have the permission to execute this command."
+msgstr "Vous n'avez pas l'autorisation d'exécuter cette commande."
+
+#: Controller/Component/Chat/CommandsComponent.php:195
+msgid "The chat has been cleaned by {0}."
+msgstr "Le chat a été nettoyé par {0}."
+
+#: Controller/Component/Chat/CommandsComponent.php:212
+msgid "Error while saving the new message after deleting all messages."
+msgstr ""
+"Erreur lors de l'enregistrement du nouveau message après la suppression de "
+"tous les messages."
+
+#: Controller/Component/Chat/CommandsComponent.php:254;406
+msgid "The user \"{0}\" doesn't exist."
+msgstr "L'utilisateur \"{0}\" n'existe pas."
+
+#: Controller/Component/Chat/CommandsComponent.php:270
+msgid "The user \"{0}\" is already banned."
+msgstr "L'utilisateur \"{0}\" est déjà banni."
+
+#: Controller/Component/Chat/CommandsComponent.php:318
+msgid "Error while banning the user \"{0}\"."
+msgstr "Erreur lors du bannissement de l'utilisateur \"{0}\"."
+
+#: Controller/Component/Chat/CommandsComponent.php:328
+msgid "Reason : {0}"
+msgstr "Raison : {0}"
+
+#: Controller/Component/Chat/CommandsComponent.php:330
+msgid "without reason."
+msgstr "sans raison."
+
+#: Controller/Component/Chat/CommandsComponent.php:424
+msgid "The user \"{0}\" is not banned."
+msgstr "L'utilisateur \"{0}\" n'est pas banni."
+
+#: Controller/Component/Chat/CommandsComponent.php:441
+msgid "Error while unbanning the user \"{0}\"."
+msgstr "Erreur lors du dé-bannissement de l'utilisateur \"{0}\"."
+
+#: Controller/Component/Chat/CommandsComponent.php:464
+msgid "I have unbanned {0}."
+msgstr "J'ai dé-banni {0}."
+
+#: Controller/Component/Chat/CommandsComponent.php:324
+msgid "for {0} minute"
+msgid_plural "for {0} minutes"
+msgstr[0] "pour {0} minute"
+msgstr[1] "pour {0} minutes"
+
+#: Template/Cell/Forum/sidebar.ctp:39
+msgid "Members in Chat"
+msgstr "Membres dans le Chat"
+
+#: Template/Element/Chat/mini-chat.ctp:26
+msgid ""
+"There is a problem to get the server response. Please, contact an "
+"administrator."
+msgstr ""
+"Un problème est survenu lors de l'obtention de la réponse du serveur. S'il "
+"vous plaît, contacter un administrateur."
+
+#: Template/Element/Chat/mini-chat.ctp:27
+msgid "You're not authorize to execute this action."
+msgstr "Vous n'êtes pas autorisé à exécuter cette action."
+
+#: Template/Element/Chat/mini-chat.ctp:34
+msgid "Error to edit the notice."
+msgstr "Erreur lors de la modification de la notice."
+
+#: Template/Element/Chat/mini-chat.ctp:36
+msgid "A few seconds ago"
+msgstr "Il y a un instant"
+
+#: Template/Element/Chat/mini-chat.ctp:50
+msgid "Chatbox"
+msgstr "Chatbox"
+
+#: Template/Element/Chat/mini-chat.ctp:58
+msgid "Members"
+msgstr "Membres"
+
+#: Template/Element/Chat/mini-chat.ctp:68;94
+msgid "Close"
+msgstr "Fermer"
+
+#: Template/Element/Chat/mini-chat.ctp:70
+msgid "Change the Chat Notice"
+msgstr "Changer la Notice du Chat"
+
+#: Template/Element/Chat/mini-chat.ctp:93
+msgid "Save Notice"
+msgstr "Sauvegarder la Notice"
+
+#: Template/Element/Chat/mini-chat.ctp:108
+msgid "Enter message..."
+msgstr "Entrer votre message..."

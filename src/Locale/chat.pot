@@ -1,0 +1,202 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-04-25 18:58+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/Chat/ChatController.php:165
+#: Template/Element/Chat/mini-chat.ctp:28
+msgid "You need to be logged in to send a message in the chat."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:178
+msgid " without reason."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:178
+msgid ". Reason : {0}"
+msgstr ""
+
+#: Controller/Chat/ChatController.php:179
+#: Controller/Component/Chat/CommandsComponent.php:322
+msgid "forever"
+msgstr ""
+
+#: Controller/Chat/ChatController.php:179
+msgid "until {0}"
+msgstr ""
+
+#: Controller/Chat/ChatController.php:181
+msgid "You are banned from the chat {0}{1}"
+msgstr ""
+
+#: Controller/Chat/ChatController.php:243
+#: Template/Element/Chat/mini-chat.ctp:32
+msgid "Error to post your message, please try again."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:290;323
+msgid "You don't have the permission to execute this action."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:340
+msgid "This message doesn't exist or has already been deleted."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:351
+msgid "This message has been deleted successfully."
+msgstr ""
+
+#: Controller/Chat/ChatController.php:354
+#: Template/Element/Chat/mini-chat.ctp:35
+msgid "Error to delete the message."
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:76
+msgid "Welcome on <strong>{0}</strong> ! :heart:"
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:112
+msgid "Error to save the notice in the Cache."
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:143
+#: Template/Element/Chat/mini-chat.ctp:29
+msgid "Please, don't flood the chat."
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:154
+#: Template/Element/Chat/mini-chat.ctp:30
+msgid "Your last message is very similar, please change it."
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:162
+#: Template/Element/Chat/mini-chat.ctp:31
+msgid "You can't send an empty message."
+msgstr ""
+
+#: Controller/Component/Chat/ChatComponent.php:170
+#: Template/Element/Chat/mini-chat.ctp:33
+msgid "You can't send a message with more than {0} characters."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:90
+msgid "Clear all message in the chat."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:95
+msgid "Ban an user from the chat."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:100
+msgid "Unban an user from the chat."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:136
+msgid "Not enough parameters given. Syntax : {0}"
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:160
+msgid "You don't have the permission to execute this command."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:195
+msgid "The chat has been cleaned by {0}."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:212
+msgid "Error while saving the new message after deleting all messages."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:254;406
+msgid "The user \"{0}\" doesn't exist."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:270
+msgid "The user \"{0}\" is already banned."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:318
+msgid "Error while banning the user \"{0}\"."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:328
+msgid "Reason : {0}"
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:330
+msgid "without reason."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:424
+msgid "The user \"{0}\" is not banned."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:441
+msgid "Error while unbanning the user \"{0}\"."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:464
+msgid "I have unbanned {0}."
+msgstr ""
+
+#: Controller/Component/Chat/CommandsComponent.php:324
+msgid "for {0} minute"
+msgid_plural "for {0} minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Template/Cell/Forum/sidebar.ctp:39
+msgid "Members in Chat"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:26
+msgid "There is a problem to get the server response. Please, contact an administrator."
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:27
+msgid "You're not authorize to execute this action."
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:34
+msgid "Error to edit the notice."
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:36
+msgid "A few seconds ago"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:50
+msgid "Chatbox"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:58
+msgid "Members"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:68;94
+msgid "Close"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:70
+msgid "Change the Chat Notice"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:93
+msgid "Save Notice"
+msgstr ""
+
+#: Template/Element/Chat/mini-chat.ctp:108
+msgid "Enter message..."
+msgstr ""
+
