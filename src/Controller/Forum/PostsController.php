@@ -483,14 +483,42 @@ EOT;
             ])
             ->first();
 
+        $json = [
+            'error' => false,
+            'errorMessage' => ''
+        ];
+
         if (is_null($post)) {
-            $this->Flash->error(__("This post doesn't exist or has been deleted !"));
+            $json['error'] = true;
+            $json['errorMessage'] = __("This post doesn't exist or has been deleted !");
+
+            $this->set(compact('json'));
+            return;
         }
 
-        if ($post->user_id != $this->Auth->user('id') && $this->Auth->isAuthorized() === false) {
-            $this->Flash->error(__("You don't have the authorization to edit this post !"));
-        } else {
-            $this->set(compact('post'));
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($post->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
+            $json['error'] = true;
+            $json['errorMessage'] = __("You don't have the authorization to edit this post !");
+
+            $this->set(compact('json'));
+            return;
         }
+
+        $this->set(compact('json', 'post'));
     }
 }

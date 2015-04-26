@@ -10,17 +10,26 @@ $(document).ready(function () {
             data : {
                 id : postId
             },
-            dataType: "html",
+            dataType: "json",
             success : function (data) {
-                if (!$("#editingPost-" + postId).length) {
-                    var postContent = $("#post-" + postId + " .message");
+                if (!data.error) {
+                    if (!$("#editingPost-" + postId).length) {
+                        var postContent = $("#post-" + postId + " .message");
 
-                    postContent.fadeOut();
-                    postContent.after(data);
+                        postContent.fadeOut();
+                        postContent.after(data.html);
 
-                    CKEDITOR.replace('postBox-' + postId, {
-                        customConfig: 'config/forum.js'
-                    });
+                        CKEDITOR.replace('postBox-' + postId, {
+                            customConfig: 'config/forum.js'
+                        });
+                    }
+                } else {
+                    $(".top-right").notify({
+                        message: {
+                            text: data.errorMessage
+                        },
+                        type   : "danger"
+                    }).show();
                 }
             },
             error   : function (e) {
