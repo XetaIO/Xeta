@@ -53,25 +53,35 @@ $(document).ready(function () {
         var commentId = $(this).attr("data-id");
 
         $.ajax({
-            type    : "POST",
-            url     : $(this).attr("data-url"),
-            data	: {
+            type : "POST",
+            url : $(this).attr("data-url"),
+            data : {
                 id : commentId
             },
-            dataType: "html",
+            dataType: "json",
             success : function (data) {
-                if (!$("#editingComment-" + commentId).length) {
-                    var commentContent = $("#comment-" + commentId + " .content");
+                if (!data.error) {
+                    if (!$("#editingComment-" + commentId).length) {
+                        var commentContent = $("#comment-" + commentId + " .content");
 
-                    commentContent.fadeOut();
-                    commentContent.after(data);
+                        commentContent.fadeOut();
+                        commentContent.after(data.html);
 
-                    CKEDITOR.replace('commentBox-' + commentId, {
-                        customConfig: 'config/comment.js'
-                    });
+                        CKEDITOR.replace('commentBox-' + commentId, {
+                            customConfig: 'config/comment.js'
+                        });
+                    }
+                } else {
+                    $(".top-right").notify({
+                    message: {
+                        text: data.errorMessage
+                    },
+                    type   : "danger"
+                }).show();
                 }
+
             },
-            error   : function (e) {
+            error : function (e) {
                 $(".top-right").notify({
                     message: {
                         text: "Error to edit the comment."

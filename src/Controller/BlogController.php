@@ -227,7 +227,22 @@ class BlogController extends AppController
                 'BlogArticles.title RLIKE' => rtrim(implode('|', $keywords), '|')
             ]);
 
-        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles'));
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles', 'currentUser'));
     }
 
     /**
@@ -631,7 +646,6 @@ EOT;
         }
 
         $this->loadModel('BlogArticlesComments');
-
         $comment = $this->BlogArticlesComments
             ->find()
             ->where([
@@ -639,15 +653,43 @@ EOT;
             ])
             ->first();
 
+        $json = [
+            'error' => false,
+            'errorMessage' => ''
+        ];
+
         if (is_null($comment)) {
-            $this->Flash->error(__("This comment doesn't exist or has been deleted !"));
+            $json['error'] = true;
+            $json['errorMessage'] = __("This comment doesn't exist or has been deleted !");
+
+            $this->set(compact('json'));
+            return;
         }
 
-        if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
-            $this->Flash->error(__("You don't have the authorization to edit this comment !"));
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($comment->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
+            $json['error'] = true;
+            $json['errorMessage'] = __("You don't have the authorization to edit this comment !");
+
+            $this->set(compact('json'));
+            return;
         }
 
-        $this->set(compact('comment'));
+        $this->set(compact('json', 'comment'));
     }
 
     /**
@@ -677,7 +719,22 @@ EOT;
             return $this->redirect($this->referer());
         }
 
-        if ($comment->id != $this->Auth->user('id') && $this->Auth->user('role') != 'admin') {
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($comment->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
             $this->Flash->error(__("You don't have the authorization to edit this comment !"));
 
             return $this->redirect($this->referer());

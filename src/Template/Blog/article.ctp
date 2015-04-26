@@ -206,7 +206,7 @@
                                             'class' => 'ArticleLike',
                                             'data-url' => $this->Url->build(
                                                     [
-                                                        'action' => 'ArticleUnlike',
+                                                        'action' => 'articleUnlike',
                                                         $article->id
                                                     ]
                                                 ),
@@ -224,7 +224,7 @@
                                             'class' => 'ArticleLike',
                                             'data-url' => $this->Url->build(
                                                     [
-                                                        'action' => 'ArticleLike',
+                                                        'action' => 'articleLike',
                                                         $article->id
                                                     ]
                                                 ),
@@ -467,8 +467,9 @@
                                                 ) ?>
                                             <?php endif; ?>
                                         </li>
-                                        <?php if ($this->request->session()->read('Auth.User.id') == $comment->user_id ||
-                                        $this->request->session()->read('Auth.User.role') == 'admin'): ?>
+                                        <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'editComment', 'id' => $comment->id]) &&
+                                             $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Edit", '<i class="fa fa-edit"></i>'),
@@ -483,6 +484,11 @@
                                                     ]
                                                 ) ?>
                                             </li>
+                                        <?php endif; ?>
+
+                                        <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'deleteComment', 'id' => $comment->id]) &&
+                                             $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Delete", '<i class="fa fa-remove"></i>'),
