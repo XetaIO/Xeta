@@ -73,11 +73,11 @@ $(document).ready(function () {
                     }
                 } else {
                     $(".top-right").notify({
-                    message: {
-                        text: data.errorMessage
-                    },
-                    type   : "danger"
-                }).show();
+                        message: {
+                            text: data.errorMessage
+                        },
+                        type   : "danger"
+                    }).show();
                 }
 
             },
