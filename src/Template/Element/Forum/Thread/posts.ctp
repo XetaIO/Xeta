@@ -144,7 +144,7 @@
                         $this->Acl->check(['controller' => 'posts', 'action' => 'like'])
                 ): ?>
                     <div class="actions text-right">
-                        <?php if ($this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id])): ?>
+                        <?php if ($this->Acl->check(['_name' => 'posts-quote', 'id' => $post->id]) && $thread->thread_open == true): ?>
                             <?= $this->Html->link(
                                 __("{0} Quote", '<i class="fa fa-quote-left"></i>'),
                                 '#',
