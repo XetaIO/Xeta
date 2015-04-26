@@ -206,7 +206,7 @@
                                             'class' => 'ArticleLike',
                                             'data-url' => $this->Url->build(
                                                     [
-                                                        'action' => 'ArticleUnlike',
+                                                        'action' => 'articleUnlike',
                                                         $article->id
                                                     ]
                                                 ),
@@ -224,7 +224,7 @@
                                             'class' => 'ArticleLike',
                                             'data-url' => $this->Url->build(
                                                     [
-                                                        'action' => 'ArticleLike',
+                                                        'action' => 'articleLike',
                                                         $article->id
                                                     ]
                                                 ),
