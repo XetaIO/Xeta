@@ -50,7 +50,7 @@
                             </td>
                             <td class="threadStats hidden-xs">
                                 <span class="stats-wrapper">
-                                    <?= __n('{0} Reply', '{0} Replies', $thread->reply_count, $thread->reply_count) ?><br />
+                                    <?= __n('{0} Response', '{0} Responses', $thread->reply_count, $thread->reply_count) ?><br />
                                     <?= __n('{0} View', '{0} Views', $thread->view_count, $thread->view_count) ?>
                                 </span>
                             </td>

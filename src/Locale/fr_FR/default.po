@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-27 03:12+0000\n"
-"PO-Revision-Date: 2015-04-27 05:14+0100\n"
+"POT-Creation-Date: 2015-04-27 04:30+0000\n"
+"PO-Revision-Date: 2015-04-27 06:31+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -793,12 +793,9 @@ msgid "Download :"
 msgstr "Téléchargement :"
 
 #: Template/Blog/article.ctp:184;187
-#: Template/Element/Forum/Category/threads.ctp:53
 #: Template/Element/Forum/Thread/actions.ctp:4
 msgid "{0} Reply"
-msgid_plural "{0} Replies"
-msgstr[0] "{0} Réponse"
-msgstr[1] "{0} Réponses"
+msgstr "{0} Répondre"
 
 #: Template/Blog/article.ctp:312
 msgid "Related Articles"
@@ -1123,6 +1120,12 @@ msgstr "Aucun sujet n'a été trouvé pour cette catégorie. {0}"
 #: Template/Element/Forum/Category/threads.ctp:94
 msgid "{0} Create a Thread"
 msgstr "{0} Créer un Sujet"
+
+#: Template/Element/Forum/Category/threads.ctp:53
+msgid "{0} Response"
+msgid_plural "{0} Responses"
+msgstr[0] "{0} Réponse"
+msgstr[1] "{0} Réponses"
 
 #: Template/Element/Forum/Category/threads.ctp:54
 msgid "{0} View"

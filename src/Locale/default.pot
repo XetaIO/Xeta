@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-27 03:12+0000\n"
+"POT-Creation-Date: 2015-04-27 04:30+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -788,12 +788,9 @@ msgid "Download :"
 msgstr ""
 
 #: Template/Blog/article.ctp:184;187
-#: Template/Element/Forum/Category/threads.ctp:53
 #: Template/Element/Forum/Thread/actions.ctp:4
 msgid "{0} Reply"
-msgid_plural "{0} Replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: Template/Blog/article.ctp:312
 msgid "Related Articles"
@@ -1115,6 +1112,12 @@ msgstr ""
 #: Template/Element/Forum/Category/threads.ctp:94
 msgid "{0} Create a Thread"
 msgstr ""
+
+#: Template/Element/Forum/Category/threads.ctp:53
+msgid "{0} Response"
+msgid_plural "{0} Responses"
+msgstr[0] ""
+msgstr[1] ""
 
 #: Template/Element/Forum/Category/threads.ctp:54
 msgid "{0} View"
