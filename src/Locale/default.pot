@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-25 19:36+0000\n"
+"POT-Creation-Date: 2015-04-27 03:12+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: Controller/BlogController.php:89
-#: Controller/Forum/ForumController.php:124
+#: Controller/Forum/ForumController.php:127
 msgid "This category doesn't exist or has been deleted."
 msgstr ""
 
@@ -31,70 +31,70 @@ msgstr ""
 msgid "Your comment has been posted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:271
+#: Controller/BlogController.php:286
 #: Controller/Forum/PostsController.php:316
 msgid "has said :"
 msgstr ""
 
-#: Controller/BlogController.php:291
+#: Controller/BlogController.php:306
 #: Controller/Forum/PostsController.php:336
 msgid "This comment doesn't exist."
 msgstr ""
 
-#: Controller/BlogController.php:323
+#: Controller/BlogController.php:338
 msgid "This comment doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:469
+#: Controller/BlogController.php:484
 msgid "You already like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:488
+#: Controller/BlogController.php:503
 msgid "This article doesn't exist !"
 msgstr ""
 
-#: Controller/BlogController.php:504
+#: Controller/BlogController.php:519
 msgid "Thanks for {0} this article ! "
 msgstr ""
 
-#: Controller/BlogController.php:505
+#: Controller/BlogController.php:520
 #: Template/Blog/article.ctp:215
 msgid "You {0} this article."
 msgstr ""
 
-#: Controller/BlogController.php:514;571
+#: Controller/BlogController.php:529;586
 #: Controller/Forum/PostsController.php:86;169
 msgid "An error occurred, please try again later."
 msgstr ""
 
-#: Controller/BlogController.php:555
+#: Controller/BlogController.php:570
 msgid "You don't like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:568
+#: Controller/BlogController.php:583
 #: Controller/Forum/PostsController.php:83
 #: Template/Blog/article.ctp:233
 #: Template/Element/Forum/Thread/posts.ctp:202
 msgid "Like {0}"
 msgstr ""
 
-#: Controller/BlogController.php:602;643;675
+#: Controller/BlogController.php:617;678;732
 msgid "This comment doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/BlogController.php:608
+#: Controller/BlogController.php:638
 msgid "You don't have the authorization to delete this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:614
+#: Controller/BlogController.php:644
 msgid "This comment has been deleted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:647;681
+#: Controller/BlogController.php:701;753
 msgid "You don't have the authorization to edit this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:688
+#: Controller/BlogController.php:760
 msgid "This comment has been edited successfully !"
 msgstr ""
 
@@ -177,15 +177,15 @@ msgstr ""
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:279
+#: Controller/UsersController.php:283
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:297
+#: Controller/UsersController.php:301
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:302
+#: Controller/UsersController.php:306
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 msgid "The type \"{0}\" to check is not defined."
 msgstr ""
 
-#: Controller/Forum/ForumController.php:230
+#: Controller/Forum/ForumController.php:236
 msgid "This thread doesn't exist or has been deleted."
 msgstr ""
 
@@ -298,12 +298,12 @@ msgstr ""
 msgid "The post has been deleted successfully !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:425;487
+#: Controller/Forum/PostsController.php:425;493
 msgid "This post doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:446;491
-#: Controller/Forum/ThreadsController.php:135
+#: Controller/Forum/PostsController.php:446;516
+#: Controller/Forum/ThreadsController.php:150
 msgid "You don't have the authorization to edit this post !"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "This post has been edited successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:47;155
+#: Controller/Forum/ThreadsController.php:47;170
 msgid "This category doesn't exist or has been deleted !"
 msgstr ""
 
@@ -323,63 +323,63 @@ msgstr ""
 msgid "You can't not create a thread in the next 5 minutes due to spamming restrictions."
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:92
+#: Controller/Forum/ThreadsController.php:107
 msgid "Your thread has been created successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:128;213;308;373
+#: Controller/Forum/ThreadsController.php:143;228;330;395
 msgid "This thread doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:162
+#: Controller/Forum/ThreadsController.php:177
 msgid "You can't assign this thread to the category <strong>{0}</strong> because this category is closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:171
+#: Controller/Forum/ThreadsController.php:186
 msgid "Your thread has been edited and set to sticky successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:173
+#: Controller/Forum/ThreadsController.php:188
 msgid "Your thread has been edited successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:199
+#: Controller/Forum/ThreadsController.php:214
 msgid "You can't not reply to a thread in the next 5 minutes due to spamming restrictions."
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:220
+#: Controller/Forum/ThreadsController.php:235
 msgid "This thread is closed or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:267
+#: Controller/Forum/ThreadsController.php:289
 msgid "Your reply has been posted successfully and the thread has been closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:269
+#: Controller/Forum/ThreadsController.php:291
 msgid "Your reply has been posted successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:315
+#: Controller/Forum/ThreadsController.php:337
 msgid "This thread is already closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:326
+#: Controller/Forum/ThreadsController.php:348
 msgid "You don't have the authorization to lock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:338
+#: Controller/Forum/ThreadsController.php:360
 msgid "This thread has been locked successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:380
+#: Controller/Forum/ThreadsController.php:402
 msgid "This thread is already open !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:391
+#: Controller/Forum/ThreadsController.php:413
 msgid "You don't have the authorization to unlock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:402
+#: Controller/Forum/ThreadsController.php:424
 msgid "This thread has been unlocked successfully !"
 msgstr ""
 
@@ -809,40 +809,40 @@ msgstr ""
 msgid "{0} Quote"
 msgstr ""
 
-#: Template/Blog/article.ctp:474
+#: Template/Blog/article.ctp:475
 #: Template/Element/Forum/Thread/posts.ctp:100
 msgid "{0} Edit"
 msgstr ""
 
-#: Template/Blog/article.ctp:488
+#: Template/Blog/article.ctp:494
 #: Template/Element/Forum/Thread/posts.ctp:117
 msgid "{0} Delete"
 msgstr ""
 
-#: Template/Blog/article.ctp:525
+#: Template/Blog/article.ctp:531
 msgid "Leave a Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:539
+#: Template/Blog/article.ctp:545
 #: Template/Element/Forum/Thread/reply.ctp:41
 msgid "Post Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:556;567
+#: Template/Blog/article.ctp:562;573
 #: Template/Element/Forum/Thread/actions.ctp:42;95
 #: Template/Users/settings.ctp:86;95
 msgid "Close"
 msgstr ""
 
-#: Template/Blog/article.ctp:558
+#: Template/Blog/article.ctp:564
 msgid "Delete a Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:562
+#: Template/Blog/article.ctp:568
 msgid "Are you sure you want delete this comment ?"
 msgstr ""
 
-#: Template/Blog/article.ctp:566
+#: Template/Blog/article.ctp:572
 msgid "Delete"
 msgstr ""
 
@@ -857,15 +857,6 @@ msgstr ""
 
 #: Template/Blog/category.ctp:121
 msgid "No articles were found for this category."
-msgstr ""
-
-#: Template/Blog/get_edit_comment.ctp:17
-msgid "Update Comment"
-msgstr ""
-
-#: Template/Blog/get_edit_comment.ctp:18
-#: Template/Forum/Posts/get_edit_post.ctp:18
-msgid "Cancel"
 msgstr ""
 
 #: Template/Blog/index.ctp:135
@@ -898,6 +889,15 @@ msgstr ""
 
 #: Template/Blog/search.ctp:126
 msgid "Try more general keywords."
+msgstr ""
+
+#: Template/Blog/json/get_edit_comment.ctp:17
+msgid "Update Comment"
+msgstr ""
+
+#: Template/Blog/json/get_edit_comment.ctp:18
+#: Template/Forum/Posts/json/get_edit_post.ctp:18
+msgid "Cancel"
 msgstr ""
 
 #: Template/Cell/Blog/sidebar.ctp:3
@@ -1081,16 +1081,16 @@ msgstr ""
 msgid "Last post"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:105
+#: Template/Element/Forum/categories.ctp:80
 msgid "(Contains no threads)"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:109
+#: Template/Element/Forum/categories.ctp:103
 #: Template/Element/Forum/Category/threads.ctp:43;59
 msgid "By"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:98
+#: Template/Element/Forum/categories.ctp:73
 msgid "{0} Thread"
 msgid_plural "{0} Threads"
 msgstr[0] ""
@@ -1221,10 +1221,12 @@ msgid "Save"
 msgstr ""
 
 #: Template/Element/Forum/Thread/posts.ctp:13
+#: Template/Users/profile.ctp:29
 msgid "Online"
 msgstr ""
 
 #: Template/Element/Forum/Thread/posts.ctp:15
+#: Template/Users/profile.ctp:31
 msgid "Offline"
 msgstr ""
 
@@ -1280,7 +1282,7 @@ msgstr ""
 msgid "{0} Premium {1}"
 msgstr ""
 
-#: Template/Forum/Posts/get_edit_post.ctp:17
+#: Template/Forum/Posts/json/get_edit_post.ctp:17
 msgid "Update Post"
 msgstr ""
 
@@ -1623,15 +1625,35 @@ msgstr ""
 msgid "{0}'s profile"
 msgstr ""
 
-#: Template/Users/profile.ctp:47
+#: Template/Users/profile.ctp:56
 msgid "Edit my profile {0}"
 msgstr ""
 
-#: Template/Users/profile.ctp:50
+#: Template/Users/profile.ctp:60
+msgid "Your Biography"
+msgstr ""
+
+#: Template/Users/profile.ctp:62
 msgid "His Biography"
 msgstr ""
 
-#: Template/Users/profile.ctp:58
+#: Template/Users/profile.ctp:70
+msgid "You don't have set a biography."
+msgstr ""
+
+#: Template/Users/profile.ctp:71
+msgid "{0} Add one now"
+msgstr ""
+
+#: Template/Users/profile.ctp:73
+msgid "This user hasn't set a biography yet."
+msgstr ""
+
+#: Template/Users/profile.ctp:81
+msgid "Your Badges"
+msgstr ""
+
+#: Template/Users/profile.ctp:83
 msgid "His Badges"
 msgstr ""
 

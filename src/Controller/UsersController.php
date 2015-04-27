@@ -273,6 +273,10 @@ class UsersController extends AppController
                         ]);
                 }
             ])
+            ->map(function ($user) {
+                $user->online = $this->SessionsActivity->getOnlineStatus($user);
+                return $user;
+            })
             ->first();
 
         if (is_null($user)) {
