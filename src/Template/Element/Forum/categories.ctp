@@ -23,7 +23,6 @@
                 <?php foreach ($forums as $forum): ?>
                     <?php
                     $threadCount = $forum->thread_count;
-                    $lastPost = $forum->last_post;
                     ?>
                     <tr>
                         <td class="forumInfo">
@@ -51,17 +50,6 @@
                                                 <?php
                                                 //Add to the thread counter.
                                                 $threadCount += $child->thread_count;
-
-                                                //Process the last post.
-                                                if (!is_null($child->last_post)) {
-                                                    if (!is_null($lastPost)) {
-                                                        if ($lastPost->id < $child->last_post->id) {
-                                                            $lastPost = $child->last_post;
-                                                        }
-                                                    } else {
-                                                        $lastPost = $child->last_post;
-                                                    }
-                                                }
                                                 ?>
 
                                                 <?php if (is_array($child->children) && !empty($child->children)): ?>
@@ -73,19 +61,6 @@
                                                         $threadCount += $result['thread_count'];
                                                     ?>
                                                 <?php endif; ?>
-
-                                                <?php
-                                                //Process the last post.
-                                                if (isset($result['last_post'])) {
-                                                    if (!is_null($lastPost)) {
-                                                        if ($lastPost->id < $result['last_post']->id) {
-                                                            $lastPost = $result['last_post'];
-                                                        }
-                                                    } else {
-                                                        $lastPost = $result['last_post'];
-                                                    }
-                                                }
-                                                ?>
                                             <?php endforeach; ?>
 
                                         </ul>
@@ -100,20 +75,20 @@
                         </td>
 
                         <td class="forumLastPost hidden-xs">
-                            <?php if (($lastPost === null)): ?>
+                            <?php if ($forum->last_post === null): ?>
                                 <span class="noMessages muted">
                                     <?= __('(Contains no threads)') ?>
                                 </span>
                             <?php else: ?>
                                 <span class="lastMessage">
                                     <?= __('By') ?>
-                                    <?= $this->Html->link($lastPost->user->full_name, ['_name' => 'users-profile', 'slug' => $lastPost->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
+                                    <?= $this->Html->link($forum->last_post->user->full_name, ['_name' => 'users-profile', 'slug' => $forum->last_post->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-sign-out"></i>',
                                         [
                                             'controller' => 'posts',
                                             'action' => 'go',
-                                            $lastPost->id
+                                            $forum->last_post->id
                                         ],
                                         [
                                             'escape' => false,
@@ -122,7 +97,7 @@
                                     )?>
                                     <br>
                                     <span class="lastMessagetime">
-                                        <?= $lastPost->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
+                                        <?= $forum->last_post->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
                                     </span>
                                 </span>
                             <?php endif; ?>
