@@ -48,6 +48,9 @@ class ForumController extends AppController
                 'LastPost',
                 'LastPost.Users' => function ($q) {
                     return $q->find('short');
+                },
+                'LastPost.ForumThreads' => function ($q) {
+                    return $q->select(['id', 'title']);
                 }
             ])
             ->order(['ForumCategories.lft' => 'ASC']);
@@ -162,6 +165,9 @@ class ForumController extends AppController
                 'LastPost',
                 'LastPost.Users' => function ($q) {
                     return $q->find('short');
+                },
+                'LastPost.ForumThreads' => function ($q) {
+                    return $q->select(['id', 'title']);
                 }
             ]);
 
