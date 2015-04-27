@@ -10,9 +10,9 @@
                 ) ?>
                 <span class="status">
                     <?php if ($post->user->online === true): ?>
-                        <i class="fa fa-circle text-primary" data-toggle="tooltip" title="<?= __("Online") ?>"></i>
+                        <i class="fa fa-circle text-primary" data-toggle="tooltip" title="<?= __("Online") ?>" data-container="body"></i>
                     <?php else: ?>
-                        <i class="fa fa-circle text-danger" data-toggle="tooltip" title="<?= __("Offline") ?>"></i>
+                        <i class="fa fa-circle text-danger" data-toggle="tooltip" title="<?= __("Offline") ?>" data-container="body"></i>
                     <?php endif; ?>
                 </span>
             </div>
