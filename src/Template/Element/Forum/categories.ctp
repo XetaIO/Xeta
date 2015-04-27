@@ -84,7 +84,7 @@
                                     <?= $this->Html->link(
                                         $this->Text->truncate(
                                             $forum->last_post->forum_thread->title,
-                                            32,
+                                            40,
                                             [
                                                 'ellipsis' => '...',
                                                 'exact' => false
