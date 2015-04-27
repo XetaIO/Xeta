@@ -247,7 +247,19 @@ class ThreadsController extends AppController
             $post = $this->ForumPosts->newEntity($this->request->data, [
                 'associated' => ['ForumThreads'],
                 'validate' => 'create'
+            ]);
+
+            //Handle validation errors (Due to the redirect)
+            if (!empty($post->errors())) {
+                $this->Flash->threadReply('Validation errors', [
+                    'key' => 'ThreadReply',
+                    'params' => [
+                        'errors' => $post->errors()
+                    ]
                 ]);
+
+                return $this->redirect($this->referer());
+            }
 
             if ($post->forum_thread->isNew() === true) {
                 $post->forum_thread->isNew(false);
