@@ -81,6 +81,25 @@
                                 </span>
                             <?php else: ?>
                                 <span class="lastMessage">
+                                    <?= $this->Html->link(
+                                        $this->Text->truncate(
+                                            $forum->last_post->forum_thread->title,
+                                            32,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        ),
+                                        [
+                                            'controller' => 'posts',
+                                            'action' => 'go',
+                                            $forum->last_post->id
+                                        ],
+                                        [
+                                            'class' => 'text-primary'
+                                        ]
+                                    ) ?>
+                                    <br>
                                     <?= __('By') ?>
                                     <?= $this->Html->link($forum->last_post->user->full_name, ['_name' => 'users-profile', 'slug' => $forum->last_post->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
                                     <?= $this->Html->link(
@@ -94,7 +113,7 @@
                                             'escape' => false,
                                             'class' => 'text-primary'
                                         ]
-                                    )?>
+                                    ) ?>
                                     <br>
                                     <span class="lastMessagetime">
                                         <?= $forum->last_post->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
