@@ -56,15 +56,32 @@
                     <?= $this->Html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
                 <?php endif;?>
                 <h4>
-                    <?= __("His Biography") ?>
+                    <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                        <?= __("Your Biography") ?>
+                    <?php else: ?>
+                        <?= __("His Biography") ?>
+                    <?php endif;?>
                 </h4>
                 <div class="biography">
-                    <?= $user->biography ?>
+                    <?php if (!empty($user->biography)): ?>
+                        <?= $user->biography ?>
+                    <?php else: ?>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("You don't have set a biography.") ?>
+                            <?= $this->Html->link(__("{0} Add one now", '<i class="fa fa-plus"></i>'), ['action' => 'account'], ['class' => 'btn btn-sm btn-primary', 'escape' => false]) ?>
+                        <?php else: ?>
+                            <?= __("This user hasn't set a biography yet.") ?>
+                        <?php endif;?>
+                    <?php endif; ?>
                 </div>
 
                 <?php if (!empty($user->badges_users)): ?>
                     <h4>
-                        <?= __("His Badges") ?>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("Your Badges") ?>
+                        <?php else: ?>
+                            <?= __("His Badges") ?>
+                        <?php endif;?>
                     </h4>
                     <div class="badges">
                         <div class="row">
