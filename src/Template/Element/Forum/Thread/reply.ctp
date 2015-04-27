@@ -7,8 +7,9 @@
                 </h4>
             </div>
             <div class="panel-body">
+                <?= $this->Flash->render('ThreadReply') ?>
                 <?= $this->Form->create($postForm, [
-                    'url' => ['controller' => 'threads', 'action' => 'reply', 'id' => $thread->id, 'slug' => $thread->title]
+                    'url' => ['_name' => 'threads-reply', 'id' => $thread->id, 'slug' => $thread->title]
                 ]) ?>
                     <div class="form-group">
                         <?=
