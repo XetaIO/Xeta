@@ -94,7 +94,7 @@ class ThreadsController extends AppController
                         'rght >=' => $category->rght
                     ]);
 
-                foreach($parents as $parent) {
+                foreach ($parents as $parent) {
                     $parent->last_post_id = $newPost->id;
                     $this->ForumCategories->save($parent);
                 }
@@ -270,7 +270,7 @@ class ThreadsController extends AppController
                         'rght >=' => $category->rght
                     ]);
 
-                foreach($parents as $parent) {
+                foreach ($parents as $parent) {
                     $parent->last_post_id = $newPost->id;
                     $this->ForumCategories->save($parent);
                 }
