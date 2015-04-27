@@ -267,7 +267,9 @@ xetaChat = {
 
         if(retrying === 0 || (retrying !== 0 && retrying < this.settings.maxRetrying)) {
             //Set a timeout to re-execute this function.
-            setTimeout(function() {xetaChat._updateChat(retrying);}, this.settings.refreshTime);
+            setTimeout(function() {
+                xetaChat._updateChat(retrying);
+            }, this.settings.refreshTime);
         }
     },
 
@@ -513,8 +515,8 @@ xetaChat = {
      */
     _handleInfos: function(xml) {
         $(xml).find("info").each(function (i) {
-            var infoType = $(xml).find("info")[i].childNodes[1].nodeName;
-            var infoData = $(xml).find("info")[i].childNodes[1].textContent;
+            var infoType = $(xml).find("info")[i].firstElementChild.nodeName;
+            var infoData = $(xml).find("info")[i].firstElementChild.textContent;
 
             xetaChat._handleInfo(infoType, infoData);
         });
