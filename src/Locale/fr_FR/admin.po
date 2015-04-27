@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-04-25 18:28+0000\n"
-"PO-Revision-Date: 2015-04-25 20:43+0100\n"
+"PO-Revision-Date: 2015-04-27 21:00+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -575,7 +575,7 @@ msgstr "Catégorie Ouverte"
 
 #: Template/Admin/Forum/Categories/index.ctp:1;12
 msgid "Forum : Manage Categories"
-msgstr "{0} Forum : Gérer les Catégories"
+msgstr "Forum : Gérer les Catégories"
 
 #: Template/Admin/Forum/Categories/index.ctp:78
 msgid "Move up this category"
