@@ -81,6 +81,7 @@ class PostsController extends AppController
                 'action' => 'like'
             ]);
             $json['title'] = __('Like {0}', "<i class='fa fa-heart text-danger'></i>");
+            $json['text'] = __('{0} Like', '<i class="fa fa-thumbs-o-up"></i>');
             $json['error'] = false;
         } else {
             $json['message'] = __('An error occurred, please try again later.');
@@ -164,6 +165,7 @@ class PostsController extends AppController
             $json['url'] = Router::url([
                 'action' => 'unlike'
             ]);
+            $json['text'] = __('{0} Unlike', '<i class="fa fa-thumbs-o-up"></i>');
             $json['error'] = false;
         } else {
             $json['message'] = __('An error occurred, please try again later.');

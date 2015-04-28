@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-27 04:30+0000\n"
+"POT-Creation-Date: 2015-04-28 00:36+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -32,12 +32,12 @@ msgid "Your comment has been posted successfully !"
 msgstr ""
 
 #: Controller/BlogController.php:286
-#: Controller/Forum/PostsController.php:316
+#: Controller/Forum/PostsController.php:318
 msgid "has said :"
 msgstr ""
 
 #: Controller/BlogController.php:306
-#: Controller/Forum/PostsController.php:336
+#: Controller/Forum/PostsController.php:338
 msgid "This comment doesn't exist."
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "You {0} this article."
 msgstr ""
 
 #: Controller/BlogController.php:529;586
-#: Controller/Forum/PostsController.php:86;169
+#: Controller/Forum/PostsController.php:87;171
 msgid "An error occurred, please try again later."
 msgstr ""
 
@@ -265,49 +265,66 @@ msgstr ""
 msgid "You don't like this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:121
+#: Controller/Forum/PostsController.php:84
+#: Template/Blog/archive.ctp:84
+#: Template/Blog/article.ctp:96
+#: Template/Blog/category.ctp:73
+#: Template/Blog/index.ctp:88
+#: Template/Blog/search.ctp:70
+#: Template/Element/Forum/Thread/posts.ctp:189
+msgid "{0} Like"
+msgid_plural "{0} Likes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/Forum/PostsController.php:122
 msgid "You already like this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:140
+#: Controller/Forum/PostsController.php:141
 msgid "This post doesn't exist !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:162
+#: Controller/Forum/PostsController.php:163
 msgid "Thanks for {0} this post ! "
 msgstr ""
 
-#: Controller/Forum/PostsController.php:163
+#: Controller/Forum/PostsController.php:164
 #: Template/Element/Forum/Thread/posts.ctp:183
 msgid "You {0} this post."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:203;368
+#: Controller/Forum/PostsController.php:168
+#: Template/Element/Forum/Thread/posts.ctp:170
+msgid "{0} Unlike"
+msgstr ""
+
+#: Controller/Forum/PostsController.php:205;370
 msgid "This post doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:210
+#: Controller/Forum/PostsController.php:212
 msgid "You cannot delete the first post of a thread."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:221
+#: Controller/Forum/PostsController.php:223
 msgid "An error occurred while deleting the post. Please, try again."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:263;272
+#: Controller/Forum/PostsController.php:265;274
 msgid "The post has been deleted successfully !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:425;493
+#: Controller/Forum/PostsController.php:427;495
 msgid "This post doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:446;516
+#: Controller/Forum/PostsController.php:448;518
 #: Controller/Forum/ThreadsController.php:150
 msgid "You don't have the authorization to edit this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:457
+#: Controller/Forum/PostsController.php:459
 msgid "This post has been edited successfully !"
 msgstr ""
 
@@ -327,7 +344,7 @@ msgstr ""
 msgid "Your thread has been created successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:143;228;330;395
+#: Controller/Forum/ThreadsController.php:143;228;342;407
 msgid "This thread doesn't exist or has been deleted !"
 msgstr ""
 
@@ -351,35 +368,35 @@ msgstr ""
 msgid "This thread is closed or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:289
+#: Controller/Forum/ThreadsController.php:301
 msgid "Your reply has been posted successfully and the thread has been closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:291
+#: Controller/Forum/ThreadsController.php:303
 msgid "Your reply has been posted successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:337
+#: Controller/Forum/ThreadsController.php:349
 msgid "This thread is already closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:348
+#: Controller/Forum/ThreadsController.php:360
 msgid "You don't have the authorization to lock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:360
+#: Controller/Forum/ThreadsController.php:372
 msgid "This thread has been locked successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:402
+#: Controller/Forum/ThreadsController.php:414
 msgid "This thread is already open !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:413
+#: Controller/Forum/ThreadsController.php:425
 msgid "You don't have the authorization to unlock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:424
+#: Controller/Forum/ThreadsController.php:436
 msgid "This thread has been unlocked successfully !"
 msgstr ""
 
@@ -764,17 +781,6 @@ msgid_plural "{0} Comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Template/Blog/archive.ctp:84
-#: Template/Blog/article.ctp:96
-#: Template/Blog/category.ctp:73
-#: Template/Blog/index.ctp:88
-#: Template/Blog/search.ctp:70
-#: Template/Element/Forum/Thread/posts.ctp:170;189
-msgid "{0} Like"
-msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-
 #: Template/Blog/article.ctp:114
 msgid "You need to be <strong>{0}</strong> to download the file."
 msgstr ""
@@ -821,7 +827,7 @@ msgid "Leave a Comment"
 msgstr ""
 
 #: Template/Blog/article.ctp:545
-#: Template/Element/Forum/Thread/reply.ctp:41
+#: Template/Element/Forum/Thread/reply.ctp:42
 msgid "Post Comment"
 msgstr ""
 
@@ -1200,13 +1206,13 @@ msgid "Sticky Thread"
 msgstr ""
 
 #: Template/Element/Forum/Thread/actions.ctp:62;76
-#: Template/Element/Forum/Thread/reply.ctp:28
+#: Template/Element/Forum/Thread/reply.ctp:29
 #: Template/Forum/Threads/create.ctp:72;87
 msgid "Yes"
 msgstr ""
 
 #: Template/Element/Forum/Thread/actions.ctp:63;77
-#: Template/Element/Forum/Thread/reply.ctp:29
+#: Template/Element/Forum/Thread/reply.ctp:30
 #: Template/Forum/Threads/create.ctp:73;88
 #: Template/Users/premium.ctp:68
 msgid "No"
@@ -1269,7 +1275,7 @@ msgstr ""
 msgid "Reply to this Thread"
 msgstr ""
 
-#: Template/Element/Forum/Thread/reply.ctp:25
+#: Template/Element/Forum/Thread/reply.ctp:26
 msgid "Lock the Thread with the response ?"
 msgstr ""
 

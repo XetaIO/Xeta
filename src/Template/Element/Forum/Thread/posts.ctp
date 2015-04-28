@@ -167,7 +167,7 @@
                             </span>
                             <?php if (!empty($post->forum_posts_likes)): ?>
                                 <?= $this->Html->link(
-                                    __("{0} Like", '<i class="fa fa-thumbs-o-up"></i>'),
+                                    __("{0} Unlike", '<i class="fa fa-thumbs-o-up"></i>'),
                                     '#',
                                     [
                                         'class' => 'LikePost btn btn-sm btn-link text-success',

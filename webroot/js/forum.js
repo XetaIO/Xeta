@@ -99,6 +99,7 @@ $(document).ready(function () {
                         like.attr("data-original-title", data.title);
                         like.attr("data-url", data.url);
                         like.attr("data-type", "unlike");
+                        like.html(data.text);
 
                         $(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) + 1);
 
@@ -116,6 +117,7 @@ $(document).ready(function () {
                         like.attr("data-original-title", data.title);
                         like.attr("data-url", data.url);
                         like.attr("data-type", "like");
+                        like.html(data.text);
 
                         $(".likeCounter-" + id).text(Number($(".likeCounter-" + id).text()) - 1);
                     }
