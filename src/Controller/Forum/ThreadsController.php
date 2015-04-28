@@ -333,6 +333,7 @@ class ThreadsController extends AppController
             ->select([
                 'ForumThreads.id',
                 'ForumThreads.thread_open',
+                'ForumThreads.user_id',
                 'ForumThreads.title'
             ])
             ->first();
@@ -356,7 +357,21 @@ class ThreadsController extends AppController
         }
 
         //Check if the user has the permission to lock it.
-        if ($this->Auth->isAuthorized() === false) {
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($thread->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
             $this->Flash->error(__("You don't have the authorization to lock this post !"));
 
             return $this->redirect([
@@ -398,6 +413,7 @@ class ThreadsController extends AppController
             ->select([
                 'ForumThreads.id',
                 'ForumThreads.thread_open',
+                'ForumThreads.user_id',
                 'ForumThreads.title'
             ])
             ->first();
@@ -421,7 +437,21 @@ class ThreadsController extends AppController
         }
 
         //Check if the user has the permission to unlock it.
-        if ($this->Auth->isAuthorized() === false) {
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($thread->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
             $this->Flash->error(__("You don't have the authorization to unlock this post !"));
 
             return $this->redirect([

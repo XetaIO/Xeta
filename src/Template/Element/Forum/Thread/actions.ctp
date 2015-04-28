@@ -6,7 +6,7 @@
             ['class' => 'btn btn-xs btn-primary', 'escape' => false]
         ) ?>
 
-        <?php if ($this->Acl->check(['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
+        <?php if (($this->Acl->check(['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum']) && $this->request->session()->read('Auth.User.id') == $thread->user_id) || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
             <?= $this->Html->link(
                 __('{0} Lock', '<i class="fa fa-lock"></i>'),
                 ['_name' => 'threads-lock', 'id' => $thread->id, 'slug' => $thread->title],
