@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-28 00:36+0000\n"
+"POT-Creation-Date: 2015-04-28 14:17+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -344,7 +344,7 @@ msgstr ""
 msgid "Your thread has been created successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:143;228;342;407
+#: Controller/Forum/ThreadsController.php:143;228;343;423
 msgid "This thread doesn't exist or has been deleted !"
 msgstr ""
 
@@ -376,27 +376,27 @@ msgstr ""
 msgid "Your reply has been posted successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:349
+#: Controller/Forum/ThreadsController.php:350
 msgid "This thread is already closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:360
+#: Controller/Forum/ThreadsController.php:375
 msgid "You don't have the authorization to lock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:372
+#: Controller/Forum/ThreadsController.php:387
 msgid "This thread has been locked successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:414
+#: Controller/Forum/ThreadsController.php:430
 msgid "This thread is already open !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:425
+#: Controller/Forum/ThreadsController.php:455
 msgid "You don't have the authorization to unlock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:436
+#: Controller/Forum/ThreadsController.php:466
 msgid "This thread has been unlocked successfully !"
 msgstr ""
 
@@ -929,6 +929,18 @@ msgstr ""
 
 #: Template/Cell/Forum/sidebar.ctp:5
 msgid "Staff Online"
+msgstr ""
+
+#: Template/Cell/Forum/sidebar.ctp:53
+msgid "Latest Threads"
+msgstr ""
+
+#: Template/Cell/Forum/sidebar.ctp:65
+msgid "Created by {0}"
+msgstr ""
+
+#: Template/Cell/Forum/sidebar.ctp:84
+msgid "At {0}"
 msgstr ""
 
 #: Template/Cell/Forum/suggestion.ctp:9

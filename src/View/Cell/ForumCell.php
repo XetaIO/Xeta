@@ -1,6 +1,7 @@
 <?php
 namespace App\View\Cell;
 
+use Cake\Core\Configure;
 use Cake\View\Cell;
 
 class ForumCell extends Cell
@@ -66,6 +67,7 @@ class ForumCell extends Cell
     public function sidebar()
     {
         $this->loadModel('Sessions');
+        $this->loadModel('ForumThreads');
 
         $staffOnline = $this->Sessions
             ->find('expires')
@@ -83,6 +85,20 @@ class ForumCell extends Cell
             }
         }
 
-        $this->set(compact('staffOnline'));
+        //5 last threads created
+        $lastThreads = $this->ForumThreads
+            ->find()
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->find('full');
+                },
+                'Users.Groups'
+            ])
+            ->order([
+                'ForumThreads.created' => 'DESC'
+            ])
+            ->limit(Configure::read('Forum.Sidebar.latest_threads'));
+
+        $this->set(compact('staffOnline', 'lastThreads'));
     }
 }
