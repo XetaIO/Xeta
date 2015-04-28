@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-28 14:17+0000\n"
-"PO-Revision-Date: 2015-04-28 16:18+0100\n"
+"POT-Creation-Date: 2015-04-28 18:01+0000\n"
+"PO-Revision-Date: 2015-04-28 20:04+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -178,15 +178,15 @@ msgstr "Votre ancien mot de passe ne correspond pas !"
 msgid "Your password has been changed !"
 msgstr "Votre mot de passe a été changé !"
 
-#: Controller/UsersController.php:283
+#: Controller/UsersController.php:305
 msgid "This user doesn't exist or has been deleted."
 msgstr "Cet utilisateur n'existe pas ou a été supprimé."
 
-#: Controller/UsersController.php:301
+#: Controller/UsersController.php:323
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr "Votre compte a été supprimé avec succès ! Merci de votre visite !"
 
-#: Controller/UsersController.php:306
+#: Controller/UsersController.php:328
 msgid "Unable to delete your account, please try again."
 msgstr ""
 "Impossible de supprimer votre compte, s'il vous plaît réessayez plus tard."
@@ -1718,6 +1718,42 @@ msgstr "Vos Badges"
 #: Template/Users/profile.ctp:83
 msgid "His Badges"
 msgstr "Ces Badges"
+
+#: Template/Users/profile.ctp:104
+msgid "Your Lastest Threads in the Forum"
+msgstr "Vos dernières Sujets dans le Forum"
+
+#: Template/Users/profile.ctp:106
+msgid "His Lastest Threads in the Forum"
+msgstr "Ces derniers Sujets dans le Forum"
+
+#: Template/Users/profile.ctp:130;167;195;232
+msgid "Created at {0}"
+msgstr "Créé le {0}"
+
+#: Template/Users/profile.ctp:141
+msgid "Your Lastest Posts in the Forum"
+msgstr "Vos derniers Messages dans le Forum"
+
+#: Template/Users/profile.ctp:143
+msgid "His Lastest Posts in the Forum"
+msgstr "Ces derniers Messages dans le Forum"
+
+#: Template/Users/profile.ctp:178
+msgid "Your Lastest Articles in the Blog"
+msgstr "Vos derniers Articles dans le Blog"
+
+#: Template/Users/profile.ctp:180
+msgid "His Lastest Articles in the Blog"
+msgstr "Ces derniers Articles dans le Blog"
+
+#: Template/Users/profile.ctp:206
+msgid "Your Lastest Comments in the Blog"
+msgstr "Vos derniers Commentaires dans le Blog"
+
+#: Template/Users/profile.ctp:208
+msgid "His Lastest Comments in the Blog"
+msgstr "Ces derniers Commentaires dans le Blog"
 
 #: Template/Users/settings.ctp:2;16
 msgid "My Settings"
