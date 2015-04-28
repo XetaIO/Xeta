@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-28 14:17+0000\n"
+"POT-Creation-Date: 2015-04-28 18:01+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -177,15 +177,15 @@ msgstr ""
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:283
+#: Controller/UsersController.php:305
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:301
+#: Controller/UsersController.php:323
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:306
+#: Controller/UsersController.php:328
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
@@ -1676,6 +1676,42 @@ msgstr ""
 
 #: Template/Users/profile.ctp:83
 msgid "His Badges"
+msgstr ""
+
+#: Template/Users/profile.ctp:104
+msgid "Your Lastest Threads in the Forum"
+msgstr ""
+
+#: Template/Users/profile.ctp:106
+msgid "His Lastest Threads in the Forum"
+msgstr ""
+
+#: Template/Users/profile.ctp:130;167;195;232
+msgid "Created at {0}"
+msgstr ""
+
+#: Template/Users/profile.ctp:141
+msgid "Your Lastest Posts in the Forum"
+msgstr ""
+
+#: Template/Users/profile.ctp:143
+msgid "His Lastest Posts in the Forum"
+msgstr ""
+
+#: Template/Users/profile.ctp:178
+msgid "Your Lastest Articles in the Blog"
+msgstr ""
+
+#: Template/Users/profile.ctp:180
+msgid "His Lastest Articles in the Blog"
+msgstr ""
+
+#: Template/Users/profile.ctp:206
+msgid "Your Lastest Comments in the Blog"
+msgstr ""
+
+#: Template/Users/profile.ctp:208
+msgid "His Lastest Comments in the Blog"
 msgstr ""
 
 #: Template/Users/settings.ctp:2;16

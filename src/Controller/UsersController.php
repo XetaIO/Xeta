@@ -247,15 +247,37 @@ class UsersController extends AppController
             ->contain([
                 'BlogArticles' => function ($q) {
                     return $q
-                        ->limit(Configure::read('User.Profile.max_articles'));
+                        ->limit(Configure::read('User.Profile.max_blog_articles'));
                 },
                 'BlogArticlesComments' => function ($q) {
                     return $q
-                        ->limit(Configure::read('User.Profile.max_comments'));
+                        ->limit(Configure::read('User.Profile.max_blog_comments'))
+                        ->contain([
+                            'BlogArticles' => function ($q) {
+                                return $q->select(['id', 'title', 'slug']);
+                            }
+                        ])
+                        ->order(['BlogArticlesComments.created' => 'DESC']);
                 },
-                'BlogArticlesLikes' => function ($q) {
+                'ForumThreads' => function ($q) {
                     return $q
-                        ->limit(Configure::read('User.Profile.max_likes'));
+                        ->limit(Configure::read('User.Profile.max_forum_threads'))
+                        ->contain([
+                            'FirstPosts' => function ($q) {
+                                return $q->select(['id', 'message', 'thread_id']);
+                            }
+                        ])
+                        ->order(['ForumThreads.created' => 'DESC']);
+                },
+                'ForumPosts' => function ($q) {
+                    return $q
+                        ->limit(Configure::read('User.Profile.max_forum_posts'))
+                        ->contain([
+                            'ForumThreads' => function ($q) {
+                                return $q->select(['id', 'title']);
+                            }
+                        ])
+                        ->order(['ForumPosts.created' => 'DESC']);
                 },
                 'BadgesUsers' => function ($q) {
                     return $q

@@ -24,9 +24,10 @@ return [
     ],
     'User' => [
         'Profile' => [
-            'max_articles' => 10,
-            'max_comments' => 10,
-            'max_likes' => 10
+            'max_blog_articles' => 5,
+            'max_blog_comments' => 5,
+            'max_forum_threads' => 5,
+            'max_forum_posts' => 5
         ],
         'user_per_page' => 15,
         'transaction_per_page' => 15

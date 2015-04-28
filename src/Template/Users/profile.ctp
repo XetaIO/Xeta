@@ -97,6 +97,145 @@
                         </div>
                     </div>
                 <?php endif; ?>
+
+                <?php if (!empty($user->forum_threads)): ?>
+                    <h4>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("Your Lastest Threads in the Forum") ?>
+                        <?php else: ?>
+                            <?= __("His Lastest Threads in the Forum") ?>
+                        <?php endif;?>
+                    </h4>
+                    <table class="table table-striped table-profile">
+                        <tbody>
+                            <?php foreach($user->forum_threads as $thread):?>
+                                <tr>
+                                    <td>
+                                        <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
+                                        <?= $this->Html->link(
+                                            $thread->title,
+                                            ['_name' => 'forum-threads', 'id' => $thread->id, 'slug' => $thread->slug, 'prefix' => 'forum'],
+                                            ['class' => 'title text-primary', 'escape' => false]
+                                        ) ?>
+                                        <br>
+                                        <?= $this->Text->truncate(
+                                            $thread->first_post->message_empty,
+                                            275,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        ) ?>
+                                        <br>
+                                        <?= __('Created at {0}', $thread->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+
+                <?php if (!empty($user->forum_posts)): ?>
+                    <h4>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("Your Lastest Posts in the Forum") ?>
+                        <?php else: ?>
+                            <?= __("His Lastest Posts in the Forum") ?>
+                        <?php endif;?>
+                    </h4>
+                    <table class="table table-striped table-profile">
+                        <tbody>
+                            <?php foreach($user->forum_posts as $post):?>
+                                <tr>
+                                    <td>
+                                        <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
+                                        <?= $this->Html->link(
+                                            $post->forum_thread->title,
+                                            ['controller' => 'posts', 'action' => 'go', $post->id, 'prefix' => 'forum'],
+                                            ['class' => 'title text-primary', 'escape' => false]
+                                        ) ?>
+                                        <br>
+                                        <?= $this->Text->truncate(
+                                            $post->message_empty,
+                                            275,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        ) ?>
+                                        <br>
+                                        <?= __('Created at {0}', $post->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+
+                <?php if (!empty($user->blog_articles)): ?>
+                    <h4>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("Your Lastest Articles in the Blog") ?>
+                        <?php else: ?>
+                            <?= __("His Lastest Articles in the Blog") ?>
+                        <?php endif;?>
+                    </h4>
+                    <table class="table table-striped table-profile">
+                        <tbody>
+                            <?php foreach($user->blog_articles as $article):?>
+                                <tr>
+                                    <td>
+                                        <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
+                                        <?= $this->Html->link(
+                                            $article->title,
+                                            ['_name' => 'blog-article', 'slug' => $article->slug],
+                                            ['class' => 'title text-primary']
+                                        ) ?>
+                                        <br>
+                                        <?= __('Created at {0}', $article->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+
+                <?php if (!empty($user->blog_articles_comments)): ?>
+                    <h4>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?= __("Your Lastest Comments in the Blog") ?>
+                        <?php else: ?>
+                            <?= __("His Lastest Comments in the Blog") ?>
+                        <?php endif;?>
+                    </h4>
+                    <table class="table table-striped table-profile">
+                        <tbody>
+                            <?php foreach($user->blog_articles_comments as $comment):?>
+                                <tr>
+                                    <td>
+                                        <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
+                                        <?= $this->Html->link(
+                                            $comment->blog_article->title,
+                                            ['controller' => 'blog', 'action' => 'go', $comment->id],
+                                            ['class' => 'title text-primary', 'escape' => false]
+                                        ) ?>
+                                        <br>
+                                        <?= $this->Text->truncate(
+                                            $comment->content_empty,
+                                            275,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        ) ?>
+                                        <br>
+                                        <?= __('Created at {0}', $comment->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
             </section>
         </div>
     </div>
