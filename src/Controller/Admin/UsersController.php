@@ -83,6 +83,16 @@ class UsersController extends AppController
                 ];
                 break;
 
+            case "group":
+                $this->paginate = [
+                    'limit' => 15,
+                    'conditions' => [
+                        'Groups.name LIKE' => "%$keyword%"
+                    ],
+                    'contain' => ['Groups']
+                ];
+                break;
+
             default:
                 $this->paginate = [
                     'limit' => 15,
