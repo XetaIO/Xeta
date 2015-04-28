@@ -139,6 +139,7 @@ class ForumCellTest extends TestCase
         $render = "{$cell}";
 
         $this->assertContains('panel-staff-online', $render);
+        $this->assertContains('panel-latest-threads', $render);
 
         $session = $this->Sessions->find()->where(['id' => 'd2k8c70sggoc4lhu8d4d3crq46'])->first();
         $this->Sessions->delete($session);
@@ -147,5 +148,6 @@ class ForumCellTest extends TestCase
         $render = "{$cell}";
 
         $this->assertNotContains('panel-staff-online', $render);
+        $this->assertContains('panel-latest-threads', $render);
     }
 }
