@@ -253,6 +253,40 @@ Router::prefix('forum', function ($routes) {
         ]
     );
 
+    $routes->connect(
+        '/threads/follow/:slug.:id',
+        [
+            'controller' => 'threads',
+            'action' => 'follow'
+        ],
+        [
+            '_name' => 'threads-follow',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/threads/unfollow/:slug.:id',
+        [
+            'controller' => 'threads',
+            'action' => 'unfollow'
+        ],
+        [
+            '_name' => 'threads-unfollow',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
     //Posts Routes.
     $routes->connect(
         '/posts/edit/:id',

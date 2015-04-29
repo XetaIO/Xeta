@@ -491,4 +491,115 @@ class ThreadsController extends AppController
 
         $this->redirect($this->referer());
     }
+
+    /**
+     * Follow a thread.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function follow()
+    {
+        $this->loadModel('ForumThreads');
+        $thread = $this->ForumThreads
+            ->find()
+            ->where([
+                'ForumThreads.id' => $this->request->id
+            ])
+            ->select([
+                'ForumThreads.id',
+                'ForumThreads.user_id',
+                'ForumThreads.title'
+            ])
+            ->first();
+
+        //Check if the thread is found.
+        if (is_null($thread)) {
+            $this->Flash->error(__("This thread doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->loadModel('ForumThreadsFollowers');
+        $isFollowed = $this->ForumThreadsFollowers
+            ->find()
+            ->where([
+                'ForumThreadsFollowers.user_id' => $this->Auth->user('id'),
+                'ForumThreadsFollowers.thread_id' => $thread->id
+            ])
+            ->first();
+
+        if (!is_null($isFollowed)) {
+            $this->Flash->error(__("You already follow this thread !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $data = [];
+        $data['thread_id'] = $thread->id;
+        $data['user_id'] = $this->Auth->user('id');
+        $follower = $this->ForumThreadsFollowers->newEntity($data);
+
+        if ($this->ForumThreadsFollowers->save($follower)) {
+            $this->Flash->success(__("You successfully follow this thread now !"));
+
+            return $this->redirect($this->referer());
+        } else {
+            $this->Flash->error(__("There was an error while following the thread."));
+
+            return $this->redirect($this->referer());
+        }
+    }
+
+    /**
+     * Unfollow a thread.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function unfollow()
+    {
+        $this->loadModel('ForumThreads');
+        $thread = $this->ForumThreads
+            ->find()
+            ->where([
+                'ForumThreads.id' => $this->request->id
+            ])
+            ->select([
+                'ForumThreads.id',
+                'ForumThreads.user_id',
+                'ForumThreads.title'
+            ])
+            ->first();
+
+        //Check if the thread is found.
+        if (is_null($thread)) {
+            $this->Flash->error(__("This thread doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->loadModel('ForumThreadsFollowers');
+        $follower = $this->ForumThreadsFollowers
+            ->find()
+            ->where([
+                'ForumThreadsFollowers.user_id' => $this->Auth->user('id'),
+                'ForumThreadsFollowers.thread_id' => $thread->id
+            ])
+            ->first();
+
+        if (is_null($follower)) {
+            $this->Flash->error(__("You don't follow this thread !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($this->ForumThreadsFollowers->delete($follower)) {
+            $this->Flash->success(__("You successfully unfollow this thread now !"));
+
+            return $this->redirect($this->referer());
+        } else {
+            $this->Flash->error(__("There was an error while unfollowing this thread."));
+
+            return $this->redirect($this->referer());
+        }
+    }
 }
