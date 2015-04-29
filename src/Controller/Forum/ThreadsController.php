@@ -3,6 +3,7 @@ namespace App\Controller\Forum;
 
 use App\Controller\AppController;
 use App\Event\Badges;
+use App\Event\Forum\Followers;
 use App\Event\Forum\Statistics;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -99,9 +100,17 @@ class ThreadsController extends AppController
                     $this->ForumCategories->save($parent);
                 }
 
-                //Event.
+                //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
                 $event = new Event('Model.ForumThreads.new', $this);
+                $this->eventManager()->dispatch($event);
+
+                //Followers Event.
+                $this->eventManager()->attach(new Followers());
+                $event = new Event('Model.ForumThreadsFollowers.new', $this, [
+                    'user_id' => $this->Auth->user('id'),
+                    'thread_id' => $newThread->id
+                ]);
                 $this->eventManager()->dispatch($event);
 
                 $this->Flash->success(__('Your thread has been created successfully !'));
