@@ -36,6 +36,7 @@ If you need to install to try a function or any other things, just follow the st
 * :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
 * :package: Supported DBMS : MySQL & SQLite
+* :package: [Google Recaptcha](https://www.google.com/recaptcha/intro/index.html) (For the register form)
 
 Steps to install :
 * Setup a new database on your server

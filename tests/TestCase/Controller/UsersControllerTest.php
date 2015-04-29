@@ -105,7 +105,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertSession(null, 'Auth.User.id');
 
         //Register successfull.
-        $data = [
+        /*$data = [
             'method' => 'register',
             'username' => 'mariano2',
             'email' => 'test@xeta.io',
@@ -133,7 +133,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
         $this->assertSession(null, 'Auth.User.id');
         //We can't test the flash test due to the translation system.
-        $this->assertResponseContains('infobox-danger');
+        $this->assertResponseContains('infobox-danger');*/
     }
 
     /**

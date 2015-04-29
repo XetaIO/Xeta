@@ -10,6 +10,19 @@ use Cake\I18n\Time;
 
 class UsersController extends AppController
 {
+    /**
+     * Initialize handle.
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        if ($this->request->action === 'login') {
+            $this->loadComponent('Recaptcha.Recaptcha');
+        }
+    }
 
     /**
      * BeforeFilter handle.
@@ -111,25 +124,29 @@ class UsersController extends AppController
                     $userRegister->last_login_ip = $this->request->clientIp();
                     $userRegister->last_login = new Time();
 
-                    if ($this->Users->save($userRegister)) {
-                        $user = $this->Auth->identify();
+                    if ($this->Recaptcha->verify()) {
+                        if ($this->Users->save($userRegister)) {
+                            $user = $this->Auth->identify();
 
-                        if ($user) {
-                            $this->Auth->setUser($user);
+                            if ($user) {
+                                $this->Auth->setUser($user);
+                            }
+
+                            //Event.
+                            $this->eventManager()->attach(new Statistics());
+
+                            $stats = new Event('Model.Users.register', $this);
+                            $this->eventManager()->dispatch($stats);
+
+                            $this->Flash->success(__("Your account has been created successfully !"));
+
+                            return $this->redirect($this->Auth->redirectUrl());
                         }
 
-                        //Event.
-                        $this->eventManager()->attach(new Statistics());
-
-                        $stats = new Event('Model.Users.register', $this);
-                        $this->eventManager()->dispatch($stats);
-
-                        $this->Flash->success(__("Your account has been created successfully !"));
-
-                        return $this->redirect($this->Auth->redirectUrl());
+                        $this->Flash->error(__("Please, correct your mistake."));
+                    } else {
+                        $this->Flash->error(__("Please, correct your Captcha."));
                     }
-
-                    $this->Flash->error(__("Please, correct your mistake."));
 
                     break;
             }

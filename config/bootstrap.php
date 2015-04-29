@@ -35,7 +35,7 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 // You can remove this if you are confident you have intl installed.
 if (!extension_loaded('intl')) {
-	trigger_error('You must enable the intl extension to use CakePHP.', E_USER_ERROR);
+    trigger_error('You must enable the intl extension to use CakePHP.', E_USER_ERROR);
 }
 
 use Cake\Cache\Cache;
@@ -62,11 +62,11 @@ use Cake\Utility\Security;
  * that changes from configuration that does not. This makes deployment simpler.
  */
 try {
-	Configure::config('default', new PhpConfig());
-	Configure::load('app', 'default', false);
-	Configure::load('xeta', 'default');
+    Configure::config('default', new PhpConfig());
+    Configure::load('app', 'default', false);
+    Configure::load('xeta', 'default');
 } catch (\Exception $e) {
-	die('Unable to load config/app.php. Create it by copying config/app.default.php to config/app.php.');
+    die('Unable to load config/app.php. Create it by copying config/app.default.php to config/app.php.');
 }
 
 // Load an environment local configuration file.
@@ -78,8 +78,8 @@ try {
 // for a very very long time, as we don't want
 // to refresh the cache while users are doing requests.
 if (!Configure::read('debug')) {
-	Configure::write('Cache._cake_model_.duration', '+1 years');
-	Configure::write('Cache._cake_core_.duration', '+1 years');
+    Configure::write('Cache._cake_model_.duration', '+1 years');
+    Configure::write('Cache._cake_core_.duration', '+1 years');
 }
 
 /**
@@ -103,8 +103,8 @@ ini_set('intl.default_locale', 'fr_FR');
  * Set the locales accepted.
  */
 Configure::write('I18n.locales', [
-	'en_US' => 'English',
-	'fr_FR' => 'Français'
+    'en_US' => 'English',
+    'fr_FR' => 'Français'
 ]);
 
 /**
@@ -112,14 +112,14 @@ Configure::write('I18n.locales', [
  */
 $isCli = php_sapi_name() === 'cli';
 if ($isCli) {
-	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
+    (new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-	(new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
+    (new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.
 if ($isCli) {
-	require __DIR__ . '/bootstrap_cli.php';
+    require __DIR__ . '/bootstrap_cli.php';
 }
 
 /**
@@ -129,16 +129,16 @@ if ($isCli) {
  * If you define fullBaseUrl in your config file you can remove this.
  */
 if (!Configure::read('App.fullBaseUrl')) {
-	$s = null;
-	if (env('HTTPS')) {
-		$s = 's';
-	}
+    $s = null;
+    if (env('HTTPS')) {
+        $s = 's';
+    }
 
-	$httpHost = env('HTTP_HOST');
-	if (isset($httpHost)) {
-		Configure::write('App.fullBaseUrl', 'http' . $s . '://' . $httpHost);
-	}
-	unset($httpHost, $s);
+    $httpHost = env('HTTP_HOST');
+    if (isset($httpHost)) {
+        Configure::write('App.fullBaseUrl', 'http' . $s . '://' . $httpHost);
+    }
+    unset($httpHost, $s);
 }
 
 Cache::config(Configure::consume('Cache'));
@@ -152,12 +152,12 @@ Security::salt(Configure::consume('Security.salt'));
  * Setup detectors for mobile and tablet.
  */
 Request::addDetector('mobile', function ($request) {
-	$detector = new \Detection\MobileDetect();
-	return $detector->isMobile();
+    $detector = new \Detection\MobileDetect();
+    return $detector->isMobile();
 });
 Request::addDetector('tablet', function ($request) {
-	$detector = new \Detection\MobileDetect();
-	return $detector->isTablet();
+    $detector = new \Detection\MobileDetect();
+    return $detector->isTablet();
 });
 
 /**
@@ -184,11 +184,12 @@ Plugin::load('Acl', ['bootstrap' => true]);
 Plugin::load('Xety/Cake3Upload');
 Plugin::load('Xety/Cake3Sluggable');
 Plugin::load('Xety/Cake3CookieAuth');
+Plugin::load('Recaptcha', ['routes' => true, 'bootstrap' => true]);
 
 // Only try to load DebugKit in development mode
 // Debug Kit should not be installed on a production system
 if (Configure::read('debug')) {
-	Plugin::load('DebugKit', ['bootstrap' => true]);
+    Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
 /**
