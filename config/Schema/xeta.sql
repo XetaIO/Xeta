@@ -686,6 +686,21 @@ INSERT INTO `forum_threads` (`id`, `category_id`, `user_id`, `title`, `reply_cou
 -- --------------------------------------------------------
 
 --
+-- Table structure `forum_threads_followers`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_threads_followers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure `forum_posts`
 --
 
