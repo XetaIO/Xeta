@@ -296,12 +296,20 @@ class ThreadsController extends AppController
                     $this->ForumCategories->save($parent);
                 }
 
-                //Event.
+                //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
                 $stats = new Event('Model.ForumPosts.new', $this);
                 $this->eventManager()->dispatch($stats);
 
-                //Attach Event.
+                //Followers Event.
+                $this->eventManager()->attach(new Followers());
+                $event = new Event('Model.ForumThreadsFollowers.new', $this, [
+                    'user_id' => $this->Auth->user('id'),
+                    'thread_id' => $thread->id
+                ]);
+                $this->eventManager()->dispatch($event);
+
+                //Badges Event.
                 $this->ForumPosts->eventManager()->attach(new Badges($this));
 
                 $threadOpen = isset($this->request->data['forum_thread']['thread_open']) ? $this->request->data['forum_thread']['thread_open'] : true;
