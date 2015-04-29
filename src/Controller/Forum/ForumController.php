@@ -320,7 +320,7 @@ class ForumController extends AppController
                     return $q->select(['id', 'is_staff']);
                 },
                 'ForumThreadsFollowers' => function ($q) use ($thread) {
-                    return $q->where(['thread_id' =>$thread->id])
+                    return $q->where(['thread_id' => $thread->id])
                         ->select(['id', 'user_id', 'thread_id']);
                 }
             ])
