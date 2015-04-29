@@ -6,7 +6,7 @@ php:
 
 env:
   matrix:
-    - DB=mysql db_class='Cake\Database\Driver\Mysql' db_dsn='mysql:host=127.0.0.1;dbname=xeta_test' db_database='xeta_test' db_login='travis' db_password=''
+    - DB=mysql db_class='Cake\Database\Driver\Mysql' db_dsn='mysql:host=0.0.0.0;dbname=xeta_test' db_database='xeta_test' db_login='travis' db_password=''
   global:
     - DEFAULT=1
 
