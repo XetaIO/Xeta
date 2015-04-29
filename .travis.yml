@@ -17,7 +17,7 @@ matrix:
   fast_finish: true
   include:
     - php: 5.5
-      env: DB=sqlite db_class='Cake\Database\Driver\Sqlite' db_dsn='sqlite::memory:'
+      env: DB=sqlite db_dsn='sqlite:///:memory:'
     - php: 5.5
       env: PHPCS=1 DEFAULT=0
     - php: 5.5
