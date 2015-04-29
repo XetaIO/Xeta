@@ -17,7 +17,8 @@
         "mexitek/phpcolors": "dev-master",
         "xety/cake3-upload": "1.*",
         "xety/cake3-sluggable": "1.*",
-        "xety/cake3-cookieauth": "1.*"
+        "xety/cake3-cookieauth": "1.*",
+        "cake17/cakephp-recaptcha": "dev-master"
     },
     "require-dev": {
         "psy/psysh": "@stable",

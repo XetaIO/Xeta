@@ -37,6 +37,7 @@ class Installer
 
         $rootDir = dirname(dirname(__DIR__));
         static::createAppConfig($rootDir, $io);
+        static::createRecaptchaConfig($rootDir, $io);
         static::setFolderPermissions($rootDir, $io);
         static::setDatabaseName($rootDir, $io);
         $newKey = static::setSecuritySalt($rootDir, $io);
@@ -58,6 +59,24 @@ class Installer
         if (!file_exists($appConfig)) {
             copy($defaultConfig, $appConfig);
             $io->write('Created `config/app.php` file');
+        }
+    }
+
+    /**
+     * Create the config/recaptcha.php file if it does not exist.
+     *
+     * @param string $dir The application's root directory.
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     *
+     * @return void
+     */
+    public static function createRecaptchaConfig($dir, $io)
+    {
+        $appConfig = $dir . '/config/recaptcha.php';
+        $defaultConfig = $dir . '/config/recaptcha.default.php';
+        if (!file_exists($appConfig)) {
+            copy($defaultConfig, $appConfig);
+            $io->write('Created `config/recaptcha.php` file');
         }
     }
 
