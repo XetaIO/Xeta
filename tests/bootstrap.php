@@ -15,11 +15,11 @@ define('TEST_TMP', TEST_APP . 'tmp' . DS);
 define('TEST_WWW_ROOT', TEST_APP . 'webroot' . DS);
 
 if (!getenv('db_class')) {
-    putenv('db_class=Cake\Database\Driver\Sqlite');
-    putenv('db_dsn=sqlite::memory:');
+    //putenv('db_class=Cake\Database\Driver\Sqlite');
+    putenv('db_dsn=sqlite:///:memory:');
 }
-
-ConnectionManager::config('test', [
+ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
+/*ConnectionManager::config('test', [
     'className' => 'Cake\Database\Connection',
     'driver' => getenv('db_class'),
     'dsn' => getenv('db_dsn'),
@@ -27,4 +27,4 @@ ConnectionManager::config('test', [
     'username' => getenv('db_login'),
     'password' => getenv('db_password'),
     'timezone' => 'UTC'
-]);
+]);*/
