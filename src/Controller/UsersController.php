@@ -12,9 +12,13 @@ class UsersController extends AppController
 {
     /**
      * Initialize handle.
+     *
+     * @return void
      */
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
+
         if ($this->request->action === 'login') {
             $this->loadComponent('Recaptcha.Recaptcha');
         }
