@@ -3,16 +3,22 @@
         <i class="fa fa-bell-o <?= ($hasNewNotifs) ? 'animated ringing text-danger' : '' ?>"></i>
     </a>
     <ul class="dropdown-menu" role="menu">
-        <li class="dropdown-header"><?= __('News Notifications') ?></li>
+        <li class="dropdown-header">
+            <?= __('News Notifications') ?>
+        </li>
         <li class="divider"></li>
         <?php if (!empty($notifications)): ?>
-            <?php foreach ($notifications as $notification): ?>
+
+        <?php foreach ($notifications as $notification): ?>
                 <li class="notification-item">
-                    <a href="<?= $notification->link ?>">
+                    <
+                    a href="<?= $notification->link ?>">
                         <?= $this->Html->image($notification->data['sender']->avatar, ['class' => 'avatar img-thumbnail']) ?>
+
                         <p class="info">
                             <?= $notification->text ?>
                         </p>
+
                         <?php if (!$notification->is_read): ?>
                             <strong class="new">
                                 <span></span>
@@ -20,10 +26,14 @@
                             </strong>
                         <?php endif; ?>
                     </a>
+
                 </li>
             <?php endforeach; ?>
+
         <?php else: ?>
-            <li class="dropdown-header"><?= __("You don't have any notifications.") ?></li>
+            <li class="dropdown-header">
+                <?= __("You don't have any notifications.") ?>
+            </li>
         <?php endif; ?>
         <li class="divider"></li>
         <li>
