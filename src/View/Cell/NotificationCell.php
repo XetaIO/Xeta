@@ -1,6 +1,7 @@
 <?php
 namespace App\View\Cell;
 
+use Cake\Core\Configure;
 use Cake\Routing\Router;
 use Cake\Utility\Text;
 use Cake\View\Cell;
@@ -25,7 +26,7 @@ class NotificationCell extends Cell
                 'is_read' => 'ASC',
                 'created' => 'DESC'
             ])
-            ->limit(Configuration::read('User.max_notifications'))
+            ->limit(Configure::read('User.max_notifications'))
             ->map(function ($notification) {
                 $notification->data = unserialize($notification->data);
 
