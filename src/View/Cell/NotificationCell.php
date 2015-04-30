@@ -25,7 +25,7 @@ class NotificationCell extends Cell
                 'is_read' => 'ASC',
                 'created' => 'DESC'
             ])
-            ->limit(5)
+            ->limit(Configuration::read('User.max_notifications'))
             ->map(function ($notification) {
                 $notification->data = unserialize($notification->data);
 
