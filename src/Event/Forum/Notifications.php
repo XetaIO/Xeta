@@ -39,17 +39,22 @@ class Notifications implements EventListenerInterface
 
         switch($event->data['type']) {
             case 'thread.reply':
-                return $this->_threadReply($event);
+                $result = $this->_threadReply($event);
                 break;
 
             case 'thread.lock':
-                return $this->_threadLock($event);
+                $result = $this->_threadLock($event);
                 break;
 
             case 'post.like':
-                return $this->_postLike($event);
+                $result = $this->_postLike($event);
                 break;
+
+            default:
+                $result = false;
         }
+
+        return $result;
     }
 
     /**

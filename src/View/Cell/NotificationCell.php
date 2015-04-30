@@ -89,7 +89,7 @@ class NotificationCell extends Cell
         ];
 
         //A map function to count the read/unread notifications
-        $map = function($v) {
+        $map = function ($v) {
             if ($v->is_read == 0) {
                 return 'unread';
             } else {

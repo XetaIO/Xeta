@@ -165,7 +165,7 @@ class PostsController extends AppController
             $this->eventManager()->attach(new Notifications());
             $event = new Event('Model.Notifications.new', $this, [
                 'sender_id' => $this->Auth->user('id'),
-                'post_id' => (int) $this->request->data['id'],
+                'post_id' => (int)$this->request->data['id'],
                 'type' => 'post.like'
             ]);
             $this->eventManager()->dispatch($event);
