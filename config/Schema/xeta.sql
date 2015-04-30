@@ -836,6 +836,24 @@ INSERT INTO `chat_messages` (`id`, `user_id`, `username`, `slug`, `css`, `group_
 -- --------------------------------------------------------
 
 --
+-- Table structure `notifications`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `type` varchar(150) NOT NULL,
+  `data` text,
+  `is_read` tinyint(2) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure `chat_bans`
 --
 
