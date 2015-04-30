@@ -4,6 +4,7 @@ namespace App\Controller\Forum;
 use App\Controller\AppController;
 use App\Event\Badges;
 use App\Event\Forum\Followers;
+use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -309,6 +310,15 @@ class ThreadsController extends AppController
                 ]);
                 $this->eventManager()->dispatch($event);
 
+                //Notifications Event.
+                $this->eventManager()->attach(new Notifications());
+                $event = new Event('Model.Notifications.dispatch', $this, [
+                    'sender_id' => $this->Auth->user('id'),
+                    'thread_id' => $thread->id,
+                    'type' => 'thread.reply'
+                ]);
+                $this->eventManager()->dispatch($event);
+
                 //Badges Event.
                 $this->ForumPosts->eventManager()->attach(new Badges($this));
 
@@ -401,6 +411,15 @@ class ThreadsController extends AppController
         $thread->thread_open = false;
 
         if ($this->ForumThreads->save($thread)) {
+            //Notifications Event.
+            $this->eventManager()->attach(new Notifications());
+            $event = new Event('Model.Notifications.new', $this, [
+                'sender_id' => $this->Auth->user('id'),
+                'thread_id' => $thread->id,
+                'type' => 'thread.lock'
+            ]);
+            $this->eventManager()->dispatch($event);
+
             $this->Flash->success(__("This thread has been locked successfully !"));
 
             return $this->redirect([
@@ -506,9 +525,7 @@ class ThreadsController extends AppController
                 'ForumThreads.id' => $this->request->id
             ])
             ->select([
-                'ForumThreads.id',
-                'ForumThreads.user_id',
-                'ForumThreads.title'
+                'ForumThreads.id'
             ])
             ->first();
 
@@ -564,9 +581,7 @@ class ThreadsController extends AppController
                 'ForumThreads.id' => $this->request->id
             ])
             ->select([
-                'ForumThreads.id',
-                'ForumThreads.user_id',
-                'ForumThreads.title'
+                'ForumThreads.id'
             ])
             ->first();
 
