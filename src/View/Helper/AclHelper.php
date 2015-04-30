@@ -8,6 +8,7 @@ use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\View\Helper;
 use Cake\View\View;
+use App\Model\Entity\Group;
 
 class AclHelper extends Helper
 {
@@ -79,6 +80,14 @@ class AclHelper extends Helper
         $action = $this->Authorize->action($request);
 
         return $this->Acl->check($user, $action);
+    }
+    public function checkGroup(Group $aro, $aco ='')
+    {
+        if (empty($aro) || empty($aco)) {
+            return false;
+        }
+
+        return $this->Acl->check($aro, $aco);
     }
 
     /**

@@ -5,6 +5,8 @@ use App\Controller\AppController;
 use App\Event\Forum\Statistics;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
+use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 
 class GroupsController extends AppController
 {
@@ -57,33 +59,31 @@ class GroupsController extends AppController
                 $stats = new Event('Model.Groups.update', $this);
                 $this->eventManager()->dispatch($stats);
 
-                /*
-                *  Inherit parent acos value
-                */
-               // 1st.Find all permissions from parentARO
                 $ParentAro = $this->Acl->Aro
                     ->find('all')
                     ->where(['model' => 'Groups', 'foreign_key' => $this->request->data['parent']])
                     ->contain(['Acos'])
                     ->first();
-                 // 2nd. Find the new Aro created by the Group afterSave Event
                 $newAro = $this->Acl->Aro->find('all')->where(['model' => 'Groups', 'foreign_key' => $group->id])->first();
-                //3rd. Set the parent_id to this new aro
                 $newAro->parent_id = $this->request->data['parent'];
-                $this->Acl->Aro->save($newAro);
 
-                // Foreach parent perms and inherit this perms to this new aro
-                foreach($ParentAro['acos'] as $aco ){
-                    if($aco->parent_id != null){
-                        $parent_aco = $this->Acl->Aco->find('all')->where(['id' => $aco['parent_id']])->first(); //Find the parent aco for prepend the paren['alias'] for the next query
-                        $this->Acl->inherit(['model' => 'Groups', 'foreign_key' => $group->id],  $parent_aco['alias'].'/'.$aco['alias']); // Inherit acl from parent. Set to 0 on the DB
-                    }else{
-                       $this->Acl->inherit(['model' => 'Groups', 'foreign_key' => $group->id],  $aco['alias']);
+                if($this->Acl->Aro->save($newAro)){
+                    $editablePermissions = Configure::read('Editable-Permissions');
+                    $basicPermissions = Configure::read('Basic-Permissions');
+                    foreach($editablePermissions as $permGroup => $perm){
+                        foreach($perm as $permAction => $action){
+                            $this->Acl->inherit(['model' => 'Groups', 'foreign_key' => $group->id],  $action);
+                        }
                     }
+                    foreach($basicPermissions as $basicPerms){
+                        debug($basicPerms);
+                        $this->Acl->allow(['model' => 'Groups', 'foreign_key' => $group->id],  $basicPerms);
+                    }
+                    $this->Flash->success(__d('admin', 'Your group has been created successfully !'));
+                    return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->success(__d('admin', 'Your group has been created successfully !'));
-
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->error(__d('admin', 'Your group has been created successfully, but ACL Aro attributions failed.'));
+                return $this->redirect(['action' => 'edit', $group->id]);
             }
         }
 
@@ -104,6 +104,7 @@ class GroupsController extends AppController
                 'Groups.id' => $this->request->id
             ])
             ->first();
+        $permissions = Configure::read('Editable-Permissions');
 
         //Check if the group is found.
         if (empty($group)) {
@@ -112,7 +113,46 @@ class GroupsController extends AppController
             return $this->redirect(['action' => 'index']);
         }
 
+         if ($this->request->is('post')) {
 
+            $this->Permissions = TableRegistry::get('Permissions');
+            $result = false;
+
+            $newAro = $this->Acl->Aro->find('all')->where(['model' => 'Groups', 'foreign_key' => $group->id])->first();
+            $ParentAro = $this->Acl->Aro->find('all')->where(['model' => 'Groups', 'foreign_key' => $newAro->parent_id])->first();
+
+            foreach($this->request->data as $K => $V){
+                foreach($V as $k => $v){
+                    foreach($v as $alias => $value){
+                        if($value == '1'){
+                            $check =  $this->Permissions->getAclLink(['model' => 'Groups','foreign_key' => $ParentAro->id], $alias);
+                            if($check){
+                                if(is_array($check['link']['Permissions']) && !empty($check['link']['Permissions'])){
+                                    if($check['link']['Permissions'][0]['_create'] === '0' || $check['link']['Permissions'][0]['_create'] === '1'){
+                                        $this->Acl->inherit(['model' => 'Groups', 'foreign_key' => $group->id], $alias);
+                                    }else{
+                                        $this->Acl->allow(['model' => 'Groups', 'foreign_key' => $group->id], $alias);
+                                    }
+                                }
+                            }
+                        }else{
+                            $check =  $this->Permissions->getAclLink(['model' => 'Groups','foreign_key' => $ParentAro->id], $alias);
+                            if($check){
+                                if(is_array($check['link']['Permissions']) && !empty($check['link']['Permissions'])){
+                                    if($check['link']['Permissions'][0]['_create'] === '0' || $check['link']['Permissions'][0]['_create'] === '-1'){
+                                        $this->Acl->inherit(['model' => 'Groups', 'foreign_key' => $group->id], $alias);
+                                    }else{
+                                        $this->Acl->deny(['model' => 'Groups', 'foreign_key' => $group->id], $alias);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $this->Flash->success(__d('admin', 'This group has been updated successfully !'));
+            return $this->redirect(['action' => 'index']);
+         }
 
         if ($this->request->is('put')) {
             $this->Groups->patchEntity($group, $this->request->data());
@@ -131,7 +171,7 @@ class GroupsController extends AppController
             }
         }
 
-        $this->set(compact('group'));
+        $this->set(compact('group', 'permissions'));
     }
 
     /**

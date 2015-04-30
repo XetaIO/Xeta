@@ -172,5 +172,112 @@ return [
         'spamRule' => 95,
         //Max characters per message.
         'messageMaxLength' => 400
+    ],
+    'Basic-Permissions' => [
+        'app',
+        'app/Pages',
+        'app/Pages/home',
+        'app/Pages/acceptCookie',
+        'app/Pages/lang',
+        'app/forum/Posts/go',
+        'app/forum/Posts/like',
+        'app/forum/Posts/unlike',
+        'app/forum/Posts/quote',
+        'app/forum/Posts/getEditPost',
+        'app/chat/Chat/getNotice',
+    ],
+    'Editable-Permissions' => [
+        'Admin' => [
+            'access' => 'app/admin',
+        ],
+        'Contact' => [
+            'public access' => 'app/Contact',
+        ],
+        'Blog' => [
+            'public blog access' => 'app/Blog',
+            'delete comment' => 'app/Blog/deleteComment',
+            'edit comment' => 'app/Blog/editComment',
+        ],
+        'Articles' => [
+            'admin access' => 'app/admin/Articles',
+            'add' => 'app/admin/Articles/add',
+            'view' => 'app/admin/Articles/index',
+            'edit' =>  'app/admin/Articles/edit',
+            'delete'=> 'app/admin/Articles/delete'
+        ],
+        'Categories' => [
+            'admin access' => 'app/admin/Categories',
+            'add' => 'app/admin/Categories/add',
+            'view' => 'app/admin/Categories/index',
+            'edit' => 'app/admin/Categories/edit',
+            'delete' => 'app/admin/Categories/delete'
+        ],
+        'Attachments' => [
+            'admin access' => 'app/admin/Attachments',
+            'add' => 'app/admin/Attachments/add',
+            'edit' =>  'app/admin/Attachments/edit',
+            'delete' =>  'app/admin/Attachments/delete'
+        ],
+        'Forums' => [
+            'admin access' => 'app/admin/forum',
+            'add categorie' => 'app/admin/forum/Categories/add',
+            'edit categorie' => 'app/admin/forum/Categories/edit',
+            'delete categorie' => 'app/admin/forum/Categories/delete',
+            'delete moveup' => 'app/admin/forum/Categories/moveup',
+            'delete movedown' => 'app/admin/forum/Categories/movedown',
+            'show index' =>  'app/forum/Forum/index',
+            'show categories' => 'app/forum/Forum/categories',
+            'show threads' => 'app/forum/Forum/threads'
+        ],
+        'Threads' => [
+            'create' =>  'app/forum/Threads/create',
+            'edit' =>  'app/forum/Threads/edit',
+            'reply' =>  'app/forum/Threads/reply',
+            'lock' =>  'app/forum/Threads/lock',
+            'unlock' =>  'app/forum/Threads/unlock'
+        ],
+        'Posts' => [
+            'new' =>  'app/forum/Posts/new',
+            'edit' =>  'app/forum/Posts/edit',
+            'delete' =>  'app/forum/Posts/delete'
+        ],
+        'Chat' => [
+            'show' => 'app/chat/Chat/index',
+            'edit' => 'app/chat/Chat/editNotice',
+            'shout' => 'app/chat/Chat/shout',
+            'delete' => 'app/chat/Chat/delete',
+            'canPrune' => 'app/chat/Permissions/canPrune',
+            'canBan' => 'app/chat/Permissions/canBan',
+            'canUnban' => 'app/chat/Permissions/canUnban',
+            'canDelete' => 'app/chat/Permissions/canDelete',
+            'canNotice' => 'app/chat/Permissions/canNotice'
+        ],
+        'Users' => [
+            'show' => 'app/admin/Users/index',
+            'edit' => 'app/admin/Users/edit',
+            'delete avatar' => 'app/admin/Users/deleteAvatar',
+            'delete' => 'app/admin/Users/delete'
+        ],
+        'Groups' => [
+            'access' => 'app/admin/Groups',
+            'add' => 'app/admin/Groups/add',
+            'edit' => 'app/admin/Groups/edit',
+            'delete' => 'app/admin/Groups/delete'
+        ],
+        'Premium' => [
+            'subscribe' => 'app/Premium/index',
+            'admin statistics' => 'app/admin/premium/Premium/home'
+        ],
+        'Offers' => [
+            'admin access' => 'app/admin/premium/Offers',
+            'add' => 'app/admin/premium/Offers/add',
+            'edit' => 'app/admin/premium/Offers/edit',
+            'delete' => 'app/admin/premium/Offers/delete'
+        ],
+        'Discounts' => [
+            'admin access' => 'app/admin/premium/Discounts',
+            'add' => 'app/admin/premium/Discounts/add',
+            'edit' => 'app/admin/premium/Discounts/edit'
+        ]
     ]
 ];
