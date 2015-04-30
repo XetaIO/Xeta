@@ -88,7 +88,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<?= $this->Form->label('is_member', __d('admin', 'Is Member'), ['class' => 'col-sm-2 control-label']) ?>
+						<?= $this->Form->label('Parent Group', __d('admin', 'Parent Group'), ['class' => 'col-sm-2 control-label']) ?>
 						<div class="col-sm-5 radio-check">
 							<?= $this->Form->select('parent', $parents,
 								[
