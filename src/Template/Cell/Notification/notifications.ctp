@@ -11,8 +11,8 @@
 
         <?php foreach ($notifications as $notification): ?>
                 <li class="notification-item">
-                    <
-                    a href="<?= $notification->link ?>">
+
+                    <a href="<?= $notification->link ?>">
                         <?= $this->Html->image($notification->data['sender']->avatar, ['class' => 'avatar img-thumbnail']) ?>
 
                         <p class="info">
