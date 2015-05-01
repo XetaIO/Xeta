@@ -20,7 +20,7 @@ class NotificationsController extends AppController
     /**
      * Mark a notification as readed.
      *
-     * @return \Cake\Network\Response
+     * @return void|\Cake\Network\Response
      */
     public function markAsRead()
     {
