@@ -1,4 +1,7 @@
-# Cake3 Blog Resource
+# Xeta : CakePHP 3 Resource
+<p align="center">
+  <img src="https://xeta.io/img/xeta-logo.svg" alt="Xeta Logo" height="120"/>
+</p>
 
 |Travis|Appveyor|Coverage|Landscape|Scrutinizer|
 |:------:|:-------:|:-------:|:------:|:------:|
@@ -8,9 +11,9 @@
 |:------:|:-------:|:-------:|:------:|:------:|
 |[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Version EYE](https://img.shields.io/versioneye/d/ruby/rails.svg?style=flat-square)](https://www.versioneye.com/user/projects/55430de8d8fe1a25cc000053)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
 
-Cake3 Blog Resource, is a resource to help people starting with Cake3.
+Xeta, is a resource to help people starting with Cake3.
 
-Actually, I have developed this blog to try Cake3 and for my needs (personal blog), and I have decided to release it to help people with Cake3, so there is probably some custom configurations/functions that only fit my needs.
+Actually, I have developed this blog to try CakePHP 3 and for my needs (personal blog), and I have decided to release it to help people with CakePHP 3, so there is probably some custom configurations/functions that only fit my needs.
 
 ## Demo
 https://xeta.io
@@ -34,7 +37,7 @@ If you need to install to try a function or any other things, just follow the st
 
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
-* :package: All requirements for CakePHP : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
+* :package: All requirements for CakePHP 3 : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
 * :package: Supported DBMS : MySQL & SQLite
 * :package: [Google Recaptcha](https://www.google.com/recaptcha/intro/index.html) (For the register form)
@@ -60,83 +63,65 @@ https://github.com/Xety/Xeta/wiki
     * User : Test | Pass : `testaccount`
 
 # Features
-Since I have decided to release it, I'm trying to use the maximum of Cake3's features :
+This project implements many features and will implements more in the future. Here's a list of the features developed in Xeta :
 
-## Behaviors
-* Timestamp
-    * Used to allow Cake to modify the fields `created` and `modified` automatically
-* CounterCache
-    * To build counter automatically
-        * Comments count
-        * Likes count
-* Custom Behavior :
-    * UploadBehavior (Migrated into a plugin : [Cake3-Upload](https://github.com/Xety/Cake3-Upload))
-        * To upload safely an avatar for user
-    * Sluggable Behavior (Migrated into a plugin : [Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable))
-        * Used to build slug when creating an user and creating an article
+* ###### Blog
+    * Categories
+    * Comments
+    * Likes Articles
+    * Article's Internationalization (You change your language, the article is also translated in the language that you have choosen)
+    * Archives
+    * Quote
+    * Attachments
 
-### Components
-* Pagination
-    * To build custom pagination request for the list of articles, users etc
-* Sessions
-    * To store user's information
-* Authentication
-    * For login/logout an user
-    * To authorize an user to access in the Administration Panel
-* Flash
-    * With custom message : Error, Success, Info, Primary
-* Cross Site Request Forgery (CSRF)
-    * To provide the max security
-* Request Handling
-    * To render json views (Used with AJAX request/response)
+* ###### Forum
+    * Categories (Managed by the TreeBehavior. That means unlimited sub-categories)
+    * Statistics (Total Post, Threads, Likes)
+    * Users online on the site
+    * Staff Online
+    * Followers (Follow a Thread to get notified on reply)
+    * Notifications (On Thread Replied, On Thread Created, On Locked Thread, On Badge etc)
+    * Sticky Threads
+    * Locked Threads
+    * Likes on Posts
+    * "There is X Users on this page"
+    * Latest Threads
+    * Polls (Will be added in the Future)
+    * Read/Unread system (Will be added soon)
 
-### Helpers
-* Url
-    * To build URLs for AJAX request. (Like system)
-* Form
-* Html
-* Number
-    * To build beautiful number for comments/likes count.
-* Paginator
-    * To build beautiful pagination
-* Session
-    * To access to the user Session information
-* Flash
-    * To render some flash message
-* Text
-    * To truncate some text
-* Time
- * To build a new date time when an user try to login
+* ###### Chatbox (AJAX)
+    * Users online in the chat
+    * Ban/Unban/Prune command
+    * Delete a message
+    * Notice
+    * Smileys
 
-### Utilities
-* Email
-    * In the Contact page
-* Folder & File
-    * With the UploadBehavior
-* Inflector
-    * With the SluggableBehavior
-* Internationalization & Localization
-* Router
-    * To build custom routes names
-    * Prefix (admin)
-* Cache
-    * To cache all Google Analytics requests in the Administration Panel
+* ###### Premium
+    * Support of Paypal
+    * Discounts Code
+    * Offers
 
-### General
-* Validation & Validator
-    * Custom Validator
-        * UploadValidator
-        * PurifierValidator
-        * Validator for the Contact Page (With an ArrayContext)
-* View Cell
-    * Blog sidebar
-* Events System
-    * Badge system
-        * Badge on comment
-        * Badge for register date
-* Authenticate
-    * Cookies (Migrated into a plugin : [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth))
-        * For auto-login
+* ###### Admin Panel
+    * Google Analytics integrated
+    * Members Management
+    * Blog Management
+        * Attachments
+        * Categories
+        * Articles
+    * Groups Management
+    * Premium Management
+        * Statistics
+        * Offers
+        * Discounts
+    * Forum Management
+        * Categories
+
+* ###### ACL
+    * ACL Management (Still in Dev)
+
+* WYSIWYG Editor (CKEditor) on all the site : Articles, Comments, Posts, Notice in the chat etc
+
+All the CakePHP3's features that i use in the project are described [here](https://github.com/Xety/Xeta/blob/master/CakePHP3Features.md).
 
 # Information
 If you want to contribute to the project by adding new features or just fix a bug, feel free to do a PR.
@@ -145,4 +130,5 @@ If you want to contribute to the project by adding new features or just fix a bu
 [Follow this guide to contribute](https://github.com/Xety/Xeta/blob/master/CONTRIBUTING.md)
 
 # Special Thanks
-* [Antograssiot](https://github.com/antograssiot) (Cake Team Member) For all his help !
+* [Antograssiot](https://github.com/antograssiot) (CakePHP Team Member) For all his help !
+* And all the contributors !
