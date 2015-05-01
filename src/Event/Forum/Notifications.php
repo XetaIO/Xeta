@@ -100,7 +100,7 @@ class Notifications implements EventListenerInterface
             if ($follower->user_id != $event->data['sender_id']) {
                 $event->data['follower'] = $follower;
 
-                $result = $this->newNotification($event);
+                $this->newNotification($event);
             }
         }
 
