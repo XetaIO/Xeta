@@ -93,6 +93,51 @@
 
 			</div>
 		</div>
+		<?php if($this->Acl->check(['controller' => 'Groups', 'action' => 'edit', 'prefix' => 'admin'])):?>
+		<div class="col-md-12">
+			<div class="panel panel-default">
 
+				<div class="panel-heading">
+					<?= __d('admin', 'Edit Permissions'); ?>
+				</div>
+
+				<div class="panel-body">
+					<?= $this->Form->create('Permissions', [
+						'class' => 'form-horizontal',
+						'role' => 'form'
+					]) ?>
+
+					<?php foreach($permissions as $permGroup => $perm):?>
+						<h2><?= $permGroup; ?></h2>
+						<div class="form-group">
+							<?= $this->Form->label($permGroup, __d('admin', 'Actions'), ['class' => 'col-sm-2 control-label']) ?>
+							<?php foreach($perm as $permAction => $action):?>
+								<?php
+								($this->Acl->checkGroup($group, $action) ? $check = ['val' =>1, 'class' => 'primary'] : $check = ['val' =>0, 'class' => 'danger']);
+								?>
+								<div class="col-sm-1 radio-check">
+									<div class="text-<?=$check['class'];?> text-center text-uppercase">
+										<?= __d('admin', $permAction) ?>
+									</div>
+									<?= $this->Form->select($permGroup.'.'.$permAction.'.'.$action, [
+											'1' => __d('admin', 'Yes'),
+											'0' => __d('admin', 'No')
+										],
+										[
+											'value' => $check['val'],
+											'legend' => false,
+											'class' => 'form-control'
+										]
+									) ?>
+								</div>
+							<?php endforeach;?>
+						</div>
+					<?php endforeach;?>
+					<?= $this->Form->button(__d('admin', 'Edit Group'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
+					<?= $this->Form->end() ?>
+				</div>
+			</div>
+		</div>
+		<?php endif;?>
 	</div>
 </div>
