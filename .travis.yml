@@ -23,9 +23,11 @@ matrix:
     - php: 5.5
       env: COVERALLS=1 DEFAULT=0
 
-before_script:
+install:
   - composer self-update
   - composer install --prefer-dist --no-interaction
+
+before_script:
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE xeta_test;'; fi"
   - sh -c "if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi"
   - sh -c "if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi"
