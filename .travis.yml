@@ -37,6 +37,7 @@ script:
   - sh -c "if [ '$COVERALLS' = '1' ]; then vendor/bin/coveralls -c .coveralls.yml -v; fi"
   - sh -c "if [ '$DEFAULT' = '1' ]; then phpunit; fi"
   - sh -c "if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi"
+  - phpunit --coverage-clover=coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
