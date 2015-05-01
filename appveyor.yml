@@ -1,17 +1,25 @@
 build: false
+
 shallow_clone: false
+
 platform: 'x86'
+
 clone_folder: c:\projects\xeta
+
 environment:
   global:
     PHP: "C:/PHP"
+
   matrix:
       - db: 2012
         db_dsn: 'sqlserver://sa:Password12!@.\SQL2012SP1/xeta_test?MultipleActiveResultSets=false'
+
 services:
   - mssql2012sp1
+
 init:
   - SET PATH=C:\php\;%PATH%
+
 install:
   - cd c:\
   - ps: Start-FileDownload 'http://ci.cakephp.org/php.zip'
@@ -33,7 +41,8 @@ install:
   - echo curl.cainfo = "C:\projects\xeta\config\cacert.pem" >> php.ini
   - cd C:\projects\xeta
   - php -r "readfile('https://getcomposer.org/installer');" | php
-  - php composer.phar install --prefer-dist --no-interaction --dev
+  - php composer.phar install --prefer-dist --no-interaction
+
 before_test:
 # This script solves the "Database 'model' is being recovered. Waiting until recovery is finished."
 # This solution comes from https://gist.github.com/jonathanhickford/1cb0d6665adab8b9c664
