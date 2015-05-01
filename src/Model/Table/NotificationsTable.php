@@ -33,14 +33,15 @@ class NotificationsTable extends Table
      * Custom finder for map the ntofications.
      *
      * @param \Cake\ORM\Query $query The query finder.
+     * @param array $options The options passed in the query builder.
      *
      * @return \Cake\ORM\Query
      */
     public function findMap(Query $query, array $options)
     {
         return $query
-            ->formatResults(function ($notifications) use($options) {
-                return $notifications->map(function ($notification) use($options) {
+            ->formatResults(function ($notifications) use ($options) {
+                return $notifications->map(function ($notification) use ($options) {
                     $notification->data = unserialize($notification->data);
 
                     switch ($notification->type) {
