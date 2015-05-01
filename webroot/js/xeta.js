@@ -5,31 +5,31 @@ $(document).ready(function () {
      * Tooltip / Popover
      */
     $("body").tooltip({
-        selector: "[data-toggle=tooltip]",
+        selector : "[data-toggle=tooltip]",
         trigger : "hover",
-        html    : true
+        html : true
     });
     $("body").popover({
-        selector: "[data-toggle=popover]"
+        selector : "[data-toggle=popover]"
     });
 
     /**
      * ScrollUp.
      */
     $.scrollUp({
-        scrollName       : "scrollUp",
-        scrollDistance   : 300,
-        scrollFrom       : "top",
-        scrollSpeed      : 1000,
-        easingType       : "easeInOutCubic",
-        animation        : "fade",
+        scrollName : "scrollUp",
+        scrollDistance : 300,
+        scrollFrom : "top",
+        scrollSpeed : 1000,
+        easingType : "easeInOutCubic",
+        animation : "fade",
         animationInSpeed : 200,
-        animationOutSpeed: 200,
-        scrollText       : '<i class="fa fa-chevron-up"></i>',
-        scrollTitle      : " ",
-        scrollImg        : 0,
-        activeOverlay    : 0,
-        zIndex           : 1001
+        animationOutSpeed : 200,
+        scrollText : '<i class="fa fa-chevron-up"></i>',
+        scrollTitle : " ",
+        scrollImg : 0,
+        activeOverlay : 0,
+        zIndex : 1001
     });
 
     /**
@@ -95,9 +95,9 @@ $(document).ready(function () {
 
     $(".ReplyQuote").bind("click", function () {
         $.ajax({
-            type    : "POST",
-            url     : $(this).attr("data-url"),
-            dataType: "json",
+            type : "POST",
+            url : $(this).attr("data-url"),
+            dataType : "json",
             success : function (data) {
                 if (!data.error) {
                     CKEDITOR.instances.commentBox.insertHtml(data.comment);
@@ -114,7 +114,7 @@ $(document).ready(function () {
                     }).show();
                 }
             },
-            error   : function (e) {
+            error : function (e) {
                 $(".top-right").notify({
                     message: {
                         text: "Error to quote the comment."
@@ -131,9 +131,9 @@ $(document).ready(function () {
         var like = $(this),
             type = $(this).attr("data-type");
         $.ajax({
-            type    : "POST",
-            url     : $(this).attr("data-url"),
-            dataType: "json",
+            type : "POST",
+            url : $(this).attr("data-url"),
+            dataType : "json",
             success : function (data) {
                 if (!data.error) {
 
@@ -174,7 +174,7 @@ $(document).ready(function () {
                     }).show();
                 }
             },
-            error   : function () {
+            error : function () {
                 $(".top-right").notify({
                     message: {
                         text: "Error to like/unlike the article."
@@ -186,20 +186,57 @@ $(document).ready(function () {
         return false;
     });
 
+    /**
+     * Users
+     */
     $('.account-sidebar').affix({
-        offset: {
-            top: function () {
+        offset : {
+            top : function () {
                 var c = $('.account-sidebar').offset().top,
                     d = parseInt($('.account-sidebar').children(0).css("margin-top"), 10),
                     e = $(".navbar").height() + 10;
                 return this.top = c - e - d;
             },
-            bottom: function() {
+            bottom : function() {
                 return this.bottom = $(".footer").outerHeight(!0);
             }
         }
     });
 
+    /**
+     * Notifications
+     */
+    $('.notification-item').hover(function() {
+        var id = $(this).attr("data-id");
+
+        //Prevent for sending inutile request.
+        if ($("#notification-" + id + " a .new").length == 0) {
+            return false;
+        }
+
+        $.ajax({
+            type : "POST",
+            url : $(this).attr("data-url"),
+            dataType: "json",
+            data : {
+                id : id
+            },
+            success : function (data) {
+                if (!data.error) {
+                    $("#notification-" + id + " a .new").remove();
+                }
+            },
+            error : function () {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to mark the notification as readed."
+                    },
+                    type   : "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
 
     /**
      * Carousel Articles on Home page.

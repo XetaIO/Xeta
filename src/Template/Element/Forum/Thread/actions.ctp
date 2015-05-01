@@ -100,6 +100,38 @@
         </div>
     <?php endif; ?>
 
+    <?php if (empty($currentUser->forum_threads_followers)): ?>
+        <?php if ($this->Acl->check(['_name' => 'threads-follow', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
+            <?= $this->Html->link(
+                __('{0} Follow', '<i class="fa fa-star-o"></i>'),
+                ['_name' => 'threads-follow', 'id' => $thread->id, 'slug' => $thread->title],
+                [
+                    'class' => 'btn btn-xs btn-info',
+                    'escape' => false,
+                    'title' => __('Follow this thread'),
+                    'data-toggle' => 'tooltip',
+                    'data-position' => 'bottom',
+                    'data-container' => 'body'
+                ]
+            ) ?>
+        <?php endif; ?>
+    <?php else: ?>
+        <?php if ($this->Acl->check(['_name' => 'threads-unfollow', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
+            <?= $this->Html->link(
+                __('{0} Unfollow', '<i class="fa fa-star"></i>'),
+                ['_name' => 'threads-unfollow', 'id' => $thread->id, 'slug' => $thread->title],
+                [
+                    'class' => 'btn btn-xs btn-success',
+                    'escape' => false,
+                    'title' => __('Unfollow this thread'),
+                    'data-toggle' => 'tooltip',
+                    'data-position' => 'bottom',
+                    'data-container' => 'body'
+                ]
+            ) ?>
+        <?php endif; ?>
+    <?php endif; ?>
+
     <div class="pull-right">
         <ul class="pagination pagination-sm">
             <?php if ($this->Paginator->hasPrev()): ?>

@@ -54,6 +54,11 @@ class ForumThreadsTable extends Table
             'dependent' => true,
             'cascadeCallbacks' => true
         ]);
+        $this->hasMany('ForumThreadsFollowers', [
+            'foreignKey' => 'thread_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true
+        ]);
     }
 
     /**

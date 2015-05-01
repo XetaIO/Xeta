@@ -3,6 +3,8 @@ namespace App\Controller\Forum;
 
 use App\Controller\AppController;
 use App\Event\Badges;
+use App\Event\Forum\Followers;
+use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Event\Event;
 use Cake\I18n\Time;
@@ -99,9 +101,17 @@ class ThreadsController extends AppController
                     $this->ForumCategories->save($parent);
                 }
 
-                //Event.
+                //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
                 $event = new Event('Model.ForumThreads.new', $this);
+                $this->eventManager()->dispatch($event);
+
+                //Followers Event.
+                $this->eventManager()->attach(new Followers());
+                $event = new Event('Model.ForumThreadsFollowers.new', $this, [
+                    'user_id' => $this->Auth->user('id'),
+                    'thread_id' => $newThread->id
+                ]);
                 $this->eventManager()->dispatch($event);
 
                 $this->Flash->success(__('Your thread has been created successfully !'));
@@ -287,12 +297,29 @@ class ThreadsController extends AppController
                     $this->ForumCategories->save($parent);
                 }
 
-                //Event.
+                //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
                 $stats = new Event('Model.ForumPosts.new', $this);
                 $this->eventManager()->dispatch($stats);
 
-                //Attach Event.
+                //Followers Event.
+                $this->eventManager()->attach(new Followers());
+                $event = new Event('Model.ForumThreadsFollowers.new', $this, [
+                    'user_id' => $this->Auth->user('id'),
+                    'thread_id' => $thread->id
+                ]);
+                $this->eventManager()->dispatch($event);
+
+                //Notifications Event.
+                $this->eventManager()->attach(new Notifications());
+                $event = new Event('Model.Notifications.dispatch', $this, [
+                    'sender_id' => $this->Auth->user('id'),
+                    'thread_id' => $thread->id,
+                    'type' => 'thread.reply'
+                ]);
+                $this->eventManager()->dispatch($event);
+
+                //Badges Event.
                 $this->ForumPosts->eventManager()->attach(new Badges($this));
 
                 $threadOpen = isset($this->request->data['forum_thread']['thread_open']) ? $this->request->data['forum_thread']['thread_open'] : true;
@@ -384,6 +411,15 @@ class ThreadsController extends AppController
         $thread->thread_open = false;
 
         if ($this->ForumThreads->save($thread)) {
+            //Notifications Event.
+            $this->eventManager()->attach(new Notifications());
+            $event = new Event('Model.Notifications.new', $this, [
+                'sender_id' => $this->Auth->user('id'),
+                'thread_id' => $thread->id,
+                'type' => 'thread.lock'
+            ]);
+            $this->eventManager()->dispatch($event);
+
             $this->Flash->success(__("This thread has been locked successfully !"));
 
             return $this->redirect([
@@ -473,5 +509,112 @@ class ThreadsController extends AppController
         }
 
         $this->redirect($this->referer());
+    }
+
+    /**
+     * Follow a thread.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function follow()
+    {
+        $this->loadModel('ForumThreads');
+        $thread = $this->ForumThreads
+            ->find()
+            ->where([
+                'ForumThreads.id' => $this->request->id
+            ])
+            ->select([
+                'ForumThreads.id'
+            ])
+            ->first();
+
+        //Check if the thread is found.
+        if (is_null($thread)) {
+            $this->Flash->error(__("This thread doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->loadModel('ForumThreadsFollowers');
+        $isFollowed = $this->ForumThreadsFollowers
+            ->find()
+            ->where([
+                'ForumThreadsFollowers.user_id' => $this->Auth->user('id'),
+                'ForumThreadsFollowers.thread_id' => $thread->id
+            ])
+            ->first();
+
+        if (!is_null($isFollowed)) {
+            $this->Flash->error(__("You already follow this thread !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $data = [];
+        $data['thread_id'] = $thread->id;
+        $data['user_id'] = $this->Auth->user('id');
+        $follower = $this->ForumThreadsFollowers->newEntity($data);
+
+        if ($this->ForumThreadsFollowers->save($follower)) {
+            $this->Flash->success(__("You successfully follow this thread now !"));
+
+            return $this->redirect($this->referer());
+        } else {
+            $this->Flash->error(__("There was an error while following the thread."));
+
+            return $this->redirect($this->referer());
+        }
+    }
+
+    /**
+     * Unfollow a thread.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function unfollow()
+    {
+        $this->loadModel('ForumThreads');
+        $thread = $this->ForumThreads
+            ->find()
+            ->where([
+                'ForumThreads.id' => $this->request->id
+            ])
+            ->select([
+                'ForumThreads.id'
+            ])
+            ->first();
+
+        //Check if the thread is found.
+        if (is_null($thread)) {
+            $this->Flash->error(__("This thread doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->loadModel('ForumThreadsFollowers');
+        $follower = $this->ForumThreadsFollowers
+            ->find()
+            ->where([
+                'ForumThreadsFollowers.user_id' => $this->Auth->user('id'),
+                'ForumThreadsFollowers.thread_id' => $thread->id
+            ])
+            ->first();
+
+        if (is_null($follower)) {
+            $this->Flash->error(__("You don't follow this thread !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($this->ForumThreadsFollowers->delete($follower)) {
+            $this->Flash->success(__("You successfully unfollow this thread now !"));
+
+            return $this->redirect($this->referer());
+        } else {
+            $this->Flash->error(__("There was an error while unfollowing this thread."));
+
+            return $this->redirect($this->referer());
+        }
     }
 }

@@ -377,4 +377,35 @@ class UsersController extends AppController
 
         $this->set(compact('transactions'));
     }
+
+    /**
+     * Display all notifications related to the user.
+     *
+     * @return void
+     */
+    public function notifications()
+    {
+        $this->loadModel('Notifications');
+
+        $this->paginate = [
+            'maxLimit' => Configure::read('User.notifications_per_page')
+        ];
+
+        $notifications = $this->Notifications
+            ->find()
+            ->where([
+                'user_id' => $this->Auth->user('id')
+            ])
+            ->order([
+                'is_read' => 'ASC',
+                'created' => 'DESC'
+            ])
+            ->find('map', [
+                'session' => $this->request->session()
+            ]);
+
+        $notifications = $this->paginate($notifications);
+
+        $this->set(compact('notifications'));
+    }
 }

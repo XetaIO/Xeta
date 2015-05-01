@@ -1,0 +1,69 @@
+<?php
+namespace App\Controller;
+
+use Cake\Core\Configure;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+
+class NotificationsController extends AppController
+{
+
+    /**
+     * Components.
+     *
+     * @var array
+     */
+    public $components = [
+        'RequestHandler'
+    ];
+
+    /**
+     * Mark a notification as readed.
+     *
+     * @return void|\Cake\Network\Response
+     */
+    public function markAsRead()
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        $this->Notifications = $this->loadModel('Notifications');
+
+        $json = [
+            'error' => false
+        ];
+
+        $notification = $this->Notifications
+            ->find()
+            ->where([
+                'id' => $this->request->data['id']
+            ])
+            ->first();
+
+        if ($notification->is_read) {
+            $this->set(compact('json'));
+            $this->set('_serialize', 'json');
+
+            return;
+        }
+
+        //If the notification doesn't exist or if the owner of the
+        //notification is not the current user, return an error.
+        if (is_null($notification) || $notification->user_id != $this->Auth->user('id')) {
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+
+            $this->set('_serialize', 'json');
+
+            return;
+        }
+
+        $notification->is_read = 1;
+        $this->Notifications->save($notification);
+
+        $this->set(compact('json'));
+        $this->set('_serialize', ['json']);
+    }
+}

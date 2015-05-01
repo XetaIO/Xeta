@@ -2,6 +2,7 @@
 namespace App\Controller\Forum;
 
 use App\Controller\AppController;
+use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -155,9 +156,18 @@ class PostsController extends AppController
         $like = $this->ForumPostsLikes->newEntity($data);
 
         if ($this->ForumPostsLikes->save($like)) {
-            //Event.
+            //Statistics Event.
             $this->eventManager()->attach(new Statistics());
             $event = new Event('Model.ForumPostsLikes.update', $this);
+            $this->eventManager()->dispatch($event);
+
+            //Notifications Event.
+            $this->eventManager()->attach(new Notifications());
+            $event = new Event('Model.Notifications.new', $this, [
+                'sender_id' => $this->Auth->user('id'),
+                'post_id' => (int)$this->request->data['id'],
+                'type' => 'post.like'
+            ]);
             $this->eventManager()->dispatch($event);
 
             $json['message'] = __('Thanks for {0} this post ! ', "<i class='fa fa-heart text-danger'></i>");
