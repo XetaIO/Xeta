@@ -1,7 +1,7 @@
 # Cake3 Blog Resource
 
 [![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)
-[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/xety/xeta)
+[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)
 [![Code Health](https://landscape.io/github/Xety/Xeta/master/landscape.svg?style=flat-square)](https://landscape.io/github/Xety/Xeta/master)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)
 [![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
