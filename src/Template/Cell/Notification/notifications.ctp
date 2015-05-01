@@ -10,7 +10,7 @@
         <?php if (!empty($notifications)): ?>
 
         <?php foreach ($notifications as $notification): ?>
-                <li class="notification-item">
+                <li id="notification-<?= $notification->id ?>" class="notification-item" data-id="<?= $notification->id ?>" data-url="<?= $this->Url->build(['controller' => 'notifications', 'action' => 'markAsRead', 'prefix' => false]) ?>">
 
                     <a href="<?= $notification->link ?>">
                         <?= $this->Html->image($notification->data['sender']->avatar, ['class' => 'avatar img-thumbnail']) ?>
