@@ -29,6 +29,7 @@
                 <h4>
                     <?= __("Notifications") ?>
                 </h4>
+
                 <?php if(!empty($notifications)): ?>
                     <table class="table table-striped">
                         <tbody>
