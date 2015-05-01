@@ -24,7 +24,8 @@ class PostsControllerTest extends IntegrationTestCase
         'app.forum_threads',
         'app.forum_categories',
         'app.forum_posts',
-        'app.forum_posts_likes'
+        'app.forum_posts_likes',
+        'app.notifications'
     ];
 
     /**
