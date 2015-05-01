@@ -6,6 +6,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
 [![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)
+[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-fa6c65.svg?style=flat-square)](http://cakephp.org)
 
 Cake3 Blog Resource, is a resource to help people starting with Cake3.
 
