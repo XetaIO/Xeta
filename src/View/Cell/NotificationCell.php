@@ -50,7 +50,7 @@ class NotificationCell extends Cell
                             );
                         }
 
-                        $notification->link = Router::url(['controller' => 'posts', 'action' => 'go', $notification->data['thread']->last_post_id]);
+                        $notification->link = Router::url(['controller' => 'posts', 'action' => 'go', $notification->data['thread']->last_post_id, 'prefix' => 'forum']);
                         break;
 
                     case 'thread.lock':
@@ -75,7 +75,7 @@ class NotificationCell extends Cell
                             h(Text::truncate($notification->data['post']->forum_thread->title, 50, ['ellipsis' => '...', 'exact' => false]))
                         );
 
-                        $notification->link = Router::url(['controller' => 'posts', 'action' => 'go', $notification->data['post']->id]);
+                        $notification->link = Router::url(['controller' => 'posts', 'action' => 'go', $notification->data['post']->id, 'prefix' => 'forum']);
                         break;
                 }
 

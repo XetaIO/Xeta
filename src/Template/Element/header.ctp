@@ -80,6 +80,11 @@
                     <?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account', 'prefix' => false], ['escape' => false]) ?>
                 </li>
             <?php endif; ?>
+            <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'notifications', 'prefix' => false])): ?>
+                <li>
+                    <?= $this->Html->link('<i class="fa fa-bell-o"></i>&nbsp;' . __('My Notifications'), ['controller' => 'users', 'action' => 'notifications', 'prefix' => false], ['escape' => false]) ?>
+                </li>
+            <?php endif; ?>
 
             <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'logout', 'prefix' => false])): ?>
                 <li>

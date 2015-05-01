@@ -37,7 +37,7 @@
         <?php endif; ?>
         <li class="divider"></li>
         <li>
-            <a class="notification-all" href="#"><?= __('All Notifications') ?></a>
+            <?= $this->Html->link(__('All Notifications'), ['controller' => 'users', 'action' => 'notifications', 'prefix' => false], ['class' => 'notification-all']) ?>
         </li>
     </ul>
 </li>

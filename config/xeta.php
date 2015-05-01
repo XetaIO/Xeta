@@ -31,7 +31,8 @@ return [
         ],
         'user_per_page' => 15,
         'transaction_per_page' => 15,
-        'max_notifications' => 5
+        'max_notifications' => 5,
+        'notifications_per_page' => 4
     ],
     'HtmlPurifier' => [
         'User' => [
