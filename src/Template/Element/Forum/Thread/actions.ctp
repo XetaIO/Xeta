@@ -16,7 +16,7 @@
     <?php else: ?>
         <button class="btn btn-xs btn-danger"><?= __('{0} Closed', '<i class="fa fa-lock"></i>') ?></button>
 
-        <?php if ($this->Acl->check(['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
+        <?php if (($this->Acl->check(['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum']) && $this->request->session()->read('Auth.User.id') == $thread->user_id) || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
             <?= $this->Html->link(
                 __('{0} Unlock', '<i class="fa fa-unlock"></i>'),
                 ['_name' => 'threads-unlock', 'id' => $thread->id, 'slug' => $thread->title],
