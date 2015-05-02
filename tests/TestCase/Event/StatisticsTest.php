@@ -2,10 +2,7 @@
 namespace App\Test\TestCase\Event;
 
 use App\Event\Forum\Statistics;
-use Cake\Controller\Controller;
 use Cake\Event\Event;
-use Cake\Network\Request;
-use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
 
 class StatisticsTest extends TestCase
@@ -22,18 +19,6 @@ class StatisticsTest extends TestCase
         'app.forum_posts',
         'app.forum_threads'
     ];
-
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->controller = new Controller(new Request(), new Response());
-    }
 
     /**
      * newPostsLikeStats method

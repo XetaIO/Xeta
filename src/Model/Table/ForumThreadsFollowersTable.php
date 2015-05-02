@@ -2,6 +2,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 class ForumThreadsFollowersTable extends Table
 {
@@ -26,5 +27,29 @@ class ForumThreadsFollowersTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator The Validator instance.
+     *
+     * @return \Cake\Validation\Validator
+     */
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->notEmpty('user_id', __("You must set an user."))
+            ->add('user_id', 'numeric', [
+                'rule' => 'numeric',
+                'message' => __("The user must be numeric.")
+            ])
+            ->notEmpty('thread_id', __("You must set a thread."))
+            ->add('thread_id', 'numeric', [
+                'rule' => 'numeric',
+                'message' => __("The thread must be numeric.")
+            ]);
+
+        return $validator;
     }
 }
