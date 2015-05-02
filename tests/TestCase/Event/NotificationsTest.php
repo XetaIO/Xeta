@@ -131,7 +131,7 @@ class NotificationsTest extends TestCase
 
         $expected = [
             'user_id' => 2,
-            'type' =>  'post.like',
+            'type' => 'post.like',
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
@@ -179,7 +179,7 @@ class NotificationsTest extends TestCase
 
         $expected = [
             'user_id' => 2,
-            'type' =>  'thread.lock',
+            'type' => 'thread.lock',
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
@@ -218,7 +218,7 @@ class NotificationsTest extends TestCase
 
         $expected = [
             'user_id' => 2,
-            'type' =>  'thread.reply',
+            'type' => 'thread.reply',
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
