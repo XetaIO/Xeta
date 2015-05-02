@@ -5,7 +5,7 @@
 
 |Travis|Appveyor|Coverage|Landscape|Scrutinizer|
 |:------:|:-------:|:-------:|:------:|:------:|
-|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Build Status](https://img.shields.io/appveyor/ci/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Code Health](https://landscape.io/github/Xety/Xeta/master/landscape.svg?style=flat-square)](https://landscape.io/github/Xety/Xeta/master)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|
+|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Build Status](https://img.shields.io/appveyor/ci/Xety/Xeta.svg?style=flat-square)](https://ci.appveyor.com/project/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Code Health](https://landscape.io/github/Xety/Xeta/master/landscape.svg?style=flat-square)](https://landscape.io/github/Xety/Xeta/master)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|
 
 |Stable Version|Downloads|VersionEye|License|CakePHP|
 |:------:|:-------:|:-------:|:------:|:------:|
