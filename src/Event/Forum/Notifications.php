@@ -74,11 +74,6 @@ class Notifications implements EventListenerInterface
                 'ForumThreadsFollowers.thread_id' => $event->data['thread_id']
             ])
             ->contain([
-                'ForumThreads' => function ($q) {
-                    return $q->select([
-                        'id', 'title', 'last_post_id'
-                    ]);
-                },
                 'Users' => function ($q) {
                     return $q->select([
                         'id'
@@ -92,7 +87,7 @@ class Notifications implements EventListenerInterface
             ])
             ->toArray();
 
-        if (is_null($followers)) {
+        if (empty($followers)) {
             return true;
         }
 
