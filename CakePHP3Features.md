@@ -2,14 +2,20 @@
 Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's features :
 
 ## Behaviors
+* Tree
+    * Used with the Forum's Categories
 * Timestamp
     * Used to allow Cake to modify the fields `created` and `modified` automatically
 * CounterCache
     * To build counter automatically
-        * Comments count
-        * Likes count
+        * Blog Comments 
+        * Blog Articles 
+        * Blog Articles Likes
+        * Forum Threads
+        * Forum Posts
+        * Forum Posts Likes
 * Custom Behavior :
-    * UploadBehavior (Migrated into a plugin : [Cake3-Upload](https://github.com/Xety/Cake3-Upload))
+    * Upload Behavior (Migrated into a plugin : [Cake3-Upload](https://github.com/Xety/Cake3-Upload))
         * To upload safely an avatar for user
     * Sluggable Behavior (Migrated into a plugin : [Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable))
         * Used to build slug when creating an user and creating an article
@@ -21,7 +27,6 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
     * To store user's information
 * Authentication
     * For login/logout an user
-    * To authorize an user to access in the Administration Panel
 * Flash
     * With custom message : Error, Success, Info, Primary
 * Cross Site Request Forgery (CSRF)
@@ -38,14 +43,19 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
     * To build beautiful number for comments/likes count.
 * Paginator
     * To build beautiful pagination
-* Session
-    * To access to the user Session information
 * Flash
     * To render some flash message
 * Text
     * To truncate some text
 * Time
- * To build a new date time when an user try to login
+    * To build a new date time when an user try to login
+* Custom Helpers :
+    * ACL Helper
+        * To check the permissions in a view
+    * Forum Helper
+        * To build the sub-categories
+    * I18n Helper
+        * To build translate inputs in form
 
 ### Utilities
 * Email
@@ -57,9 +67,11 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
 * Internationalization & Localization
 * Router
     * To build custom routes names
-    * Prefix (admin)
+    * Prefix : Admin, Forum, Chat
 * Cache
     * To cache all Google Analytics requests in the Administration Panel
+    * ACL authorizations
+    * Chat Notice
 
 ### General
 * Validation & Validator
@@ -68,11 +80,33 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
         * PurifierValidator
         * Validator for the Contact Page (With an ArrayContext)
 * View Cell
-    * Blog sidebar
+    * Blog Sidebar
+    * Forum Sidebar
+    * Forum Suggestion
+    * Notifications
 * Events System
     * Badge system
         * Badge on comment
         * Badge for register date
+    * Followers
+        * When a Thread is created
+        * When a user reply to a Thread
+    * Notifications
+        * When a user reply to a Thread
+        * When a user lock a Thread
+        * When a user like a Post
 * Authenticate
     * Cookies (Migrated into a plugin : [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth))
         * For auto-login
+
+* Plugins used
+    * [Xety/Cake3-Upload](https://github.com/Xety/Cake3-Upload)
+    * [Xety/Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable)
+    * [Xety/Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth)
+    * [Cake17/CakePHP-Recaptcha](https://github.com/cake17/Cake17/CakePHP-Recaptcha)
+    * [Widop/Google-Analytics](https://github.com/Widop/Google-Analytics)
+    * [Mexitek/PHPColors](https://github.com/mexitek/phpcolors)
+    * [Ezyang/HTMLPurifier](https://github.com/Ezyang/HTMLPurifier)
+    * [Mexitek/PHPColors](https://github.com/mexitek/phpcolors)
+    * [CakePHP/ACL](https://github.com/CakePHP/ACL)
+    * [Gourmet/Whoops](https://github.com/Gourmet/Whoops)
