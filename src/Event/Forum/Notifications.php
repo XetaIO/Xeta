@@ -239,14 +239,33 @@ class Notifications implements EventListenerInterface
                 'Users.id' => $event->data['sender_id']
             ])
             ->first();
+            
+        //Check if this user hasn't already a notification. (Prevent for spam)
+        $hasLiked = $this->Notifications
+            ->find()
+            ->where([
+                'Notifications.foreign_key' => $post->id,
+                'Notifications.type' => $event->data['type'],
+                'Notifications.user_id' => $post->user_id
+            ])
+            ->first();
 
         $data = [];
-        $data['user_id'] = $post->user_id;
-        $data['type'] = $event->data['type'];
-        $data['data'] = serialize(['sender' => $sender, 'post' => $post]);
 
-        $entity = $this->Notifications->newEntity($data);
-        $this->Notifications->save($entity);
+        if(!is_null($hasLiked)) {
+           $hasLiked->data = serialize(['sender' => $sender, 'post' => $post]);
+           $hasLiked->is_read = 0;
+
+           $this->Notifications->save($hasLiked);
+        } else {
+            $data['user_id'] = $post->user_id;
+            $data['type'] = $event->data['type'];
+            $data['data'] = serialize(['sender' => $sender, 'post' => $post]);
+            $data['foreign_key'] = $post->id;
+
+            $entity = $this->Notifications->newEntity($data);
+            $this->Notifications->save($entity);
+        }
 
         return true;
     }
