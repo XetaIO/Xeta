@@ -20,3 +20,4 @@ composer.lock
 cli-debug.log
 cli-error.log
 paypal.log
+.settings
