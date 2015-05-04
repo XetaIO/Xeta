@@ -14,6 +14,7 @@ class NotificationsFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer'],
         'user_id' => ['type' => 'integer'],
+        'foreign_key' => ['type' => 'integer', 'null' => true],
         'type' => ['type' => 'string', 'length' => 150],
         'data' => ['type' => 'text', 'null' => true],
         'is_read' => ['type' => 'integer', 'length' => 2],
