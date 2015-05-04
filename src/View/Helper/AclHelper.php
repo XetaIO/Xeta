@@ -67,7 +67,7 @@ class AclHelper extends Helper
         if (!$this->request->session()->read('Auth.User')) {
             return false;
         }
-
+        
         $params += ['_base' => false];
 
         $url = Router::url($params);

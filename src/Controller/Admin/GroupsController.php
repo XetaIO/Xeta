@@ -7,14 +7,12 @@ use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\Core\Configure;
 
-
 /**
  * Class GroupsController
  * @package App\Controller\Admin
  */
 class GroupsController extends AppController
 {
-
 
     /**
      * Helpers.
@@ -68,13 +66,13 @@ class GroupsController extends AppController
                 $aro->parent_id = $this->request->data('parent');
                 if ($this->Acl->Aro->save($aro)) {
 
-                    if($aro->parent_id){
+                    if ($aro->parent_id) {
                         $parent = $this->Acl->Aro->node(['model' => 'Groups', 'foreign_key' => $aro->parent_id])->first();
-                    }else{
+                    } else {
                         $parent =null;
                     }
                     $this->loadComponent('AclManager');
-                    if($this->AclManager->addBasicsRules($group, $parent)){
+                    if ($this->AclManager->addBasicsRules($group, $parent)) {
                         $this->Flash->info(__d('admin', 'Your group has been created successfully, but permissions can\'t be assigned pleased edit the group and set permissions !'));
 
                         return $this->redirect(['action' => 'index']);
@@ -86,7 +84,6 @@ class GroupsController extends AppController
         }
         $this->set(compact('group', 'parents'));
     }
-
 
     /**
      * Edit a Group.
@@ -129,42 +126,36 @@ class GroupsController extends AppController
                 'Offers' => $this->AclManager->__getActionsList('Offers',[],'Admin','Premium'),
             ]
         ];
-
-
         if (empty($group)) {
             $this->Flash->error(__d('admin', 'This group doesn\'t exist or has been deleted.'));
 
             return $this->redirect(['action' => 'index']);
         }
-
         if ($this->request->is('post')) {
-            foreach($this->request->data as $path => $data){
+            foreach ($this->request->data as $path => $data) {
                 $node= $this->AclManager->node($path);
-                if($node){
+                if ($node) {
                    $check = $this->Acl->check($group, $path);
-                   if($data == 1 && $check == false){
+                   if ($data == 1 && $check == false) {
                        $this->Acl->inherit($group, $path);
                        $check = $this->Acl->check($group, $path);
-                       if($check == false){
+                       if ($check == false) {
                            $this->Acl->allow($group, $path);
                        }
-                   }elseif($data == 0 && $check == true){
+                   } elseif ($data == 0 && $check == true) {
                        $this->Acl->deny($group, $path);
                    }
-                }else{
+                } else {
                     $this->Flash->error(__d('admin', 'Permissions can\'t be assigned, please retry !'));
                     return $this->redirect(['action' => 'index']);
                 }
             }
-
             $this->Flash->success(__d('admin', 'This group has been updated successfully !'));
             return $this->redirect(['action' => 'index']);
         }
-
         if ($this->request->is('put')) {
             $this->Groups->patchEntity($group, $this->request->data());
             $group->setTranslations($this->request->data);
-
             if ($this->Groups->save($group)) {
                 //Event.
                 $this->eventManager()->on(new Statistics());
@@ -179,10 +170,8 @@ class GroupsController extends AppController
             $this->Flash->error(__d('admin', 'The group can\'t be updated, please retry !'));
             return $this->redirect(['action' => 'index']);
         }
-
         $this->set(compact('group', 'permissions'));
     }
-
 
     /**
      * Delete a group.

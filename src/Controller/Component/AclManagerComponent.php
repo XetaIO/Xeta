@@ -1,9 +1,7 @@
 <?php
 namespace App\Controller\Component;
 
-use Acl\Adapter\DbAcl;
 use Acl\Controller\Component\AclComponent;
-use Acl\Model\Entity\Aco;
 use Acl\Model\Entity\Aro;
 use App\Model\Entity\Group;
 use Cake\Controller\ComponentRegistry;
@@ -21,19 +19,14 @@ use Cake\Controller\Component;
 class AclManagerComponent extends Component
 {
 
-    protected $base = 'App';
-    protected $config = [];
-
     /**
-     * @param Group $group
-     * @param $alias
-     * @return mixed
+     * @var string
      */
-    public static function check(Group $group, $alias)
-    {
-        $Acl = new DbAcl();
-        return $Acl->check($group, $alias);
-    }
+    protected $base = 'App';
+    /**
+     * @var array
+     */
+    protected $config = [];
 
     /**
      * @param array $config
@@ -44,13 +37,15 @@ class AclManagerComponent extends Component
         $this->Acl = new AclComponent($registry, Configure::read('Acl'));
         $this->Aco = $this->Acl->Aco;
         $this->Aro = $this->Acl->Aro;
-
     }
 
-    public function AcosConstructor()
+    /**
+     *
+     */
+    public function AcosBuilder()
     {
         $resources = $this->__getResources();
-        $root = $this->checkNodeOrSave($this->base, $this->base, null);
+        $root = $this->__checkNodeOrSave($this->base, $this->base, null);
         unset($resources[0]);
         foreach ($resources as $controllers) {
             foreach ($controllers as $controller => $actions) {
@@ -59,28 +54,29 @@ class AclManagerComponent extends Component
                     $path = [0 => $this->base];
                     $slash = '/';
                     $parent = [1 => $root->id];
-                    for ($i = 1; $i <= count($tmp); $i++) {
+                    $countTmp = count($tmp);
+                    for ($i = 1; $i <= $countTmp; $i++) {
                         $path[$i] = $path[$i - 1];
                         if ($i >= 1 && isset($tmp[$i - 1])) {
                             $path[$i] = $path[$i] . $slash;
                             $path[$i] = $path[$i] . $tmp[$i - 1];
-                            $old = $this->checkNodeOrSave($path[$i], $tmp[$i - 1], $parent[$i]);
+                            $this->__checkNodeOrSave($path[$i], $tmp[$i - 1], $parent[$i]);
                             $new = $this->Aco->find()->where(['alias' => $tmp[$i - 1], 'parent_id' => $parent[$i]])->first();
                             $parent[$i + 1] = $new['id'];
                         }
                     }
                     foreach ($actions as $action) {
                         if (!empty($action)) {
-                            $this->checkNodeOrSave($controller . $action, $action, end($parent));
+                            $this->__checkNodeOrSave($controller . $action, $action, end($parent));
                         }
                     }
                 } else {
                     $controllerName = array_pop($tmp);
                     $path = $this->base . '/' . $controller;
-                    $controllerNode = $this->checkNodeOrSave($path, $controllerName, $root->id);
+                    $controllerNode = $this->__checkNodeOrSave($path, $controllerName, $root->id);
                     foreach ($actions as $action) {
                         if (!empty($action)) {
-                            $this->checkNodeOrSave($controller . '/' . $action, $action, $controllerNode['id']);
+                            $this->__checkNodeOrSave($controller . '/' . $action, $action, $controllerNode['id']);
                         }
                     }
                 }
@@ -93,7 +89,7 @@ class AclManagerComponent extends Component
      */
     public function __getResources()
     {
-        $controllers = $this->__getControllers();
+        $controllers = $this->getControllers();
         $resources = [];
         foreach ($controllers as $controller) {
             $actions = $this->__getActions($controller);
@@ -105,7 +101,7 @@ class AclManagerComponent extends Component
     /**
      * @return array
      */
-    private function __getControllers()
+    private function getControllers()
     {
         $path = App::path('Controller');
         $dir = new Folder($path[0]);
@@ -141,11 +137,16 @@ class AclManagerComponent extends Component
 
             }
         }
-
         return $results;
     }
 
-    private function checkNodeOrSave($path, $alias, $parentId = null)
+    /**
+     * @param $path
+     * @param $alias
+     * @param null $parentId
+     * @return mixed
+     */
+    private function __checkNodeOrSave($path, $alias, $parentId = null)
     {
         $node = $this->Aco->node($path);
         if (!$node) {
@@ -161,6 +162,10 @@ class AclManagerComponent extends Component
         return $node;
     }
 
+    /**
+     * @param $path
+     * @return mixed
+     */
     public function node($path)
     {
         $node = $this->Aco->node($path);
@@ -202,7 +207,6 @@ class AclManagerComponent extends Component
                         foreach ($actionList as $key => $action) {
                             $results[$base . '/' . $controllerName][$key] = $base . '/' . $controllerName . '/' . $action;
                         }
-
                     } else {
                         $results[$base] = $base;
                     }
@@ -225,18 +229,18 @@ class AclManagerComponent extends Component
         }
         if ($data === 0) {
             if ($this->Acl->check($group, $alias)) {
-                $this->Acl->deny($aro, $alias);
+                $this->Acl->deny($group, $alias);
 
             } else {
-                $this->Acl->inherit($aro, $alias);
+                $this->Acl->inherit($group, $alias);
             }
             return true;
         } elseif ($data === 1) {
             if (!$this->Acl->check($group, $alias)) {
-                $this->Acl->allow($aro, $alias);
+                $this->Acl->allow($group, $alias);
 
             } else {
-                $this->Acl->inherit($aro, $alias);
+                $this->Acl->inherit($group, $alias);
             }
             return true;
         }
@@ -261,12 +265,11 @@ class AclManagerComponent extends Component
             $subfolder .= '\\';
         }
         $controller = $prefix . $subfolder . $controller;
-        $results = $this->__getActions($controller);
+        $results = $this->getActions($controller);
 
         foreach ($results as $ctrl => $action) {
             $results[$ctrl] = array_diff($action, $excluded);
         }
         return $results;
     }
-
-} 
+}
