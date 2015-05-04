@@ -98,7 +98,6 @@ class GroupsController extends AppController
             ])
             ->first();
         $this->loadComponent('AclManager');
-        // getActionsList( $controller = null, array $excluded = [], $prefix = null, $folder = null)
         $permissions = [
             'public' => [
                 'Blog' => $this->AclManager->getActionsList('Blog', ['articleLike', 'articleUnlike', 'quote', 'go', 'search']),
