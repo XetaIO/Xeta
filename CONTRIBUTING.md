@@ -17,6 +17,6 @@
 * I want contribute to the design but the CSS is minified !
 	* Unfortunately, i didn't release the LESS files, because i don't want that people use the design for their websites.
 	* If you want to make some modifications on the CSS files, ask me in a issue. I will create a new branch, so i will be able to contribute to your PR.
-	* You PR should be on this new branch and not the master branch.
+	* Your PR **should be** on this new branch and not the master branch.
 	* You can `beautify` the CSS file with [this tool](http://codebeautify.org/css-beautify-minify) and make your PR with the CSS **not** minified.
 	* When your PR will be ready to merge, then i will commit the CSS minified in your PR and merge your PR.
