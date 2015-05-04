@@ -90,11 +90,11 @@ class NotificationsTest extends TestCase
     }
 
     /**
-     * newNotificationTPostLike method
+     * newNotificationPostLike method
      *
      * @return void
      */
-    public function testNewNotificationTPostLike()
+    public function testNewNotificationPostLike()
     {
         //Not integer value.
         $notifications = new Notifications();
@@ -105,7 +105,6 @@ class NotificationsTest extends TestCase
         $this->assertFalse($notifications->newNotification($event));
 
         //Liked their posts.
-        $notifications = new Notifications();
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'post.like',
             'post_id' => 1,
@@ -114,7 +113,6 @@ class NotificationsTest extends TestCase
         $this->assertTrue($notifications->newNotification($event));
 
         //New notification.
-        $notifications = new Notifications();
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'post.like',
             'post_id' => 2,
@@ -125,16 +123,33 @@ class NotificationsTest extends TestCase
         $result = $this->Notifications
             ->find()
             ->where(['user_id' => 2, 'type' => 'post.like'])
-            ->select(['user_id', 'type', 'is_read'])
+            ->select(['id', 'user_id', 'type', 'is_read'])
             ->hydrate(false)
             ->first();
 
         $expected = [
+            'id' => 1,
             'user_id' => 2,
             'type' => 'post.like',
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
+        
+        //Prevent for spam.
+        $event = new Event('Model.Notifications.new', $this, [
+            'type' => 'post.like',
+            'post_id' => 2,
+            'sender_id' => 1
+        ]);
+        $this->assertTrue($notifications->newNotification($event));
+        
+        $result2 = $this->Notifications
+            ->find()
+            ->where(['user_id' => 2, 'type' => 'post.like'])
+            ->select(['id', 'user_id', 'type'])
+            ->first();
+
+        $this->assertEquals($result['id'], $result2->id);
     }
 
     /**
@@ -153,7 +168,6 @@ class NotificationsTest extends TestCase
         $this->assertFalse($notifications->newNotification($event));
 
         //Locked their threads.
-        $notifications = new Notifications();
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'thread.lock',
             'thread_id' => 1,
@@ -162,7 +176,6 @@ class NotificationsTest extends TestCase
         $this->assertTrue($notifications->newNotification($event));
 
         //New notification.
-        $notifications = new Notifications();
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'thread.lock',
             'thread_id' => 2,
@@ -212,16 +225,32 @@ class NotificationsTest extends TestCase
         $result = $this->Notifications
             ->find()
             ->where(['user_id' => 2, 'type' => 'thread.reply'])
-            ->select(['user_id', 'type', 'is_read'])
+            ->select(['id', 'user_id', 'type', 'is_read'])
             ->hydrate(false)
             ->first();
 
         $expected = [
+            'id' => 1,
             'user_id' => 2,
             'type' => 'thread.reply',
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
+        
+        //Prevent for spam.
+        $event = new Event('Model.Notifications.dispatch', $this, [
+            'type' => 'thread.reply',
+            'thread_id' => 1,
+            'sender_id' => 1
+        ]);
+        $this->assertTrue($notifications->dispatchNotification($event));
+
+        $result2 = $this->Notifications
+            ->find()
+            ->where(['user_id' => 2, 'type' => 'thread.reply'])
+            ->select(['id', 'user_id', 'type', 'is_read'])
+            ->first();
+        $this->assertEquals($result['id'], $result2->id);
     }
 
     /**
