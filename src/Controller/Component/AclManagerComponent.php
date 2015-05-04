@@ -4,13 +4,14 @@ namespace App\Controller\Component;
 use Acl\Controller\Component\AclComponent;
 use Acl\Model\Entity\Aro;
 use App\Model\Entity\Group;
+use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
 use ReflectionClass;
 use ReflectionMethod;
-use Cake\Controller\Component;
+
 
 /**
  * Class AclManagerComponent
@@ -40,11 +41,11 @@ class AclManagerComponent extends Component
     }
 
     /**
-     *
+     * @return bool
      */
-    public function AcosBuilder()
+    public function acosBuilder()
     {
-        $resources = $this->__getResources();
+        $resources = $this->getResources();
         $root = $this->__checkNodeOrSave($this->base, $this->base, null);
         unset($resources[0]);
         foreach ($resources as $controllers) {
@@ -82,17 +83,18 @@ class AclManagerComponent extends Component
                 }
             }
         }
+        return true;
     }
 
     /**
      * @return array
      */
-    public function __getResources()
+    public function getResources()
     {
-        $controllers = $this->getControllers();
+        $controllers = $this->__getControllers();
         $resources = [];
         foreach ($controllers as $controller) {
-            $actions = $this->__getActions($controller);
+            $actions = $this->getActions($controller);
             array_push($resources, $actions);
         }
         return $resources;
@@ -101,7 +103,7 @@ class AclManagerComponent extends Component
     /**
      * @return array
      */
-    private function getControllers()
+    private function __getControllers()
     {
         $path = App::path('Controller');
         $dir = new Folder($path[0]);
@@ -119,10 +121,10 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param $controllerName
+     * @param string $controllerName
      * @return array
      */
-    public function __getActions($controllerName)
+    public function getActions($controllerName)
     {
         $className = 'App\\Controller\\' . $controllerName . 'Controller';
         $class = new ReflectionClass($className);
@@ -141,8 +143,8 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param $path
-     * @param $alias
+     * @param string $path
+     * @param string $alias
      * @param null $parentId
      * @return mixed
      */
@@ -163,7 +165,7 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @return mixed
      */
     public function node($path)
@@ -179,7 +181,7 @@ class AclManagerComponent extends Component
      */
     public function addBasicsRules(Group $aro, Aro $parent = null)
     {
-        $controllers = $this->__getResources();
+        $controllers = $this->getResources();
         $controllers = $this->__setAlias($controllers, $this->base);
         if (!$parent) {
             $this->Acl->allow($aro, $this->base);
@@ -193,8 +195,8 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param $actions
-     * @param $base
+     * @param array $actions
+     * @param string $base
      * @return array
      */
     private function __setAlias($actions, $base)
@@ -219,10 +221,10 @@ class AclManagerComponent extends Component
     /**
      * @param Group $group
      * @param string $alias
-     * @param $data
+     * @param integer $data
      * @return bool
      */
-    public function editRule(Group $group, $alias = '', $data)
+    public function editRule(Group $group, $alias, $data)
     {
         if (empty($alias) || empty($group)) {
             return false;
@@ -256,7 +258,7 @@ class AclManagerComponent extends Component
      * @param null $subfolder
      * @return array
      */
-    public function __getActionsList($controller = null, array $excluded = [], $prefix = null, $subfolder = null)
+    public function getActionsList($controller = null, array $excluded = [], $prefix = null, $subfolder = null)
     {
         if ($prefix) {
             $prefix .= '\\';

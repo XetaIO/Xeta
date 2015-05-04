@@ -3,9 +3,10 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Event\Forum\Statistics;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
-use Cake\Core\Configure;
+
 
 /**
  * Class GroupsController
@@ -53,7 +54,6 @@ class GroupsController extends AppController
         $group = $this->Groups->newEntity($this->request->data);
         $parents = $this->Groups->find('list');
         if ($this->request->is('post')) {
-
             $group->setTranslations($this->request->data);
             if ($this->Groups->save($group)) {
                 //Event.
@@ -65,11 +65,10 @@ class GroupsController extends AppController
                 $aro = $this->Acl->Aro->node($group)->first();
                 $aro->parent_id = $this->request->data('parent');
                 if ($this->Acl->Aro->save($aro)) {
-
                     if ($aro->parent_id) {
                         $parent = $this->Acl->Aro->node(['model' => 'Groups', 'foreign_key' => $aro->parent_id])->first();
                     } else {
-                        $parent =null;
+                        $parent = null;
                     }
                     $this->loadComponent('AclManager');
                     if ($this->AclManager->addBasicsRules($group, $parent)) {
@@ -100,30 +99,30 @@ class GroupsController extends AppController
             ])
             ->first();
         $this->loadComponent('AclManager');
-        // __getActionsList( $controller = null, array $excluded = [], $prefix = null, $folder = null)
+        // getActionsList( $controller = null, array $excluded = [], $prefix = null, $folder = null)
         $permissions = [
             'public' => [
-                'Blog' => $this->AclManager->__getActionsList('Blog',['articleLike', 'articleUnlike', 'quote', 'go', 'search'] ),
-                'Pages' => $this->AclManager->__getActionsList('Pages',[] ),
-                'Attachments' => $this->AclManager->__getActionsList('Attachments',[] ),
-                'Users' => $this->AclManager->__getActionsList('Users',[] ),
-                'Premium' => $this->AclManager->__getActionsList('Premium',[] ),
-                'Forum' => $this->AclManager->__getActionsList('Forum',[], 'Forum'),
-                'Threads' => $this->AclManager->__getActionsList('Threads',[], 'Forum'),
-                'Posts' => $this->AclManager->__getActionsList('Posts',[], 'Forum'),
-                'Chat' => $this->AclManager->__getActionsList('Chat',[], 'Chat'),
+                'Blog' => $this->AclManager->getActionsList('Blog', ['articleLike', 'articleUnlike', 'quote', 'go', 'search']),
+                'Pages' => $this->AclManager->getActionsList('Pages', []),
+                'Attachments' => $this->AclManager->getActionsList('Attachments', []),
+                'Users' => $this->AclManager->getActionsList('Users', []),
+                'Premium' => $this->AclManager->getActionsList('Premium', []),
+                'Forum' => $this->AclManager->getActionsList('Forum', [], 'Forum'),
+                'Threads' => $this->AclManager->getActionsList('Threads', [], 'Forum'),
+                'Posts' => $this->AclManager->getActionsList('Posts', [], 'Forum'),
+                'Chat' => $this->AclManager->getActionsList('Chat', [], 'Chat'),
             ],
             'Admin' => [
-                'Admin' => $this->AclManager->__getActionsList('Admin',[], 'Admin'),
-                'Attachments' =>  $this->AclManager->__getActionsList('Attachments',[], 'Admin'),
-                'Articles' =>  $this->AclManager->__getActionsList('Articles',[], 'Admin'),
-                'Categories' =>  $this->AclManager->__getActionsList('Categories',[], 'Admin'),
-                'Groups' =>  $this->AclManager->__getActionsList('Groups',[], 'Admin'),
-                'Users' =>  $this->AclManager->__getActionsList('Users',[], 'Admin'),
-                'Forum' => $this->AclManager->__getActionsList('Categories',[],'Admin','Forum'),
-                'Premium' => $this->AclManager->__getActionsList('Premium',[],'Admin','Premium'),
-                'Discounts' => $this->AclManager->__getActionsList('Discounts',[],'Admin','Premium'),
-                'Offers' => $this->AclManager->__getActionsList('Offers',[],'Admin','Premium'),
+                'Admin' => $this->AclManager->getActionsList('Admin',[], 'Admin'),
+                'Attachments' => $this->AclManager->getActionsList('Attachments',[], 'Admin'),
+                'Articles' => $this->AclManager->getActionsList('Articles',[], 'Admin'),
+                'Categories' => $this->AclManager->getActionsList('Categories',[], 'Admin'),
+                'Groups' =>  $this->AclManager->getActionsList('Groups',[], 'Admin'),
+                'Users' =>  $this->AclManager->getActionsList('Users',[], 'Admin'),
+                'Forum' => $this->AclManager->getActionsList('Categories',[],'Admin','Forum'),
+                'Premium' => $this->AclManager->getActionsList('Premium',[],'Admin','Premium'),
+                'Discounts' => $this->AclManager->getActionsList('Discounts',[],'Admin','Premium'),
+                'Offers' => $this->AclManager->getActionsList('Offers',[],'Admin','Premium'),
             ]
         ];
         if (empty($group)) {
@@ -133,18 +132,18 @@ class GroupsController extends AppController
         }
         if ($this->request->is('post')) {
             foreach ($this->request->data as $path => $data) {
-                $node= $this->AclManager->node($path);
+                $node = $this->AclManager->node($path);
                 if ($node) {
-                   $check = $this->Acl->check($group, $path);
-                   if ($data == 1 && $check == false) {
-                       $this->Acl->inherit($group, $path);
-                       $check = $this->Acl->check($group, $path);
-                       if ($check == false) {
-                           $this->Acl->allow($group, $path);
-                       }
-                   } elseif ($data == 0 && $check == true) {
-                       $this->Acl->deny($group, $path);
-                   }
+                    $check = $this->Acl->check($group, $path);
+                    if ($data == 1 && $check == false) {
+                        $this->Acl->inherit($group, $path);
+                        $check = $this->Acl->check($group, $path);
+                        if ($check == false) {
+                            $this->Acl->allow($group, $path);
+                        }
+                    } elseif ($data == 0 && $check == true) {
+                        $this->Acl->deny($group, $path);
+                    }
                 } else {
                     $this->Flash->error(__d('admin', 'Permissions can\'t be assigned, please retry !'));
                     return $this->redirect(['action' => 'index']);

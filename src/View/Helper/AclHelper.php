@@ -4,12 +4,12 @@ namespace App\View\Helper;
 use Acl\Auth\ActionsAuthorize;
 use Acl\Controller\Component\AclComponent;
 use App\Controller\Component\AclManagerComponent;
+use App\Model\Entity\Group;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\View\Helper;
 use Cake\View\View;
-use App\Model\Entity\Group;
 
 class AclHelper extends Helper
 {
@@ -67,7 +67,7 @@ class AclHelper extends Helper
         if (!$this->request->session()->read('Auth.User')) {
             return false;
         }
-        
+
         $params += ['_base' => false];
 
         $url = Router::url($params);
