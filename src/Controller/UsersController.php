@@ -264,7 +264,8 @@ class UsersController extends AppController
             ->contain([
                 'BlogArticles' => function ($q) {
                     return $q
-                        ->limit(Configure::read('User.Profile.max_blog_articles'));
+                        ->limit(Configure::read('User.Profile.max_blog_articles'))
+                        ->order(['BlogArticles.created' => 'DESC']);
                 },
                 'BlogArticlesComments' => function ($q) {
                     return $q
