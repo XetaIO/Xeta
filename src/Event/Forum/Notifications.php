@@ -146,11 +146,11 @@ class Notifications implements EventListenerInterface
             ])
             ->first();
 
-        if(!is_null($hasReplied)) {
-           $hasReplied->data = serialize(['sender' => $sender, 'thread' => $thread]);
-           $hasReplied->is_read = 0;
+        if (!is_null($hasReplied)) {
+            $hasReplied->data = serialize(['sender' => $sender, 'thread' => $thread]);
+            $hasReplied->is_read = 0;
 
-           $this->Notifications->save($hasReplied);
+            $this->Notifications->save($hasReplied);
         } else {
             $data = [];
             $data['user_id'] = $event->data['follower']->user->id;
@@ -269,11 +269,11 @@ class Notifications implements EventListenerInterface
             ])
             ->first();
 
-        if(!is_null($hasLiked)) {
-           $hasLiked->data = serialize(['sender' => $sender, 'post' => $post]);
-           $hasLiked->is_read = 0;
+        if (!is_null($hasLiked)) {
+            $hasLiked->data = serialize(['sender' => $sender, 'post' => $post]);
+            $hasLiked->is_read = 0;
 
-           $this->Notifications->save($hasLiked);
+            $this->Notifications->save($hasLiked);
         } else {
             $data = [];
             $data['user_id'] = $post->user_id;
