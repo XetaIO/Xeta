@@ -1075,40 +1075,6 @@ xetaChat = {
 $(document).ready(function () {
 
     /**
-     * Get the modal to edit the notice.
-     *
-     * @return {bool}
-     */
-    $("#chatboxNotice").dblclick(function(e){
-        e.preventDefault();
-        e.stopPropagation();
-
-        var url = xetaChat.settings.urlGetNotice;
-
-        $.ajax({
-            type : "POST",
-            url : url,
-            dataType : "json",
-            success : function (data) {
-                if($("#noticeModal").length) {
-                    $('#noticeBox').val(data.notice);
-
-                    CKEDITOR.replace('noticeBox', {
-                        customConfig: 'config/chat/notice.js'
-                    });
-
-                    $('#noticeModal').modal('show');
-                }
-            },
-            error : function (e) {
-                xetaChat._notify('danger', xetaChat.lang.errorToEditTheNotice);
-            }
-        });
-
-        return false;
-    });
-
-    /**
      * When an moderator submit a new notice/ has edited the notice.
      *
      * @return {bool}
