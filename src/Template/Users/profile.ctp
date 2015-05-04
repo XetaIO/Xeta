@@ -192,6 +192,15 @@
                                             ['class' => 'title text-primary']
                                         ) ?>
                                         <br>
+                                        <?= $this->Text->truncate(
+                                            $article->content_empty,
+                                            275,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        ) ?>
+                                        <br>
                                         <?= __('Created at {0}', $article->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
                                     </td>
                                 </tr>
