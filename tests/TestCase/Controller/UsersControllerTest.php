@@ -30,7 +30,8 @@ class UsersControllerTest extends IntegrationTestCase
         'app.badges_users',
         'app.premium_offers',
         'app.premium_transactions',
-        'app.premium_discounts'
+        'app.premium_discounts',
+        'app.notifications'
     ];
 
     /**
@@ -526,7 +527,7 @@ class UsersControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test profile authorized method
+     * Test premium authorized method
      *
      * @return void
      */
@@ -546,5 +547,28 @@ class UsersControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'users', 'action' => 'premium']);
         $this->assertResponseSuccess();
         $this->assertResponseContains('€');
+    }
+    
+    /**
+     * Test profile authorized method
+     *
+     * @return void
+     */
+    public function testNotificationsAuthorized()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 5,
+                ]
+            ]
+        ]);
+
+        $this->get(['controller' => 'users', 'action' => 'notifications']);
+        $this->assertResponseSuccess();
+        $this->assertResponseContains('infobox infobox-info');
     }
 }
