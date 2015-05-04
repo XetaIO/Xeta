@@ -7,7 +7,6 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\I18n;
 
-
 /**
  * Class GroupsController
  * @package App\Controller\Admin
@@ -113,16 +112,16 @@ class GroupsController extends AppController
                 'Chat' => $this->AclManager->getActionsList('Chat', [], 'Chat'),
             ],
             'Admin' => [
-                'Admin' => $this->AclManager->getActionsList('Admin',[], 'Admin'),
-                'Attachments' => $this->AclManager->getActionsList('Attachments',[], 'Admin'),
-                'Articles' => $this->AclManager->getActionsList('Articles',[], 'Admin'),
-                'Categories' => $this->AclManager->getActionsList('Categories',[], 'Admin'),
-                'Groups' =>  $this->AclManager->getActionsList('Groups',[], 'Admin'),
-                'Users' =>  $this->AclManager->getActionsList('Users',[], 'Admin'),
-                'Forum' => $this->AclManager->getActionsList('Categories',[],'Admin','Forum'),
-                'Premium' => $this->AclManager->getActionsList('Premium',[],'Admin','Premium'),
-                'Discounts' => $this->AclManager->getActionsList('Discounts',[],'Admin','Premium'),
-                'Offers' => $this->AclManager->getActionsList('Offers',[],'Admin','Premium'),
+                'Admin' => $this->AclManager->getActionsList('Admin', [], 'Admin'),
+                'Attachments' => $this->AclManager->getActionsList('Attachments', [], 'Admin'),
+                'Articles' => $this->AclManager->getActionsList('Articles', [], 'Admin'),
+                'Categories' => $this->AclManager->getActionsList('Categories', [], 'Admin'),
+                'Groups' =>  $this->AclManager->getActionsList('Groups', [], 'Admin'),
+                'Users' =>  $this->AclManager->getActionsList('Users', [], 'Admin'),
+                'Forum' => $this->AclManager->getActionsList('Categories', [], 'Admin', 'Forum'),
+                'Premium' => $this->AclManager->getActionsList('Premium', [],'Admin', 'Premium'),
+                'Discounts' => $this->AclManager->getActionsList('Discounts', [], 'Admin', 'Premium'),
+                'Offers' => $this->AclManager->getActionsList('Offers', [], 'Admin', 'Premium'),
             ]
         ];
         if (empty($group)) {

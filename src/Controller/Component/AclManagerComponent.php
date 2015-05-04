@@ -12,7 +12,6 @@ use Cake\Filesystem\Folder;
 use ReflectionClass;
 use ReflectionMethod;
 
-
 /**
  * Class AclManagerComponent
  * @package App\Controller\Component
@@ -30,7 +29,7 @@ class AclManagerComponent extends Component
     protected $config = [];
 
     /**
-     * @param array $config
+     * @param array $config initialize cake method need $config
      */
     public function initialize(array $config)
     {
@@ -41,7 +40,7 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @return bool
+     * @return bool return true if acos saved
      */
     public function acosBuilder()
     {
@@ -101,7 +100,7 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @return array
+     * @return array return a list of all controllers
      */
     private function __getControllers()
     {
@@ -121,8 +120,8 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param string $controllerName
-     * @return array
+     * @param string $controllerName the controller name to check
+     * @return array return an array with controller => actions
      */
     public function getActions($controllerName)
     {
@@ -143,10 +142,10 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param string $path
-     * @param string $alias
-     * @param null $parentId
-     * @return mixed
+     * @param string $path the path like App/Admin/Admin/home
+     * @param string $alias the name of the alias like home
+     * @param null $parentId the parent id
+     * @return mixed return an ACL Aco Object
      */
     private function __checkNodeOrSave($path, $alias, $parentId = null)
     {
@@ -165,8 +164,8 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param string $path
-     * @return mixed
+     * @param string $path path like App/Admin/Admin/home
+     * @return mixed retunr an ACL Aco Object
      */
     public function node($path)
     {
@@ -175,9 +174,9 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param Group $aro
-     * @param Aro $parent
-     * @return bool
+     * @param Group $aro the Group to check
+     * @param Aro $parent the parent Aro
+     * @return bool return true/false
      */
     public function addBasicsRules(Group $aro, Aro $parent = null)
     {
@@ -195,9 +194,9 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param array $actions
-     * @param string $base
-     * @return array
+     * @param array $actions list of actions
+     * @param string $base the base like App
+     * @return array return actions with Aco alias
      */
     private function __setAlias($actions, $base)
     {
@@ -219,10 +218,10 @@ class AclManagerComponent extends Component
     }
 
     /**
-     * @param Group $group
-     * @param string $alias
-     * @param integer $data
-     * @return bool
+     * @param Group $group the group to check
+     * @param string $alias the alias like App/Admin/Admin/home
+     * @param int $data the request->data 1 or 0 (Allowed/Deny)
+     * @return bool return true/false
      */
     public function editRule(Group $group, $alias, $data)
     {
@@ -252,11 +251,11 @@ class AclManagerComponent extends Component
     /**
      * Get All actions for the controller
      *
-     * @param null $controller
-     * @param array $excluded
-     * @param null $prefix
-     * @param null $subfolder
-     * @return array
+     * @param null $controller the controller
+     * @param array $excluded the actions excluded
+     * @param null $prefix the prefix like Admin (App/Admin)
+     * @param null $subfolder the subfolder after the prefix (App/Admin/Forum)
+     * @return array return list of actions like $controller => $actions
      */
     public function getActionsList($controller = null, array $excluded = [], $prefix = null, $subfolder = null)
     {

@@ -85,8 +85,8 @@ class AclHelper extends Helper
     /**
      *  Check if the Group have access to the aco
      *
-     * @param Group $aro
-     * @param string $aco
+     * @param Group $aro Group to check the permissions
+     * @param string $aco Aco alias to check
      * @return bool
      */
     public function checkGroup(Group $aro, $aco = null)
