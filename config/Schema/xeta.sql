@@ -850,6 +850,7 @@ INSERT INTO `chat_messages` (`id`, `user_id`, `username`, `slug`, `css`, `group_
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `foreign_key` int(11) DEFAULT NULL COMMENT 'Can be the PostId, ThreadId etc',
   `type` varchar(150) NOT NULL,
   `data` text,
   `is_read` tinyint(2) NOT NULL DEFAULT '0',

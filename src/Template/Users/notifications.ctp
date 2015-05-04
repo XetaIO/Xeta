@@ -30,7 +30,7 @@
                     <?= __("Notifications") ?>
                 </h4>
 
-                <?php if(!empty($notifications)): ?>
+                <?php if(!empty($notifications->toArray())): ?>
                     <table class="table table-striped">
                         <tbody>
                             <?php foreach($notifications as $notification):?>
@@ -73,9 +73,9 @@
                     </div>
                 <?php else: ?>
                     <div class="infobox infobox-info">
-                        <h4>
+                        <h5>
                             <?= __("You don't have any notification yet."); ?>
-                        </h4>
+                        </h5>
                     </div>
                 <?php endif; ?>
             </div>
