@@ -131,4 +131,4 @@ If you want to contribute to the project by adding new features or just fix a bu
 
 # Special Thanks
 * [Antograssiot](https://github.com/antograssiot) (CakePHP Team Member) For all his help !
-* And all the contributors !
+* And all the [contributors](https://github.com/Xety/Xeta/graphs/contributors) !
