@@ -134,14 +134,33 @@ class Notifications implements EventListenerInterface
                 'Users.id' => $event->data['sender_id']
             ])
             ->first();
+            
+            
+        //Check if this user hasn't already a notification. (Prevent for spam)
+        $hasReplied = $this->Notifications
+            ->find()
+            ->where([
+                'Notifications.foreign_key' => $thread->id,
+                'Notifications.type' => $event->data['type'],
+                'Notifications.user_id' => $event->data['follower']->user->id
+            ])
+            ->first();
 
-        $data = [];
-        $data['user_id'] = $event->data['follower']->user->id;
-        $data['type'] = $event->data['type'];
-        $data['data'] = serialize(['sender' => $sender, 'thread' => $thread]);
+        if(!is_null($hasReplied)) {
+           $hasReplied->data = serialize(['sender' => $sender, 'thread' => $thread]);
+           $hasReplied->is_read = 0;
 
-        $entity = $this->Notifications->newEntity($data);
-        $this->Notifications->save($entity);
+           $this->Notifications->save($hasReplied);
+        } else {
+            $data = [];
+            $data['user_id'] = $event->data['follower']->user->id;
+            $data['type'] = $event->data['type'];
+            $data['data'] = serialize(['sender' => $sender, 'thread' => $thread]);
+            $data['foreign_key'] = $thread->id;
+
+            $entity = $this->Notifications->newEntity($data);
+            $this->Notifications->save($entity);
+        }
 
         return true;
     }
@@ -250,14 +269,13 @@ class Notifications implements EventListenerInterface
             ])
             ->first();
 
-        $data = [];
-
         if(!is_null($hasLiked)) {
            $hasLiked->data = serialize(['sender' => $sender, 'post' => $post]);
            $hasLiked->is_read = 0;
 
            $this->Notifications->save($hasLiked);
         } else {
+            $data = [];
             $data['user_id'] = $post->user_id;
             $data['type'] = $event->data['type'];
             $data['data'] = serialize(['sender' => $sender, 'post' => $post]);
