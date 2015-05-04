@@ -41,18 +41,18 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($this->request->session()->read('Auth.User')): ?>
-                <?= $this->cell('Notification::notifications') ?>
-
                 <p class="navbar-text">
-                        <?= __('Hello,') . '&nbsp;' ?>
-                        <?= $this->Html->link($this->request->session()->read('Auth.User.username'), '#', ['class' => 'user-menu-trigger']) ?>
-                    </p>
+                    <?= __('Hello,') . '&nbsp;' ?>
+                    <?= $this->Html->link($this->request->session()->read('Auth.User.username'), '#', ['class' => 'user-menu-trigger']) ?>
+                </p>
+                <?= $this->cell('Notification::notifications') ?>
                 <?php else:?>
-                    <?= $this->Html->link(__("Login"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
-                        ['class' => 'btn btn-outline navbar-btn']) ?>
-                    <?= $this->Html->link(__("Sign up"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
-                        ['class' => 'btn btn-primary navbar-btn']) ?>
+                <?= $this->Html->link(__("Login"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
+                ['class' => 'btn btn-outline navbar-btn']) ?>
+                <?= $this->Html->link(__("Sign up"), ['controller' => 'users', 'action' => 'login', 'prefix' => false],
+                ['class' => 'btn btn-primary navbar-btn']) ?>
                 <?php endif;?>
+
             </ul>
         </nav>
     </div>
