@@ -115,10 +115,10 @@ class GroupsController extends AppController
                 'Attachments' => $this->AclManager->getActionsList('Attachments', [], 'Admin'),
                 'Articles' => $this->AclManager->getActionsList('Articles', [], 'Admin'),
                 'Categories' => $this->AclManager->getActionsList('Categories', [], 'Admin'),
-                'Groups' =>  $this->AclManager->getActionsList('Groups', [], 'Admin'),
-                'Users' =>  $this->AclManager->getActionsList('Users', [], 'Admin'),
+                'Groups' => $this->AclManager->getActionsList('Groups', [], 'Admin'),
+                'Users' => $this->AclManager->getActionsList('Users', [], 'Admin'),
                 'Forum' => $this->AclManager->getActionsList('Categories', [], 'Admin', 'Forum'),
-                'Premium' => $this->AclManager->getActionsList('Premium', [],'Admin', 'Premium'),
+                'Premium' => $this->AclManager->getActionsList('Premium', [], 'Admin', 'Premium'),
                 'Discounts' => $this->AclManager->getActionsList('Discounts', [], 'Admin', 'Premium'),
                 'Offers' => $this->AclManager->getActionsList('Offers', [], 'Admin', 'Premium'),
             ]
