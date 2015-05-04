@@ -3,6 +3,7 @@ namespace App\View\Helper;
 
 use Acl\Auth\ActionsAuthorize;
 use Acl\Controller\Component\AclComponent;
+use App\Controller\Component\AclManagerComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Request;
 use Cake\Routing\Router;
@@ -46,7 +47,7 @@ class AclHelper extends Helper
 
         $collection = new ComponentRegistry();
         $this->Acl = new AclComponent($collection);
-
+        $this->AclManager = new AclManagerComponent($collection);
         $this->Authorize = new ActionsAuthorize($collection);
         $this->Authorize->config([
             'actionPath' => 'app/',
@@ -78,15 +79,21 @@ class AclHelper extends Helper
         $request->addParams($params);
 
         $action = $this->Authorize->action($request);
-
         return $this->Acl->check($user, $action);
     }
-    public function checkGroup(Group $aro, $aco ='')
+
+    /**
+     *  Check if the Group have access to the aco
+     *
+     * @param Group $aro
+     * @param string $aco
+     * @return bool
+     */
+    public function checkGroup(Group $aro, $aco = null)
     {
         if (empty($aro) || empty($aco)) {
             return false;
         }
-
         return $this->Acl->check($aro, $aco);
     }
 
