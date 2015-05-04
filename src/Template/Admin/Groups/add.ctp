@@ -87,6 +87,20 @@
 							</span>
 						</div>
 					</div>
+					<div class="form-group">
+						<?= $this->Form->label('Parent Group', __d('admin', 'Parent Group'), ['class' => 'col-sm-2 control-label']) ?>
+						<div class="col-sm-5 radio-check">
+							<?= $this->Form->select('parent', $parents,
+								[
+									'legend' => false,
+									'class' => 'form-control'
+								]
+							) ?>
+							<span>
+								<?= __d('admin', 'Used to display the Group Premium intead of the real group.') ?>
+							</span>
+						</div>
+					</div>
 
 					<?= $this->Form->button(__d('admin', 'Create Group'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
 					<?= $this->Form->end() ?>
