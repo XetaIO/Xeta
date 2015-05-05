@@ -76,16 +76,19 @@ Router::scope('/', function ($routes) {
 
     //Users Routes.
     $routes->connect(
-        '/users/profile/:slug',
+        '/users/profile/:slug.:id',
         [
             'controller' => 'users',
             'action' => 'profile'
         ],
         [
             '_name' => 'users-profile',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 

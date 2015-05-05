@@ -40,7 +40,8 @@
 									h($user->username),
 									[
 										'_name' => 'users-profile',
-										'slug' => $user->slug
+										'slug' => $user->slug,
+										'id' => $user->id
 									],
 									[
 										'data-toggle' => 'tooltip',

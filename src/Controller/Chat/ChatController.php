@@ -73,7 +73,7 @@ class ChatController extends AppController
                 return $messages->map(function ($message) {
                     $message['created'] = $message['created']->timestamp;
                     $message['modified'] = $message['modified']->timestamp;
-                    $message['link'] = Router::url(['_name' => 'users-profile', 'slug' => $message['slug']]);
+                    $message['link'] = Router::url(['_name' => 'users-profile', 'slug' => $message['slug'], 'id' => $message['user_id']]);
                     return $message;
                 });
             })
@@ -85,7 +85,7 @@ class ChatController extends AppController
             ->formatResults(function ($users) {
                 return $users->map(function ($user) {
                     $user['created'] = $user['created']->timestamp;
-                    $user['link'] = Router::url(['_name' => 'users-profile', 'slug' => $user['slug']]);
+                    $user['link'] = Router::url(['_name' => 'users-profile', 'slug' => $user['slug'], 'id' => $user['user_id']]);
                     return $user;
                 });
             })

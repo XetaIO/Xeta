@@ -69,9 +69,9 @@
                 </li>
             <?php endif; ?>
 
-            <?php if ($this->Acl->check(['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))])): ?>
+            <?php if ($this->Acl->check(['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug')), 'id' => $this->request->session()->read('Auth.User.id')])): ?>
                 <li>
-                    <?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profile'), ['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug'))], ['escape' => false]) ?>
+                    <?= $this->Html->link('<i class="fa fa-user"></i>&nbsp;' . __('My Profile'), ['_name' => 'users-profile', 'slug' => h($this->request->session()->read('Auth.User.slug')), 'id' => $this->request->session()->read('Auth.User.id')], ['escape' => false]) ?>
                 </li>
             <?php endif; ?>
 

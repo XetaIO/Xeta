@@ -29,7 +29,7 @@
 								<?= __("Your Premium will be ended at {0}.", $user->end_subscription->format('H:i:s d-m-Y')) ?>
 								<?= $this->Html->link(
 									__("My Profil {0}", '<i class="fa fa-arrow-right"></i>'),
-									['_name' => 'users-profile', 'slug' => $user->slug],
+									['_name' => 'users-profile', 'slug' => $user->slug, 'id' => $user->id],
 									['class' => 'btn btn-sm btn-primary', 'escape' => false]
 								) ?>
 							</div>

@@ -261,7 +261,8 @@
                                 $article->user->full_name,
                                 [
                                     '_name' => 'users-profile',
-                                    'slug' => $article->user->slug
+                                    'slug' => $article->user->slug,
+                                    'id' => $article->user->id
                                 ]
                             ) ?>
                         </h3>
@@ -413,7 +414,8 @@
                                     $this->Html->image($comment->user->avatar, ['alt' => $comment->user->full_name]),
                                     [
                                         '_name' => 'users-profile',
-                                        'slug' => $comment->user->slug
+                                        'slug' => $comment->user->slug,
+                                        'id' => $comment->user->id
                                     ],
                                     [
                                         'class' => 'avatar',
@@ -427,7 +429,8 @@
                                             <?= $this->Html->link(
                                                 $comment->user->full_name, [
                                                     '_name' => 'users-profile',
-                                                    'slug' => $comment->user->slug
+                                                    'slug' => $comment->user->slug,
+                                                    'id' => $comment->user->id
                                                 ]
                                             ) ?>
                                         </h3>

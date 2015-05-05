@@ -10,12 +10,12 @@
                         <li>
                             <?= $this->Html->link(
                                 $this->Html->image($staff->user->avatar, ['class' => 'img-thumbnail']),
-                                ['_name' => 'users-profile', 'slug' => $staff->user->slug, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $staff->user->slug, 'id' => $staff->user->id, 'prefix' => false],
                                 ['class' => 'avatar', 'escape' => false]
                             ) ?>
                             <?= $this->Html->link(
                                 $staff->user->username,
-                                ['_name' => 'users-profile', 'slug' => $staff->user->slug, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $staff->user->slug, 'id' => $staff->user->id, 'prefix' => false],
                                 ['class' => 'username']
                             ) ?>
                             <small class="userGroup" style="<?= h($staff->user->group_css) ?>">
@@ -58,7 +58,7 @@
                         <li>
                             <?= $this->Html->link(
                                 $this->Html->image($thread->user->avatar, ['class' => 'img-thumbnail']),
-                                ['_name' => 'users-profile', 'slug' => $thread->user->slug, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $thread->user->slug, 'id' => $thread->user->id, 'prefix' => false],
                                 [
                                     'class' => 'avatar',
                                     'escape' => false,

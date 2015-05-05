@@ -495,7 +495,7 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testProfile()
     {
-        $this->get(['_name' => 'users-profile', 'slug' => 'mariano']);
+        $this->get(['_name' => 'users-profile', 'slug' => 'mariano', 'id' => 1]);
         $this->assertResponseOk();
         $this->assertResponseContains('My awesome biography');
     }
@@ -507,7 +507,7 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testProfileWithFakeUser()
     {
-        $this->get(['_name' => 'users-profile', 'slug' => 'marianoFail']);
+        $this->get(['_name' => 'users-profile', 'slug' => 'marianoFail', 'id' => 1]);
         $this->assertResponseSuccess();
         //We can't test the flash message due to the translation system.
         $this->assertSession('flash', 'Flash.flash.key');
