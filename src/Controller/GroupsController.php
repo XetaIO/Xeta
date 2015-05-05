@@ -22,13 +22,15 @@ class GroupsController extends AppController
 
     /**
      * Display members by a group.
+     *
+     * @return void
      */
     public function view()
     {
         $this->paginate = [
             'maxLimit' => Configure::read('Group.user_per_page')
         ];
-        
+
         $this->Users = $this->loadModel('Users');
 
         $users = $this->Users
