@@ -50,23 +50,13 @@
                                 <ul>
                                     <li class="author">
                                         <i class="fa fa-user"></i>
-                                        <?php if (!empty($article->user->full_name)): ?>
-                                            <?=
-                                            $this->Html->link(
-                                                $article->user->full_name, [
-                                                    '_name' => 'users-profile',
-                                                    'slug' => $article->user->slug
-                                                ]
-                                            ) ?>
-                                        <?php else: ?>
-                                            <?=
-                                            $this->Html->link(
-                                                $article->user->username, [
-                                                    '_name' => 'users-profile',
-                                                    'slug' => $article->user->slug
-                                                ]
-                                            ) ?>
-                                        <?php endif; ?>
+                                        <?= $this->Html->link(
+                                            $article->user->full_name, [
+                                                '_name' => 'users-profile',
+                                                'slug' => $article->user->slug,
+                                                'id' => $article->user->id
+                                            ]
+                                        ) ?>
                                     </li>
                                     <li class="categories">
                                         <i class="fa fa-tag"></i>

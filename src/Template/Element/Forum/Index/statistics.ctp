@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-4 text-center">
                     <span class="output text-danger">
-                        <?= $this->Html->link($statistics['Users']['LastRegistered']->username, ['_name' => 'users-profile', 'slug' => $statistics['Users']['LastRegistered']->slug, 'prefix' => false]) ?>
+                        <?= $this->Html->link($statistics['Users']['LastRegistered']->username, ['_name' => 'users-profile', 'slug' => $statistics['Users']['LastRegistered']->slug, 'id' => $statistics['Users']['LastRegistered']->id, 'prefix' => false]) ?>
                     </span>
                     <strong>
                         <?= __('Newest Member') ?>
@@ -82,7 +82,7 @@
                 <p>
                     <?= __n('Registered user :', 'Registered users :', $online['members'], $online['members']) ?>
                     <?php foreach ($online['records'] as $key => $record): ?>
-                        <?= $this->Html->link($record->user->username, ['_name' => 'users-profile', 'slug' => $record->user->slug, 'prefix' => false], ['style' => h($record->user->group_css)]) ?><?= (!isset($online['records'][count($online['records']) - 1]) || ($online['records'][count($online['records']) - 1]->user->slug == $record->user->slug)) ? '' : ',' ?>
+                        <?= $this->Html->link($record->user->username, ['_name' => 'users-profile', 'slug' => $record->user->slug, 'id' => $record->user->id, 'prefix' => false], ['style' => h($record->user->group_css)]) ?><?= (!isset($online['records'][count($online['records']) - 1]) || ($online['records'][count($online['records']) - 1]->user->slug == $record->user->slug)) ? '' : ',' ?>
                     <?php endforeach; ?>
                 </p>
             <?php endif; ?>

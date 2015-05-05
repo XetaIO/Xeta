@@ -41,7 +41,7 @@
                                     </div>
                                     <span class="threadDescription">
                                         <?= __('By') ?>
-                                        <?= $this->Html->link($thread->user->full_name, ['_name' => 'users-profile', 'slug' => $thread->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
+                                        <?= $this->Html->link($thread->user->full_name, ['_name' => 'users-profile', 'slug' => $thread->user->slug, 'id' => $thread->user->id, 'prefix' => false], ['class' => 'text-primary']) ?>
                                         <small>
                                             - <?= ucwords($thread->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT])) ?>
                                         </small>
@@ -57,7 +57,7 @@
                             <td class="threadLastPost hidden-xs">
                                 <span class="lastMessage">
                                     <?= __('By') ?>
-                                    <?= $this->Html->link($thread->last_post_user->full_name, ['_name' => 'users-profile', 'slug' => $thread->last_post_user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
+                                    <?= $this->Html->link($thread->last_post_user->full_name, ['_name' => 'users-profile', 'slug' => $thread->last_post_user->slug, 'id' => $thread->last_post_user->id, 'prefix' => false], ['class' => 'text-primary']) ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-sign-out"></i>',
                                         [

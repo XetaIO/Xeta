@@ -5,7 +5,7 @@
             <div class="avatar">
                 <?= $this->Html->link(
                     $this->Html->image($post->user->avatar, ['width' => '100', 'height' => '100']),
-                    ['_name' => 'users-profile', 'slug' => $post->user->slug, 'prefix' => false],
+                    ['_name' => 'users-profile', 'slug' => $post->user->slug, 'id' => $post->user->id, 'prefix' => false],
                     ['escape' => false]
                 ) ?>
                 <span class="status">
@@ -18,7 +18,7 @@
             </div>
 
             <span class="username">
-                <?= $this->Html->link($post->user->full_name, ['_name' => 'users-profile', 'slug' => $post->user->slug, 'prefix' => false]) ?>
+                <?= $this->Html->link($post->user->full_name, ['_name' => 'users-profile', 'slug' => $post->user->slug, 'id' => $post->user->id, 'prefix' => false]) ?>
             </span>
 
             <span class="group" style="<?= h($post->user->group_css) ?>">
@@ -131,7 +131,7 @@
                             '<i class="fa fa-pencil"></i>',
                             $this->Html->link(
                                 h($post->last_edit_user->username),
-                                ['_name' => 'users-profile', 'slug' => $post->last_edit_user->slug, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $post->last_edit_user->slug, 'id' => $post->last_edit_user->id, 'prefix' => false],
                                 ['class' => 'text-primary', 'escape' => false]
                             ),
                             ucwords($post->last_edit_date->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::MEDIUM]))

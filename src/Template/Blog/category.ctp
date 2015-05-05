@@ -60,7 +60,8 @@
                                         <?= $this->Html->link(
                                             $article->user->full_name, [
                                                 '_name' => 'users-profile',
-                                                'slug' => $article->user->slug
+                                                'slug' => $article->user->slug,
+                                                'id' => $article->user->id
                                             ]
                                         ) ?>
                                     </li>

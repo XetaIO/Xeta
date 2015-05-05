@@ -49,7 +49,7 @@ use Cake\Utility\Inflector;
 								</h6>
 								<div class="entry-meta">
 									<span class="jp-views">
-										<?= __('- By {0}', $this->Html->link($suggestion->first_post->user->username, ['_name' => 'users-profile', 'slug' => $suggestion->first_post->user->slug, 'prefix' => false], ['style' => h($suggestion->first_post->user->group->css)])) ?>
+										<?= __('- By {0}', $this->Html->link($suggestion->first_post->user->username, ['_name' => 'users-profile', 'slug' => $suggestion->first_post->user->slug, 'id' => $suggestion->first_post->user->id, 'prefix' => false], ['style' => h($suggestion->first_post->user->group->css)])) ?>
 									</span>
 								</div>
 							</header>

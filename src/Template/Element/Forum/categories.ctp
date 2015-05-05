@@ -101,7 +101,7 @@
                                     ) ?>
                                     <br>
                                     <?= __('By') ?>
-                                    <?= $this->Html->link($forum->last_post->user->full_name, ['_name' => 'users-profile', 'slug' => $forum->last_post->user->slug, 'prefix' => false], ['class' => 'text-primary']) ?>
+                                    <?= $this->Html->link($forum->last_post->user->full_name, ['_name' => 'users-profile', 'slug' => $forum->last_post->user->slug, 'id' => $forum->last_post->user->id, 'prefix' => false], ['class' => 'text-primary']) ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-sign-out"></i>',
                                         [

@@ -41,7 +41,7 @@
 	            <ul class="meta">
 		            <li class="author">
 			            <i class="fa fa-user"></i>
-				            <?= $this->Html->link($featured->user->full_name, ['_name' => 'users-profile', 'slug' => $featured->user->slug]) ?>
+				            <?= $this->Html->link($featured->user->full_name, ['_name' => 'users-profile', 'slug' => $featured->user->slug, 'id' => $featured->user->id]) ?>
 		            </li>
 		            <li class="date">
 			            <i class="fa fa-calendar"></i>

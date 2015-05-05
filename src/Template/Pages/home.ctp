@@ -395,7 +395,7 @@
 								</div>
 								<div class="info">
 									<?= $this->Html->link($comment->user->full_name, ['_name' => 'users-profile',
-											'slug' => $comment->user->slug], ['class' => 'name']) ?>
+											'slug' => $comment->user->slug, 'id' =>$comment->user->id], ['class' => 'name']) ?>
 									<div class="article">
 										<i class="fa fa-newspaper-o"></i>
 										<?= $this->Html->link(

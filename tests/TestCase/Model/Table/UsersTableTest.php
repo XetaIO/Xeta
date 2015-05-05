@@ -53,6 +53,7 @@ class UsersTableTest extends TestCase
         $this->assertInstanceOf('App\Model\Entity\User', $query);
         $result = $query->toArray();
         $expected = [
+            'id' => 1,
             'first_name' => 'Maria',
             'last_name' => 'Riano',
             'username' => 'mariano',
@@ -73,6 +74,7 @@ class UsersTableTest extends TestCase
         $this->assertInstanceOf('App\Model\Entity\User', $query);
         $result = $query->toArray();
         $expected = [
+            'id' => 1,
             'first_name' => 'Maria',
             'last_name' => 'Riano',
             'username' => 'mariano',
@@ -181,6 +183,7 @@ class UsersTableTest extends TestCase
         ];
 
         $expected = [
+            'id' => 3,
             'first_name' => null,
             'last_name' => null,
             'username' => 'Xeta',
@@ -289,6 +292,7 @@ class UsersTableTest extends TestCase
         $this->assertEmpty($user->errors());
 
         $expected = [
+            'id' => 1,
             'first_name' => 'my firstname',
             'last_name' => 'my lastname',
             'username' => 'mariano',

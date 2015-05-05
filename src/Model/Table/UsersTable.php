@@ -330,6 +330,7 @@ class UsersTable extends Table
     public function findShort(Query $query)
     {
         return $query->select([
+            'id',
             'first_name',
             'last_name',
             'username',
@@ -347,6 +348,7 @@ class UsersTable extends Table
     public function findMedium(Query $query)
     {
         return $query->select([
+            'id',
             'first_name',
             'last_name',
             'username',

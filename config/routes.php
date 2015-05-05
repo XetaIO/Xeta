@@ -76,16 +76,19 @@ Router::scope('/', function ($routes) {
 
     //Users Routes.
     $routes->connect(
-        '/users/profile/:slug',
+        '/users/profile/:slug.:id',
         [
             'controller' => 'users',
             'action' => 'profile'
         ],
         [
             '_name' => 'users-profile',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
@@ -348,44 +351,53 @@ Router::prefix('admin', function ($routes) {
 
     //Users Routes.
     $routes->connect(
-        '/users/edit/:slug',
+        '/users/edit/:slug.:id',
         [
             'controller' => 'users',
             'action' => 'edit'
         ],
         [
             '_name' => 'users-edit',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     $routes->connect(
-        '/users/delete/:slug',
+        '/users/delete/:slug.:id',
         [
             'controller' => 'users',
             'action' => 'delete'
         ],
         [
             '_name' => 'users-delete',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     $routes->connect(
-        '/users/deleteAvatar/:slug',
+        '/users/deleteAvatar/:slug.:id',
         [
             'controller' => 'users',
             'action' => 'deleteAvatar'
         ],
         [
             '_name' => 'users-deleteAvatar',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 

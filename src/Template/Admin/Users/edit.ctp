@@ -112,7 +112,7 @@
 								</li>
 							</ul>
 							<div class="delete-avatar">
-								<?= $this->Html->link(__d('admin', 'Delete Avatar'), ['_name' => 'users-deleteAvatar', 'slug' => $user->slug], ['class' => 'btn btn-primary btn-sm']) ?>
+								<?= $this->Html->link(__d('admin', 'Delete Avatar'), ['_name' => 'users-deleteAvatar', 'slug' => $user->slug, 'id' => $user->id], ['class' => 'btn btn-primary btn-sm']) ?>
 							</div>
 							<h5>
 								<?= __d('admin', 'Member since {0}', $user->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT])) ?>
@@ -234,7 +234,7 @@
 				</small>
 			</div>
 			<div class="modal-footer">
-				<?= $this->Html->link(__d('admin', 'Yes'), ['_name' => 'users-delete', 'slug' => $user->slug], ['class' => 'btn btn-primary']) ?>
+				<?= $this->Html->link(__d('admin', 'Yes'), ['_name' => 'users-delete', 'slug' => $user->slug, 'id' => $user->id], ['class' => 'btn btn-primary']) ?>
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><?= __d('admin', 'Close') ?></button>
 			</div>
 		</div>
