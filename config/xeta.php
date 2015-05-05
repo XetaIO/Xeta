@@ -34,6 +34,9 @@ return [
         'max_notifications' => 5,
         'notifications_per_page' => 4
     ],
+    'Group' => [
+        'user_per_page' => 15
+    ],
     'HtmlPurifier' => [
         'User' => [
             'biography' => [
@@ -148,7 +151,7 @@ return [
             'threads_per_page' => 15
         ],
         'Threads' => [
-            'posts_per_page' => 10
+            'posts_per_page' => 3
         ],
         'Sidebar' => [
             'latest_threads' => 5

@@ -22,6 +22,9 @@
                 <h3>
                     <?= __("All {0}'s members", \Cake\Core\Configure::read('Site.name')) ?>
                 </h3>
+                <small>
+                    <?= __('Ordered by Group : {0}', h(\Cake\Utility\Inflector::humanize($this->request->slug))) ?>
+                </small>
                 <table class="table">
                     <thead>
                     <tr>
@@ -54,7 +57,7 @@
                                 <?= h($user->full_name) ?>
                             </td>
                             <td>
-                                <?= ucfirst(h($user->group->name)) ?>
+                                <?= \Cake\Utility\Inflector::humanize(h($user->group->name)) ?>
                             </td>
                             <td>
                                 <?= $user->created->format('d-m-Y') ?>
