@@ -151,7 +151,7 @@ return [
             'threads_per_page' => 15
         ],
         'Threads' => [
-            'posts_per_page' => 3
+            'posts_per_page' => 10
         ],
         'Sidebar' => [
             'latest_threads' => 5
