@@ -51,16 +51,14 @@ composer create-project --prefer-dist xety/xeta <application_name>
 * Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
 
-
-##### Install Google Analytics system in Dashboard
-If you want to install the Google Analytics (not required), please follow the tutorial in the wiki :
-https://github.com/Xety/Xeta/wiki
-
 #### Pre-installed Accounts
 * Admin account
     * User : Admin | Pass : `administrator`
 * Member account
     * User : Test | Pass : `testaccount`
+
+# Documentation
+https://github.com/Xety/Xeta/wiki
 
 # Features
 This project implements many features and will implements more in the future. Here's a list of the features developed in Xeta :
