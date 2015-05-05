@@ -257,9 +257,9 @@ class UsersController extends AppController
     public function profile()
     {
         $user = $this->Users
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'Users.slug'
+            ->find()
+            ->where([
+                'Users.id' => $this->request->id
             ])
             ->contain([
                 'BlogArticles' => function ($q) {

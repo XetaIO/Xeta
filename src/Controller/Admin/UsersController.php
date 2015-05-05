@@ -117,9 +117,9 @@ class UsersController extends AppController
     public function edit()
     {
         $user = $this->Users
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'Users.slug'
+            ->find()
+            ->where([
+                'Users.id' => $this->request->id
             ])
             ->first();
 
@@ -155,9 +155,9 @@ class UsersController extends AppController
     public function delete()
     {
         $user = $this->Users
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'Users.slug'
+            ->find()
+            ->where([
+                'Users.id' => $this->request->id
             ])
             ->first();
 
@@ -187,9 +187,9 @@ class UsersController extends AppController
     public function deleteAvatar()
     {
         $user = $this->Users
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'Users.slug'
+            ->find()
+            ->where([
+                'Users.id' => $this->request->id
             ])
             ->first();
 

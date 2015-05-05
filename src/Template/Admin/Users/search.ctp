@@ -72,7 +72,7 @@
 										</td>
 										<td>
 											<?= $this->Html->link($user->full_name, ['_name' => 'users-edit',
-													'slug' => $user->slug]) ?>
+													'slug' => $user->slug, 'id' => $user->id]) ?>
 										</td>
 										<td>
 											<?= $user->last_login->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
@@ -88,7 +88,8 @@
 												'<i class="fa fa-edit"></i>',
 												[
 													'_name' => 'users-edit',
-													'slug' => $user->slug
+													'slug' => $user->slug,
+													'id' => $user->id
 												],
 												[
 													'class' => 'btn btn-sm btn-primary',
