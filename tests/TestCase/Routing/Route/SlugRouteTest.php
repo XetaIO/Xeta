@@ -38,6 +38,16 @@ class SlugRouteTest extends TestCase
             'id' => 1
         ]);
         $this->assertEquals('/threads/edit/my-awesome-slug.1', $result);
+
+        $route = new SlugRoute(':plugin/:controller/:action/:slug.:id', [], ['id' => Router::ID]);
+        $result = $route->match([
+            'plugin' => 'MyPlugin',
+            'controller' => 'Threads',
+            'action' => 'edit',
+            'slug' => 'my awésôme slug',
+            'id' => 1
+        ]);
+        $this->assertEquals('my_plugin/threads/edit/my-awesome-slug.1', $result);
     }
 
     /**
