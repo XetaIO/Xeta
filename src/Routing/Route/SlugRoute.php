@@ -75,6 +75,12 @@ class SlugRoute extends Route
         if (isset($url['slug']) && !empty($url['slug'])) {
             $url['slug'] = strtolower(Inflector::slug($url['slug']));
         }
+        if (!empty($url['controller'])) {
+            $url['controller'] = Inflector::underscore($url['controller']);
+        }
+        if (!empty($url['plugin'])) {
+            $url['plugin'] = Inflector::underscore($url['plugin']);
+        }
         return $url;
     }
 }
