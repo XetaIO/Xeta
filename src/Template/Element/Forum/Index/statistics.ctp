@@ -75,7 +75,7 @@
                 $lastGroup = $statistics['Groups'];
                 ?>
                 <?php foreach ($statistics['Groups'] as $group): ?>
-                    <?= $this->Html->link((\Cake\I18n\I18n::locale() == \Cake\I18n\I18n::defaultLocale()) ? $group->name : $group->translation(\Cake\I18n\I18n::locale())->name, ['controller' => 'groups', 'action' => 'view', 'id' => $group->id], ['style' => h($group->css)]) ?><?= ($lastGroup[count($lastGroup) - 1]->id == $group->id) ? '' : ',' ?>
+                    <?= $this->Html->link((\Cake\I18n\I18n::locale() == \Cake\I18n\I18n::defaultLocale()) ? $group->name : $group->translation(\Cake\I18n\I18n::locale())->name, ['controller' => 'groups', 'action' => 'view', 'id' => $group->id, 'slug' => $group->name, 'prefix' => false], ['style' => h($group->css)]) ?><?= ($lastGroup[count($lastGroup) - 1]->id == $group->id) ? '' : ',' ?>
                 <?php endforeach; ?>
             </span>
             <?php if (!empty($online['records'])): ?>

@@ -107,6 +107,24 @@ Router::scope('/', function ($routes) {
             ]
         ]
     );
+    
+    //Groups Routes.
+    $routes->connect(
+        '/groups/view/:slug.:id',
+        [
+            'controller' => 'groups',
+            'action' => 'view'
+        ],
+        [
+            '_name' => 'groups-view',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
 
     $routes->fallbacks();
 });
