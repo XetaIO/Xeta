@@ -1,6 +1,6 @@
 <?php $this->start('scriptBottom');
     echo $this->Html->script([
-        'http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js',
         'snap.svg-min'
     ]);?>
 
@@ -20,8 +20,6 @@
 
 <div class="robotpage-top-half">
     <div id="robot_holder">
-        <?xml version="1.0" encoding="utf-8"?>
-        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
         <svg id="brokebotSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 551 239" enable-background="new 0 0 551 239" xml:space="preserve" preserveAspectRatio="xMidYMax">
             <text id="errorCodeTxt" transform="matrix(1 0 0 1 6.7231 240.0011)" class="error_code"></text>
