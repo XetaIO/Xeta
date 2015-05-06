@@ -8,6 +8,7 @@
 /webroot/css/less/
 /webroot/css/forumless/
 /webroot/css/adminless/
+/webroot/css/errorless/
 /webroot/upload/avatar/1/
 /webroot/upload/blog/attachment/*
 config/app.php
