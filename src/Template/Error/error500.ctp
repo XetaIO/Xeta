@@ -1,3 +1,7 @@
+<?= $this->element('meta', [
+    'title' => __("Error {0} :(", $code)
+]) ?>
+
 <?php $this->start('scriptBottom');
     echo $this->Html->script([
         'https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js',
