@@ -74,6 +74,7 @@
                                                     '_name' => 'blog-article',
                                                     'prefix' => false,
                                                     'slug' => $article->slug,
+                                                    'id' => $article->id,
                                                     '?' => ['page' => $article->last_page]
                                                 ],
                                                 [

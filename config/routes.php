@@ -33,30 +33,36 @@ Router::scope('/', function ($routes) {
 
     //Blog Routes.
     $routes->connect(
-        '/blog/article/:slug',
+        '/blog/article/:slug.:id',
         [
             'controller' => 'blog',
             'action' => 'article'
         ],
         [
             '_name' => 'blog-article',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     $routes->connect(
-        '/blog/category/:slug',
+        '/blog/category/:slug.:id',
         [
             'controller' => 'blog',
             'action' => 'category',
         ],
         [
             '_name' => 'blog-category',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 

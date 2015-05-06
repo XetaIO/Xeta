@@ -33,6 +33,7 @@
 						[
 							'_name' => 'blog-article',
 							'slug' => $featured->slug,
+                            'id' => $featured->id,
 							'?' => ['page' => $featured->last_page]
 						]
 					) ?>
@@ -59,7 +60,7 @@
             <ul class="circled">
                 <?php foreach($categories as $category): ?>
                     <li>
-                        <?= $this->Html->link($category->title . " (" . $category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $category->slug]) ?>
+                        <?= $this->Html->link($category->title . " (" . $category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $category->slug, 'id' => $category->id]) ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
