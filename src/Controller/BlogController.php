@@ -363,6 +363,7 @@ EOT;
         return $this->redirect([
             '_name' => 'blog-article',
             'slug' => $comment->blog_article->slug,
+            'id' => $comment->blog_article->id,
             '?' => ['page' => $page],
             '#' => 'comment-' . $commentId
         ]);
@@ -644,7 +645,7 @@ EOT;
             $this->Flash->success(__("This comment has been deleted successfully !"));
         }
 
-        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, '?' => ['page' => $comment->blog_article->last_page]]);
+        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, 'id' => $comment->blog_article->id, '?' => ['page' => $comment->blog_article->last_page]]);
     }
 
     /**

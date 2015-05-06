@@ -83,7 +83,8 @@
                                 <?= $this->Html->link(
                                     $article->blog_category->title, [
                                         '_name' => 'blog-category',
-                                        'slug' => $article->blog_category->slug
+                                        'slug' => $article->blog_category->slug,
+                                        'id' => $article->blog_category->id
                                     ]
                                 ) ?>
                             </li>
@@ -337,6 +338,7 @@
                                                                     [
                                                                         '_name' => 'blog-article',
                                                                         'slug' => $post->slug,
+                                                                        'id' => $post->id,
                                                                         '?' => ['page' => $post->last_page]
                                                                     ]
                                                                 ) ?>
@@ -360,7 +362,8 @@
                                                                         h($post->blog_category->title),
                                                                         [
                                                                             '_name' => 'blog-category',
-                                                                            'slug' => $post->blog_category->slug
+                                                                            'slug' => $post->blog_category->slug,
+                                                                            'id' => $post->blog_category->id
                                                                         ]
                                                                     ) ?>
                                                                 </li>
@@ -379,6 +382,7 @@
                                                             [
                                                                 '_name' => 'blog-article',
                                                                 'slug' => $post->slug,
+                                                                'id' => $post->id,
                                                                 '?' => ['page' => $post->last_page]
                                                             ],
                                                             [

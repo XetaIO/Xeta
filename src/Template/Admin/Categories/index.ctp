@@ -67,8 +67,9 @@
                                                 ),
                                                 [
                                                     '_name' => 'blog-category',
-                                                    'prefix' => false,
-                                                    'slug' => $category->slug
+                                                    'slug' => $category->slug,
+                                                    'id' => $category->id,
+                                                    'prefix' => false
                                                 ],
                                                 [
                                                     'target' => '_blank',

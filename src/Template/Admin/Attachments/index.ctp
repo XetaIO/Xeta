@@ -60,7 +60,7 @@
 										</td>
 										<td>
 											<?= $this->Html->link($attachment->user->full_name, ['_name' => 'users-edit',
-											'slug' => $attachment->user->slug]) ?>
+											'slug' => $attachment->user->slug, 'id' => $attachment->user->id]) ?>
 										</td>
 										<td>
 											<?= $this->Html->link(
@@ -76,6 +76,7 @@
 													'_name' => 'blog-article',
 													'prefix' => false,
 													'slug' => $attachment->blog_article->slug,
+                                                    'id' => $attachment->blog_article->id,
 													'?' => ['page' => $attachment->blog_article->last_page]
 												],
 												[

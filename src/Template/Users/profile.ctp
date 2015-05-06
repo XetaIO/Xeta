@@ -188,7 +188,7 @@
                                         <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
                                         <?= $this->Html->link(
                                             $article->title,
-                                            ['_name' => 'blog-article', 'slug' => $article->slug],
+                                            ['_name' => 'blog-article', 'slug' => $article->slug, 'id' => $article->id],
                                             ['class' => 'title text-primary']
                                         ) ?>
                                         <br>

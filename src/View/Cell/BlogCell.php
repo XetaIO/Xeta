@@ -22,6 +22,7 @@ class BlogCell extends Cell
         $categories = $this->BlogCategories
             ->find()
             ->select([
+                'id',
                 'title',
                 'slug',
                 'article_count'
@@ -32,6 +33,7 @@ class BlogCell extends Cell
         $featured = $this->BlogArticles
             ->find()
             ->select([
+                'id',
                 'title',
                 'slug',
                 'created',

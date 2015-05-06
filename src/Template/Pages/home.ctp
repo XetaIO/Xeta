@@ -305,6 +305,7 @@
 											[
 												'_name' => 'blog-article',
 												'slug' => $article->slug,
+                                                'id' => $article->id,
 												'?' => ['page' => $article->last_page]
 											]
 										) ?>
@@ -325,6 +326,7 @@
 											[
 												'_name' => 'blog-article',
 												'slug' => $article->slug,
+                                                'id' => $article->id,
 												'?' => ['page' => $article->last_page]
 											],
 											[
@@ -341,7 +343,8 @@
 													h($article->blog_category->title),
 													[
 														'_name' => 'blog-category',
-														'slug' => $article->blog_category->slug
+														'slug' => $article->blog_category->slug,
+                                                        'id' => $article->blog_category->id
 													]
 												) ?>
 											</li>

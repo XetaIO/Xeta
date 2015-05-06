@@ -47,6 +47,7 @@
                                         $article->title, [
                                             '_name' => 'blog-article',
                                             'slug' => $article->slug,
+                                            'id' => $article->id,
                                             '?' => ['page' => $article->last_page]
                                         ]
                                     ) ?>
@@ -94,6 +95,7 @@
                                     [
                                         '_name' => 'blog-article',
                                         'slug' => $article->slug,
+                                        'id' => $article->id,
                                         '?' => ['page' => $article->last_page]
                                     ],
                                     ['class' => 'btn btn-primary']
