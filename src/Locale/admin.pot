@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-04 04:01+0000\n"
+"POT-Creation-Date: 2015-05-06 12:56+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -322,7 +322,7 @@ msgstr ""
 
 #: Template/Admin/Articles/add.ctp:70
 #: Template/Admin/Articles/edit.ctp:70
-#: Template/Admin/Articles/index.ctp:93
+#: Template/Admin/Articles/index.ctp:94
 #: Template/Admin/Forum/Categories/add.ctp:57
 #: Template/Admin/Forum/Categories/edit.ctp:57
 #: Template/Admin/Groups/add.ctp:58;76
@@ -334,7 +334,7 @@ msgstr ""
 
 #: Template/Admin/Articles/add.ctp:71
 #: Template/Admin/Articles/edit.ctp:71
-#: Template/Admin/Articles/index.ctp:97
+#: Template/Admin/Articles/index.ctp:98
 #: Template/Admin/Forum/Categories/add.ctp:58
 #: Template/Admin/Forum/Categories/edit.ctp:58
 #: Template/Admin/Groups/add.ctp:59;77
@@ -407,20 +407,20 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: Template/Admin/Articles/index.ctp:82
-#: Template/Admin/Attachments/index.ctp:84
+#: Template/Admin/Articles/index.ctp:83
+#: Template/Admin/Attachments/index.ctp:85
 msgid "View this Article"
 msgstr ""
 
-#: Template/Admin/Articles/index.ctp:114
+#: Template/Admin/Articles/index.ctp:115
 msgid "Edit this article"
 msgstr ""
 
-#: Template/Admin/Articles/index.ctp:127
+#: Template/Admin/Articles/index.ctp:128
 msgid "Delete this article"
 msgstr ""
 
-#: Template/Admin/Articles/index.ctp:151
+#: Template/Admin/Articles/index.ctp:152
 msgid "No articles was found."
 msgstr ""
 
@@ -493,19 +493,19 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: Template/Admin/Attachments/index.ctp:114
+#: Template/Admin/Attachments/index.ctp:115
 msgid "Download this attachment"
 msgstr ""
 
-#: Template/Admin/Attachments/index.ctp:127
+#: Template/Admin/Attachments/index.ctp:128
 msgid "Edit this attachment"
 msgstr ""
 
-#: Template/Admin/Attachments/index.ctp:140
+#: Template/Admin/Attachments/index.ctp:141
 msgid "Delete this attachment"
 msgstr ""
 
-#: Template/Admin/Attachments/index.ctp:164
+#: Template/Admin/Attachments/index.ctp:165
 msgid "No attachments was found."
 msgstr ""
 
@@ -555,21 +555,21 @@ msgstr ""
 msgid "{0} New Category"
 msgstr ""
 
-#: Template/Admin/Categories/index.ctp:76
+#: Template/Admin/Categories/index.ctp:77
 msgid "View this category and its articles"
 msgstr ""
 
-#: Template/Admin/Categories/index.ctp:106
+#: Template/Admin/Categories/index.ctp:107
 #: Template/Admin/Forum/Categories/index.ctp:104
 msgid "Edit this category"
 msgstr ""
 
-#: Template/Admin/Categories/index.ctp:119
+#: Template/Admin/Categories/index.ctp:120
 #: Template/Admin/Forum/Categories/index.ctp:117
 msgid "Delete this category"
 msgstr ""
 
-#: Template/Admin/Categories/index.ctp:143
+#: Template/Admin/Categories/index.ctp:144
 msgid "No categories was found."
 msgstr ""
 
@@ -1000,27 +1000,27 @@ msgstr ""
 msgid "Last login IP"
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:96
+#: Template/Admin/Users/search.ctp:97
 msgid "Edit this user"
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:119
+#: Template/Admin/Users/search.ctp:120
 msgid "No results found"
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:121
+#: Template/Admin/Users/search.ctp:122
 msgid "No users were found for your search, please try again with a different word."
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:123
+#: Template/Admin/Users/search.ctp:124
 msgid "Suggestions :"
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:126
+#: Template/Admin/Users/search.ctp:127
 msgid "Check the spelling of your search words."
 msgstr ""
 
-#: Template/Admin/Users/search.ctp:129
+#: Template/Admin/Users/search.ctp:130
 msgid "Try more general keywords."
 msgstr ""
 

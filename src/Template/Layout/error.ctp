@@ -1,54 +1,52 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
+<?= $this->Html->docType('html5') ?>
+<html lang="en">
+    <head>
+        <?= $this->Html->charset() ?>
+        <?= $this->Html->meta(
+            'viewport',
+            'width=device-width, initial-scale=1.0, maximum-scale=1.0'
+        ) ?>
+        <title>
+            <?= $this->fetch('title') . ' - ' . \Cake\Core\Configure::read('Site.name') ?>
+        </title>
+        <?= $this->Html->meta('icon') ?>
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<?= $this->Html->charset() ?>
-	<title>
-		<?= $cakeDescription ?>:
-		<?= $this->fetch('title') ?>
-	</title>
-	<?= $this->Html->meta('icon') ?>
+        <?= $this->fetch('meta') ?>
 
-	<?= $this->Html->css('cake.generic') ?>
+        <!-- Styles -->
+        <?= $this->Html->css([
+            'https://fonts.googleapis.com/css?family=Leckerli+One',
+            'bootstrap.min',
+            'font-awesome.min',
+            'animate.min',
+            'xeta'
+        ]) ?>
 
-	<?= $this->fetch('meta') ?>
-	<?= $this->fetch('css') ?>
-	<?= $this->fetch('script') ?>
-</head>
-<body>
-	<div id="container">
-		<div id="header">
-			<h1><?= $this->Html->link($cakeDescription, 'http://cakephp.org') ?></h1>
-		</div>
-		<div id="content">
-			<?= $this->Flash->render() ?>
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-			<?= $this->fetch('content') ?>
-		</div>
-		<div id="footer">
-			<?= $this->Html->link(
-					$this->Html->image('cake.power.gif', ['alt' => $cakeDescription, 'border' => '0']),
-					'http://www.cakephp.org/',
-					['target' => '_blank', 'escape' => false]
-				)
-			?>
-		</div>
-	</div>
-</body>
+        <?= $this->fetch('css') ?>
+        <?= $this->fetch('scriptTop') ?>
+
+        <?= $this->element('google-analytics') ?>
+    </head>
+    <body>
+        <!-- Notifications in JavaScript -->
+        <div class='notifications top-right'></div>
+
+        <?= $this->element('header') ?>
+
+        <?= $this->fetch('content') ?>
+
+        <?= $this->element('footer') ?>
+
+        <?= $this->Html->script([
+            'lib.min',
+            'user-menu.min',
+            'xeta.min'
+        ]); ?>
+
+        <?= $this->fetch('scriptBottom') ?>
+    </body>
 </html>

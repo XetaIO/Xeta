@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-04 04:01+0000\n"
+"POT-Creation-Date: 2015-05-06 12:56+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -176,27 +176,27 @@ msgstr ""
 msgid "A few seconds ago"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:50
+#: Template/Element/Chat/mini-chat.ctp:89
 msgid "Chatbox"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:58
+#: Template/Element/Chat/mini-chat.ctp:97
 msgid "Members"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:68;94
+#: Template/Element/Chat/mini-chat.ctp:107;133
 msgid "Close"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:70
+#: Template/Element/Chat/mini-chat.ctp:109
 msgid "Change the Chat Notice"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:93
+#: Template/Element/Chat/mini-chat.ctp:132
 msgid "Save Notice"
 msgstr ""
 
-#: Template/Element/Chat/mini-chat.ctp:108
+#: Template/Element/Chat/mini-chat.ctp:147
 msgid "Enter message..."
 msgstr ""
 

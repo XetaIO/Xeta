@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-04 04:01+0000\n"
-"PO-Revision-Date: 2015-05-04 06:13+0100\n"
+"POT-Creation-Date: 2015-05-06 12:56+0000\n"
+"PO-Revision-Date: 2015-05-06 14:58+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -43,53 +43,53 @@ msgstr "Ce commentaire n'existe pas."
 msgid "This comment doesn't exist or has been deleted."
 msgstr "Ce commentaire n'existe pas ou a été supprimé."
 
-#: Controller/BlogController.php:484
+#: Controller/BlogController.php:485
 msgid "You already like this article !"
 msgstr "Vous aimez déjà cet article."
 
-#: Controller/BlogController.php:503
+#: Controller/BlogController.php:504
 msgid "This article doesn't exist !"
 msgstr "Cet article n'existe pas."
 
-#: Controller/BlogController.php:519
+#: Controller/BlogController.php:520
 msgid "Thanks for {0} this article ! "
 msgstr "Merci d'avoir {0} cet article !"
 
-#: Controller/BlogController.php:520 Template/Blog/article.ctp:215
+#: Controller/BlogController.php:521 Template/Blog/article.ctp:216
 msgid "You {0} this article."
 msgstr "Vous {0} cet article."
 
-#: Controller/BlogController.php:529;586
+#: Controller/BlogController.php:530;587
 #: Controller/Forum/PostsController.php:88;181
 msgid "An error occurred, please try again later."
 msgstr "Une erreur s'est produite, veuillez réessayer plus tard."
 
-#: Controller/BlogController.php:570
+#: Controller/BlogController.php:571
 msgid "You don't like this article !"
 msgstr "Vous n'aimez pas cet article."
 
-#: Controller/BlogController.php:583 Controller/Forum/PostsController.php:84
-#: Template/Blog/article.ctp:233 Template/Element/Forum/Thread/posts.ctp:202
+#: Controller/BlogController.php:584 Controller/Forum/PostsController.php:84
+#: Template/Blog/article.ctp:234 Template/Element/Forum/Thread/posts.ctp:202
 msgid "Like {0}"
 msgstr "J'aime {0}"
 
-#: Controller/BlogController.php:617;678;732
+#: Controller/BlogController.php:618;679;733
 msgid "This comment doesn't exist or has been deleted !"
 msgstr "Ce commentaire n'existe pas ou a été supprimé !"
 
-#: Controller/BlogController.php:638
+#: Controller/BlogController.php:639
 msgid "You don't have the authorization to delete this comment !"
 msgstr "Vous n'avez pas l'autorisation de supprimer ce commentaire !"
 
-#: Controller/BlogController.php:644
+#: Controller/BlogController.php:645
 msgid "This comment has been deleted successfully !"
 msgstr "Ce commentaire a été supprimé avec succès !"
 
-#: Controller/BlogController.php:701;753
+#: Controller/BlogController.php:702;754
 msgid "You don't have the authorization to edit this comment !"
 msgstr "Vous n'avez pas l'autorisation d'éditer ce commentaire !"
 
-#: Controller/BlogController.php:760
+#: Controller/BlogController.php:761
 msgid "This comment has been edited successfully !"
 msgstr "Ce commentaire a été édité avec succès !"
 
@@ -275,9 +275,9 @@ msgstr "Ce sujet n'existe pas ou a été supprimé."
 msgid "You don't like this post !"
 msgstr "Vous n'aimez pas ce post !"
 
-#: Controller/Forum/PostsController.php:85 Template/Blog/archive.ctp:84
-#: Template/Blog/article.ctp:96 Template/Blog/category.ctp:73
-#: Template/Blog/index.ctp:88 Template/Blog/search.ctp:70
+#: Controller/Forum/PostsController.php:85 Template/Blog/archive.ctp:87
+#: Template/Blog/article.ctp:97 Template/Blog/category.ctp:75
+#: Template/Blog/index.ctp:80 Template/Blog/search.ctp:72
 #: Template/Element/Forum/Thread/posts.ctp:189
 msgid "{0} Like"
 msgid_plural "{0} Likes"
@@ -454,7 +454,7 @@ msgid "You must select the Groups for the function User::_getGroupName()."
 msgstr ""
 "Vous devez sélectionner le Group pour la fonction User::_getGroupName()."
 
-#: Model/Entity/User.php:105 Template/Blog/article.ctp:114
+#: Model/Entity/User.php:105 Template/Blog/article.ctp:115
 #: Template/Element/header.ctp:32 Template/Premium/cancel.ctp:16
 #: Template/Premium/index.ctp:20;21;56 Template/Premium/success.ctp:24;25;39
 #: Template/Users/premium.ctp:2;16
@@ -805,12 +805,13 @@ msgstr "Blog Archive : {0}"
 #: Template/Blog/archive.ctp:10 Template/Blog/article.ctp:42
 #: Template/Blog/category.ctp:10 Template/Blog/index.ctp:10
 #: Template/Blog/search.ctp:10 Template/Contact/index.ctp:10
-#: Template/Element/header.ctp:17 Template/Forum/Forum/categories.ctp:11
+#: Template/Element/header.ctp:17 Template/Error/error400.ctp:116
+#: Template/Error/error500.ctp:116 Template/Forum/Forum/categories.ctp:11
 #: Template/Forum/Forum/index.ctp:9 Template/Forum/Forum/threads.ctp:40
-#: Template/Forum/Threads/create.ctp:22 Template/Users/account.ctp:24
-#: Template/Users/index.ctp:9 Template/Users/notifications.ctp:10
-#: Template/Users/premium.ctp:10 Template/Users/profile.ctp:10
-#: Template/Users/settings.ctp:10
+#: Template/Forum/Threads/create.ctp:22 Template/Groups/view.ctp:9
+#: Template/Users/account.ctp:24 Template/Users/index.ctp:9
+#: Template/Users/notifications.ctp:10 Template/Users/premium.ctp:10
+#: Template/Users/profile.ctp:10 Template/Users/settings.ctp:10
 msgid "Home"
 msgstr "Accueil"
 
@@ -824,90 +825,90 @@ msgstr "Blog"
 msgid "Archive"
 msgstr "Archive"
 
-#: Template/Blog/archive.ctp:101 Template/Blog/category.ctp:92
-#: Template/Blog/index.ctp:107 Template/Blog/search.ctp:89
+#: Template/Blog/archive.ctp:104 Template/Blog/category.ctp:94
+#: Template/Blog/index.ctp:99 Template/Blog/search.ctp:91
 #: Template/Cell/Forum/suggestion.ctp:72
 msgid "Read More"
 msgstr "Lire Plus"
 
-#: Template/Blog/archive.ctp:128 Template/Blog/category.ctp:119
-#: Template/Blog/index.ctp:133
+#: Template/Blog/archive.ctp:132 Template/Blog/category.ctp:122
+#: Template/Blog/index.ctp:126
 msgid "No articles found"
 msgstr "Aucun articles trouvés"
 
-#: Template/Blog/archive.ctp:130
+#: Template/Blog/archive.ctp:134
 msgid "No articles were found for this date."
 msgstr "Aucun article n'a été trouvé pour cette date."
 
-#: Template/Blog/archive.ctp:80 Template/Blog/article.ctp:92;405
-#: Template/Blog/category.ctp:69 Template/Blog/index.ctp:84
-#: Template/Blog/search.ctp:66
+#: Template/Blog/archive.ctp:83 Template/Blog/article.ctp:93;410
+#: Template/Blog/category.ctp:71 Template/Blog/index.ctp:76
+#: Template/Blog/search.ctp:68
 msgid "{0} Comment"
 msgid_plural "{0} Comments"
 msgstr[0] "{0} Commentaire"
 msgstr[1] "{0} Commentaires"
 
-#: Template/Blog/article.ctp:114
+#: Template/Blog/article.ctp:115
 msgid "You need to be <strong>{0}</strong> to download the file."
 msgstr "Vous devez être <strong>{0}</strong> pour télécharger le fichier."
 
-#: Template/Blog/article.ctp:162
+#: Template/Blog/article.ctp:163
 msgid "File Size :"
 msgstr "Taille du fichier :"
 
-#: Template/Blog/article.ctp:170
+#: Template/Blog/article.ctp:171
 msgid "Download :"
 msgstr "Téléchargement :"
 
-#: Template/Blog/article.ctp:184;187
+#: Template/Blog/article.ctp:185;188
 #: Template/Element/Forum/Thread/actions.ctp:4
 msgid "{0} Reply"
 msgstr "{0} Répondre"
 
-#: Template/Blog/article.ctp:312
+#: Template/Blog/article.ctp:314
 msgid "Related Articles"
 msgstr "Articles en Relation"
 
-#: Template/Blog/article.ctp:377 Template/Pages/home.ctp:324
+#: Template/Blog/article.ctp:381 Template/Pages/home.ctp:325
 msgid "Read More {0}"
 msgstr "Lire Plus {0}"
 
-#: Template/Blog/article.ctp:445;461
+#: Template/Blog/article.ctp:452;468
 #: Template/Element/Forum/Thread/posts.ctp:149
 msgid "{0} Quote"
 msgstr "{0} Citer"
 
-#: Template/Blog/article.ctp:475 Template/Element/Forum/Thread/posts.ctp:100
+#: Template/Blog/article.ctp:482 Template/Element/Forum/Thread/posts.ctp:100
 msgid "{0} Edit"
 msgstr "{0} Editer"
 
-#: Template/Blog/article.ctp:494 Template/Element/Forum/Thread/posts.ctp:117
+#: Template/Blog/article.ctp:501 Template/Element/Forum/Thread/posts.ctp:117
 msgid "{0} Delete"
 msgstr "{0} Supprimer"
 
-#: Template/Blog/article.ctp:531
+#: Template/Blog/article.ctp:538
 msgid "Leave a Comment"
 msgstr "Laisser un Commentaire"
 
-#: Template/Blog/article.ctp:545 Template/Element/Forum/Thread/reply.ctp:42
+#: Template/Blog/article.ctp:552 Template/Element/Forum/Thread/reply.ctp:42
 msgid "Post Comment"
 msgstr "Poster le Commentaire"
 
-#: Template/Blog/article.ctp:562;573
+#: Template/Blog/article.ctp:569;580
 #: Template/Element/Forum/Thread/actions.ctp:42;95
 #: Template/Users/settings.ctp:86;95
 msgid "Close"
 msgstr "Fermer"
 
-#: Template/Blog/article.ctp:564
+#: Template/Blog/article.ctp:571
 msgid "Delete a Comment"
 msgstr "Supprimer un Commentaire"
 
-#: Template/Blog/article.ctp:568
+#: Template/Blog/article.ctp:575
 msgid "Are you sure you want delete this comment ?"
 msgstr "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
 
-#: Template/Blog/article.ctp:572
+#: Template/Blog/article.ctp:579
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -919,11 +920,11 @@ msgstr "Blog Catégorie : {0}"
 msgid "Category"
 msgstr "Catégorie"
 
-#: Template/Blog/category.ctp:121
+#: Template/Blog/category.ctp:124
 msgid "No articles were found for this category."
 msgstr "Aucun article n'a été trouvé pour cette catégorie."
 
-#: Template/Blog/index.ctp:135
+#: Template/Blog/index.ctp:128
 msgid "No articles were found."
 msgstr "Aucun article n'a été trouvé."
 
@@ -935,11 +936,11 @@ msgstr "Blog Recherche : {0}"
 msgid "Search : {0}"
 msgstr "Recherche : {0}"
 
-#: Template/Blog/search.ctp:116
+#: Template/Blog/search.ctp:119
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: Template/Blog/search.ctp:118
+#: Template/Blog/search.ctp:121
 msgid ""
 "No articles were found for your search, please try again with a different "
 "word."
@@ -947,15 +948,15 @@ msgstr ""
 "Aucun article n'a été trouvé pour votre recherche, s'il vous plaît ressayez "
 "à nouveau avec un autre mot."
 
-#: Template/Blog/search.ctp:120
+#: Template/Blog/search.ctp:123
 msgid "Suggestions :"
 msgstr "Suggestions :"
 
-#: Template/Blog/search.ctp:123
+#: Template/Blog/search.ctp:126
 msgid "Check the spelling of your search words."
 msgstr "Vérifiez l'orthographe de vos mots de recherche."
 
-#: Template/Blog/search.ctp:126
+#: Template/Blog/search.ctp:129
 msgid "Try more general keywords."
 msgstr "Utilisez des mots plus généraux."
 
@@ -980,15 +981,15 @@ msgstr "Tapez votre recherche..."
 msgid "Featured Article"
 msgstr "Dernier Article"
 
-#: Template/Cell/Blog/sidebar.ctp:57
+#: Template/Cell/Blog/sidebar.ctp:58
 msgid "Categories"
 msgstr "Catégories"
 
-#: Template/Cell/Blog/sidebar.ctp:71
+#: Template/Cell/Blog/sidebar.ctp:72
 msgid "Archives"
 msgstr "Archives"
 
-#: Template/Cell/Blog/sidebar.ctp:76
+#: Template/Cell/Blog/sidebar.ctp:77
 msgid "{0} ({1})"
 msgstr "{0} ({1})"
 
@@ -1047,6 +1048,7 @@ msgid "Contact me"
 msgstr "Contactez-Moi"
 
 #: Template/Contact/index.ctp:13;51 Template/Element/header.ctp:37
+#: Template/Error/error400.ctp:117 Template/Error/error500.ctp:117
 msgid "Contact"
 msgstr "Contact"
 
@@ -1140,7 +1142,7 @@ msgstr "Forum"
 msgid "Beta"
 msgstr "Bêta"
 
-#: Template/Element/header.ctp:47
+#: Template/Element/header.ctp:45
 msgid "Hello,"
 msgstr "Bonjour,"
 
@@ -1412,6 +1414,18 @@ msgstr "{0} Notifications {1}"
 msgid "{0} Premium {1}"
 msgstr "{0} Premium {1}"
 
+#: Template/Error/error400.ctp:2 Template/Error/error500.ctp:2
+msgid "Error {0} :("
+msgstr "Erreur {0} :("
+
+#: Template/Error/error400.ctp:113
+msgid "Aaaaaaaaaaaaaah ! You broke the robot !"
+msgstr "Aaaaaaaaaaaaaah ! Vous avez cassé le robot !"
+
+#: Template/Error/error500.ctp:113
+msgid "Our monkey's team are working on this error !"
+msgstr "Notre équipe de singe travaillent sur cette erreur !"
+
 #: Template/Forum/Posts/json/get_edit_post.ctp:17
 msgid "Update Post"
 msgstr "Mettre à jour le Post"
@@ -1439,6 +1453,50 @@ msgstr "{0} Créer un Sujet"
 #: Template/Forum/Threads/create.ctp:114
 msgid "{0} Cancel"
 msgstr "{0} Annuler"
+
+#: Template/Groups/view.ctp:2 Template/Users/index.ctp:2
+msgid "Xeta's members"
+msgstr "Membres de Xeta"
+
+#: Template/Groups/view.ctp:12 Template/Users/account.ctp:27
+#: Template/Users/index.ctp:12 Template/Users/notifications.ctp:13
+#: Template/Users/premium.ctp:13 Template/Users/profile.ctp:13
+#: Template/Users/settings.ctp:13
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: Template/Groups/view.ctp:23 Template/Users/index.ctp:23
+msgid "All {0}'s members"
+msgstr "Tous les membres de {0}."
+
+#: Template/Groups/view.ctp:26
+msgid "Ordered by Group : {0}"
+msgstr "Ordonné par Groupe : {0}"
+
+#: Template/Groups/view.ctp:31 Template/Users/index.ctp:28
+#: Template/Users/login.ctp:45;140
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: Template/Groups/view.ctp:32 Template/Users/index.ctp:29
+msgid "Full Name"
+msgstr "Nom Complet"
+
+#: Template/Groups/view.ctp:33 Template/Users/index.ctp:30
+msgid "Group"
+msgstr "Groupes "
+
+#: Template/Groups/view.ctp:34 Template/Users/index.ctp:31
+msgid "Registered date"
+msgstr "Date d'inscription"
+
+#: Template/Groups/view.ctp:35 Template/Users/index.ctp:32
+msgid "Last login"
+msgstr "Dernière connexion"
+
+#: Template/Groups/view.ctp:51 Template/Users/index.ctp:48
+msgid "Visit his profile."
+msgstr "Visiter son profil."
 
 #: Template/Pages/home.ctp:227
 msgid "Welcome on {0} !"
@@ -1501,7 +1559,7 @@ msgstr ""
 msgid "Latest Articles"
 msgstr "Derniers Articles"
 
-#: Template/Pages/home.ctp:376
+#: Template/Pages/home.ctp:379
 msgid "Latest Comments"
 msgstr "Derniers Commentaires"
 
@@ -1608,12 +1666,6 @@ msgstr ""
 "Votre compte sera mis à jour lorsque la transaction sera complétée ! Ceci "
 "peut prendre deux à trois heures, cela dépend de Paypal."
 
-#: Template/Users/account.ctp:27 Template/Users/index.ctp:12
-#: Template/Users/notifications.ctp:13 Template/Users/premium.ctp:13
-#: Template/Users/profile.ctp:13 Template/Users/settings.ctp:13
-msgid "Users"
-msgstr "Utilisateurs"
-
 #: Template/Users/account.ctp:54
 msgid "Default Avatar"
 msgstr "Avatar par Défaut"
@@ -1660,38 +1712,6 @@ msgid ""
 "blog."
 msgstr ""
 "La signature sera affiché sur chaque article que vous avez écrit sur le blog."
-
-#: Template/Users/index.ctp:2
-msgid "Xeta's members"
-msgstr "Membres de Xeta"
-
-#: Template/Users/index.ctp:23
-msgid "All {0}'s members"
-msgstr "Tous les membres de {0}."
-
-#: Template/Users/index.ctp:28 Template/Users/login.ctp:45;140
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: Template/Users/index.ctp:29
-msgid "Full Name"
-msgstr "Nom Complet"
-
-#: Template/Users/index.ctp:30
-msgid "Group"
-msgstr "Groupes "
-
-#: Template/Users/index.ctp:31
-msgid "Registered date"
-msgstr "Date d'inscription"
-
-#: Template/Users/index.ctp:32
-msgid "Last login"
-msgstr "Dernière connexion"
-
-#: Template/Users/index.ctp:47
-msgid "Visit his profile."
-msgstr "Visiter son profil."
 
 #: Template/Users/login.ctp:2
 msgid "Login or Register"
