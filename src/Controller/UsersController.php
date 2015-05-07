@@ -478,7 +478,8 @@ class UsersController extends AppController
                 ->subject(__('Forgot your Password - Xeta'))
                 ->viewVars($viewVars)
                 ->send();
-           $this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
+            
+            $this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
         }
 
         $this->set(compact('user'));
