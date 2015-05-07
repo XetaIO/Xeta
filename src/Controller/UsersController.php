@@ -10,6 +10,7 @@ use Cake\I18n\Time;
 
 class UsersController extends AppController
 {
+
     /**
      * Initialize handle.
      *
@@ -19,7 +20,9 @@ class UsersController extends AppController
     {
         parent::initialize();
 
-        if ($this->request->action === 'login') {
+        $action = $this->request->action;
+
+        if ($action === 'login' || $action === 'forgotPassword') {
             $this->loadComponent('Recaptcha.Recaptcha');
         }
     }
@@ -35,7 +38,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['index', 'logout', 'profile']);
+        $this->Auth->allow(['index', 'logout', 'profile', 'forgotPassword']);
     }
 
     /**
@@ -408,5 +411,21 @@ class UsersController extends AppController
         $notifications = $this->paginate($notifications);
 
         $this->set(compact('notifications'));
+    }
+
+    /**
+     * Display the form to reset the password.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function forgotPassword()
+    {
+        if ($this->Auth->user()) {
+            return $this->redirect($this->Auth->redirectUrl());
+        }
+
+        $user = $this->Users->newEntity($this->request->data);
+
+        $this->set(compact('user'));
     }
 }

@@ -6,6 +6,7 @@ use Cake\Event\Event;
 
 class GroupsController extends AppController
 {
+
     /**
      * BeforeFilter handle.
      *

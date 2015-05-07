@@ -162,6 +162,11 @@
                         <?= $this->Form->error('password') ?>
                     </div>
                     <div class="form-group">
+                        <p>
+                            <?= $this->Html->link(__('Forgot your password ?'), ['action' => 'forgotPassword']) ?>
+                        </p>
+                    </div>
+                    <div class="form-group">
                         <?= $this->Form->button(
                             __('LogIn {0}', '<i class="fa fa-arrow-right"></i>'),
                             ['class' => 'btn btn-primary']
