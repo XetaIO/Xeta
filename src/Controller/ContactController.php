@@ -81,7 +81,7 @@ class ContactController extends AppController
 
                 $email = new Email();
                 $email->profile('default')
-                    ->template('contact')
+                    ->template('contact', 'default')
                     ->emailFormat('html')
                     ->from(['contact@xeta.io' => 'Contact Form'])
                     ->to(Configure::read('Author.email'))

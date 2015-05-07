@@ -7,6 +7,7 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Time;
+use Cake\Network\Email\Email;
 
 class UsersController extends AppController
 {
@@ -425,6 +426,60 @@ class UsersController extends AppController
         }
 
         $user = $this->Users->newEntity($this->request->data);
+
+        if ($this->request->is('post')) {
+            $user = $this->Users
+                ->find()
+                ->where([
+                    'Users.email' => $this->request->data['email']
+                ])
+                ->first();
+
+            if (is_null($user)) {
+                $this->Flash->error(__("This E-mail doesn't exist or the account has been deleted."));
+
+                $this->set(compact('user'));
+
+                return;
+            }
+
+            if (!$this->Recaptcha->verify()) {
+                $this->Flash->error(__("Please, correct your Captcha."));
+
+                $this->set(compact('user'));
+
+                return;
+            }
+            
+            //Generate the unique code
+            $code = md5(rand() . uniqid() . time());
+            
+            //Update the user's information
+            $this->Users->patchEntity($user, [
+                'password_code' => $code,
+                'password_code_expire' => new Time()
+            ]);
+
+            $this->Users->save($users);
+
+            $viewVars = [
+                'userId' => $user->id,
+                'name' => $user->full_name,
+                'username' => $user->username,
+                'code' => $code
+            ];
+
+            $email = new Email();
+            $email->profile('default')
+                ->template('forgotPassword', 'default')
+                ->emailFormat('html')
+                ->from(['no-reply@xeta.io' => __('Forgot your Password - Xeta')])
+                ->to($user->email)
+                ->subject(__('Forgot your Password - Xeta'))
+                ->viewVars($viewVars)
+                ->send();
+           $this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
+        }
 
         $this->set(compact('user'));
     }

@@ -1,185 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Contact</title>
 
-    <meta content="width=device-width">
-    <style type="text/css">
-        body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size:14px; }
-        h2{ padding-top:12px;color: #0d9ad9; font-size:22px; }
+<tr>
+    <td>
+        <table width="100%">
+            <tr>
+                <td valign="middle">
+                    <table width="580" style="margin:0 auto;color:#73879C;">
+                        <tr>
+                            <td>
+                                <h1>
+                                    <?= __d('mail', 'Hi {0},', \Cake\Core\Configure::read('Author.full_name')) ?>
+                                </h1>
+                                <p style="font-size: 18px;line-height: 21px;">
+                                    <?= __d('mail', '<strong>{0}</strong> has contacted you via the contact form on the site.', h($name)) ?>
+                                </p>
+                                <p>
+                                    <?= __d('mail', 'Subject : {0}', h($subject)) ?>
+                                </p>
+                                <p style="background: #f2f2f2;border-width: 1px 1px 2px 5px;border-style: solid;border-color: #E6E9ED;border-radius: 3px;background-color: #FFF;padding: 10px !important;border-left-color: #1ABC9C;">
+                                    <?= nl2br(h($message)) ?>
+                                </p>
+                            </td>
+                            <td class="expander"></td>
+                        </tr>
+                    </table>
 
-    </style>
-</head>
-<body style="margin:0px; padding:0px; -webkit-text-size-adjust:none;">
+                    <table width="580" style="margin:0 auto;color:#73879C;">
+                        <tr>
+                            <td style="background: #f2f2f2;border-width: 1px 1px 2px 5px;border-style: solid;border-color: #E6E9ED;border-radius: 3px;background-color: #FFF;padding: 10px !important;border-left-color: #5BC0DE;">
+                                <h4>
+                                    <?= __d('mail', 'Additional Informations') ?>
+                                </h4>
+                                <?= __d('mail', 'His Email : {0}', h($email)) ?><br />
+                                <?= __d('mail', 'His IP : {0}', h($ip)) ?>
+                            </td>
+                        </tr>
+                    </table>
 
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F2F5F7">
-        <tr>
-            <td align="center">
-                <table cellpadding="0" cellspacing="0" border="0" width="100%">
-
-                    <tr>
-                        <td>
-                            <table width="100%" bgcolor="#FFF" height="66" style="border-bottom: 4px solid rgba(0, 0, 0, 0.1);">
-                                <tr>
-                                    <td valign="middle">
-                                        <table width="580" style="margin:0 auto;color:#73879C;">
-                                            <tr>
-                                                <td valign="middle">
-                                                    <?= $this->Html->link(
-                                                        $this->Html->image('https://xeta.io/img/logo_and_name.png', ['height' => '23', 'valign' => 'bottom']),
-                                                        'https://xeta.io',
-                                                        ['escape' => false]
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Home'),
-                                                        'https://xeta.io',
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Blog'),
-                                                        'https://xeta.io/blog',
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Forum'),
-                                                        'https://xeta.io/forum',
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Premium'),
-                                                        'https://xeta.io/premium',
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Contact'),
-                                                        'https://xeta.io/contact',
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <table width="100%">
-                                <tr>
-                                    <td valign="middle">
-                                        <table width="580" style="margin:0 auto;color:#73879C;">
-                                            <tr>
-                                                <td>
-                                                    <h1>
-                                                        <?= __d('mail', 'Hi {0},', \Cake\Core\Configure::read('Author.full_name')) ?>
-                                                    </h1>
-                                                    <p style="font-size: 18px;line-height: 21px;">
-                                                        <?= __d('mail', '<strong>{0}</strong> has contacted you via the contact form on the site.', h($name)) ?>
-                                                    </p>
-                                                    <p>
-                                                        <?= __d('mail', 'Subject : {0}', h($subject)) ?>
-                                                    </p>
-                                                    <p style="background: #f2f2f2;border-width: 1px 1px 2px 5px;border-style: solid;border-color: #E6E9ED;border-radius: 3px;background-color: #FFF;padding: 10px !important;border-left-color: #1ABC9C;">
-                                                        <?= nl2br(h($message)) ?>
-                                                    </p>
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-
-                                        <table width="580" style="margin:0 auto;color:#73879C;">
-                                            <tr>
-                                                <td style="background: #f2f2f2;border-width: 1px 1px 2px 5px;border-style: solid;border-color: #E6E9ED;border-radius: 3px;background-color: #FFF;padding: 10px !important;border-left-color: #5BC0DE;">
-                                                    <h4>
-                                                        <?= __d('mail', 'Additional Informations') ?>
-                                                    </h4>
-                                                    <?= __d('mail', 'His Email : {0}', h($email)) ?><br />
-                                                    <?= __d('mail', 'His IP : {0}', h($ip)) ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                        <table width="580" style="margin:0 auto;color:#73879C;">
-                                            <tr>
-                                                <td>
-                                                    <p>
-                                                        <?= __d('mail', 'Regards,') ?><br />
-                                                        <?= __d('mail', 'Your bot.') ?>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td width="100%" height="15"></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <table width="100%" bgcolor="#2f4052" height="66" style="border-top: 4px solid #283645;">
-                                <tr>
-                                    <td valign="middle">
-                                        <table width="580" style="margin:0 auto;">
-                                            <tr>
-                                                <td align="center">
-                                                    <?= $this->Html->link(
-                                                        $this->Html->image('https://xeta.io/img/logo_and_name_white_inversed.png', ['height' => '23']),
-                                                        'https://xeta.io',
-                                                        ['escape' => false]
-                                                    ) ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="center">
-                                                    <table>
-                                                        <tr>
-                                                            <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/twitter.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Author.twitter'),
-                                                                    ['escape' => false]
-                                                                ) ?>
-                                                            </td>
-                                                            <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/github.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Site.github_url'),
-                                                                    ['escape' => false]
-                                                                ) ?>
-                                                            </td>
-                                                            <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/facebook.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Author.facebook'),
-                                                                    ['escape' => false]
-                                                                ) ?>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td valign="middle" align="middle" style="color:#FFFFFF">
-                                                    <?= __('&copy; {0} {1}.', [date('Y', time()), \Cake\Core\Configure::read('Site.name')]) ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
+                    <table width="580" style="margin:0 auto;color:#73879C;">
+                        <tr>
+                            <td>
+                                <p>
+                                    <?= __d('mail', 'Regards,') ?><br />
+                                    <?= __d('mail', 'Your bot.') ?>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
