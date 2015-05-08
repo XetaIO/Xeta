@@ -1,4 +1,7 @@
+<?php
+use Cake\Core\Configure;
 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,34 +30,36 @@
                                         <table width="580" style="margin:0 auto;color:#73879C;">
                                             <tr>
                                                 <td valign="middle">
-                                                    <?= $this->Html->link(
-                                                        $this->Html->image('https://xeta.io/img/logo_and_name.png', ['height' => '23', 'valign' => 'bottom']),
-                                                        'https://xeta.io',
-                                                        ['escape' => false]
-                                                    ) ?>
+                                                    <?= $this->Html->image('logo_and_name.png', [
+                                                        'fullBase' => true,
+                                                        'height' => '23',
+                                                        'valign' => 'bottom',
+                                                        'alt' => 'Xeta',
+                                                        'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
+                                                    ]) ?>
                                                     <?= $this->Html->link(
                                                         __('Home'),
-                                                        'https://xeta.io',
+                                                        ['controller' => 'pages', 'action' => 'home', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                     <?= $this->Html->link(
                                                         __('Blog'),
-                                                        'https://xeta.io/blog',
+                                                        ['controller' => 'blog', 'action' => 'index', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                     <?= $this->Html->link(
                                                         __('Forum'),
-                                                        'https://xeta.io/forum',
+                                                        ['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                     <?= $this->Html->link(
                                                         __('Premium'),
-                                                        'https://xeta.io/premium',
+                                                        ['controller' => 'premium', 'action' => 'index', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                     <?= $this->Html->link(
                                                         __('Contact'),
-                                                        'https://xeta.io/contact',
+                                                        ['controller' => 'contact', 'action' => 'index', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                 </td>
@@ -80,11 +85,12 @@
                                         <table width="580" style="margin:0 auto;">
                                             <tr>
                                                 <td align="center">
-                                                    <?= $this->Html->link(
-                                                        $this->Html->image('https://xeta.io/img/logo_and_name_white_inversed.png', ['height' => '23']),
-                                                        'https://xeta.io',
-                                                        ['escape' => false]
-                                                    ) ?>
+                                                    <?=  $this->Html->image('logo_and_name_white_inversed.png', [
+                                                        'fullBase' => true,
+                                                        'height' => '23',
+                                                        'alt' => 'Xeta',
+                                                        'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
+                                                    ]) ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -92,25 +98,28 @@
                                                     <table>
                                                         <tr>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/twitter.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Author.twitter'),
-                                                                    ['escape' => false]
-                                                                ) ?>
+                                                                <?= $this->Html->image('social/twitter.png', [
+                                                                    'fullBase' => true,
+                                                                    'height' => '33',
+                                                                    'alt' => 'Twitter',
+                                                                    'url' => Configure::read('Author.twitter')
+                                                                ]) ?>
                                                             </td>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/github.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Site.github_url'),
-                                                                    ['escape' => false]
-                                                                ) ?>
+                                                                <?= $this->Html->image('social/github.png', [
+                                                                    'fullBase' => true,
+                                                                    'height' => '33',
+                                                                    'alt' => 'GitHub',
+                                                                    'url' => Configure::read('Site.github_url')
+                                                                ]) ?>
                                                             </td>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->link(
-                                                                    $this->Html->image('https://xeta.io/img/social/facebook.png', ['height' => '33']),
-                                                                    \Cake\Core\Configure::read('Author.facebook'),
-                                                                    ['escape' => false]
-                                                                ) ?>
+                                                                <?= $this->Html->image('social/facebook.png', [
+                                                                    'fullBase' => true,
+                                                                    'height' => '33',
+                                                                    'alt' => 'Facebook',
+                                                                    'url' => Configure::read('Author.facebook')
+                                                                ]) ?>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -118,7 +127,7 @@
                                             </tr>
                                             <tr>
                                                 <td valign="middle" align="middle" style="color:#FFFFFF">
-                                                    <?= __('&copy; {0} {1}.', [date('Y', time()), \Cake\Core\Configure::read('Site.name')]) ?>
+                                                    <?= __('&copy; {0} {1}.', [date('Y', time()), Configure::read('Site.name')]) ?>
                                                 </td>
                                             </tr>
                                         </table>
