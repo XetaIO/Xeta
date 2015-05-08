@@ -30,6 +30,9 @@ return [
             'max_forum_threads' => 5,
             'max_forum_posts' => 5
         ],
+        'ResetPassword' => [
+            'expire_code' => 10 //In minutes.
+        ],
         'user_per_page' => 15,
         'transaction_per_page' => 15,
         'max_notifications' => 5,

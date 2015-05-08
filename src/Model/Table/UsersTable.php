@@ -275,6 +275,32 @@ class UsersTable extends Table
                 ]
             ]);
     }
+    
+    /**
+     * ResetPassword validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator The Validator instance.
+     *
+     * @return \Cake\Validation\Validator
+     */
+    public function validationResetpassword(Validator $validator)
+    {
+        return $validator
+            ->notEmpty('password', __("You must specify your new password."))
+            ->notEmpty('password_confirm', __("You must specify your password (confirmation)."))
+            ->add('password_confirm', [
+                'lengthBetween' => [
+                    'rule' => ['lengthBetween', 8, 20],
+                    'message' => __("Your password (confirmation) must be between {0} and {1} characters.", 8, 20)
+                ],
+                'equalToPassword' => [
+                    'rule' => function ($value, $context) {
+                            return $value === $context['data']['password'];
+                    },
+                    'message' => __("Your password confirm must match with your new password")
+                ]
+            ]);
+    }
 
     /**
      * Update validation rules. (Administration)
