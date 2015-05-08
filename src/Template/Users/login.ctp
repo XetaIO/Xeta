@@ -103,7 +103,7 @@
                             ]
                         ) ?>
                     </div>
-                    <?= $this->Form->error('password-confirm') ?>
+                    <?= $this->Form->error('password_confirm') ?>
                 </div>
                 <div class="form-groups">
                     <?= $this->Recaptcha->display() ?>
