@@ -11,7 +11,7 @@
                                     <?= __d('mail', 'Hi {0},', h($name)) ?>
                                 </h1>
                                 <p style="font-size: 18px;line-height: 21px;">
-                                    <?= __d('mail', 'You recently asked to change the password for the account {0}.', h($username)) ?>
+                                    <?= __d('mail', 'You recently asked to change the password for the account <strong>{0}</strong>.', h($username)) ?>
                                 </p>
                                 <p>
                                     <?= __d('mail', "If you didn't asked to change your password, please ignore this mail. Also, for security reasons, it would be better if you change your account password.") ?>
@@ -21,15 +21,19 @@
                                         'mail',
                                         'To complete this process, please follow this link : {0}',
                                         $this->Html->link(
-                                            __d('here'),
+                                            __d('mail', 'here'),
                                             [
-                                                'controller' => 'users',
-                                                'action' => 'resetPassword',
+                                                '_name' => 'users-resetpassword',
                                                 'id' => $userId,
-                                                'code' => $code
+                                                'code' => $code,
+                                                '_full' => true
+                                            ],
+                                            [
+                                                'style' => 'color:#1ABC9C;text-decoration:none;'
                                             ]
                                         )
                                     ) ?>
+                                    <br />
                                     <?= __d('mail', 'Note : This link will be expired in 10 minutes. ') ?>
                                 </p>
                             </td>
@@ -42,7 +46,7 @@
                             <td>
                                 <p>
                                     <?= __d('mail', 'Regards,') ?><br />
-                                    <?= __d('mail', "{0}'s Team.'", \Cake\Core\Configure::read('Site.name')) ?>
+                                    <?= __d('mail', "{0}'s Team.", \Cake\Core\Configure::read('Site.name')) ?>
                                 </p>
                             </td>
                         </tr>

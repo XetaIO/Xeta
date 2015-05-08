@@ -455,12 +455,10 @@ class UsersController extends AppController
             $code = md5(rand() . uniqid() . time());
             
             //Update the user's information
-            $this->Users->patchEntity($user, [
-                'password_code' => $code,
-                'password_code_expire' => new Time()
-            ]);
+            $user->password_code = $code;
+            $user->password_code_expire = new Time();
 
-            $this->Users->save($users);
+            $this->Users->save($user);
 
             $viewVars = [
                 'userId' => $user->id,
@@ -479,7 +477,7 @@ class UsersController extends AppController
                 ->viewVars($viewVars)
                 ->send();
             
-            $this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
+            $this->Flash->success(__("An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail.", h($user->email)));
         }
 
         $this->set(compact('user'));
