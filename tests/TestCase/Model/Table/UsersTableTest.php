@@ -390,6 +390,45 @@ class UsersTableTest extends TestCase
     }
 
     /**
+     * test validationResetpassword
+     *
+     * @return void
+     */
+    public function testValidationResetpassword()
+    {
+        $data = [
+            'password' => '12345678',
+            'password_confirm' => '8765432',
+        ];
+
+        $expected = [
+            'password_confirm' => [
+                'lengthBetween',
+                'equalToPassword'
+            ]
+        ];
+
+        $user = $this->Users->get(1);
+        $this->Users->patchEntity($user, $data, ['validate' => 'resetpassword']);
+        $result = $this->Users->save($user);
+
+        $this->assertFalse($result, 'Should be false because the pass doesn not match and not 8 characters.');
+        $this->assertEquals($expected, $this->Utility->getL2Keys($user->errors()));
+
+        $data = [
+            'password' => '12345678',
+            'password_confirm' => '12345678',
+        ];
+
+        $user = $this->Users->get(1);
+        $this->Users->patchEntity($user, $data, ['validate' => 'resetpassword']);
+        $result = $this->Users->save($user);
+
+        $this->assertInstanceOf('App\Model\Entity\User', $result);
+        $this->assertTrue((new DefaultPasswordHasher)->check($data['password'], $result->password));
+    }
+
+    /**
      * test validationUpdate
      *
      * @return void
