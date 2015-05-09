@@ -97,6 +97,21 @@ Router::scope('/', function ($routes) {
             'id' => '[0-9]+'
         ]
     );
+    $routes->connect(
+        '/users/resetPassword/:code.:id',
+        [
+            'controller' => 'users',
+            'action' => 'resetPassword'
+        ],
+        [
+            '_name' => 'users-resetpassword',
+            'pass' => [
+                'id',
+                'code'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
 
     //Attachments Routes.
     $routes->connect(

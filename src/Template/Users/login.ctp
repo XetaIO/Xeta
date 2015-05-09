@@ -103,7 +103,7 @@
                             ]
                         ) ?>
                     </div>
-                    <?= $this->Form->error('password-confirm') ?>
+                    <?= $this->Form->error('password_confirm') ?>
                 </div>
                 <div class="form-groups">
                     <?= $this->Recaptcha->display() ?>
@@ -160,6 +160,11 @@
                             ) ?>
                         </div>
                         <?= $this->Form->error('password') ?>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <?= $this->Html->link(__('Forgot your password ?'), ['action' => 'forgotPassword']) ?>
+                        </p>
                     </div>
                     <div class="form-group">
                         <?= $this->Form->button(

@@ -7,9 +7,11 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Time;
+use Cake\Network\Email\Email;
 
 class UsersController extends AppController
 {
+
     /**
      * Initialize handle.
      *
@@ -19,7 +21,9 @@ class UsersController extends AppController
     {
         parent::initialize();
 
-        if ($this->request->action === 'login') {
+        $action = $this->request->action;
+
+        if ($action === 'login' || $action === 'forgotPassword') {
             $this->loadComponent('Recaptcha.Recaptcha');
         }
     }
@@ -35,7 +39,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['index', 'logout', 'profile']);
+        $this->Auth->allow(['index', 'logout', 'profile', 'forgotPassword', 'resetPassword']);
     }
 
     /**
@@ -408,5 +412,133 @@ class UsersController extends AppController
         $notifications = $this->paginate($notifications);
 
         $this->set(compact('notifications'));
+    }
+
+    /**
+     * Display the form to reset the password.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function forgotPassword()
+    {
+        if ($this->Auth->user()) {
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+        }
+
+        $user = $this->Users->newEntity($this->request->data);
+
+        if ($this->request->is('post')) {
+            $user = $this->Users
+                ->find()
+                ->where([
+                    'Users.email' => $this->request->data['email']
+                ])
+                ->first();
+
+            if (is_null($user)) {
+                $this->Flash->error(__("This E-mail doesn't exist or the account has been deleted."));
+
+                $this->set(compact('user'));
+
+                return;
+            }
+
+            if (!$this->Recaptcha->verify()) {
+                $this->Flash->error(__("Please, correct your Captcha."));
+
+                $this->set(compact('user'));
+
+                return;
+            }
+            
+            //Generate the unique code
+            $code = md5(rand() . uniqid() . time());
+            
+            //Update the user's information
+            $user->password_code = $code;
+            $user->password_code_expire = new Time();
+
+            $this->Users->save($user);
+
+            $viewVars = [
+                'userId' => $user->id,
+                'name' => $user->full_name,
+                'username' => $user->username,
+                'code' => $code
+            ];
+
+            $email = new Email();
+            $email->profile('default')
+                ->template('forgotPassword', 'default')
+                ->emailFormat('html')
+                ->from(['no-reply@xeta.io' => __('Forgot your Password - Xeta')])
+                ->to($user->email)
+                ->subject(__('Forgot your Password - Xeta'))
+                ->viewVars($viewVars)
+                ->send();
+            
+            $this->Flash->success(__("An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail.", h($user->email)));
+        }
+
+        $this->set(compact('user'));
+    }
+
+    /**
+     * Display the form to reset his password.
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function resetPassword()
+    {
+        if ($this->Auth->user()) {
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+        }
+
+        //Prevent for empty code.
+        if (empty(trim($this->request->code))) {
+            $this->Flash->error(__("This code is not associated with this users or is incorrect."));
+
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+        }
+
+        $user = $this->Users
+            ->find()
+            ->where([
+                'Users.password_code' => $this->request->code,
+                'Users.id' => $this->request->id
+            ])
+            ->first();
+
+        if (is_null($user)) {
+            $this->Flash->error(__("This code is not associated with this users or is incorrect."));
+
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+        }
+
+        $expire = $user->password_code_expire->timestamp + (Configure::read('User.ResetPassword.expire_code') * 60);
+        
+        if ($expire < time()) {
+            $this->Flash->error(__("This code is expired, please ask another E-mail code."));
+
+            return $this->redirect(['action' => 'forgotPassword']);
+        }
+
+        if ($this->request->is(['post', 'put'])) {
+            $this->Users->patchEntity($user, $this->request->data, ['validate' => 'resetpassword']);
+
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__("Your password has been changed !"));
+
+                //Reset the code and the time.
+                $user->password_code = '';
+                $user->password_code_expire = new Time();
+                $user->password_reset_count = $user->password_reset_count + 1;
+                $this->Users->save($user);
+                
+                return $this->redirect(['controller' => 'users', 'action' => 'login']);
+            }
+        }
+
+        $this->set(compact('user'));
     }
 }

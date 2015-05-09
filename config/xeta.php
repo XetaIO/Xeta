@@ -12,7 +12,8 @@ return [
         'name' => 'Xeta',
         'description' => 'You will find content related to web development like tutorials, my personal tests on new technologies etc',
         'github_url' => 'https://github.com/Xety/Xeta',
-        'analytics_tracker_code' => 'UA-40328289-2'
+        'analytics_tracker_code' => 'UA-40328289-2',
+        'full_url' => 'https://xeta.io'
     ],
     'Home' => [
         'articles' => 8,
@@ -28,6 +29,9 @@ return [
             'max_blog_comments' => 5,
             'max_forum_threads' => 5,
             'max_forum_posts' => 5
+        ],
+        'ResetPassword' => [
+            'expire_code' => 10 //In minutes.
         ],
         'user_per_page' => 15,
         'transaction_per_page' => 15,
