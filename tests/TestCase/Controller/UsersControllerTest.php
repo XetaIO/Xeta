@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Controller;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Filesystem\Folder;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
@@ -545,7 +546,7 @@ class UsersControllerTest extends IntegrationTestCase
         ]);
 
         $this->get(['controller' => 'users', 'action' => 'premium']);
-        $this->assertResponseSuccess();
+        $this->assertResponseOk();
         $this->assertResponseContains('€');
     }
     
@@ -568,7 +569,97 @@ class UsersControllerTest extends IntegrationTestCase
         ]);
 
         $this->get(['controller' => 'users', 'action' => 'notifications']);
-        $this->assertResponseSuccess();
+        $this->assertResponseOk();
         $this->assertResponseContains('infobox infobox-info');
+    }
+
+    /**
+     * Test forgotPassword method
+     *
+     * @return void
+     */
+    public function testForgotPassword()
+    {
+        $this->get(['controller' => 'users', 'action' => 'forgotPassword']);
+        $this->assertResponseOk();
+        $this->assertResponseContains('email');
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'mariano',
+                    'avatar' => '../img/avatar.png',
+                    'group_id' => 5,
+                ]
+            ]
+        ]);
+        $this->get(['controller' => 'users', 'action' => 'forgotPassword']);
+        $this->assertResponseSuccess();
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
+    }
+
+    /**
+     * Test forgotPassword method
+     *
+     * @return void
+     */
+    public function testResetPassword()
+    {
+        $this->Users = TableRegistry::get('Users');
+        $user = $this->Users->get(1);
+        
+        $code = md5(rand() . uniqid() . time());
+        
+        $user->password_code = $code;
+        $user->password_code_expire = new Time();
+        $user->password_reset_count = 2;
+        $this->Users->save($user);
+        
+        //Empty code
+        $this->get(['controller' => 'users', 'action' => 'resetPassword', 'id' => 1]);
+        $this->assertResponseSuccess();
+        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
+        
+        //Incorrect user.
+        $this->get(['_name' => 'users-resetpassword', 'code' => 'zz', 'id' => 69]);
+        $this->assertResponseSuccess();
+        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
+        
+        //Page without POST.
+        $this->get(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1]);
+        $this->assertResponseOk();
+        $this->assertResponseContains('id="password"');
+        
+        //Expired code.
+        $user->password_code_expire = $user->password_code_expire->subMinutes(15);
+        $this->Users->save($user);
+        
+        $this->get(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1]);
+        $this->assertResponseSuccess();
+        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'forgotPassword']);
+        
+        $user->password_code_expire = $user->password_code_expire->addMinutes(30);
+        $this->Users->save($user);
+        
+        //Page with POST but fail validation.
+        $data = [
+            'password' => '1234567',
+            'password_confirm' => '12345678'
+        ];
+        $this->put(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1], $data);
+        $this->assertResponseOk();
+        
+        //Page with POST ok.
+        $data = [
+            'password' => '12345678',
+            'password_confirm' => '12345678'
+        ];
+        $this->put(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1], $data);
+        $this->assertResponseSuccess();
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
     }
 }
