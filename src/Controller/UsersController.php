@@ -141,6 +141,23 @@ class UsersController extends AppController
 
                             $stats = new Event('Model.Users.register', $this);
                             $this->eventManager()->dispatch($stats);
+                            
+                            $user = $this->Users->get($user['id']);
+                            
+                            $viewVars = [
+                                'user' => $user,
+                                'name' => $user->full_name
+                            ];
+                            
+                            $email = new Email();
+                            $email->profile('default')
+                                ->template('register', 'default')
+                                ->emailFormat('html')
+                                ->from(['no-reply@xeta.io' => __d('mail', 'Welcome on Xeta !')])
+                                ->to($user->email)
+                                ->subject(__d('mail', 'Welcome on Xeta !'))
+                                ->viewVars($viewVars)
+                                ->send();
 
                             $this->Flash->success(__("Your account has been created successfully !"));
 
