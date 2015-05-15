@@ -1,0 +1,95 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-05-15 23:16+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/UsersController.php:156;158
+#: Template/Email/html/register.ctp:11
+msgid "Welcome on {0} !"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:11
+#: Template/Email/html/forgot_password.ctp:11
+#: Template/Email/html/register.ctp:14
+msgid "Hi {0},"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:14
+msgid "<strong>{0}</strong> has contacted you via the contact form on the site."
+msgstr ""
+
+#: Template/Email/html/contact.ctp:17
+msgid "Subject : {0}"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:31
+msgid "Additional Informations"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:33
+msgid "His Email : {0}"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:34
+msgid "His IP : {0}"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:43
+#: Template/Email/html/forgot_password.ctp:48
+#: Template/Email/html/register.ctp:63
+msgid "Regards,"
+msgstr ""
+
+#: Template/Email/html/contact.ctp:44
+msgid "Your bot."
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:14
+msgid "You recently asked to change the password for the account <strong>{0}</strong>."
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:17
+msgid "If you didn't asked to change your password, please ignore this mail. Also, for security reasons, it would be better if you change your account password."
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:20
+msgid "To complete this process, please follow this link : {0}"
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:24
+#: Template/Email/html/register.ctp:22;27;32;37
+msgid "here"
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:37
+msgid "Note : This link will be expired in 10 minutes. "
+msgstr ""
+
+#: Template/Email/html/forgot_password.ctp:49
+#: Template/Email/html/register.ctp:64
+msgid "{0}'s Team."
+msgstr ""
+
+#: Template/Email/html/register.ctp:17
+msgid "Welcome on {0} ! You can now post your first comment in the Blog {1}, or create your new topic in the Forum {2}. You can also manage your account {3} and view your profil {4}."
+msgstr ""
+
+#: Template/Email/html/register.ctp:44
+msgid "Don't forget, if you want to report an issue or contribute to this project, {0}."
+msgstr ""
+
+#: Template/Email/html/register.ctp:48
+msgid "do it there please"
+msgstr ""
+

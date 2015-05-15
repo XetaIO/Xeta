@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-06 12:56+0000\n"
-"PO-Revision-Date: 2015-05-06 14:58+0100\n"
+"POT-Creation-Date: 2015-05-15 23:01+0000\n"
+"PO-Revision-Date: 2015-05-16 01:07+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -97,7 +97,7 @@ msgstr "Ce commentaire a été édité avec succès !"
 msgid "You need to put your E-mail."
 msgstr "Vous devez renseigner votre E-mail."
 
-#: Controller/ContactController.php:64 Model/Table/UsersTable.php:151;255;316
+#: Controller/ContactController.php:64 Model/Table/UsersTable.php:151;255;342
 msgid "You must specify a valid E-mail address."
 msgstr "Vous devez spécifier une adresse Email valide."
 
@@ -146,54 +146,78 @@ msgid_plural "Premium {0} months"
 msgstr[0] "Premium {0} mois"
 msgstr[1] "Premium {0} mois"
 
-#: Controller/UsersController.php:117
+#: Controller/UsersController.php:121
 msgid "Your username or password doesn't match."
 msgstr "Votre nom d'utilisateur ou mot de passe ne correspondent pas."
 
-#: Controller/UsersController.php:141
+#: Controller/UsersController.php:162
 msgid "Your account has been created successfully !"
 msgstr "Votre compte a été créé avec succès !"
 
-#: Controller/UsersController.php:146
+#: Controller/UsersController.php:167
 msgid "Please, correct your mistake."
 msgstr "S'il vous plaît, corrigez vos erreurs."
 
-#: Controller/UsersController.php:148
+#: Controller/UsersController.php:169;464
 msgid "Please, correct your Captcha."
 msgstr "S'il vous plaît, corrigez votre Captcha."
 
-#: Controller/UsersController.php:190
+#: Controller/UsersController.php:211
 msgid "Your information has been updated !"
 msgstr "Vos informations ont été mises à jour."
 
-#: Controller/UsersController.php:224
+#: Controller/UsersController.php:245
 msgid "Your E-mail has been changed !"
 msgstr "Votre Email a été changé !"
 
-#: Controller/UsersController.php:233
+#: Controller/UsersController.php:254
 msgid "Please, complete all fields !"
 msgstr "S'il vous plaît, complétez tous les champs !"
 
-#: Controller/UsersController.php:238
+#: Controller/UsersController.php:259
 msgid "Your old password don't match !"
 msgstr "Votre ancien mot de passe ne correspond pas !"
 
-#: Controller/UsersController.php:243
+#: Controller/UsersController.php:264;547
 msgid "Your password has been changed !"
 msgstr "Votre mot de passe a été changé !"
 
-#: Controller/UsersController.php:323
+#: Controller/UsersController.php:344
 msgid "This user doesn't exist or has been deleted."
 msgstr "Cet utilisateur n'existe pas ou a été supprimé."
 
-#: Controller/UsersController.php:341
+#: Controller/UsersController.php:362
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr "Votre compte a été supprimé avec succès ! Merci de votre visite !"
 
-#: Controller/UsersController.php:346
+#: Controller/UsersController.php:367
 msgid "Unable to delete your account, please try again."
 msgstr ""
 "Impossible de supprimer votre compte, s'il vous plaît réessayez plus tard."
+
+#: Controller/UsersController.php:456
+msgid "This E-mail doesn't exist or the account has been deleted."
+msgstr "Cet E-mail n'existe pas ou l'utilisateur à été supprimé."
+
+#: Controller/UsersController.php:491;493
+msgid "Forgot your Password - Xeta"
+msgstr "Réinitialisation du Mot de Passe - Xeta"
+
+#: Controller/UsersController.php:497
+msgid ""
+"An E-mail has been send to <strong>{0}</strong>. Please follow the "
+"instructions in the E-mail."
+msgstr ""
+"Un E-mail a été envoyé à <strong>{0}</strong>. Suivez les instructions "
+"contenue dans l'E-mail."
+
+#: Controller/UsersController.php:516;530
+msgid "This code is not associated with this users or is incorrect."
+msgstr "Ce code n'est pas associé avec cet utilisateur ou est incorrect."
+
+#: Controller/UsersController.php:538
+msgid "This code is expired, please ask another E-mail code."
+msgstr "Ce code est expiré, s'il vous plaît veuillez demander un autre code."
 
 #: Controller/Component/PaypalComponent.php:86
 msgid "The txn {0} has already been used."
@@ -455,9 +479,9 @@ msgstr ""
 "Vous devez sélectionner le Group pour la fonction User::_getGroupName()."
 
 #: Model/Entity/User.php:105 Template/Blog/article.ctp:115
-#: Template/Element/header.ctp:32 Template/Premium/cancel.ctp:16
-#: Template/Premium/index.ctp:20;21;56 Template/Premium/success.ctp:24;25;39
-#: Template/Users/premium.ctp:2;16
+#: Template/Element/header.ctp:32 Template/Layout/Email/html/default.ctp:56
+#: Template/Premium/cancel.ctp:16 Template/Premium/index.ctp:20;21;56
+#: Template/Premium/success.ctp:24;25;39 Template/Users/premium.ctp:2;16
 msgid "Premium"
 msgstr "Premium"
 
@@ -707,19 +731,19 @@ msgstr "Vous devez définir un code monétaire."
 msgid "The currency symbol can not be more than {0} characters."
 msgstr "Le code monétaire ne doit pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:112;290
+#: Model/Table/UsersTable.php:112;316
 msgid "You must set an username"
 msgstr "Vous devez définir un nom d'utilisateur."
 
-#: Model/Table/UsersTable.php:117;295
+#: Model/Table/UsersTable.php:117;321
 msgid "This username is already used."
 msgstr "Ce nom d'utilisateur est déjà utilisé."
 
-#: Model/Table/UsersTable.php:121;299
+#: Model/Table/UsersTable.php:121;325
 msgid "Only alphanumeric characters."
 msgstr "Seulement des caractères alphanumériques."
 
-#: Model/Table/UsersTable.php:125;303
+#: Model/Table/UsersTable.php:125;329
 msgid "Your username must be between {0} and {1} characters."
 msgstr "Votre nom d'utilisateur doit être compris entre {0} et {1} caractères."
 
@@ -727,11 +751,11 @@ msgstr "Votre nom d'utilisateur doit être compris entre {0} et {1} caractères.
 msgid "You must specify your password."
 msgstr "Vous devez spécifier votre mot de passe."
 
-#: Model/Table/UsersTable.php:129;264
+#: Model/Table/UsersTable.php:129;264;290
 msgid "You must specify your password (confirmation)."
 msgstr "Vous devez spécifier votre mot de passe (confirmation)."
 
-#: Model/Table/UsersTable.php:133;268
+#: Model/Table/UsersTable.php:133;268;294
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 "Votre mot de passe (confirmation) doit être compris entre {0} et {1} "
@@ -742,7 +766,7 @@ msgid "Your password confirm must match with your password."
 msgstr ""
 "Votre mot de passe confirmation doit correspondre avec votre mot de passe."
 
-#: Model/Table/UsersTable.php:147;312
+#: Model/Table/UsersTable.php:147;338
 msgid "This E-mail is already used."
 msgstr "Cet Email est déjà utilisé."
 
@@ -779,11 +803,11 @@ msgid "This E-mail is already used, please choose another E-mail."
 msgstr ""
 "Cet Email est déjà utilisé, s'il vous plaît veuillez choisir un autre Email."
 
-#: Model/Table/UsersTable.php:263
+#: Model/Table/UsersTable.php:263;289
 msgid "You must specify your new password."
 msgstr "Vous devez indiquer votre nouveau mot de passe."
 
-#: Model/Table/UsersTable.php:274
+#: Model/Table/UsersTable.php:274;300
 msgid "Your password confirm must match with your new password"
 msgstr ""
 "Votre mot de passe confirmation doit correspondre avec votre nouveau mot de "
@@ -809,15 +833,17 @@ msgstr "Blog Archive : {0}"
 #: Template/Error/error500.ctp:116 Template/Forum/Forum/categories.ctp:11
 #: Template/Forum/Forum/index.ctp:9 Template/Forum/Forum/threads.ctp:40
 #: Template/Forum/Threads/create.ctp:22 Template/Groups/view.ctp:9
-#: Template/Users/account.ctp:24 Template/Users/index.ctp:9
-#: Template/Users/notifications.ctp:10 Template/Users/premium.ctp:10
-#: Template/Users/profile.ctp:10 Template/Users/settings.ctp:10
+#: Template/Layout/Email/html/default.ctp:41 Template/Users/account.ctp:24
+#: Template/Users/index.ctp:9 Template/Users/notifications.ctp:10
+#: Template/Users/premium.ctp:10 Template/Users/profile.ctp:10
+#: Template/Users/settings.ctp:10
 msgid "Home"
 msgstr "Accueil"
 
 #: Template/Blog/archive.ctp:13 Template/Blog/article.ctp:45
 #: Template/Blog/category.ctp:13 Template/Blog/index.ctp:2;13
 #: Template/Blog/search.ctp:13 Template/Element/header.ctp:22
+#: Template/Layout/Email/html/default.ctp:46
 msgid "Blog"
 msgstr "Blog"
 
@@ -1049,6 +1075,7 @@ msgstr "Contactez-Moi"
 
 #: Template/Contact/index.ctp:13;51 Template/Element/header.ctp:37
 #: Template/Error/error400.ctp:117 Template/Error/error500.ctp:117
+#: Template/Layout/Email/html/default.ctp:61
 msgid "Contact"
 msgstr "Contact"
 
@@ -1120,7 +1147,7 @@ msgstr ""
 msgid "{0} I understood."
 msgstr "{0} J'ai compris."
 
-#: Template/Element/footer.ctp:9
+#: Template/Element/footer.ctp:9 Template/Layout/Email/html/default.ctp:130
 msgid "&copy; {0} {1}."
 msgstr "&copy; {0} {1}."
 
@@ -1135,6 +1162,7 @@ msgstr "{0} avec {1} et {2} par"
 #: Template/Element/header.ctp:27 Template/Forum/Forum/categories.ctp:14
 #: Template/Forum/Forum/index.ctp:2;12 Template/Forum/Forum/threads.ctp:43
 #: Template/Forum/Threads/create.ctp:25
+#: Template/Layout/Email/html/default.ctp:51
 msgid "Forum"
 msgstr "Forum"
 
@@ -1713,6 +1741,30 @@ msgid ""
 msgstr ""
 "La signature sera affiché sur chaque article que vous avez écrit sur le blog."
 
+#: Template/Users/forgot_password.ctp:2;29
+msgid "Forgot your Password"
+msgstr "﻿Mot de Passe Perdu"
+
+#: Template/Users/forgot_password.ctp:10 Template/Users/reset_password.ctp:10
+msgid "You have forgot your password ?"
+msgstr "Vous avez oublié votre mot de passe ?"
+
+#: Template/Users/forgot_password.ctp:13
+msgid ""
+"Use the form below to recover your password ! An E-mail will be send to you."
+msgstr ""
+"Utilisez la forme ci-dessous pour récupérer votre mot de passe ! Un E-mail "
+"vous sera envoyé ."
+
+#: Template/Users/forgot_password.ctp:44 Template/Users/login.ctp:63
+#: Template/Users/settings.ctp:35
+msgid "E-mail"
+msgstr "Email"
+
+#: Template/Users/forgot_password.ctp:57 Template/Users/reset_password.ctp:75
+msgid "Reset {0}"
+msgstr "Réinitialiser {0}"
+
 #: Template/Users/login.ctp:2
 msgid "Login or Register"
 msgstr "Connexion ou Inscription"
@@ -1733,15 +1785,11 @@ msgstr ""
 msgid "Create an Account"
 msgstr "Créer un Compte"
 
-#: Template/Users/login.ctp:63 Template/Users/settings.ctp:35
-msgid "E-mail"
-msgstr "Email"
-
-#: Template/Users/login.ctp:81;157
+#: Template/Users/login.ctp:81;157 Template/Users/reset_password.ctp:44
 msgid "Password"
 msgstr "Mot de Passe"
 
-#: Template/Users/login.ctp:100
+#: Template/Users/login.ctp:100 Template/Users/reset_password.ctp:64
 msgid "Password (Confirmation)"
 msgstr "Mot de Passe (Confirmation)"
 
@@ -1754,6 +1802,10 @@ msgid "Login to your Account"
 msgstr "Connectez-vous à votre compte"
 
 #: Template/Users/login.ctp:166
+msgid "Forgot your password ?"
+msgstr "Vous avez oublié votre mot de passe ? "
+
+#: Template/Users/login.ctp:171
 msgid "LogIn {0}"
 msgstr "Connexion {0}"
 
@@ -1884,6 +1936,14 @@ msgstr "Vos derniers Commentaires dans le Blog"
 #: Template/Users/profile.ctp:217
 msgid "His Lastest Comments in the Blog"
 msgstr "Ces derniers Commentaires dans le Blog"
+
+#: Template/Users/reset_password.ctp:2;29
+msgid "Reset your Password"
+msgstr " Réinitialiser votre Mot de Passe"
+
+#: Template/Users/reset_password.ctp:13
+msgid "Use the form below to reset your password !"
+msgstr "Utilisez la forme ci-dessous pour réinitialiser votre mot de passe !"
 
 #: Template/Users/settings.ctp:2;16
 msgid "My Settings"

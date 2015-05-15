@@ -153,9 +153,9 @@ class UsersController extends AppController
                             $email->profile('default')
                                 ->template('register', 'default')
                                 ->emailFormat('html')
-                                ->from(['no-reply@xeta.io' => __d('mail', 'Welcome on Xeta !')])
+                                ->from(['no-reply@xeta.io' => __d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name'))])
                                 ->to($user->email)
-                                ->subject(__d('mail', 'Welcome on Xeta !'))
+                                ->subject(__d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name')))
                                 ->viewVars($viewVars)
                                 ->send();
 

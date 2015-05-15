@@ -8,7 +8,7 @@
                         <tr>
                             <td>
                                 <h1>
-                                    <?= __d('mail', 'Welcome on Xeta !') ?>
+                                    <?= __d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name')) ?>
                                 </h1>
                                 <p style="font-size: 18px;line-height: 21px;">
                                     <?= __d('mail', 'Hi {0},', h($name)) ?>
@@ -16,7 +16,8 @@
                                 <p>
                                     <?= __d(
                                         'mail',
-                                        "Welcome on Xeta ! You can now post your first comment in the Blog {0}, or create your new topic in the Forum {1}. You can also manage your account {2} and view your profil {3}.",
+                                        "Welcome on {0} ! You can now post your first comment in the Blog {1}, or create your new topic in the Forum {2}. You can also manage your account {3} and view your profil {4}.",
+                                        \Cake\Core\Configure::read('Site.name'),
                                         $this->Html->link(
                                             __d('mail', 'here'),
                                             ['controller' => 'blog', 'action' => 'index', 'prefix' => false, '_full' => true],
