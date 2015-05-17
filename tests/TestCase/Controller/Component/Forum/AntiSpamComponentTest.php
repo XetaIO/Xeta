@@ -23,7 +23,8 @@ class AntiSpamComponentTest extends TestCase
         'app.badges_users',
         'app.groups',
         'app.forum_posts',
-        'app.forum_threads'
+        'app.forum_threads',
+        'app.notifications'
     ];
 
     /**
