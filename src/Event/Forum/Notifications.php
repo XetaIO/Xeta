@@ -50,6 +50,13 @@ class Notifications implements EventListenerInterface
                 $result = $this->_postLike($event);
                 break;
 
+            case 'bot':
+                $result = $this->_bot($event);
+                break;
+
+            case 'badge':
+                $result = $this->_badge($event);
+                break;
             default:
                 $result = false;
         }
@@ -284,6 +291,84 @@ class Notifications implements EventListenerInterface
             $entity = $this->Notifications->newEntity($data);
             $this->Notifications->save($entity);
         }
+
+        return true;
+    }
+
+    /**
+     * A user has sign up on the website.
+     *
+     * @param \Cake\Event\Event $event The event that was fired.
+     *
+     * @return bool
+     */
+    protected function _bot(Event $event)
+    {
+        $this->Users = TableRegistry::get('Users');
+
+        $user = $this->Users
+            ->find()
+            ->where(['id' => $event->data['user_id']])
+            ->first();
+
+        if (is_null($user)) {
+            return false;
+        }
+
+        $data = [];
+        $data['user_id'] = $user->id;
+        $data['type'] = $event->data['type'];
+        $data['data'] = serialize(['icon' => '../img/notifications/welcome.png']);
+
+        $entity = $this->Notifications->newEntity($data);
+        $this->Notifications->save($entity);
+
+        return true;
+    }
+    
+    /**
+     * A user has unlock a badge.
+     *
+     * @param \Cake\Event\Event $event The event that was fired.
+     *
+     * @return bool
+     */
+    protected function _badge(Event $event)
+    {
+        $this->Badges = TableRegistry::get('Badges');
+        $this->Notifications = TableRegistry::get('Notifications');
+
+        $badge = $this->Badges
+            ->find()
+            ->where(['Badges.id' => $event->data['badge']->badge_id])
+            ->first();
+
+        if (is_null($badge)) {
+            return false;
+        }
+
+        $this->Users = TableRegistry::get('Users');
+
+        $user = $this->Users
+            ->find()
+            ->where(['id' => $event->data['badge']->user_id])
+            ->select([
+                'id',
+                'slug'
+            ])
+            ->first();
+
+        if (is_null($user)) {
+            return false;
+        }
+
+        $data = [];
+        $data['user_id'] = $event->data['badge']->user_id;
+        $data['type'] = $event->data['type'];
+        $data['data'] = serialize(['badge' => $badge, 'user' => $user]);
+
+        $entity = $this->Notifications->newEntity($data);
+        $this->Notifications->save($entity);
 
         return true;
     }

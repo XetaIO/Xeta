@@ -76,7 +76,7 @@
                 </div>
 
                 <?php if (!empty($user->badges_users)): ?>
-                    <h4>
+                    <h4 id="badges">
                         <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
                             <?= __("Your Badges") ?>
                         <?php else: ?>

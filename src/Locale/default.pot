@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-15 23:16+0000\n"
+"POT-Creation-Date: 2015-05-17 12:44+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -145,71 +145,71 @@ msgid_plural "Premium {0} months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Controller/UsersController.php:121
+#: Controller/UsersController.php:122
 msgid "Your username or password doesn't match."
 msgstr ""
 
-#: Controller/UsersController.php:162
+#: Controller/UsersController.php:170
 msgid "Your account has been created successfully !"
 msgstr ""
 
-#: Controller/UsersController.php:167
+#: Controller/UsersController.php:175
 msgid "Please, correct your mistake."
 msgstr ""
 
-#: Controller/UsersController.php:169;464
+#: Controller/UsersController.php:177;472
 msgid "Please, correct your Captcha."
 msgstr ""
 
-#: Controller/UsersController.php:211
+#: Controller/UsersController.php:219
 msgid "Your information has been updated !"
 msgstr ""
 
-#: Controller/UsersController.php:245
+#: Controller/UsersController.php:253
 msgid "Your E-mail has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:254
+#: Controller/UsersController.php:262
 msgid "Please, complete all fields !"
 msgstr ""
 
-#: Controller/UsersController.php:259
+#: Controller/UsersController.php:267
 msgid "Your old password don't match !"
 msgstr ""
 
-#: Controller/UsersController.php:264;547
+#: Controller/UsersController.php:272;555
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:344
+#: Controller/UsersController.php:352
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:362
+#: Controller/UsersController.php:370
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:367
+#: Controller/UsersController.php:375
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
-#: Controller/UsersController.php:456
+#: Controller/UsersController.php:464
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:491;493
+#: Controller/UsersController.php:499;501
 msgid "Forgot your Password - Xeta"
 msgstr ""
 
-#: Controller/UsersController.php:497
+#: Controller/UsersController.php:505
 msgid "An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail."
 msgstr ""
 
-#: Controller/UsersController.php:516;530
+#: Controller/UsersController.php:524;538
 msgid "This code is not associated with this users or is incorrect."
 msgstr ""
 
-#: Controller/UsersController.php:538
+#: Controller/UsersController.php:546
 msgid "This code is expired, please ask another E-mail code."
 msgstr ""
 
@@ -633,6 +633,14 @@ msgstr ""
 msgid "<strong>{0}</strong> has liked your post in <strong>{1}</strong>."
 msgstr ""
 
+#: Model/Table/NotificationsTable.php:96
+msgid "Welcome on <strong>{0}</strong>! You can now post your first message in the Forum."
+msgstr ""
+
+#: Model/Table/NotificationsTable.php:106
+msgid "You have unlock the badge \"{0}\"."
+msgstr ""
+
 #: Model/Table/PremiumDiscountsTable.php:48
 msgid "You must set an offer."
 msgstr ""
@@ -1027,7 +1035,7 @@ msgid "Created by {0}"
 msgstr ""
 
 #: Template/Cell/Forum/sidebar.ctp:84
-#: Template/Users/notifications.ctp:47
+#: Template/Users/notifications.ctp:53
 msgid "At {0}"
 msgstr ""
 
@@ -1052,16 +1060,16 @@ msgstr[1] ""
 msgid "News Notifications"
 msgstr ""
 
-#: Template/Cell/Notification/notifications.ctp:25
-#: Template/Users/notifications.ctp:53
+#: Template/Cell/Notification/notifications.ctp:31
+#: Template/Users/notifications.ctp:59
 msgid "New"
 msgstr ""
 
-#: Template/Cell/Notification/notifications.ctp:35
+#: Template/Cell/Notification/notifications.ctp:41
 msgid "You don't have any notifications."
 msgstr ""
 
-#: Template/Cell/Notification/notifications.ctp:40
+#: Template/Cell/Notification/notifications.ctp:46
 msgid "All Notifications"
 msgstr ""
 
@@ -1784,7 +1792,7 @@ msgstr ""
 msgid "Notifications"
 msgstr ""
 
-#: Template/Users/notifications.ctp:77
+#: Template/Users/notifications.ctp:83
 msgid "You don't have any notification yet."
 msgstr ""
 

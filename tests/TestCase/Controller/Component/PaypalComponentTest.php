@@ -25,7 +25,8 @@ class PaypalComponentTest extends TestCase
         'app.premium_discounts',
         'app.premium_transactions',
         'app.badges',
-        'app.badges_users'
+        'app.badges_users',
+        'app.notifications'
     ];
 
     /**
