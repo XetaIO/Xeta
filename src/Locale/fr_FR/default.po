@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-15 23:01+0000\n"
-"PO-Revision-Date: 2015-05-16 01:07+0100\n"
+"POT-Creation-Date: 2015-05-17 12:44+0000\n"
+"PO-Revision-Date: 2015-05-17 14:46+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -146,64 +146,64 @@ msgid_plural "Premium {0} months"
 msgstr[0] "Premium {0} mois"
 msgstr[1] "Premium {0} mois"
 
-#: Controller/UsersController.php:121
+#: Controller/UsersController.php:122
 msgid "Your username or password doesn't match."
 msgstr "Votre nom d'utilisateur ou mot de passe ne correspondent pas."
 
-#: Controller/UsersController.php:162
+#: Controller/UsersController.php:170
 msgid "Your account has been created successfully !"
 msgstr "Votre compte a été créé avec succès !"
 
-#: Controller/UsersController.php:167
+#: Controller/UsersController.php:175
 msgid "Please, correct your mistake."
 msgstr "S'il vous plaît, corrigez vos erreurs."
 
-#: Controller/UsersController.php:169;464
+#: Controller/UsersController.php:177;472
 msgid "Please, correct your Captcha."
 msgstr "S'il vous plaît, corrigez votre Captcha."
 
-#: Controller/UsersController.php:211
+#: Controller/UsersController.php:219
 msgid "Your information has been updated !"
 msgstr "Vos informations ont été mises à jour."
 
-#: Controller/UsersController.php:245
+#: Controller/UsersController.php:253
 msgid "Your E-mail has been changed !"
 msgstr "Votre Email a été changé !"
 
-#: Controller/UsersController.php:254
+#: Controller/UsersController.php:262
 msgid "Please, complete all fields !"
 msgstr "S'il vous plaît, complétez tous les champs !"
 
-#: Controller/UsersController.php:259
+#: Controller/UsersController.php:267
 msgid "Your old password don't match !"
 msgstr "Votre ancien mot de passe ne correspond pas !"
 
-#: Controller/UsersController.php:264;547
+#: Controller/UsersController.php:272;555
 msgid "Your password has been changed !"
 msgstr "Votre mot de passe a été changé !"
 
-#: Controller/UsersController.php:344
+#: Controller/UsersController.php:352
 msgid "This user doesn't exist or has been deleted."
 msgstr "Cet utilisateur n'existe pas ou a été supprimé."
 
-#: Controller/UsersController.php:362
+#: Controller/UsersController.php:370
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr "Votre compte a été supprimé avec succès ! Merci de votre visite !"
 
-#: Controller/UsersController.php:367
+#: Controller/UsersController.php:375
 msgid "Unable to delete your account, please try again."
 msgstr ""
 "Impossible de supprimer votre compte, s'il vous plaît réessayez plus tard."
 
-#: Controller/UsersController.php:456
+#: Controller/UsersController.php:464
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr "Cet E-mail n'existe pas ou l'utilisateur à été supprimé."
 
-#: Controller/UsersController.php:491;493
+#: Controller/UsersController.php:499;501
 msgid "Forgot your Password - Xeta"
 msgstr "Réinitialisation du Mot de Passe - Xeta"
 
-#: Controller/UsersController.php:497
+#: Controller/UsersController.php:505
 msgid ""
 "An E-mail has been send to <strong>{0}</strong>. Please follow the "
 "instructions in the E-mail."
@@ -211,11 +211,11 @@ msgstr ""
 "Un E-mail a été envoyé à <strong>{0}</strong>. Suivez les instructions "
 "contenue dans l'E-mail."
 
-#: Controller/UsersController.php:516;530
+#: Controller/UsersController.php:524;538
 msgid "This code is not associated with this users or is incorrect."
 msgstr "Ce code n'est pas associé avec cet utilisateur ou est incorrect."
 
-#: Controller/UsersController.php:538
+#: Controller/UsersController.php:546
 msgid "This code is expired, please ask another E-mail code."
 msgstr "Ce code est expiré, s'il vous plaît veuillez demander un autre code."
 
@@ -651,6 +651,18 @@ msgstr "<strong>{0}</strong> a fermé votre sujet <strong>{1}</strong>."
 msgid "<strong>{0}</strong> has liked your post in <strong>{1}</strong>."
 msgstr "<strong>{0}</strong> a aimé votre post dans <strong>{1}</strong>."
 
+#: Model/Table/NotificationsTable.php:96
+msgid ""
+"Welcome on <strong>{0}</strong>! You can now post your first message in the "
+"Forum."
+msgstr ""
+"Bienvenue sur <strong>{0}</strong>! Vous pouvez dès à présent poster votre "
+"premier message dans le Forum !"
+
+#: Model/Table/NotificationsTable.php:106
+msgid "You have unlock the badge \"{0}\"."
+msgstr "Vous avez débloqué le badge \"{0}\"."
+
 #: Model/Table/PremiumDiscountsTable.php:48
 msgid "You must set an offer."
 msgstr "Vous devez définir une offre."
@@ -1031,7 +1043,7 @@ msgstr "Derniers Sujets"
 msgid "Created by {0}"
 msgstr "Créé par {0}"
 
-#: Template/Cell/Forum/sidebar.ctp:84 Template/Users/notifications.ctp:47
+#: Template/Cell/Forum/sidebar.ctp:84 Template/Users/notifications.ctp:53
 msgid "At {0}"
 msgstr "Le {0}"
 
@@ -1056,16 +1068,16 @@ msgstr[1] "Il y a {0} utilisateurs sur cette page."
 msgid "News Notifications"
 msgstr "Nouvelles Notifications"
 
-#: Template/Cell/Notification/notifications.ctp:25
-#: Template/Users/notifications.ctp:53
+#: Template/Cell/Notification/notifications.ctp:31
+#: Template/Users/notifications.ctp:59
 msgid "New"
 msgstr "New"
 
-#: Template/Cell/Notification/notifications.ctp:35
+#: Template/Cell/Notification/notifications.ctp:41
 msgid "You don't have any notifications."
 msgstr "Vous n'avez pas de notifications."
 
-#: Template/Cell/Notification/notifications.ctp:40
+#: Template/Cell/Notification/notifications.ctp:46
 msgid "All Notifications"
 msgstr "Toutes les Notifications"
 
@@ -1813,7 +1825,7 @@ msgstr "Connexion {0}"
 msgid "Notifications"
 msgstr "Notifications"
 
-#: Template/Users/notifications.ctp:77
+#: Template/Users/notifications.ctp:83
 msgid "You don't have any notification yet."
 msgstr "Vous n'avez pas encore de notifications."
 
