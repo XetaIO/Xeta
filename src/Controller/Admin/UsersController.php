@@ -162,13 +162,15 @@ class UsersController extends AppController
             ->first();
 
         //Check if the user is found.
-        if (empty($user)) {
+        if (empty($user) || $user->is_deleted == true) {
             $this->Flash->error(__d('admin', 'This user doesn\'t exist or has been deleted.'));
 
             return $this->redirect(['action' => 'index']);
         }
 
-        if ($this->Users->delete($user)) {
+        $user->is_deleted = true;
+
+        if ($this->Users->save($user)) {
             $this->Flash->success(__d('admin', 'This user has been deleted successfully !'));
 
             return $this->redirect(['action' => 'index']);

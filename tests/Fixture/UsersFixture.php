@@ -38,6 +38,7 @@ class UsersFixture extends TestFixture
         'register_ip' => ['type' => 'string', 'length' => 15],
         'last_login_ip' => ['type' => 'string', 'length' => 15],
         'last_login' => ['type' => 'datetime'],
+        'is_deleted' => ['type' => 'integer', 'length' => 1, 'default' => '0'],
         'created' => ['type' => 'datetime'],
         'modified' => ['type' => 'datetime'],
         '_constraints' => [
@@ -82,6 +83,7 @@ class UsersFixture extends TestFixture
             'register_ip' => '192.168.0.1',
             'last_login_ip' => '192.168.0.1',
             'last_login' => '2014-03-17 01:23:31',
+            'is_deleted' => 0,
             'created' => '2014-03-17 01:16:23',
             'modified' => '2014-03-17 01:18:31'
         ],
@@ -111,6 +113,7 @@ class UsersFixture extends TestFixture
             'register_ip' => '192.168.0.2',
             'last_login_ip' => '192.168.0.2',
             'last_login' => '2014-03-18 01:23:31',
+            'is_deleted' => 0,
             'created' => '2014-03-18 01:16:23',
             'modified' => '2014-03-18 01:18:31'
         ]
