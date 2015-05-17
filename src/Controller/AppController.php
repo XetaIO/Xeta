@@ -133,7 +133,7 @@ class AppController extends Controller
             $this->loadModel('Users');
 
             $user = $this->Auth->identify();
-            if ($user && $user->is_deleted == false) {
+            if ($user && $user['is_deleted'] == false) {
                 $this->Auth->setUser($user);
 
                 $user = $this->Users->newEntity($user);
