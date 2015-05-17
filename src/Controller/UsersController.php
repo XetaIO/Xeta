@@ -2,8 +2,8 @@
 namespace App\Controller;
 
 use App\Event\Badges;
-use App\Event\Forum\Statistics;
 use App\Event\Forum\Notifications;
+use App\Event\Forum\Statistics;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
