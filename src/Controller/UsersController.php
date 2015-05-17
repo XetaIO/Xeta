@@ -85,6 +85,12 @@ class UsersController extends AppController
                     $userLogin = $this->Auth->identify();
 
                     if ($userLogin) {
+                        if ($userLogin['is_deleted'] == true) {
+                            $this->Flash->error(__("This account has been deleted."));
+
+                            break;
+                        }
+
                         $this->Auth->setUser($userLogin);
 
                         $user = $this->Users->newEntity($userLogin);
@@ -348,7 +354,7 @@ class UsersController extends AppController
             })
             ->first();
 
-        if (is_null($user)) {
+        if (is_null($user) || $user->is_deleted == true) {
             $this->Flash->error(__('This user doesn\'t exist or has been deleted.'));
 
             return $this->redirect(['controller' => 'pages', 'action' => 'home']);
@@ -366,7 +372,9 @@ class UsersController extends AppController
     {
         $user = $this->Users->get($this->Auth->user('id'));
 
-        if ($this->Users->delete($user)) {
+        $user->is_deleted = true;
+
+        if ($this->Users->save($user)) {
             $this->Flash->success(__("Your account has been deleted successfully ! Thanks for your visit !"));
 
             return $this->redirect($this->Auth->logout());
