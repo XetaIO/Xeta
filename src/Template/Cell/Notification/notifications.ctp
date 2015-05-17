@@ -13,7 +13,13 @@
                 <li id="notification-<?= $notification->id ?>" class="notification-item" data-id="<?= $notification->id ?>" data-url="<?= $this->Url->build(['controller' => 'notifications', 'action' => 'markAsRead', 'prefix' => false]) ?>">
 
                     <a href="<?= $notification->link ?>">
-                        <?= $this->Html->image($notification->data['sender']->avatar, ['class' => 'avatar img-thumbnail']) ?>
+                        <?php if ($notification->type === 'bot'): ?>
+                            <?= $this->Html->image($notification->icon, ['class' => 'avatar']) ?>
+                        <?php elseif ($notification->type === 'badge'): ?>
+                            <?= $this->Html->image($notification->data['badge']->picture, ['class' => 'avatar']) ?>
+                        <?php else: ?>
+                            <?= $this->Html->image($notification->data['sender']->avatar, ['class' => 'avatar img-thumbnail']) ?>
+                        <?php endif; ?>
 
                         <p class="info">
                             <?= $notification->text ?>

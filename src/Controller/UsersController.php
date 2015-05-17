@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Event\Badges;
 use App\Event\Forum\Statistics;
+use App\Event\Forum\Notifications;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -136,19 +137,26 @@ class UsersController extends AppController
                                 $this->Auth->setUser($user);
                             }
 
-                            //Event.
-                            $this->eventManager()->attach(new Statistics());
+                            $user = $this->Users->get($user['id']);
 
+                            //Statistics Event.
+                            $this->eventManager()->attach(new Statistics());
                             $stats = new Event('Model.Users.register', $this);
                             $this->eventManager()->dispatch($stats);
-                            
-                            $user = $this->Users->get($user['id']);
-                            
+
+                            //Notification Events.
+                            $this->eventManager()->attach(new Notifications());
+                            $event = new Event('Model.Notifications.new', $this, [
+                                'user_id' => $user->id,
+                                'type' => 'bot'
+                            ]);
+                            $this->eventManager()->dispatch($event);
+
                             $viewVars = [
                                 'user' => $user,
                                 'name' => $user->full_name
                             ];
-                            
+
                             $email = new Email();
                             $email->profile('default')
                                 ->template('register', 'default')

@@ -1,12 +1,14 @@
 <?php
 namespace App\Event;
 
+use App\Event\Forum\Notifications;
 use App\Model\Entity\BlogArticlesComment;
 use App\Model\Entity\ForumPost;
 use App\Model\Entity\User;
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Event\EventManager;
 use Cake\Event\EventListenerInterface;
 use Cake\I18n\Time;
 use Cake\Network\Request;
@@ -301,9 +303,9 @@ class Badges implements EventListenerInterface
         $data = [];
         $data['badge_id'] = $badge['id'];
         $data['user_id'] = $userId;
-        $newBadge = $this->BadgesUsers->newEntity($data);
+        $badge = $this->BadgesUsers->newEntity($data);
 
-        $this->BadgesUsers->save($newBadge);
+        $badge = $this->BadgesUsers->save($badge);
 
         $this->Flash->badge('You have unlock a badge !', [
             'key' => 'badge',
@@ -311,7 +313,13 @@ class Badges implements EventListenerInterface
                 'badge' => $badge
             ]
         ]);
-
+        
+        EventManager::instance()->attach(new Notifications());
+        $event = new Event('Model.Notifications.new', $this, [
+            'type' => 'badge',
+            'badge' => $badge
+        ]);
+        EventManager::instance()->dispatch($event);
         return true;
     }
 }
