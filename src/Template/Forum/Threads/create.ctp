@@ -120,7 +120,30 @@
                         </div>
                         <div class="form-group">
                             <?= $this->Form->button(__('{0} Create Thread', '<i class="fa fa-plus"></i>'), ['class' => 'col-sm-offset-2 btn btn-primary', 'escape' => false]); ?>
-                            <?= $this->Html->link(__('{0} Save Draft', '<i class="fa fa-save"></i>'), 'javascript::', ['class' => 'btn btn-primary saveDraft', 'escape' => false]); ?>
+                            <div class="btn-group" role="group">
+                                <?= $this->Html->link(
+                                    __('{0} Save Draft', '<i class="fa fa-save"></i>'),
+                                    'javascript::',
+                                    [
+                                        'class' => 'btn btn-primary saveDraft',
+                                        'escape' => false,
+                                        'data-text' => __('The Draft has been saved successfully !')
+                                    ]
+                                ); ?>
+                                <?= $this->Html->link(
+                                    '<i class="fa fa-remove"></i>',
+                                    'javascript::',
+                                    [
+                                        'class' => 'btn btn-danger cleanDraft',
+                                        'escape' => false,
+                                        'title' => __('Delete the Draft'),
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'top',
+                                        'data-container' => 'body',
+                                        'data-text' => __('The Draft has been cleaned successfully !')
+                                    ]
+                                ); ?>
+                            </div>
                             <?= $this->Html->link(__('{0} Cancel', '<i class="fa fa-remove"></i>'), '#', ['class' => 'btn btn-danger', 'escape' => false]); ?>
                         </div>
                     <?= $this->Form->end(); ?>

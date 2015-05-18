@@ -9,7 +9,27 @@ $(document).ready(function () {
         $.cookie('DraftTitle', title, { path: '/' });
         $.cookie('DraftMessage', message, { path: '/' });
 
-        console.log('done');
+        $(".top-right").notify({
+            message : {
+                text : $(".saveDraft").attr('data-text')
+            },
+            type : "primary"
+        }).show();
+
+        return false;
+    });
+
+    $(".cleanDraft").bind("click", function () {
+
+        $.removeCookie('DraftTitle', { path: '/' });
+        $.removeCookie('DraftMessage', { path: '/' });
+
+        $(".top-right").notify({
+            message : {
+                text : $(".cleanDraft").attr('data-text')
+            },
+            type : "primary"
+        }).show();
 
         return false;
     });
