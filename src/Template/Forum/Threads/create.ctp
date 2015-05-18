@@ -4,7 +4,9 @@
 <?php $this->start('scriptBottom');
 
     echo $this->Html->script([
-        'ckeditor/ckeditor'
+        'ckeditor/ckeditor',
+        'jquery.cookie-1.4.1.min',
+        'draft.min'
     ])
 ?>
     <script type="text/javascript">
@@ -61,7 +63,10 @@
                         <div class="form-group">
                             <?= $this->Form->label('title', __('Thread Title'), ['class' => 'col-sm-2 control-label']) ?>
                             <div class="col-sm-6">
-                                <?= $this->Form->input('title', ['class' => 'form-control', 'label' => false, 'placeholder' => __('Title...')]) ?>
+                                <?php
+                                $title = isset($this->request->cookies['DraftTitle']) ? $this->request->cookies['DraftTitle'] : '';
+                                ?>
+                                <?= $this->Form->input('title', ['class' => 'form-control TitleDraft', 'value' => $title, 'label' => false, 'placeholder' => __('Title...')]) ?>
                             </div>
                         </div>
                         <?php if ($this->Acl->check(['_name' => 'threads-edit', 'id' => $thread->id, 'slug' => $thread->title, 'prefix' => 'forum'])): ?>
@@ -99,11 +104,15 @@
                         <div class="form-group">
                             <?= $this->Form->label('message', __('Message'), ['class' => 'col-sm-2 control-label']) ?>
                             <div class="col-sm-9">
+                                <?php
+                                $message = isset($this->request->cookies['DraftMessage']) ? $this->request->cookies['DraftMessage'] : '';
+                                ?>
                                 <?= $this->Form->textarea(
                                     'message', [
                                         'label' => false,
                                         'class' => 'form-control postBox',
-                                        'id' => 'postBox'
+                                        'id' => 'postBox',
+                                        'value' => $message,
                                     ]
                                 ) ?>
                                 <?= $this->Form->error('message') ?>
@@ -111,6 +120,30 @@
                         </div>
                         <div class="form-group">
                             <?= $this->Form->button(__('{0} Create Thread', '<i class="fa fa-plus"></i>'), ['class' => 'col-sm-offset-2 btn btn-primary', 'escape' => false]); ?>
+                            <div class="btn-group" role="group">
+                                <?= $this->Html->link(
+                                    __('{0} Save Draft', '<i class="fa fa-save"></i>'),
+                                    'javascript::',
+                                    [
+                                        'class' => 'btn btn-primary saveDraft',
+                                        'escape' => false,
+                                        'data-text' => __('The Draft has been saved successfully !')
+                                    ]
+                                ); ?>
+                                <?= $this->Html->link(
+                                    '<i class="fa fa-remove"></i>',
+                                    'javascript::',
+                                    [
+                                        'class' => 'btn btn-danger cleanDraft',
+                                        'escape' => false,
+                                        'title' => __('Delete the Draft'),
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'top',
+                                        'data-container' => 'body',
+                                        'data-text' => __('The Draft has been cleaned successfully !')
+                                    ]
+                                ); ?>
+                            </div>
                             <?= $this->Html->link(__('{0} Cancel', '<i class="fa fa-remove"></i>'), '#', ['class' => 'btn btn-danger', 'escape' => false]); ?>
                         </div>
                     <?= $this->Form->end(); ?>
