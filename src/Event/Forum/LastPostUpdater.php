@@ -95,7 +95,6 @@ class LastPostUpdater implements EventListenerInterface
                 } else {
                     $LastThread = $this->Threads->find()->where(['category_id' => $parent->id ])->order(['last_post_date' => 'DESC'])->first();
                 }
-
                 if ($LastThread) {
                     $parent->last_post_id = $LastThread->id;
                     $this->ForumCategories->save($parent);
