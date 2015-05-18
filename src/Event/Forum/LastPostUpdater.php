@@ -63,9 +63,9 @@ class LastPostUpdater implements EventListenerInterface
 			return false;
 		}
 		$thread = $event->data['thread'];
-		$NewLastPost = $this->Posts->find()->where(['thread_id' => $thread->id])->order(['created' => 'DESC'])->first();
+        $post = false;
 
-		if ($this->__updateCategories($thread, $NewLastPost)) {
+		if ($this->__updateCategories($thread, $post)) {
 			return true;
 		}
 
@@ -81,12 +81,30 @@ class LastPostUpdater implements EventListenerInterface
 				'lft <=' => $category->lft,
 				'rght >=' => $category->rght
 			]);
-
 		foreach ($parents as $parent) {
-			$parent->last_post_id = $post->id;
-			$this->ForumCategories->save($parent);
-		}
+            if (!$post) {
+                $conditions = [];
+                $childrens = $this->ForumCategories
+                    ->find('children', ['for' => $parent->id])->toArray();
+                if ($childrens) {
+                    foreach($childrens as $child){
+                        $cdt = ['category_id' => $child->id];
+                        array_push( $conditions, $cdt);
+                    }
+                    $LastThread = $this->Threads->find()->where(['OR' => $conditions ])->order(['last_post_date' => 'DESC'])->first();
+                } else {
+                    $LastThread = $this->Threads->find()->where(['category_id' => $parent->id ])->order(['last_post_date' => 'DESC'])->first();
+                }
 
+                if ($LastThread) {
+                    $parent->last_post_id = $LastThread->id;
+                    $this->ForumCategories->save($parent);
+                }
+            } else {
+                $parent->last_post_id = $post->id;
+                $this->ForumCategories->save($parent);
+            }
+		}
 		return true;
 	}
-} 
+}
