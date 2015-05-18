@@ -2,6 +2,7 @@
 namespace App\Controller\Forum;
 
 use App\Controller\AppController;
+use App\Event\Forum\LastPostUpdater;
 use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Core\Configure;
@@ -255,7 +256,8 @@ class PostsController extends AppController
                     'ForumThreads.id',
                     'ForumThreads.last_post_id',
                     'ForumThreads.last_post_date',
-                    'ForumThreads.first_post_id'
+                    'ForumThreads.first_post_id',
+					'ForumThreads.category_id'
                 ])
                 ->where(['ForumThreads.id' => $post->forum_thread->id])
                 ->first();
@@ -266,6 +268,13 @@ class PostsController extends AppController
             $thread->last_post_user_id = $lastPost->user_id;
 
             $this->ForumThreads->save($thread);
+
+			//Update the last post for all the parent category.
+			$this->eventManager()->on(new LastPostUpdater());
+			$event = new Event('LastPostUpdater.delete', $this, [
+				'thread' => $thread
+			]);
+			$this->eventManager()->dispatch($event);
 
             //Event.
             $this->eventManager()->attach(new Statistics());

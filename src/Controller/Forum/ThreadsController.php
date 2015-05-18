@@ -4,6 +4,7 @@ namespace App\Controller\Forum;
 use App\Controller\AppController;
 use App\Event\Badges;
 use App\Event\Forum\Followers;
+use App\Event\Forum\LastPostUpdater;
 use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Event\Event;
@@ -87,19 +88,12 @@ class ThreadsController extends AppController
                 $this->ForumThreads->save($newThread);
 
                 //Update the last post for all the parent category.
-                $this->loadModel('ForumCategories');
-                $category = $this->ForumCategories->get($newThread->category_id);
-                $parents = $this->ForumCategories
-                    ->find()
-                    ->where([
-                        'lft <=' => $category->lft,
-                        'rght >=' => $category->rght
-                    ]);
-
-                foreach ($parents as $parent) {
-                    $parent->last_post_id = $newPost->id;
-                    $this->ForumCategories->save($parent);
-                }
+				$this->eventManager()->on(new LastPostUpdater());
+				$event = new Event('LastPostUpdater.new', $this, [
+					'thread' => $newThread,
+					'post' => $post
+				]);
+				$this->eventManager()->dispatch($event);
 
                 //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
@@ -282,20 +276,13 @@ class ThreadsController extends AppController
                 $thread->last_post_id = $newPost->id;
                 $this->ForumThreads->save($thread);
 
-                //Update the last post for all the parent category.
-                $this->loadModel('ForumCategories');
-                $category = $this->ForumCategories->get($thread->category_id);
-                $parents = $this->ForumCategories
-                    ->find()
-                    ->where([
-                        'lft <=' => $category->lft,
-                        'rght >=' => $category->rght
-                    ]);
-
-                foreach ($parents as $parent) {
-                    $parent->last_post_id = $newPost->id;
-                    $this->ForumCategories->save($parent);
-                }
+                //Update the last post for all the parent
+				$this->eventManager()->on(new LastPostUpdater());
+				$event = new Event('LastPostUpdater.new', $this, [
+					'thread' => $thread,
+					'post' => $post
+				]);
+				$this->eventManager()->dispatch($event);
 
                 //Statistics Event.
                 $this->eventManager()->attach(new Statistics());
