@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 
-class UsersController extends AppController
+class ConversationsController extends AppController
 {
 
     /**
