@@ -3,9 +3,6 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-/**
- * ConversationsMessage Entity.
- */
 class ConversationsMessage extends Entity
 {
 
@@ -15,10 +12,6 @@ class ConversationsMessage extends Entity
      * @var array
      */
     protected $_accessible = [
-        'conversation_id' => true,
-        'user_id' => true,
-        'message' => true,
-        'conversation' => true,
-        'user' => true,
+        '*' => true
     ];
 }
