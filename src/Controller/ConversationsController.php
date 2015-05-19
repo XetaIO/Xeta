@@ -20,6 +20,11 @@ class ConversationsController extends AppController
         $this->Auth->deny();
     }
 
+    /**
+     * Display all conversations for the users.
+     *
+     * @return void
+     */
     public function index()
     {
         $this->ConversationsUsers = $this->loadModel('ConversationsUsers');
