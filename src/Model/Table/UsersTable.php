@@ -97,6 +97,9 @@ class UsersTable extends Table
             'dependent' => true,
             'cascadeCallbacks' => true
         ]);
+        $this->hasMany('Conversations', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**
@@ -275,7 +278,7 @@ class UsersTable extends Table
                 ]
             ]);
     }
-    
+
     /**
      * ResetPassword validation rules.
      *
