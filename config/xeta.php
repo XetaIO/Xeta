@@ -42,6 +42,23 @@ return [
         'user_per_page' => 15
     ],
     'HtmlPurifier' => [
+        'Conversations' => [
+            'message' => [
+                'Core.Encoding' => 'UTF-8',
+                'URI.Base' => 'https://xeta.io',
+                'HTML.Allowed' => 'p, h1, h2, h3, h4, h5, span[style], strong, em, u, img[alt|src|style|title], ol, li, ul,
+                a[href], br, blockquote, pre[class]',
+                'CSS.AllowedProperties' => 'font-size,height,width',
+                'Attr.AllowedClasses' => 'prettyprint, linenums',
+                'AutoFormat.RemoveEmpty' => true
+            ],
+            'message_empty' => [
+                'Core.Encoding' => 'UTF-8',
+                'URI.Base' => 'https://xeta.io',
+                'HTML.Allowed' => 'p',
+                'AutoFormat.RemoveEmpty' => true
+            ]
+        ],
         'User' => [
             'biography' => [
                 'Core.Encoding' => 'UTF-8',

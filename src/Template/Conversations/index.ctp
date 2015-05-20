@@ -1,6 +1,12 @@
 <?= $this->element('meta', [
-    'title' => __("Conversations")
+    'title' => __d('conversations', 'Conversations')
 ]) ?>
+<?php $this->start('scriptBottom');
+
+    echo $this->Html->script([
+        'conversations.min'
+    ]);
+$this->end() ?>
 
 <div class="container">
     <div class="row">
@@ -10,7 +16,7 @@
                     <?= $this->Html->link(__("Home"), '/') ?>
                 </li>
                 <li class="active">
-                    <?= __("Conversations") ?>
+                    <?= __d('conversations', 'Conversations') ?>
                 </li>
             </ol>
             <?= $this->Flash->render() ?>
@@ -25,7 +31,7 @@
 
             <div class="section">
                 <h4>
-                    <?= __("Conversations") ?>
+                    <?= __d('conversations', 'Conversations') ?>
                 </h4>
 
                 <div class="conversation-search">
@@ -57,27 +63,135 @@
                     <?= $this->Form->end();?>
                 </div>
 
-                <?= $this->Html->link(__("New Conversation"),array('controller'=>'conversations','action'=>'add'),array('class'=>'btn btn-primary conversation-new'));?>
-
                 <?php if (!empty($conversations->toArray())) : ?>
-                    <table class="table tableCategories table-striped table-primary table-hover">
+                    <?= $this->Form->create(null, [
+                        'url'   => ['controller'=>'conversations', 'action'=>'action'],
+                        'role'  => 'form',
+                        'id' => 'conversationsForm'
+                    ]);?>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <?= $this->Html->link(
+                                '<i class="fa fa-check"></i>',
+                                '#',
+                                [
+                                    'class' => 'colorAllConversationBackground btn btn-sm btn-primary',
+                                    'escape' => false,
+                                    'data-toggle' => 'tooltip',
+                                    'data-container' => 'body',
+                                    'title' => __d('conversations', 'Mark all Conversations')
+                                ]
+                            ) ?>
+                        </div>
+                        <div class="col-md-3">
+                            <?= $this->Form->select('action', [
+                                    'star' => __d('conversations', 'Star Conversation(s)'),
+                                    'normal' => __d('conversations', 'Make normal Conversation(s)'),
+                                    'exit' => __d('conversations', 'Exit Conversation(s)')
+                                ],
+                                [
+                                    'empty' => __d('conversations', 'Action...'),
+                                    'class'=>'form-control input-sm col-sm-3 conversationActionSubmit',
+                                    'style' => 'margin-bottom: 0;'
+                                ]
+                            );?>
+                        </div>
+                        <div class="col-md-3 pull-right">
+                            <?= $this->Html->link(
+                                __d('conversations', 'New Conversation {0}', '<i class="fa fa-arrow-right"></i>'),
+                                ['controller'=>'conversations','action'=>'add'],
+                                ['class'=>'btn btn-sm btn-primary', 'escape' => false]
+                            );?>
+                        </div>
+                    </div>
+
+                    <table class="table tableConversations table-striped table-primary table-hover">
                         <tbody>
                             <?php foreach ($conversations as $conversation): ?>
-                                <tr>
-                                    <td class="forumInfo">
-
+                                <tr id="conversation-<?= $conversation->conversation->id ?>" style="position: relative;">
+                                    <td>
+                                        <?= $this->Form->checkbox(
+                                            null,
+                                            [
+                                                'checked' => 0,
+                                                'value' => $conversation->conversation->id,
+                                                'class' => 'colorConversationBackground form-control',
+                                                'legend' => false
+                                            ]
+                                        );?>
                                     </td>
-                                    <td class="hidden-xs">
-
+                                    <td class="left">
+                                        <?= $this->Html->image($conversation->user->avatar, ['class' => 'avatar img-thumbnail pull-left']) ?>
+                                        <?= __d('conversations', 'Created by {0}', $this->Html->link($conversation->user->username, ['_name' => 'users-profile', 'id' => $conversation->user->id, 'slug' => $conversation->user->slug])) ?>
+                                        <br>
+                                        <?= __d('conversations', 'At {0}', $conversation->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                        <br>
+                                        <?= __dn('conversations', 'Participant {0}', 'Participants {0}', $conversation->conversation->recipient_count) ?>
+                                    </td>
+                                    <td class="middle">
+                                        <h5>
+                                            <?= $this->Text->truncate(
+                                                h($conversation->conversation->title),
+                                                70,
+                                                [
+                                                    'ellipsis' => '...',
+                                                    'exact' => false
+                                                ]
+                                            ) ?>
+                                        </h5>
                                     </td>
 
-                                    <td class="hidden-xs">
+                                    <td class="right">
+                                        <?= __d('conversations', 'Last Reply {0}', $this->Html->link($conversation->conversation->last_message_user->username, ['_name' => 'users-profile', 'id' => $conversation->conversation->last_message_user->id, 'slug' => $conversation->conversation->last_message_user->slug])) ?>
+                                        <br>
+                                        <?= __d('conversations', 'At {0}', $conversation->conversation->last_message->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                        <br>
+                                        <?= __dn('conversations', 'Reply {0}', 'Replies {0}', $conversation->conversation->reply_count, $conversation->conversation->reply_count) ?>
 
+                                        <?php if(!$conversation->is_read):?>
+                                            <strong class="new">
+                                                <span></span>
+                                                <?= __("New");?>
+                                            </strong>
+                                        <?php endif;?>
+                                        <?php if(!$conversation->is_star):?>
+                                            <strong class="star">
+                                                <span></span>
+                                                <?= __("Star");?>
+                                            </strong>
+                                        <?php endif;?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <?= $this->Form->end() ?>
+
+                    <div class="modal fade" id="conversationQuitModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <?= __d('conversations', 'Exit Conversations');?>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <?= __d('conversations', 'If you delete conversations where you are the owner, this will completely remove the conversation. Are you sure you want to delete these conversations ?');?>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <?= $this->Html->link(__("Yes"),'#',array(
+                                            'class'=>'btn btn-primary conversationQuitConfirm'
+                                        )
+                                    );?>
+                                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><?= __("Cancel"); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="pagination-centered">
                         <ul class="pagination">
@@ -91,7 +205,11 @@
                         </ul>
                     </div>
                 <?php else: ?>
-
+                    <div class="infobox infobox-info">
+                        <h4>
+                            <?= __d('conversations', "You don't have any conversations yet."); ?>
+                        </h4>
+                    </div>
                 <?php endif; ?>
 
             </div>
