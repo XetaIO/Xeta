@@ -56,25 +56,23 @@ class ConversationsTable extends Table
         $validator
             ->allowEmpty('title');
 
+        return $validator;
+    }
+
+    /**
+     * Create validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationCreate(Validator $validator)
+    {
         $validator
-            ->add('open_invite', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('open_invite');
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->add('conversation_open', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('conversation_open');
-
-        $validator
-            ->add('reply_count', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('reply_count');
-
-        $validator
-            ->add('recipient_count', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('recipient_count');
-
-        $validator
-            ->add('last_message_date', 'valid', ['rule' => 'datetime'])
-            ->allowEmpty('last_message_date');
+            ->notEmpty('title');
 
         return $validator;
     }

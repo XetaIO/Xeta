@@ -80,7 +80,7 @@ $(document).ready(function () {
                         }).show();
                     }
                 },
-                error: function (e) {
+                error: function () {
                     $(".top-right").notify({
                         message: {
                             text: "Error to do this action."
@@ -90,6 +90,71 @@ $(document).ready(function () {
                 }
             });
             return false;
+        }
+    });
+
+    $(".conversationQuitConfirm").click( function(){
+        $('#conversationQuitModal').modal('hide');
+
+        var array = [];
+        $('.colorConversationBackground:checked').each(function(){
+            array.push($(this).attr("value"));
+        });
+
+        $.ajax({
+            type: "POST",
+            url: $("#conversationsForm").attr("action"),
+            dataType: "json",
+            data: {
+                conversations: array,
+                action: $(".conversationActionSubmit").val()
+            },
+            success: function (data) {
+                if (data.error == "0") {
+                    $(".top-right").notify({
+                        message: {
+                            text: data.message
+                        },
+                        type: "success"
+                    }).show();
+
+                    setTimeout(function () {
+                        $(location).attr("href", data.redirect);
+                    }, 2e3);
+
+                } else if (data.error == "1") {
+                    $(".top-right").notify({
+                        message: {
+                            text: data.message
+                        },
+                        type: "danger"
+                    }).show();
+                }
+            },
+            error: function () {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to do this action."
+                    },
+                    type: "danger"
+                }).show()
+            }
+        });
+        return false;
+
+    });
+
+    $("#InviteConversationUsers").typeahead({
+        items: 12,
+        comma: true,
+        source: function (e, t) {
+            var array = e.split(", ");
+            var last = array[array.length-1];
+            return $.post($("#InviteConversationUsers").attr("data-url"), {
+                query: last
+            }, function (e) {
+                return t(e)
+            }, "json")
         }
     });
 });

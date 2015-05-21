@@ -178,6 +178,10 @@ return [
             'latest_threads' => 5
         ]
     ],
+    'Conversations' => [
+        'enabled' => true,
+        'max_users_per_conversation' => 20
+    ],
     'Premium' => [
         'color' => '#F2C732'
     ],

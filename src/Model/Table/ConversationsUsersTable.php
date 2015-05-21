@@ -28,28 +28,4 @@ class ConversationsUsersTable extends Table
             'foreignKey' => 'user_id'
         ]);
     }
-
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
-
-        $validator
-            ->add('is_read', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('is_read');
-
-        $validator
-            ->add('important', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('important', 'create')
-            ->notEmpty('important');
-
-        return $validator;
-    }
 }

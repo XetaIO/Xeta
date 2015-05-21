@@ -13,7 +13,7 @@ $this->end() ?>
         <div class="col-md-12">
             <ol class="breadcrumb">
                 <li>
-                    <?= $this->Html->link(__("Home"), '/') ?>
+                    <?= $this->Html->link(__d('conversations', 'Home'), '/') ?>
                 </li>
                 <li class="active">
                     <?= __d('conversations', 'Conversations') ?>
@@ -100,8 +100,8 @@ $this->end() ?>
                         <div class="col-md-3 pull-right">
                             <?= $this->Html->link(
                                 __d('conversations', 'New Conversation {0}', '<i class="fa fa-arrow-right"></i>'),
-                                ['controller'=>'conversations','action'=>'add'],
-                                ['class'=>'btn btn-sm btn-primary', 'escape' => false]
+                                ['controller' => 'conversations', 'action' => 'create'],
+                                ['class' => 'btn btn-sm btn-primary', 'escape' => false]
                             );?>
                         </div>
                     </div>
@@ -127,7 +127,7 @@ $this->end() ?>
                                         <br>
                                         <?= __d('conversations', 'At {0}', $conversation->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
                                         <br>
-                                        <?= __dn('conversations', 'Participant {0}', 'Participants {0}', $conversation->conversation->recipient_count) ?>
+                                        <?= __dn('conversations', 'Participant {0}', 'Participants {0}', $conversation->conversation->recipient_count, $conversation->conversation->recipient_count) ?>
                                     </td>
                                     <td class="middle">
                                         <h5>
@@ -155,7 +155,7 @@ $this->end() ?>
                                                 <?= __("New");?>
                                             </strong>
                                         <?php endif;?>
-                                        <?php if(!$conversation->is_star):?>
+                                        <?php if($conversation->is_star):?>
                                             <strong class="star">
                                                 <span></span>
                                                 <?= __("Star");?>
@@ -205,6 +205,15 @@ $this->end() ?>
                         </ul>
                     </div>
                 <?php else: ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?= $this->Html->link(
+                                __d('conversations', 'New Conversation {0}', '<i class="fa fa-arrow-right"></i>'),
+                                ['controller' => 'conversations', 'action' => 'create'],
+                                ['class' => 'btn btn-sm btn-primary', 'escape' => false]
+                            );?>
+                        </div>
+                    </div>
                     <div class="infobox infobox-info">
                         <h4>
                             <?= __d('conversations', "You don't have any conversations yet."); ?>
