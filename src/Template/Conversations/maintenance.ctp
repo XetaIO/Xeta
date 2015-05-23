@@ -9,8 +9,11 @@
                 <li>
                     <?= $this->Html->link(__d('conversations', 'Home'), '/') ?>
                 </li>
+                <li>
+                    <?= $this->Html->link(__d('conversations', 'Conversations'), ['controller' => 'conversations', 'action' => 'index']) ?>
+                </li>
                 <li class="active">
-                    <?= __d('conversations', 'Conversations') ?>
+                    <?= __d('conversations', 'Maintenance') ?>
                 </li>
             </ol>
             <?= $this->Flash->render() ?>
@@ -22,19 +25,6 @@
             <?= $this->element('/Users/sidebar') ?>
         </section>
         <section class="col-md-9">
-            <div class="row">
-                <div class="col-md-12">
-                    <ol class="breadcrumb" style="margin-top:0;">
-                        <li>
-                            <?= $this->Html->link(__d('conversations', 'Conversations'), ['controller' => 'conversations', 'action' => 'index']) ?>
-                        </li>
-                        <li class="active">
-                            <?= __d('conversations', 'Maintenance') ?>
-                        </li>
-                    </ol>
-                    <?= $this->Flash->render() ?>
-                </div>
-            </div>
             <div class="section">
                 <h4>
                     <?= __d('conversations', 'Conversations') ?>

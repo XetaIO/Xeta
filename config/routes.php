@@ -128,7 +128,7 @@ Router::scope('/', function ($routes) {
             ]
         ]
     );
-    
+
     //Groups Routes.
     $routes->connect(
         '/groups/view/:slug.:id',
@@ -142,6 +142,114 @@ Router::scope('/', function ($routes) {
             'pass' => [
                 'id',
                 'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    //Conversations Routes.
+    $routes->connect(
+        '/conversations/view/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'view'
+        ],
+        [
+            '_name' => 'conversations-view',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/messageDelete/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'messageDelete'
+        ],
+        [
+            '_name' => 'conversations-messageDelete',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/messageEdit/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'messageEdit'
+        ],
+        [
+            '_name' => 'conversations-messageEdit',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/quote/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'quote'
+        ],
+        [
+            '_name' => 'conversations-quote',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/invite/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'invite'
+        ],
+        [
+            '_name' => 'conversations-invite',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/edit/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'edit'
+        ],
+        [
+            '_name' => 'conversations-edit',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/leave/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'leave'
+        ],
+        [
+            '_name' => 'conversations-leave',
+            'pass' => [
+                'id'
             ],
             'id' => '[0-9]+'
         ]

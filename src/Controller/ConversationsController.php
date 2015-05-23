@@ -295,6 +295,7 @@ class ConversationsController extends AppController
                     if (is_null($userExist)) {
                         break;
                     }
+
                     //Check if the user is not already in the conversation.
                     $conversUserCheck = $this->ConversationsUsers
                         ->find()
@@ -324,11 +325,101 @@ class ConversationsController extends AppController
                     );
                 }
 
-                $this->Flash->success(__('Your conversation has been created successfully !'));
+                $this->Flash->success(__d('conversations', 'Your conversation has been created successfully !'));
+                $this->redirect([
+                    '_name' => 'conversations-view',
+                    'slug' => 'show',
+                    'id' => $conversation->id
+                ]);
             }
         }
 
         $this->set(compact('conversation'));
+    }
+
+    /**
+     * Display a conversation.
+     *
+     * @return void|\Cake\Network\Response
+     */
+    public function view()
+    {
+        $this->loadModel('ConversationsUsers');
+
+        $conversation = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Users',
+                'Conversations',
+                'Conversations.LastMessage',
+                'Conversations.LastMessageUser'
+            ])
+            ->where([
+                'ConversationsUsers.conversation_id' => $this->request->id,
+                'ConversationsUsers.user_id' => $this->Auth->user('id'),
+                'Conversations.conversation_open <>' => 2
+            ])
+            ->first();
+
+        if (is_null($conversation)) {
+            $this->Flash->error(__d('conversations', "This conversation doesn't exist or has been deleted."));
+
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $this->loadModel('ConversationsMessages');
+        $this->loadModel('ConversationsUsers');
+
+        $this->paginate = [
+            'maxLimit' => Configure::read('Conversations.messages_per_page')
+        ];
+
+        $messages = $this->ConversationsMessages
+            ->find()
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->find('full')->formatResults(function ($users) {
+                        return $users->map(function ($user) {
+                            $user->online = $this->SessionsActivity->getOnlineStatus($user);
+                            return $user;
+                        });
+                    });
+                },
+                'Users.Groups',
+                'LastEditUsers' => function ($q) {
+                    return $q->find('short');
+                },
+            ])
+            ->where([
+                'ConversationsMessages.conversation_id' => $this->request->id
+            ])
+            ->order([
+                'ConversationsMessages.created' => 'ASC'
+            ]);
+
+        $messages = $this->paginate($messages);
+
+        //Update "is_read" for the current user.
+        $user = $this->ConversationsUsers->get($conversation->id);
+        $user->is_read = 1;
+        $this->ConversationsUsers->save($user);
+
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        $this->set(compact('conversation', 'messages', 'currentUser'));
     }
 
     /**

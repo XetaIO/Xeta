@@ -131,12 +131,19 @@ $this->end() ?>
                                     </td>
                                     <td class="middle">
                                         <h5>
-                                            <?= $this->Text->truncate(
-                                                h($conversation->conversation->title),
-                                                70,
+                                            <?= $this->Html->link(
+                                                $this->Text->truncate(
+                                                    h($conversation->conversation->title),
+                                                    70,
+                                                    [
+                                                        'ellipsis' => '...',
+                                                        'exact' => false
+                                                    ]
+                                                ),
                                                 [
-                                                    'ellipsis' => '...',
-                                                    'exact' => false
+                                                    '_name' => 'conversations-view',
+                                                    'slug' => $conversation->conversation->title,
+                                                    'id' => $conversation->conversation->id
                                                 ]
                                             ) ?>
                                         </h5>

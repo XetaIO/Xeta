@@ -27,6 +27,10 @@ class ConversationsMessagesTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+        $this->belongsTo('LastEditUsers', [
+            'className' => 'Users',
+            'foreignKey' => 'last_edit_user_id'
+        ]);
     }
 
     /**
