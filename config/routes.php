@@ -255,6 +255,40 @@ Router::scope('/', function ($routes) {
         ]
     );
 
+    $routes->connect(
+        '/conversations/kick/:id/:user_id',
+        [
+            'controller' => 'conversations',
+            'action' => 'kick'
+        ],
+        [
+            '_name' => 'conversations-kick',
+            'pass' => [
+                'id',
+                'user_id'
+            ],
+            'id' => '[0-9]+',
+            'user_id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/reply/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'reply'
+        ],
+        [
+            '_name' => 'conversations-reply',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
     $routes->fallbacks();
 });
 

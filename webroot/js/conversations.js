@@ -137,7 +137,7 @@ $(document).ready(function () {
                         text: "Error to do this action."
                     },
                     type: "danger"
-                }).show()
+                }).show();
             }
         });
         return false;
@@ -153,8 +153,83 @@ $(document).ready(function () {
             return $.post($("#InviteConversationUsers").attr("data-url"), {
                 query: last
             }, function (e) {
-                return t(e)
-            }, "json")
+                return t(e);
+            }, "json");
         }
+    });
+
+    $(".QuoteMessage").bind("click", function () {
+        $.ajax({
+            type : "GET",
+            url : $(this).attr("data-url"),
+            dataType : "json",
+            success : function (data) {
+                if (!data.error) {
+                    CKEDITOR.instances.messageBox.insertHtml(data.message);
+                    $('html,body').animate({
+                        scrollTop : $(".conversationComment").offset().top
+                    }, 'slow');
+                } else {
+                    $(".top-right").notify({
+                        message : {
+                            text : data.post
+                        },
+                        type : "danger"
+                    }).show();
+                }
+            },
+            error : function (e) {
+                $(".top-right").notify({
+                    message : {
+                        text : "Error to quote the messsage."
+                    },
+                    type : "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
+
+    $(".editMessage").bind("click", function () {
+        var messageId = $(this).attr("data-id");
+
+        $.ajax({
+            type : "POST",
+            url : $(this).attr("data-url"),
+            data : {
+                id : messageId
+            },
+            dataType: "json",
+            success : function (data) {
+                if (!data.error) {
+                    if (!$("#editingMessage-" + messageId).length) {
+                        var messageContent = $("#message-" + messageId + " .message");
+
+                        messageContent.fadeOut();
+                        messageContent.after(data.html);
+
+                        CKEDITOR.replace('messageBox-' + messageId, {
+                            customConfig: 'config/forum.js'
+                        });
+                    }
+                } else {
+                    $(".top-right").notify({
+                        message: {
+                            text: data.errorMessage
+                        },
+                        type   : "danger"
+                    }).show();
+                }
+            },
+            error   : function (e) {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to edit the post."
+                    },
+                    type   : "danger"
+                }).show();
+            }
+        });
+        return false;
     });
 });

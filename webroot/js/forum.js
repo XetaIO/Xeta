@@ -47,31 +47,30 @@ $(document).ready(function () {
 
     $(".QuotePost").bind("click", function () {
         $.ajax({
-            type    : "GET",
-            url     : $(this).attr("data-url"),
-            dataType: "json",
+            type : "GET",
+            url : $(this).attr("data-url"),
+            dataType : "json",
             success : function (data) {
                 if (!data.error) {
                     CKEDITOR.instances.postBox.insertHtml(data.post);
                     $('html,body').animate({
-                        scrollTop: $(".threadComment").offset().top
+                        scrollTop : $(".threadComment").offset().top
                     }, 'slow');
                 } else {
-
                     $(".top-right").notify({
-                        message: {
-                            text: data.post
+                        message : {
+                            text : data.post
                         },
-                        type   : "danger"
+                        type : "danger"
                     }).show();
                 }
             },
-            error   : function (e) {
+            error : function (e) {
                 $(".top-right").notify({
-                    message: {
-                        text: "Error to quote the post."
+                    message : {
+                        text : "Error to quote the post."
                     },
-                    type   : "danger"
+                    type : "danger"
                 }).show();
             }
         });

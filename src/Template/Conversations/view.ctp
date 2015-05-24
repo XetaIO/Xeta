@@ -35,10 +35,7 @@
     </div>
 
     <div class="row">
-        <section class="col-md-3">
-            <?= $this->element('Users/sidebar') ?>
-        </section>
-        <section class="col-md-6">
+        <section class="col-md-9">
             <main role="main" class="conversations main">
                 <?php foreach ($messages as $message): ?>
                 <div class="message clearfix" id="message-<?= $message->id ?>">
@@ -103,11 +100,10 @@
                                     __('{0} Edit', '<i class="fa fa-edit"></i>'),
                                     '#',
                                     [
-                                        'class' => 'btn btn-sm btn-primary editPost',
+                                        'class' => 'btn btn-sm btn-primary editMessage',
                                         'data-url' => $this->Url->build([
                                             'controller' => 'conversations',
-                                            'action' => 'getEditMessage',
-                                            'prefix' => 'forum'
+                                            'action' => 'getEditMessage'
                                         ]),
                                         'data-id' => $message->id,
                                         'escape' => false
@@ -137,7 +133,7 @@
                                             ['_name' => 'users-profile', 'slug' => $message->last_edit_user->slug, 'id' => $message->last_edit_user->id, 'prefix' => false],
                                             ['class' => 'text-primary', 'escape' => false]
                                         ),
-                                        ucwords($post->last_edit_date->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::MEDIUM]))
+                                        ucwords($message->last_edit_date->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::MEDIUM]))
                                     ) ?>
                                 </div>
                             <?php endif; ?>
@@ -173,19 +169,25 @@
 
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
-            <div class="pagination-centered">
-                <ul class="pagination pagination-sm">
-                    <?php if ($this->Paginator->hasPrev()): ?>
-                        <?= $this->Paginator->prev('«'); ?>
-                    <?php endif; ?>
-                    <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                    <?php if ($this->Paginator->hasNext()): ?>
-                        <?= $this->Paginator->next('»'); ?>
-                    <?php endif; ?>
-                </ul>
-            </div>
+                <?php if((int)$this->Paginator->counter('{{pages}}') > 1): ?>
+                    <div class="pagination-centered">
+                        <ul class="pagination pagination-sm">
+                            <?php if ($this->Paginator->hasPrev()): ?>
+                                <?= $this->Paginator->prev('«'); ?>
+                            <?php endif; ?>
+                            <?= $this->Paginator->numbers(['modulus' => 5]); ?>
+                            <?php if ($this->Paginator->hasNext()): ?>
+                                <?= $this->Paginator->next('»'); ?>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <?= $this->element('Conversations/reply', [
+                    'conversation' => $conversation->conversation
+                ]) ?>
             </main>
 
         </section>

@@ -42,6 +42,21 @@ class ConversationsCell extends Cell
             ])
             ->first();
 
-        $this->set(compact('conversation', 'participants'));
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->request->session()->read('Auth.User.id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        $this->set(compact('conversation', 'participants', 'currentUser'));
     }
 }

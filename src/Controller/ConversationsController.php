@@ -35,6 +35,8 @@ class ConversationsController extends AppController
 
         if (Configure::read('Conversations.enabled') === false && $this->request->action != 'maintenance') {
             $this->redirect(['action' => 'maintenance']);
+        } elseif (Configure::read('Conversations.enabled') === true && $this->request->action == 'maintenance') {
+            $this->redirect(['action' => 'index']);
         }
     }
 
@@ -252,12 +254,10 @@ class ConversationsController extends AppController
             $conversation->last_message_date = new Time();
 
             if ($conversation = $this->Conversations->save($conversation)) {
-                debug($conversation);
                 $this->loadModel('ConversationsMessages');
                 $this->loadModel('ConversationsUsers');
 
                 $data = [];
-                debug($this->request->data);
                 $data['message'] = $this->request->data['message'];
                 $data['conversation_id'] = $conversation->id;
                 $data['user_id'] = $this->Auth->user('id');
@@ -419,7 +419,10 @@ class ConversationsController extends AppController
             ->select(['id', 'group_id'])
             ->first();
 
-        $this->set(compact('conversation', 'messages', 'currentUser'));
+        //Build the newEntity for the comment form.
+        $messageForm = $this->ConversationsMessages->newEntity();
+
+        $this->set(compact('conversation', 'messages', 'currentUser', 'messageForm'));
     }
 
     /**
@@ -452,6 +455,249 @@ class ConversationsController extends AppController
 
         $this->set(compact('json'));
         $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Quote a post.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException
+     *
+     * @return mixed
+     */
+    public function quote()
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+
+        }
+
+        $this->loadModel('ConversationsMessages');
+
+        $message = $this->ConversationsMessages
+            ->find()
+            ->where([
+                'ConversationsMessages.id' => $this->request->id
+            ])
+            ->contain([
+                'Users' => function ($q) {
+                        return $q->find('short');
+                }
+            ])
+            ->first();
+
+        $json = [];
+
+        if (!is_null($message)) {
+            $message->toArray();
+
+            $url = Router::url(['action' => 'go', $message->id]);
+            $text = __("has said :");
+
+            //Build the quote.
+            $json['message'] = <<<EOT
+<div>
+    <div>
+        <a href="{$url}">
+            <strong>{$message->user->full_name} {$text}</strong>
+        </a>
+    </div>
+    <blockquote>
+        $message->message
+    </blockquote>
+</div><p>&nbsp;</p><p>&nbsp;</p>
+EOT;
+
+            $json['error'] = false;
+
+            $this->set(compact('json'));
+        } else {
+            $json['post'] = __d('conversations', "This message doesn't exist.");
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+        }
+
+        //Send response in JSON.
+        $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Get the form to edit a message.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException When it's not an AJAX request.
+     *
+     * @return void
+     */
+    public function getEditMessage()
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        $this->loadModel('ConversationsMessages');
+        $this->layout = false;
+
+        $message = $this->ConversationsMessages
+            ->find()
+            ->where([
+                'ConversationsMessages.id' => $this->request->data['id']
+            ])
+            ->first();
+
+        $json = [
+            'error' => false,
+            'errorMessage' => ''
+        ];
+
+        if (is_null($message)) {
+            $json['error'] = true;
+            $json['errorMessage'] = __d('conversations', "This message doesn't exist or has been deleted !");
+
+            $this->set(compact('json'));
+            return;
+        }
+
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($message->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
+            $json['error'] = true;
+            $json['errorMessage'] = __d('conversations', "You don't have the authorization to edit this message !");
+
+            $this->set(compact('json'));
+            return;
+        }
+
+        $this->set(compact('json', 'message'));
+    }
+
+    /**
+     * Edit a message.
+     *
+     * @param int $id Id of the message.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function edit($id = null)
+    {
+        if (!$this->request->is(['post', 'put'])) {
+            throw new NotFoundException();
+        }
+
+        $this->loadModel('ConversationsMessages');
+
+        $message = $this->ConversationsMessages
+            ->find()
+            ->where([
+                'ConversationsMessages.id' => $id
+            ])
+            ->first();
+
+        if (is_null($message)) {
+            $this->Flash->error(__d('conversations', "This post doesn't exist or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        //Current user.
+        $this->loadModel('Users');
+        $currentUser = $this->Users
+            ->find()
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'Users.id' => $this->Auth->user('id')
+            ])
+            ->select(['id', 'group_id'])
+            ->first();
+
+        if ($message->user_id != $this->Auth->user('id') && !$currentUser->group->is_staff) {
+            $this->Flash->error(__d('conversations', "You don't have the authorization to edit this post !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        $this->ConversationsMessages->patchEntity($message, $this->request->data());
+        $message->last_edit_date = new Time();
+        $message->last_edit_user_id = $this->Auth->user('id');
+        $message->edit_count++;
+
+        if ($this->ConversationsMessages->save($message)) {
+            $this->Flash->success(__d('conversations', 'This message has been edited successfully !'));
+        }
+
+        return $this->redirect(['action' => 'go', $message->id]);
+    }
+
+    /**
+     * Redirect an user to a conversation, page and message.
+     *
+     * @param int $messageId Id of the message.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function go($messageId = null)
+    {
+        $this->loadModel('ConversationsMessages');
+
+        $message = $this->ConversationsMessages
+            ->find()
+            ->contain([
+                'Conversations'
+            ])
+            ->where([
+                'ConversationsMessages.id' => $messageId
+            ])
+            ->first();
+
+        if (is_null($message)) {
+            $this->Flash->error(__("This message doesn't exist or has been deleted."));
+
+            return $this->redirect(['controller' => 'conversations', 'action' => 'index']);
+        }
+
+        $message->toArray();
+
+        //Count the number of messages before this message.
+        $messagesBefore = $this->ConversationsMessages
+            ->find()
+            ->where([
+                'ConversationsMessages.conversation_id' => $message->conversation_id,
+                'ConversationsMessages.created <' => $message->created
+            ])
+            ->count();
+
+        //Get the number of messages per page.
+        $messagesPerPage = Configure::read('Conversations.messages_per_page');
+
+        //Calculate the page.
+        $page = ceil($messagesBefore / $messagesPerPage);
+
+        $page = ($page > 1) ? $page : 1;
+
+        //Redirect the user.
+        return $this->redirect([
+            '_name' => 'conversations-view',
+            'slug' => $message->conversation->title,
+            'id' => $message->conversation->id,
+            '?' => ['page' => $page],
+            '#' => 'message-' . $messageId
+        ]);
     }
 
     /**
