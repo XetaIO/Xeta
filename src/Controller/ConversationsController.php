@@ -928,9 +928,9 @@ EOT;
                 $this->Flash->error(__("You don't have the authorization to edit this conversation !"));
 
                 return $this->redirect([
-                    '_name' => 'forum-threads',
-                    'slug' => Inflector::slug($thread->title, '-'),
-                    'id' => $thread->id
+                    'controller' => 'conversations',
+                    'action' => 'go',
+                    $conversation->last_message_id
                 ]);
             }
 
