@@ -38,7 +38,7 @@
         <section class="col-md-9">
             <main role="main" class="conversations main">
                 <?php foreach ($messages as $message): ?>
-                <div class="message clearfix" id="message-<?= $message->id ?>">
+                <div class="message clearfix <?= $message->created->timestamp > $conversation->modified->timestamp ? 'messageNew' : '' ?>" id="message-<?= $message->id ?>">
                     <div class="left">
                         <div class="avatar">
                             <?= $this->Html->link(
@@ -48,9 +48,9 @@
                             ) ?>
                             <span class="status">
                                 <?php if ($message->user->online === true): ?>
-                                    <i class="fa fa-circle text-primary" data-toggle="tooltip" title="<?= __("Online") ?>" data-container="body"></i>
+                                    <i class="fa fa-circle text-primary" data-toggle="tooltip" title="<?= __d('conversations', 'Online') ?>" data-container="body"></i>
                                 <?php else: ?>
-                                    <i class="fa fa-circle text-danger" data-toggle="tooltip" title="<?= __("Offline") ?>" data-container="body"></i>
+                                    <i class="fa fa-circle text-danger" data-toggle="tooltip" title="<?= __d('conversations', 'Offline') ?>" data-container="body"></i>
                                 <?php endif; ?>
                             </span>
                         </div>
@@ -81,7 +81,7 @@
                                 [
                                     'class' => 'text-primary',
                                     'data-toggle' => 'popover',
-                                    'title' => __('Post Link'),
+                                    'title' => __d('conversations', 'Post Link'),
                                     'data-html' => true,
                                     'data-placement' => 'left',
                                     'data-container' => 'body',
@@ -92,12 +92,18 @@
                                     ]
                                 ) ?>
                             </span>
+                            <?php if($message->created->timestamp > $conversation->modified->timestamp):?>
+                                <strong class="new">
+                                    <span></span>
+                                    <?= __d('conversations', 'New');?>
+                                </strong>
+                            <?php endif;?>
                         </div>
 
                         <div class="actions">
                             <?php if (($this->Acl->check(['_name' => 'conversations-messageEdit', 'id' => $message->id]) && $this->request->session()->read('Auth.User.id') == $message->user_id) || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                                 <?= $this->Html->link(
-                                    __('{0} Edit', '<i class="fa fa-edit"></i>'),
+                                    __d('conversations', '{0} Edit', '<i class="fa fa-edit"></i>'),
                                     '#',
                                     [
                                         'class' => 'btn btn-sm btn-primary editMessage',
@@ -113,7 +119,7 @@
 
                             <?php if ($message->id != $conversation->conversation->first_message_id): ?>
                                 <?php if ($this->Acl->check(['_name' => 'conversations-messageDelete', 'id' => $message->id])): ?>
-                                    <?= $this->Html->link(__('{0} Delete', '<i class="fa fa-remove"></i>'), ['_name' => 'conversations-messageDelete', 'id' => $message->id], ['class' => 'btn btn-sm btn-danger', 'escape' => false]) ?>
+                                    <?= $this->Html->link(__d('conversations', '{0} Delete', '<i class="fa fa-remove"></i>'), ['_name' => 'conversations-messageDelete', 'id' => $message->id], ['class' => 'btn btn-sm btn-danger', 'escape' => false]) ?>
                                 <?php endif; ?>
                             <?php endif; ?>
                         </div>
@@ -126,7 +132,7 @@
 
                             <?php if ($message->edit_count): ?>
                                 <div class="edited">
-                                    <?= __('{0} Last Edit: {1}, {2}',
+                                    <?= __d('conversations', '{0} Last Edit: {1}, {2}',
                                         '<i class="fa fa-pencil"></i>',
                                         $this->Html->link(
                                             h($message->last_edit_user->username),
@@ -142,7 +148,7 @@
                                 <div class="actions text-right">
                                     <?php if ($this->Acl->check(['_name' => 'conversations-quote', 'id' => $message->id]) && $conversation->conversation->conversation_open == 1): ?>
                                         <?= $this->Html->link(
-                                            __("{0} Quote", '<i class="fa fa-quote-left"></i>'),
+                                            __d('conversations', '{0} Quote', '<i class="fa fa-quote-left"></i>'),
                                             '#',
                                             [
                                                 'class' => 'QuoteMessage btn btn-sm btn-link text-primary',
