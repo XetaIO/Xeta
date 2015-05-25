@@ -956,6 +956,107 @@ EOT;
     }
 
     /**
+     * Function to invite user(s) in a conversation.
+     *
+     * @return void|\Cake\Network\Response
+     */
+    public function invite()
+    {
+        $this->loadModel('ConversationsUsers');
+
+        $conversation = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Conversations',
+                'Users',
+                'Users.Groups'
+            ])
+            ->where([
+                'ConversationsUsers.conversation_id' => $this->request->id,
+                'ConversationsUsers.user_id' => $this->Auth->user('id')
+            ])
+            ->first();
+
+        if (is_null($conversation) || $conversation->conversation->conversation_open != 1) {
+            $this->Flash->error(__("This conversation is closed or has been deleted !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if (!$conversation->conversation->open_invite && $conversation->conversation->user_id != $this->Auth->user('id') && !$conversation->user->group->is_staff) {
+            $this->Flash->error(__("You don't have the authorization to invite in this conversation !"));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($this->request->is(['post', 'put'])) {
+            $users = str_replace(",", "", trim(strtolower($this->request->data['users'])));
+            $users = explode(" ", $users);
+
+            $maxUsersCheck = $this->ConversationsUsers
+                ->find()
+                ->where([
+                    'ConversationsUsers.conversation_id' => $this->request->id
+                ])
+                ->count();
+
+            //Check max users.
+            if (count($users) + $maxUsersCheck >= Configure::read('Conversations.max_users_per_conversation')) {
+                $this->Flash->error(__d('conversations', 'You cannot invite more than {0} user(s) in this conversation.', Configure::read('Conversations.max_users_per_conversation')));
+
+                return $this->redirect($this->referer());
+            }
+
+            $this->loadModel('Users');
+            $this->loadModel('Conversations');
+
+            foreach ($users as $user) {
+                $user = $this->Users
+                    ->find()
+                    ->where([
+                        'LOWER(Users.username)' => $user
+                    ])
+                    ->first();
+
+                if (!is_null($user)) {
+                    $check = $this->ConversationsUsers
+                        ->find()
+                        ->where([
+                            'ConversationsUsers.conversation_id' => $this->request->id,
+                            'ConversationsUsers.user_id' => $user->id
+                        ])
+                        ->first();
+
+                    if (is_null($check)) {
+                        $data = [];
+                        $data['conversation_id'] = $this->request->id;
+                        $data['user_id'] = $user->id;
+
+                        $entity = $this->ConversationsUsers->newEntity($data);
+                        $this->ConversationsUsers->save($entity);
+
+                        $expression = new QueryExpression('recipient_count = recipient_count + 1');
+                        $this->Conversations->updateAll(
+                            [$expression],
+                            [
+                                'id' => $this->request->id
+                            ]
+                        );
+                    }
+                }
+            }
+
+            $this->Flash->success(__d('conversations', 'Your user(s) has been added successfully.'));
+        }
+
+        return $this->redirect([
+            'controller' => 'conversations',
+            'action' => 'go',
+            $conversation->conversation->last_message_id
+        ]);
+    }
+
+    /**
      * Action to rendre the maintenance page.
      *
      * @return void

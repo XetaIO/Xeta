@@ -211,15 +211,17 @@ Router::scope('/', function ($routes) {
     );
 
     $routes->connect(
-        '/conversations/invite/:id',
+        '/conversations/invite/:slug.:id',
         [
             'controller' => 'conversations',
             'action' => 'invite'
         ],
         [
             '_name' => 'conversations-invite',
+            'routeClass' => 'SlugRoute',
             'pass' => [
-                'id'
+                'id',
+                'slug'
             ],
             'id' => '[0-9]+'
         ]

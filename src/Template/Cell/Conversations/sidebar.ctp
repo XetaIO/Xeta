@@ -18,13 +18,61 @@
                     <?php endif; ?>
                     <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                         <li>
-                            <?= $this->Html->link(__d('conversations', 'Invite new Participants'), ['_name' => 'conversations-invite', 'id' => $conversation->id]) ?>
+                            <?= $this->Html->link(__d('conversations', 'Invite new Participants'), '#', ['data-toggle' => 'modal', 'data-target' => '#inviteParticipant']) ?>
                         </li>
                     <?php endif; ?>
                 </ul>
             </div>
         </div>
     </div>
+
+    <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+        <div class="modal fade" id="inviteParticipant" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <?= $this->Form->create($conversation, [
+                        'url' => ['_name' => 'conversations-invite', 'id' => $conversation->id, 'slug' => $conversation->title]
+                    ]) ?>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="<?= __d('conversations', 'Close') ?>">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                        <?= __d('conversations', '{0} Invite new Participants', '<i class="fa fa-plus"></i>') ?>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <?= $this->Form->label('users', __d('conversations', 'Participants in the conversation'), ['class' => 'control-label']) ?>
+                            <?= $this->Form->input('users', [
+                                'class' => 'form-control',
+                                'label' => false,
+                                'id' => 'InviteConversationUsers',
+                                'type' => 'text',
+                                'placeholder' => __d('conversations', 'Enter the name(s) here'),
+                                'autocomplete' => 'off',
+                                'required' => 'required',
+                                'data-url' => \Cake\Routing\Router::url(['controller' => 'conversations', 'action' => 'inviteMember'])
+                            ]) ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <?= $this->Form->button(
+                            __d('conversations', 'Invite'),
+                            [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary'
+                            ]
+                        ) ?>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <?= __d('conversations', 'Close') ?>
+                        </button>
+                    </div>
+                    <?= $this->Form->end(); ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <?php if ($this->Acl->check(['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title])): ?>
         <div class="modal fade" id="editConversation" tabindex="-1" role="dialog" aria-hidden="true">
@@ -205,7 +253,7 @@
             </div>
             <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                 <div class="panel-footer">
-                    <?= $this->Html->link(__d('conversations', 'Invite new participants'), ['_name' => 'conversations-invite', 'id' => $conversation->id]) ?>
+                    <?= $this->Html->link(__d('conversations', 'Invite new participants'), '#', ['data-toggle' => 'modal', 'data-target' => '#inviteParticipant']) ?>
                 </div>
             <?php endif; ?>
         </div>
