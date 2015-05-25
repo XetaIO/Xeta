@@ -141,9 +141,9 @@ $this->end() ?>
                                                     ]
                                                 ),
                                                 [
-                                                    '_name' => 'conversations-view',
-                                                    'slug' => $conversation->conversation->title,
-                                                    'id' => $conversation->conversation->id
+                                                    'controller' => 'conversations',
+                                                    'action' => 'go',
+                                                    $conversation->conversation->last_message_id
                                                 ]
                                             ) ?>
                                         </h5>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Event\Forum\Notifications;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -783,6 +784,110 @@ EOT;
 
         $this->set(compact('json'));
         $this->set('_serialize', 'json');
+    }
+
+    /**
+     * Reply to a conversation.
+     *
+     * @return void|\Cake\Network\Response
+     */
+    public function reply()
+    {
+        $this->loadModel('ConversationsMessages');
+
+        if ($this->request->is('post')) {
+            $conversation = $this->Conversations
+                ->find()
+                ->where(['Conversations.id' => $this->request->id])
+                ->first();
+
+            $this->loadModel('ConversationsUsers');
+            $user = $this->ConversationsUsers
+                ->find()
+                ->where([
+                    'ConversationsUsers.conversation_id' => $this->request->id,
+                    'ConversationsUsers.user_id' => $this->Auth->user('id')
+                ])
+                ->first();
+
+            //Check if the conversation is found.
+            if (is_null($user) || is_null($conversation) || $conversation->conversation_open == 2) {
+                $this->Flash->error(__d('conversations', "This conversation doesn't exist or has been deleted !"));
+
+                return $this->redirect($this->referer());
+            }
+
+            //Check if the conversation is open.
+            if ($conversation->conversation_open == false) {
+                $this->Flash->error(__("This conversation is closed, you cannot reply."));
+
+                return $this->redirect($this->referer());
+            }
+
+            //Build the newEntity for the post form.
+            $this->request->data['conversation']['id'] = $this->request->id;
+            $this->request->data['conversation']['last_post_date'] = new Time();
+            $this->request->data['conversation']['last_post_user_id'] = $this->Auth->user('id');
+            $this->request->data['user_id'] = $this->Auth->user('id');
+            $this->request->data['conversation_id'] = $this->request->id;
+
+            $message = $this->ConversationsMessages->newEntity($this->request->data, [
+                'associated' => ['Conversations'],
+                'validate' => 'create'
+            ]);
+
+            //Handle validation errors (Due to the redirect)
+            if (!empty($message->errors())) {
+                $this->Flash->conversationsReply('Validation errors', [
+                    'key' => 'ConversationsReply',
+                    'params' => [
+                        'errors' => $message->errors()
+                    ]
+                ]);
+
+                return $this->redirect($this->referer());
+            }
+
+            if ($message->conversation->isNew() === true) {
+                $message->conversation->isNew(false);
+            }
+
+            if ($message = $this->ConversationsMessages->save($message)) {
+                //Update the last message id for the conversation.
+                $this->loadModel('Conversations');
+                $conversation = $this->Conversations->get($this->request->id);
+                $conversation->last_message_id = $message->id;
+                $conversation->last_message_date = new Time();
+                $conversation->last_message_user_id = $this->Auth->user('id');
+                $this->Conversations->save($conversation);
+
+                //Notifications Event.
+                $this->eventManager()->attach(new Notifications());
+                $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                    'sender_id' => $this->Auth->user('id'),
+                    'conversation_id' => $conversation->id,
+                    'type' => 'conversation.reply'
+                ]);
+                $this->eventManager()->dispatch($event);
+
+                $conversationOpen = isset($this->request->data['conversation']['conversation_open']) ? $this->request->data['conversation']['conversation_open'] : true;
+
+                if ($conversationOpen == false) {
+                    $this->Flash->success(__('Your reply has been posted successfully and the conversation has been closed !'));
+                } else {
+                    $this->Flash->success(__('Your reply has been posted successfully !'));
+                }
+
+                //Redirect the user to the last page of the article.
+                return $this->redirect([
+                    'controller' => 'conversations',
+                    'action' => 'go',
+                    $message->id
+                ]);
+            }
+        }
+
+        $this->redirect($this->referer());
     }
 
     /**

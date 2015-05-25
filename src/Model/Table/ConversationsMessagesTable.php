@@ -20,6 +20,9 @@ class ConversationsMessagesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('CounterCache', [
+            'Conversations' => ['reply_count']
+        ]);
 
         $this->belongsTo('Conversations', [
             'foreignKey' => 'conversation_id'
@@ -39,14 +42,14 @@ class ConversationsMessagesTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
+    public function validationCreate(Validator $validator)
     {
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('message');
+            ->notEmpty('message');
 
         return $validator;
     }
