@@ -226,15 +226,17 @@ Router::scope('/', function ($routes) {
     );
 
     $routes->connect(
-        '/conversations/edit/:id',
+        '/conversations/edit/:slug.:id',
         [
             'controller' => 'conversations',
             'action' => 'edit'
         ],
         [
             '_name' => 'conversations-edit',
+            'routeClass' => 'SlugRoute',
             'pass' => [
-                'id'
+                'id',
+                'slug'
             ],
             'id' => '[0-9]+'
         ]

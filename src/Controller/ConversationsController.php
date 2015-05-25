@@ -599,7 +599,7 @@ EOT;
      *
      * @return \Cake\Network\Response
      */
-    public function edit($id = null)
+    public function messageEdit($id = null)
     {
         if (!$this->request->is(['post', 'put'])) {
             throw new NotFoundException();
@@ -892,6 +892,62 @@ EOT;
                     'controller' => 'conversations',
                     'action' => 'go',
                     $message->id
+                ]);
+            }
+        }
+
+        $this->redirect($this->referer());
+    }
+
+    /**
+     * Edit a conversation.
+     *
+     * @return \Cake\Network\Response
+     */
+    public function edit()
+    {
+        $this->loadModel('Conversations');
+
+        if ($this->request->is('put')) {
+            $conversation = $this->Conversations
+                ->find()
+                ->where([
+                    'Conversations.id' => $this->request->id
+                ])
+                ->first();
+
+            //Check if the conversation is found.
+            if (is_null($conversation)) {
+                $this->Flash->error(__("This conversation doesn't exist or has been deleted !"));
+
+                return $this->redirect($this->referer());
+            }
+
+            //Check if the user has the permission to edit it.
+            if ($this->Auth->isAuthorized() === false) {
+                $this->Flash->error(__("You don't have the authorization to edit this conversation !"));
+
+                return $this->redirect([
+                    '_name' => 'forum-threads',
+                    'slug' => Inflector::slug($thread->title, '-'),
+                    'id' => $thread->id
+                ]);
+            }
+
+
+            $this->Conversations->patchEntity($conversation, $this->request->data, ['validate' => 'edit']);
+
+            if ($this->Conversations->save($conversation)) {
+                if ($conversation->conversation_open == false) {
+                    $this->Flash->success(__('Your conversation has been edited and closed successfully !'));
+                } else {
+                    $this->Flash->success(__('Your conversation has been edited successfully !'));
+                }
+
+                return $this->redirect([
+                    'controller' => 'conversations',
+                    'action' => 'go',
+                    $conversation->last_message_id
                 ]);
             }
         }

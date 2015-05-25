@@ -2,7 +2,7 @@
 if ($json['error'] === false):
     $json['html'] = "<div class=\"editingPost\" id=\"editingMessage-{$message->id}\">
         {$this->Form->create($message, [
-            'url' => ['action' => 'edit']
+            'url' => ['action' => 'messageEdit']
         ])}
             <div class=\"form-group\">
                 {$this->Form->input(

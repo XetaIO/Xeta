@@ -6,9 +6,11 @@
             </div>
             <div class="panel-body">
                 <ul class="circled">
-                    <li>
-                        <?= $this->Html->link(__d('conversation', 'Edit the Conversation'), ['_name' => 'conversations-edit', 'id' => $conversation->id]) ?>
-                    </li>
+                    <?php if ($this->Acl->check(['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title])): ?>
+                        <li>
+                            <?= $this->Html->link(__d('conversation', 'Edit the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#editConversation']) ?>
+                        </li>
+                    <?php endif; ?>
                     <?php if (!($conversation->user_id == $this->request->session()->read('Auth.User.id'))): ?>
                         <li>
                             <?= $this->Html->link(__d('conversation', 'Leave the Conversation'), ['_name' => 'conversations-leave', 'id' => $conversation->id]) ?>
@@ -23,6 +25,73 @@
             </div>
         </div>
     </div>
+
+    <?php if ($this->Acl->check(['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title])): ?>
+        <div class="modal fade" id="editConversation" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <?= $this->Form->create($conversation, [
+                        'url' => ['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title]
+                    ]) ?>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="<?= __d('conversations', 'Close') ?>">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                        <?= __d('conversations', '{0} Edit Conversation', '<i class="fa fa-edit"></i>') ?>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <?= $this->Form->label('title', __d('conversations', 'Thread Title'), ['class' => 'control-label']) ?>
+                            <?= $this->Form->input('title', ['class' => 'form-control', 'label' => false])?>
+                        </div>
+                        <div class="form-group">
+                            <?= $this->Form->label('conversation_open', __d('conversations', 'Close Conversation'), ['class' => 'control-label']) ?>
+                            <div class="radio-check">
+                                <?= $this->Form->radio('conversation_open', [
+                                        '0' => __('Yes'),
+                                        '1' => __('No')
+                                    ],
+                                    [
+                                        'legend' => false,
+                                        'class' => 'form-control'
+                                    ]
+                                ) ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?= $this->Form->label('open_invite', __d('conversations', 'Allow anyone in the conversation to invite other users'), ['class' => 'control-label']) ?>
+                            <div class="radio-check">
+                                <?= $this->Form->radio('open_invite', [
+                                        '0' => __('Yes'),
+                                        '1' => __('No')
+                                    ],
+                                    [
+                                        'legend' => false,
+                                        'class' => 'form-control'
+                                    ]
+                                ) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <?= $this->Form->button(
+                            __d('conversations', 'Save'),
+                            [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary'
+                            ]
+                        ) ?>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <?= __d('conversations', 'Close') ?>
+                        </button>
+                    </div>
+                    <?= $this->Form->end(); ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 <?php endif; ?>
 
 <div class="sidebox widget">

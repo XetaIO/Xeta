@@ -76,4 +76,22 @@ class ConversationsTable extends Table
 
         return $validator;
     }
+
+    /**
+     * Create validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationEdit(Validator $validator)
+    {
+        $validator
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->notEmpty('title');
+
+        return $validator;
+    }
 }
