@@ -38,7 +38,7 @@
         <section class="col-md-9">
             <main role="main" class="conversations main">
                 <?php foreach ($messages as $message): ?>
-                <div class="message clearfix <?= $message->created->timestamp > $conversation->modified->timestamp ? 'messageNew' : '' ?>" id="message-<?= $message->id ?>">
+                <div class="message clearfix <?= $message->created->timestamp > $conversation->modified->timestamp && $this->request->session()->read('Auth.User.id') != $message->user_id ? 'messageNew' : '' ?>" id="message-<?= $message->id ?>">
                     <div class="left">
                         <div class="avatar">
                             <?= $this->Html->link(
@@ -92,7 +92,7 @@
                                     ]
                                 ) ?>
                             </span>
-                            <?php if($message->created->timestamp > $conversation->modified->timestamp):?>
+                            <?php if($message->created->timestamp > $conversation->modified->timestamp && $this->request->session()->read('Auth.User.id') != $message->user_id):?>
                                 <strong class="new">
                                     <span></span>
                                     <?= __d('conversations', 'New');?>
