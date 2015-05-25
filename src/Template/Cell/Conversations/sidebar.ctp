@@ -35,7 +35,7 @@
                 <dt>
                     <?= __d('conversations', 'Participants :') ?>
                 </dt>
-                <dd>
+                <dd id="InformationNbRecipient">
                     <?= $conversation->recipient_count ?>
                 </dd>
             </dl>
@@ -86,7 +86,7 @@
             <div class="panel-body">
                 <ul>
                     <?php foreach ($participants as $participant): ?>
-                        <li>
+                        <li id="recipient-<?= $participant->user->id ?>">
                             <?= $this->Html->link(
                                 $this->Html->image($participant->user->avatar, ['class' => 'img-thumbnail']),
                                 ['_name' => 'users-profile', 'slug' => $participant->user->slug, 'id' => $participant->user->id, 'prefix' => false],

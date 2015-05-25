@@ -232,4 +232,42 @@ $(document).ready(function () {
         });
         return false;
     });
+
+    $(".KickRecipient").click(function(){
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("data-url"),
+            dataType: "json",
+            success: function (data) {
+                if (data.error === false) {
+                    $("#recipient-" + data.id).remove();
+                    $("#InformationNbRecipient").text(data.recipients);
+
+                    $(".top-right").notify({
+                        message: {
+                            text: data.message
+                        },
+                        type: "success"
+                    }).show();
+
+                } else if (data.error === true) {
+                    $(".top-right").notify({
+                        message: {
+                            text: data.message
+                        },
+                        type: "danger"
+                    }).show();
+                }
+            },
+            error: function (e) {
+                $(".top-right").notify({
+                    message: {
+                        text: "Error to delete this user."
+                    },
+                    type: "danger"
+                }).show();
+            }
+        });
+        return false;
+    });
 });

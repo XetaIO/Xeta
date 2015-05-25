@@ -368,7 +368,6 @@ class ConversationsController extends AppController
         }
 
         $this->loadModel('ConversationsMessages');
-        $this->loadModel('ConversationsUsers');
 
         $this->paginate = [
             'maxLimit' => Configure::read('Conversations.messages_per_page')
@@ -666,7 +665,7 @@ EOT;
             ->first();
 
         if (is_null($message)) {
-            $this->Flash->error(__("This message doesn't exist or has been deleted."));
+            $this->Flash->error(__d('conversations', "This message doesn't exist or has been deleted."));
 
             return $this->redirect(['controller' => 'conversations', 'action' => 'index']);
         }
@@ -698,6 +697,92 @@ EOT;
             '?' => ['page' => $page],
             '#' => 'message-' . $messageId
         ]);
+    }
+
+    /**
+     * Function to kick an user from a conversation.
+     *
+     * @return void
+     */
+    public function kick()
+    {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException();
+        }
+
+        $this->loadModel('ConversationsUsers');
+
+        $currentUser = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Conversations',
+                'Users' => function ($q) {
+                    return $q->find('short');
+                },
+                'Users.Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'ConversationsUsers.user_id' => $this->Auth->user('id'),
+                'ConversationsUsers.conversation_id' => $this->request->id
+            ])
+            ->first();
+
+        //Check if the current user is the owner of this conversation or if he is not a staff member.
+        if ($currentUser->user_id != $currentUser->conversation->user_id && !$currentUser->user->group->is_staff) {
+            $json['message'] = __d('conversations', 'You cannot kick this user from this conversation.');
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+            $this->set('_serialize', 'json');
+            return;
+        }
+
+        $user = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Conversations',
+                'Users' => function ($q) {
+                    return $q->find('short');
+                },
+                'Users.Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->where([
+                'ConversationsUsers.user_id' => $this->request->user_id,
+                'ConversationsUsers.conversation_id' => $this->request->id
+            ])
+            ->first();
+
+        //Check if the user to kick is in the conversation and if he is not owner of this conversation and if he is not a staff member.
+        if (is_null($user) || $this->request->user_id == $currentUser->conversation->user_id || $user->user->group->is_staff) {
+            $json['message'] = __d('conversations', 'You cannot kick this user from this conversation.');
+            $json['error'] = true;
+
+            $this->set(compact('json'));
+            $this->set('_serialize', 'json');
+            return;
+        }
+
+        $this->ConversationsUsers->delete($user);
+
+        $expression = new QueryExpression('recipient_count = recipient_count - 1');
+        $this->Conversations->updateAll(
+            [$expression],
+            [
+                'id' => $this->request->id
+            ]
+        );
+
+        $json['message'] = __d('conversations', 'This user has been kicked successfully.');
+        $json['error'] = false;
+        $json['id'] = $this->request->user_id;
+        $json['recipients'] = $currentUser->conversation->recipient_count - 1;
+
+        $this->set(compact('json'));
+        $this->set('_serialize', 'json');
     }
 
     /**
