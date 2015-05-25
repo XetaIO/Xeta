@@ -55,6 +55,7 @@
                             'placeholder' => __d('conversations', 'Enter the name(s) here'),
                             'autocomplete' => 'off',
                             'required' => 'required',
+                            'value' => (isset($this->request->query['r']) && !empty(trim($this->request->query['r']))) ? h(trim($this->request->query['r'])) : '',
                             'data-url' => \Cake\Routing\Router::url(['controller' => 'conversations', 'action' => 'inviteMember'])
                         ]) ?>
                     </div>
