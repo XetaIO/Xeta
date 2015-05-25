@@ -75,6 +75,11 @@
                 </li>
             <?php endif; ?>
 
+            <?php if ($this->Acl->check(['controller' => 'conversations', 'action' => 'index', 'prefix' => false])): ?>
+                <li>
+                    <?= $this->Html->link('<i class="fa fa-envelope-o"></i>&nbsp;' . __('Conversations'), ['controller' => 'conversations', 'action' => 'index', 'prefix' => false], ['escape' => false]) ?>
+                </li>
+            <?php endif; ?>
             <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'account', 'prefix' => false])): ?>
                 <li>
                     <?= $this->Html->link('<i class="fa fa-cogs"></i>&nbsp;' . __('My Account'), ['controller' => 'users', 'action' => 'account', 'prefix' => false], ['escape' => false]) ?>
