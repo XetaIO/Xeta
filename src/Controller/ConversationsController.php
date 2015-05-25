@@ -324,6 +324,15 @@ class ConversationsController extends AppController
                             'id' => $conversation->id
                         ]
                     );
+
+                    //Notifications Event.
+                    $this->eventManager()->attach(new Notifications());
+                    $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                        'sender_id' => $this->Auth->user('id'),
+                        'conversation_id' => $conversation->id,
+                        'type' => 'conversation.reply'
+                    ]);
+                    $this->eventManager()->dispatch($event);
                 }
 
                 $this->Flash->success(__d('conversations', 'Your conversation has been created successfully !'));
