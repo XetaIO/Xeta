@@ -13,7 +13,7 @@
                     <?php endif; ?>
                     <?php if (!($conversation->user_id == $this->request->session()->read('Auth.User.id'))): ?>
                         <li>
-                            <?= $this->Html->link(__d('conversation', 'Leave the Conversation'), ['_name' => 'conversations-leave', 'id' => $conversation->id]) ?>
+                            <?= $this->Html->link(__d('conversation', 'Leave the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#leaveConversation']) ?>
                         </li>
                     <?php endif; ?>
                     <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
@@ -25,6 +25,38 @@
             </div>
         </div>
     </div>
+
+    <?php if (!($conversation->user_id == $this->request->session()->read('Auth.User.id'))): ?>
+        <div class="modal fade" id="leaveConversation" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="<?= __d('conversations', 'Close') ?>">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                        <?= __d('conversations', '{0} Leave Conversation', '<i class="fa fa-plus"></i>') ?>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <?= __d('conversations', 'Are you sure you want to leave this conversation ?') ?>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <?= $this->Html->link(
+                            __d('conversations', 'Yes'),
+                            ['_name' => 'conversations-leave', 'id' => $conversation->id, 'slug' => $conversation->title],
+                            ['class' => 'btn btn-primary']
+                        ) ?>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <?= __d('conversations', 'Close') ?>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
         <div class="modal fade" id="inviteParticipant" tabindex="-1" role="dialog" aria-hidden="true">

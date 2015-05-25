@@ -1057,6 +1057,60 @@ EOT;
     }
 
     /**
+     * Function to leave a conversation.
+     *
+     * @return void|\Cake\Network\Response
+     */
+    public function leave()
+    {
+        $this->loadModel('ConversationsUsers');
+
+        $user = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Conversations'
+            ])
+            ->where([
+                'ConversationsUsers.conversation_id' => $this->request->id,
+                'ConversationsUsers.user_id' => $this->Auth->user('id')
+            ])
+            ->first();
+
+        if (is_null($user)) {
+            $this->Flash->error(__d('conversations', 'You are not in this conversation.'));
+
+            return $this->redirect($this->referer());
+        }
+
+        if ($user->conversation->user_id != $this->Auth->user('id')) {
+            $this->loadModel('Conversations');
+
+            $this->ConversationsUsers->delete($user);
+
+            $expression = new QueryExpression('recipient_count = recipient_count - 1');
+            $this->Conversations->updateAll(
+                [$expression],
+                [
+                    'id' => $this->request->id
+                ]
+            );
+
+            $this->Flash->success(__d('conversations', 'You have left the conversation successfully.'));
+
+            return $this->redirect(['controller' => 'conversations', 'action' => 'index']);
+
+        } else {
+            $this->Flash->error(__d('conversations', 'You can not leave your own conversation.'));
+
+            return $this->redirect([
+                'controller' => 'conversations',
+                'action' => 'go',
+                $user->conversation->last_message_id
+            ]);
+        }
+    }
+
+    /**
      * Action to rendre the maintenance page.
      *
      * @return void

@@ -245,15 +245,17 @@ Router::scope('/', function ($routes) {
     );
 
     $routes->connect(
-        '/conversations/leave/:id',
+        '/conversations/leave/:slug.:id',
         [
             'controller' => 'conversations',
             'action' => 'leave'
         ],
         [
             '_name' => 'conversations-leave',
+            'routeClass' => 'SlugRoute',
             'pass' => [
-                'id'
+                'id',
+                'slug'
             ],
             'id' => '[0-9]+'
         ]
