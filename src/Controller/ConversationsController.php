@@ -338,7 +338,7 @@ class ConversationsController extends AppController
                 $this->Flash->success(__d('conversations', 'Your conversation has been created successfully !'));
                 $this->redirect([
                     '_name' => 'conversations-view',
-                    'slug' => 'show',
+                    'slug' => $conversation->title,
                     'id' => $conversation->id
                 ]);
             }
