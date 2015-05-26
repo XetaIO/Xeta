@@ -116,19 +116,20 @@ $this->end() ?>
                     <table class="table tableConversations table-striped table-primary table-hover">
                         <tbody>
                             <?php foreach ($conversations as $conversation): ?>
-                                <tr id="conversation-<?= $conversation->conversation->id ?>" style="position: relative;">
-                                    <td>
+                                <tr id="conversation-<?= $conversation->conversation->id ?>" style="position: relative; <?= ($conversation->conversation->conversation_open == 0) ? 'color:rgb(128, 133, 138);' : '' ?>">
+                                    <td style="<?= ($conversation->conversation->conversation_open == 0) ? 'background-color:#FFCACA;;' : '' ?>">
                                         <?= $this->Form->checkbox(
                                             null,
                                             [
                                                 'checked' => 0,
                                                 'value' => $conversation->conversation->id,
-                                                'class' => 'colorConversationBackground form-control',
+                                                'class' => 'colorConversationBackground',
+                                                'style' => 'margin-top:25px;',
                                                 'legend' => false
                                             ]
                                         );?>
                                     </td>
-                                    <td class="left">
+                                    <td class="left" style="<?= ($conversation->conversation->conversation_open == 0) ? 'background-color:#FFCACA;;' : '' ?>">
                                         <?= $this->Html->image($conversation->user->avatar, ['class' => 'avatar img-thumbnail pull-left']) ?>
                                         <?= __d('conversations', 'Created by {0}', $this->Html->link($conversation->user->username, ['_name' => 'users-profile', 'id' => $conversation->user->id, 'slug' => $conversation->user->slug])) ?>
                                         <br>
@@ -136,7 +137,7 @@ $this->end() ?>
                                         <br>
                                         <?= __dn('conversations', 'Participant {0}', 'Participants {0}', $conversation->conversation->recipient_count, $conversation->conversation->recipient_count) ?>
                                     </td>
-                                    <td class="middle">
+                                    <td class="middle" style="<?= ($conversation->conversation->conversation_open == 0) ? 'background-color:#FFCACA;;' : '' ?>">
                                         <h5>
                                             <?= $this->Html->link(
                                                 $this->Text->truncate(
@@ -156,7 +157,7 @@ $this->end() ?>
                                         </h5>
                                     </td>
 
-                                    <td class="right">
+                                    <td class="right" style="<?= ($conversation->conversation->conversation_open == 0) ? 'background-color:#FFCACA;;' : '' ?>">
                                         <?= __d('conversations', 'Last Reply {0}', $this->Html->link($conversation->conversation->last_message_user->username, ['_name' => 'users-profile', 'id' => $conversation->conversation->last_message_user->id, 'slug' => $conversation->conversation->last_message_user->slug])) ?>
                                         <br>
                                         <?= __d('conversations', 'At {0}', $conversation->conversation->last_message->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
@@ -172,7 +173,13 @@ $this->end() ?>
                                         <?php if($conversation->is_star):?>
                                             <strong class="star">
                                                 <span></span>
-                                                <?= __("Star");?>
+                                                <i class="fa fa-star"></i>
+                                            </strong>
+                                        <?php endif;?>
+                                        <?php if($conversation->conversation->conversation_open == 0):?>
+                                            <strong class="closed">
+                                                <span></span>
+                                                <i class="fa fa-lock"></i>
                                             </strong>
                                         <?php endif;?>
                                     </td>
