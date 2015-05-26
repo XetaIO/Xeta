@@ -42,24 +42,6 @@ class ConversationsTable extends Table
     }
 
     /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
-
-        $validator
-            ->allowEmpty('title');
-
-        return $validator;
-    }
-
-    /**
      * Create validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
@@ -68,17 +50,27 @@ class ConversationsTable extends Table
     public function validationCreate(Validator $validator)
     {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
+            ->provider('purifier', 'App\Model\Validation\PurifierValidator')
+            ->notEmpty('title', __('You must specify a title for your conversation.'))
+            ->add('title', 'minLength', [
+                'rule' => ['minLength', 5],
+                'message' => __('Your title must contain at least {0} characters.', 5)
+            ])
 
-        $validator
-            ->notEmpty('title');
+            ->notEmpty('message', __('You must specify a message for your conversation.'))
+            ->add('message', [
+                'purifierMinLength' => [
+                    'rule' => ['purifierMinLength', 5],
+                    'provider' => 'purifier',
+                    'message' => __('Your message must contain at least {0} characters.', 5)
+                ]
+            ]);
 
         return $validator;
     }
 
     /**
-     * Create validation rules.
+     * Edit validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
@@ -86,11 +78,21 @@ class ConversationsTable extends Table
     public function validationEdit(Validator $validator)
     {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
+            ->provider('purifier', 'App\Model\Validation\PurifierValidator')
+            ->notEmpty('title', __('You must specify a title for your conversation.'))
+            ->add('title', 'minLength', [
+                'rule' => ['minLength', 5],
+                'message' => __('Your title must contain at least {0} characters.', 5)
+            ])
 
-        $validator
-            ->notEmpty('title');
+            ->notEmpty('message', __('You must specify a message for your conversation.'))
+            ->add('message', [
+                'purifierMinLength' => [
+                    'rule' => ['purifierMinLength', 5],
+                    'provider' => 'purifier',
+                    'message' => __('Your message must contain at least {0} characters.', 5)
+                ]
+            ]);
 
         return $validator;
     }

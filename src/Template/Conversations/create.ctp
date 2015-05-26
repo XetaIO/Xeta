@@ -71,6 +71,7 @@
                                 'id' => 'messageBox'
                             ]
                         ) ?>
+                        <?= $this->Form->error('message') ?>
                     </div>
                     <div class="form-group">
                         <?= $this->Form->label('open_invite', __d('conversations', 'Allow anyone in the conversation to invite other users')) ?>
