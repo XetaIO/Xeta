@@ -31,7 +31,7 @@
 
             <span class="joinedDate">
                 <?= __('Joined') ?><br>
-                <?= $post->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE]) ?>
+                <?= ucwords($post->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE])) ?>
             </span>
 
             <span class="statistics">

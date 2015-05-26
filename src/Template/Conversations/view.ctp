@@ -65,7 +65,7 @@
 
                         <span class="joinedDate">
                             <?= __('Joined') ?><br>
-                            <?= $message->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE]) ?>
+                            <?= ucwords($message->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE])) ?>
                         </span>
                     </div>
                     <div class="right">
