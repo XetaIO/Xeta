@@ -96,7 +96,7 @@
                                     '0' => __d('conversations', 'No')
                                 ],
                                 [
-                                    'value' => '0',
+                                    'value' => '1',
                                     'legend' => false,
                                     'class' => 'form-control'
                                 ]

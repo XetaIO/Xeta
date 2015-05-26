@@ -409,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `acos` (
     PRIMARY KEY (`id`),
     KEY `idx_acos_lft_rght` (`lft`,`rght`),
     KEY `idx_acos_alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=136 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
 
 --
 -- Table data `acos`
@@ -615,7 +615,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
     `_delete` char(2) NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     KEY `idx_aco_id` (`aco_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
 -- Table data `aros_acos`
