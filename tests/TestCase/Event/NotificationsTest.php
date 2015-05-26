@@ -19,7 +19,10 @@ class NotificationsTest extends TestCase
         'app.forum_threads_followers',
         'app.forum_threads',
         'app.forum_posts',
-        'app.notifications'
+        'app.notifications',
+        'app.conversations',
+        'app.conversations_messages',
+        'app.conversations_users'
     ];
 
     /**
@@ -134,7 +137,7 @@ class NotificationsTest extends TestCase
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
-        
+
         //Prevent for spam.
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'post.like',
@@ -142,7 +145,7 @@ class NotificationsTest extends TestCase
             'sender_id' => 1
         ]);
         $this->assertTrue($notifications->newNotification($event));
-        
+
         $result2 = $this->Notifications
             ->find()
             ->where(['user_id' => 2, 'type' => 'post.like'])
@@ -199,7 +202,7 @@ class NotificationsTest extends TestCase
     }
 
     /**
-     * newDispatchNotification method
+     * dispatchNotification method
      *
      * @return void
      */
@@ -236,7 +239,7 @@ class NotificationsTest extends TestCase
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
-        
+
         //Prevent for spam.
         $event = new Event('Model.Notifications.dispatch', $this, [
             'type' => 'thread.reply',
@@ -254,7 +257,7 @@ class NotificationsTest extends TestCase
     }
 
     /**
-     * newDispatchNotificationWithNoFollowers method
+     * dispatchNotificationWithNoFollowers method
      *
      * @return void
      */
@@ -267,5 +270,45 @@ class NotificationsTest extends TestCase
             'sender_id' => 1
         ]);
         $this->assertTrue($notifications->dispatchNotification($event));
+    }
+
+    /**
+     * dispatchParticipants method
+     *
+     * @return void
+     */
+    public function testDispatchParticipants()
+    {
+        //Insert participants.
+        $data = [
+            'conversation_id' => 1,
+            'user_id' => 2
+        ];
+        $this->ConversationsUsers = TableRegistry::get('ConversationsUsers');
+        $entity = $this->ConversationsUsers->newEntity($data);
+        $this->ConversationsUsers->save($entity);
+
+        $notifications = new Notifications();
+        $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+            'type' => 'conversation.reply',
+            'conversation_id' => 1,
+            'sender_id' => 1
+        ]);
+        $this->assertTrue($notifications->dispatchNotification($event));
+
+        $result = $this->Notifications
+            ->find()
+            ->where(['user_id' => 2, 'type' => 'conversation.reply'])
+            ->select(['id', 'user_id', 'type', 'is_read'])
+            ->hydrate(false)
+            ->first();
+
+        $expected = [
+            'id' => 1,
+            'user_id' => 2,
+            'type' => 'conversation.reply',
+            'is_read' => 0
+        ];
+        $this->assertEquals($expected, $result);
     }
 }
