@@ -116,12 +116,6 @@
                                     ]
                                 ) ?>
                             <?php endif; ?>
-
-                            <?php if ($message->id != $conversation->conversation->first_message_id): ?>
-                                <?php if ($this->Acl->check(['_name' => 'conversations-messageDelete', 'id' => $message->id])): ?>
-                                    <?= $this->Html->link(__d('conversations', '{0} Delete', '<i class="fa fa-remove"></i>'), ['_name' => 'conversations-messageDelete', 'id' => $message->id], ['class' => 'btn btn-sm btn-danger', 'escape' => false]) ?>
-                                <?php endif; ?>
-                            <?php endif; ?>
                         </div>
 
                         <div class="message">

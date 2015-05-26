@@ -1,5 +1,5 @@
 <?= $this->element('meta', [
-    'title' => __d('conversations', 'Conversations')
+    'title' => __d('conversations', 'Conversations - Search')
 ]) ?>
 <?php $this->start('scriptBottom');
 
@@ -15,8 +15,11 @@ $this->end() ?>
                 <li>
                     <?= $this->Html->link(__d('conversations', 'Home'), '/') ?>
                 </li>
+                <li>
+                    <?= $this->Html->link(__d('conversations', 'Conversations'), ['action' => 'index']) ?>
+                </li>
                 <li class="active">
-                    <?= __d('conversations', 'Conversations') ?>
+                    <?= __d('conversations', 'Search') ?>
                 </li>
             </ol>
             <?= $this->Flash->render() ?>
@@ -31,7 +34,11 @@ $this->end() ?>
 
             <div class="section">
                 <h4>
-                    <?= __d('conversations', 'Conversations') ?>
+                    <?= __d('conversations', 'Search') ?>
+                    <br>
+                    <small>
+                        <?= __d('conversations', 'Word : {0}', h($keyword)) ?>
+                    </small>
                 </h4>
 
                 <div class="conversation-search">

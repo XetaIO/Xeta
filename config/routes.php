@@ -166,21 +166,6 @@ Router::scope('/', function ($routes) {
     );
 
     $routes->connect(
-        '/conversations/messageDelete/:id',
-        [
-            'controller' => 'conversations',
-            'action' => 'messageDelete'
-        ],
-        [
-            '_name' => 'conversations-messageDelete',
-            'pass' => [
-                'id'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
         '/conversations/messageEdit/:id',
         [
             'controller' => 'conversations',

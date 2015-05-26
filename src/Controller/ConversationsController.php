@@ -51,7 +51,7 @@ class ConversationsController extends AppController
         $this->ConversationsUsers = $this->loadModel('ConversationsUsers');
 
         $this->paginate = [
-            'maxLimit' => 10
+            'maxLimit' => Configure::read('Conversations.conversations_per_page')
         ];
         $conversations = $this->ConversationsUsers
             ->find()
@@ -1108,6 +1108,59 @@ EOT;
                 $user->conversation->last_message_id
             ]);
         }
+    }
+
+    /**
+     * Search conversations.
+     *
+     * @return void
+     */
+    public function search()
+    {
+        $this->loadModel('ConversationsUsers');
+
+        //Check the keyword to search. (For pagination)
+        if (!empty($this->request->data['search'])) {
+            $keyword = $this->request->data['search'];
+            $this->request->session()->write('Search.Conversations.Keyword', $keyword);
+        } else {
+            if ($this->request->session()->read('Search.Conversations.Keyword')) {
+                $keyword = $this->request->session()->read('Search.Conversations.Keyword');
+            } else {
+                $keyword = '';
+            }
+        }
+
+        //Pagination
+        $this->paginate = [
+            'maxLimit' => Configure::read('Conversations.conversations_per_page')
+        ];
+
+        $conversations = $this->ConversationsUsers
+            ->find()
+            ->contain([
+                'Users',
+                'Conversations',
+                'Conversations.LastMessage',
+                'Conversations.LastMessageUser'
+            ])
+            ->where([
+                'ConversationsUsers.user_id' => $this->Auth->user('id'),
+                'Conversations.conversation_open <>' => 2
+            ])
+            ->andWhere(function ($q) use ($keyword) {
+                    return $q
+                        ->like('Conversations.title', "%$keyword%");
+            })
+            ->order([
+                'ConversationsUsers.is_read' => 'ASC',
+                'ConversationsUsers.is_star' => 'DESC',
+                'Conversations.last_message_date' => 'DESC',
+            ]);
+
+        $conversations = $this->paginate($conversations);
+
+        $this->set(compact('conversations', 'keyword'));
     }
 
     /**
