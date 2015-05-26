@@ -25,7 +25,7 @@
                 <?= h($post->user->group_name) ?>
             </span>
 
-            <span class="message">
+            <span class="sendMessage">
                 <?= $this->Html->link(__('Send a Message'), ['controller' => 'conversations', 'action' => 'create', 'prefix' => false, '?' => ['r' => h($post->user->username) . ',']], ['class' => 'text-primary', 'escape' => false]) ?>
             </span>
 
