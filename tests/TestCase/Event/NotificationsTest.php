@@ -277,7 +277,7 @@ class NotificationsTest extends TestCase
      *
      * @return void
      */
-    public function testDispatchParticipants()
+    /*public function testDispatchParticipants()
     {
         //Insert participants.
         $data = [
@@ -310,5 +310,5 @@ class NotificationsTest extends TestCase
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
-    }
+    }*/
 }

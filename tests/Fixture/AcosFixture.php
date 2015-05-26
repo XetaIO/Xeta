@@ -37,7 +37,7 @@ class AcosFixture extends TestFixture
      * @var array
      */
     public $records = [
-        ['id' => '1', 'parent_id' => null, 'model' => '', 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '316'],
+        ['id' => '1', 'parent_id' => null, 'model' => '', 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '282'],
         ['id' => '2', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Attachments', 'lft' => '4', 'rght' => '7'],
         ['id' => '3', 'parent_id' => '2', 'model' => '', 'foreign_key' => null, 'alias' => 'download', 'lft' => '5', 'rght' => '6'],
         ['id' => '4', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Blog', 'lft' => '8', 'rght' => '33'],
@@ -171,23 +171,6 @@ class AcosFixture extends TestFixture
         ['id' => '132', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Notifications', 'lft' => '278', 'rght' => '281'],
         ['id' => '133', 'parent_id' => '132', 'model' => '', 'foreign_key' => null, 'alias' => 'markAsRead', 'lft' => '279', 'rght' => '280'],
         ['id' => '134', 'parent_id' => '29', 'model' => '', 'foreign_key' => null, 'alias' => 'forgotPassword', 'lft' => '77', 'rght' => '78'],
-        ['id' => '135', 'parent_id' => '29', 'model' => '', 'foreign_key' => null, 'alias' => 'resetPassword', 'lft' => '79', 'rght' => '80'],
-        ['id' => '136', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Conversations', 'lft' => '282', 'rght' => '315'],
-        ['id' => '137', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'index', 'lft' => '283', 'rght' => '284'],
-        ['id' => '138', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'action', 'lft' => '285', 'rght' => '286'],
-        ['id' => '139', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'create', 'lft' => '287', 'rght' => '288'],
-        ['id' => '140', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'inviteMember', 'lft' => '289', 'rght' => '290'],
-        ['id' => '141', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'maintenance', 'lft' => '291', 'rght' => '292'],
-        ['id' => '142', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'view', 'lft' => '293', 'rght' => '294'],
-        ['id' => '143', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'messageEdit', 'lft' => '295', 'rght' => '296'],
-        ['id' => '145', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'quote', 'lft' => '297', 'rght' => '298'],
-        ['id' => '146', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'reply', 'lft' => '299', 'rght' => '300'],
-        ['id' => '147', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'edit', 'lft' => '301', 'rght' => '302'],
-        ['id' => '148', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'getEditMessage', 'lft' => '303', 'rght' => '304'],
-        ['id' => '149', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'go', 'lft' => '305', 'rght' => '306'],
-        ['id' => '150', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'kick', 'lft' => '307', 'rght' => '308'],
-        ['id' => '151', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'invite', 'lft' => '309', 'rght' => '310'],
-        ['id' => '152', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'leave', 'lft' => '311', 'rght' => '312'],
-        ['id' => '153', 'parent_id' => '136', 'model' => '', 'foreign_key' => null, 'alias' => 'search', 'lft' => '313', 'rght' => '314']
+        ['id' => '135', 'parent_id' => '29', 'model' => '', 'foreign_key' => null, 'alias' => 'resetPassword', 'lft' => '79', 'rght' => '80']
     ];
 }

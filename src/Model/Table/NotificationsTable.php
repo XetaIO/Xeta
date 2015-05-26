@@ -112,7 +112,6 @@ class NotificationsTable extends Table
                             }
 
                             $notification->link = Router::url(['controller' => 'conversations', 'action' => 'go', $notification->data['conversation']->last_message_id, 'prefix' => false]);
-                            $notification->icon = $notification->data['icon'];
                             break;
 
                         case 'bot':

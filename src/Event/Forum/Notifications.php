@@ -204,7 +204,7 @@ class Notifications implements EventListenerInterface
             ->first();
 
         if (!is_null($hasReplied)) {
-            $hasReplied->data = serialize(['sender' => $sender, 'conversation' => $conversation, 'icon' => '../img/notifications/conversations.png']);
+            $hasReplied->data = serialize(['sender' => $sender, 'conversation' => $conversation]);
             $hasReplied->is_read = 0;
 
             $this->Notifications->save($hasReplied);
@@ -212,7 +212,7 @@ class Notifications implements EventListenerInterface
             $data = [];
             $data['user_id'] = $event->data['participant']->user->id;
             $data['type'] = $event->data['type'];
-            $data['data'] = serialize(['sender' => $sender, 'conversation' => $conversation, 'icon' => '../img/notifications/conversations.png']);
+            $data['data'] = serialize(['sender' => $sender, 'conversation' => $conversation]);
             $data['foreign_key'] = $conversation->id;
 
             $entity = $this->Notifications->newEntity($data);
