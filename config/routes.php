@@ -128,7 +128,7 @@ Router::scope('/', function ($routes) {
             ]
         ]
     );
-    
+
     //Groups Routes.
     $routes->connect(
         '/groups/view/:slug.:id',
@@ -138,6 +138,139 @@ Router::scope('/', function ($routes) {
         ],
         [
             '_name' => 'groups-view',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    //Conversations Routes.
+    $routes->connect(
+        '/conversations/view/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'view'
+        ],
+        [
+            '_name' => 'conversations-view',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/messageEdit/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'messageEdit'
+        ],
+        [
+            '_name' => 'conversations-messageEdit',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/quote/:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'quote'
+        ],
+        [
+            '_name' => 'conversations-quote',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/invite/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'invite'
+        ],
+        [
+            '_name' => 'conversations-invite',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/edit/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'edit'
+        ],
+        [
+            '_name' => 'conversations-edit',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/leave/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'leave'
+        ],
+        [
+            '_name' => 'conversations-leave',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/kick/:id/:user_id',
+        [
+            'controller' => 'conversations',
+            'action' => 'kick'
+        ],
+        [
+            '_name' => 'conversations-kick',
+            'pass' => [
+                'id',
+                'user_id'
+            ],
+            'id' => '[0-9]+',
+            'user_id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/conversations/reply/:slug.:id',
+        [
+            'controller' => 'conversations',
+            'action' => 'reply'
+        ],
+        [
+            '_name' => 'conversations-reply',
             'routeClass' => 'SlugRoute',
             'pass' => [
                 'id',

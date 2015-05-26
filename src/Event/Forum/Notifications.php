@@ -17,7 +17,8 @@ class Notifications implements EventListenerInterface
     {
         return [
             'Model.Notifications.new' => 'newNotification',
-            'Model.Notifications.dispatch' => 'dispatchNotification'
+            'Model.Notifications.dispatch' => 'dispatchNotification',
+            'Model.Notifications.dispatchParticipants' => 'dispatchParticipants'
         ];
     }
 
@@ -50,6 +51,10 @@ class Notifications implements EventListenerInterface
                 $result = $this->_postLike($event);
                 break;
 
+            case 'conversation.reply':
+                $result = $this->_conversationReply($event);
+                break;
+
             case 'bot':
                 $result = $this->_bot($event);
                 break;
@@ -62,6 +67,51 @@ class Notifications implements EventListenerInterface
         }
 
         return $result;
+    }
+
+    /**
+     * Dispatch notification for the participants of a conversation.
+     *
+     * @param \Cake\Event\Event $event The event that was fired.
+     *
+     * @return false
+     */
+    public function dispatchParticipants(Event $event)
+    {
+        $this->ConversationsUsers = TableRegistry::get('ConversationsUsers');
+
+        $participants = $this->ConversationsUsers
+            ->find()
+            ->where([
+                'ConversationsUsers.conversation_id' => $event->data['conversation_id']
+            ])
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->select([
+                        'id'
+                    ]);
+                }
+            ])
+            ->select([
+                'ConversationsUsers.id',
+                'ConversationsUsers.conversation_id',
+                'ConversationsUsers.user_id'
+            ])
+            ->toArray();
+
+        if (empty($participants)) {
+            return true;
+        }
+
+        foreach ($participants as $participant) {
+            if ($participant->user_id != $event->data['sender_id']) {
+                $event->data['participant'] = $participant;
+
+                $this->newNotification($event);
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -110,6 +160,69 @@ class Notifications implements EventListenerInterface
     }
 
     /**
+     * A user has replied to a conversation.
+     *
+     * @param \Cake\Event\Event $event The event that was fired.
+     *
+     * @return bool
+     */
+    protected function _conversationReply(Event $event)
+    {
+        if (!is_integer($event->data['conversation_id'])) {
+            return false;
+        }
+
+        $this->Conversations = TableRegistry::get('Conversations');
+        $this->Users = TableRegistry::get('Users');
+
+        $conversation = $this->Conversations
+            ->find()
+            ->where([
+                'Conversations.id' => $event->data['conversation_id']
+            ])
+            ->select([
+                'id', 'user_id', 'title', 'last_message_id'
+            ])
+            ->first();
+
+        $sender = $this->Users
+            ->find('medium')
+            ->where([
+                'Users.id' => $event->data['sender_id']
+            ])
+            ->first();
+
+
+        //Check if this user hasn't already a notification. (Prevent for spam)
+        $hasReplied = $this->Notifications
+            ->find()
+            ->where([
+                'Notifications.foreign_key' => $conversation->id,
+                'Notifications.type' => $event->data['type'],
+                'Notifications.user_id' => $event->data['participant']->user->id
+            ])
+            ->first();
+
+        if (!is_null($hasReplied)) {
+            $hasReplied->data = serialize(['sender' => $sender, 'conversation' => $conversation]);
+            $hasReplied->is_read = 0;
+
+            $this->Notifications->save($hasReplied);
+        } else {
+            $data = [];
+            $data['user_id'] = $event->data['participant']->user->id;
+            $data['type'] = $event->data['type'];
+            $data['data'] = serialize(['sender' => $sender, 'conversation' => $conversation]);
+            $data['foreign_key'] = $conversation->id;
+
+            $entity = $this->Notifications->newEntity($data);
+            $this->Notifications->save($entity);
+        }
+
+        return true;
+    }
+
+    /**
      * A user has replied to a thread.
      *
      * @param \Cake\Event\Event $event The event that was fired.
@@ -141,8 +254,8 @@ class Notifications implements EventListenerInterface
                 'Users.id' => $event->data['sender_id']
             ])
             ->first();
-            
-            
+
+
         //Check if this user hasn't already a notification. (Prevent for spam)
         $hasReplied = $this->Notifications
             ->find()
@@ -265,7 +378,7 @@ class Notifications implements EventListenerInterface
                 'Users.id' => $event->data['sender_id']
             ])
             ->first();
-            
+
         //Check if this user hasn't already a notification. (Prevent for spam)
         $hasLiked = $this->Notifications
             ->find()
@@ -325,7 +438,7 @@ class Notifications implements EventListenerInterface
 
         return true;
     }
-    
+
     /**
      * A user has unlock a badge.
      *

@@ -25,9 +25,13 @@
                 <?= h($post->user->group_name) ?>
             </span>
 
+            <span class="sendMessage">
+                <?= $this->Html->link(__('Send a Message'), ['controller' => 'conversations', 'action' => 'create', 'prefix' => false, '?' => ['r' => h($post->user->username) . ',']], ['class' => 'text-primary', 'escape' => false]) ?>
+            </span>
+
             <span class="joinedDate">
                 <?= __('Joined') ?><br>
-                <?= $post->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE]) ?>
+                <?= ucwords($post->user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE])) ?>
             </span>
 
             <span class="statistics">

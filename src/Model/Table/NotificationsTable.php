@@ -92,6 +92,28 @@ class NotificationsTable extends Table
                             $notification->link = Router::url(['controller' => 'posts', 'action' => 'go', $notification->data['post']->id, 'prefix' => 'forum']);
                             break;
 
+                        case 'conversation.reply':
+                            $username = $notification->data['sender']->username;
+                            $conversationTitle = Text::truncate($notification->data['conversation']->title, 50, ['ellipsis' => '...', 'exact' => false]);
+
+                            //Check if the creator of the conversation is the current user.
+                            if ($notification->data['conversation']->user_id === $options['session']->read('Auth.User.id')) {
+                                $notification->text = __(
+                                    '<strong>{0}</strong> has replied in your conversation <strong>{1}</strong>.',
+                                    h($username),
+                                    h($conversationTitle)
+                                );
+                            } else {
+                                $notification->text = __(
+                                    '<strong>{0}</strong> has replied in the conversation <strong>{1}</strong>.',
+                                    h($username),
+                                    h($conversationTitle)
+                                );
+                            }
+
+                            $notification->link = Router::url(['controller' => 'conversations', 'action' => 'go', $notification->data['conversation']->last_message_id, 'prefix' => false]);
+                            break;
+
                         case 'bot':
                             $notification->text = __(
                                 'Welcome on <strong>{0}</strong>! You can now post your first message in the Forum.',

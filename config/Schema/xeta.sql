@@ -416,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `acos` (
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, '', NULL, 'app', 1, 282),
+(1, NULL, '', NULL, 'app', 1, 316),
 (2, 1, '', NULL, 'Attachments', 4, 7),
 (3, 2, '', NULL, 'download', 5, 6),
 (4, 1, '', NULL, 'Blog', 8, 33),
@@ -550,7 +550,24 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (132, 1, '', NULL, 'Notifications', 278, 281),
 (133, 132, '', NULL, 'markAsRead', 279, 280),
 (134, 29, '', NULL, 'forgotPassword', 77, 78),
-(135, 29, '', NULL, 'resetPassword', 79, 80);
+(135, 29, '', NULL, 'resetPassword', 79, 80),
+(136, 1, '', NULL, 'Conversations', 282, 315),
+(137, 136, '', NULL, 'index', 283, 284),
+(138, 136, '', NULL, 'action', 285, 286),
+(139, 136, '', NULL, 'create', 287, 288),
+(140, 136, '', NULL, 'inviteMember', 289, 290),
+(141, 136, '', NULL, 'maintenance', 291, 292),
+(142, 136, '', NULL, 'view', 293, 294),
+(143, 136, '', NULL, 'messageEdit', 295, 296),
+(145, 136, '', NULL, 'quote', 297, 298),
+(146, 136, '', NULL, 'reply', 299, 300),
+(147, 136, '', NULL, 'edit', 301, 302),
+(148, 136, '', NULL, 'getEditMessage', 303, 304),
+(149, 136, '', NULL, 'go', 305, 306),
+(150, 136, '', NULL, 'kick', 307, 308),
+(151, 136, '', NULL, 'invite', 309, 310),
+(152, 136, '', NULL, 'leave', 311, 312),
+(153, 136, '', NULL, 'search', 313, 314);
 
 -- --------------------------------------------------------
 
@@ -643,7 +660,10 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (55, 2, 108, '1', '1', '1', '1'),
 (56, 2, 120, '1', '1', '1', '1'),
 (57, 2, 114, '-1', '-1', '-1', '-1'),
-(58, 2, 132, '1', '1', '1', '1');
+(58, 2, 132, '1', '1', '1', '1'),
+(59, 2, 136, '1', '1', '1', '1'),
+(60, 3, 132, '1', '1', '1', '1'),
+(61, 3, 136, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -846,21 +866,61 @@ INSERT INTO `chat_messages` (`id`, `user_id`, `username`, `slug`, `css`, `group_
 -- --------------------------------------------------------
 
 --
--- Table structure `notifications`
+-- Table structure `conversations`
 --
 
-CREATE TABLE IF NOT EXISTS `notifications` (
+CREATE TABLE IF NOT EXISTS `conversations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `foreign_key` int(11) DEFAULT NULL COMMENT 'Can be the PostId, ThreadId etc',
-  `type` varchar(150) NOT NULL,
-  `data` text,
-  `is_read` tinyint(2) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
+  `title` varchar(150) DEFAULT NULL,
+  `open_invite` tinyint(4) DEFAULT '0' COMMENT 'Allow invitations : 0=No,1=Yes',
+  `conversation_open` tinyint(2) DEFAULT '1' COMMENT 'Statut of the conversation : 0=Close,1=Open,2=Deleted',
+  `reply_count` int(11) DEFAULT NULL,
+  `recipient_count` int(11) DEFAULT NULL,
+  `first_message_id` int(11) DEFAULT NULL,
+  `last_message_date` datetime DEFAULT NULL,
+  `last_message_id` int(11) DEFAULT NULL,
+  `last_message_user_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure `conversations_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `conversations_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `conversation_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `message` mediumtext,
+  `edit_count` int(11) NOT NULL DEFAULT '0',
+  `last_edit_user_id` int(11) DEFAULT NULL,
+  `last_edit_date` datetime NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `conversations_users`
+--
+
+CREATE TABLE IF NOT EXISTS `conversations_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `conversation_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `is_read` tinyint(4) DEFAULT '0' COMMENT 'Is Read : 0=Unreaded,1=Readed',
+  `is_star` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=No, 1=Yes',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -878,6 +938,25 @@ CREATE TABLE IF NOT EXISTS `chat_bans` (
     `created` datetime NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `notifications`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `foreign_key` int(11) DEFAULT NULL COMMENT 'Can be the PostId, ThreadId etc',
+  `type` varchar(150) NOT NULL,
+  `data` text,
+  `is_read` tinyint(2) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 -- --------------------------------------------------------
 

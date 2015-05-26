@@ -98,7 +98,7 @@ class User extends Entity
     protected function _getGroupName()
     {
         if (!isset($this->group)) {
-            throw new \Exception\Execption(__('You must select the Groups for the function User::_getGroupName().'));
+            throw new \Exception(__('You must select the Groups for the function User::_getGroupName().'));
         }
 
         if ($this->group->is_member == true && $this->premium === true) {
@@ -118,7 +118,7 @@ class User extends Entity
     protected function _getGroupCss()
     {
         if (!isset($this->group)) {
-            throw new \Exception\Execption(__('You must select the Groups for the function User::_getGroupName().'));
+            throw new \Exception(__('You must select the Groups for the function User::_getGroupCss().'));
         }
 
         if ($this->group->is_member == true && $this->premium === true) {
