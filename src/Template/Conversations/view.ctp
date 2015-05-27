@@ -118,7 +118,7 @@
                             <?php endif; ?>
                         </div>
 
-                        <div class="message">
+                        <div class="text">
                             <?= $message->message ?>
                         </div>
 
