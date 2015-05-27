@@ -117,6 +117,11 @@ This project implements many features and will implements more in the future. He
 * ###### ACL
     * ACL Management (Still in Dev)
 
+* ###### Private Conversations
+    * Multi-Participants
+    * Kick/Invite Participants
+    * `Star` Conversations
+
 * WYSIWYG Editor (CKEditor) on all the site : Articles, Comments, Posts, Notice in the chat etc
 
 All the CakePHP3's features that i use in the project are described [here](https://github.com/Xety/Xeta/blob/master/CakePHP3Features.md).
