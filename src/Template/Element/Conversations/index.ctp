@@ -5,21 +5,19 @@
     ]);?>
     <div class="form-group">
         <div class="input-group">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                    <i class="fa fa-search"></i>
-                </span>
-                <?= $this->Form->input('search',array(
-                    'class' =>'form-control',
-                    'type' =>'text',
-                    'placeholder' => __d('conversations', 'Search a conversation by his name..'),
-                    'label' => false,
-                    'div' => false
-                ));?>
-            </div>
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+            <?= $this->Form->input('search',array(
+                'class' =>'form-control',
+                'type' =>'text',
+                'placeholder' => __d('conversations', 'Search a conversation by his name..'),
+                'label' => false,
+                'div' => false
+            ));?>
             <span class="input-group-btn">
-                <?= $this->Form->button(__d('conversations', 'Search {0}', '<i class="fa fa-arrow-right"></i>'), [
-                    'class'     => 'btn btn-primary'
+                <?= $this->Form->button('<i class="fa fa-arrow-right"></i>', [
+                    'class' => 'btn btn-primary'
                 ]);?>
             </span>
         </div>
@@ -29,7 +27,7 @@
 
 <?php if (!empty($conversations->toArray())) : ?>
     <?= $this->Form->create(null, [
-        'url'   => ['controller'=>'conversations', 'action'=>'action'],
+        'url'   => ['controller' => 'conversations', 'action' => 'action'],
         'role'  => 'form',
         'id' => 'conversationsForm'
     ]);?>
@@ -61,11 +59,18 @@
                 ]
             );?>
         </div>
-        <div class="col-md-3 pull-right">
+        <div class="col-md-1 pull-right">
             <?= $this->Html->link(
-                __d('conversations', 'New Conversation {0}', '<i class="fa fa-arrow-right"></i>'),
+                '<i class="fa fa-plus"></i>',
                 ['controller' => 'conversations', 'action' => 'create'],
-                ['class' => 'btn btn-sm btn-primary', 'escape' => false]
+                [
+                    'class' => 'btn btn-sm btn-primary',
+                    'data-toggle' => 'tooltip',
+                    'data-container' => 'body',
+                    'data-placement' => 'left',
+                    'title' => __d('conversations', 'New Conversation'),
+                    'escape' => false
+                ]
             );?>
         </div>
     </div>
