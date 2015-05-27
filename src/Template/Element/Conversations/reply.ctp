@@ -3,7 +3,7 @@
         <div class="panel conversationComment">
             <div class="panel-heading">
                 <h4>
-                    <i class="fa fa-pencil"></i> <?= __("Reply to this Conversation") ?>
+                    <i class="fa fa-pencil"></i> <?= __d('conversations', 'Reply to this Conversation') ?>
                 </h4>
             </div>
             <div class="panel-body">
@@ -23,11 +23,11 @@
                     </div>
                     <?php if ($this->Acl->check(['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title])): ?>
                         <div class="form-group">
-                            <?= $this->Form->label('conversation.conversation_open', __('Close the Conversation with the response ?'), ['class' => 'control-label']) ?>
+                            <?= $this->Form->label('conversation.conversation_open', __d('conversations', 'Close the Conversation with the response ?'), ['class' => 'control-label']) ?>
                             <div class="radio-check">
                                 <?= $this->Form->radio('conversation.conversation_open', [
-                                        '0' => __('Yes'),
-                                        '1' => __('No')
+                                        '0' => __d('conversations', 'Yes'),
+                                        '1' => __d('conversations', 'No')
                                     ],
                                     [
                                         'value' => '1',
@@ -39,7 +39,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="form-group">
-                        <?= $this->Form->submit(__('Post Message'), ['class' => 'btn btn-primary']); ?>
+                        <?= $this->Form->submit(__d('conversations', 'Reply'), ['class' => 'btn btn-primary']); ?>
                     </div>
                 <?= $this->Form->end(); ?>
             </div>
@@ -48,7 +48,7 @@
 <?php elseif ($conversation->conversation_open == 0): ?>
     <div class="infobox infobox-danger">
         <h4>
-            <?= __d('conversations', "This conversation is closed."); ?>
+            <?= __d('conversations', 'This conversation is closed.'); ?>
         </h4>
     </div>
 <?php endif; ?>

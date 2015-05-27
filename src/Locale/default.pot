@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-17 12:44+0000\n"
+"POT-Creation-Date: 2015-05-27 11:57+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -74,7 +74,7 @@ msgstr ""
 #: Controller/BlogController.php:584
 #: Controller/Forum/PostsController.php:84
 #: Template/Blog/article.ctp:234
-#: Template/Element/Forum/Thread/posts.ctp:202
+#: Template/Element/Forum/Thread/posts.ctp:206
 msgid "Like {0}"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgid "You need to put your E-mail."
 msgstr ""
 
 #: Controller/ContactController.php:64
-#: Model/Table/UsersTable.php:151;255;342
+#: Model/Table/UsersTable.php:154;258;345
 msgid "You must specify a valid E-mail address."
 msgstr ""
 
@@ -145,71 +145,75 @@ msgid_plural "Premium {0} months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Controller/UsersController.php:122
+#: Controller/UsersController.php:89
+msgid "This account has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:128
 msgid "Your username or password doesn't match."
 msgstr ""
 
-#: Controller/UsersController.php:170
+#: Controller/UsersController.php:176
 msgid "Your account has been created successfully !"
 msgstr ""
 
-#: Controller/UsersController.php:175
+#: Controller/UsersController.php:181
 msgid "Please, correct your mistake."
 msgstr ""
 
-#: Controller/UsersController.php:177;472
+#: Controller/UsersController.php:183;480
 msgid "Please, correct your Captcha."
 msgstr ""
 
-#: Controller/UsersController.php:219
+#: Controller/UsersController.php:225
 msgid "Your information has been updated !"
 msgstr ""
 
-#: Controller/UsersController.php:253
+#: Controller/UsersController.php:259
 msgid "Your E-mail has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:262
+#: Controller/UsersController.php:268
 msgid "Please, complete all fields !"
 msgstr ""
 
-#: Controller/UsersController.php:267
+#: Controller/UsersController.php:273
 msgid "Your old password don't match !"
 msgstr ""
 
-#: Controller/UsersController.php:272;555
+#: Controller/UsersController.php:278;563
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:352
+#: Controller/UsersController.php:358
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:370
+#: Controller/UsersController.php:378
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:375
+#: Controller/UsersController.php:383
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
-#: Controller/UsersController.php:464
+#: Controller/UsersController.php:472
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:499;501
+#: Controller/UsersController.php:507;509
 msgid "Forgot your Password - Xeta"
 msgstr ""
 
-#: Controller/UsersController.php:505
+#: Controller/UsersController.php:513
 msgid "An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail."
 msgstr ""
 
-#: Controller/UsersController.php:524;538
+#: Controller/UsersController.php:532;546
 msgid "This code is not associated with this users or is incorrect."
 msgstr ""
 
-#: Controller/UsersController.php:546
+#: Controller/UsersController.php:554
 msgid "This code is expired, please ask another E-mail code."
 msgstr ""
 
@@ -295,7 +299,7 @@ msgstr ""
 #: Template/Blog/category.ctp:75
 #: Template/Blog/index.ctp:80
 #: Template/Blog/search.ctp:72
-#: Template/Element/Forum/Thread/posts.ctp:189
+#: Template/Element/Forum/Thread/posts.ctp:193
 msgid "{0} Like"
 msgid_plural "{0} Likes"
 msgstr[0] ""
@@ -314,12 +318,12 @@ msgid "Thanks for {0} this post ! "
 msgstr ""
 
 #: Controller/Forum/PostsController.php:174
-#: Template/Element/Forum/Thread/posts.ctp:183
+#: Template/Element/Forum/Thread/posts.ctp:187
 msgid "You {0} this post."
 msgstr ""
 
 #: Controller/Forum/PostsController.php:178
-#: Template/Element/Forum/Thread/posts.ctp:170
+#: Template/Element/Forum/Thread/posts.ctp:174
 msgid "{0} Unlike"
 msgstr ""
 
@@ -448,7 +452,7 @@ msgstr ""
 msgid "There was an error while unfollowing this thread."
 msgstr ""
 
-#: Model/Entity/User.php:101;121
+#: Model/Entity/User.php:101
 msgid "You must select the Groups for the function User::_getGroupName()."
 msgstr ""
 
@@ -463,6 +467,10 @@ msgstr ""
 msgid "Premium"
 msgstr ""
 
+#: Model/Entity/User.php:121
+msgid "You must select the Groups for the function User::_getGroupCss()."
+msgstr ""
+
 #: Model/Table/BadgesTable.php:55
 msgid "You must select a name."
 msgstr ""
@@ -473,7 +481,7 @@ msgstr ""
 
 #: Model/Table/BadgesTable.php:64
 #: Model/Table/BlogAttachmentsTable.php:61
-#: Model/Table/UsersTable.php:184
+#: Model/Table/UsersTable.php:187
 msgid "The mimeType is not allowed."
 msgstr ""
 
@@ -483,12 +491,12 @@ msgid "The extension allowed are {0}."
 msgstr ""
 
 #: Model/Table/BadgesTable.php:78
-#: Model/Table/UsersTable.php:198
+#: Model/Table/UsersTable.php:201
 msgid "The file exceeded the max allowed size of {0}"
 msgstr ""
 
 #: Model/Table/BadgesTable.php:86
-#: Model/Table/UsersTable.php:206
+#: Model/Table/UsersTable.php:209
 msgid "The file exceeded the max allowed dimension. Max height : {0} Max width : {1}"
 msgstr ""
 
@@ -633,11 +641,19 @@ msgstr ""
 msgid "<strong>{0}</strong> has liked your post in <strong>{1}</strong>."
 msgstr ""
 
-#: Model/Table/NotificationsTable.php:96
+#: Model/Table/NotificationsTable.php:101
+msgid "<strong>{0}</strong> has replied in your conversation <strong>{1}</strong>."
+msgstr ""
+
+#: Model/Table/NotificationsTable.php:107
+msgid "<strong>{0}</strong> has replied in the conversation <strong>{1}</strong>."
+msgstr ""
+
+#: Model/Table/NotificationsTable.php:118
 msgid "Welcome on <strong>{0}</strong>! You can now post your first message in the Forum."
 msgstr ""
 
-#: Model/Table/NotificationsTable.php:106
+#: Model/Table/NotificationsTable.php:128
 msgid "You have unlock the badge \"{0}\"."
 msgstr ""
 
@@ -721,79 +737,79 @@ msgstr ""
 msgid "The currency symbol can not be more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:112;316
+#: Model/Table/UsersTable.php:115;319
 msgid "You must set an username"
 msgstr ""
 
-#: Model/Table/UsersTable.php:117;321
+#: Model/Table/UsersTable.php:120;324
 msgid "This username is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:121;325
+#: Model/Table/UsersTable.php:124;328
 msgid "Only alphanumeric characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:125;329
+#: Model/Table/UsersTable.php:128;332
 msgid "Your username must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:128
+#: Model/Table/UsersTable.php:131
 msgid "You must specify your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:129;264;290
+#: Model/Table/UsersTable.php:132;267;293
 msgid "You must specify your password (confirmation)."
 msgstr ""
 
-#: Model/Table/UsersTable.php:133;268;294
+#: Model/Table/UsersTable.php:136;271;297
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:139
+#: Model/Table/UsersTable.php:142
 msgid "Your password confirm must match with your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:147;338
+#: Model/Table/UsersTable.php:150;341
 msgid "This E-mail is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:173
+#: Model/Table/UsersTable.php:176
 msgid "Your First Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:178
+#: Model/Table/UsersTable.php:181
 msgid "Your Last Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:191
+#: Model/Table/UsersTable.php:194
 msgid "The extensions allowed are {0}."
 msgstr ""
 
-#: Model/Table/UsersTable.php:216
+#: Model/Table/UsersTable.php:219
 msgid "Your Facebook can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:221
+#: Model/Table/UsersTable.php:224
 msgid "Your Twitter can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:228;236
+#: Model/Table/UsersTable.php:231;239
 msgid "Your biography can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:251
+#: Model/Table/UsersTable.php:254
 msgid "Your E-mail can not be empty."
 msgstr ""
 
-#: Model/Table/UsersTable.php:260
+#: Model/Table/UsersTable.php:263
 msgid "This E-mail is already used, please choose another E-mail."
 msgstr ""
 
-#: Model/Table/UsersTable.php:263;289
+#: Model/Table/UsersTable.php:266;292
 msgid "You must specify your new password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:274;300
+#: Model/Table/UsersTable.php:277;303
 msgid "Your password confirm must match with your new password"
 msgstr ""
 
@@ -822,7 +838,7 @@ msgstr ""
 #: Template/Forum/Forum/categories.ctp:11
 #: Template/Forum/Forum/index.ctp:9
 #: Template/Forum/Forum/threads.ctp:40
-#: Template/Forum/Threads/create.ctp:22
+#: Template/Forum/Threads/create.ctp:24
 #: Template/Groups/view.ctp:9
 #: Template/Layout/Email/html/default.ctp:41
 #: Template/Users/account.ctp:24
@@ -903,17 +919,17 @@ msgid "Read More {0}"
 msgstr ""
 
 #: Template/Blog/article.ctp:452;468
-#: Template/Element/Forum/Thread/posts.ctp:149
+#: Template/Element/Forum/Thread/posts.ctp:153
 msgid "{0} Quote"
 msgstr ""
 
 #: Template/Blog/article.ctp:482
-#: Template/Element/Forum/Thread/posts.ctp:100
+#: Template/Element/Forum/Thread/posts.ctp:104
 msgid "{0} Edit"
 msgstr ""
 
 #: Template/Blog/article.ctp:501
-#: Template/Element/Forum/Thread/posts.ctp:117
+#: Template/Element/Forum/Thread/posts.ctp:121
 msgid "{0} Delete"
 msgstr ""
 
@@ -1022,6 +1038,21 @@ msgstr ""
 msgid "{0} ({1})"
 msgstr ""
 
+#: Template/Cell/Conversations/sidebar.ctp:133;147
+#: Template/Element/Forum/Thread/actions.ctp:62;76
+#: Template/Element/Forum/Thread/reply.ctp:29
+#: Template/Forum/Threads/create.ctp:77;92
+msgid "Yes"
+msgstr ""
+
+#: Template/Cell/Conversations/sidebar.ctp:134;148
+#: Template/Element/Forum/Thread/actions.ctp:63;77
+#: Template/Element/Forum/Thread/reply.ctp:30
+#: Template/Forum/Threads/create.ctp:78;93
+#: Template/Users/premium.ctp:68
+msgid "No"
+msgstr ""
+
 #: Template/Cell/Forum/sidebar.ctp:5
 msgid "Staff Online"
 msgstr ""
@@ -1077,7 +1108,7 @@ msgstr ""
 msgid "Contact me"
 msgstr ""
 
-#: Template/Contact/index.ctp:13;51
+#: Template/Contact/index.ctp:13;72
 #: Template/Element/header.ctp:37
 #: Template/Error/error400.ctp:117
 #: Template/Error/error500.ctp:117
@@ -1093,48 +1124,61 @@ msgstr ""
 msgid "You have found a problem on the site or you just want to contact me ? Use the form below and i will answer you shortly !"
 msgstr ""
 
+#: Template/Contact/index.ctp:29
+msgid "NEW : You can now contact me directly on the web site via the Private Conversation {0} !"
+msgstr ""
+
 #: Template/Contact/index.ctp:32
+msgid "here"
+msgstr ""
+
+#: Template/Contact/index.ctp:53
 msgid "Name {0}"
 msgstr ""
 
-#: Template/Contact/index.ctp:32;36;43
+#: Template/Contact/index.ctp:53;57;64
 msgid "Required."
 msgstr ""
 
-#: Template/Contact/index.ctp:33
+#: Template/Contact/index.ctp:54
 msgid "Name"
 msgstr ""
 
-#: Template/Contact/index.ctp:36
+#: Template/Contact/index.ctp:57
 msgid "Email {0}"
 msgstr ""
 
-#: Template/Contact/index.ctp:37
+#: Template/Contact/index.ctp:58
 msgid "Email"
 msgstr ""
 
-#: Template/Contact/index.ctp:40
+#: Template/Contact/index.ctp:61
 msgid "Subject"
 msgstr ""
 
-#: Template/Contact/index.ctp:43
+#: Template/Contact/index.ctp:64
 msgid "Message {0}"
 msgstr ""
 
-#: Template/Contact/index.ctp:44
+#: Template/Contact/index.ctp:65
 msgid "Enter your message..."
 msgstr ""
 
-#: Template/Contact/index.ctp:46
+#: Template/Contact/index.ctp:67
 msgid "Send"
 msgstr ""
 
-#: Template/Contact/index.ctp:60
+#: Template/Contact/index.ctp:81
 msgid "Secret"
 msgstr ""
 
-#: Template/Contact/index.ctp:68
+#: Template/Contact/index.ctp:89
 msgid "Social"
+msgstr ""
+
+#: Template/Conversations/view.ctp:67
+#: Template/Element/Forum/Thread/posts.ctp:33
+msgid "Joined"
 msgstr ""
 
 #: Template/Element/cookies.ctp:3
@@ -1162,7 +1206,7 @@ msgstr ""
 #: Template/Forum/Forum/categories.ctp:14
 #: Template/Forum/Forum/index.ctp:2;12
 #: Template/Forum/Forum/threads.ctp:43
-#: Template/Forum/Threads/create.ctp:25
+#: Template/Forum/Threads/create.ctp:27
 #: Template/Layout/Email/html/default.ctp:51
 msgid "Forum"
 msgstr ""
@@ -1192,15 +1236,19 @@ msgid "My Profile"
 msgstr ""
 
 #: Template/Element/header.ctp:80
+msgid "Conversations"
+msgstr ""
+
+#: Template/Element/header.ctp:85
 #: Template/Users/account.ctp:2;30
 msgid "My Account"
 msgstr ""
 
-#: Template/Element/header.ctp:85
+#: Template/Element/header.ctp:90
 msgid "My Notifications"
 msgstr ""
 
-#: Template/Element/header.ctp:91
+#: Template/Element/header.ctp:96
 msgid "Logout"
 msgstr ""
 
@@ -1330,30 +1378,17 @@ msgid "{0} Edit Thread"
 msgstr ""
 
 #: Template/Element/Forum/Thread/actions.ctp:51
-#: Template/Forum/Threads/create.ctp:62
+#: Template/Forum/Threads/create.ctp:64
 msgid "Thread Title"
 msgstr ""
 
 #: Template/Element/Forum/Thread/actions.ctp:59
-#: Template/Forum/Threads/create.ctp:69
+#: Template/Forum/Threads/create.ctp:74
 msgid "Sticky Thread"
 msgstr ""
 
-#: Template/Element/Forum/Thread/actions.ctp:62;76
-#: Template/Element/Forum/Thread/reply.ctp:29
-#: Template/Forum/Threads/create.ctp:72;87
-msgid "Yes"
-msgstr ""
-
-#: Template/Element/Forum/Thread/actions.ctp:63;77
-#: Template/Element/Forum/Thread/reply.ctp:30
-#: Template/Forum/Threads/create.ctp:73;88
-#: Template/Users/premium.ctp:68
-msgid "No"
-msgstr ""
-
 #: Template/Element/Forum/Thread/actions.ctp:73
-#: Template/Forum/Threads/create.ctp:84
+#: Template/Forum/Threads/create.ctp:89
 msgid "Lock Thread"
 msgstr ""
 
@@ -1390,34 +1425,34 @@ msgid "Offline"
 msgstr ""
 
 #: Template/Element/Forum/Thread/posts.ctp:29
-msgid "Joined"
+msgid "Send a Message"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:36
+#: Template/Element/Forum/Thread/posts.ctp:40
 msgid "Messsages created"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:41
+#: Template/Element/Forum/Thread/posts.ctp:45
 msgid "Threads created"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:46
+#: Template/Element/Forum/Thread/posts.ctp:50
 msgid "Likes received"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:52
+#: Template/Element/Forum/Thread/posts.ctp:56
 msgid "Badges"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:85
+#: Template/Element/Forum/Thread/posts.ctp:89
 msgid "Post Link"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:130
+#: Template/Element/Forum/Thread/posts.ctp:134
 msgid "{0} Last Edit: {1}, {2}"
 msgstr ""
 
-#: Template/Element/Forum/Thread/posts.ctp:229
+#: Template/Element/Forum/Thread/posts.ctp:233
 msgid "Advertising"
 msgstr ""
 
@@ -1434,14 +1469,18 @@ msgid "{0} Account {1}"
 msgstr ""
 
 #: Template/Element/Users/sidebar.ctp:16
-msgid "{0} Settings {1}"
+msgid "{0} Conversations {1}"
 msgstr ""
 
 #: Template/Element/Users/sidebar.ctp:24
-msgid "{0} Notifications {1}"
+msgid "{0} Settings {1}"
 msgstr ""
 
 #: Template/Element/Users/sidebar.ctp:32
+msgid "{0} Notifications {1}"
+msgstr ""
+
+#: Template/Element/Users/sidebar.ctp:40
 msgid "{0} Premium {1}"
 msgstr ""
 
@@ -1462,27 +1501,43 @@ msgstr ""
 msgid "Update Post"
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:2;40
+#: Template/Forum/Threads/create.ctp:2;42
 msgid "New Thread"
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:54
+#: Template/Forum/Threads/create.ctp:56
 msgid "Create a new Thread"
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:64
+#: Template/Forum/Threads/create.ctp:69
 msgid "Title..."
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:100
+#: Template/Forum/Threads/create.ctp:105
 msgid "Message"
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:113
+#: Template/Forum/Threads/create.ctp:122
 msgid "{0} Create Thread"
 msgstr ""
 
-#: Template/Forum/Threads/create.ctp:114
+#: Template/Forum/Threads/create.ctp:125
+msgid "{0} Save Draft"
+msgstr ""
+
+#: Template/Forum/Threads/create.ctp:130
+msgid "The Draft has been saved successfully !"
+msgstr ""
+
+#: Template/Forum/Threads/create.ctp:139
+msgid "Delete the Draft"
+msgstr ""
+
+#: Template/Forum/Threads/create.ctp:143
+msgid "The Draft has been cleaned successfully !"
+msgstr ""
+
+#: Template/Forum/Threads/create.ctp:147
 msgid "{0} Cancel"
 msgstr ""
 

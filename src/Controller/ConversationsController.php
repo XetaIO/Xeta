@@ -192,7 +192,7 @@ class ConversationsController extends AppController
                 break;
 
             default:
-                $json['message'] = __("Action unknown.");
+                $json['message'] = __d('conversations', 'Action unknown.');
                 $json['error'] = '1';
 
                 $this->set(compact('json'));
@@ -500,7 +500,7 @@ class ConversationsController extends AppController
             $message->toArray();
 
             $url = Router::url(['action' => 'go', $message->id]);
-            $text = __("has said :");
+            $text = __d('conversations', 'has said :');
 
             //Build the quote.
             $json['message'] = <<<EOT
@@ -828,7 +828,7 @@ EOT;
 
             //Check if the conversation is open.
             if ($conversation->conversation_open == false) {
-                $this->Flash->error(__("This conversation is closed, you cannot reply."));
+                $this->Flash->error(__d('conversations', 'This conversation is closed, you cannot reply.'));
 
                 return $this->redirect($this->referer());
             }
@@ -882,9 +882,9 @@ EOT;
                 $conversationOpen = isset($this->request->data['conversation']['conversation_open']) ? $this->request->data['conversation']['conversation_open'] : true;
 
                 if ($conversationOpen == false) {
-                    $this->Flash->success(__('Your reply has been posted successfully and the conversation has been closed !'));
+                    $this->Flash->success(__d('conversations', 'Your reply has been posted successfully and the conversation has been closed !'));
                 } else {
-                    $this->Flash->success(__('Your reply has been posted successfully !'));
+                    $this->Flash->success(__d('conversations', 'Your reply has been posted successfully !'));
                 }
 
                 //Redirect the user to the last page of the article.
@@ -918,14 +918,14 @@ EOT;
 
             //Check if the conversation is found.
             if (is_null($conversation)) {
-                $this->Flash->error(__("This conversation doesn't exist or has been deleted !"));
+                $this->Flash->error(__d('conversations', "This conversation doesn't exist or has been deleted !"));
 
                 return $this->redirect($this->referer());
             }
 
             //Check if the user has the permission to edit it.
             if ($this->Auth->isAuthorized() === false) {
-                $this->Flash->error(__("You don't have the authorization to edit this conversation !"));
+                $this->Flash->error(__d('conversations', "You don't have the authorization to edit this conversation !"));
 
                 return $this->redirect([
                     'controller' => 'conversations',
@@ -939,9 +939,9 @@ EOT;
 
             if ($this->Conversations->save($conversation)) {
                 if ($conversation->conversation_open == false) {
-                    $this->Flash->success(__('Your conversation has been edited and closed successfully !'));
+                    $this->Flash->success(__d('conversations', 'Your conversation has been edited and closed successfully !'));
                 } else {
-                    $this->Flash->success(__('Your conversation has been edited successfully !'));
+                    $this->Flash->success(__d('conversations', 'Your conversation has been edited successfully !'));
                 }
 
                 return $this->redirect([
@@ -978,13 +978,13 @@ EOT;
             ->first();
 
         if (is_null($conversation) || $conversation->conversation->conversation_open != 1) {
-            $this->Flash->error(__("This conversation is closed or has been deleted !"));
+            $this->Flash->error(__d('conversations', 'This conversation is closed or has been deleted !'));
 
             return $this->redirect($this->referer());
         }
 
         if (!$conversation->conversation->open_invite && $conversation->conversation->user_id != $this->Auth->user('id') && !$conversation->user->group->is_staff) {
-            $this->Flash->error(__("You don't have the authorization to invite in this conversation !"));
+            $this->Flash->error(__d('conversations', "You don't have the authorization to invite in this conversation !"));
 
             return $this->redirect($this->referer());
         }
