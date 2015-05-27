@@ -87,10 +87,10 @@
                         );?>
                     </td>
                     <td class="left" style="<?= ($conversation->conversation->conversation_open == 0) ? 'background-color:#FFCACA;;' : '' ?>">
-                        <?= $this->Html->image($conversation->user->avatar, ['class' => 'avatar img-thumbnail pull-left']) ?>
-                        <?= __d('conversations', 'Created by {0}', $this->Html->link($conversation->user->username, ['_name' => 'users-profile', 'id' => $conversation->user->id, 'slug' => $conversation->user->slug])) ?>
+                        <?= $this->Html->image($conversation->conversation->user->avatar, ['class' => 'avatar img-thumbnail pull-left']) ?>
+                        <?= __d('conversations', 'Created by {0}', $this->Html->link($conversation->conversation->user->username, ['_name' => 'users-profile', 'id' => $conversation->conversation->user->id, 'slug' => $conversation->conversation->user->slug])) ?>
                         <br>
-                        <?= __d('conversations', 'At {0}', $conversation->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                        <?= __d('conversations', 'At {0}', $conversation->conversation->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
                         <br>
                         <?= __dn('conversations', 'Participant {0}', 'Participants {0}', $conversation->conversation->recipient_count, $conversation->conversation->recipient_count) ?>
                     </td>

@@ -58,6 +58,9 @@ class ConversationsController extends AppController
             ->contain([
                 'Users',
                 'Conversations',
+                'Conversations.Users' => function ($q) {
+                    return $q->find('medium');
+                },
                 'Conversations.LastMessage',
                 'Conversations.LastMessageUser'
             ])
@@ -1141,6 +1144,9 @@ EOT;
             ->contain([
                 'Users',
                 'Conversations',
+                'Conversations.Users' => function ($q) {
+                    return $q->find('short');
+                },
                 'Conversations.LastMessage',
                 'Conversations.LastMessageUser'
             ])
