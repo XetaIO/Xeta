@@ -483,10 +483,10 @@ class UsersController extends AppController
 
                 return;
             }
-            
+
             //Generate the unique code
             $code = md5(rand() . uniqid() . time());
-            
+
             //Update the user's information
             $user->password_code = $code;
             $user->password_code_expire = new Time();
@@ -509,7 +509,7 @@ class UsersController extends AppController
                 ->subject(__('Forgot your Password - Xeta'))
                 ->viewVars($viewVars)
                 ->send();
-            
+
             $this->Flash->success(__("An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail.", h($user->email)));
         }
 
@@ -549,7 +549,7 @@ class UsersController extends AppController
         }
 
         $expire = $user->password_code_expire->timestamp + (Configure::read('User.ResetPassword.expire_code') * 60);
-        
+
         if ($expire < time()) {
             $this->Flash->error(__("This code is expired, please ask another E-mail code."));
 
@@ -567,7 +567,7 @@ class UsersController extends AppController
                 $user->password_code_expire = new Time();
                 $user->password_reset_count = $user->password_reset_count + 1;
                 $this->Users->save($user);
-                
+
                 return $this->redirect(['controller' => 'users', 'action' => 'login']);
             }
         }
