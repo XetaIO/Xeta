@@ -2,6 +2,7 @@
 namespace App\Controller\Forum;
 
 use App\Controller\AppController;
+use App\Event\Forum\LastPostUpdater;
 use App\Event\Forum\Notifications;
 use App\Event\Forum\Statistics;
 use Cake\Core\Configure;
@@ -253,6 +254,7 @@ class PostsController extends AppController
                 ->find()
                 ->select([
                     'ForumThreads.id',
+                    'ForumThreads.category_id',
                     'ForumThreads.last_post_id',
                     'ForumThreads.last_post_date',
                     'ForumThreads.first_post_id'
@@ -267,18 +269,19 @@ class PostsController extends AppController
 
             $this->ForumThreads->save($thread);
 
-            //Event.
+            //Update the last post for all the parent category.
+            $this->eventManager()->on(new LastPostUpdater());
+            $event = new Event('LastPostUpdater.delete', $this, [
+                'thread' => $thread
+            ]);
+            $this->eventManager()->dispatch($event);
+
+            //Event Statistics.
             $this->eventManager()->attach(new Statistics());
             $event = new Event('Model.ForumPosts.new', $this);
             $this->eventManager()->dispatch($event);
 
-            $this->Flash->success(__("The post has been deleted successfully !"));
-
-            return $this->redirect([
-                'controller' => 'posts',
-                'action' => 'go',
-                $lastPost->id
-            ]);
+            $post->forum_thread->last_post_id = $lastPost->id;
         }
 
         $this->Flash->success(__("The post has been deleted successfully !"));
