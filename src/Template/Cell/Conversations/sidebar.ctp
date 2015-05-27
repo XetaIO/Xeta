@@ -8,12 +8,12 @@
                 <ul class="circled">
                     <?php if ($this->Acl->check(['_name' => 'conversations-edit', 'id' => $conversation->id, 'slug' => $conversation->title])): ?>
                         <li>
-                            <?= $this->Html->link(__d('conversation', 'Edit the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#editConversation']) ?>
+                            <?= $this->Html->link(__d('conversations', 'Edit the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#editConversation']) ?>
                         </li>
                     <?php endif; ?>
                     <?php if (!($conversation->user_id == $this->request->session()->read('Auth.User.id'))): ?>
                         <li>
-                            <?= $this->Html->link(__d('conversation', 'Leave the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#leaveConversation']) ?>
+                            <?= $this->Html->link(__d('conversations', 'Leave the Conversation'), '#', ['data-toggle' => 'modal', 'data-target' => '#leaveConversation']) ?>
                         </li>
                     <?php endif; ?>
                     <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <?= $this->Form->label('title', __d('conversations', 'Thread Title'), ['class' => 'control-label']) ?>
+                            <?= $this->Form->label('title', __d('conversations', 'Conversation Title'), ['class' => 'control-label']) ?>
                             <?= $this->Form->input('title', ['class' => 'form-control', 'label' => false])?>
                         </div>
                         <div class="form-group">

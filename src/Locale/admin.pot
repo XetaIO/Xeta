@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-17 12:45+0000\n"
+"POT-Creation-Date: 2015-05-27 11:57+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Unable to delete this group."
 msgstr ""
 
-#: Controller/Admin/UsersController.php:128;166;198
+#: Controller/Admin/UsersController.php:128;166;200
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
@@ -116,19 +116,19 @@ msgstr ""
 msgid "This user has been updated successfully !"
 msgstr ""
 
-#: Controller/Admin/UsersController.php:172
+#: Controller/Admin/UsersController.php:174
 msgid "This user has been deleted successfully !"
 msgstr ""
 
-#: Controller/Admin/UsersController.php:177
+#: Controller/Admin/UsersController.php:179
 msgid "Unable to delete this user."
 msgstr ""
 
-#: Controller/Admin/UsersController.php:206
+#: Controller/Admin/UsersController.php:208
 msgid "His avatar has been deleted successfully !"
 msgstr ""
 
-#: Controller/Admin/UsersController.php:211
+#: Controller/Admin/UsersController.php:213
 msgid "Unable to delete his avatar."
 msgstr ""
 

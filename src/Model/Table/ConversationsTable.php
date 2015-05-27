@@ -51,18 +51,18 @@ class ConversationsTable extends Table
     {
         $validator
             ->provider('purifier', 'App\Model\Validation\PurifierValidator')
-            ->notEmpty('title', __('You must specify a title for your conversation.'))
+            ->notEmpty('title', __d('conversations', 'You must specify a title for your conversation.'))
             ->add('title', 'minLength', [
                 'rule' => ['minLength', 5],
-                'message' => __('Your title must contain at least {0} characters.', 5)
+                'message' => __d('conversations', 'Your title must contain at least {0} characters.', 5)
             ])
 
-            ->notEmpty('message', __('You must specify a message for your conversation.'))
+            ->notEmpty('message', __d('conversations', 'You must specify a message for your conversation.'))
             ->add('message', [
                 'purifierMinLength' => [
                     'rule' => ['purifierMinLength', 5],
                     'provider' => 'purifier',
-                    'message' => __('Your message must contain at least {0} characters.', 5)
+                    'message' => __d('conversations', 'Your message must contain at least {0} characters.', 5)
                 ]
             ]);
 
@@ -79,18 +79,18 @@ class ConversationsTable extends Table
     {
         $validator
             ->provider('purifier', 'App\Model\Validation\PurifierValidator')
-            ->notEmpty('title', __('You must specify a title for your conversation.'))
+            ->notEmpty('title', __d('conversations', 'You must specify a title for your conversation.'))
             ->add('title', 'minLength', [
                 'rule' => ['minLength', 5],
-                'message' => __('Your title must contain at least {0} characters.', 5)
+                'message' => __d('conversations', 'Your title must contain at least {0} characters.', 5)
             ])
 
-            ->notEmpty('message', __('You must specify a message for your conversation.'))
+            ->notEmpty('message', __d('conversations', 'You must specify a message for your conversation.'))
             ->add('message', [
                 'purifierMinLength' => [
                     'rule' => ['purifierMinLength', 5],
                     'provider' => 'purifier',
-                    'message' => __('Your message must contain at least {0} characters.', 5)
+                    'message' => __d('conversations', 'Your message must contain at least {0} characters.', 5)
                 ]
             ]);
 

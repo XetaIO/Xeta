@@ -46,12 +46,12 @@ class ConversationsMessagesTable extends Table
     {
         $validator
             ->provider('purifier', 'App\Model\Validation\PurifierValidator')
-            ->notEmpty('message', __('You must specify a message for your response.'))
+            ->notEmpty('message', __d('conversations', 'You must specify a message for your response.'))
             ->add('message', [
                 'purifierMinLength' => [
                     'rule' => ['purifierMinLength', 5],
                     'provider' => 'purifier',
-                    'message' => __('Your message must contain at least {0} characters.', 5)
+                    'message' => __d('conversations', 'Your message must contain at least {0} characters.', 5)
                 ]
             ]);
 
