@@ -105,7 +105,7 @@ class ForumController extends AppController
                 foreach ($category->children as $child) {
                     $this->eventManager()->attach(new Reader());
                     $read = new Event('Reader.Category', $this, [
-                        'user' => $this->Auth->User('id'),
+                        'user_id' => $this->Auth->User('id'),
                         'category' => $child,
                         'descendants' => $child->children
                     ]);
@@ -191,7 +191,7 @@ class ForumController extends AppController
         if ($this->Auth->User('id')) {
             $this->eventManager()->attach(new Reader());
             $event = new Event('Reader.Category', $this, [
-                'user' => $this->Auth->User('id'),
+                'user_id' => $this->Auth->User('id'),
                 'category' => $category,
                 'descendants' => $category->child_forum_categories
             ]);
@@ -361,9 +361,9 @@ class ForumController extends AppController
         if ($this->Auth->User('id')) {
             $this->eventManager()->attach(new Reader());
             $event = new Event('Reader.Thread', $this, [
-                'user' => $this->Auth->User('id'),
-                'thread' => $thread->id,
-                'category' => $thread->category_id
+                'user_id' => $this->Auth->User('id'),
+                'thread_id' => $thread->id,
+                'category_id' => $thread->category_id
             ]);
             $this->eventManager()->dispatch($event);
 
@@ -381,7 +381,7 @@ class ForumController extends AppController
 
             $this->eventManager()->attach(new Reader());
             $event = new Event('Reader.Category', $this, [
-                'user' => $this->Auth->User('id'),
+                'user_id' => $this->Auth->User('id'),
                 'category' => $category,
                 'descendants' => $category->child_forum_categories
             ]);
