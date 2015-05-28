@@ -2,6 +2,7 @@
 namespace App\Controller\Forum;
 
 use App\Controller\AppController;
+use App\Event\Forum\Reader;
 use App\Event\Forum\Statistics;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -99,6 +100,21 @@ class ForumController extends AppController
 
         $online = $this->SessionsActivity->getOnlineUsers();
 
+        if ($this->Auth->User('id')) {
+            foreach ($categories as $category) {
+                foreach ($category->children as $child) {
+                    $this->eventManager()->attach(new Reader());
+                    $read = new Event('Reader.Category', $this, [
+                        'user' => $this->Auth->User('id'),
+                        'category' => $child,
+                        'descendants' => $child->children
+                    ]);
+                    $this->eventManager()->dispatch($read);
+                }
+
+            }
+        }
+
         $this->set(compact('categories', 'statistics', 'online'));
     }
 
@@ -170,6 +186,17 @@ class ForumController extends AppController
                     return $q->select(['id', 'title']);
                 }
             ]);
+
+        //Check if all thread and childs thread are readed
+        if ($this->Auth->User('id')) {
+            $this->eventManager()->attach(new Reader());
+            $event = new Event('Reader.Category', $this, [
+                'user' => $this->Auth->User('id'),
+                'category' => $category,
+                'descendants' => $category->child_forum_categories
+            ]);
+            $this->eventManager()->dispatch($event);
+        }
 
         //Breadcrumbs.
         $breadcrumbs = $this->ForumCategories->find('path', ['for' => $category->id])->toArray();
@@ -329,6 +356,37 @@ class ForumController extends AppController
             ])
             ->select(['id', 'group_id'])
             ->first();
+
+        // Mark as read
+        if ($this->Auth->User('id')) {
+            $this->eventManager()->attach(new Reader());
+            $event = new Event('Reader.Thread', $this, [
+                'user' => $this->Auth->User('id'),
+                'thread' => $thread->id,
+                'category' => $thread->category_id
+            ]);
+            $this->eventManager()->dispatch($event);
+
+            $this->loadModel('ForumCategories');
+
+            $category = $this->ForumCategories
+                ->find()
+                ->contain([
+                    'ChildForumCategories'
+                ])
+                ->where([
+                    'ForumCategories.id' => $thread->category_id
+                ])
+                ->first();
+
+            $this->eventManager()->attach(new Reader());
+            $event = new Event('Reader.Category', $this, [
+                'user' => $this->Auth->User('id'),
+                'category' => $category,
+                'descendants' => $category->child_forum_categories
+            ]);
+            $this->eventManager()->dispatch($event);
+        }
 
         $this->set(compact('thread', 'breadcrumbs', 'posts', 'postForm', 'categories', 'currentUser'));
     }

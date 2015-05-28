@@ -26,9 +26,17 @@
                             <td class="threadInfo">
                                 <span class="threadIcon">
                                     <?php if ($thread->sticky == true): ?>
-                                        <i class="fa fa-thumb-tack fa-2x fa-rotate-45"></i>
+                                        <?php if (!$this->Forum->checkThreadReaded($thread)) :?>
+                                            <i class="fa fa-thumb-tack fa-2x fa-rotate-45 unread" data-toggle="tooltip" data-placement="top" title="<?= __('Unread') ?>"></i>
+                                        <?php else: ?>
+                                            <i class="fa fa-thumb-tack fa-2x fa-rotate-45" data-toggle="tooltip" data-placement="top" title="<?= __('Read') ?>"></i>
+                                        <?php endif; ?>
                                     <?php else: ?>
-                                        <i class="fa fa-comments-o fa-2x forumRead"></i>
+                                        <?php if (!$this->Forum->checkThreadReaded($thread)) :?>
+                                            <i class="fa fa-comments fa-2x unread" data-toggle="tooltip" data-placement="top" title="<?= __('Unread') ?>"></i>
+                                        <?php else: ?>
+                                            <i class="fa fa-comments-o fa-2x" data-toggle="tooltip" data-placement="top" title="<?= __('Read') ?>"></i>
+                                        <?php endif; ?>
                                     <?php endif; ?>
 
                                     <?php if ($thread->thread_open == false): ?>
