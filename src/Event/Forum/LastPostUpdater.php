@@ -74,7 +74,7 @@ class LastPostUpdater implements EventListenerInterface
      *
      * @return bool
      */
-    private function _updateCategories($thread, $post)
+    protected function _updateCategories($thread, $post)
     {
         $this->ForumCategories = TableRegistry::get('ForumCategories');
 
