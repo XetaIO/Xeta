@@ -122,7 +122,12 @@ class UsersController extends AppController
                         ]);
                         $this->eventManager()->dispatch($user);
 
-                        return $this->redirect($this->Auth->redirectUrl());
+                        $url = $this->Auth->redirectUrl();
+                        if (substr($this->Auth->redirectUrl(), -5) == 'login') {
+                            $url = ['controller' => 'pages', 'action' => 'home'];
+                        }
+
+                        return $this->redirect($url);
                     }
 
                     $this->Flash->error(__("Your username or password doesn't match."));
@@ -175,7 +180,12 @@ class UsersController extends AppController
 
                             $this->Flash->success(__("Your account has been created successfully !"));
 
-                            return $this->redirect($this->Auth->redirectUrl());
+                            $url = $this->Auth->redirectUrl();
+                            if (substr($this->Auth->redirectUrl(), -5) == 'login') {
+                                $url = ['controller' => 'pages', 'action' => 'home'];
+                            }
+
+                            return $this->redirect($url);
                         }
 
                         $this->Flash->error(__("Please, correct your mistake."));
