@@ -87,6 +87,13 @@ class ForumHelper extends Helper
         return $data;
     }
 
+    /**
+     * Check if a thread is readed or not by the current user.
+     *
+     * @param  App\Model\Entity\ForumThread $thread The thread to handle.
+     *
+     * @return bool
+     */
     public function checkThreadReaded(ForumThread $thread)
     {
         if (!$this->request->session()->read('Auth.User.id')) {
@@ -113,6 +120,13 @@ class ForumHelper extends Helper
         return false;
     }
 
+    /**
+     * Check if a category is readed or not by the current user.
+     *
+     * @param  App\Model\Entity\ForumCategory $category The category to handle.
+     *
+     * @return bool
+     */
     public function checkCategoryReaded(ForumCategory $category)
     {
         if (!$this->request->session()->read('Auth.User.id')) {
