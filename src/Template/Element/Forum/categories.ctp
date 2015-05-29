@@ -27,7 +27,11 @@
                     <tr>
                         <td class="forumInfo">
                             <span class="forumIcon">
-                                <i class="fa fa-comments-o fa-2x"></i>
+                                <?php if (!$this->Forum->checkCategoryReaded($forum)) :?>
+                                    <i class="fa fa-comments fa-2x unread" data-toggle="tooltip" data-placement="top" title="<?= __('Unread') ?>"></i>
+                                <?php else: ?>
+                                    <i class="fa fa-comments-o fa-2x" data-toggle="tooltip" data-placement="top" title="<?= __('Read') ?>"></i>
+                                <?php endif; ?>
                             </span>
                             <div class="forumText">
                                 <div class="forumTitle">
