@@ -819,6 +819,36 @@ INSERT INTO `forum_categories` (`id`, `title`, `description`, `category_open`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure `forum_categories_trackers`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_categories_trackers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `nbunread` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure `forum_threads_trackers`
+--
+
+CREATE TABLE IF NOT EXISTS `forum_threads_trackers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure `chat_online`
 --
 

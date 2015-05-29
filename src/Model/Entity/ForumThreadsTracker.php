@@ -3,9 +3,6 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-/**
- * ForumThreadsTracker Entity.
- */
 class ForumThreadsTracker extends Entity
 {
 
@@ -15,12 +12,6 @@ class ForumThreadsTracker extends Entity
      * @var array
      */
     protected $_accessible = [
-        'category_id' => true,
-        'thread_id' => true,
-        'user_id' => true,
-        'date' => true,
-        'category' => true,
-        'thread' => true,
-        'user' => true,
+        '*' => true
     ];
 }
