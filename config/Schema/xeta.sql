@@ -1034,7 +1034,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Table data `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `avatar`, `biography`, `signature`, `facebook`, `twitter`, `group_id`, `slug`, `language`, `blog_articles_comment_count`, `blog_article_count`, `forum_thread_count`, `forum_post_count`, `forum_like_received`, `end_subscription`, `register_ip`, `last_login_ip`, `last_login`, `created`, `modified`) VALUES
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `avatar`, `biography`, `signature`, `facebook`, `twitter`, `group_id`, `slug`, `language`, `blog_articles_comment_count`, `blog_article_count`, `forum_thread_count`, `forum_post_count`, `forum_like_received`, `end_subscription`, `password_code`, `password_code_expire`, `password_reset_count`, `register_ip`, `last_login_ip`, `last_login`, `is_deleted`, `created`, `modified`) VALUES
 (1, 'Admin', '__ADMINPASSWORD__', 'admin@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 5, 'admin', 'fr_FR', 1, 1, 1, 1, 1, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0,
 '::1', '::1', '2014-09-22 10:04:56', 0, '2014-09-22 10:04:56', '2014-09-22 10:04:56'),
 (2, 'Test', '__MEMBERPASSWORD__', 'test@localhost.io', '', '', '../img/avatar.png', '', '', '', '', 2, 'test', 'fr_FR', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0,
