@@ -33,9 +33,9 @@
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <?php if (!$this->Forum->checkThreadReaded($thread)) :?>
-                                            <i class="fa fa-comments fa-2x unread" data-toggle="tooltip" data-placement="top" title="<?= __('Unread') ?>"></i>
+                                            <i class="fa fa-comment fa-2x unread" data-toggle="tooltip" data-placement="top" title="<?= __('Unread') ?>"></i>
                                         <?php else: ?>
-                                            <i class="fa fa-comments-o fa-2x" data-toggle="tooltip" data-placement="top" title="<?= __('Read') ?>"></i>
+                                            <i class="fa fa-comment-o fa-2x" data-toggle="tooltip" data-placement="top" title="<?= __('Read') ?>"></i>
                                         <?php endif; ?>
                                     <?php endif; ?>
 
