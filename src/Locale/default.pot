@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-27 15:04+0000\n"
+"POT-Creation-Date: 2015-05-29 13:23+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: Controller/BlogController.php:89
-#: Controller/Forum/ForumController.php:127
+#: Controller/Forum/ForumController.php:140
 msgid "This category doesn't exist or has been deleted."
 msgstr ""
 
@@ -32,12 +32,12 @@ msgid "Your comment has been posted successfully !"
 msgstr ""
 
 #: Controller/BlogController.php:286
-#: Controller/Forum/PostsController.php:328
+#: Controller/Forum/PostsController.php:331
 msgid "has said :"
 msgstr ""
 
 #: Controller/BlogController.php:306
-#: Controller/Forum/PostsController.php:348
+#: Controller/Forum/PostsController.php:351
 msgid "This comment doesn't exist."
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "You {0} this article."
 msgstr ""
 
 #: Controller/BlogController.php:530;587
-#: Controller/Forum/PostsController.php:88;181
+#: Controller/Forum/PostsController.php:89;182
 msgid "An error occurred, please try again later."
 msgstr ""
 
@@ -72,7 +72,7 @@ msgid "You don't like this article !"
 msgstr ""
 
 #: Controller/BlogController.php:584
-#: Controller/Forum/PostsController.php:84
+#: Controller/Forum/PostsController.php:85
 #: Template/Blog/article.ctp:234
 #: Template/Element/Forum/Thread/posts.ctp:206
 msgid "Like {0}"
@@ -149,71 +149,71 @@ msgstr[1] ""
 msgid "This account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:128
+#: Controller/UsersController.php:133
 msgid "Your username or password doesn't match."
 msgstr ""
 
-#: Controller/UsersController.php:176
+#: Controller/UsersController.php:181
 msgid "Your account has been created successfully !"
 msgstr ""
 
-#: Controller/UsersController.php:181
+#: Controller/UsersController.php:191
 msgid "Please, correct your mistake."
 msgstr ""
 
-#: Controller/UsersController.php:183;480
+#: Controller/UsersController.php:193;490
 msgid "Please, correct your Captcha."
 msgstr ""
 
-#: Controller/UsersController.php:225
+#: Controller/UsersController.php:235
 msgid "Your information has been updated !"
 msgstr ""
 
-#: Controller/UsersController.php:259
+#: Controller/UsersController.php:269
 msgid "Your E-mail has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:268
+#: Controller/UsersController.php:278
 msgid "Please, complete all fields !"
 msgstr ""
 
-#: Controller/UsersController.php:273
+#: Controller/UsersController.php:283
 msgid "Your old password don't match !"
 msgstr ""
 
-#: Controller/UsersController.php:278;563
+#: Controller/UsersController.php:288;573
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:358
+#: Controller/UsersController.php:368
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:378
+#: Controller/UsersController.php:388
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:383
+#: Controller/UsersController.php:393
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
-#: Controller/UsersController.php:472
+#: Controller/UsersController.php:482
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:507;509
+#: Controller/UsersController.php:517;519
 msgid "Forgot your Password - Xeta"
 msgstr ""
 
-#: Controller/UsersController.php:513
+#: Controller/UsersController.php:523
 msgid "An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail."
 msgstr ""
 
-#: Controller/UsersController.php:532;546
+#: Controller/UsersController.php:542;556
 msgid "This code is not associated with this users or is incorrect."
 msgstr ""
 
-#: Controller/UsersController.php:554
+#: Controller/UsersController.php:564
 msgid "This code is expired, please ask another E-mail code."
 msgstr ""
 
@@ -285,15 +285,15 @@ msgstr ""
 msgid "The type \"{0}\" to check is not defined."
 msgstr ""
 
-#: Controller/Forum/ForumController.php:236
+#: Controller/Forum/ForumController.php:260
 msgid "This thread doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:66
+#: Controller/Forum/PostsController.php:67
 msgid "You don't like this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:85
+#: Controller/Forum/PostsController.php:86
 #: Template/Blog/archive.ctp:87
 #: Template/Blog/article.ctp:97
 #: Template/Blog/category.ctp:75
@@ -305,150 +305,150 @@ msgid_plural "{0} Likes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Controller/Forum/PostsController.php:123
+#: Controller/Forum/PostsController.php:124
 msgid "You already like this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:142
+#: Controller/Forum/PostsController.php:143
 msgid "This post doesn't exist !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:173
+#: Controller/Forum/PostsController.php:174
 msgid "Thanks for {0} this post ! "
 msgstr ""
 
-#: Controller/Forum/PostsController.php:174
+#: Controller/Forum/PostsController.php:175
 #: Template/Element/Forum/Thread/posts.ctp:187
 msgid "You {0} this post."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:178
+#: Controller/Forum/PostsController.php:179
 #: Template/Element/Forum/Thread/posts.ctp:174
 msgid "{0} Unlike"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:215;380
+#: Controller/Forum/PostsController.php:216;383
 msgid "This post doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:222
+#: Controller/Forum/PostsController.php:223
 msgid "You cannot delete the first post of a thread."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:233
+#: Controller/Forum/PostsController.php:234
 msgid "An error occurred while deleting the post. Please, try again."
 msgstr ""
 
-#: Controller/Forum/PostsController.php:275;284
+#: Controller/Forum/PostsController.php:287
 msgid "The post has been deleted successfully !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:437;505
+#: Controller/Forum/PostsController.php:440;508
 msgid "This post doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:458;528
-#: Controller/Forum/ThreadsController.php:160
+#: Controller/Forum/PostsController.php:461;531
+#: Controller/Forum/ThreadsController.php:155
 msgid "You don't have the authorization to edit this post !"
 msgstr ""
 
-#: Controller/Forum/PostsController.php:469
+#: Controller/Forum/PostsController.php:472
 msgid "This post has been edited successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:49;180
+#: Controller/Forum/ThreadsController.php:51;175
 msgid "This category doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:56
+#: Controller/Forum/ThreadsController.php:58
 msgid "You can't create a thread in the category <strong>{0}</strong> because this category is closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:64
+#: Controller/Forum/ThreadsController.php:66
 msgid "You can't not create a thread in the next 5 minutes due to spamming restrictions."
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:117
+#: Controller/Forum/ThreadsController.php:112
 msgid "Your thread has been created successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:153;238;370;459;534;590
+#: Controller/Forum/ThreadsController.php:148;233;358;447;522;578
 msgid "This thread doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:187
+#: Controller/Forum/ThreadsController.php:182
 msgid "You can't assign this thread to the category <strong>{0}</strong> because this category is closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:196
+#: Controller/Forum/ThreadsController.php:191
 msgid "Your thread has been edited and set to sticky successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:198
+#: Controller/Forum/ThreadsController.php:193
 msgid "Your thread has been edited successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:224
+#: Controller/Forum/ThreadsController.php:219
 msgid "You can't not reply to a thread in the next 5 minutes due to spamming restrictions."
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:245
+#: Controller/Forum/ThreadsController.php:240
 msgid "This thread is closed or has been deleted !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:328
+#: Controller/Forum/ThreadsController.php:316
 msgid "Your reply has been posted successfully and the thread has been closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:330
+#: Controller/Forum/ThreadsController.php:318
 msgid "Your reply has been posted successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:377
+#: Controller/Forum/ThreadsController.php:365
 msgid "This thread is already closed !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:402
+#: Controller/Forum/ThreadsController.php:390
 msgid "You don't have the authorization to lock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:423
+#: Controller/Forum/ThreadsController.php:411
 msgid "This thread has been locked successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:466
+#: Controller/Forum/ThreadsController.php:454
 msgid "This thread is already open !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:491
+#: Controller/Forum/ThreadsController.php:479
 msgid "You don't have the authorization to unlock this post !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:502
+#: Controller/Forum/ThreadsController.php:490
 msgid "This thread has been unlocked successfully !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:549
+#: Controller/Forum/ThreadsController.php:537
 msgid "You already follow this thread !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:560
+#: Controller/Forum/ThreadsController.php:548
 msgid "You successfully follow this thread now !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:564
+#: Controller/Forum/ThreadsController.php:552
 msgid "There was an error while following the thread."
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:605
+#: Controller/Forum/ThreadsController.php:593
 msgid "You don't follow this thread !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:611
+#: Controller/Forum/ThreadsController.php:599
 msgid "You successfully unfollow this thread now !"
 msgstr ""
 
-#: Controller/Forum/ThreadsController.php:615
+#: Controller/Forum/ThreadsController.php:603
 msgid "There was an error while unfollowing this thread."
 msgstr ""
 
@@ -1211,10 +1211,6 @@ msgstr ""
 msgid "Forum"
 msgstr ""
 
-#: Template/Element/header.ctp:27
-msgid "Beta"
-msgstr ""
-
 #: Template/Element/header.ctp:45
 msgid "Hello,"
 msgstr ""
@@ -1266,16 +1262,26 @@ msgstr ""
 msgid "Last post"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:80
+#: Template/Element/Forum/categories.ctp:31
+#: Template/Element/Forum/Category/threads.ctp:30;36
+msgid "Unread"
+msgstr ""
+
+#: Template/Element/Forum/categories.ctp:33
+#: Template/Element/Forum/Category/threads.ctp:32;38
+msgid "Read"
+msgstr ""
+
+#: Template/Element/Forum/categories.ctp:84
 msgid "(Contains no threads)"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:103
-#: Template/Element/Forum/Category/threads.ctp:43;59
+#: Template/Element/Forum/categories.ctp:107
+#: Template/Element/Forum/Category/threads.ctp:51;67
 msgid "By"
 msgstr ""
 
-#: Template/Element/Forum/categories.ctp:73
+#: Template/Element/Forum/categories.ctp:77
 msgid "{0} Thread"
 msgid_plural "{0} Threads"
 msgstr[0] ""
@@ -1289,25 +1295,25 @@ msgstr ""
 msgid "{0} Topics"
 msgstr ""
 
-#: Template/Element/Forum/Category/threads.ctp:89
+#: Template/Element/Forum/Category/threads.ctp:97
 msgid "No threads found"
 msgstr ""
 
-#: Template/Element/Forum/Category/threads.ctp:91
+#: Template/Element/Forum/Category/threads.ctp:99
 msgid "No threads were found for this category. {0}"
 msgstr ""
 
-#: Template/Element/Forum/Category/threads.ctp:94
+#: Template/Element/Forum/Category/threads.ctp:102
 msgid "{0} Create a Thread"
 msgstr ""
 
-#: Template/Element/Forum/Category/threads.ctp:53
+#: Template/Element/Forum/Category/threads.ctp:61
 msgid "{0} Response"
 msgid_plural "{0} Responses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Template/Element/Forum/Category/threads.ctp:54
+#: Template/Element/Forum/Category/threads.ctp:62
 msgid "{0} View"
 msgid_plural "{0} Views"
 msgstr[0] ""
