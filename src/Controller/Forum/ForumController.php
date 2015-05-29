@@ -102,16 +102,13 @@ class ForumController extends AppController
 
         if ($this->Auth->User('id')) {
             foreach ($categories as $category) {
-                foreach ($category->children as $child) {
-                    $this->eventManager()->attach(new Reader());
-                    $read = new Event('Reader.Category', $this, [
-                        'user_id' => $this->Auth->User('id'),
-                        'category' => $child,
-                        'descendants' => $child->children
-                    ]);
-                    $this->eventManager()->dispatch($read);
-                }
-
+                $this->eventManager()->attach(new Reader());
+                $read = new Event('Reader.Category', $this, [
+                    'user_id' => $this->Auth->User('id'),
+                    'category' => $category,
+                    'descendants' => $category->children
+                ]);
+                $this->eventManager()->dispatch($read);
             }
         }
 

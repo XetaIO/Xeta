@@ -45,13 +45,9 @@ class Reader implements EventListenerInterface
 
         if (!is_null($old)) {
             $read = $this->ThreadsTrackers->patchEntity($old, $data);
-            $read->date = new Time();
-
-            if ($this->ThreadsTrackers->save($read)) {
-                return true;
-            }
+        } else {
+            $read = $this->ThreadsTrackers->newEntity($data);
         }
-        $read = $this->ThreadsTrackers->newEntity($data);
         $read->date = new Time();
 
         if ($this->ThreadsTrackers->save($read)) {
@@ -86,7 +82,7 @@ class Reader implements EventListenerInterface
             ])
             ->toArray();
 
-        //Combien de topic sont non lu dans cette section
+        //Check how many threads are unread for this category.
         if (!is_null($threads)) {
             foreach ($threads as $thread) {
                 if (!$this->_checkThreadTracker($userId, $thread)) {
@@ -95,10 +91,9 @@ class Reader implements EventListenerInterface
             }
         }
 
-        //Combien de topic sont non lu dans les enfants et sous enfants
+        //Check how many threads are unread for all childrens of this category.
         foreach ($descendants as $children) {
-            // Compte les NBUnread sur cet enfant
-            $Unread = $this->_checkChildrens($children, $userId, $Unread);
+            $Unread += $this->_checkChildrens($children, $userId, $Unread);
         }
 
         $data = [
@@ -110,8 +105,7 @@ class Reader implements EventListenerInterface
     }
 
     /**
-     * Just check if the threadTracker exist and if the readed date
-     * are after the last_post_date. Return bool
+     * Check if the threadTracker exist and if the user has readed this thread.
      *
      * @param int $userId The user id.
      * @param \App\Model\Entity\ForumThread $thread The thread that was fired.
@@ -158,39 +152,38 @@ class Reader implements EventListenerInterface
                 'category_id' => $children->id,
             ]);
 
+        $UnreadChildren = 0;
         foreach ($threads as $thread) {
             if (!$this->_checkThreadTracker($userId, $thread)) {
-                $Unread++;
+                $UnreadChildren++;
             }
         }
 
-        // Liste tout les sous-enfants de niveau inférieur de l'enfant
+        //List all childrens where the category is open.
         $childs = $this->Categories
             ->find()
             ->select(['id', 'title'])
             ->where([
                 'lft >' => $children->lft,
-                'rght <' => $children->rght
+                'rght <' => $children->rght,
+                'category_open' => 1
             ])
             ->toArray();
 
-        // Boucle les sous-enfants et compte le NB unread
         foreach ($childs as $child) {
-            $Unread2 = 0;
+            $UnreadSubChil = 0;
 
             $childsThreads = $this->Threads
                 ->find()
                 ->select(['id', 'category_id', 'last_post_date', 'created'])
                 ->where([
                     'category_id' => $child->id,
-
                 ])
                 ->toArray();
 
             foreach ($childsThreads as $thread) {
-                //debug($this->_checkThreadTracker($user, $thread));
                 if (!$this->_checkThreadTracker($userId, $thread)) {
-                    $Unread2++;
+                    $UnreadSubChil++;
                 }
             }
 
@@ -199,10 +192,18 @@ class Reader implements EventListenerInterface
                 'category_id' => $child->id
             ];
 
-            //$this->_saveTracker($data, $NBunread2);
+            $this->_saveTracker($data, $UnreadSubChil);
 
-            $Unread += $Unread2;
+            $UnreadChildren += $UnreadSubChil;
         }
+
+        $data = [
+            'user_id' => $userId,
+            'category_id' => $children->id
+        ];
+        $this->_saveTracker($data, $UnreadChildren);
+
+        $Unread += $UnreadChildren;
 
         return $Unread;
     }
