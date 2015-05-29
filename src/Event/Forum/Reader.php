@@ -72,7 +72,6 @@ class Reader implements EventListenerInterface
         $userId = $event->data['user_id'];
         $descendants = $event->data['descendants'];
         $category = $event->data['category'];
-        $Unread = 0;
 
         $threads = $this->Threads
             ->find()
@@ -82,18 +81,20 @@ class Reader implements EventListenerInterface
             ])
             ->toArray();
 
+        $unread = 0;
+
         //Check how many threads are unread for this category.
         if (!is_null($threads)) {
             foreach ($threads as $thread) {
                 if (!$this->_checkThreadTracker($userId, $thread)) {
-                    $Unread++;
+                    $unread++;
                 }
             }
         }
 
         //Check how many threads are unread for all childrens of this category.
         foreach ($descendants as $children) {
-            $Unread += $this->_checkChildrens($children, $userId, $Unread);
+            $unread += $this->_checkChildrens($children, $userId, $unread);
         }
 
         $data = [
@@ -101,7 +102,7 @@ class Reader implements EventListenerInterface
             'category_id' => $category->id,
         ];
 
-        return $this->_saveTracker($data, $Unread);
+        return $this->_saveTracker($data, $unread);
     }
 
     /**
@@ -136,11 +137,11 @@ class Reader implements EventListenerInterface
      *
      * @param \App\Model\Entity\ForumThread $children The children that was fired.
      * @param int $userId The user id.
-     * @param int $Unread The number of unread threads.
+     * @param int $unread The number of unread threads.
      *
      * @return mixed
      */
-    protected function _checkChildrens($children, $userId, $Unread)
+    protected function _checkChildrens($children, $userId, $unread)
     {
         $this->Threads = TableRegistry::get('ForumThreads');
         $this->Categories = TableRegistry::get('ForumCategories');
@@ -152,10 +153,10 @@ class Reader implements EventListenerInterface
                 'category_id' => $children->id,
             ]);
 
-        $UnreadChildren = 0;
+        $unreadChildren = 0;
         foreach ($threads as $thread) {
             if (!$this->_checkThreadTracker($userId, $thread)) {
-                $UnreadChildren++;
+                $unreadChildren++;
             }
         }
 
@@ -171,7 +172,7 @@ class Reader implements EventListenerInterface
             ->toArray();
 
         foreach ($childs as $child) {
-            $UnreadSubChil = 0;
+            $unreadSubChil = 0;
 
             $childsThreads = $this->Threads
                 ->find()
@@ -183,7 +184,7 @@ class Reader implements EventListenerInterface
 
             foreach ($childsThreads as $thread) {
                 if (!$this->_checkThreadTracker($userId, $thread)) {
-                    $UnreadSubChil++;
+                    $unreadSubChil++;
                 }
             }
 
@@ -192,31 +193,31 @@ class Reader implements EventListenerInterface
                 'category_id' => $child->id
             ];
 
-            $this->_saveTracker($data, $UnreadSubChil);
+            $this->_saveTracker($data, $unreadSubChil);
 
-            $UnreadChildren += $UnreadSubChil;
+            $unreadChildren += $unreadSubChil;
         }
 
         $data = [
             'user_id' => $userId,
             'category_id' => $children->id
         ];
-        $this->_saveTracker($data, $UnreadChildren);
+        $this->_saveTracker($data, $unreadChildren);
 
-        $Unread += $UnreadChildren;
+        $unread += $unreadChildren;
 
-        return $Unread;
+        return $unread;
     }
 
     /**
      * Save the Categories Trackers.
      *
      * @param int $data The data to use.
-     * @param int $Unread The number of unread threads.
+     * @param int $unread The number of unread threads.
      *
      * @return mixed
      */
-    protected function _saveTracker($data, $Unread)
+    protected function _saveTracker($data, $unread)
     {
         $this->CategoriesTrackers = TableRegistry::get('ForumCategoriesTrackers');
 
@@ -231,7 +232,7 @@ class Reader implements EventListenerInterface
             $tracker = $this->CategoriesTrackers->newEntity($data);
         }
 
-        $tracker->nbunread = $Unread;
+        $tracker->nbunread = $unread;
         $tracker->date = new Time();
 
         if ($this->CategoriesTrackers->save($tracker)) {
