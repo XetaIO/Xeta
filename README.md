@@ -1,4 +1,4 @@
-# Xeta : CakePHP 3 Resource
+# Xeta : CakePHP 3 Resource [OUTDATED]
 <p align="center">
   <img src="https://xeta.io/img/xeta-logo.svg" alt="Xeta Logo" height="120"/>
 </p>
