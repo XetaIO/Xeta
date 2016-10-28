@@ -62,7 +62,7 @@ return [
  *   You should treat it as extremely sensitive data.
  */
     'Security' => [
-        'salt' => env('SECURITY_SALT', 'E456498ffdsDGFD56D1VD85d5645d5fDGHI4Efxvgf8975eeeegGH65554d'),
+        'salt' => env('SECURITY_SALT', '__SALT__'),
     ],
 
 /**
@@ -253,7 +253,7 @@ return [
             'persistent' => false,
             'host' => 'localhost',
             'username' => 'xeta',
-            'password' => '78407a55e88c5ac0',
+            'password' => '',
             'database' => 'xeta',
             'prefix' => false,
             'encoding' => 'utf8',
@@ -286,7 +286,7 @@ return [
         /**
          * The test connection is used during the test suite.
          */
-        'test' => [
+        /*'test' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
@@ -301,7 +301,7 @@ return [
             'quoteIdentifiers' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
             'url' => env('DATABASE_TEST_URL', null)
-        ]
+        ]*/
     ],
 
 /**

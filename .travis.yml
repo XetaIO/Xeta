@@ -35,23 +35,28 @@ matrix:
     - php: 7.0
       env: COVERALLS=1 DEFAULT=0
 
-install:
-  - composer self-update
-  - composer install --prefer-dist --no-interaction
+before_install:
+  - if [ $HHVM != 1 && $TRAVIS_PHP_VERSION != 7.* ]; then phpenv config-rm xdebug.ini; fi
 
-before_script:
+  - if [ $DB = 'mysql' ]; then sudo apt-get -y install mysql-server; fi
   - if [ $DB = 'mysql' ]; then mysql -u root -e 'CREATE DATABASE xeta_test;'; fi
   - if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi
   - if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi
 
+  - if [[ $TRAVIS_PHP_VERSION =~ 5.[56] ]] ; then echo yes | pecl install apcu-4.0.10; fi
+  - if [[ $TRAVIS_PHP_VERSION = 7.0 ]] ; then echo yes | pecl install channel://pecl.php.net/apcu-5.1.5; fi
+
   - phpenv rehash
   - set +H
+
+before_script:
+  - composer install --prefer-dist --no-interaction
 
 script:
   - if [ '$DEFAULT' = '1' ]; then vendor/bin/phpunit; fi
   - if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi
-  - if [ '$COVERALLS' = '1' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
-  - if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi
+  - if [[ '$COVERALLS' = '1' && $TRAVIS_PHP_VERSION = 7.0 ]]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
+  - if [[ '$COVERALLS' = '1' && $TRAVIS_PHP_VERSION = 7.0 ]]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi
 
 notifications:
   email: false

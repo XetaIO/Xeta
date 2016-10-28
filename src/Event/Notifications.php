@@ -1,5 +1,5 @@
 <?php
-namespace App\Event\Forum;
+namespace App\Event;
 
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
