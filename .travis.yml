@@ -38,6 +38,7 @@ matrix:
 before_install:
   - if [ $TRAVIS_PHP_VERSION != 7.* ]; then phpenv config-rm xdebug.ini; fi
 
+  - if [ $DB = 'mysql' ]; then sudo apt-get -y install mysql-server; fi
   - if [ $DB = 'mysql' ]; then mysql -u root -e 'CREATE DATABASE xeta_test;'; fi
 
   - if [[ $TRAVIS_PHP_VERSION =~ 5.[56] ]] ; then echo yes | pecl install apcu-4.0.10; fi

@@ -6,7 +6,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=5.4.16",
+        "php": ">=5.5.9",
         "cakephp/cakephp": "~3.0",
         "cakephp/acl": "dev-master",
         "cakephp/migrations": "~1.0",
@@ -36,13 +36,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Test\\": "tests"
+            "App\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     },
     "scripts": {
         "post-install-cmd": "App\\Console\\Installer::postInstall",
+        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
     },
-    "minimum-stability" : "dev",
+    "minimum-stability" : "beta",
     "prefer-stable": true
 }
