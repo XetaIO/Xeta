@@ -54,7 +54,7 @@ class BlogCell extends Cell
             ->first();
 
         //Select all articles and group them by monthly.
-        $archives = $this->BlogArticles
+        /*$archives = $this->BlogArticles
             ->find('all')
             ->select([
                 'date' => 'DATE(created)',
@@ -67,7 +67,8 @@ class BlogCell extends Cell
             ->where([
                 'is_display' => 1
             ])
-            ->toArray();
+            ->toArray();*/
+        $archives = [];
 
         $this->set(compact('categories', 'featured', 'archives', 'articleSearch'));
     }

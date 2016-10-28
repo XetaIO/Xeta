@@ -11,6 +11,23 @@ class AppController extends Controller
 {
 
     /**
+     * Initialization hook method.
+     *
+     * Use this method to add common initialization code like loading components.
+     *
+     * e.g. `$this->loadComponent('Security');`
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+    }
+
+    /**
      * Components.
      *
      * @var array
@@ -90,6 +107,21 @@ class AppController extends Controller
     ];
 
     /**
+     * Before render callback.
+     *
+     * @param \Cake\Event\Event $event The beforeRender event.
+     * @return \Cake\Network\Response|null|void
+     */
+    public function beforeRender(Event $event)
+    {
+        if (!array_key_exists('_serialize', $this->viewVars) &&
+            in_array($this->response->type(), ['application/json', 'application/xml'])
+        ) {
+            $this->set('_serialize', true);
+        }
+    }
+
+    /**
      * beforeFilter handle.
      *
      * @param Event $event The beforeFilter event that was fired.
@@ -162,13 +194,9 @@ class AppController extends Controller
         if (isset($this->request->params['prefix'])) {
             $prefix = explode('/', $this->request->params['prefix'])[0];
 
-            switch($prefix) {
+            switch ($prefix) {
                 case 'admin':
                     $this->layout = 'admin';
-                    break;
-
-                case 'forum':
-                    $this->layout = 'forum';
                     break;
             }
         }

@@ -1,13 +1,34 @@
 <?php
 
 use Cake\Core\Plugin;
+use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 Router::extensions(['json', 'xml']);
-Router::defaultRouteClass('InflectedRoute');
+
+/**
+ * The default class to use for all routes
+ *
+ * The following route classes are supplied with CakePHP and are appropriate
+ * to set as the default:
+ *
+ * - Route
+ * - InflectedRoute
+ * - DashedRoute
+ *
+ * If no call is made to `Router::defaultRouteClass()`, the class used is
+ * `Route` (`Cake\Routing\Route\Route`)
+ *
+ * Note that `Route` does not do any inflections on URLs which will result in
+ * inconsistently cased URLs when used with `:plugin`, `:controller` and
+ * `:action` markers.
+ *
+ */
+Router::defaultRouteClass(DashedRoute::class);
 
 //Public routes.
-Router::scope('/', function ($routes) {
+Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect(
         '/:lang/pages/lang',
@@ -283,236 +304,8 @@ Router::scope('/', function ($routes) {
     $routes->fallbacks();
 });
 
-//Chat routes.
-Router::prefix('chat', function ($routes) {
-    $routes->fallbacks();
-});
-
-//Forum routes.
-Router::prefix('forum', function ($routes) {
-
-    $routes->connect(
-        '/',
-        [
-            'controller' => 'forum',
-            'action' => 'index'
-        ]
-    );
-
-    $routes->connect(
-        '/home',
-        [
-            'controller' => 'forum',
-            'action' => 'home'
-        ]
-    );
-
-    //Forum Routes.
-    $routes->connect(
-        '/categories/:slug.:id',
-        [
-            'controller' => 'forum',
-            'action' => 'categories'
-        ],
-        [
-            '_name' => 'forum-categories',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/:slug.:id',
-        [
-            'controller' => 'forum',
-            'action' => 'threads'
-        ],
-        [
-            '_name' => 'forum-threads',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    //Threads Routes
-    $routes->connect(
-        '/threads/create/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'create'
-        ],
-        [
-            '_name' => 'threads-create',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/edit/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'edit'
-        ],
-        [
-            '_name' => 'threads-edit',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/reply/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'reply'
-        ],
-        [
-            '_name' => 'threads-reply',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/lock/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'lock'
-        ],
-        [
-            '_name' => 'threads-lock',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/unlock/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'unlock'
-        ],
-        [
-            '_name' => 'threads-unlock',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/follow/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'follow'
-        ],
-        [
-            '_name' => 'threads-follow',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/threads/unfollow/:slug.:id',
-        [
-            'controller' => 'threads',
-            'action' => 'unfollow'
-        ],
-        [
-            '_name' => 'threads-unfollow',
-            'routeClass' => 'SlugRoute',
-            'pass' => [
-                'id',
-                'slug'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    //Posts Routes.
-    $routes->connect(
-        '/posts/edit/:id',
-        [
-            'controller' => 'posts',
-            'action' => 'edit'
-        ],
-        [
-            '_name' => 'posts-edit',
-            'pass' => [
-                'id'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/posts/delete/:id',
-        [
-            'controller' => 'posts',
-            'action' => 'delete'
-        ],
-        [
-            '_name' => 'posts-delete',
-            'pass' => [
-                'id'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->connect(
-        '/posts/quote/:id',
-        [
-            'controller' => 'posts',
-            'action' => 'quote'
-        ],
-        [
-            '_name' => 'posts-quote',
-            'pass' => [
-                'id'
-            ],
-            'id' => '[0-9]+'
-        ]
-    );
-
-    $routes->fallbacks();
-});
-
 //Admin routes.
-Router::prefix('admin', function ($routes) {
+Router::prefix('admin', function (RouteBuilder $routes) {
     $routes->connect(
         '/',
         [
@@ -692,7 +485,7 @@ Router::prefix('admin', function ($routes) {
     /**
      * Premium Routes.
      */
-    $routes->prefix('premium', function ($routes) {
+    $routes->prefix('premium', function (RouteBuilder $routes) {
         $routes->connect(
             '/',
             [
@@ -748,71 +541,6 @@ Router::prefix('admin', function ($routes) {
         $routes->fallbacks();
     });
 
-    /**
-     * Forum Routes.
-     */
-    $routes->prefix('forum', function ($routes) {
-
-        //Forum/Categories Routes.
-        $routes->connect(
-            '/categories/moveup/:id',
-            [
-                'controller' => 'categories',
-                'action' => 'moveup',
-            ],
-            [
-                '_name' => 'forum-categories-moveup',
-                'pass' => [
-                    'id'
-                ]
-            ]
-        );
-
-        $routes->connect(
-            '/categories/movedown/:id',
-            [
-                'controller' => 'categories',
-                'action' => 'movedown',
-            ],
-            [
-                '_name' => 'forum-categories-movedown',
-                'pass' => [
-                    'id'
-                ]
-            ]
-        );
-
-        $routes->connect(
-            '/categories/edit/:id',
-            [
-                'controller' => 'categories',
-                'action' => 'edit',
-            ],
-            [
-                '_name' => 'forum-categories-edit',
-                'pass' => [
-                    'id'
-                ]
-            ]
-        );
-
-        $routes->connect(
-            '/categories/delete/:id',
-            [
-                'controller' => 'categories',
-                'action' => 'delete',
-            ],
-            [
-                '_name' => 'forum-categories-delete',
-                'pass' => [
-                    'id'
-                ]
-            ]
-        );
-
-        $routes->fallbacks();
-    });
-
     $routes->fallbacks();
 });
 
@@ -820,4 +548,4 @@ Router::prefix('admin', function ($routes) {
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.
  */
-    Plugin::routes();
+Plugin::routes();

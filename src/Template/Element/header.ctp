@@ -22,11 +22,6 @@
                         <span data-hover="<?=__("Blog") ?>"><?= __("Blog") ?></span>
                     </a>
                 </li>
-                <?= (isset($this->request->params['prefix']) && strtolower($this->request->params['prefix']) == 'forum') ? '<li class="active">' : '<li>' ?>
-                    <a href="<?= $this->Url->build(['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum']) ?>">
-                        <span data-hover="<?=__("Forum") ?>"><?= __("Forum") ?></span>
-                    </a>
-                </li>
                 <?= (strtolower($this->request->params['controller']) == 'premium') ? '<li class="active">' : '<li>' ?>
                     <a href="<?= $this->Url->build(['controller' => 'premium', 'action' => 'index', 'prefix' => false]) ?>">
                         <span data-hover="<?=__("Premium") ?>"><?= __("Premium") ?></span>

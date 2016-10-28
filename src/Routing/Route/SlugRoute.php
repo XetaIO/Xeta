@@ -24,9 +24,9 @@ class SlugRoute extends Route
      *
      * @return mixed false on failure, or an array of request parameters.
      */
-    public function parse($url)
+    public function parse($url, $method = '')
     {
-        $params = parent::parse($url);
+        $params = parent::parse($url, $method);
         if (!$params) {
             return false;
         }

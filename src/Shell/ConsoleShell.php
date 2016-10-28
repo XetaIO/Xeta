@@ -7,20 +7,20 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         3.0.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link      http://cakephp.org CakePHP(tm) Project
+ * @since     3.0.0
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Shell;
 
-use Boris\Boris;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Console\Shell;
 use Cake\Log\Log;
+use Psy\Shell as PsyShell;
 
 /**
- * Simple console wrapper around Boris.
+ * Simple console wrapper around Psy\Shell.
  */
 class ConsoleShell extends Shell
 {
@@ -28,29 +28,26 @@ class ConsoleShell extends Shell
     /**
      * Start the shell and interactive console.
      *
-     * @return string|void
+     * @return int|null
      */
     public function main()
     {
-        if (!class_exists('Boris\Boris')) {
-            $this->err('<error>Unable to load Boris\Boris.</error>');
+        if (!class_exists('Psy\Shell')) {
+            $this->err('<error>Unable to load Psy\Shell.</error>');
             $this->err('');
-            $this->err('Make sure you have installed boris as a dependency,');
-            $this->err('and that Boris\Boris is registered in your autoloader.');
+            $this->err('Make sure you have installed psysh as a dependency,');
+            $this->err('and that Psy\Shell is registered in your autoloader.');
             $this->err('');
             $this->err('If you are using composer run');
             $this->err('');
-            $this->err('<info>$ php composer.phar require d11wtq/boris</info>');
+            $this->err('<info>$ php composer.phar require --dev psy/psysh</info>');
             $this->err('');
-            return 1;
+
+            return self::CODE_ERROR;
         }
-        if (!function_exists('pcntl_signal')) {
-            $this->err('<error>No process control functions.</error>');
-            $this->err('');
-            $this->err('You are missing the pcntl extension, the interactive console requires this extension.');
-            return 2;
-        }
-        $this->out('You can exit with <info>CTRL-D</info>');
+
+        $this->out("You can exit with <info>`CTRL-C`</info> or <info>`exit`</info>");
+        $this->out('');
 
         Log::drop('debug');
         Log::drop('error');
@@ -58,28 +55,27 @@ class ConsoleShell extends Shell
         restore_error_handler();
         restore_exception_handler();
 
-        $boris = new Boris('app > ');
-        $boris->start();
+        $psy = new PsyShell();
+        $psy->run();
     }
 
     /**
      * Display help for this console.
      *
-     * @return ConsoleOptionParser
+     * @return \Cake\Console\ConsoleOptionParser
      */
     public function getOptionParser()
     {
-        $parser = new ConsoleOptionParser('console', false);
+        $parser = new ConsoleOptionParser('console');
         $parser->description(
             'This shell provides a REPL that you can use to interact ' .
             'with your application in an interactive fashion. You can use ' .
             'it to run adhoc queries with your models, or experiment ' .
             'and explore the features of CakePHP and your application.' .
             "\n\n" .
-            'You will need to have boris installed for this Shell to work. ' .
-            'Boris is known to not work well on windows due to dependencies on ' .
-            'readline and posix.'
+            'You will need to have psysh installed for this Shell to work.'
         );
+
         return $parser;
     }
 }

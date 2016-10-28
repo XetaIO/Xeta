@@ -1,26 +1,40 @@
 language: php
 
+dist: trusty
+
+sudo: false
+
 php:
   - 5.5
   - 5.6
+  - 7.0
+  - 7.1
 
 env:
   matrix:
     - DB=mysql db_dsn='mysql://travis@0.0.0.0/xeta_test'
+    - DB=sqlite db_dsn='sqlite:///:memory:'
   global:
     - DEFAULT=1
 
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
 matrix:
-  allow_failures:
-    - php: 5.5
-      env: COVERALLS=1 DEFAULT=0
   fast_finish: true
+
+  allow_failures:
+    - php: 7.1
+      env: COVERALLS=1 DEFAULT=0
+
   include:
-    - php: 5.5
+    - php: 7.0
       env: DB=sqlite db_dsn='sqlite:///:memory:'
-    - php: 5.5
+    - php: 7.0
       env: PHPCS=1 DEFAULT=0
-    - php: 5.5
+    - php: 7.0
       env: COVERALLS=1 DEFAULT=0
 
 install:
@@ -28,17 +42,21 @@ install:
   - composer install --prefer-dist --no-interaction
 
 before_script:
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE xeta_test;'; fi"
-  - sh -c "if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi"
-  - sh -c "if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi"
+  - if [ $TRAVIS_PHP_VERSION != 7.* ]; then phpenv config-rm xdebug.ini; fi
+
+  - if [ $DB = 'mysql' ]; then sudo apt-get -y install mysql-server; fi
+  - if [ $DB = 'mysql' ]; then mysql -u root -e 'CREATE DATABASE xeta_test;'; fi
+  - if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi
+  - if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi
+
   - phpenv rehash
   - set +H
 
 script:
-  - sh -c "if [ '$DEFAULT' = '1' ]; then phpunit; fi"
-  - sh -c "if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi"
-  - sh -c "if [ '$COVERALLS' = '1' ]; then phpunit --coverage-clover build/logs/clover.xml; fi"
-  - sh -c "if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi"
+  - if [ '$DEFAULT' = '1' ]; then vendor/bin/phpunit; fi
+  - if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi
+  - if [ '$COVERALLS' = '1' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
+  - if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi
 
 notifications:
   email: false
