@@ -2,8 +2,7 @@
 namespace App\Controller;
 
 use App\Event\Badges;
-use App\Event\Forum\Notifications;
-use App\Event\Forum\Statistics;
+use App\Event\Notifications;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -81,7 +80,6 @@ class UsersController extends AppController
 
             switch ($method) {
                 case "login":
-
                     $userLogin = $this->Auth->identify();
 
                     if ($userLogin) {
@@ -135,7 +133,6 @@ class UsersController extends AppController
                     break;
 
                 case "register":
-
                     $userRegister->register_ip = $this->request->clientIp();
                     $userRegister->last_login_ip = $this->request->clientIp();
                     $userRegister->last_login = new Time();
@@ -255,7 +252,6 @@ class UsersController extends AppController
 
             switch ($method) {
                 case "email":
-
                     if (!isset($this->request->data['email'])) {
                         $this->set(compact('user', 'oldEmail'));
                         return $this->redirect(['action' => 'settings']);
@@ -271,7 +267,6 @@ class UsersController extends AppController
                     break;
 
                 case "password":
-
                     $data = $this->request->data;
                     if (!isset($data['old_password']) || !isset($data['password']) || !isset($data['password_confirm'])) {
                         $this->set(compact('user', 'oldEmail'));
@@ -321,26 +316,6 @@ class UsersController extends AppController
                             }
                         ])
                         ->order(['BlogArticlesComments.created' => 'DESC']);
-                },
-                'ForumThreads' => function ($q) {
-                    return $q
-                        ->limit(Configure::read('User.Profile.max_forum_threads'))
-                        ->contain([
-                            'FirstPosts' => function ($q) {
-                                return $q->select(['id', 'message', 'thread_id']);
-                            }
-                        ])
-                        ->order(['ForumThreads.created' => 'DESC']);
-                },
-                'ForumPosts' => function ($q) {
-                    return $q
-                        ->limit(Configure::read('User.Profile.max_forum_posts'))
-                        ->contain([
-                            'ForumThreads' => function ($q) {
-                                return $q->select(['id', 'title']);
-                            }
-                        ])
-                        ->order(['ForumPosts.created' => 'DESC']);
                 },
                 'BadgesUsers' => function ($q) {
                     return $q

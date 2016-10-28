@@ -1,9 +1,8 @@
 <?php
 namespace App\Event;
 
-use App\Event\Forum\Notifications;
+use App\Event\Notifications;
 use App\Model\Entity\BlogArticlesComment;
-use App\Model\Entity\ForumPost;
 use App\Model\Entity\User;
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
@@ -44,65 +43,8 @@ class Badges implements EventListenerInterface
         return [
             'Model.BlogArticlesComments.add' => 'commentsBadge',
             'Model.Users.register' => 'registerBadge',
-            'Model.Users.premium' => 'premiumBadge',
-            'Model.ForumPosts.reply' => 'postsReplyBadge'
+            'Model.Users.premium' => 'premiumBadge'
         ];
-    }
-
-    /**
-     * Unlock all badges related to the posts in the Forum.
-     *
-     * @param \Cake\Event\Event $event The Model.ForumPosts.reply event that was fired.
-     *
-     * @return bool
-     */
-    public function postsReplyBadge(Event $event)
-    {
-        $this->Badges = TableRegistry::get('Badges');
-
-        if (!$event->data['post'] instanceof ForumPost) {
-            return false;
-        }
-
-        $badges = $this->Badges
-            ->find('all')
-            ->select([
-                'id',
-                'name',
-                'picture',
-                'rule'
-            ])
-            ->where([
-                'type' => 'postsForum'
-            ])
-            ->hydrate(false)
-            ->toArray();
-
-        if (empty($badges)) {
-            return true;
-        }
-
-        $this->Users = TableRegistry::get('Users');
-
-        $userId = $event->data['post']->user_id;
-
-        $user = $this->Users
-            ->find()
-            ->where([
-                'id' => $userId
-            ])
-            ->select([
-                'forum_post_count'
-            ])
-            ->first();
-
-        foreach ($badges as $badge) {
-            if ($user['forum_post_count'] >= $badge['rule']) {
-                $this->_unlockBadge($badge, $userId);
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -313,7 +255,7 @@ class Badges implements EventListenerInterface
                 'badge' => $badge
             ]
         ]);
-        
+
         EventManager::instance()->attach(new Notifications());
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'badge',

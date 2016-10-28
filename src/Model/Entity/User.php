@@ -18,7 +18,9 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true
+        '*' => true,
+        'id' => false,
+        'group_id' => false
     ];
 
     /**

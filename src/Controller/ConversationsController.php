@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Event\Forum\Notifications;
+use App\Event\Notifications;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -122,7 +122,7 @@ class ConversationsController extends AppController
         $action = $this->request->data['action'];
         $array = $this->request->data['conversations'];
 
-        switch($action) {
+        switch ($action) {
             case "star":
                 foreach ($array as $conversationId) {
                     $this->ConversationsUsers->updateAll(
@@ -330,7 +330,7 @@ class ConversationsController extends AppController
 
                     //Notifications Event.
                     $this->eventManager()->attach(new Notifications());
-                    $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                    $event = new Event('Model.Notifications.dispatch', $this, [
                         'sender_id' => $this->Auth->user('id'),
                         'conversation_id' => $conversation->id,
                         'type' => 'conversation.reply'
@@ -480,7 +480,6 @@ class ConversationsController extends AppController
     {
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
-
         }
 
         $this->loadModel('ConversationsMessages');
@@ -875,7 +874,7 @@ EOT;
 
                 //Notifications Event.
                 $this->eventManager()->attach(new Notifications());
-                $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                $event = new Event('Model.Notifications.dispatch', $this, [
                     'sender_id' => $this->Auth->user('id'),
                     'conversation_id' => $conversation->id,
                     'type' => 'conversation.reply'
@@ -1101,7 +1100,6 @@ EOT;
             $this->Flash->success(__d('conversations', 'You have left the conversation successfully.'));
 
             return $this->redirect(['controller' => 'conversations', 'action' => 'index']);
-
         } else {
             $this->Flash->error(__d('conversations', 'You can not leave your own conversation.'));
 

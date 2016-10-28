@@ -72,26 +72,6 @@ class UsersTable extends Table
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
         ]);
-        $this->hasMany('ForumThreads', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumPosts', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumPostsLikes', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumThreadsFollowers', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
         $this->hasMany('Notifications', [
             'foreignKey' => 'user_id',
             'dependent' => true,
@@ -403,9 +383,6 @@ class UsersTable extends Table
             'avatar',
             'slug',
             'group_id',
-            'forum_post_count',
-            'forum_thread_count',
-            'forum_like_received',
             'blog_articles_comment_count',
             'blog_article_count',
             'facebook',

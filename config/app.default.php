@@ -9,7 +9,7 @@ return [
  * Development Mode:
  * true: Errors and warnings shown.
  */
-	'debug' => true,
+    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
 
 /**
  * Configure basic information about the application.
@@ -34,24 +34,25 @@ return [
  *   `plugins` and `templates` subkeys, which allow the definition of paths for
  *   plugins and view templates respectively.
  */
-	'App' => [
-		'namespace' => 'App',
-		'encoding' => 'UTF-8',
-		'base' => false,
-		'dir' => 'src',
-		'webroot' => 'webroot',
-		'www_root' => WWW_ROOT,
-		// 'baseUrl' => env('SCRIPT_NAME'),
-		'fullBaseUrl' => false,
-		'imageBaseUrl' => 'img/',
-		'cssBaseUrl' => 'css/',
-		'jsBaseUrl' => 'js/',
-		'paths' => [
-			'plugins' => [ROOT . DS . 'plugins' . DS],
-			'templates' => [APP . 'Template' . DS],
-			'locales' => [APP . 'Locale' . DS],
-		],
-	],
+    'App' => [
+        'namespace' => 'App',
+        'encoding' => env('APP_ENCODING', 'UTF-8'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'fr_FR'),
+        'base' => false,
+        'dir' => 'src',
+        'webroot' => 'webroot',
+        'wwwRoot' => WWW_ROOT,
+        // 'baseUrl' => env('SCRIPT_NAME'),
+        'fullBaseUrl' => false,
+        'imageBaseUrl' => 'img/',
+        'cssBaseUrl' => 'css/',
+        'jsBaseUrl' => 'js/',
+        'paths' => [
+            'plugins' => [ROOT . DS . 'plugins' . DS],
+            'templates' => [APP . 'Template' . DS],
+            'locales' => [APP . 'Locale' . DS],
+        ]
+    ],
 
 /**
  * Security and encryption configuration
@@ -60,9 +61,9 @@ return [
  *   The salt value is also used as the encryption key.
  *   You should treat it as extremely sensitive data.
  */
-	'Security' => [
-		'salt' => '__SALT__',
-	],
+    'Security' => [
+        'salt' => env('SECURITY_SALT', 'E456498ffdsDGFD56D1VD85d5645d5fDGHI4Efxvgf8975eeeegGH65554d'),
+    ],
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -72,102 +73,86 @@ return [
  * Set to true to apply timestamps when debug is true. Set to 'force' to always
  * enable timestamping regardless of debug value.
  */
-	'Asset' => [
-		// 'timestamp' => true,
-	],
+    'Asset' => [
+        // 'timestamp' => true,
+    ],
 
 /**
 * Acl configuration.
 */
-	'Acl' => [
-		'classname' => 'CachedDbAcl',
-		'cacheConfig' => 'acl'
-	],
+    'Acl' => [
+        'classname' => 'CachedDbAcl',
+        'cacheConfig' => 'acl'
+    ],
 
 /**
  * Configure the cache adapters.
  */
-	'Cache' => [
-		'default' => [
-			'className' => 'File',
-			'path' => CACHE,
-		],
-	/**
-	 * Configure the cache used for storing the chat request.
-	 */
-		'chat' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_chat_',
-			'path' => CACHE . 'chat/',
-			'duration' => '+999 days',
-		],
+    'Cache' => [
+        'default' => [
+            'className' => 'File',
+            'path' => CACHE,
+            'url' => env('CACHE_DEFAULT_URL', null)
+        ],
 
-	/**
-	 * Configure the cache used for storing the acl request.
-	 */
-		'acl' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_acl_',
-			'path' => CACHE . 'acl/',
-			'duration' => '+1 days',
-		],
+    /**
+     * Configure the cache used for storing the acl request.
+     */
+        'acl' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_acl_',
+            'path' => CACHE . 'acl/',
+            'duration' => '+1 days',
+        ],
 
-	/**
-	 * Configure the cache used for storing the statistics request for Forum.
-	 */
-		'forum' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_forum_',
-			'path' => CACHE . 'views/',
-			'duration' => '+1 days',
-		],
+    /**
+     * Configure the cache used for storing the request on Google Analytics.
+     */
+        'analytics' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_analytics_',
+            'path' => CACHE . 'views/',
+            'duration' => '+1 hours',
+        ],
 
-	/**
-	 * Configure the cache used for storing the request on Google Analytics.
-	 */
-		'analytics' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_analytics_',
-			'path' => CACHE . 'views/',
-			'duration' => '+1 hours',
-		],
+    /**
+     * Configure the cache used for short caching.
+     */
+        'short' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_short_',
+            'path' => CACHE . 'views/',
+            'duration' => '+1 hours',
+        ],
 
-	/**
-	 * Configure the cache used for short caching.
-	 */
-		'short' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_short_',
-			'path' => CACHE . 'views/',
-			'duration' => '+1 hours',
-		],
+    /**
+     * Configure the cache used for general framework caching. Path information,
+     * object listings, and translation cache files are stored with this
+     * configuration.
+     */
+        '_cake_core_' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_core_',
+            'path' => CACHE . 'persistent/',
+            'serialize' => true,
+            'duration' => '+2 minutes',
+            'url' => env('CACHE_CAKECORE_URL', null)
+        ],
 
-	/**
-	 * Configure the cache used for general framework caching. Path information,
-	 * object listings, and translation cache files are stored with this
-	 * configuration.
-	 */
-		'_cake_core_' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_core_',
-			'path' => CACHE . 'persistent/',
-			'serialize' => true,
-			'duration' => '+2 minutes',
-		],
-
-	/**
-	 * Configure the cache for model and datasource caches. This cache
-	 * configuration is used to store schema descriptions, and table listings
-	 * in connections.
-	 */
-		'_cake_model_' => [
-			'className' => 'File',
-			'prefix' => 'Xeta_model_',
-			'path' => CACHE . 'models/',
-			'serialize' => true,
-			'duration' => '+2 minutes',
-		],
-	],
+    /**
+     * Configure the cache for model and datasource caches. This cache
+     * configuration is used to store schema descriptions, and table listings
+     * in connections.
+     */
+        '_cake_model_' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_model_',
+            'path' => CACHE . 'models/',
+            'serialize' => true,
+            'duration' => '+2 minutes',
+            'url' => env('CACHE_CAKEMODEL_URL', null)
+        ],
+    ],
 
 /**
  * Configure the Error and Exception handlers used by your application.
@@ -194,13 +179,13 @@ return [
  *   extend one of the listed exceptions will also be skipped for logging.
  *   E.g.: `'skipLog' => ['Cake\Error\NotFoundException', 'Cake\Error\UnauthorizedException']`
  */
-	'Error' => [
-		'errorLevel' => E_ALL & ~E_DEPRECATED,
-		'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
-		'skipLog' => [],
-		'log' => true,
-		'trace' => true,
-	],
+    'Error' => [
+        'errorLevel' => E_ALL,
+        'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
+        'skipLog' => [],
+        'log' => true,
+        'trace' => true,
+    ],
 
 /**
  * Email configuration.
@@ -233,108 +218,117 @@ return [
  * easier. Each profile accepts a number of keys. See `Cake\Network\Email\Email`
  * for more information.
  */
-	'EmailTransport' => [
-		'default' => [
-			'className' => 'Mail',
-			// The following keys are used in SMTP transports
-			'host' => 'localhost',
-			'port' => 25,
-			'timeout' => 30,
-			'username' => 'user',
-			'password' => 'secret',
-			'client' => null,
-			'tls' => null,
-		],
-	],
+    'EmailTransport' => [
+        'default' => [
+            'className' => 'Mail',
+            // The following keys are used in SMTP transports
+            'host' => 'localhost',
+            'port' => 25,
+            'timeout' => 30,
+            'username' => 'user',
+            'password' => 'secret',
+            'client' => null,
+            'tls' => null,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null)
+        ],
+    ],
 
-	'Email' => [
-		'default' => [
-			'transport' => 'default',
-			'from' => 'you@localhost',
-			'charset' => 'utf-8',
-			'headerCharset' => 'utf-8',
-		],
-	],
+    'Email' => [
+        'default' => [
+            'transport' => 'default',
+            'from' => 'no-reply@xeta.io',
+            'charset' => 'utf-8',
+            'headerCharset' => 'utf-8',
+        ],
+    ],
 
 /**
  * Connection information used by the ORM to connect
  * to your application's datastores.
  */
-	'Datasources' => [
-		'default' => [
-			'className' => 'Cake\Database\Connection',
-			'driver' => 'Cake\Database\Driver\Mysql',
-			'persistent' => false,
-			'host' => 'localhost',
-			'username' => 'root',
-			'password' => '',
-			'database' => '__DATABASE__',
-			'prefix' => false,
-			'encoding' => 'utf8',
-			'timezone' => 'UTC',
-			'cacheMetadata' => true,
+    'Datasources' => [
+        'default' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => 'localhost',
+            'username' => 'xeta',
+            'password' => '78407a55e88c5ac0',
+            'database' => 'xeta',
+            'prefix' => false,
+            'encoding' => 'utf8',
+            'timezone' => 'UTC',
+            'cacheMetadata' => true,
+            'flags' => [],
 
-			/*
-			* Set identifier quoting to true if you are using reserved words or
-			* special characters in your table or column names. Enabling this
-			* setting will result in queries built using the Query Builder having
-			* identifiers quoted when creating SQL. It should be noted that this
-			* decreases performance because each query needs to be traversed and
-			* manipulated before being executed.
-			*/
-			'quoteIdentifiers' => false,
+            /*
+            * Set identifier quoting to true if you are using reserved words or
+            * special characters in your table or column names. Enabling this
+            * setting will result in queries built using the Query Builder having
+            * identifiers quoted when creating SQL. It should be noted that this
+            * decreases performance because each query needs to be traversed and
+            * manipulated before being executed.
+            */
+            'quoteIdentifiers' => false,
 
-			/*
-			* During development, if using MySQL < 5.6, uncommenting the
-			* following line could boost the speed at which schema metadata is
-			* fetched from the database. It can also be set directly with the
-			* mysql configuration directive 'innodb_stats_on_metadata = 0'
-			* which is the recommended value in production enviroments
-			*/
-			//'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-		],
+            /*
+            * During development, if using MySQL < 5.6, uncommenting the
+            * following line could boost the speed at which schema metadata is
+            * fetched from the database. It can also be set directly with the
+            * mysql configuration directive 'innodb_stats_on_metadata = 0'
+            * which is the recommended value in production enviroments
+            */
+            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
 
-		/**
-		 * The test connection is used during the test suite.
-		 */
-		/*'test' => [
-			'className' => 'Cake\Database\Connection',
-			'driver' => 'Cake\Database\Driver\Mysql',
-			'persistent' => false,
-			'host' => 'localhost',
-			'username' => 'my_app',
-			'password' => 'secret',
-			'database' => 'test_myapp',
-			'prefix' => false,
-			'encoding' => 'utf8',
-			'timezone' => 'UTC',
-			'cacheMetadata' => true,
-			'quoteIdentifiers' => false,
-			//'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-		],*/
-	],
+            'url' => env('DATABASE_URL', null)
+        ],
+
+        /**
+         * The test connection is used during the test suite.
+         */
+        'test' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => 'localhost',
+            'username' => 'my_app',
+            'password' => 'secret',
+            'database' => 'test_myapp',
+            'prefix' => false,
+            'encoding' => 'utf8',
+            'timezone' => 'UTC',
+            'cacheMetadata' => true,
+            'quoteIdentifiers' => false,
+            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            'url' => env('DATABASE_TEST_URL', null)
+        ]
+    ],
 
 /**
  * Configures logging options
  */
-	'Log' => [
-		'paypal' => [
-			'className' => 'Cake\Log\Engine\FileLog',
-			'file' => 'paypal',
-			'levels' => [],
-			'scopes' => ['paypal']
-		],
-		'debug' => [
-			'className' => 'Cake\Log\Engine\FileLog',
-			'file' => 'debug',
-			'levels' => ['notice', 'info', 'debug'],
-		],
-		'error' => [
-			'className' => 'Cake\Log\Engine\FileLog',
-			'file' => 'error',
-			'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
-		],
-	],
+    'Log' => [
+        'paypal' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'file' => 'paypal',
+            'levels' => [],
+            'scopes' => ['paypal']
+        ],
+        'debug' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'debug',
+            'levels' => ['notice', 'info', 'debug'],
+            'url' => env('LOG_DEBUG_URL', null),
+        ],
+        'error' => [
+            'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
+            'file' => 'error',
+            'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
+            'url' => env('LOG_ERROR_URL', null),
+        ],
+    ],
 
 /**
  *
@@ -374,49 +368,49 @@ return [
  *
  * To use database sessions, load the SQL file located at config/Schema/sessions.sql
  */
-	'Session' => [
-		'defaults' => 'database',
-		'cookie' => 'Xeta',
-		'handler' => [
-			'model' => 'Sessions',
-			'timeoutOnline' => 5
-		],
-		'timeout' => 160
-	],
+    'Session' => [
+        'defaults' => 'database',
+        'cookie' => 'Xeta',
+        'handler' => [
+            'model' => 'Sessions',
+            'timeoutOnline' => 5
+        ],
+        'timeout' => 160
+    ],
 
 /**
  * Google Analytics configuration.
  *
  * More information on how to configure : https://github.com/widop/google-analytics/blob/master/doc/usage.md
  */
-	'Analytics' => [
-		'enabled' => false,
+    'Analytics' => [
+        'enabled' => false,
 
-		/**
-		 * A \DateTime used to set since when we should get the information.
-		 *
-		 * Exemple format :
-		 * - 'Y-m-d' : 2014-08-01
-		 *
-		 * More information : http://php.net/manual/fr/datetime.construct.php
-		 */
-		'start_date' => '',
-		'client_id' => '',
-		'profile_id' => '',
-		'private_key' => ''
-	],
+        /**
+         * A \DateTime used to set since when we should get the information.
+         *
+         * Exemple format :
+         * - 'Y-m-d' : 2014-08-01
+         *
+         * More information : http://php.net/manual/fr/datetime.construct.php
+         */
+        'start_date' => '',
+        'client_id' => '',
+        'profile_id' => '',
+        'private_key' => ''
+    ],
 
 /**
  * Paypal configuration for Premium. (Classic API credentials)
  *
  * More information : https://developer.paypal.com/docs/classic/api/apiCredentials/
  */
-	'Paypal' => [
-		'mail' => '',
-		'user' => '',
-		'pwd' => '',
-		'signature' => '',
-		//Enable/Disable sandbox
-		'sandbox' => false
-	]
+    'Paypal' => [
+        'mail' => '',
+        'user' => '',
+        'pwd' => '',
+        'signature' => '',
+        //Enable/Disable sandbox
+        'sandbox' => false
+    ]
 ];
