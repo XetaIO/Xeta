@@ -1,59 +1,44 @@
 language: php
 
-dist: trusty
-
-sudo: required
-
 php:
   - 5.5
   - 5.6
-  - 7.0
-  - 7.1
 
 env:
   matrix:
-    - DB=mysql db_dsn='mysql://root@0.0.0.0/xeta_test'
-    - DB=sqlite db_dsn='sqlite:///:memory:'
+    - DB=mysql db_dsn='mysql://travis@0.0.0.0/xeta_test'
   global:
     - DEFAULT=1
 
 matrix:
-  fast_finish: true
-
   allow_failures:
-    - php: 7.1
-    - php: 7.0
+    - php: 5.5
       env: COVERALLS=1 DEFAULT=0
-
+  fast_finish: true
   include:
-    - php: 7.0
+    - php: 5.5
+      env: DB=sqlite db_dsn='sqlite:///:memory:'
+    - php: 5.5
       env: PHPCS=1 DEFAULT=0
-    - php: 7.0
+    - php: 5.5
       env: COVERALLS=1 DEFAULT=0
 
-before_install:
-  - if [ $TRAVIS_PHP_VERSION != 7.* ]; then phpenv config-rm xdebug.ini; fi
+install:
+  - composer self-update
+  - composer install --prefer-dist --no-interaction
 
-  - if [ $DB = 'mysql' ]; then sudo apt-get -y install mysql-server; fi
-  - if [ $DB = 'mysql' ]; then mysql -u root -e 'CREATE DATABASE xeta_test;'; fi
-
+before_script:
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE xeta_test;'; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi"
   - phpenv rehash
   - set +H
 
-before_script:
-  - composer install --prefer-dist --no-interaction
-  - if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi
-  - if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi
-
 script:
-  - if [ '$DEFAULT' = '1' ]; then phpunit --stderr; fi
-  - if [ '$DEFAULT' = '1' ]; then phpunit; fi
-  - if [ '$DEFAULT' = '1' ]; then vendor/bin/phpunit; fi
-  - if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi
-
-after_success:
-  - if [[ '$COVERALLS' = '1' && $TRAVIS_PHP_VERSION = 7.0 ]]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
-  - if [[ '$COVERALLS' = '1' && $TRAVIS_PHP_VERSION = 7.0 ]]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi
+  - sh -c "if [ '$DEFAULT' = '1' ]; then phpunit; fi"
+  - sh -c "if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then phpunit --coverage-clover build/logs/clover.xml; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi"
 
 notifications:
   email: false
