@@ -3,13 +3,9 @@
   <img src="https://xeta.io/img/xeta-logo.svg" alt="Xeta Logo" height="120"/>
 </p>
 
-|Travis|Appveyor|Coverage|Landscape|Scrutinizer|
-|:------:|:-------:|:-------:|:------:|:------:|
-|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Build Status](https://img.shields.io/appveyor/ci/Xety/Xeta.svg?style=flat-square)](https://ci.appveyor.com/project/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Code Health](https://landscape.io/github/Xety/Xeta/master/landscape.svg?style=flat-square)](https://landscape.io/github/Xety/Xeta/master)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|
-
-|Stable Version|Downloads|VersionEye|License|CakePHP|
-|:------:|:-------:|:-------:|:------:|:------:|
-|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Version EYE](https://img.shields.io/versioneye/d/xety/xeta.svg?style=flat-square)](https://www.versioneye.com/user/projects/55430de8d8fe1a25cc000053)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
+|Travis|Coverage|Scrutinizer|Stable Version|Downloads|License|
+|:------:|:-------:|:-------:|:------:|:------:|:------:|
+|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|
 
 Xeta is a resource to help people starting with Cake3.
 
