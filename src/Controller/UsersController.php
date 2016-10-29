@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Event\Badges;
 use App\Event\Notifications;
+use App\Event\Statistics;
+use App\Utility\Users as UsersUtility;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -91,7 +93,7 @@ class UsersController extends AppController
 
                         $this->Auth->setUser($userLogin);
 
-                        $user = $this->Users->newEntity($userLogin);
+                        $user = $this->Users->newEntity($userLogin, ['accessibleFields' => ['id' => true]]);
                         $user->isNew(false);
 
                         $user->last_login = new Time();
@@ -112,7 +114,7 @@ class UsersController extends AppController
                             'password' => $this->request->data('password')
                         ]);
 
-                        //Event.
+                        //Badge Event.
                         $this->eventManager()->attach(new Badges($this));
 
                         $user = new Event('Model.Users.register', $this, [
@@ -305,6 +307,9 @@ class UsersController extends AppController
                 'Users.id' => $this->request->id
             ])
             ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
+                },
                 'BlogArticles' => function ($q) {
                     return $q
                         ->limit(Configure::read('User.Profile.max_blog_articles'))
@@ -338,6 +343,7 @@ class UsersController extends AppController
             ])
             ->map(function ($user) {
                 $user->online = $this->SessionsActivity->getOnlineStatus($user);
+                $user->background_profile = UsersUtility::getProfileBackground();
 
                 return $user;
             })
@@ -359,7 +365,17 @@ class UsersController extends AppController
      */
     public function delete()
     {
+        if (!$this->request->is('post')) {
+            return $this->redirect(['action' => 'settings']);
+        }
+
         $user = $this->Users->get($this->Auth->user('id'));
+
+        if (!(new DefaultPasswordHasher)->check($this->request->data['password'], $user->password)) {
+            $this->Flash->error(__("Your password doesn't match !"));
+
+            return $this->redirect(['action' => 'settings']);
+        }
 
         $user->is_deleted = true;
 

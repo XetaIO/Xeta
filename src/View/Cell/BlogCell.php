@@ -24,7 +24,6 @@ class BlogCell extends Cell
             ->select([
                 'id',
                 'title',
-                'slug',
                 'article_count'
             ])
             ->all();
@@ -35,7 +34,6 @@ class BlogCell extends Cell
             ->select([
                 'id',
                 'title',
-                'slug',
                 'created',
                 'comment_count'
             ])
@@ -45,7 +43,7 @@ class BlogCell extends Cell
                 }
             ])
             ->where([
-                'BlogArticles.slug !=' => ($this->request->slug) ? $this->request->slug : '',
+                'BlogArticles.id !=' => ($this->request->id) ? $this->request->id : 0,
                 'BlogArticles.is_display' => 1
             ])
             ->order([
@@ -54,7 +52,7 @@ class BlogCell extends Cell
             ->first();
 
         //Select all articles and group them by monthly.
-        /*$archives = $this->BlogArticles
+        $archives = $this->BlogArticles
             ->find('all')
             ->select([
                 'date' => 'DATE(created)',
@@ -67,8 +65,7 @@ class BlogCell extends Cell
             ->where([
                 'is_display' => 1
             ])
-            ->toArray();*/
-        $archives = [];
+            ->toArray();
 
         $this->set(compact('categories', 'featured', 'archives', 'articleSearch'));
     }

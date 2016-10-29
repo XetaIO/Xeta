@@ -223,8 +223,7 @@ class Notifications implements EventListenerInterface
             ->find()
             ->where(['id' => $event->data['badge']->user_id])
             ->select([
-                'id',
-                'slug'
+                'id'
             ])
             ->first();
 

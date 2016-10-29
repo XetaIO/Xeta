@@ -89,7 +89,6 @@ class SessionsActivityComponent extends Component
                     return $q->select([
                         'id',
                         'username',
-                        'slug',
                         'end_subscription'
                     ]);
                 },

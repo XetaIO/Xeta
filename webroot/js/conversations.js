@@ -51,20 +51,23 @@ $(document).ready(function () {
             $('#conversationQuitModal').modal('show');
         } else if($(this).val() !== "") {
             $.ajax({
-                type: "POST",
-                url: $("#conversationsForm").attr("action"),
-                dataType: "json",
-                data: {
-                    conversations: array,
-                    action: $(".conversationActionSubmit").val()
+                type : "POST",
+                url : $("#conversationsForm").attr("action"),
+                headers : {
+                    'X-CSRF-Token' : $("#conversationsForm input[name='_csrfToken']").val()
                 },
-                success: function (data) {
+                dataType : "json",
+                data : {
+                    conversations : array,
+                    action : $(".conversationActionSubmit").val()
+                },
+                success : function (data) {
                     if (data.error == "0") {
                         $(".top-right").notify({
-                            message: {
-                                text: data.message
+                            message : {
+                                text : data.message
                             },
-                            type: "success"
+                            type : "success"
                         }).show();
 
                         setTimeout(function () {
@@ -73,19 +76,19 @@ $(document).ready(function () {
 
                     } else if (data.error == "1") {
                         $(".top-right").notify({
-                            message: {
-                                text: data.message
+                            message : {
+                                text : data.message
                             },
-                            type: "danger"
+                            type : "danger"
                         }).show();
                     }
                 },
-                error: function () {
+                error : function () {
                     $(".top-right").notify({
-                        message: {
-                            text: "Error to do this action."
+                        message : {
+                            text : "Error to do this action."
                         },
-                        type: "danger"
+                        type : "danger"
                     }).show();
                 }
             });
@@ -102,20 +105,23 @@ $(document).ready(function () {
         });
 
         $.ajax({
-            type: "POST",
-            url: $("#conversationsForm").attr("action"),
-            dataType: "json",
-            data: {
-                conversations: array,
-                action: $(".conversationActionSubmit").val()
+            type : "POST",
+            url : $("#conversationsForm").attr("action"),
+            headers : {
+                'X-CSRF-Token' : $("#conversationsForm input[name='_csrfToken']").val()
             },
-            success: function (data) {
+            dataType : "json",
+            data : {
+                conversations : array,
+                action : $(".conversationActionSubmit").val()
+            },
+            success : function (data) {
                 if (data.error == "0") {
                     $(".top-right").notify({
-                        message: {
-                            text: data.message
+                        message : {
+                            text : data.message
                         },
-                        type: "success"
+                        type : "success"
                     }).show();
 
                     setTimeout(function () {
@@ -124,19 +130,19 @@ $(document).ready(function () {
 
                 } else if (data.error == "1") {
                     $(".top-right").notify({
-                        message: {
-                            text: data.message
+                        message : {
+                            text : data.message
                         },
-                        type: "danger"
+                        type : "danger"
                     }).show();
                 }
             },
-            error: function () {
+            error : function () {
                 $(".top-right").notify({
-                    message: {
-                        text: "Error to do this action."
+                    message : {
+                        text : "Error to do this action."
                     },
-                    type: "danger"
+                    type : "danger"
                 }).show();
             }
         });
@@ -145,12 +151,12 @@ $(document).ready(function () {
     });
 
     $("#InviteConversationUsers").typeahead({
-        items: 12,
-        comma: true,
-        source: function (e, t) {
+        items : 12,
+        comma : true,
+        source : function (e, t) {
             var array = e.split(", ");
             var last = array[array.length-1];
-            return $.post($("#InviteConversationUsers").attr("data-url"), {
+            return $.get($("#InviteConversationUsers").attr("data-url"), {
                 query: last
             }, function (e) {
                 return t(e);
@@ -196,14 +202,18 @@ $(document).ready(function () {
         $.ajax({
             type : "POST",
             url : $(this).attr("data-url"),
+            headers : {
+                'X-CSRF-Token': $(this).attr("data-csrf")
+            },
             data : {
                 id : messageId
             },
-            dataType: "json",
+            dataType : "json",
             success : function (data) {
+                console.log(data);
                 if (!data.error) {
                     if (!$("#editingMessage-" + messageId).length) {
-                        var messageContent = $("#message-" + messageId + " .message");
+                        var messageContent = $("#message-" + messageId + " .text");
 
                         messageContent.fadeOut();
                         messageContent.after(data.html);
@@ -214,19 +224,19 @@ $(document).ready(function () {
                     }
                 } else {
                     $(".top-right").notify({
-                        message: {
-                            text: data.errorMessage
+                        message : {
+                            text : data.errorMessage
                         },
-                        type   : "danger"
+                        type : "danger"
                     }).show();
                 }
             },
-            error   : function (e) {
+            error : function (e) {
                 $(".top-right").notify({
-                    message: {
-                        text: "Error to edit the post."
+                    message : {
+                        text : "Error to edit the post."
                     },
-                    type   : "danger"
+                    type : "danger"
                 }).show();
             }
         });
@@ -235,36 +245,36 @@ $(document).ready(function () {
 
     $(".KickRecipient").click(function(){
         $.ajax({
-            type: "POST",
-            url: $(this).attr("data-url"),
-            dataType: "json",
-            success: function (data) {
+            type : "GET",
+            url : $(this).attr("data-url"),
+            dataType : "json",
+            success : function (data) {
                 if (data.error === false) {
                     $("#recipient-" + data.id).remove();
                     $("#InformationNbRecipient").text(data.recipients);
 
                     $(".top-right").notify({
-                        message: {
-                            text: data.message
+                        message : {
+                            text : data.message
                         },
-                        type: "success"
+                        type : "success"
                     }).show();
 
                 } else if (data.error === true) {
                     $(".top-right").notify({
-                        message: {
-                            text: data.message
+                        message : {
+                            text : data.message
                         },
-                        type: "danger"
+                        type : "danger"
                     }).show();
                 }
             },
-            error: function (e) {
+            error : function (e) {
                 $(".top-right").notify({
-                    message: {
-                        text: "Error to delete this user."
+                    message : {
+                        text : "Error to delete this user."
                     },
-                    type: "danger"
+                    type : "danger"
                 }).show();
             }
         });

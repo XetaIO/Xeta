@@ -56,8 +56,7 @@ class UsersTableTest extends TestCase
             'id' => 1,
             'first_name' => 'Maria',
             'last_name' => 'Riano',
-            'username' => 'mariano',
-            'slug' => 'mariano'
+            'username' => 'mariano'
         ];
 
         $this->assertEquals($expected, $result);
@@ -78,8 +77,7 @@ class UsersTableTest extends TestCase
             'first_name' => 'Maria',
             'last_name' => 'Riano',
             'username' => 'mariano',
-            'avatar' => '../img/avatar.png',
-            'slug' => 'mariano'
+            'avatar' => '../img/avatar.png'
         ];
 
         $this->assertEquals($expected, $result);
@@ -101,7 +99,6 @@ class UsersTableTest extends TestCase
             'last_name' => 'Riano',
             'username' => 'mariano',
             'avatar' => '../img/avatar.png',
-            'slug' => 'mariano',
             'blog_articles_comment_count' => 2,
             'blog_article_count' => 2,
             'group_id' => 1,
@@ -183,8 +180,7 @@ class UsersTableTest extends TestCase
             'id' => 3,
             'first_name' => null,
             'last_name' => null,
-            'username' => 'Xeta',
-            'slug' => 'xeta',
+            'username' => 'Xeta'
         ];
 
         $user = $this->Users->newEntity($data, ['validate' => 'create']);
@@ -293,8 +289,7 @@ class UsersTableTest extends TestCase
             'first_name' => 'my firstname',
             'last_name' => 'my lastname',
             'username' => 'mariano',
-            'avatar' => 'upload' . DS . '1' . DS . '1.png',
-            'slug' => 'mariano'
+            'avatar' => 'upload' . DS . '1' . DS . '1.png'
         ];
         $user = $this->Users->find('medium')->where(['id' => 1])->first()->toArray();
 

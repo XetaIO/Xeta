@@ -14,8 +14,8 @@ if ($json['error'] === false):
             )}
         </div>
         <div class=\"form-group\">
-            {$this->Form->button(__('Update Comment'), ['type' => 'submit', 'class' => 'btn btn-sm btn-primary'])}
-            {$this->Html->link(__('Cancel'), '#', ['data-id' => $comment->id, 'class' => 'btn btn-sm btn-danger', 'id' => 'cancelEditComment'])}
+            {$this->Form->button(__('{0} Save', '<i class="fa fa-floppy-o"></i>'), ['type' => 'submit', 'class' => 'btn btn-primary-outline', 'escape' => false])}
+            {$this->Html->link(__('{0} Cancel', '<i class="fa fa-floppy-o"></i>'), '#', ['data-id' => $comment->id, 'class' => 'btn btn-danger-outline', 'id' => 'cancelEditComment', 'escape' => false])}
         </div>
         {$this->Form->end()}
 

@@ -117,7 +117,7 @@ class PremiumControllerTest extends IntegrationTestCase
             $this->assertRedirectContains('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=');
         } else {
             $this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
-            $this->assertSession('flash', 'Flash.flash.key');
+            $this->assertSession('Flash/error', 'Flash.flash.0.element');
         }
     }
 
@@ -148,7 +148,7 @@ class PremiumControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
         $this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
         //We can't test the flash message due to the translation system.
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
     }
 
     /**
@@ -182,7 +182,7 @@ class PremiumControllerTest extends IntegrationTestCase
             $this->assertRedirectContains('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=');
         } else {
             $this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
-            $this->assertSession('flash', 'Flash.flash.key');
+            $this->assertSession('Flash/error', 'Flash.flash.0.element');
         }
     }
 
@@ -214,7 +214,7 @@ class PremiumControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
         $this->assertRedirect(['controller' => 'premium', 'action' => 'index']);
         //We can't test the flash message due to the translation system.
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
     }
 
     /**

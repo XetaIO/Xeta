@@ -96,14 +96,14 @@
                         </ul>
                     </div>
                 <?php else: ?>
-                    <div class="infobox infobox-info">
+                    <?= $this->html->link(
+                        __('Check the offers {0}', '<i class="fa fa-arrow-right"></i>'),
+                        ['controller' => 'premium'],
+                        ['class' => 'btn btn-sm btn-primary-outline', 'escape' => false]
+                    ) ?>
+                    <div class="infobox infobox-primary">
                         <h4>
-                            <?= __("You haven't purchased the Premium yet. {0}", $this->html->link(
-                                    __('Check the offers {0}', '<i class="fa fa-arrow-right"></i>'),
-                                    ['controller' => 'premium'],
-                                    ['class' => 'btn btn-sm btn-primary', 'escape' => false]
-                                )
-                            ); ?>
+                            <?= __("You haven't purchased the Premium yet."); ?>
                         </h4>
                     </div>
                 <?php endif; ?>

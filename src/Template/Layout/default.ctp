@@ -19,7 +19,7 @@
             'bootstrap.min',
             'font-awesome.min',
             'animate.min',
-            'xeta'
+            'xeta.min'
         ]) ?>
 
         <!--[if lt IE 9]>
@@ -39,7 +39,7 @@
 
         <?= $this->fetch('content') ?>
 
-        <?php if (!isset($allowCookies) || $allowCookies === false): ?>
+        <?php if (!isset($allowCookies) || $allowCookies === false) : ?>
             <?= $this->element('cookies') ?>
         <?php endif; ?>
 
@@ -47,7 +47,6 @@
 
         <?= $this->Html->script([
             'lib.min',
-            'user-menu.min',
             'xeta.min'
         ]); ?>
 

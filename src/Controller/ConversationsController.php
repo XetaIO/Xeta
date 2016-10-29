@@ -13,13 +13,16 @@ class ConversationsController extends AppController
 {
 
     /**
-     * Components.
+     * Initialization hook method.
      *
-     * @var array
+     * @return void
      */
-    public $components = [
-        'RequestHandler'
-    ];
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+    }
 
     /**
      * BeforeFilter handle.
@@ -549,7 +552,7 @@ EOT;
         }
 
         $this->loadModel('ConversationsMessages');
-        $this->layout = false;
+        $this->viewBuilder()->layout(false);
 
         $message = $this->ConversationsMessages
             ->find()
@@ -1150,7 +1153,7 @@ EOT;
                 'Users',
                 'Conversations',
                 'Conversations.Users' => function ($q) {
-                    return $q->find('short');
+                    return $q->find('medium');
                 },
                 'Conversations.LastMessage',
                 'Conversations.LastMessageUser'

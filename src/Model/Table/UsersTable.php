@@ -342,8 +342,7 @@ class UsersTable extends Table
             'id',
             'first_name',
             'last_name',
-            'username',
-            'slug'
+            'username'
         ]);
     }
 
@@ -361,8 +360,7 @@ class UsersTable extends Table
             'first_name',
             'last_name',
             'username',
-            'avatar',
-            'slug'
+            'avatar'
         ]);
     }
 
@@ -381,7 +379,6 @@ class UsersTable extends Table
             'last_name',
             'username',
             'avatar',
-            'slug',
             'group_id',
             'blog_articles_comment_count',
             'blog_article_count',

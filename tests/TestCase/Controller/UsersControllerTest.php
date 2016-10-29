@@ -511,7 +511,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->get(['_name' => 'users-profile', 'slug' => 'marianoFail', 'id' => 69]);
         $this->assertResponseSuccess();
         //We can't test the flash message due to the translation system.
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
     }
 
@@ -549,7 +549,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertResponseContains('€');
     }
-    
+
     /**
      * Test profile authorized method
      *
@@ -570,7 +570,7 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->get(['controller' => 'users', 'action' => 'notifications']);
         $this->assertResponseOk();
-        $this->assertResponseContains('infobox infobox-info');
+        $this->assertResponseContains('infobox infobox-primary');
     }
 
     /**
@@ -608,43 +608,43 @@ class UsersControllerTest extends IntegrationTestCase
     {
         $this->Users = TableRegistry::get('Users');
         $user = $this->Users->get(1);
-        
+
         $code = md5(rand() . uniqid() . time());
-        
+
         $user->password_code = $code;
         $user->password_code_expire = new Time();
         $user->password_reset_count = 2;
         $this->Users->save($user);
-        
+
         //Empty code
         $this->get(['controller' => 'users', 'action' => 'resetPassword', 'id' => 1]);
         $this->assertResponseSuccess();
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
-        
+
         //Incorrect user.
         $this->get(['_name' => 'users-resetpassword', 'code' => 'zz', 'id' => 69]);
         $this->assertResponseSuccess();
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
-        
+
         //Page without POST.
         $this->get(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1]);
         $this->assertResponseOk();
         $this->assertResponseContains('id="password"');
-        
+
         //Expired code.
         $user->password_code_expire = $user->password_code_expire->subMinutes(15);
         $this->Users->save($user);
-        
+
         $this->get(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1]);
         $this->assertResponseSuccess();
-        $this->assertSession('flash', 'Flash.flash.key');
+        $this->assertSession('Flash/error', 'Flash.flash.0.element');
         $this->assertRedirect(['controller' => 'users', 'action' => 'forgotPassword']);
-        
+
         $user->password_code_expire = $user->password_code_expire->addMinutes(30);
         $this->Users->save($user);
-        
+
         //Page with POST but fail validation.
         $data = [
             'password' => '1234567',
@@ -652,7 +652,7 @@ class UsersControllerTest extends IntegrationTestCase
         ];
         $this->put(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1], $data);
         $this->assertResponseOk();
-        
+
         //Page with POST ok.
         $data = [
             'password' => '12345678',

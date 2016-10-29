@@ -10,6 +10,7 @@ return [
     ],
     'Site' => [
         'name' => 'Xeta',
+        'version' => '3.0.0',
         'description' => 'You will find content related to web development like tutorials, my personal tests on new technologies etc',
         'github_url' => 'https://github.com/Xety/Xeta',
         'analytics_tracker_code' => 'UA-40328289-2',

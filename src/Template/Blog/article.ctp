@@ -83,7 +83,7 @@
                                 <?= $this->Html->link(
                                     $article->blog_category->title, [
                                         '_name' => 'blog-category',
-                                        'slug' => $article->blog_category->slug,
+                                        'slug' => $article->blog_category->title,
                                         'id' => $article->blog_category->id
                                     ]
                                 ) ?>
@@ -111,7 +111,7 @@
 
                     <?php if (!is_null($article->blog_attachment)): ?>
                         <?php if(!$this->request->session()->read('Auth.User.premium')): ?>
-                            <div class="infobox infobox-info">
+                            <div class="infobox infobox-primary">
                                 <?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'), ['controller' => 'premium'])) ?>
                             </div>
                         <?php endif; ?>
@@ -205,12 +205,10 @@
                                         '#',
                                         [
                                             'class' => 'ArticleLike',
-                                            'data-url' => $this->Url->build(
-                                                    [
-                                                        'action' => 'articleUnlike',
-                                                        $article->id
-                                                    ]
-                                                ),
+                                            'data-url' => $this->Url->build([
+                                                'action' => 'articleUnlike',
+                                                $article->id
+                                            ]),
                                             'data-type' => 'unlike',
                                             'data-toggle' => 'tooltip',
                                             'title' => __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>"),
@@ -223,12 +221,10 @@
                                         '#',
                                         [
                                             'class' => 'ArticleLike',
-                                            'data-url' => $this->Url->build(
-                                                    [
-                                                        'action' => 'articleLike',
-                                                        $article->id
-                                                    ]
-                                                ),
+                                            'data-url' => $this->Url->build([
+                                                'action' => 'articleLike',
+                                                $article->id
+                                            ]),
                                             'data-type' => 'like',
                                             'data-toggle' => 'tooltip',
                                             'title' => __('Like {0}', "<i class='fa fa-heart text-danger'></i>"),
@@ -262,7 +258,7 @@
                                 $article->user->full_name,
                                 [
                                     '_name' => 'users-profile',
-                                    'slug' => $article->user->slug,
+                                    'slug' => $article->user->username,
                                     'id' => $article->user->id
                                 ]
                             ) ?>
@@ -337,7 +333,7 @@
                                                                     ),
                                                                     [
                                                                         '_name' => 'blog-article',
-                                                                        'slug' => $post->slug,
+                                                                        'slug' => $post->title,
                                                                         'id' => $post->id,
                                                                         '?' => ['page' => $post->last_page]
                                                                     ]
@@ -362,7 +358,7 @@
                                                                         h($post->blog_category->title),
                                                                         [
                                                                             '_name' => 'blog-category',
-                                                                            'slug' => $post->blog_category->slug,
+                                                                            'slug' => $post->blog_category->title,
                                                                             'id' => $post->blog_category->id
                                                                         ]
                                                                     ) ?>
@@ -381,12 +377,12 @@
                                                             __("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
                                                             [
                                                                 '_name' => 'blog-article',
-                                                                'slug' => $post->slug,
+                                                                'slug' => $post->title,
                                                                 'id' => $post->id,
                                                                 '?' => ['page' => $post->last_page]
                                                             ],
                                                             [
-                                                                'class' => 'btn btn-primary btn-xs',
+                                                                'class' => 'btn btn-primary-outline',
                                                                 'escape' => false
                                                             ]
                                                         ) ?>
@@ -418,7 +414,7 @@
                                     $this->Html->image($comment->user->avatar, ['alt' => $comment->user->full_name]),
                                     [
                                         '_name' => 'users-profile',
-                                        'slug' => $comment->user->slug,
+                                        'slug' => $comment->user->username,
                                         'id' => $comment->user->id
                                     ],
                                     [
@@ -433,7 +429,7 @@
                                             <?= $this->Html->link(
                                                 $comment->user->full_name, [
                                                     '_name' => 'users-profile',
-                                                    'slug' => $comment->user->slug,
+                                                    'slug' => $comment->user->username,
                                                     'id' => $comment->user->id
                                                 ]
                                             ) ?>
@@ -453,13 +449,11 @@
                                                     '#',
                                                     [
                                                         'class' => 'ReplyQuote',
-                                                        'data-url' => $this->Url->build(
-                                                                [
-                                                                    'action' => 'quote',
-                                                                    $article->id,
-                                                                    $comment->id
-                                                                ]
-                                                            ),
+                                                        'data-url' => $this->Url->build([
+                                                            'action' => 'quote',
+                                                            $article->id,
+                                                            $comment->id
+                                                        ]),
                                                         'escape' => false
                                                     ]
                                                 ) ?>
@@ -487,6 +481,7 @@
                                                             'action' => 'getEditComment'
                                                         ]),
                                                         'data-id' => $comment->id,
+                                                        'data-csrf' => h($this->request->cookie('csrfToken')),
                                                         'escape' => false
                                                     ]
                                                 ) ?>
@@ -519,24 +514,18 @@
                     </ol>
                 </section>
 
-                <div class="pagination-centered">
-                    <ul class="pagination">
-                        <?php if ($this->Paginator->hasPrev()): ?>
-                            <?= $this->Paginator->prev('«'); ?>
-                        <?php endif; ?>
-                        <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                        <?php if ($this->Paginator->hasNext()): ?>
-                            <?= $this->Paginator->next('»'); ?>
-                        <?php endif; ?>
-                    </ul>
-                </div>
+                <?= $this->element('pagination') ?>
+
             <?php endif; ?>
 
             <?php if ($this->request->session()->read('Auth.User')): ?>
-                <section class="post-comment-form" id="comment-form">
-                    <h2>
-                        <?= __("Leave a Comment") ?>
-                    </h2>
+                <section class="section post-comment-form" id="comment-form">
+                    <div class="hr-divider">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __("Leave a Comment") ?>
+                        </h3>
+                    </div>
+
                     <?= $this->Form->create($formComments) ?>
                     <div class="form-group">
                         <?=
@@ -549,7 +538,7 @@
                         ) ?>
                     </div>
                     <div class="form-group">
-                        <?= $this->Form->submit(__('Post Comment'), ['class' => 'btn btn-primary']); ?>
+                        <?= $this->Form->button(__('{0} Post Comment', '<i class="fa fa-pencil"></i>'), ['class' => 'btn btn-primary-outline', 'escape'=> false]); ?>
                     </div>
                     <?= $this->Form->end(); ?>
                 </section>
@@ -561,24 +550,24 @@
     </div>
 </div>
 <div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only"><?= __("Close") ?></span>
-        </button>
-        <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
-      </div>
-      <div class="modal-body">
-        <p>
-            <?= __("Are you sure you want delete this comment ?") ?>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <?= $this->Html->link(__("Delete"), '#', ['class' => 'btn btn-primary btnDeleteComment']) ?>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><?= __("Close") ?></button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only"><?= __("Close") ?></span>
+                </button>
+                <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <?= __("Are you sure you want delete this comment ?") ?>
+                </p>
+            </div>
+            <div class="modal-actions">
+                <?= $this->Html->link(__("{0} Delete", '<i class="fa fa-trash-o"></i>'), '#', ['class' => 'ma ma-btn ma-btn-danger btnDeleteComment', 'escape' => false]) ?>
+                <button type="button" class="ma ma-btn ma-btn-primary" data-dismiss="modal"><?= __('{0} Close', '<i class="fa fa-remove"></i>') ?></button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

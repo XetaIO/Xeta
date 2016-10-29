@@ -75,9 +75,9 @@ class BlogController extends AppController
         $this->loadModel('BlogCategories');
 
         $category = $this->BlogCategories
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogCategories.slug'
+            ->find()
+            ->where([
+                'BlogCategories.id' => $this->request->id
             ])
             ->contain([
                 'BlogArticles'
@@ -127,9 +127,9 @@ class BlogController extends AppController
         $this->loadModel('BlogArticles');
 
         $article = $this->BlogArticles
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogArticles.slug'
+            ->find()
+            ->where([
+                'BlogCategories.id' => $this->request->id
             ])
             ->contain([
                 'BlogCategories',
@@ -144,7 +144,7 @@ class BlogController extends AppController
             ->first();
 
         //Check if the article is found.
-        if (empty($article)) {
+        if (is_null($article)) {
             $this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
 
             return $this->redirect(['action' => 'index']);
@@ -185,7 +185,7 @@ class BlogController extends AppController
         $comments = $this->BlogArticlesComments
             ->find()
             ->where([
-                'article_id' => $article->id
+                'BlogArticlesComments.article_id' => $article->id
             ])
             ->contain([
                 'Users' => function ($q) {
@@ -361,7 +361,7 @@ EOT;
         //Redirect the user.
         return $this->redirect([
             '_name' => 'blog-article',
-            'slug' => $comment->blog_article->slug,
+            'slug' => $comment->blog_article->title,
             'id' => $comment->blog_article->id,
             '?' => ['page' => $page],
             '#' => 'comment-' . $commentId
@@ -494,7 +494,7 @@ EOT;
         $checkArticle = $this->BlogArticles
             ->find()
             ->where([
-                'id' => $articleId,
+                'BlogArticles.id' => $articleId,
                 'BlogArticles.is_display' => 1
             ])
             ->first();
@@ -644,7 +644,7 @@ EOT;
             $this->Flash->success(__("This comment has been deleted successfully !"));
         }
 
-        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, 'id' => $comment->blog_article->id, '?' => ['page' => $comment->blog_article->last_page]]);
+        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->title, 'id' => $comment->blog_article->id, '?' => ['page' => $comment->blog_article->last_page]]);
     }
 
     /**

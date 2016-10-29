@@ -1,5 +1,6 @@
 <?php
 use Cake\Datasource\ConnectionManager;
+use Cake\Cache\Cache;
 
 /**
  * Test runner bootstrap.
@@ -21,3 +22,28 @@ if (!getenv('db_class')) {
 ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
 
 $_SERVER['PHP_SELF'] = '/';
+
+/**
+ * Clean the cache before the tests.
+ */
+Cache::clear(false, 'acl');
+
+/**
+ * Executed after all the tests.
+ */
+if (!function_exists('cleanup_after_tests')) {
+    /**
+     * Clean the data that was used in TestsCase.
+     *
+     * @return void
+     */
+    function cleanup_after_tests()
+    {
+        Cache::clear(false, 'analytics');
+        Cache::clear(false, 'acl');
+    }
+}
+
+register_shutdown_function(function () {
+    cleanup_after_tests();
+});

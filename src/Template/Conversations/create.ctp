@@ -75,35 +75,31 @@
                     </div>
                     <div class="form-group">
                         <?= $this->Form->label('open_invite', __d('conversations', 'Allow anyone in the conversation to invite other users')) ?>
-                        <div class="radio-check">
-                            <?= $this->Form->radio('open_invite', [
-                                    '1' => __d('conversations', 'Yes'),
-                                    '0' => __d('conversations', 'No')
-                                ],
-                                [
-                                    'value' => '0',
-                                    'legend' => false,
-                                    'class' => 'form-control'
-                                ]
-                            ) ?>
-                        </div>
+                        <?= $this->Form->radio('open_invite', [
+                                '1' => __d('conversations', 'Yes'),
+                                '0' => __d('conversations', 'No')
+                            ],
+                            [
+                                'value' => '0',
+                                'legend' => false,
+                                'class' => 'form-control'
+                            ]
+                        ) ?>
                     </div>
                     <div class="form-group">
                         <?= $this->Form->label('conversation_open', __d('conversations', 'Lock the conversation <small>(No reply will be permitted)</small>'), ['escape' => false]) ?>
-                        <div class="radio-check">
-                            <?= $this->Form->radio('conversation_open', [
-                                    '1' => __d('conversations', 'Yes'),
-                                    '0' => __d('conversations', 'No')
-                                ],
-                                [
-                                    'value' => '1',
-                                    'legend' => false,
-                                    'class' => 'form-control'
-                                ]
-                            ) ?>
-                        </div>
+                        <?= $this->Form->radio('conversation_open', [
+                                '1' => __d('conversations', 'No'),
+                                '0' => __d('conversations', 'Yes')
+                            ],
+                            [
+                                'value' => '1',
+                                'legend' => false,
+                                'class' => 'form-control'
+                            ]
+                        ) ?>
                     </div>
-                    <?= $this->Form->button(__d('conversations', 'Start the Conversation'), ['class' => 'btn btn-primary']) ?>
+                    <?= $this->Form->button(__d('conversations', '{0} Start the Conversation', '<i class="fa fa-plus"></i>'), ['class' => 'btn btn-primary-outline', 'escape' => false]) ?>
                 <?= $this->Form->end();?>
 
             </div>
