@@ -215,7 +215,6 @@ Type::build('datetime')
 Plugin::load('Migrations');
 Plugin::load('Acl', ['bootstrap' => true]);
 Plugin::load('Xety/Cake3Upload');
-Plugin::load('Xety/Cake3Sluggable');
 Plugin::load('Xety/Cake3CookieAuth');
 Plugin::load('Recaptcha', ['routes' => true, 'bootstrap' => true]);
 
