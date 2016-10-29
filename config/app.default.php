@@ -260,6 +260,7 @@ return [
             'timezone' => 'UTC',
             'cacheMetadata' => true,
             'flags' => [],
+            'log' => false,
 
             /*
             * Set identifier quoting to true if you are using reserved words or

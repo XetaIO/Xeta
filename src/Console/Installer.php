@@ -39,6 +39,7 @@ class Installer
 
         $rootDir = dirname(dirname(__DIR__));
         static::createAppConfig($rootDir, $io);
+        static::createWritableDirectories($rootDir, $io);
         static::createRecaptchaConfig($rootDir, $io);
         static::setDatabaseName($rootDir, $io);
 
