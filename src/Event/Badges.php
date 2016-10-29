@@ -262,6 +262,7 @@ class Badges implements EventListenerInterface
             'badge' => $badge
         ]);
         EventManager::instance()->dispatch($event);
+
         return true;
     }
 }

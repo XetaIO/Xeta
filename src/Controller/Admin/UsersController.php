@@ -46,7 +46,7 @@ class UsersController extends AppController
             }
         }
 
-        switch($type) {
+        switch ($type) {
             case "username":
                 $this->paginate = [
                     'limit' => 15,

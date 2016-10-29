@@ -43,6 +43,7 @@ class User extends Entity
     protected function _getFullName()
     {
         $fullName = trim($this->first_name . ' ' . $this->last_name);
+
         return (!empty($fullName)) ? $fullName : $this->username;
     }
 

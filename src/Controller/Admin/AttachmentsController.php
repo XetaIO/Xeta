@@ -93,7 +93,6 @@ class AttachmentsController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-
         }
 
         $articles = $this->BlogAttachments->BlogArticles->find('list');
@@ -166,7 +165,6 @@ class AttachmentsController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-
         }
 
         $articles = $this->BlogAttachments->BlogArticles->find('list');

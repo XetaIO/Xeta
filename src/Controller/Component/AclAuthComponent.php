@@ -26,6 +26,7 @@ class AclAuthComponent extends AuthComponent
         if ($actions === null) {
             $controller = $this->_registry->getController();
             $this->allowedActions = get_class_methods($controller);
+
             return;
         }
 

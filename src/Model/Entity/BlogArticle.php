@@ -79,6 +79,7 @@ class BlogArticle extends Entity
     protected function _getLastPage()
     {
         $page = ceil($this->comment_count / Configure::read('Blog.comment_per_page'));
+
         return ($page) ? $page : 1;
     }
 

@@ -48,7 +48,7 @@ class AttachmentsController extends AppController
             throw new NotFoundException();
         }
 
-        switch($this->request->type) {
+        switch ($this->request->type) {
             case "blog":
                 $this->loadModel('BlogAttachments');
 

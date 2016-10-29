@@ -202,12 +202,14 @@ class Installer
 
         if ($count == 0) {
             $io->write('No Datasources.default.database placeholder to replace.');
+
             return;
         }
 
         $result = file_put_contents($config, $content);
         if ($result) {
             $io->write('Updated Datasources.default.database value in config/app.php');
+
             return;
         }
         $io->write('Unable to update Datasources.default.database value.');
@@ -256,6 +258,7 @@ class Installer
     {
         if ($newKey == null) {
             $io->write('The new Security.salt value is empty in config/app.php, can\'t set up the password.');
+
             return;
         }
 
@@ -281,6 +284,7 @@ class Installer
 
         if ($count != 2) {
             $io->write('Error, there was no password to replace.');
+
             return;
         }
 
@@ -288,6 +292,7 @@ class Installer
 
         if ($result) {
             $io->write('Set up Admin & Member passwords successfully !');
+
             return;
         }
 

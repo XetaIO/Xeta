@@ -48,6 +48,7 @@ class SessionsActivityComponent extends Component
     {
         if (empty($this->_session->id())) {
             $this->_session->start();
+
             return;
         }
         $sessions = TableRegistry::get('Sessions');

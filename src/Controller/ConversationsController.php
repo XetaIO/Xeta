@@ -223,6 +223,7 @@ class ConversationsController extends AppController
             if (!(count($users) <= Configure::read('Conversations.max_users_per_conversation'))) {
                 $this->Flash->error(__d('conversations', 'You cannot invite more than {0} user(s) in this conversation.', Configure::read('Conversations.max_users_per_conversation')));
                 $this->set(compact('conversation'));
+
                 return;
             }
 
@@ -248,6 +249,7 @@ class ConversationsController extends AppController
             if ($userMiniCount === false) {
                 $this->Flash->error(__d('conversations', 'Please enter at least one valid recipient.'));
                 $this->set(compact('conversation'));
+
                 return;
             }
 
@@ -393,6 +395,7 @@ class ConversationsController extends AppController
                     return $q->find('full')->formatResults(function ($users) {
                         return $users->map(function ($user) {
                             $user->online = $this->SessionsActivity->getOnlineStatus($user);
+
                             return $user;
                         });
                     });
@@ -565,6 +568,7 @@ EOT;
             $json['errorMessage'] = __d('conversations', "This message doesn't exist or has been deleted !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -588,6 +592,7 @@ EOT;
             $json['errorMessage'] = __d('conversations', "You don't have the authorization to edit this message !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -748,6 +753,7 @@ EOT;
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
             return;
         }
 
@@ -775,6 +781,7 @@ EOT;
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
             return;
         }
 

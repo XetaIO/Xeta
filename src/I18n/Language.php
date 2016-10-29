@@ -126,7 +126,7 @@ class Language
     {
         $httpLanguage = strtolower(substr($this->_controller->request->env('HTTP_ACCEPT_LANGUAGE'), 0, 2));
 
-        switch($httpLanguage){
+        switch ($httpLanguage) {
             case "en":
             case "us":
             case "uk":

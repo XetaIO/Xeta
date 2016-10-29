@@ -259,7 +259,6 @@ class BlogController extends AppController
     {
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
-
         }
 
         $this->loadModel('BlogArticlesComments');
@@ -679,6 +678,7 @@ EOT;
             $json['errorMessage'] = __("This comment doesn't exist or has been deleted !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -702,6 +702,7 @@ EOT;
             $json['errorMessage'] = __("You don't have the authorization to edit this comment !");
 
             $this->set(compact('json'));
+
             return;
         }
 

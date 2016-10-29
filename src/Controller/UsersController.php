@@ -254,6 +254,7 @@ class UsersController extends AppController
                 case "email":
                     if (!isset($this->request->data['email'])) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->redirect(['action' => 'settings']);
                     }
 
@@ -270,11 +271,13 @@ class UsersController extends AppController
                     $data = $this->request->data;
                     if (!isset($data['old_password']) || !isset($data['password']) || !isset($data['password_confirm'])) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->Flash->error(__("Please, complete all fields !"));
                     }
 
                     if (!(new DefaultPasswordHasher)->check($data['old_password'], $user->password)) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->Flash->error(__("Your old password don't match !"));
                     }
 
@@ -335,6 +338,7 @@ class UsersController extends AppController
             ])
             ->map(function ($user) {
                 $user->online = $this->SessionsActivity->getOnlineStatus($user);
+
                 return $user;
             })
             ->first();

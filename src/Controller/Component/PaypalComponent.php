@@ -137,11 +137,12 @@ class PaypalComponent extends Component
             } else {
                 // Statut de paiement: Echec
                 Log::error(__('Status Payment invalid : {0}', $paymentStatus), 'paypal');
+
                 return false;
             }
-
         } elseif (is_string($response) && strcmp($response, "INVALID") == 0) {
             Log::error(__('Response INVALID.'), 'paypal');
+
             return false;
         }
     }
@@ -292,6 +293,7 @@ class PaypalComponent extends Component
 
             unset($this->_request->data['cmd']);
             Log::debug($response, 'paypal');
+
             return $response;
         }
     }
