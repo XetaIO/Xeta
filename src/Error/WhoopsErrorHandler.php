@@ -26,6 +26,7 @@ class WhoopsErrorHandler extends ErrorHandler
         if (empty($this->_whoops)) {
             $this->_whoops = new Run();
         }
+
         return $this->_whoops;
     }
 
