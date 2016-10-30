@@ -17,13 +17,13 @@
         "mexitek/phpcolors": "dev-master",
         "xety/cake3-upload": "1.*",
         "xety/cake3-cookieauth": "1.*",
-        "cake17/cakephp-recaptcha": "dev-master"
+        "cake17/cakephp-recaptcha": "dev-master",
+        "filp/whoops": "~2.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "d11wtq/boris": "1.0.*",
         "phpunit/phpunit": "*",
-        "gourmet/whoops": "*",
         "cakephp/cakephp-codesniffer": "dev-master",
         "cakephp/debug_kit": "~3.0",
         "cakephp/bake": "~1.0"

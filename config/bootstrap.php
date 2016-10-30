@@ -51,6 +51,7 @@ require __DIR__ . '/paths.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
+use App\Error\WhoopsErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\App;
@@ -59,7 +60,6 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Network\Request;
@@ -127,12 +127,7 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-    $httpHost = env('HTTP_HOST');
-    if ($httpHost === 'xeta.dev') {
-        (new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
-    } else {
-        (new ErrorHandler(Configure::consume('Error')))->register();
-    }
+    (new WhoopsErrorHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.

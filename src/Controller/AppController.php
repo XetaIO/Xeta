@@ -147,7 +147,7 @@ class AppController extends Controller
             if ($user && $user['is_deleted'] == false) {
                 $this->Auth->setUser($user);
 
-                $user = $this->Users->newEntity($user);
+                $user = $this->Users->newEntity($user, ['accessibleFields' => ['id' => true]]);
                 $user->isNew(false);
 
                 $user->last_login = new Time();
@@ -182,5 +182,13 @@ class AppController extends Controller
 
         $allowCookies = $this->Cookie->check('allowCookies');
         $this->set(compact('allowCookies'));
+
+        //JavaScript Notifications.
+        if ($this->request->session()->read('Notification') && !empty($this->request->session()->read('Notification'))) {
+            $notification = $this->request->session()->read('Notification');
+            $this->request->session()->delete('Notification');
+
+            $this->set(compact('notification'));
+        }
     }
 }

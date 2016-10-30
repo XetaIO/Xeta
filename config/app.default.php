@@ -311,6 +311,7 @@ return [
     'Log' => [
         'paypal' => [
             'className' => 'Cake\Log\Engine\FileLog',
+            'path' => LOGS,
             'file' => 'paypal',
             'levels' => [],
             'scopes' => ['paypal']

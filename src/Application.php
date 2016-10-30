@@ -17,6 +17,7 @@ namespace App;
 use Cake\Core\Configure;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
+use Cake\I18n\Middleware\LocaleSelectorMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
@@ -39,13 +40,16 @@ class Application extends BaseApplication
         $middleware
             // Catch any exceptions in the lower layers,
             // and make an error page/response
-            ->add(new ErrorHandlerMiddleware(Configure::read('Error.exceptionRenderer')))
+            //->add(new ErrorHandlerMiddleware(Configure::read('Error.exceptionRenderer')))
 
             // Handle plugin/theme assets like CakePHP normally does.
             ->add(new AssetMiddleware())
 
             // Apply routing
-            ->add(new RoutingMiddleware());
+            ->add(new RoutingMiddleware())
+
+            // Handle the language switching from the Accept-Language header
+            ->add(new LocaleSelectorMiddleware(['locales' => Configure::read('I18n.locales')]));
 
         return $middleware;
     }
