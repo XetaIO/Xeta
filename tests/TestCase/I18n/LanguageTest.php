@@ -61,13 +61,13 @@ class LanguageTest extends TestCase
 
         $this->assertEquals('fr_FR', I18n::locale());
         $language->setLanguage();
-        $this->assertEquals('en_US', I18n::locale());
+        $this->assertEquals('fr_FR', I18n::locale());
 
         $this->controller->Cookie->delete('language');
-        $this->controller->request->env('HTTP_ACCEPT_LANGUAGE', 'fr_FR');
+        $this->controller->request->env('HTTP_ACCEPT_LANGUAGE', 'en_US');
         $language = new Language($this->controller);
 
-        $this->assertEquals('en_US', I18n::locale());
+        $this->assertEquals('fr_FR', I18n::locale());
         $language->setLanguage();
         $this->assertEquals('fr_FR', I18n::locale());
     }

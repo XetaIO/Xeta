@@ -1,6 +1,7 @@
 <?php
-use Cake\Datasource\ConnectionManager;
 use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Test runner bootstrap.
@@ -11,6 +12,8 @@ use Cake\Cache\Cache;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 require dirname(__DIR__) . '/config/bootstrap.php';
+
+Configure::write('App.defaultLocale', 'en_US');
 
 define('TEST_APP', TESTS . 'test_app' . DS);
 define('TEST_TMP', TEST_APP . 'tmp' . DS);
