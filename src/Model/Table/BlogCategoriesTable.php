@@ -21,7 +21,6 @@ class BlogCategoriesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Xety/Cake3Sluggable.Sluggable');
         $this->addBehavior('Translate', [
             'fields' => ['title', 'description'],
             'translationTable' => 'BlogCategoriesI18n'
