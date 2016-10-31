@@ -49,7 +49,7 @@ class Application extends BaseApplication
             ->add(new RoutingMiddleware())
 
             // Handle the language switching from the Accept-Language header
-            ->add(new LocaleSelectorMiddleware(['locales' => Configure::read('I18n.locales')]));
+            ->add(new LocaleSelectorMiddleware(['locales' => ['en_US', 'en', 'fr_FR', 'fr']]));
 
         return $middleware;
     }

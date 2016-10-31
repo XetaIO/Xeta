@@ -47,6 +47,11 @@ define('APP', ROOT . DS . APP_DIR . DS);
 define('CONFIG', ROOT . DS . 'config' . DS);
 
 /**
+ * Path to the routes directory.
+ */
+define('ROUTES', CONFIG . 'Routes' . DS);
+
+/**
  * File path to the webroot directory.
  */
 define('WWW_ROOT', ROOT . DS . 'webroot' . DS);
