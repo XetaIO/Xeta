@@ -26,8 +26,8 @@ class AttachmentsController extends AppController
             ->contain([
                 'BlogArticles' => function ($q) {
                     return $q->select([
-                        'title',
-                        'slug'
+                        'id',
+                        'title'
                     ]);
                 },
                 'Users' => function ($q) {

@@ -66,9 +66,9 @@ class CategoriesController extends AppController
 
         $this->BlogCategories->locale(I18n::defaultLocale());
         $category = $this->BlogCategories
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogCategories.slug'
+            ->find()
+            ->where([
+                'BlogCategories.id' => $this->request->id
             ])
             ->find('translations')
             ->first();
@@ -104,9 +104,9 @@ class CategoriesController extends AppController
         $this->loadModel('BlogCategories');
 
         $category = $this->BlogCategories
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogCategories.slug'
+            ->find()
+            ->where([
+                'BlogCategories.id' => $this->request->id
             ])
             ->first();
 

@@ -66,59 +66,71 @@ Router::prefix('admin', function (RouteBuilder $routes) {
 
     //Articles Routes.
     $routes->connect(
-        '/articles/edit/:slug',
+        '/articles/edit/:slug.:id',
         [
             'controller' => 'articles',
             'action' => 'edit',
         ],
         [
             '_name' => 'articles-edit',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     $routes->connect(
-        '/articles/delete/:slug',
+        '/articles/delete/:slug.:id',
         [
             'controller' => 'articles',
             'action' => 'delete',
         ],
         [
             '_name' => 'articles-delete',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     //Categories Routes.
     $routes->connect(
-        '/categories/edit/:slug',
+        '/categories/edit/:slug.:id',
         [
             'controller' => 'categories',
             'action' => 'edit',
         ],
         [
             '_name' => 'categories-edit',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
     $routes->connect(
-        '/categories/delete/:slug',
+        '/categories/delete/:slug.:id',
         [
             'controller' => 'categories',
             'action' => 'delete',
         ],
         [
             '_name' => 'categories-delete',
+            'routeClass' => 'SlugRoute',
             'pass' => [
+                'id',
                 'slug'
-            ]
+            ],
+            'id' => '[0-9]+'
         ]
     );
 
