@@ -118,8 +118,5 @@ return [
         'max_users_per_conversation' => 20,
         'messages_per_page' => 10,
         'conversations_per_page' => 15
-    ],
-    'Premium' => [
-        'color' => '#F2C732'
     ]
 ];

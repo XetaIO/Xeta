@@ -101,9 +101,6 @@ class UsersController extends AppController
 
                         $this->Users->save($user);
 
-                        //Write in the session the virtual field.
-                        $this->request->session()->write('Auth.User.premium', $user->premium);
-
                         //Cookies.
                         $this->Cookie->configKey('CookieAuth', [
                             'expires' => '+1 year',
@@ -308,10 +305,11 @@ class UsersController extends AppController
             ])
             ->contain([
                 'Groups' => function ($q) {
-                    return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
+                    return $q->find('translations')->select(['id', 'name', 'css', 'is_staff', 'is_member']);
                 },
                 'BlogArticles' => function ($q) {
                     return $q
+                        ->find('translations')
                         ->limit(Configure::read('User.Profile.max_blog_articles'))
                         ->order(['BlogArticles.created' => 'DESC']);
                 },
@@ -320,7 +318,7 @@ class UsersController extends AppController
                         ->limit(Configure::read('User.Profile.max_blog_comments'))
                         ->contain([
                             'BlogArticles' => function ($q) {
-                                return $q->select(['id', 'title', 'slug']);
+                                return $q->select(['id', 'title']);
                             }
                         ])
                         ->order(['BlogArticlesComments.created' => 'DESC']);
@@ -388,37 +386,6 @@ class UsersController extends AppController
         $this->Flash->error(__("Unable to delete your account, please try again."));
 
         return $this->redirect(['action' => 'settings']);
-    }
-
-    /**
-     * Display all premium transactions related to the user.
-     *
-     * @return void
-     */
-    public function premium()
-    {
-        $this->loadModel('PremiumTransactions');
-
-        $this->paginate = [
-            'maxLimit' => Configure::read('User.transaction_per_page')
-        ];
-
-        $transactions = $this->PremiumTransactions
-            ->find()
-            ->contain([
-                'PremiumOffers',
-                'PremiumDiscounts'
-            ])
-            ->where([
-                'PremiumTransactions.user_id' => $this->Auth->user('id')
-            ])
-            ->order([
-                'PremiumTransactions.created' => 'desc'
-            ]);
-
-        $transactions = $this->paginate($transactions);
-
-        $this->set(compact('transactions'));
     }
 
     /**

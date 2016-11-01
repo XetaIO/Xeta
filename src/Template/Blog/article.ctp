@@ -1,6 +1,9 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->element('meta', [
-    'title' => $article->title,
-    'description' => $article->content_meta,
+    'title' => $article->translation(I18n::locale())->title,
+    'description' => $article->translation(I18n::locale())->content_meta,
     'author' => $article->user->full_name
 ]) ?>
 
@@ -15,7 +18,7 @@
             customConfig: 'config/comment.js'
         });
 
-        moment.lang('<?= \Cake\I18n\I18n::locale() ?>');
+        moment.lang('<?= I18n::locale() ?>');
     </script>
 
     <script>
@@ -72,7 +75,7 @@
 
                     <header>
                         <h2 class="title">
-                            <?= h($article->title) ?>
+                            <?= h($article->translation(I18n::locale())->title) ?>
                         </h2>
                     </header>
 
@@ -81,9 +84,9 @@
                             <li class="categories">
                                 <i class="fa fa-tag"></i>
                                 <?= $this->Html->link(
-                                    $article->blog_category->title, [
+                                    $article->blog_category->translation(I18n::locale())->title, [
                                         '_name' => 'blog-category',
-                                        'slug' => $article->blog_category->title,
+                                        'slug' => $article->blog_category->translation(I18n::locale())->title,
                                         'id' => $article->blog_category->id
                                     ]
                                 ) ?>
@@ -106,57 +109,33 @@
                     </aside>
 
                     <div class="content">
-                        <?= $article->content; ?>
+                        <?= $article->translation(I18n::locale())->content; ?>
                     </div>
 
-                    <?php if (!is_null($article->blog_attachment)): ?>
-                        <?php if(!$this->request->session()->read('Auth.User.premium')): ?>
-                            <div class="infobox infobox-primary">
-                                <?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'), ['controller' => 'premium'])) ?>
-                            </div>
-                        <?php endif; ?>
+                    <?php if (!is_null($article->blog_attachment)) : ?>
                             <div class="attachmentFiles">
                                 <div class="attachment">
                                     <div class="attachmentThumbnail">
-                                        <?php if($this->request->session()->read('Auth.User.premium')): ?>
-                                            <?= $this->Html->link(
-                                                '<i class="fa fa-cloud-download fa-2x"></i>',
-                                                [
-                                                    '_name' => 'attachment-download',
-                                                    'type' => 'blog',
-                                                    'id' => $article->blog_attachment->id
-                                                ],
-                                                [
-                                                    'class' => 'attachmentThumb',
-                                                    'escape' => false
-                                                ]
-                                            ) ?>
-                                        <?php else: ?>
-                                            <?= $this->Html->link(
-                                                '<i class="fa fa-cloud-download fa-2x"></i>',
-                                                [
-                                                    'controller' => 'premium'
-                                                ],
-                                                [
-                                                    'class' => 'attachmentThumb',
-                                                    'escape' => false
-                                                ]
-                                            ) ?>
-                                        <?php endif; ?>
+                                        <?= $this->Html->link(
+                                            '<i class="fa fa-cloud-download fa-2x"></i>',
+                                            [
+                                                '_name' => 'attachment-download',
+                                                'type' => 'blog',
+                                                'id' => $article->blog_attachment->id
+                                            ],
+                                            [
+                                                'class' => 'attachmentThumb',
+                                                'escape' => false
+                                            ]
+                                        ) ?>
                                     </div>
                                     <div class="attachmentInfo">
                                         <h6 class="attachmentName">
-                                            <?php if($this->request->session()->read('Auth.User.premium')): ?>
-                                                <?= $this->Html->link($article->blog_attachment->name, [
-                                                    '_name' => 'attachment-download',
-                                                    'type' => 'blog',
-                                                    'id' => $article->blog_attachment->id
-                                                ]) ?>
-                                            <?php else: ?>
-                                                <?= $this->Html->link($article->blog_attachment->name, [
-                                                    'controller' => 'premium'
-                                                ]) ?>
-                                            <?php endif; ?>
+                                            <?= $this->Html->link($article->blog_attachment->name, [
+                                                '_name' => 'attachment-download',
+                                                'type' => 'blog',
+                                                'id' => $article->blog_attachment->id
+                                            ]) ?>
                                         </h6>
                                         <dl>
                                             <dt>
@@ -181,9 +160,9 @@
 
                     <ul class="actions">
                         <li class="reply">
-                            <?php if ($this->request->session()->read('Auth.User')): ?>
+                            <?php if ($this->request->session()->read('Auth.User')) : ?>
                                 <?= $this->Html->link(__("{0} Reply", '<i class="fa fa-reply"></i>'), '#comment-form', ['escape' => false]) ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= $this->Html->link(
                                     __("{0} Reply", '<i class="fa fa-reply"></i>'),
                                     [
@@ -215,7 +194,7 @@
                                             'escape' => false
                                         ]
                                     ) ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-thumbs-o-up"></i>',
                                         '#',
@@ -232,7 +211,7 @@
                                         ]
                                     ) ?>
                                 <?php endif; ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= $this->Html->link(
                                     '<i class="fa fa-thumbs-o-up"></i>',
                                     [
@@ -264,18 +243,20 @@
                             ) ?>
                         </h3>
 
-                        <?php if ($article->user->signature): ?>
+                        <?php if ($article->user->signature) : ?>
                             <div class="signature">
                                 <?= $article->user->signature ?>
                             </div>
                         <?php endif; ?>
 
-                        <?php if ($article->user->facebook || $article->user->twitter): ?>
+                        <?php if ($article->user->facebook || $article->user->twitter) : ?>
                             <ul class="social">
-                                <?php if ($article->user->facebook): ?>
+                                <?php if ($article->user->facebook) : ?>
                                     <li>
                                         <?= $this->Html->link(
-                                            '<i class="fa fa-facebook"></i>', "http://facebook.com/" . h($article->user->facebook), [
+                                            '<i class="fa fa-facebook"></i>',
+                                            "http://facebook.com/" . h($article->user->facebook),
+                                            [
                                                 'target' => '_blank',
                                                 'escape' => false
                                             ]
@@ -283,10 +264,12 @@
                                     </li>
                                 <?php endif; ?>
 
-                                <?php if ($article->user->twitter): ?>
+                                <?php if ($article->user->twitter) : ?>
                                     <li>
                                         <?= $this->Html->link(
-                                            '<i class="fa fa-twitter"></i>', "http://twitter.com/" . h($article->user->twitter), [
+                                            '<i class="fa fa-twitter"></i>',
+                                            "http://twitter.com/" . h($article->user->twitter),
+                                            [
                                                 'target' => '_blank',
                                                 'escape' => false
                                             ]
@@ -299,7 +282,7 @@
                 </figure>
             </section>
 
-            <?php if ($articles->toArray()): ?>
+            <?php if ($articles->toArray()) : ?>
                 <section class="related-posts">
                     <div id="accordion-related-posts" class="panel-group">
                         <div class="panel panel-default">
@@ -316,7 +299,7 @@
                                 <div class="panel-body">
                                     <div id="owl-related-posts" class="owl-carousel owl-item-gap">
 
-                                        <?php foreach ($articles as $post): ?>
+                                        <?php foreach ($articles as $post) : ?>
                                             <div class="item">
                                                 <figure>
                                                     <figcaption>
@@ -324,7 +307,7 @@
                                                             <h4>
                                                                 <?= $this->Html->link(
                                                                     $this->Text->truncate(
-                                                                        $post->title,
+                                                                        $post->translation(I18n::locale())->title,
                                                                         30,
                                                                         [
                                                                             'ellipsis' => '...',
@@ -333,7 +316,7 @@
                                                                     ),
                                                                     [
                                                                         '_name' => 'blog-article',
-                                                                        'slug' => $post->title,
+                                                                        'slug' => $post->translation(I18n::locale())->title,
                                                                         'id' => $post->id,
                                                                         '?' => ['page' => $post->last_page]
                                                                     ]
@@ -341,7 +324,7 @@
                                                             </h4>
                                                             <p>
                                                                 <?= $this->Text->truncate(
-                                                                    $post->content_empty,
+                                                                    $post->translation(I18n::locale())->content_empty,
                                                                     150,
                                                                     [
                                                                         'ellipsis' => '...',
@@ -355,10 +338,10 @@
                                                                 <li>
                                                                     <i class="fa fa-tag"></i>
                                                                     <?= $this->Html->link(
-                                                                        h($post->blog_category->title),
+                                                                        h($post->blog_category->translation(I18n::locale())->title),
                                                                         [
                                                                             '_name' => 'blog-category',
-                                                                            'slug' => $post->blog_category->title,
+                                                                            'slug' => $post->blog_category->translation(I18n::locale())->title,
                                                                             'id' => $post->blog_category->id
                                                                         ]
                                                                     ) ?>
@@ -377,7 +360,7 @@
                                                             __("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
                                                             [
                                                                 '_name' => 'blog-article',
-                                                                'slug' => $post->title,
+                                                                'slug' => $post->translation(I18n::locale())->title,
                                                                 'id' => $post->id,
                                                                 '?' => ['page' => $post->last_page]
                                                             ],
@@ -470,7 +453,7 @@
                                         </li>
                                         <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'editComment', 'id' => $comment->id]) &&
                                              $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
-                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Edit", '<i class="fa fa-edit"></i>'),
@@ -490,7 +473,7 @@
 
                                         <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'deleteComment', 'id' => $comment->id]) &&
                                              $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
-                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Delete", '<i class="fa fa-remove"></i>'),
@@ -518,7 +501,7 @@
 
             <?php endif; ?>
 
-            <?php if ($this->request->session()->read('Auth.User')): ?>
+            <?php if ($this->request->session()->read('Auth.User')) : ?>
                 <section class="section post-comment-form" id="comment-form">
                     <div class="hr-divider">
                         <h3 class="hr-divider-content hr-divider-heading">
@@ -530,7 +513,8 @@
                     <div class="form-group">
                         <?=
                         $this->Form->input(
-                            'content', [
+                            'content',
+                            [
                                 'label' => false,
                                 'class' => 'form-control commentBox',
                                 'id' => 'commentBox'
@@ -538,7 +522,7 @@
                         ) ?>
                     </div>
                     <div class="form-group">
-                        <?= $this->Form->button(__('{0} Post Comment', '<i class="fa fa-pencil"></i>'), ['class' => 'btn btn-primary-outline', 'escape'=> false]); ?>
+                        <?= $this->Form->button(__('{0} Post Comment', '<i class="fa fa-pencil"></i>'), ['class' => 'btn btn-primary-outline', 'escape' => false]); ?>
                     </div>
                     <?= $this->Form->end(); ?>
                 </section>

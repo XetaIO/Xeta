@@ -99,48 +99,6 @@
                     ) ?>
                 </li>
             <?php endif; ?>
-
-
-            <?php if (
-                    $this->Acl->check(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium']) ||
-                    $this->Acl->check(['controller' => 'offers', 'action' => 'index', 'prefix' => 'admin/premium']) ||
-                    $this->Acl->check(['controller' => 'discounts', 'action' => 'index', 'prefix' => 'admin/premium'])
-            ): ?>
-                <?php $secondPrefix = explode('/', $this->request->params['prefix']); ?>
-                <?php if (isset($secondPrefix[1]) && $secondPrefix[1] == 'premium'): ?>
-                    <li class="active">
-                <?php else:?>
-                    <li>
-                <?php endif;?>
-
-                    <?= $this->Html->link(__d('admin', '{0} Premium {1}', '<i class="fa fa-trophy"></i>',
-                    '<i class="fa fa-chevron-down"></i>'), '#submenu-premium', ['class' => 'active accordion-toggle collapsed',
-                    'data-toggle' => 'collapse', 'escape' => false]) ?>
-
-                    <ul id="submenu-premium" class="submenu nav collapse">
-                        <?php if ($this->Acl->check(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Premium' && $this->request->params['action'] == 'home') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Statistics'), ['controller' => 'premium', 'action' => 'home',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if ($this->Acl->check(['controller' => 'offers', 'action' => 'index', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Offers') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Manage Offers'), ['controller' => 'offers', 'action' => 'index',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if ($this->Acl->check(['controller' => 'discounts', 'action' => 'index', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Discounts') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Manage Discounts'), ['controller' => 'discounts', 'action' => 'index',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </li>
-            <?php endif; ?>
         </ul>
 
 
@@ -230,46 +188,6 @@
                     <?= $this->Html->link('<i class="fa fa-users fa-2x"></i>', ['controller' => 'groups', 'action' => 'index', 'prefix' => 'admin'],
                         ['escape' => false]
                     ) ?>
-                </li>
-            <?php endif; ?>
-
-            <?php if (
-                    $this->Acl->check(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium']) ||
-                    $this->Acl->check(['controller' => 'offers', 'action' => 'index', 'prefix' => 'admin/premium']) ||
-                    $this->Acl->check(['controller' => 'discounts', 'action' => 'index', 'prefix' => 'admin/premium'])
-            ): ?>
-                <?php $secondPrefix = explode('/', $this->request->params['prefix']); ?>
-                <?php if (isset($secondPrefix[1]) && $secondPrefix[1] == 'premium'): ?>
-                    <li class="active">
-                <?php else:?>
-                    <li>
-                <?php endif;?>
-
-                    <?= $this->Html->link('<i class="fa fa-trophy fa-2x"></i>', '#', ['class' => 'dropdown-toggle',
-                            'data-toggle' => 'dropdown', 'escape' => false]) ?>
-
-                    <ul class="dropdown-menu">
-                        <?php if ($this->Acl->check(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Premium' && $this->request->params['action'] == 'home') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Statistics'), ['controller' => 'premium', 'action' => 'home',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if ($this->Acl->check(['controller' => 'offers', 'action' => 'index', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Offers') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Manage Offers'), ['controller' => 'offers', 'action' => 'index',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if ($this->Acl->check(['controller' => 'discounts', 'action' => 'index', 'prefix' => 'admin/premium'])): ?>
-                            <?= ($this->request->params['controller'] == 'Discounts') ? '<li class="active">' : '<li>' ?>
-                                <?= $this->Html->link(__d('admin', 'Manage Discounts'), ['controller' => 'discounts', 'action' => 'index',
-                                'prefix' => 'admin/premium']) ?>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
                 </li>
             <?php endif; ?>
         </ul>

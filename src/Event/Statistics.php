@@ -11,13 +11,6 @@ class Statistics implements EventListenerInterface
 {
 
     /**
-     * Prefix used for the Cache keys.
-     *
-     * @var string
-     */
-    protected $_prefix = 'statistics';
-
-    /**
      * ImplementedEvents method.
      *
      * @return array
@@ -91,7 +84,7 @@ class Statistics implements EventListenerInterface
             return true;
         }
 
-        $result = Cache::write($this->_prefix . $key, $data, 'forum');
+        $result = Cache::write($key, $data, 'statistics');
         if ($result) {
             return true;
         }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Entity;
 
-use App\Model\Behavior\AppTranslateTrait;
 use Cake\I18n\Number;
 use Cake\ORM\Behavior\Translate\TranslateTrait;
 use Cake\ORM\Entity;
@@ -9,7 +8,6 @@ use Cake\ORM\Entity;
 class BlogCategory extends Entity
 {
 
-    use AppTranslateTrait;
     use TranslateTrait;
 
     /**

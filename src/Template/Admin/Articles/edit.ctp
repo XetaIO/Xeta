@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->assign('title', __d('admin', 'Edit an Article')) ?>
 
 <?php $this->start('scriptBottom');
@@ -54,9 +57,9 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
                         'role' => 'form'
                     ]) ?>
                     <div class="form-group">
-                        <?= $this->Form->label('title', __d('admin', 'Title'), ['class' => 'col-sm-2 control-label']) ?>
+                        <?= $this->Form->label('_translations.' . I18n::defaultLocale() . '.title', __d('admin', 'Title'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-5">
-                            <?= $this->Form->input('title', ['class' => 'form-control', 'label' => false]) ?>
+                            <?= $this->Form->input('_translations.' . I18n::defaultLocale() . '.title', ['class' => 'form-control', 'label' => false]) ?>
                         </div>
                     </div>
                     <?= $this->I18n->i18nInput($article, 'title', ['class' => 'form-control']); ?>
@@ -69,7 +72,9 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
                     <div class="form-group">
                         <?= $this->Form->label('is_display', __d('admin', 'Is display'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-5">
-                            <?= $this->Form->radio('is_display', [
+                            <?= $this->Form->radio(
+                                'is_display',
+                                [
                                     '1' => __d('admin', 'Yes'),
                                     '0' => __d('admin', 'No')
                                 ],
@@ -81,15 +86,16 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <?= $this->Form->label('content', __d('admin', 'Content'), ['class' => 'col-sm-2 control-label']) ?>
+                        <?= $this->Form->label('_translations.' . I18n::defaultLocale() . '.content', __d('admin', 'Content'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-8">
                             <?= $this->Form->input(
-                                    'content', [
-                                        'label' => false,
-                                        'class' => 'form-control articleBox',
-                                        'id' => 'articleBox'
-                                    ]
-                                ) ?>
+                                '_translations.' . I18n::defaultLocale() . '.content',
+                                [
+                                    'label' => false,
+                                    'class' => 'form-control articleBox',
+                                    'id' => 'articleBox'
+                                ]
+                            ) ?>
                         </div>
                     </div>
                     <?= $this->I18n->i18nInput($article, 'content', ['CkEditor' => true, 'class' => 'form-control'], 'col-sm-8'); ?>

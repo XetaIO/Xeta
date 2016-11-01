@@ -59,17 +59,6 @@
                     </div>
                 <?php endif; ?>
 
-                <?php if ($this->Acl->check(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium'])): ?>
-                    <div class="col-sm-4">
-                        <a href="<?= $this->Url->build(['controller' => 'premium', 'action' => 'home', 'prefix' => 'admin/premium']);?>">
-                            <div class="element padded">
-                                <i class="fa fa-trophy fa-4x"></i>
-                                <h5><?= __d('admin', 'Premium') ?></h5>
-                            </div>
-                        </a>
-                    </div>
-                <?php endif; ?>
-
             </div>
         </div>
     </div>

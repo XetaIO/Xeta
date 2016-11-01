@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->element('meta', [
     'title' => __("Blog Category : {0}", h($category->title))
 ]) ?>
@@ -25,9 +28,9 @@
 
     <div class="row">
         <main class="col-md-9" role="main">
-            <?php if ($articles->toArray()): ?>
+            <?php if ($articles->toArray()) : ?>
                 <section class="blog-main">
-                    <?php foreach ($articles as $article): ?>
+                    <?php foreach ($articles as $article) : ?>
                         <article class="post">
 
                             <div class="date">
@@ -44,9 +47,10 @@
                             <header>
                                 <h2 class="title">
                                     <?= $this->Html->link(
-                                        $article->title, [
+                                        $article->translation(I18n::locale())->title,
+                                        [
                                             '_name' => 'blog-article',
-                                            'slug' => $article->title,
+                                            'slug' => $article->translation(I18n::locale())->title,
                                             'id' => $article->id,
                                             '?' => ['page' => $article->last_page]
                                         ]
@@ -59,7 +63,8 @@
                                     <li class="author">
                                         <i class="fa fa-user"></i>
                                         <?= $this->Html->link(
-                                            $article->user->full_name, [
+                                            $article->user->full_name,
+                                            [
                                                 '_name' => 'users-profile',
                                                 'slug' => $article->user->username,
                                                 'id' => $article->user->id
@@ -78,15 +83,14 @@
                             </aside>
 
                             <div class="content">
-                                <?=
-                                $this->Text->truncate(
-                                    $article->content_empty,
+                                <?= $this->Text->truncate(
+                                    $article->translation(I18n::locale())->content_empty,
                                     200,
-                                    array(
+                                    [
                                         'ellipsis' => '...',
                                         'exact' => false
-                                    )
-                                );?>
+                                    ]
+                                ) ?>
                             </div>
 
                             <p>
@@ -94,7 +98,7 @@
                                     __('{0} Read More', '<i class="fa fa-eye"></i>'),
                                     [
                                         '_name' => 'blog-article',
-                                        'slug' => $article->title,
+                                        'slug' => $article->translation(I18n::locale())->title,
                                         'id' => $article->id,
                                         '?' => ['page' => $article->last_page]
                                     ],
@@ -107,7 +111,7 @@
 
                 <?= $this->element('pagination') ?>
 
-            <?php else: ?>
+            <?php else : ?>
                 <div class="infobox infobox-primary">
                     <h4><?= __("No articles found"); ?></h4>
                     <p>

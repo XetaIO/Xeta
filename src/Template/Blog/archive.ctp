@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->element('meta', [
     'title' => __("Blog Archive : {0}", h($date))
 ]) ?>
@@ -25,9 +28,9 @@
 
     <div class="row">
         <main class="col-md-9" role="main">
-            <?php if ($articles->toArray()): ?>
+            <?php if ($articles->toArray()) : ?>
                 <section class="blog-main">
-                    <?php foreach ($articles as $article): ?>
+                    <?php foreach ($articles as $article) : ?>
                         <article class="post">
 
                             <div class="date">
@@ -44,9 +47,10 @@
                             <header>
                                 <h2 class="title">
                                     <?= $this->Html->link(
-                                        $article->title, [
+                                        $article->translation(I18n::locale())->title,
+                                        [
                                             '_name' => 'blog-article',
-                                            'slug' => $article->title,
+                                            'slug' => $article->translation(I18n::locale())->title,
                                             'id' => $article->id,
                                             '?' => ['page' => $article->last_page]
                                         ]
@@ -59,7 +63,8 @@
                                     <li class="author">
                                         <i class="fa fa-user"></i>
                                         <?= $this->Html->link(
-                                            $article->user->full_name, [
+                                            $article->user->full_name,
+                                            [
                                                 '_name' => 'users-profile',
                                                 'slug' => $article->user->username,
                                                 'id' => $article->user->id
@@ -70,10 +75,10 @@
                                         <i class="fa fa-tag"></i>
                                         <?=
                                         $this->Html->link(
-                                            $article->blog_category->title,
+                                            $article->blog_category->translation(I18n::locale())->title,
                                             [
                                                 '_name' => 'blog-category',
-                                                'slug' => $article->blog_category->title,
+                                                'slug' => $article->blog_category->translation(I18n::locale())->title,
                                                 'id' => $article->blog_category->id
                                             ]
                                         ) ?>
@@ -90,26 +95,26 @@
                             </aside>
                             <div class="content">
                                 <?= $this->Text->truncate(
-                                        $article->content_empty,
+                                        $article->translation(I18n::locale())->content_empty,
                                         200,
-                                        array(
+                                        [
                                             'ellipsis' => '...',
                                             'exact' => false
-                                        )
+                                        ]
                                     ) ?>
                             </div>
 
                             <p>
                                 <?= $this->Html->link(
-                                        __('{0} Read More', '<i class="fa fa-eye"></i>'),
-                                        [
-                                            '_name' => 'blog-article',
-                                            'slug' => $article->title,
-                                            'id' => $article->id,
-                                            '?' => ['page' => $article->last_page]
-                                        ],
-                                        ['class' => 'btn btn-primary-outline', 'escape' => false]
-                                    ) ?>
+                                    __('{0} Read More', '<i class="fa fa-eye"></i>'),
+                                    [
+                                        '_name' => 'blog-article',
+                                        'slug' => $article->translation(I18n::locale())->title,
+                                        'id' => $article->id,
+                                        '?' => ['page' => $article->last_page]
+                                    ],
+                                    ['class' => 'btn btn-primary-outline', 'escape' => false]
+                                ) ?>
                             </p>
                         </article>
                     <?php endforeach; ?>
@@ -117,7 +122,7 @@
 
                 <?= $this->element('pagination') ?>
 
-            <?php else: ?>
+            <?php else : ?>
                 <div class="infobox infobox-primary">
                     <h4><?= __("No articles found"); ?></h4>
                     <p>

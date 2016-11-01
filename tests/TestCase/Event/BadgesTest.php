@@ -38,24 +38,6 @@ class BadgesTest extends TestCase
     }
 
     /**
-     * test premiumBadge
-     *
-     * @return void
-     */
-    public function testPremiumBadge()
-    {
-        $this->Users = TableRegistry::get('Users');
-        $user = $this->Users->get(1);
-
-        $badge = new Badges($this->controller);
-        $event = new Event('Model.Users.premium', $this->controller, ['user' => $user]);
-        $this->assertTrue($badge->premiumBadge($event));
-
-        $event = new Event('Model.Users.premium', $this->controller, ['user' => 'fail']);
-        $this->assertFalse($badge->premiumBadge($event));
-    }
-
-    /**
      * test registerBadge
      *
      * @return void

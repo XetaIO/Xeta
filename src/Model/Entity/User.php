@@ -82,56 +82,6 @@ class User extends Entity
     }
 
     /**
-     * Set if the user is premium or not.
-     *
-     * @return bool
-     */
-    protected function _getPremium()
-    {
-        return $this->end_subscription > new Time();
-    }
-
-    /**
-     * Set the user group name.
-     *
-     * @return string
-     *
-     * @throws \Exception\Execption
-     */
-    protected function _getGroupName()
-    {
-        if (!isset($this->group)) {
-            throw new \Exception(__('You must select the Groups for the function User::_getGroupName().'));
-        }
-
-        if ($this->group->is_member == true && $this->premium === true) {
-            return __('Premium');
-        }
-
-        return $this->group->name;
-    }
-
-    /**
-     * Set the user group css.
-     *
-     * @return string
-     *
-     * @throws \Exception\Execption
-     */
-    protected function _getGroupCss()
-    {
-        if (!isset($this->group)) {
-            throw new \Exception(__('You must select the Groups for the function User::_getGroupCss().'));
-        }
-
-        if ($this->group->is_member == true && $this->premium === true) {
-            return 'color:' . Configure::read('Premium.color') . ';font-weight: bold;';
-        }
-
-        return $this->group->css;
-    }
-
-    /**
      * The parendNode for ACL.
      *
      * @return null|array

@@ -88,8 +88,7 @@ class SessionsActivityComponent extends Component
                 'Users' => function ($q) {
                     return $q->select([
                         'id',
-                        'username',
-                        'end_subscription'
+                        'username'
                     ]);
                 },
                 'Users.Groups' => function ($q) {

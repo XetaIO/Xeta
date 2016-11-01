@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->element('meta', [
     'title' => __("{0}'s profile", h($user->username))
 ]) ?>
@@ -98,8 +101,8 @@
                     <?= h($user->full_name) ?>
                 </h4>
 
-                <span class="group" style="<?= h($user->group_css) ?>">
-                    <?= $this->Html->link($user->group_name, ['_name' => 'groups-view', 'slug' => $user->group->name, 'id' => $user->group->id]) ?>
+                <span class="group" style="<?= h($user->group->css) ?>">
+                    <?= $this->Html->link($user->group->translation(I18n::locale())->name, ['_name' => 'groups-view', 'slug' => $user->group->translation(I18n::locale())->name, 'id' => $user->group->id]) ?>
                 </span>
 
                 <span class="joinedDate">
@@ -107,19 +110,19 @@
                     <?= ucwords($user->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE])) ?>
                 </span>
 
-                <?php if($this->request->session()->read('Auth.User.id') != $user->id): ?>
+                <?php if ($this->request->session()->read('Auth.User.id') != $user->id) : ?>
                     <span class="sendMessage">
                         <?= $this->Html->link(__('Send a Message'), ['controller' => 'conversations', 'action' => 'create', 'prefix' => false, '?' => ['r' => h($user->username) . ',']], ['class' => 'text-primary', 'escape' => false]) ?>
                     </span>
                 <?php endif; ?>
 
                 <ul class="social">
-                    <?php if ($user->facebook): ?>
+                    <?php if ($user->facebook) : ?>
                         <li>
                             <?= $this->Html->link('<i class="fa fa-facebook"></i>', 'http://facebook.com/' . h($user->facebook), ['target' => '_blank', 'escape' => false]) ?>
                         </li>
                     <?php endif; ?>
-                    <?php if ($user->twitter): ?>
+                    <?php if ($user->twitter) : ?>
                         <li>
                             <?= $this->Html->link('<i class="fa fa-twitter"></i>', 'http://twitter.com/' . h($user->twitter), ['target' => '_blank', 'escape' => false]) ?>
                         </li>
@@ -149,39 +152,39 @@
 
                 <div class="hr-divider">
                     <h3 class="hr-divider-content hr-divider-heading">
-                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                             <?= __("Your Biography") ?>
-                        <?php else: ?>
+                        <?php else : ?>
                             <?= __("His Biography") ?>
                         <?php endif;?>
                     </h3>
                 </div>
 
                 <div class="biography">
-                    <?php if (!empty($user->biography)): ?>
+                    <?php if (!empty($user->biography)) : ?>
                         <?= $user->biography ?>
-                    <?php else: ?>
-                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                    <?php else : ?>
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                             <?= __("You don't have set a biography.") ?>
                             <?= $this->Html->link(__("{0} Add one now", '<i class="fa fa-plus"></i>'), ['action' => 'account'], ['class' => 'btn btn-sm btn-primary-outline', 'escape' => false]) ?>
-                        <?php else: ?>
+                        <?php else : ?>
                             <?= __("This user hasn't set a biography yet.") ?>
                         <?php endif;?>
                     <?php endif; ?>
                 </div>
 
-                <?php if (!empty($user->badges_users)): ?>
+                <?php if (!empty($user->badges_users)) : ?>
                     <div class="hr-divider">
                         <h3 class="hr-divider-content hr-divider-heading">
-                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                                 <?= __("Your Badges") ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= __("His Badges") ?>
                             <?php endif;?>
                         </h3>
                     </div>
                     <div class="badges">
-                        <?php foreach ($user->badges_users as $badge): ?>
+                        <?php foreach ($user->badges_users as $badge) : ?>
                             <div class="thumbnail">
                                 <?= $this->Html->image($badge->badge->picture, [
                                     'alt' => h($badge->badge->name),
@@ -193,30 +196,30 @@
                     </div>
                 <?php endif; ?>
 
-                <?php if (!empty($user->blog_articles)): ?>
+                <?php if (!empty($user->blog_articles)) : ?>
                     <div class="hr-divider">
                         <h3 class="hr-divider-content hr-divider-heading">
-                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                                 <?= __("Your Lastest Articles in the Blog") ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= __("His Lastest Articles in the Blog") ?>
-                            <?php endif;?>
+                            <?php endif; ?>
                         </h3>
                     </div>
                     <table class="table table-striped table-profile">
                         <tbody>
-                            <?php foreach($user->blog_articles as $article):?>
+                            <?php foreach ($user->blog_articles as $article) : ?>
                                 <tr>
                                     <td>
                                         <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
                                         <?= $this->Html->link(
-                                            $article->title,
-                                            ['_name' => 'blog-article', 'slug' => $article->title, 'id' => $article->id],
+                                            $article->translation(I18n::locale())->title,
+                                            ['_name' => 'blog-article', 'slug' => $article->translation(I18n::locale())->title, 'id' => $article->id],
                                             ['class' => 'title text-primary']
                                         ) ?>
                                         <br>
                                         <?= $this->Text->truncate(
-                                            $article->content_empty,
+                                            $article->translation(I18n::locale())->content_empty,
                                             275,
                                             [
                                                 'ellipsis' => '...',

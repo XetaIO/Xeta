@@ -106,6 +106,16 @@ return [
         ],
 
     /**
+     * Configure the cache used for storing the statistics request.
+     */
+        'statistics' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_statistics_',
+            'path' => CACHE . 'statistics/',
+            'duration' => '+1 days',
+        ],
+
+    /**
      * Configure the cache used for storing the request on Google Analytics.
      */
         'analytics' => [
@@ -400,19 +410,5 @@ return [
         'client_id' => '',
         'profile_id' => '',
         'private_key' => ''
-    ],
-
-/**
- * Paypal configuration for Premium. (Classic API credentials)
- *
- * More information : https://developer.paypal.com/docs/classic/api/apiCredentials/
- */
-    'Paypal' => [
-        'mail' => '',
-        'user' => '',
-        'pwd' => '',
-        'signature' => '',
-        //Enable/Disable sandbox
-        'sandbox' => false
     ]
 ];

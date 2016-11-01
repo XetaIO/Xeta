@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <?= $this->assign('title', __d('admin', 'Manage Categories')) ?>
 
 <div class="content-wrapper interface-blur">
@@ -35,12 +38,14 @@
                 <div class="panel-body">
 
                     <div class="panel-body-header">
-                        <?= $this->Html->link(__d('admin', '{0} New Category', '<i class="fa fa-plus"></i>'),
+                        <?= $this->Html->link(
+                            __d('admin', '{0} New Category', '<i class="fa fa-plus"></i>'),
                             ['controller' => 'categories', 'action' => 'add', 'prefix' => 'admin'],
-                            ['class' => 'btn btn-primary-outline', 'escape' => false]) ?>
+                            ['class' => 'btn btn-primary-outline', 'escape' => false]
+                        ) ?>
                     </div>
 
-                    <?php if($categories->toArray()): ?>
+                    <?php if($categories->toArray()) : ?>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -53,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($categories as $category):?>
+                                <?php foreach ($categories as $category) : ?>
                                     <tr>
                                         <td>
                                             #<?= $category->id ?>
@@ -61,7 +66,7 @@
                                         <td>
                                             <?= $this->Html->link(
                                                 $this->Text->truncate(
-                                                    $category->title,
+                                                    $category->translation(I18n::locale())->title,
                                                     35,
                                                     [
                                                         'ellipsis' => '...',
@@ -70,7 +75,7 @@
                                                 ),
                                                 [
                                                     '_name' => 'blog-category',
-                                                    'slug' => $category->title,
+                                                    'slug' => $category->translation(I18n::locale())->title,
                                                     'id' => $category->id,
                                                     'prefix' => false
                                                 ],
@@ -83,7 +88,7 @@
                                         </td>
                                         <td>
                                             <?= $this->Text->truncate(
-                                                h($category->description),
+                                                h($category->translation(I18n::locale())->description),
                                                 55,
                                                 [
                                                     'ellipsis' => '...',
@@ -102,7 +107,7 @@
                                                 '<i class="fa fa-edit"></i>',
                                                 [
                                                     '_name' => 'categories-edit',
-                                                    'slug' => $category->title,
+                                                    'slug' => $category->translation(I18n::locale())->title,
                                                     'id' => $category->id
                                                 ],
                                                 [
@@ -116,7 +121,7 @@
                                                 '<i class="fa fa-remove"></i>',
                                                 [
                                                     '_name' => 'categories-delete',
-                                                    'slug' => $category->title,
+                                                    'slug' => $category->translation(I18n::locale())->title,
                                                     'id' => $category->id
                                                 ],
                                                 [

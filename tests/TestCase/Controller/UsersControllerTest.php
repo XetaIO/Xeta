@@ -29,9 +29,6 @@ class UsersControllerTest extends IntegrationTestCase
         'app.blog_articles_likes',
         'app.badges',
         'app.badges_users',
-        'app.premium_offers',
-        'app.premium_transactions',
-        'app.premium_discounts',
         'app.notifications'
     ];
 
@@ -513,41 +510,6 @@ class UsersControllerTest extends IntegrationTestCase
         //We can't test the flash message due to the translation system.
         $this->assertSession('Flash/error', 'Flash.flash.0.element');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
-    }
-
-    /**
-     * Test profile unauthorized method
-     *
-     * @return void
-     */
-    public function testPremiumUnauthorized()
-    {
-        $this->get(['controller' => 'users', 'action' => 'premium']);
-        $this->assertResponseSuccess();
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
-    }
-
-    /**
-     * Test premium authorized method
-     *
-     * @return void
-     */
-    public function testPremiumAuthorized()
-    {
-        $this->session([
-            'Auth' => [
-                'User' => [
-                    'id' => 1,
-                    'username' => 'mariano',
-                    'avatar' => '../img/avatar.png',
-                    'group_id' => 5,
-                ]
-            ]
-        ]);
-
-        $this->get(['controller' => 'users', 'action' => 'premium']);
-        $this->assertResponseOk();
-        $this->assertResponseContains('€');
     }
 
     /**

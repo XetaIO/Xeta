@@ -1,3 +1,6 @@
+<?php
+use Cake\I18n\I18n;
+?>
 <div class="col-md-3">
     <div class="sidebox widget">
         <h4><?= __("Search Posts") ?></h4>
@@ -24,7 +27,7 @@
                 <h4 class="title">
                     <?= $this->Html->link(
                         $this->Text->truncate(
-                            $featured->title,
+                            $featured->translation(I18n::locale())->title,
                             60,
                             [
                                 'ellipsis' => '...',
@@ -33,7 +36,7 @@
                         ),
                         [
                             '_name' => 'blog-article',
-                            'slug' => $featured->title,
+                            'slug' => $featured->translation(I18n::locale())->title,
                             'id' => $featured->id,
                             '?' => ['page' => $featured->last_page]
                         ]
@@ -61,7 +64,7 @@
             <ul class="circled">
                 <?php foreach ($categories as $category) : ?>
                     <li>
-                        <?= $this->Html->link($category->title . " (" . $category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $category->title, 'id' => $category->id]) ?>
+                        <?= $this->Html->link($category->translation(I18n::locale())->title . " (" . $category->article_count_format . ")", ['_name' => 'blog-category', 'slug' => $category->title, 'id' => $category->id]) ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

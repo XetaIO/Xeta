@@ -57,15 +57,6 @@ class UsersTable extends Table
             'dependent' => true,
             'cascadeCallbacks' => true
         ]);
-        $this->hasMany('PremiumOffers', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('PremiumTransactions', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('PremiumDiscounts', [
-            'foreignKey' => 'user_id'
-        ]);
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
         ]);
@@ -382,7 +373,6 @@ class UsersTable extends Table
             'facebook',
             'twitter',
             'signature',
-            'end_subscription',
             'created',
             'last_login'
         ]);

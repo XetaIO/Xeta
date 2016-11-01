@@ -81,7 +81,7 @@ class I18nHelper extends Helper
 
             $html .= '<div class="form-group">';
             $html .= '<div class="col-sm-offset-2 ' . $divClass . '">';
-            $html .= $this->Form->input('translations.' . $locale . '.' . $field, $options);
+            $html .= $this->Form->input('_translations.' . $locale . '.' . $field, $options);
             $html .= '</div></div>';
         }
 
