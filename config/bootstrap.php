@@ -77,6 +77,7 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
+    Configure::load('database', 'default');
     Configure::load('xeta', 'default');
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");

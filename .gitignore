@@ -12,6 +12,7 @@
 /webroot/upload/avatar/1/
 /webroot/upload/blog/attachment/*
 config/app.php
+config/database.php
 config/recaptcha.php
 config/analytics-certificate.p12
 .idea

@@ -41,6 +41,7 @@ class Installer
         static::createAppConfig($rootDir, $io);
         static::createWritableDirectories($rootDir, $io);
         static::createRecaptchaConfig($rootDir, $io);
+        static::createDatabaseConfig($rootDir, $io);
         static::setDatabaseName($rootDir, $io);
 
         // ask if the permissions should be changed
@@ -88,6 +89,24 @@ class Installer
         if (!file_exists($appConfig)) {
             copy($defaultConfig, $appConfig);
             $io->write('Created `config/app.php` file');
+        }
+    }
+
+    /**
+     * Create the config/database.php file if it does not exist.
+     *
+     * @param string $dir The application's root directory.
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     *
+     * @return void
+     */
+    public static function createDatabaseConfig($dir, $io)
+    {
+        $databaseConfig = $dir . '/config/database.php';
+        $defaultConfig = $dir . '/config/database.default.php';
+        if (!file_exists($databaseConfig)) {
+            copy($defaultConfig, $databaseConfig);
+            $io->write('Created `config/database.php` file');
         }
     }
 
@@ -195,7 +214,7 @@ class Installer
      */
     public static function setDatabaseName($dir, $io)
     {
-        $config = $dir . '/config/app.php';
+        $config = $dir . '/config/database.php';
         $content = file_get_contents($config);
 
         $databaseName = $io->ask('What is your new database name ? ', 'xeta');
