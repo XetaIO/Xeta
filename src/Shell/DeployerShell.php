@@ -19,13 +19,17 @@ class DeployerShell extends Shell
         $this->out('The following commands can be used when deploying the application.', 2);
         $this->out('<info>Available commands:</info>', 2);
         $names = [];
+
         foreach ($this->tasks as $task => $value) {
             $names[] = Inflector::underscore($task);
         }
+
         sort($names);
+
         foreach ($names as $name) {
             $this->out('- <error>' . $name . '</error>');
         }
+
         $this->out('');
         $this->out('By using <info>`cake deployer [name]`</info> you can invoke a specific bake task.');
     }
@@ -44,6 +48,7 @@ class DeployerShell extends Shell
             'help' => 'Clear the cache files.',
             'parser' => $this->ClearCache->getOptionParser()
         ]);
+
         return $parser;
     }
 }

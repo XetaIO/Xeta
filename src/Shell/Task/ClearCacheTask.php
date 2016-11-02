@@ -30,6 +30,7 @@ class ClearCacheTask extends Shell
         $parser->description(
             'This tasks is used to clear the cached files in the application.'
         );
+
         return $parser;
     }
 }
