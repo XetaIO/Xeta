@@ -16,14 +16,15 @@ https://xeta.io
 
 ### Screenshots of the Administration Panel
 ##### Dashboard
-![Dashboard](https://cloud.githubusercontent.com/assets/8210023/7332853/4fceaaaa-eb56-11e4-8563-9afd7e7701ef.png)
+![Dashboard](https://cloud.githubusercontent.com/assets/8210023/19932908/f9204772-a111-11e6-84f5-750f15adc576.png)
 
 ##### Blog Articles Management
-![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525857/e61fa3e8-4d58-11e4-8fa2-b71d13abab16.png)
-![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/4525865/f5c1f56c-4d58-11e4-82c1-98ec08020455.png)
+![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/19932809/9f23fc6e-a111-11e6-89c3-bb53705fbd93.png)
 
-##### Blog Categories Management
-![Blog Categories Management](https://cloud.githubusercontent.com/assets/8210023/4525878/18b56aae-4d59-11e4-87fb-30ee78e885ae.png)
+![Blog Articles Management](https://cloud.githubusercontent.com/assets/8210023/19932872/dd69977c-a111-11e6-92a4-e16bcfb89e8e.png)
+
+##### Users Management
+![Users Management](https://cloud.githubusercontent.com/assets/8210023/19932834/b83c050c-a111-11e6-88c3-b122b30f9c08.png)
 
 # Install
 If you need to install to try a function or any other things, just follow the steps bellow.
