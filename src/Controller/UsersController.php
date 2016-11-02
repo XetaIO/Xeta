@@ -9,10 +9,11 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Time;
-use Cake\Network\Email\Email;
+use Cake\Mailer\MailerAwareTrait;
 
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
 
     /**
      * Initialize handle.
@@ -164,15 +165,7 @@ class UsersController extends AppController
                                 'name' => $user->full_name
                             ];
 
-                            $email = new Email();
-                            $email->profile('default')
-                                ->template('register', 'default')
-                                ->emailFormat('html')
-                                ->from(['no-reply@xeta.io' => __d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name'))])
-                                ->to($user->email)
-                                ->subject(__d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name')))
-                                ->viewVars($viewVars)
-                                ->send();
+                            $this->getMailer('User')->send('register', [$user, $viewVars]);
 
                             $this->Flash->success(__("Your account has been created successfully !"));
 
@@ -471,15 +464,7 @@ class UsersController extends AppController
                 'code' => $code
             ];
 
-            $email = new Email();
-            $email->profile('default')
-                ->template('forgotPassword', 'default')
-                ->emailFormat('html')
-                ->from(['no-reply@xeta.io' => __('Forgot your Password - Xeta')])
-                ->to($user->email)
-                ->subject(__('Forgot your Password - Xeta'))
-                ->viewVars($viewVars)
-                ->send();
+            $this->getMailer('User')->send('forgotPassword', [$user, $viewVars]);
 
             $this->Flash->success(__("An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail.", h($user->email)));
         }

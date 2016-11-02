@@ -23,7 +23,7 @@ class SlugRoute extends Route
      * @param string $url The URL to parse.
      * @param string $method The HTTP method.
      *
-     * @return mixed false on failure, or an array of request parameters.
+     * @return false|array False on failure, or an array of request parameters.
      */
     public function parse($url, $method = '')
     {
@@ -53,7 +53,7 @@ class SlugRoute extends Route
      *   Contains information such as the current host, scheme, port, and base
      *   directory.
      *
-     * @return mixed either false or a string URL.
+     * @return false|string Either false or a string URL.
      */
     public function match(array $url, array $context = [])
     {

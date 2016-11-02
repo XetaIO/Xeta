@@ -37,4 +37,22 @@ class ContactControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertResponseContains('text-danger');
     }
+
+    /**
+     * Test index method with valid data
+     *
+     * @return void
+     */
+    public function testIndexWithValidData()
+    {
+        $data = [
+            'email' => 'test@xeta.io',
+            'name' => 'My Name',
+            'message' => 'My message'
+        ];
+
+        $this->post(['controller' => 'contact', 'action' => 'index'], $data);
+        $this->assertResponseSuccess();
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
+    }
 }

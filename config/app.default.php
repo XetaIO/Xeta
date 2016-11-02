@@ -230,15 +230,14 @@ return [
  */
     'EmailTransport' => [
         'default' => [
-            'className' => 'Mail',
+            'className' => getenv('EMAIL_CLASSNAME') ? getenv('EMAIL_CLASSNAME') : 'Mail',
             // The following keys are used in SMTP transports
-            'host' => 'localhost',
-            'port' => 25,
+            'host' => getenv('EMAIL_HOST') ? getenv('EMAIL_HOST') : 'localhost',
+            'port' => getenv('EMAIL_PORT') ? getenv('EMAIL_PORT') : 25,
             'timeout' => 30,
-            'username' => 'user',
-            'password' => 'secret',
-            'client' => null,
-            'tls' => null,
+            'username' => getenv('EMAIL_USERNAME') ? getenv('EMAIL_USERNAME') : 'user',
+            'password' => getenv('EMAIL_PASSWORD') ? getenv('EMAIL_PASSWORD') : 'secret',
+            'client' => getenv('EMAIL_CLIENT') ? getenv('EMAIL_CLIENT') : null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null)
         ],
     ],

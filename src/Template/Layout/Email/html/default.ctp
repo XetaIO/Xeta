@@ -24,19 +24,22 @@ use Cake\Core\Configure;
 
                     <tr>
                         <td>
-                            <table width="100%" bgcolor="#FFF" height="66" style="border-bottom: 4px solid rgba(0, 0, 0, 0.1);">
+                            <table width="100%" bgcolor="#FFF" height="66" style="border-bottom:4px solid rgba(0,0,0,0.1);border-top: 1px solid rgba(0,0,0,0.1);">
                                 <tr>
                                     <td valign="middle">
                                         <table width="580" style="margin:0 auto;color:#73879C;">
                                             <tr>
                                                 <td valign="middle">
-                                                    <?= $this->Html->image('logo_and_name.png', [
-                                                        'fullBase' => true,
-                                                        'height' => '23',
-                                                        'valign' => 'bottom',
-                                                        'alt' => 'Xeta',
-                                                        'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
-                                                    ]) ?>
+                                                    <?= $this->Html->image(
+                                                        'logo_and_name.png',
+                                                        [
+                                                            'fullBase' => true,
+                                                            'height' => '23',
+                                                            'valign' => 'bottom',
+                                                            'alt' => Configure::read('Site.name'),
+                                                            'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
+                                                        ]
+                                                    ) ?>
                                                     <?= $this->Html->link(
                                                         __('Home'),
                                                         ['controller' => 'pages', 'action' => 'home', '_full' => true],
@@ -45,16 +48,6 @@ use Cake\Core\Configure;
                                                     <?= $this->Html->link(
                                                         __('Blog'),
                                                         ['controller' => 'blog', 'action' => 'index', '_full' => true],
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Forum'),
-                                                        ['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum', '_full' => true],
-                                                        ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
-                                                    ) ?>
-                                                    <?= $this->Html->link(
-                                                        __('Premium'),
-                                                        ['controller' => 'premium', 'action' => 'index', '_full' => true],
                                                         ['style' => 'text-decoration:none;color:#73879C;padding:0 5px;text-transform:uppercase;']
                                                     ) ?>
                                                     <?= $this->Html->link(
@@ -85,12 +78,15 @@ use Cake\Core\Configure;
                                         <table width="580" style="margin:0 auto;">
                                             <tr>
                                                 <td align="center">
-                                                    <?=  $this->Html->image('logo_and_name_white_inversed.png', [
-                                                        'fullBase' => true,
-                                                        'height' => '23',
-                                                        'alt' => 'Xeta',
-                                                        'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
-                                                    ]) ?>
+                                                    <?= $this->Html->image(
+                                                        'logo_and_name_white_inversed.png',
+                                                        [
+                                                            'fullBase' => true,
+                                                            'height' => '23',
+                                                            'alt' => Configure::read('Site.name'),
+                                                            'url' => ['controller' => 'pages', 'action' => 'home', '_full' => true]
+                                                        ]
+                                                    ) ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -98,28 +94,37 @@ use Cake\Core\Configure;
                                                     <table>
                                                         <tr>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->image('social/twitter.png', [
-                                                                    'fullBase' => true,
-                                                                    'height' => '33',
-                                                                    'alt' => 'Twitter',
-                                                                    'url' => Configure::read('Author.twitter')
-                                                                ]) ?>
+                                                                <?= $this->Html->image(
+                                                                    'social/twitter.png',
+                                                                    [
+                                                                        'fullBase' => true,
+                                                                        'height' => '33',
+                                                                        'alt' => 'Twitter',
+                                                                        'url' => Configure::read('Author.twitter')
+                                                                    ]
+                                                                ) ?>
                                                             </td>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->image('social/github.png', [
-                                                                    'fullBase' => true,
-                                                                    'height' => '33',
-                                                                    'alt' => 'GitHub',
-                                                                    'url' => Configure::read('Site.github_url')
-                                                                ]) ?>
+                                                                <?= $this->Html->image(
+                                                                    'social/github.png',
+                                                                    [
+                                                                        'fullBase' => true,
+                                                                        'height' => '33',
+                                                                        'alt' => 'GitHub',
+                                                                        'url' => Configure::read('Site.github_url')
+                                                                    ]
+                                                                ) ?>
                                                             </td>
                                                             <td style="padding: 0px 2px;">
-                                                                <?= $this->Html->image('social/facebook.png', [
-                                                                    'fullBase' => true,
-                                                                    'height' => '33',
-                                                                    'alt' => 'Facebook',
-                                                                    'url' => Configure::read('Author.facebook')
-                                                                ]) ?>
+                                                                <?= $this->Html->image(
+                                                                    'social/facebook.png',
+                                                                    [
+                                                                        'fullBase' => true,
+                                                                        'height' => '33',
+                                                                        'alt' => 'Facebook',
+                                                                        'url' => Configure::read('Author.facebook')
+                                                                    ]
+                                                                ) ?>
                                                             </td>
                                                         </tr>
                                                     </table>
