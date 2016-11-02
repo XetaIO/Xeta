@@ -3,7 +3,6 @@ namespace App\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
-use Cake\I18n\Time;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 use HTMLPurifier;
