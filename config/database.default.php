@@ -41,7 +41,7 @@ return [
         /**
          * The test connection is used during the test suite.
          */
-        /*'test' => [
+        'test' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
@@ -54,7 +54,7 @@ return [
             'timezone' => 'UTC',
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
-            'log' => false,*/
+            'log' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ]
     ]
