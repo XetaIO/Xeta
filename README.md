@@ -1,15 +1,11 @@
-# Xeta : CakePHP 3 Resource [OUTDATED]
+# Xeta : CakePHP 3 Resource
 <p align="center">
-  <img src="https://xeta.io/img/xeta-logo.svg" alt="Xeta Logo" height="120"/>
+  <img src="https://cloud.githubusercontent.com/assets/8210023/19826622/a0a80d62-9d8f-11e6-9efb-5838b3c1c3f2.png" alt="Xeta Logo" height="80"/>
 </p>
 
-|Travis|Appveyor|Coverage|Landscape|Scrutinizer|
-|:------:|:-------:|:-------:|:------:|:------:|
-|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Build Status](https://img.shields.io/appveyor/ci/Xety/Xeta.svg?style=flat-square)](https://ci.appveyor.com/project/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Code Health](https://landscape.io/github/Xety/Xeta/master/landscape.svg?style=flat-square)](https://landscape.io/github/Xety/Xeta/master)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|
-
-|Stable Version|Downloads|VersionEye|License|CakePHP|
-|:------:|:-------:|:-------:|:------:|:------:|
-|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Version EYE](https://img.shields.io/versioneye/d/xety/xeta.svg?style=flat-square)](https://www.versioneye.com/user/projects/55430de8d8fe1a25cc000053)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
+|Travis|Coverage|Scrutinizer|Stable Version|Downloads|License|CakePHP|
+|:------:|:-------:|:-------:|:------:|:------:|:------:|:------:|
+|[![Build Status](https://img.shields.io/travis/Xety/Xeta.svg?style=flat-square)](https://travis-ci.org/Xety/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
 
 Xeta is a resource to help people starting with Cake3.
 
@@ -28,9 +24,6 @@ https://xeta.io
 
 ##### Blog Categories Management
 ![Blog Categories Management](https://cloud.githubusercontent.com/assets/8210023/4525878/18b56aae-4d59-11e4-87fb-30ee78e885ae.png)
-
-##### Forum Categories Management
-![Forum Categories Management](https://cloud.githubusercontent.com/assets/8210023/7332863/db94563e-eb56-11e4-9210-5032ad3f1820.png)
 
 # Install
 If you need to install to try a function or any other things, just follow the steps bellow.
@@ -72,28 +65,6 @@ This project implements many features and will implements more in the future. He
     * Quote
     * Attachments
 
-* ###### Forum
-    * Categories (Managed by the TreeBehavior. That means unlimited sub-categories)
-    * Statistics (Total Post, Threads, Likes)
-    * Users online on the site
-    * Staff Online
-    * Followers (Follow a Thread to get notified on reply)
-    * Notifications (On Thread Replied, On Thread Created, On Locked Thread, On Badge etc)
-    * Sticky Threads
-    * Locked Threads
-    * Likes on Posts
-    * "There is X Users on this page"
-    * Latest Threads
-    * Polls (Will be added in the Future)
-    * Read/Unread system (Will be added soon)
-
-* ###### Chatbox (AJAX)
-    * Users online in the chat
-    * Ban/Unban/Prune command
-    * Delete a message
-    * Notice
-    * Smileys
-
 * ###### Premium
     * Support of Paypal
     * Discounts Code
@@ -111,8 +82,6 @@ This project implements many features and will implements more in the future. He
         * Statistics
         * Offers
         * Discounts
-    * Forum Management
-        * Categories
 
 * ###### ACL
     * ACL Management (Still in Dev)

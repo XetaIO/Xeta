@@ -6,7 +6,6 @@ use Cake\I18n\I18n;
 
 class ArticlesController extends AppController
 {
-
     /**
      * Helpers.
      *
@@ -31,9 +30,10 @@ class ArticlesController extends AppController
             ->find()
             ->contain([
                 'BlogCategories' => function ($q) {
-                    return $q->select([
-                            'title',
-                            'slug'
+                    return $q
+                        ->select([
+                            'id',
+                            'title'
                         ]);
                 },
                 'Users' => function ($q) {
@@ -72,6 +72,7 @@ class ArticlesController extends AppController
         }
 
         $categories = $this->BlogArticles->BlogCategories->find('list');
+
         $this->set(compact('article', 'categories'));
     }
 
@@ -88,7 +89,7 @@ class ArticlesController extends AppController
         $article = $this->BlogArticles
             ->find('translations')
             ->where([
-                'BlogArticles.slug' => $this->request->slug
+                'BlogArticles.id' => $this->request->id
             ])
             ->contain([
                 'BlogAttachments',
@@ -131,9 +132,9 @@ class ArticlesController extends AppController
         $this->loadModel('BlogArticles');
 
         $article = $this->BlogArticles
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogArticles.slug'
+            ->find()
+            ->where([
+                'BlogArticles.id' => $this->request->id
             ])
             ->first();
 

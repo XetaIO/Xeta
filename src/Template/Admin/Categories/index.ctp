@@ -23,21 +23,26 @@
         </div>
 
         <div class="col-md-12">
-            <div class="panel panel-default">
-
+            <div class="panel">
                 <div class="panel-heading">
-                    <?= __d('admin', 'Manage Categories') ?>
+                    <div class="hr-divider hr-divider-panel">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __d('admin', 'Manage Categories') ?>
+                        </h3>
+                    </div>
                 </div>
 
                 <div class="panel-body">
 
                     <div class="panel-body-header">
-                        <?= $this->Html->link(__d('admin', '{0} New Category', '<i class="fa fa-plus"></i>'),
+                        <?= $this->Html->link(
+                            __d('admin', '{0} New Category', '<i class="fa fa-plus"></i>'),
                             ['controller' => 'categories', 'action' => 'add', 'prefix' => 'admin'],
-                            ['class' => 'btn btn-primary', 'escape' => false]) ?>
+                            ['class' => 'btn btn-primary-outline', 'escape' => false]
+                        ) ?>
                     </div>
 
-                    <?php if($categories->toArray()): ?>
+                    <?php if ($categories->toArray()) : ?>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -50,7 +55,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($categories as $category):?>
+                                <?php foreach ($categories as $category) : ?>
                                     <tr>
                                         <td>
                                             #<?= $category->id ?>
@@ -67,7 +72,7 @@
                                                 ),
                                                 [
                                                     '_name' => 'blog-category',
-                                                    'slug' => $category->slug,
+                                                    'slug' => $category->title,
                                                     'id' => $category->id,
                                                     'prefix' => false
                                                 ],
@@ -99,10 +104,11 @@
                                                 '<i class="fa fa-edit"></i>',
                                                 [
                                                     '_name' => 'categories-edit',
-                                                    'slug' => $category->slug
+                                                    'slug' => $category->title,
+                                                    'id' => $category->id
                                                 ],
                                                 [
-                                                    'class' => 'btn btn-sm btn-primary',
+                                                    'class' => 'btn btn-sm btn-primary-outline',
                                                     'data-toggle' => 'tooltip',
                                                     'title' => __d('admin', 'Edit this category'),
                                                     'escape' => false
@@ -112,10 +118,11 @@
                                                 '<i class="fa fa-remove"></i>',
                                                 [
                                                     '_name' => 'categories-delete',
-                                                    'slug' => $category->slug
+                                                    'slug' => $category->title,
+                                                    'id' => $category->id
                                                 ],
                                                 [
-                                                    'class' => 'btn btn-sm btn-danger',
+                                                    'class' => 'btn btn-sm btn-danger-outline',
                                                     'data-toggle' => 'tooltip',
                                                     'title' => __d('admin', 'Delete this category'),
                                                     'escape' => false
@@ -129,17 +136,17 @@
 
                         <div class="pagination-centered">
                             <ul class="pagination">
-                                <?php if ($this->Paginator->hasPrev()): ?>
+                                <?php if ($this->Paginator->hasPrev()) : ?>
                                     <?= $this->Paginator->prev('«'); ?>
                                 <?php endif; ?>
                                 <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                                <?php if ($this->Paginator->hasNext()): ?>
+                                <?php if ($this->Paginator->hasNext()) : ?>
                                     <?= $this->Paginator->next('»'); ?>
                                 <?php endif; ?>
                             </ul>
                         </div>
-                    <?php else: ?>
-                        <div class="infobox infobox-info">
+                    <?php else : ?>
+                        <div class="infobox infobox-primary">
                             <h4>
                                 <?= __d('admin', 'No categories was found.') ?>
                             </h4>

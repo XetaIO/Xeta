@@ -16,7 +16,7 @@
                                 <p>
                                     <?= __d(
                                         'mail',
-                                        "Welcome on {0} ! You can now post your first comment in the Blog {1}, or create your new topic in the Forum {2}. You can also manage your account {3} and view your profil {4}.",
+                                        "Welcome on {0} ! You can now post your first comment in the Blog {1}. You can also manage your account {2} and view your profil {3}.",
                                         \Cake\Core\Configure::read('Site.name'),
                                         $this->Html->link(
                                             __d('mail', 'here'),
@@ -30,12 +30,7 @@
                                         ),
                                         $this->Html->link(
                                             __d('mail', 'here'),
-                                            ['controller' => 'users', 'action' => 'account', 'prefix' => false, '_full' => true],
-                                            ['style' => 'color:#1ABC9C;text-decoration:none;']
-                                        ),
-                                        $this->Html->link(
-                                            __d('mail', 'here'),
-                                            ['_name' => 'users-profile', 'slug' => $user->slug, 'id' => $user->id, 'prefix' => false, '_full' => true],
+                                            ['_name' => 'users-profile', 'slug' => $user->username, 'id' => $user->id, 'prefix' => false, '_full' => true],
                                             ['style' => 'color:#1ABC9C;text-decoration:none;']
                                         )
                                     ) ?>

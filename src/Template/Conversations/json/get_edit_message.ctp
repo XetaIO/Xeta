@@ -14,15 +14,15 @@ if ($json['error'] === false):
                 )}
             </div>
             <div class=\"form-group\">
-                {$this->Form->button(__d('conversations', 'Update Message'), ['type' => 'submit', 'class' => 'btn btn-sm btn-primary'])}
-                {$this->Html->link(__d('conversations', 'Cancel'), '#', ['data-id' => $message->id, 'class' => 'btn btn-sm btn-danger', 'id' => 'cancelEditMessage'])}
+                {$this->Form->button(__d('conversations', '{0} Save', '<i class="fa fa-floppy-o"></i>'), ['type' => 'submit', 'class' => 'btn btn-primary-outline', 'escape' => false])}
+                {$this->Html->link(__d('conversations', '{0} Cancel', '<i class="fa fa-remove"></i>'), '#', ['data-id' => $message->id, 'class' => 'btn btn-danger-outline', 'id' => 'cancelEditMessage', 'escape' => false])}
             </div>
         {$this->Form->end()}
         <script type=\"text/javascript\">
         $(function() {
             $(\"#cancelEditMessage\").click(function () {
                 var messageId = $(this).attr(\"data-id\");
-                $(\"#message-\" + messageId + \" .message\").fadeIn();
+                $(\"#message-\" + messageId + \" .text\").fadeIn();
                 $(\"#editingMessage-\" + messageId).remove();
 
                 return false;

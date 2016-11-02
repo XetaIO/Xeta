@@ -32,9 +32,6 @@ class UsersTable extends Table
                 ]
             ]
         ]);
-        $this->addBehavior('Xety/Cake3Sluggable.Sluggable', [
-            'field' => 'username'
-        ]);
         $this->addBehavior('Acl.Acl', [
             'type' => 'requester',
             'enabled' => false
@@ -60,37 +57,8 @@ class UsersTable extends Table
             'dependent' => true,
             'cascadeCallbacks' => true
         ]);
-        $this->hasMany('PremiumOffers', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('PremiumTransactions', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('PremiumDiscounts', [
-            'foreignKey' => 'user_id'
-        ]);
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
-        ]);
-        $this->hasMany('ForumThreads', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumPosts', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumPostsLikes', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
-        ]);
-        $this->hasMany('ForumThreadsFollowers', [
-            'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
         ]);
         $this->hasMany('Notifications', [
             'foreignKey' => 'user_id',
@@ -362,8 +330,7 @@ class UsersTable extends Table
             'id',
             'first_name',
             'last_name',
-            'username',
-            'slug'
+            'username'
         ]);
     }
 
@@ -381,8 +348,7 @@ class UsersTable extends Table
             'first_name',
             'last_name',
             'username',
-            'avatar',
-            'slug'
+            'avatar'
         ]);
     }
 
@@ -401,17 +367,12 @@ class UsersTable extends Table
             'last_name',
             'username',
             'avatar',
-            'slug',
             'group_id',
-            'forum_post_count',
-            'forum_thread_count',
-            'forum_like_received',
             'blog_articles_comment_count',
             'blog_article_count',
             'facebook',
             'twitter',
             'signature',
-            'end_subscription',
             'created',
             'last_login'
         ]);

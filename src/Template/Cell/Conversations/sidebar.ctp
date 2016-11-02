@@ -1,8 +1,12 @@
 <?php if (!empty($participants)): ?>
     <div class="sidebox widget">
-        <div class="panel panel-forum sidebar-conversation">
+        <div class="panel sidebar-conversation">
             <div class="panel-heading">
-                <?= __d('conversations', 'Actions') ?>
+                <div class="hr-divider hr-divider-panel">
+                    <h3 class="hr-divider-content hr-divider-heading">
+                        <?= __d('conversations', 'Actions') ?>
+                    </h3>
+                </div>
             </div>
             <div class="panel-body">
                 <ul class="circled">
@@ -43,13 +47,13 @@
                             <?= __d('conversations', 'Are you sure you want to leave this conversation ?') ?>
                         </p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-actions">
                         <?= $this->Html->link(
                             __d('conversations', 'Yes'),
                             ['_name' => 'conversations-leave', 'id' => $conversation->id, 'slug' => $conversation->title],
-                            ['class' => 'btn btn-primary']
+                            ['class' => 'ma ma-btn ma-btn-danger']
                         ) ?>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <button type="button" class="ma ma-btn ma-btn-primary" data-dismiss="modal">
                             <?= __d('conversations', 'Close') ?>
                         </button>
                     </div>
@@ -88,16 +92,17 @@
                             ]) ?>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-actions">
                         <?= $this->Form->button(
-                            __d('conversations', 'Invite'),
+                            __d('conversations', '{0} Invite', '<i class="fa fa-plus"></i>'),
                             [
                                 'type' => 'submit',
-                                'class' => 'btn btn-primary'
+                                'class' => 'ma ma-btn ma-btn-success',
+                                'escape' => false
                             ]
                         ) ?>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <?= __d('conversations', 'Close') ?>
+                        <button type="button" class="ma ma-btn ma-btn-danger" data-dismiss="modal">
+                            <?= __d('conversations', '{0} Cancel', '<i class="fa fa-remove"></i>') ?>
                         </button>
                     </div>
                     <?= $this->Form->end(); ?>
@@ -128,43 +133,40 @@
                         </div>
                         <div class="form-group">
                             <?= $this->Form->label('conversation_open', __d('conversations', 'Close Conversation'), ['class' => 'control-label']) ?>
-                            <div class="radio-check">
-                                <?= $this->Form->radio('conversation_open', [
-                                        '0' => __('Yes'),
-                                        '1' => __('No')
-                                    ],
-                                    [
-                                        'legend' => false,
-                                        'class' => 'form-control'
-                                    ]
-                                ) ?>
-                            </div>
+                            <?= $this->Form->radio('conversation_open', [
+                                    '1' => __d('conversations', 'No'),
+                                    '0' => __d('conversations', 'Yes')
+                                ],
+                                [
+                                    'legend' => false,
+                                    'class' => 'form-control'
+                                ]
+                            ) ?>
                         </div>
                         <div class="form-group">
                             <?= $this->Form->label('open_invite', __d('conversations', 'Allow anyone in the conversation to invite other users'), ['class' => 'control-label']) ?>
-                            <div class="radio-check">
-                                <?= $this->Form->radio('open_invite', [
-                                        '0' => __('Yes'),
-                                        '1' => __('No')
-                                    ],
-                                    [
-                                        'legend' => false,
-                                        'class' => 'form-control'
-                                    ]
-                                ) ?>
-                            </div>
+                            <?= $this->Form->radio('open_invite', [
+                                    '1' => __d('conversations', 'No'),
+                                    '0' => __d('conversations', 'Yes')
+                                ],
+                                [
+                                    'legend' => false,
+                                    'class' => 'form-control'
+                                ]
+                            ) ?>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-actions">
                         <?= $this->Form->button(
-                            __d('conversations', 'Save'),
+                            __d('conversations', '{0} Save', '<i class="fa fa-floppy-o"></i>'),
                             [
                                 'type' => 'submit',
-                                'class' => 'btn btn-primary'
+                                'class' => 'ma ma-btn ma-btn-success',
+                                'escape' => false
                             ]
                         ) ?>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <?= __d('conversations', 'Close') ?>
+                        <button type="button" class="ma ma-btn ma-btn-danger" data-dismiss="modal">
+                            <?= __d('conversations', '{0} Cancel', '<i class="fa fa-remove"></i>') ?>
                         </button>
                     </div>
                     <?= $this->Form->end(); ?>
@@ -175,9 +177,13 @@
 <?php endif; ?>
 
 <div class="sidebox widget">
-    <div class="panel panel-forum sidebar-conversation">
+    <div class="panel sidebar-conversation">
         <div class="panel-heading">
-            <?= __d('conversations', 'Conversation Information') ?>
+            <div class="hr-divider hr-divider-panel">
+                <h3 class="hr-divider-content hr-divider-heading">
+                    <?= __d('conversations', 'Conversation Information') ?>
+                </h3>
+            </div>
         </div>
         <div class="panel-body">
             <dl>
@@ -214,7 +220,7 @@
                         [
                             '_name' => 'users-profile',
                             'id' => $conversation->last_message_user->id,
-                            'slug' => $conversation->last_message_user->slug
+                            'slug' => $conversation->last_message_user->username
                         ],
                         [
                             'class' => 'text-primary'
@@ -228,9 +234,13 @@
 
 <?php if (!empty($participants)): ?>
     <div class="sidebox widget">
-        <div class="panel panel-forum panel-staff-online">
+        <div class="panel panel-staff-online">
             <div class="panel-heading">
-                <?= __d('conversations', 'Participants') ?>
+                <div class="hr-divider hr-divider-panel">
+                    <h3 class="hr-divider-content hr-divider-heading">
+                        <?= __d('conversations', 'Participants') ?>
+                    </h3>
+                </div>
             </div>
             <div class="panel-body">
                 <ul>
@@ -238,12 +248,12 @@
                         <li id="recipient-<?= $participant->user->id ?>">
                             <?= $this->Html->link(
                                 $this->Html->image($participant->user->avatar, ['class' => 'img-thumbnail']),
-                                ['_name' => 'users-profile', 'slug' => $participant->user->slug, 'id' => $participant->user->id, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $participant->user->username, 'id' => $participant->user->id, 'prefix' => false],
                                 ['class' => 'avatar', 'escape' => false]
                             ) ?>
                             <?= $this->Html->link(
                                 $participant->user->username,
-                                ['_name' => 'users-profile', 'slug' => $participant->user->slug, 'id' => $participant->user->id, 'prefix' => false],
+                                ['_name' => 'users-profile', 'slug' => $participant->user->username, 'id' => $participant->user->id, 'prefix' => false],
                                 ['class' => 'username']
                             ) ?>
                             <small class="userGroup">
@@ -285,7 +295,7 @@
             </div>
             <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
                 <div class="panel-footer">
-                    <?= $this->Html->link(__d('conversations', 'Invite new participants'), '#', ['data-toggle' => 'modal', 'data-target' => '#inviteParticipant']) ?>
+                    <?= $this->Html->link(__d('conversations', '{0} Invite new participants', '<i class="fa fa-plus"></i>'), '#', ['escape' => false, 'data-toggle' => 'modal', 'data-target' => '#inviteParticipant']) ?>
                 </div>
             <?php endif; ?>
         </div>

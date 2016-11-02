@@ -46,7 +46,7 @@ class UsersController extends AppController
             }
         }
 
-        switch($type) {
+        switch ($type) {
             case "username":
                 $this->paginate = [
                     'limit' => 15,
@@ -131,7 +131,14 @@ class UsersController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->Users->patchEntity($user, $this->request->data(), ['validate' => 'update']);
+            $this->Users->patchEntity(
+                $user,
+                $this->request->data(),
+                [
+                    'validate' => 'update',
+                    'accessibleFields' => ['group_id' => true]
+                ]
+            );
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__d('admin', 'This user has been updated successfully !'));

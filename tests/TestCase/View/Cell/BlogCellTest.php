@@ -27,8 +27,8 @@ class BlogCellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->request = $this->getMock('Cake\Network\Request');
-        $this->response = $this->getMock('Cake\Network\Response');
+        $this->request = $this->getMockBuilder('Cake\Network\Request')->getMock();
+        $this->response = $this->getMockBuilder('Cake\Network\Response')->getMock();
         $this->View = new \Cake\View\View($this->request, $this->response);
     }
 

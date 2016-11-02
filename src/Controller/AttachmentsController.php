@@ -38,9 +38,19 @@ class AttachmentsController extends AppController
     {
         $this->loadModel('Users');
 
-        $user = $this->Users->find()->where(['id' => $this->request->session()->read('Auth.User.id')])->first();
+        $user = $this->Users
+            ->find()
+            ->where([
+                'Users.id' => $this->request->session()->read('Auth.User.id')
+            ])
+            ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'is_staff']);
+                }
+            ])
+            ->first();
 
-        if (is_null($user) || !$user->premium) {
+        if (is_null($user)) {
             throw new ForbiddenException();
         }
 
@@ -48,8 +58,11 @@ class AttachmentsController extends AppController
             throw new NotFoundException();
         }
 
-        switch($this->request->type) {
+        switch ($this->request->type) {
             case "blog":
+                if (!$user->premium && !$user->group->is_staff) {
+                    throw new ForbiddenException();
+                }
                 $this->loadModel('BlogAttachments');
 
                 $attachment = $this->BlogAttachments->get($this->request->id);

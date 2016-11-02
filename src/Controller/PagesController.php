@@ -44,7 +44,8 @@ class PagesController extends AppController
         $articles = $this->BlogArticles
             ->find()
             ->contain([
-                'BlogCategories'
+                'BlogCategories',
+                'Users'
             ])
             ->order([
                 'BlogArticles.created' => 'desc'
@@ -60,8 +61,7 @@ class PagesController extends AppController
                 'BlogArticles' => function ($q) {
                     return $q
                         ->select([
-                            'title',
-                            'slug'
+                            'title'
                         ]);
                 },
                 'Users' => function ($q) {

@@ -1,3 +1,4 @@
+<?php $this->layout = 'error'; ?>
 <?= $this->element('meta', [
     'title' => __("Error {0} :(", $code)
 ]) ?>
@@ -19,7 +20,7 @@
 <?php $this->end() ?>
 
 <?= $this->Html->css([
-    'errors'
+    'errors.min'
 ], ['block' => true])?>
 
 <div class="robotpage-top-half">

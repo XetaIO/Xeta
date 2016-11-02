@@ -21,12 +21,13 @@ class SlugRoute extends Route
      * Parses a string URL into an array. If it matches, it will convert the slug keys to their slugerize form
      *
      * @param string $url The URL to parse.
+     * @param string $method The HTTP method.
      *
-     * @return mixed false on failure, or an array of request parameters.
+     * @return false|array False on failure, or an array of request parameters.
      */
-    public function parse($url)
+    public function parse($url, $method = '')
     {
-        $params = parent::parse($url);
+        $params = parent::parse($url, $method);
         if (!$params) {
             return false;
         }
@@ -39,6 +40,7 @@ class SlugRoute extends Route
         if (!empty($params['plugin'])) {
             $params['plugin'] = Inflector::camelize($params['plugin']);
         }
+
         return $params;
     }
 
@@ -51,7 +53,7 @@ class SlugRoute extends Route
      *   Contains information such as the current host, scheme, port, and base
      *   directory.
      *
-     * @return mixed either false or a string URL.
+     * @return false|string Either false or a string URL.
      */
     public function match(array $url, array $context = [])
     {
@@ -60,6 +62,7 @@ class SlugRoute extends Route
             $this->_slugedDefaults = true;
             $this->defaults = $this->_slugerize($this->defaults);
         }
+
         return parent::match($url, $context);
     }
 
@@ -81,6 +84,7 @@ class SlugRoute extends Route
         if (!empty($url['plugin'])) {
             $url['plugin'] = Inflector::underscore($url['plugin']);
         }
+
         return $url;
     }
 }

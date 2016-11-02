@@ -6,7 +6,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=5.4.16",
+        "php": ">=5.5.9",
         "cakephp/cakephp": "~3.0",
         "cakephp/acl": "dev-master",
         "cakephp/migrations": "~1.0",
@@ -16,15 +16,14 @@
         "widop/google-analytics": "dev-master",
         "mexitek/phpcolors": "dev-master",
         "xety/cake3-upload": "1.*",
-        "xety/cake3-sluggable": "1.*",
         "xety/cake3-cookieauth": "1.*",
-        "cake17/cakephp-recaptcha": "dev-master"
+        "cake17/cakephp-recaptcha": "dev-master",
+        "filp/whoops": "~2.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "d11wtq/boris": "1.0.*",
         "phpunit/phpunit": "*",
-        "gourmet/whoops": "*",
         "cakephp/cakephp-codesniffer": "dev-master",
         "cakephp/debug_kit": "~3.0",
         "cakephp/bake": "~1.0"
@@ -36,13 +35,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Test\\": "tests"
+            "App\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     },
     "scripts": {
         "post-install-cmd": "App\\Console\\Installer::postInstall",
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
+        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
+        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "vendor/bin/phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests",
+        "cs-fix": "vendor/bin/phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests",
+        "test": "vendor/bin/phpunit --colors=always"
     },
-    "minimum-stability" : "dev",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }

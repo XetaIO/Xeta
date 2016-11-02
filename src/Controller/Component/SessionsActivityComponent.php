@@ -48,6 +48,7 @@ class SessionsActivityComponent extends Component
     {
         if (empty($this->_session->id())) {
             $this->_session->start();
+
             return;
         }
         $sessions = TableRegistry::get('Sessions');
@@ -87,9 +88,7 @@ class SessionsActivityComponent extends Component
                 'Users' => function ($q) {
                     return $q->select([
                         'id',
-                        'username',
-                        'slug',
-                        'end_subscription'
+                        'username'
                     ]);
                 },
                 'Users.Groups' => function ($q) {

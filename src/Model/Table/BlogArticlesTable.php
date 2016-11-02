@@ -29,7 +29,6 @@ class BlogArticlesTable extends Table
             'fields' => ['title', 'content'],
             'translationTable' => 'BlogArticlesI18n'
         ]);
-        $this->addBehavior('Xety/Cake3Sluggable.Sluggable');
 
         $this->belongsTo('BlogCategories', [
             'foreignKey' => 'category_id',

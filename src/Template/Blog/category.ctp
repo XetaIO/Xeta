@@ -25,9 +25,9 @@
 
     <div class="row">
         <main class="col-md-9" role="main">
-            <?php if ($articles->toArray()): ?>
+            <?php if ($articles->toArray()) : ?>
                 <section class="blog-main">
-                    <?php foreach ($articles as $article): ?>
+                    <?php foreach ($articles as $article) : ?>
                         <article class="post">
 
                             <div class="date">
@@ -44,9 +44,10 @@
                             <header>
                                 <h2 class="title">
                                     <?= $this->Html->link(
-                                        $article->title, [
+                                        $article->title,
+                                        [
                                             '_name' => 'blog-article',
-                                            'slug' => $article->slug,
+                                            'slug' => $article->title,
                                             'id' => $article->id,
                                             '?' => ['page' => $article->last_page]
                                         ]
@@ -59,9 +60,10 @@
                                     <li class="author">
                                         <i class="fa fa-user"></i>
                                         <?= $this->Html->link(
-                                            $article->user->full_name, [
+                                            $article->user->full_name,
+                                            [
                                                 '_name' => 'users-profile',
-                                                'slug' => $article->user->slug,
+                                                'slug' => $article->user->username,
                                                 'id' => $article->user->id
                                             ]
                                         ) ?>
@@ -78,47 +80,36 @@
                             </aside>
 
                             <div class="content">
-                                <?=
-                                $this->Text->truncate(
+                                <?= $this->Text->truncate(
                                     $article->content_empty,
                                     200,
-                                    array(
+                                    [
                                         'ellipsis' => '...',
                                         'exact' => false
-                                    )
-                                );?>
+                                    ]
+                                ) ?>
                             </div>
 
                             <p>
                                 <?= $this->Html->link(
-                                    __('Read More'),
+                                    __('{0} Read More', '<i class="fa fa-eye"></i>'),
                                     [
                                         '_name' => 'blog-article',
-                                        'slug' => $article->slug,
+                                        'slug' => $article->title,
                                         'id' => $article->id,
                                         '?' => ['page' => $article->last_page]
                                     ],
-                                    ['class' => 'btn btn-primary']
+                                    ['class' => 'btn btn-primary-outline', 'escape' => false]
                                 ) ?>
                             </p>
                         </article>
                     <?php endforeach; ?>
                 </section>
 
-                <div class="pagination-centered">
-                    <ul class="pagination">
-                        <?php if ($this->Paginator->hasPrev()): ?>
-                            <?= $this->Paginator->prev('«'); ?>
-                        <?php endif; ?>
-                        <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                        <?php if ($this->Paginator->hasNext()): ?>
-                            <?= $this->Paginator->next('»'); ?>
-                        <?php endif; ?>
-                    </ul>
-                </div>
+                <?= $this->element('pagination') ?>
 
-            <?php else: ?>
-                <div class="infobox infobox-info">
+            <?php else : ?>
+                <div class="infobox infobox-primary">
                     <h4><?= __("No articles found"); ?></h4>
                     <p>
                         <?= __("No articles were found for this category."); ?>

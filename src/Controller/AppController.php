@@ -11,6 +11,18 @@ class AppController extends Controller
 {
 
     /**
+     * Initialization hook method.
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        //$this->loadComponent('Flash');
+    }
+
+    /**
      * Components.
      *
      * @var array
@@ -80,11 +92,10 @@ class AppController extends Controller
      */
     public $helpers = [
         'Form' => [
-            'templates' => [
-                'error' => '<div class="text-danger">{{content}}</div>',
-                'radioWrapper' => '{{input}}{{label}}',
-                'nestingLabel' => '<label{{attrs}}>{{text}}</label>'
-            ]
+            'templates' => 'form-templates'
+        ],
+        'Paginator' => [
+            'templates' => 'paginator-templates'
         ],
         'Acl'
     ];
@@ -102,29 +113,6 @@ class AppController extends Controller
         $language = new Language($this);
         $language->setLanguage();
 
-        //Check for the Premium.
-        $premium = $this->request->session()->read('Premium.Check') ? $this->request->session()->read('Premium.Check') : null;
-        if (!is_null($premium)) {
-            $this->loadModel('PremiumTransactions');
-
-            $transaction = $this->PremiumTransactions
-                ->find()
-                ->where([
-                    'txn' => $this->request->session()->read('Premium.Check'),
-                    'user_id' => $this->request->session()->read('Auth.User.id')
-                ])
-                ->contain(['Users'])
-                ->first();
-
-            if ($transaction) {
-                //Write in the session the virtual field.
-                $this->Auth->setUser($transaction->user->toArray());
-                $this->request->session()->write('Auth.User.premium', $transaction->user->premium);
-
-                $this->request->session()->delete('Premium.Check');
-            }
-        }
-
         //Set trustProxy or get the original visitor IP.
         $this->request->trustProxy = true;
 
@@ -136,16 +124,13 @@ class AppController extends Controller
             if ($user && $user['is_deleted'] == false) {
                 $this->Auth->setUser($user);
 
-                $user = $this->Users->newEntity($user);
+                $user = $this->Users->newEntity($user, ['accessibleFields' => ['id' => true]]);
                 $user->isNew(false);
 
                 $user->last_login = new Time();
                 $user->last_login_ip = $this->request->clientIp();
 
                 $this->Users->save($user);
-
-                //Write in the session the virtual field.
-                $this->request->session()->write('Auth.User.premium', $user->premium);
 
                 //Event.
                 $this->eventManager()->attach(new Badges($this));
@@ -162,18 +147,22 @@ class AppController extends Controller
         if (isset($this->request->params['prefix'])) {
             $prefix = explode('/', $this->request->params['prefix'])[0];
 
-            switch($prefix) {
+            switch ($prefix) {
                 case 'admin':
-                    $this->layout = 'admin';
-                    break;
-
-                case 'forum':
-                    $this->layout = 'forum';
+                    $this->viewBuilder()->layout('admin');
                     break;
             }
         }
 
         $allowCookies = $this->Cookie->check('allowCookies');
         $this->set(compact('allowCookies'));
+
+        //JavaScript Notifications.
+        if ($this->request->session()->read('Notification') && !empty($this->request->session()->read('Notification'))) {
+            $notification = $this->request->session()->read('Notification');
+            $this->request->session()->delete('Notification');
+
+            $this->set(compact('notification'));
+        }
     }
 }

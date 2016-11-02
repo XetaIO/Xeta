@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Event\Forum\Notifications;
+use App\Event\Notifications;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -13,13 +13,16 @@ class ConversationsController extends AppController
 {
 
     /**
-     * Components.
+     * Initialization hook method.
      *
-     * @var array
+     * @return void
      */
-    public $components = [
-        'RequestHandler'
-    ];
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+    }
 
     /**
      * BeforeFilter handle.
@@ -122,7 +125,7 @@ class ConversationsController extends AppController
         $action = $this->request->data['action'];
         $array = $this->request->data['conversations'];
 
-        switch($action) {
+        switch ($action) {
             case "star":
                 foreach ($array as $conversationId) {
                     $this->ConversationsUsers->updateAll(
@@ -223,6 +226,7 @@ class ConversationsController extends AppController
             if (!(count($users) <= Configure::read('Conversations.max_users_per_conversation'))) {
                 $this->Flash->error(__d('conversations', 'You cannot invite more than {0} user(s) in this conversation.', Configure::read('Conversations.max_users_per_conversation')));
                 $this->set(compact('conversation'));
+
                 return;
             }
 
@@ -248,6 +252,7 @@ class ConversationsController extends AppController
             if ($userMiniCount === false) {
                 $this->Flash->error(__d('conversations', 'Please enter at least one valid recipient.'));
                 $this->set(compact('conversation'));
+
                 return;
             }
 
@@ -330,7 +335,7 @@ class ConversationsController extends AppController
 
                     //Notifications Event.
                     $this->eventManager()->attach(new Notifications());
-                    $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                    $event = new Event('Model.Notifications.dispatch', $this, [
                         'sender_id' => $this->Auth->user('id'),
                         'conversation_id' => $conversation->id,
                         'type' => 'conversation.reply'
@@ -393,6 +398,7 @@ class ConversationsController extends AppController
                     return $q->find('full')->formatResults(function ($users) {
                         return $users->map(function ($user) {
                             $user->online = $this->SessionsActivity->getOnlineStatus($user);
+
                             return $user;
                         });
                     });
@@ -480,7 +486,6 @@ class ConversationsController extends AppController
     {
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
-
         }
 
         $this->loadModel('ConversationsMessages');
@@ -547,7 +552,7 @@ EOT;
         }
 
         $this->loadModel('ConversationsMessages');
-        $this->layout = false;
+        $this->viewBuilder()->layout(false);
 
         $message = $this->ConversationsMessages
             ->find()
@@ -566,6 +571,7 @@ EOT;
             $json['errorMessage'] = __d('conversations', "This message doesn't exist or has been deleted !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -589,6 +595,7 @@ EOT;
             $json['errorMessage'] = __d('conversations', "You don't have the authorization to edit this message !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -749,6 +756,7 @@ EOT;
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
             return;
         }
 
@@ -776,6 +784,7 @@ EOT;
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
             return;
         }
 
@@ -875,7 +884,7 @@ EOT;
 
                 //Notifications Event.
                 $this->eventManager()->attach(new Notifications());
-                $event = new Event('Model.Notifications.dispatchParticipants', $this, [
+                $event = new Event('Model.Notifications.dispatch', $this, [
                     'sender_id' => $this->Auth->user('id'),
                     'conversation_id' => $conversation->id,
                     'type' => 'conversation.reply'
@@ -1101,7 +1110,6 @@ EOT;
             $this->Flash->success(__d('conversations', 'You have left the conversation successfully.'));
 
             return $this->redirect(['controller' => 'conversations', 'action' => 'index']);
-
         } else {
             $this->Flash->error(__d('conversations', 'You can not leave your own conversation.'));
 
@@ -1145,7 +1153,7 @@ EOT;
                 'Users',
                 'Conversations',
                 'Conversations.Users' => function ($q) {
-                    return $q->find('short');
+                    return $q->find('medium');
                 },
                 'Conversations.LastMessage',
                 'Conversations.LastMessageUser'

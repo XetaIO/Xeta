@@ -78,7 +78,7 @@
                         </ul>
                     </div>
                 <?php else: ?>
-                    <div class="infobox infobox-info">
+                    <div class="infobox infobox-primary">
                         <h5>
                             <?= __("You don't have any notification yet."); ?>
                         </h5>

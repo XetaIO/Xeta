@@ -75,9 +75,9 @@ class BlogController extends AppController
         $this->loadModel('BlogCategories');
 
         $category = $this->BlogCategories
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogCategories.slug'
+            ->find()
+            ->where([
+                'BlogCategories.id' => $this->request->id
             ])
             ->contain([
                 'BlogArticles'
@@ -127,9 +127,10 @@ class BlogController extends AppController
         $this->loadModel('BlogArticles');
 
         $article = $this->BlogArticles
-            ->find('slug', [
-                'slug' => $this->request->slug,
-                'slugField' => 'BlogArticles.slug'
+            ->find()
+            ->where([
+                'BlogArticles.id' => $this->request->id,
+                'BlogArticles.is_display' => 1
             ])
             ->contain([
                 'BlogCategories',
@@ -138,13 +139,10 @@ class BlogController extends AppController
                         return $q->find('full');
                 }
             ])
-            ->where([
-                'BlogArticles.is_display' => 1
-            ])
             ->first();
 
         //Check if the article is found.
-        if (empty($article)) {
+        if (is_null($article)) {
             $this->Flash->error(__('This article doesn\'t exist or has been deleted.'));
 
             return $this->redirect(['action' => 'index']);
@@ -185,7 +183,7 @@ class BlogController extends AppController
         $comments = $this->BlogArticlesComments
             ->find()
             ->where([
-                'article_id' => $article->id
+                'BlogArticlesComments.article_id' => $article->id
             ])
             ->contain([
                 'Users' => function ($q) {
@@ -217,7 +215,7 @@ class BlogController extends AppController
         $articles = $this->BlogArticles
             ->find()
             ->contain([
-                'BlogCategories'
+                'BlogCategories',
             ])
             ->where([
                 'BlogArticles.is_display' => 1,
@@ -259,7 +257,6 @@ class BlogController extends AppController
     {
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
-
         }
 
         $this->loadModel('BlogArticlesComments');
@@ -362,7 +359,7 @@ EOT;
         //Redirect the user.
         return $this->redirect([
             '_name' => 'blog-article',
-            'slug' => $comment->blog_article->slug,
+            'slug' => $comment->blog_article->title,
             'id' => $comment->blog_article->id,
             '?' => ['page' => $page],
             '#' => 'comment-' . $commentId
@@ -442,11 +439,11 @@ EOT;
                 'BlogArticles.is_display' => 1
             ])
             ->andWhere(function ($q) use ($keyword) {
-                    return $q
-                        ->like('title', "%$keyword%");
+                return $q
+                    ->like('title', "%$keyword%");
             })
             ->order([
-                    'BlogArticles.created' => 'desc'
+                'BlogArticles.created' => 'desc'
             ]);
 
         $articles = $this->paginate($articles);
@@ -495,7 +492,7 @@ EOT;
         $checkArticle = $this->BlogArticles
             ->find()
             ->where([
-                'id' => $articleId,
+                'BlogArticles.id' => $articleId,
                 'BlogArticles.is_display' => 1
             ])
             ->first();
@@ -645,7 +642,7 @@ EOT;
             $this->Flash->success(__("This comment has been deleted successfully !"));
         }
 
-        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->slug, 'id' => $comment->blog_article->id, '?' => ['page' => $comment->blog_article->last_page]]);
+        return $this->redirect(['_name' => 'blog-article', 'slug' => $comment->blog_article->title, 'id' => $comment->blog_article->id, '?' => ['page' => $comment->blog_article->last_page]]);
     }
 
     /**
@@ -679,6 +676,7 @@ EOT;
             $json['errorMessage'] = __("This comment doesn't exist or has been deleted !");
 
             $this->set(compact('json'));
+
             return;
         }
 
@@ -702,6 +700,7 @@ EOT;
             $json['errorMessage'] = __("You don't have the authorization to edit this comment !");
 
             $this->set(compact('json'));
+
             return;
         }
 

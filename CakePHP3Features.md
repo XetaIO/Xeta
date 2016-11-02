@@ -2,23 +2,16 @@
 Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's features :
 
 ## Behaviors
-* Tree
-    * Used with the Forum's Categories
 * Timestamp
     * Used to allow Cake to modify the fields `created` and `modified` automatically
 * CounterCache
     * To build counter automatically
-        * Blog Comments 
-        * Blog Articles 
+        * Blog Comments
+        * Blog Articles
         * Blog Articles Likes
-        * Forum Threads
-        * Forum Posts
-        * Forum Posts Likes
 * Custom Behavior :
-    * Upload Behavior (Migrated into a plugin : [Cake3-Upload](https://github.com/Xety/Cake3-Upload))
+    * Upload Behavior : [Cake3-Upload](https://github.com/Xety/Cake3-Upload)
         * To upload safely an avatar for user
-    * Sluggable Behavior (Migrated into a plugin : [Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable))
-        * Used to build slug when creating an user and creating an article
 
 ### Components
 * Pagination
@@ -52,8 +45,6 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
 * Custom Helpers :
     * ACL Helper
         * To check the permissions in a view
-    * Forum Helper
-        * To build the sub-categories
     * I18n Helper
         * To build translate inputs in form
 
@@ -67,11 +58,10 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
 * Internationalization & Localization
 * Router
     * To build custom routes names
-    * Prefix : Admin, Forum, Chat
+    * Prefix : Admin
 * Cache
     * To cache all Google Analytics requests in the Administration Panel
     * ACL authorizations
-    * Chat Notice
 
 ### General
 * Validation & Validator
@@ -81,31 +71,21 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
         * Validator for the Contact Page (With an ArrayContext)
 * View Cell
     * Blog Sidebar
-    * Forum Sidebar
-    * Forum Suggestion
+    * Conversations Sidebar
     * Notifications
 * Events System
     * Badge system
         * Badge on comment
         * Badge for register date
-    * Followers
-        * When a Thread is created
-        * When a user reply to a Thread
-    * Notifications
-        * When a user reply to a Thread
-        * When a user lock a Thread
-        * When a user like a Post
 * Authenticate
-    * Cookies (Migrated into a plugin : [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth))
+    * Cookies [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth)
         * For auto-login
 
 * Plugins used
     * [Xety/Cake3-Upload](https://github.com/Xety/Cake3-Upload)
-    * [Xety/Cake3-Sluggable](https://github.com/Xety/Cake3-Sluggable)
     * [Xety/Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth)
     * [Cake17/CakePHP-Recaptcha](https://github.com/Cake17/CakePHP-Recaptcha)
     * [Widop/Google-Analytics](https://github.com/Widop/Google-Analytics)
     * [Mexitek/PHPColors](https://github.com/Mexitek/PHPColors)
     * [Ezyang/HTMLPurifier](https://github.com/Ezyang/HTMLPurifier)
     * [CakePHP/ACL](https://github.com/CakePHP/ACL)
-    * [Gourmet/Whoops](https://github.com/Gourmet/Whoops) (Dev only)

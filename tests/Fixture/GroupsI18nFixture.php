@@ -7,6 +7,13 @@ class GroupsI18nFixture extends TestFixture
 {
 
     /**
+     * Table name
+     *
+     * @var string
+     */
+    public $table = 'groups_i18n';
+
+    /**
      * Fields
      *
      * @var array
@@ -14,9 +21,9 @@ class GroupsI18nFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer'],
         'locale' => ['type' => 'string', 'length' => 6],
-        'model' => ['type' => 'string', 'length' => 255],
+        'model' => ['type' => 'string'],
         'foreign_key' => ['type' => 'integer'],
-        'field' => ['type' => 'string', 'length' => 255],
+        'field' => ['type' => 'string'],
         'content' => ['type' => 'text'],
         '_indexes' => [
             'locale' => ['type' => 'index', 'columns' => ['locale']],

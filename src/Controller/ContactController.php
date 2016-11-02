@@ -3,11 +3,12 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Network\Email\Email;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 
 class ContactController extends AppController
 {
+    use MailerAwareTrait;
 
     /**
      * Beforefilter.
@@ -37,7 +38,7 @@ class ContactController extends AppController
                     'length' => 100
                 ],
                 'email' => [
-                    'type' => 'string',
+                    'type' => 'email',
                     'length' => 100
                 ],
                 'subject' => [
@@ -79,19 +80,11 @@ class ContactController extends AppController
 
                 $viewVars = array_merge($this->request->data(), $viewVars);
 
-                $email = new Email();
-                $email->profile('default')
-                    ->template('contact', 'default')
-                    ->emailFormat('html')
-                    ->from(['contact@xeta.io' => 'Contact Form'])
-                    ->to(Configure::read('Author.email'))
-                    ->subject(isset($viewVars['subject']) ? $viewVars['subject'] : 'Someone has contacted you')
-                    ->viewVars($viewVars)
-                    ->send();
+                $this->getMailer('Contact')->send('contact', [$viewVars]);
 
                 $this->Flash->success(__("Your message has been sent successfully, you will get a response shortly !"));
 
-                return $this->redirect('/');
+                return $this->redirect(['controller' => 'pages', 'action' => 'home']);
             }
         }
 

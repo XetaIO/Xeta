@@ -83,7 +83,7 @@
                                 <?= $this->Html->link(
                                     $article->blog_category->title, [
                                         '_name' => 'blog-category',
-                                        'slug' => $article->blog_category->slug,
+                                        'slug' => $article->blog_category->title,
                                         'id' => $article->blog_category->id
                                     ]
                                 ) ?>
@@ -109,54 +109,30 @@
                         <?= $article->content; ?>
                     </div>
 
-                    <?php if (!is_null($article->blog_attachment)): ?>
-                        <?php if(!$this->request->session()->read('Auth.User.premium')): ?>
-                            <div class="infobox infobox-info">
-                                <?= __("You need to be <strong>{0}</strong> to download the file.", $this->Html->link(__('Premium'), ['controller' => 'premium'])) ?>
-                            </div>
-                        <?php endif; ?>
+                    <?php if (!is_null($article->blog_attachment)) : ?>
                             <div class="attachmentFiles">
                                 <div class="attachment">
                                     <div class="attachmentThumbnail">
-                                        <?php if($this->request->session()->read('Auth.User.premium')): ?>
-                                            <?= $this->Html->link(
-                                                '<i class="fa fa-cloud-download fa-2x"></i>',
-                                                [
-                                                    '_name' => 'attachment-download',
-                                                    'type' => 'blog',
-                                                    'id' => $article->blog_attachment->id
-                                                ],
-                                                [
-                                                    'class' => 'attachmentThumb',
-                                                    'escape' => false
-                                                ]
-                                            ) ?>
-                                        <?php else: ?>
-                                            <?= $this->Html->link(
-                                                '<i class="fa fa-cloud-download fa-2x"></i>',
-                                                [
-                                                    'controller' => 'premium'
-                                                ],
-                                                [
-                                                    'class' => 'attachmentThumb',
-                                                    'escape' => false
-                                                ]
-                                            ) ?>
-                                        <?php endif; ?>
+                                        <?= $this->Html->link(
+                                            '<i class="fa fa-cloud-download fa-2x"></i>',
+                                            [
+                                                '_name' => 'attachment-download',
+                                                'type' => 'blog',
+                                                'id' => $article->blog_attachment->id
+                                            ],
+                                            [
+                                                'class' => 'attachmentThumb',
+                                                'escape' => false
+                                            ]
+                                        ) ?>
                                     </div>
                                     <div class="attachmentInfo">
                                         <h6 class="attachmentName">
-                                            <?php if($this->request->session()->read('Auth.User.premium')): ?>
-                                                <?= $this->Html->link($article->blog_attachment->name, [
-                                                    '_name' => 'attachment-download',
-                                                    'type' => 'blog',
-                                                    'id' => $article->blog_attachment->id
-                                                ]) ?>
-                                            <?php else: ?>
-                                                <?= $this->Html->link($article->blog_attachment->name, [
-                                                    'controller' => 'premium'
-                                                ]) ?>
-                                            <?php endif; ?>
+                                            <?= $this->Html->link($article->blog_attachment->name, [
+                                                '_name' => 'attachment-download',
+                                                'type' => 'blog',
+                                                'id' => $article->blog_attachment->id
+                                            ]) ?>
                                         </h6>
                                         <dl>
                                             <dt>
@@ -181,9 +157,9 @@
 
                     <ul class="actions">
                         <li class="reply">
-                            <?php if ($this->request->session()->read('Auth.User')): ?>
+                            <?php if ($this->request->session()->read('Auth.User')) : ?>
                                 <?= $this->Html->link(__("{0} Reply", '<i class="fa fa-reply"></i>'), '#comment-form', ['escape' => false]) ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= $this->Html->link(
                                     __("{0} Reply", '<i class="fa fa-reply"></i>'),
                                     [
@@ -198,37 +174,33 @@
                             <?= h($article->like_count_format) ?>
                         </li>
                         <li class="like">
-                            <?php if ($this->request->session()->read('Auth.User')): ?>
-                                <?php if(isset($like)): ?>
+                            <?php if ($this->request->session()->read('Auth.User')) : ?>
+                                <?php if (isset($like)) : ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-thumbs-o-up text-primary"></i>',
                                         '#',
                                         [
                                             'class' => 'ArticleLike',
-                                            'data-url' => $this->Url->build(
-                                                    [
-                                                        'action' => 'articleUnlike',
-                                                        $article->id
-                                                    ]
-                                                ),
+                                            'data-url' => $this->Url->build([
+                                                'action' => 'articleUnlike',
+                                                $article->id
+                                            ]),
                                             'data-type' => 'unlike',
                                             'data-toggle' => 'tooltip',
                                             'title' => __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>"),
                                             'escape' => false
                                         ]
                                     ) ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-thumbs-o-up"></i>',
                                         '#',
                                         [
                                             'class' => 'ArticleLike',
-                                            'data-url' => $this->Url->build(
-                                                    [
-                                                        'action' => 'articleLike',
-                                                        $article->id
-                                                    ]
-                                                ),
+                                            'data-url' => $this->Url->build([
+                                                'action' => 'articleLike',
+                                                $article->id
+                                            ]),
                                             'data-type' => 'like',
                                             'data-toggle' => 'tooltip',
                                             'title' => __('Like {0}', "<i class='fa fa-heart text-danger'></i>"),
@@ -236,7 +208,7 @@
                                         ]
                                     ) ?>
                                 <?php endif; ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= $this->Html->link(
                                     '<i class="fa fa-thumbs-o-up"></i>',
                                     [
@@ -262,24 +234,26 @@
                                 $article->user->full_name,
                                 [
                                     '_name' => 'users-profile',
-                                    'slug' => $article->user->slug,
+                                    'slug' => $article->user->username,
                                     'id' => $article->user->id
                                 ]
                             ) ?>
                         </h3>
 
-                        <?php if ($article->user->signature): ?>
+                        <?php if ($article->user->signature) : ?>
                             <div class="signature">
                                 <?= $article->user->signature ?>
                             </div>
                         <?php endif; ?>
 
-                        <?php if ($article->user->facebook || $article->user->twitter): ?>
+                        <?php if ($article->user->facebook || $article->user->twitter) : ?>
                             <ul class="social">
-                                <?php if ($article->user->facebook): ?>
+                                <?php if ($article->user->facebook) : ?>
                                     <li>
                                         <?= $this->Html->link(
-                                            '<i class="fa fa-facebook"></i>', "http://facebook.com/" . h($article->user->facebook), [
+                                            '<i class="fa fa-facebook"></i>',
+                                            "http://facebook.com/" . h($article->user->facebook),
+                                            [
                                                 'target' => '_blank',
                                                 'escape' => false
                                             ]
@@ -287,10 +261,12 @@
                                     </li>
                                 <?php endif; ?>
 
-                                <?php if ($article->user->twitter): ?>
+                                <?php if ($article->user->twitter) : ?>
                                     <li>
                                         <?= $this->Html->link(
-                                            '<i class="fa fa-twitter"></i>', "http://twitter.com/" . h($article->user->twitter), [
+                                            '<i class="fa fa-twitter"></i>',
+                                            "http://twitter.com/" . h($article->user->twitter),
+                                            [
                                                 'target' => '_blank',
                                                 'escape' => false
                                             ]
@@ -303,7 +279,7 @@
                 </figure>
             </section>
 
-            <?php if ($articles->toArray()): ?>
+            <?php if ($articles->toArray()) : ?>
                 <section class="related-posts">
                     <div id="accordion-related-posts" class="panel-group">
                         <div class="panel panel-default">
@@ -320,7 +296,7 @@
                                 <div class="panel-body">
                                     <div id="owl-related-posts" class="owl-carousel owl-item-gap">
 
-                                        <?php foreach ($articles as $post): ?>
+                                        <?php foreach ($articles as $post) : ?>
                                             <div class="item">
                                                 <figure>
                                                     <figcaption>
@@ -337,7 +313,7 @@
                                                                     ),
                                                                     [
                                                                         '_name' => 'blog-article',
-                                                                        'slug' => $post->slug,
+                                                                        'slug' => $post->title,
                                                                         'id' => $post->id,
                                                                         '?' => ['page' => $post->last_page]
                                                                     ]
@@ -362,7 +338,7 @@
                                                                         h($post->blog_category->title),
                                                                         [
                                                                             '_name' => 'blog-category',
-                                                                            'slug' => $post->blog_category->slug,
+                                                                            'slug' => $post->blog_category->title,
                                                                             'id' => $post->blog_category->id
                                                                         ]
                                                                     ) ?>
@@ -381,12 +357,12 @@
                                                             __("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
                                                             [
                                                                 '_name' => 'blog-article',
-                                                                'slug' => $post->slug,
+                                                                'slug' => $post->title,
                                                                 'id' => $post->id,
                                                                 '?' => ['page' => $post->last_page]
                                                             ],
                                                             [
-                                                                'class' => 'btn btn-primary btn-xs',
+                                                                'class' => 'btn btn-primary-outline',
                                                                 'escape' => false
                                                             ]
                                                         ) ?>
@@ -404,21 +380,21 @@
                 </section>
             <?php endif; ?>
 
-            <?php if ($article->comment_count): ?>
+            <?php if ($article->comment_count) : ?>
                 <section class="post-comments">
                     <h2>
                         <?= __n('{0} Comment', '{0} Comments', $article->comment_count_format, $article->comment_count_format) ?>
                     </h2>
                     <ol class="comments-list">
 
-                        <?php foreach ($comments as $comment): ?>
+                        <?php foreach ($comments as $comment) : ?>
                             <li class="comment" id="comment-<?= $comment->id ?>">
 
                                 <?= $this->Html->link(
                                     $this->Html->image($comment->user->avatar, ['alt' => $comment->user->full_name]),
                                     [
                                         '_name' => 'users-profile',
-                                        'slug' => $comment->user->slug,
+                                        'slug' => $comment->user->username,
                                         'id' => $comment->user->id
                                     ],
                                     [
@@ -431,9 +407,10 @@
                                     <div class="meta">
                                         <h3 class="author">
                                             <?= $this->Html->link(
-                                                $comment->user->full_name, [
+                                                $comment->user->full_name,
+                                                [
                                                     '_name' => 'users-profile',
-                                                    'slug' => $comment->user->slug,
+                                                    'slug' => $comment->user->username,
                                                     'id' => $comment->user->id
                                                 ]
                                             ) ?>
@@ -447,23 +424,21 @@
                                     </div>
                                     <ul class="actions">
                                         <li>
-                                            <?php if ($this->request->session()->read('Auth.User')): ?>
+                                            <?php if ($this->request->session()->read('Auth.User')) : ?>
                                                 <?= $this->Html->link(
                                                     __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     '#',
                                                     [
                                                         'class' => 'ReplyQuote',
-                                                        'data-url' => $this->Url->build(
-                                                                [
-                                                                    'action' => 'quote',
-                                                                    $article->id,
-                                                                    $comment->id
-                                                                ]
-                                                            ),
+                                                        'data-url' => $this->Url->build([
+                                                            'action' => 'quote',
+                                                            $article->id,
+                                                            $comment->id
+                                                        ]),
                                                         'escape' => false
                                                     ]
                                                 ) ?>
-                                            <?php else: ?>
+                                            <?php else : ?>
                                                 <?= $this->Html->link(
                                                     __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     [
@@ -474,9 +449,10 @@
                                                 ) ?>
                                             <?php endif; ?>
                                         </li>
+
                                         <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'editComment', 'id' => $comment->id]) &&
                                              $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
-                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Edit", '<i class="fa fa-edit"></i>'),
@@ -487,6 +463,7 @@
                                                             'action' => 'getEditComment'
                                                         ]),
                                                         'data-id' => $comment->id,
+                                                        'data-csrf' => h($this->request->cookie('csrfToken')),
                                                         'escape' => false
                                                     ]
                                                 ) ?>
@@ -495,7 +472,7 @@
 
                                         <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'deleteComment', 'id' => $comment->id]) &&
                                              $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
-                                            (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+                                            (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>
                                             <li>
                                                 <?= $this->Html->link(
                                                     __("{0} Delete", '<i class="fa fa-remove"></i>'),
@@ -519,29 +496,24 @@
                     </ol>
                 </section>
 
-                <div class="pagination-centered">
-                    <ul class="pagination">
-                        <?php if ($this->Paginator->hasPrev()): ?>
-                            <?= $this->Paginator->prev('«'); ?>
-                        <?php endif; ?>
-                        <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                        <?php if ($this->Paginator->hasNext()): ?>
-                            <?= $this->Paginator->next('»'); ?>
-                        <?php endif; ?>
-                    </ul>
-                </div>
+                <?= $this->element('pagination') ?>
+
             <?php endif; ?>
 
-            <?php if ($this->request->session()->read('Auth.User')): ?>
-                <section class="post-comment-form" id="comment-form">
-                    <h2>
-                        <?= __("Leave a Comment") ?>
-                    </h2>
+            <?php if ($this->request->session()->read('Auth.User')) : ?>
+                <section class="section post-comment-form" id="comment-form">
+                    <div class="hr-divider">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __("Leave a Comment") ?>
+                        </h3>
+                    </div>
+
                     <?= $this->Form->create($formComments) ?>
                     <div class="form-group">
                         <?=
                         $this->Form->input(
-                            'content', [
+                            'content',
+                            [
                                 'label' => false,
                                 'class' => 'form-control commentBox',
                                 'id' => 'commentBox'
@@ -549,7 +521,7 @@
                         ) ?>
                     </div>
                     <div class="form-group">
-                        <?= $this->Form->submit(__('Post Comment'), ['class' => 'btn btn-primary']); ?>
+                        <?= $this->Form->button(__('{0} Post Comment', '<i class="fa fa-pencil"></i>'), ['class' => 'btn btn-primary-outline', 'escape' => false]); ?>
                     </div>
                     <?= $this->Form->end(); ?>
                 </section>
@@ -561,24 +533,24 @@
     </div>
 </div>
 <div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only"><?= __("Close") ?></span>
-        </button>
-        <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
-      </div>
-      <div class="modal-body">
-        <p>
-            <?= __("Are you sure you want delete this comment ?") ?>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <?= $this->Html->link(__("Delete"), '#', ['class' => 'btn btn-primary btnDeleteComment']) ?>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><?= __("Close") ?></button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only"><?= __("Close") ?></span>
+                </button>
+                <h4 class="modal-title"><?= __("Delete a Comment") ?></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <?= __("Are you sure you want delete this comment ?") ?>
+                </p>
+            </div>
+            <div class="modal-actions">
+                <?= $this->Html->link(__("{0} Delete", '<i class="fa fa-trash-o"></i>'), '#', ['class' => 'ma ma-btn ma-btn-danger btnDeleteComment', 'escape' => false]) ?>
+                <button type="button" class="ma ma-btn ma-btn-primary" data-dismiss="modal"><?= __('{0} Close', '<i class="fa fa-remove"></i>') ?></button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

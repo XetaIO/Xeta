@@ -103,22 +103,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test getPremium
-     *
-     * @return void
-     */
-    public function testGetPremium()
-    {
-        $data = [
-            'end_subscription' => new Time('+5 days')
-        ];
-
-        $user = $this->Users->newEntity($data);
-
-        $this->assertTrue($user->premium);
-    }
-
-    /**
      * Test parendNode
      *
      * @return void

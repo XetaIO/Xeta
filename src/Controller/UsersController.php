@@ -2,16 +2,18 @@
 namespace App\Controller;
 
 use App\Event\Badges;
-use App\Event\Forum\Notifications;
-use App\Event\Forum\Statistics;
+use App\Event\Notifications;
+use App\Event\Statistics;
+use App\Utility\Users as UsersUtility;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Time;
-use Cake\Network\Email\Email;
+use Cake\Mailer\MailerAwareTrait;
 
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
 
     /**
      * Initialize handle.
@@ -81,7 +83,6 @@ class UsersController extends AppController
 
             switch ($method) {
                 case "login":
-
                     $userLogin = $this->Auth->identify();
 
                     if ($userLogin) {
@@ -93,16 +94,13 @@ class UsersController extends AppController
 
                         $this->Auth->setUser($userLogin);
 
-                        $user = $this->Users->newEntity($userLogin);
+                        $user = $this->Users->newEntity($userLogin, ['accessibleFields' => ['id' => true]]);
                         $user->isNew(false);
 
                         $user->last_login = new Time();
                         $user->last_login_ip = $this->request->clientIp();
 
                         $this->Users->save($user);
-
-                        //Write in the session the virtual field.
-                        $this->request->session()->write('Auth.User.premium', $user->premium);
 
                         //Cookies.
                         $this->Cookie->configKey('CookieAuth', [
@@ -114,7 +112,7 @@ class UsersController extends AppController
                             'password' => $this->request->data('password')
                         ]);
 
-                        //Event.
+                        //Badge Event.
                         $this->eventManager()->attach(new Badges($this));
 
                         $user = new Event('Model.Users.register', $this, [
@@ -135,7 +133,6 @@ class UsersController extends AppController
                     break;
 
                 case "register":
-
                     $userRegister->register_ip = $this->request->clientIp();
                     $userRegister->last_login_ip = $this->request->clientIp();
                     $userRegister->last_login = new Time();
@@ -168,15 +165,7 @@ class UsersController extends AppController
                                 'name' => $user->full_name
                             ];
 
-                            $email = new Email();
-                            $email->profile('default')
-                                ->template('register', 'default')
-                                ->emailFormat('html')
-                                ->from(['no-reply@xeta.io' => __d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name'))])
-                                ->to($user->email)
-                                ->subject(__d('mail', 'Welcome on {0} !', \Cake\Core\Configure::read('Site.name')))
-                                ->viewVars($viewVars)
-                                ->send();
+                            $this->getMailer('User')->send('register', [$user, $viewVars]);
 
                             $this->Flash->success(__("Your account has been created successfully !"));
 
@@ -255,9 +244,9 @@ class UsersController extends AppController
 
             switch ($method) {
                 case "email":
-
                     if (!isset($this->request->data['email'])) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->redirect(['action' => 'settings']);
                     }
 
@@ -271,15 +260,16 @@ class UsersController extends AppController
                     break;
 
                 case "password":
-
                     $data = $this->request->data;
                     if (!isset($data['old_password']) || !isset($data['password']) || !isset($data['password_confirm'])) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->Flash->error(__("Please, complete all fields !"));
                     }
 
                     if (!(new DefaultPasswordHasher)->check($data['old_password'], $user->password)) {
                         $this->set(compact('user', 'oldEmail'));
+
                         return $this->Flash->error(__("Your old password don't match !"));
                     }
 
@@ -307,6 +297,9 @@ class UsersController extends AppController
                 'Users.id' => $this->request->id
             ])
             ->contain([
+                'Groups' => function ($q) {
+                    return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
+                },
                 'BlogArticles' => function ($q) {
                     return $q
                         ->limit(Configure::read('User.Profile.max_blog_articles'))
@@ -317,30 +310,10 @@ class UsersController extends AppController
                         ->limit(Configure::read('User.Profile.max_blog_comments'))
                         ->contain([
                             'BlogArticles' => function ($q) {
-                                return $q->select(['id', 'title', 'slug']);
-                            }
-                        ])
-                        ->order(['BlogArticlesComments.created' => 'DESC']);
-                },
-                'ForumThreads' => function ($q) {
-                    return $q
-                        ->limit(Configure::read('User.Profile.max_forum_threads'))
-                        ->contain([
-                            'FirstPosts' => function ($q) {
-                                return $q->select(['id', 'message', 'thread_id']);
-                            }
-                        ])
-                        ->order(['ForumThreads.created' => 'DESC']);
-                },
-                'ForumPosts' => function ($q) {
-                    return $q
-                        ->limit(Configure::read('User.Profile.max_forum_posts'))
-                        ->contain([
-                            'ForumThreads' => function ($q) {
                                 return $q->select(['id', 'title']);
                             }
                         ])
-                        ->order(['ForumPosts.created' => 'DESC']);
+                        ->order(['BlogArticlesComments.created' => 'DESC']);
                 },
                 'BadgesUsers' => function ($q) {
                     return $q
@@ -360,6 +333,8 @@ class UsersController extends AppController
             ])
             ->map(function ($user) {
                 $user->online = $this->SessionsActivity->getOnlineStatus($user);
+                $user->background_profile = UsersUtility::getProfileBackground();
+
                 return $user;
             })
             ->first();
@@ -380,7 +355,17 @@ class UsersController extends AppController
      */
     public function delete()
     {
+        if (!$this->request->is('post')) {
+            return $this->redirect(['action' => 'settings']);
+        }
+
         $user = $this->Users->get($this->Auth->user('id'));
+
+        if (!(new DefaultPasswordHasher)->check($this->request->data['password'], $user->password)) {
+            $this->Flash->error(__("Your password doesn't match !"));
+
+            return $this->redirect(['action' => 'settings']);
+        }
 
         $user->is_deleted = true;
 
@@ -393,37 +378,6 @@ class UsersController extends AppController
         $this->Flash->error(__("Unable to delete your account, please try again."));
 
         return $this->redirect(['action' => 'settings']);
-    }
-
-    /**
-     * Display all premium transactions related to the user.
-     *
-     * @return void
-     */
-    public function premium()
-    {
-        $this->loadModel('PremiumTransactions');
-
-        $this->paginate = [
-            'maxLimit' => Configure::read('User.transaction_per_page')
-        ];
-
-        $transactions = $this->PremiumTransactions
-            ->find()
-            ->contain([
-                'PremiumOffers',
-                'PremiumDiscounts'
-            ])
-            ->where([
-                'PremiumTransactions.user_id' => $this->Auth->user('id')
-            ])
-            ->order([
-                'PremiumTransactions.created' => 'desc'
-            ]);
-
-        $transactions = $this->paginate($transactions);
-
-        $this->set(compact('transactions'));
     }
 
     /**
@@ -510,15 +464,7 @@ class UsersController extends AppController
                 'code' => $code
             ];
 
-            $email = new Email();
-            $email->profile('default')
-                ->template('forgotPassword', 'default')
-                ->emailFormat('html')
-                ->from(['no-reply@xeta.io' => __('Forgot your Password - Xeta')])
-                ->to($user->email)
-                ->subject(__('Forgot your Password - Xeta'))
-                ->viewVars($viewVars)
-                ->send();
+            $this->getMailer('User')->send('forgotPassword', [$user, $viewVars]);
 
             $this->Flash->success(__("An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail.", h($user->email)));
         }

@@ -23,10 +23,13 @@
         </div>
 
         <div class="col-md-12">
-            <div class="panel panel-default">
-
+            <div class="panel">
                 <div class="panel-heading">
-                    <?= __d('admin', 'Manage Users') ?>
+                    <div class="hr-divider hr-divider-panel">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __d('admin', 'Manage Users') ?>
+                        </h3>
+                    </div>
                 </div>
 
                 <div class="panel-body">
@@ -45,7 +48,7 @@
                     <div class="form-group">
                         <?= $this->Form->label('type', __d('admin', 'Type'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-5">
-                            <div class="col-sm-5 radio-check">
+                            <div class="col-sm-5">
                                 <?= $this->Form->radio('type', [
                                         'username' => __d('admin', 'Username'),
                                         'ip' => __d('admin', 'IP'),
@@ -62,7 +65,7 @@
                         </div>
                     </div>
 
-                    <?= $this->Form->button(__d('admin', 'Search Users'), ['class' => 'col-md-offset-2 btn btn-primary']) ?>
+                    <?= $this->Form->button(__d('admin', '{0} Search Users', '<i class="fa fa-search"></i>'), ['class' => 'col-md-offset-2 btn btn-primary-outline']) ?>
                     <?= $this->Form->end() ?>
 
                 </div>

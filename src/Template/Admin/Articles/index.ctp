@@ -23,10 +23,13 @@
         </div>
 
         <div class="col-md-12">
-            <div class="panel panel-default">
-
+            <div class="panel">
                 <div class="panel-heading">
-                    <?= __d('admin', 'Manage Articles') ?>
+                    <div class="hr-divider hr-divider-panel">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __d('admin', 'Manage Articles') ?>
+                        </h3>
+                    </div>
                 </div>
 
                 <div class="panel-body">
@@ -34,10 +37,10 @@
                     <div class="panel-body-header">
                         <?= $this->Html->link(__d('admin', '{0} New Article', '<i class="fa fa-plus"></i>'),
                             ['controller' => 'articles', 'action' => 'add', 'prefix' => 'admin'],
-                            ['class' => 'btn btn-primary', 'escape' => false]) ?>
+                            ['class' => 'btn btn-primary-outline', 'escape' => false]) ?>
                     </div>
 
-                    <?php if($articles->toArray()): ?>
+                    <?php if ($articles->toArray()): ?>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -51,14 +54,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($articles as $article):?>
+                                <?php foreach ($articles as $article) : ?>
                                     <tr>
                                         <td>
                                             #<?= $article->id ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link($article->user->full_name, ['_name' => 'users-edit',
-                                                    'slug' => $article->user->slug, 'id' => $article->user->id]) ?>
+                                                    'slug' => $article->user->username, 'id' => $article->user->id]) ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(
@@ -73,7 +76,7 @@
                                                 [
                                                     '_name' => 'blog-article',
                                                     'prefix' => false,
-                                                    'slug' => $article->slug,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id,
                                                     '?' => ['page' => $article->last_page]
                                                 ],
@@ -86,10 +89,10 @@
                                         </td>
                                         <td>
                                             <?= $this->Html->link($article->blog_category->title, ['_name' => 'categories-edit',
-                                                    'slug' => $article->user->slug]) ?>
+                                                    'slug' => $article->blog_category->title, 'id' => $article->blog_category->id]) ?>
                                         </td>
                                         <td>
-                                            <?php if($article->is_display): ?>
+                                            <?php if ($article->is_display): ?>
                                                 <span class="label label-success">
                                                     <?= __d('admin', 'Yes') ?>
                                                 </span>
@@ -107,10 +110,11 @@
                                                 '<i class="fa fa-edit"></i>',
                                                 [
                                                     '_name' => 'articles-edit',
-                                                    'slug' => $article->slug
+                                                    'slug' => $article->title,
+                                                    'id' => $article->id
                                                 ],
                                                 [
-                                                    'class' => 'btn btn-sm btn-primary',
+                                                    'class' => 'btn btn-sm btn-primary-outline',
                                                     'data-toggle' => 'tooltip',
                                                     'title' => __d('admin', 'Edit this article'),
                                                     'escape' => false
@@ -120,10 +124,11 @@
                                                 '<i class="fa fa-remove"></i>',
                                                 [
                                                     '_name' => 'articles-delete',
-                                                    'slug' => $article->slug
+                                                    'slug' => $article->title,
+                                                    'id' => $article->id
                                                 ],
                                                 [
-                                                    'class' => 'btn btn-sm btn-danger',
+                                                    'class' => 'btn btn-sm btn-danger-outline',
                                                     'data-toggle' => 'tooltip',
                                                     'title' => __d('admin', 'Delete this article'),
                                                     'escape' => false
@@ -147,7 +152,7 @@
                             </ul>
                         </div>
                     <?php else: ?>
-                        <div class="infobox infobox-info">
+                        <div class="infobox infobox-primary">
                             <h4>
                                 <?= __d('admin', 'No articles was found.') ?>
                             </h4>

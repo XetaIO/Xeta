@@ -83,11 +83,6 @@ class Language
             //The user has a valid cookie.
             if ($this->_cookie->check('language') && isset($this->_locales[$this->_cookie->read('language')])) {
                 $this->_locale = $this->_cookie->read('language');
-            } else {
-                //Get the locale by checking his language with his browser.
-                $locale = $this->_getHttpLanguage();
-                $this->_cookie->write('language', $locale);
-                $this->_locale = $locale;
             }
         }
 
@@ -115,32 +110,5 @@ class Language
 
         //Set the locale.
         I18n::locale($this->_locale);
-    }
-
-    /**
-     * Get the language of the user by his browser.
-     *
-     * @return string
-     */
-    protected function _getHttpLanguage()
-    {
-        $httpLanguage = strtolower(substr($this->_controller->request->env('HTTP_ACCEPT_LANGUAGE'), 0, 2));
-
-        switch($httpLanguage){
-            case "en":
-            case "us":
-            case "uk":
-                $httpLanguage = "en_US";
-                break;
-
-            case "fr":
-                $httpLanguage = "fr_FR";
-                break;
-
-            default:
-                $httpLanguage = I18n::locale();
-        }
-
-        return $httpLanguage;
     }
 }

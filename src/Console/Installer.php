@@ -7,15 +7,17 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         3.0.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link      http://cakephp.org CakePHP(tm) Project
+ * @since     3.0.0
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Console;
 
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Utility\Security;
 use Composer\Script\Event;
+use Exception;
 
 /**
  * Provides installation hooks for when this application is installed via
@@ -37,11 +39,38 @@ class Installer
 
         $rootDir = dirname(dirname(__DIR__));
         static::createAppConfig($rootDir, $io);
+        static::createWritableDirectories($rootDir, $io);
         static::createRecaptchaConfig($rootDir, $io);
-        static::setFolderPermissions($rootDir, $io);
         static::setDatabaseName($rootDir, $io);
+
+        // ask if the permissions should be changed
+        if ($io->isInteractive()) {
+            $validator = function ($arg) {
+                if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
+                    return $arg;
+                }
+                throw new Exception('This is not a valid answer. Please choose Y or n.');
+            };
+            $setFolderPermissions = $io->askAndValidate(
+                '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
+                $validator,
+                10,
+                'Y'
+            );
+
+            if (in_array($setFolderPermissions, ['Y', 'y'])) {
+                static::setFolderPermissions($rootDir, $io);
+            }
+        } else {
+            static::setFolderPermissions($rootDir, $io);
+        }
+
         $newKey = static::setSecuritySalt($rootDir, $io);
         static::setAccountPassword($rootDir, $io, $newKey);
+
+        if (class_exists('\Cake\Codeception\Console\Installer')) {
+            \Cake\Codeception\Console\Installer::customizeCodeceptionBinary($event);
+        }
     }
 
     /**
@@ -59,6 +88,35 @@ class Installer
         if (!file_exists($appConfig)) {
             copy($defaultConfig, $appConfig);
             $io->write('Created `config/app.php` file');
+        }
+    }
+
+    /**
+     * Create the `logs` and `tmp` directories.
+     *
+     * @param string $dir The application's root directory.
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     * @return void
+     */
+    public static function createWritableDirectories($dir, $io)
+    {
+        $paths = [
+            'logs',
+            'tmp',
+            'tmp/cache',
+            'tmp/cache/models',
+            'tmp/cache/persistent',
+            'tmp/cache/views',
+            'tmp/sessions',
+            'tmp/tests'
+        ];
+
+        foreach ($paths as $path) {
+            $path = $dir . '/' . $path;
+            if (!file_exists($path)) {
+                mkdir($path);
+                $io->write('Created `' . $path . '` directory');
+            }
         }
     }
 
@@ -87,15 +145,14 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     *
      * @return void
      */
     public static function setFolderPermissions($dir, $io)
     {
         // Change the permissions on a path and output the results.
         $changePerms = function ($path, $perms, $io) {
-            // Get current permissions in decimal format so we can bitmask it.
-            $currentPerms = octdec(substr(sprintf('%o', fileperms($path)), -4));
+            // Get permission bits from stat(2) result.
+            $currentPerms = fileperms($path) & 0777;
             if (($currentPerms & $perms) == $perms) {
                 return;
             }
@@ -146,12 +203,14 @@ class Installer
 
         if ($count == 0) {
             $io->write('No Datasources.default.database placeholder to replace.');
+
             return;
         }
 
         $result = file_put_contents($config, $content);
         if ($result) {
             $io->write('Updated Datasources.default.database value in config/app.php');
+
             return;
         }
         $io->write('Unable to update Datasources.default.database value.');
@@ -162,26 +221,27 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     *
-     * @return void|string The new security.salt.
+     * @return void
      */
     public static function setSecuritySalt($dir, $io)
     {
         $config = $dir . '/config/app.php';
         $content = file_get_contents($config);
 
-        $newKey = hash('sha256', $dir . php_uname() . microtime(true));
+        $newKey = hash('sha256', Security::randomBytes(64));
         $content = str_replace('__SALT__', $newKey, $content, $count);
 
         if ($count == 0) {
             $io->write('No Security.salt placeholder to replace.');
+
             return;
         }
 
         $result = file_put_contents($config, $content);
         if ($result) {
             $io->write('Updated Security.salt value in config/app.php');
-            return $newKey;
+
+            return;
         }
         $io->write('Unable to update Security.salt value.');
     }
@@ -199,6 +259,7 @@ class Installer
     {
         if ($newKey == null) {
             $io->write('The new Security.salt value is empty in config/app.php, can\'t set up the password.');
+
             return;
         }
 
@@ -224,6 +285,7 @@ class Installer
 
         if ($count != 2) {
             $io->write('Error, there was no password to replace.');
+
             return;
         }
 
@@ -231,6 +293,7 @@ class Installer
 
         if ($result) {
             $io->write('Set up Admin & Member passwords successfully !');
+
             return;
         }
 

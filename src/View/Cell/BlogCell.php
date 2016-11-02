@@ -24,7 +24,6 @@ class BlogCell extends Cell
             ->select([
                 'id',
                 'title',
-                'slug',
                 'article_count'
             ])
             ->all();
@@ -35,7 +34,6 @@ class BlogCell extends Cell
             ->select([
                 'id',
                 'title',
-                'slug',
                 'created',
                 'comment_count'
             ])
@@ -45,7 +43,7 @@ class BlogCell extends Cell
                 }
             ])
             ->where([
-                'BlogArticles.slug !=' => ($this->request->slug) ? $this->request->slug : '',
+                'BlogArticles.id !=' => ($this->request->id) ? $this->request->id : 0,
                 'BlogArticles.is_display' => 1
             ])
             ->order([

@@ -1,6 +1,6 @@
 <li class="navbar-notification dropdown" <?= ($hasNewNotifs) ? "data-number=\"({$statistics['unread']})\"" : '' ?>>
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-        <i class="fa fa-bell-o <?= ($hasNewNotifs) ? 'animated ringing text-danger' : '' ?>"></i>
+        <i class="icon fa fa-bell-o <?= ($hasNewNotifs) ? 'animated ringing text-danger' : '' ?>"></i>
     </a>
     <ul class="dropdown-menu" role="menu">
         <li class="dropdown-header">

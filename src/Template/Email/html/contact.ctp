@@ -14,7 +14,7 @@
                                     <?= __d('mail', '<strong>{0}</strong> has contacted you via the contact form on the site.', h($name)) ?>
                                 </p>
                                 <p>
-                                    <?= __d('mail', 'Subject : {0}', h($subject)) ?>
+                                    <?= __d('mail', 'Subject : {0}', isset($subject) ? h($subject) : '') ?>
                                 </p>
                                 <p style="background: #f2f2f2;border-width: 1px 1px 2px 5px;border-style: solid;border-color: #E6E9ED;border-radius: 3px;background-color: #FFF;padding: 10px !important;border-left-color: #1ABC9C;">
                                     <?= nl2br(h($message)) ?>
@@ -31,7 +31,7 @@
                                     <?= __d('mail', 'Additional Informations') ?>
                                 </h4>
                                 <?= __d('mail', 'His Email : {0}', h($email)) ?><br />
-                                <?= __d('mail', 'His IP : {0}', h($ip)) ?>
+                                <?= __d('mail', 'His IP : {0}', isset($ip) ? h($ip) : '') ?>
                             </td>
                         </tr>
                     </table>
