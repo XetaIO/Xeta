@@ -37,10 +37,50 @@ class ArosFixture extends TestFixture
      * @var array
      */
     public $records = [
-        ['id' => '1', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '1', 'alias' => '', 'lft' => '7', 'rght' => '8'],
-        ['id' => '2', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '2', 'alias' => '', 'lft' => '5', 'rght' => '6'],
-        ['id' => '3', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '3', 'alias' => '', 'lft' => '3', 'rght' => '4'],
-        ['id' => '4', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '4', 'alias' => '', 'lft' => '1', 'rght' => '2'],
-        ['id' => '5', 'parent_id' => null, 'model' => 'Groups', 'foreign_key' => '5', 'alias' => '', 'lft' => '9', 'rght' => '10']
+        [
+            'id' => 1,
+            'parent_id' => null,
+            'model' => 'Groups',
+            'foreign_key' => '1',
+            'alias' => '',
+            'lft' => '9',
+            'rght' => '10'
+        ],
+        [
+            'id' => 2,
+            'parent_id' => null,
+            'model' => 'Groups',
+            'foreign_key' => '2',
+            'alias' => '',
+            'lft' => '7',
+            'rght' => '8'
+        ],
+        [
+            'id' => 3,
+            'parent_id' => null,
+            'model' => 'Groups',
+            'foreign_key' => '3',
+            'alias' => '',
+            'lft' => '5',
+            'rght' => '6'
+        ],
+        [
+            'id' => 4,
+            'parent_id' => null,
+            'model' => 'Groups',
+            'foreign_key' => '4',
+            'alias' => '',
+            'lft' => '3',
+            'rght' => '4'
+        ],
+        [
+            'id' => 5,
+            'parent_id' => null,
+            'model' => 'Groups',
+            'foreign_key' => '5',
+            'alias' => '',
+            'lft' => '1',
+            'rght' => '2'
+        ]
     ];
 }

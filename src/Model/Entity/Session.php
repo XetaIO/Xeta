@@ -13,5 +13,6 @@ class Session extends Entity
      */
     protected $_accessible = [
         '*' => true,
+        'id' => false,
     ];
 }

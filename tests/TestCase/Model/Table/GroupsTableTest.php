@@ -67,7 +67,7 @@ class GroupsTableTest extends TestCase
         ];
 
         $expected = [
-            'id' => 3,
+            'id' => 6,
             'name' => 'Moderateur',
             'css' => null,
             'is_staff' => 0,

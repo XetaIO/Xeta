@@ -255,13 +255,6 @@ return [
  * Configures logging options
  */
     'Log' => [
-        'paypal' => [
-            'className' => 'Cake\Log\Engine\FileLog',
-            'path' => LOGS,
-            'file' => 'paypal',
-            'levels' => [],
-            'scopes' => ['paypal']
-        ],
         'debug' => [
             'className' => 'Cake\Log\Engine\FileLog',
             'path' => LOGS,

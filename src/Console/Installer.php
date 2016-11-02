@@ -282,7 +282,7 @@ class Installer
             return;
         }
 
-        $database = $dir . '/config/Schema/xeta.sql';
+        $database = $dir . '/config/Seeds/UsersSeed.php';
         $content = file_get_contents($database);
 
         $adminPass = 'administrator';
