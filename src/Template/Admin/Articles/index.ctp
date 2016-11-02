@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->assign('title', __d('admin', 'Manage Articles')) ?>
 
 <div class="content-wrapper interface-blur">
@@ -69,7 +66,7 @@ use Cake\I18n\I18n;
                                         <td>
                                             <?= $this->Html->link(
                                                 $this->Text->truncate(
-                                                    $article->translation(I18n::locale())->title,
+                                                    $article->title,
                                                     35,
                                                     [
                                                         'ellipsis' => '...',
@@ -79,7 +76,7 @@ use Cake\I18n\I18n;
                                                 [
                                                     '_name' => 'blog-article',
                                                     'prefix' => false,
-                                                    'slug' => $article->translation(I18n::locale())->title,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id,
                                                     '?' => ['page' => $article->last_page]
                                                 ],
@@ -91,8 +88,8 @@ use Cake\I18n\I18n;
                                             ) ?>
                                         </td>
                                         <td>
-                                            <?= $this->Html->link($article->blog_category->translation(I18n::locale())->title, ['_name' => 'categories-edit',
-                                                    'slug' => $article->blog_category->translation(I18n::locale())->title, 'id' => $article->blog_category->id]) ?>
+                                            <?= $this->Html->link($article->blog_category->title, ['_name' => 'categories-edit',
+                                                    'slug' => $article->blog_category->title, 'id' => $article->blog_category->id]) ?>
                                         </td>
                                         <td>
                                             <?php if ($article->is_display): ?>
@@ -113,7 +110,7 @@ use Cake\I18n\I18n;
                                                 '<i class="fa fa-edit"></i>',
                                                 [
                                                     '_name' => 'articles-edit',
-                                                    'slug' => $article->translation(I18n::locale())->title,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id
                                                 ],
                                                 [
@@ -127,7 +124,7 @@ use Cake\I18n\I18n;
                                                 '<i class="fa fa-remove"></i>',
                                                 [
                                                     '_name' => 'articles-delete',
-                                                    'slug' => $article->translation(I18n::locale())->title,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id
                                                 ],
                                                 [

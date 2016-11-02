@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Event\Badges;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\I18n\I18n;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
 
@@ -47,11 +46,9 @@ class BlogController extends AppController
         ];
 
         $articles = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->contain([
-                'BlogCategories' => function ($q) {
-                    return $q->find('translations');
-                },
+                'BlogCategories',
                 'Users' => function ($q) {
                     return $q->find('short');
                 }
@@ -78,7 +75,7 @@ class BlogController extends AppController
         $this->loadModel('BlogCategories');
 
         $category = $this->BlogCategories
-            ->find('translations')
+            ->find()
             ->where([
                 'BlogCategories.id' => $this->request->id
             ])
@@ -101,7 +98,7 @@ class BlogController extends AppController
         ];
 
         $articles = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->contain([
                 'Users' => function ($q) {
                     return $q->find('short');
@@ -130,15 +127,13 @@ class BlogController extends AppController
         $this->loadModel('BlogArticles');
 
         $article = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->where([
                 'BlogArticles.id' => $this->request->id,
                 'BlogArticles.is_display' => 1
             ])
             ->contain([
-                'BlogCategories' => function ($q) {
-                    return $q->find('translations');
-                },
+                'BlogCategories',
                 'BlogAttachments',
                 'Users' => function ($q) {
                         return $q->find('full');
@@ -215,14 +210,12 @@ class BlogController extends AppController
         $formComments = $this->BlogArticlesComments->newEntity();
 
         //Search related articles
-        $keywords = preg_split("/([\s,\W])+/", $article->translation(I18n::locale())->title);
+        $keywords = preg_split("/([\s,\W])+/", $article->title);
 
         $articles = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->contain([
-                'BlogCategories' => function ($q) {
-                    return $q->find('translations');
-                },
+                'BlogCategories',
             ])
             ->where([
                 'BlogArticles.is_display' => 1,
@@ -331,9 +324,7 @@ EOT;
         $comment = $this->BlogArticlesComments
             ->find()
             ->contain([
-                'BlogArticles' => function ($q) {
-                    return $q->find('translations');
-                },
+                'BlogArticles'
             ])
             ->where([
                 'BlogArticlesComments.id' => $commentId
@@ -368,7 +359,7 @@ EOT;
         //Redirect the user.
         return $this->redirect([
             '_name' => 'blog-article',
-            'slug' => $comment->blog_article->translation(I18n::locale())->title,
+            'slug' => $comment->blog_article->title,
             'id' => $comment->blog_article->id,
             '?' => ['page' => $page],
             '#' => 'comment-' . $commentId
@@ -391,15 +382,13 @@ EOT;
         ];
 
         $archives = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->where([
                 'DATE_FORMAT(BlogArticles.created,\'%m-%Y\')' => $date,
                 'BlogArticles.is_display' => 1
             ])
             ->contain([
-                'BlogCategories' => function ($q) {
-                    return $q->find('translations');
-                },
+                'BlogCategories',
                 'Users' => function ($q) {
                         return $q->find('short');
                 }
@@ -440,7 +429,7 @@ EOT;
         ];
 
         $articles = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->contain([
                 'Users' => function ($q) {
                     return $q->find('short');

@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->element('meta', [
     'title' => __("{0}'s profile", h($user->username))
 ]) ?>
@@ -17,10 +14,10 @@ use Cake\I18n\I18n;
                         <li>
                             <?= $this->Html->image($user->avatar, ['class' => 'img-circle img-border', 'alt' => h($user->username)]) ?>
                             <span class="status">
-                                <?php if ($user->online === true): ?>
+                                <?php if ($user->online === true) : ?>
                                     <i class="online" data-toggle="tooltip" title="<?= __("Online") ?>" data-container="body"></i>
                                     <small class="online"><?= __("Online") ?></small>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <i data-toggle="tooltip" title="<?= __("Offline") ?>" data-container="body"></i>
                                     <small><?= __("Offline") ?></small>
                                 <?php endif; ?>
@@ -47,12 +44,12 @@ use Cake\I18n\I18n;
                     </ul>
 
                     <ul class="socials list-inline pull-right">
-                        <?php if ($user->facebook): ?>
+                        <?php if ($user->facebook) : ?>
                             <li>
                                 <?= $this->Html->link('<i class="fa fa-facebook fa-2x"></i>', 'http://facebook.com/' . h($user->facebook), ['class' => 'text-primary', 'target' => '_blank', 'escape' => false, 'data-toggle' => 'tooltip', 'data-container' => 'body', 'data-placement' => 'top', 'title' => 'http://facebook.com/' . h($user->facebook)]) ?>
                             </li>
                         <?php endif; ?>
-                        <?php if ($user->twitter): ?>
+                        <?php if ($user->twitter) : ?>
                             <li>
                                 <?= $this->Html->link('<i class="fa fa-twitter fa-2x"></i>', 'http://twitter.com/' . h($user->twitter), ['class' => 'text-primary', 'target' => '_blank', 'escape' => false, 'data-toggle' => 'tooltip', 'data-container' => 'body', 'data-placement' => 'top', 'title' => 'http://twitter.com/' . h($user->twitter)]) ?>
                             </li>
@@ -88,10 +85,10 @@ use Cake\I18n\I18n;
                 <div class="avatar">
                     <?= $this->Html->image($user->avatar, ['width' => '120', 'height' => '120']) ?>
                     <span class="status hidden-sm hidden-md hidden-lg">
-                        <?php if ($user->online === true): ?>
+                        <?php if ($user->online === true) : ?>
                             <i class="online" data-toggle="tooltip" title="<?= __("Online") ?>" data-container="body"></i>
                             <small class="online"><?= __("Online") ?></small>
-                        <?php else: ?>
+                        <?php else : ?>
                             <i data-toggle="tooltip" title="<?= __("Offline") ?>" data-container="body"></i>
                             <small><?= __("Offline") ?></small>
                         <?php endif; ?>
@@ -102,7 +99,7 @@ use Cake\I18n\I18n;
                 </h4>
 
                 <span class="group" style="<?= h($user->group->css) ?>">
-                    <?= $this->Html->link($user->group->translation(I18n::locale())->name, ['_name' => 'groups-view', 'slug' => $user->group->translation(I18n::locale())->name, 'id' => $user->group->id]) ?>
+                    <?= $this->Html->link($user->group->name, ['_name' => 'groups-view', 'slug' => $user->group->name, 'id' => $user->group->id]) ?>
                 </span>
 
                 <span class="joinedDate">
@@ -133,11 +130,11 @@ use Cake\I18n\I18n;
 
         <div class="col-md-9">
             <section class="section">
-                <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                     <?= $this->Html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
                 <?php endif;?>
 
-                <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'])): ?>
+                <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'])) : ?>
                     <?= $this->Html->link(
                         __("{0} Edit this User", '<i class="fa fa-edit"></i>'),
                         [
@@ -213,13 +210,13 @@ use Cake\I18n\I18n;
                                     <td>
                                         <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>
                                         <?= $this->Html->link(
-                                            $article->translation(I18n::locale())->title,
-                                            ['_name' => 'blog-article', 'slug' => $article->translation(I18n::locale())->title, 'id' => $article->id],
+                                            $article->title,
+                                            ['_name' => 'blog-article', 'slug' => $article->title, 'id' => $article->id],
                                             ['class' => 'title text-primary']
                                         ) ?>
                                         <br>
                                         <?= $this->Text->truncate(
-                                            $article->translation(I18n::locale())->content_empty,
+                                            $article->content_empty,
                                             275,
                                             [
                                                 'ellipsis' => '...',
@@ -235,19 +232,19 @@ use Cake\I18n\I18n;
                     </table>
                 <?php endif; ?>
 
-                <?php if (!empty($user->blog_articles_comments)): ?>
+                <?php if (!empty($user->blog_articles_comments)) : ?>
                     <div class="hr-divider">
                         <h3 class="hr-divider-content hr-divider-heading">
-                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')): ?>
+                            <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
                                 <?= __("Your Lastest Comments in the Blog") ?>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <?= __("His Lastest Comments in the Blog") ?>
                             <?php endif;?>
                         </h3>
                     </div>
                     <table class="table table-striped table-profile">
                         <tbody>
-                            <?php foreach($user->blog_articles_comments as $comment):?>
+                            <?php foreach ($user->blog_articles_comments as $comment) : ?>
                                 <tr>
                                     <td>
                                         <?= $this->Html->image($user->avatar, ['class' => 'img-thumbnail avatar']) ?>

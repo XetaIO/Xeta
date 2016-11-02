@@ -305,11 +305,10 @@ class UsersController extends AppController
             ])
             ->contain([
                 'Groups' => function ($q) {
-                    return $q->find('translations')->select(['id', 'name', 'css', 'is_staff', 'is_member']);
+                    return $q->select(['id', 'name', 'css', 'is_staff', 'is_member']);
                 },
                 'BlogArticles' => function ($q) {
                     return $q
-                        ->find('translations')
                         ->limit(Configure::read('User.Profile.max_blog_articles'))
                         ->order(['BlogArticles.created' => 'DESC']);
                 },

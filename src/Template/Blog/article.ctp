@@ -1,9 +1,6 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->element('meta', [
-    'title' => $article->translation(I18n::locale())->title,
-    'description' => $article->translation(I18n::locale())->content_meta,
+    'title' => $article->title,
+    'description' => $article->content_meta,
     'author' => $article->user->full_name
 ]) ?>
 
@@ -18,7 +15,7 @@ use Cake\I18n\I18n;
             customConfig: 'config/comment.js'
         });
 
-        moment.lang('<?= I18n::locale() ?>');
+        moment.lang('<?= \Cake\I18n\I18n::locale() ?>');
     </script>
 
     <script>
@@ -75,7 +72,7 @@ use Cake\I18n\I18n;
 
                     <header>
                         <h2 class="title">
-                            <?= h($article->translation(I18n::locale())->title) ?>
+                            <?= h($article->title) ?>
                         </h2>
                     </header>
 
@@ -84,9 +81,9 @@ use Cake\I18n\I18n;
                             <li class="categories">
                                 <i class="fa fa-tag"></i>
                                 <?= $this->Html->link(
-                                    $article->blog_category->translation(I18n::locale())->title, [
+                                    $article->blog_category->title, [
                                         '_name' => 'blog-category',
-                                        'slug' => $article->blog_category->translation(I18n::locale())->title,
+                                        'slug' => $article->blog_category->title,
                                         'id' => $article->blog_category->id
                                     ]
                                 ) ?>
@@ -109,7 +106,7 @@ use Cake\I18n\I18n;
                     </aside>
 
                     <div class="content">
-                        <?= $article->translation(I18n::locale())->content; ?>
+                        <?= $article->content; ?>
                     </div>
 
                     <?php if (!is_null($article->blog_attachment)) : ?>
@@ -177,8 +174,8 @@ use Cake\I18n\I18n;
                             <?= h($article->like_count_format) ?>
                         </li>
                         <li class="like">
-                            <?php if ($this->request->session()->read('Auth.User')): ?>
-                                <?php if(isset($like)): ?>
+                            <?php if ($this->request->session()->read('Auth.User')) : ?>
+                                <?php if (isset($like)) : ?>
                                     <?= $this->Html->link(
                                         '<i class="fa fa-thumbs-o-up text-primary"></i>',
                                         '#',
@@ -307,7 +304,7 @@ use Cake\I18n\I18n;
                                                             <h4>
                                                                 <?= $this->Html->link(
                                                                     $this->Text->truncate(
-                                                                        $post->translation(I18n::locale())->title,
+                                                                        $post->title,
                                                                         30,
                                                                         [
                                                                             'ellipsis' => '...',
@@ -316,7 +313,7 @@ use Cake\I18n\I18n;
                                                                     ),
                                                                     [
                                                                         '_name' => 'blog-article',
-                                                                        'slug' => $post->translation(I18n::locale())->title,
+                                                                        'slug' => $post->title,
                                                                         'id' => $post->id,
                                                                         '?' => ['page' => $post->last_page]
                                                                     ]
@@ -324,7 +321,7 @@ use Cake\I18n\I18n;
                                                             </h4>
                                                             <p>
                                                                 <?= $this->Text->truncate(
-                                                                    $post->translation(I18n::locale())->content_empty,
+                                                                    $post->content_empty,
                                                                     150,
                                                                     [
                                                                         'ellipsis' => '...',
@@ -338,10 +335,10 @@ use Cake\I18n\I18n;
                                                                 <li>
                                                                     <i class="fa fa-tag"></i>
                                                                     <?= $this->Html->link(
-                                                                        h($post->blog_category->translation(I18n::locale())->title),
+                                                                        h($post->blog_category->title),
                                                                         [
                                                                             '_name' => 'blog-category',
-                                                                            'slug' => $post->blog_category->translation(I18n::locale())->title,
+                                                                            'slug' => $post->blog_category->title,
                                                                             'id' => $post->blog_category->id
                                                                         ]
                                                                     ) ?>
@@ -360,7 +357,7 @@ use Cake\I18n\I18n;
                                                             __("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
                                                             [
                                                                 '_name' => 'blog-article',
-                                                                'slug' => $post->translation(I18n::locale())->title,
+                                                                'slug' => $post->title,
                                                                 'id' => $post->id,
                                                                 '?' => ['page' => $post->last_page]
                                                             ],
@@ -383,14 +380,14 @@ use Cake\I18n\I18n;
                 </section>
             <?php endif; ?>
 
-            <?php if ($article->comment_count): ?>
+            <?php if ($article->comment_count) : ?>
                 <section class="post-comments">
                     <h2>
                         <?= __n('{0} Comment', '{0} Comments', $article->comment_count_format, $article->comment_count_format) ?>
                     </h2>
                     <ol class="comments-list">
 
-                        <?php foreach ($comments as $comment): ?>
+                        <?php foreach ($comments as $comment) : ?>
                             <li class="comment" id="comment-<?= $comment->id ?>">
 
                                 <?= $this->Html->link(
@@ -410,7 +407,8 @@ use Cake\I18n\I18n;
                                     <div class="meta">
                                         <h3 class="author">
                                             <?= $this->Html->link(
-                                                $comment->user->full_name, [
+                                                $comment->user->full_name,
+                                                [
                                                     '_name' => 'users-profile',
                                                     'slug' => $comment->user->username,
                                                     'id' => $comment->user->id
@@ -426,7 +424,7 @@ use Cake\I18n\I18n;
                                     </div>
                                     <ul class="actions">
                                         <li>
-                                            <?php if ($this->request->session()->read('Auth.User')): ?>
+                                            <?php if ($this->request->session()->read('Auth.User')) : ?>
                                                 <?= $this->Html->link(
                                                     __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     '#',
@@ -440,7 +438,7 @@ use Cake\I18n\I18n;
                                                         'escape' => false
                                                     ]
                                                 ) ?>
-                                            <?php else: ?>
+                                            <?php else : ?>
                                                 <?= $this->Html->link(
                                                     __("{0} Quote", '<i class="fa fa-reply"></i>'),
                                                     [
@@ -451,6 +449,7 @@ use Cake\I18n\I18n;
                                                 ) ?>
                                             <?php endif; ?>
                                         </li>
+
                                         <?php if (($this->Acl->check(['controller' => 'blog', 'action' => 'editComment', 'id' => $comment->id]) &&
                                              $this->request->session()->read('Auth.User.id') == $comment->user_id) ||
                                             (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>

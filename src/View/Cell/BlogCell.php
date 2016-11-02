@@ -20,7 +20,7 @@ class BlogCell extends Cell
 
         //Select all Categories.
         $categories = $this->BlogCategories
-            ->find('translations')
+            ->find()
             ->select([
                 'id',
                 'title',
@@ -30,7 +30,7 @@ class BlogCell extends Cell
 
         //Select featured article.
         $featured = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->select([
                 'id',
                 'title',

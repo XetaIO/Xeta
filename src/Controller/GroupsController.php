@@ -37,10 +37,7 @@ class GroupsController extends AppController
         $users = $this->Users
             ->find()
             ->contain([
-                'Groups' => function ($q) {
-                    return $q
-                        ->find('translations');
-                },
+                'Groups'
             ])
             ->where([
                 'Groups.id' => $this->request->id

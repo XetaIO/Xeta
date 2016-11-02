@@ -3,7 +3,11 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class GroupsI18nFixture extends TestFixture
+/**
+ * BlogCategoriesI18nFixture
+ *
+ */
+class BlogCategoriesI18nFixture extends TestFixture
 {
 
     /**
@@ -11,7 +15,7 @@ class GroupsI18nFixture extends TestFixture
      *
      * @var string
      */
-    public $table = 'groups_i18n';
+    public $table = 'blog_categories_i18n';
 
     /**
      * Fields
@@ -25,12 +29,6 @@ class GroupsI18nFixture extends TestFixture
         'foreign_key' => ['type' => 'integer'],
         'field' => ['type' => 'string'],
         'content' => ['type' => 'text'],
-        '_indexes' => [
-            'locale' => ['type' => 'index', 'columns' => ['locale']],
-            'model' => ['type' => 'index', 'columns' => ['model']],
-            'row_id' => ['type' => 'index', 'columns' => ['foreign_key']],
-            'field' => ['type' => 'index', 'columns' => ['field']],
-        ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id']],
         ],
@@ -47,17 +45,31 @@ class GroupsI18nFixture extends TestFixture
     public $records = [
         [
             'locale' => 'en_US',
-            'model' => 'Groups',
+            'model' => 'BlogCategories',
             'foreign_key' => 1,
-            'field' => 'name',
-            'content' => 'Administrator'
+            'field' => 'title',
+            'content' => 'Categorie 1'
         ],
         [
             'locale' => 'en_US',
-            'model' => 'Groups',
+            'model' => 'BlogCategories',
+            'foreign_key' => 1,
+            'field' => 'content',
+            'content' => 'Lorem ipsum dolor sit amet.'
+        ],
+        [
+            'locale' => 'en_US',
+            'model' => 'BlogCategories',
             'foreign_key' => 2,
-            'field' => 'name',
-            'content' => 'Member'
-        ]
+            'field' => 'title',
+            'content' => 'Categorie 2'
+        ],
+        [
+            'locale' => 'en_US',
+            'model' => 'BlogCategories',
+            'foreign_key' => 2,
+            'field' => 'content',
+            'content' => 'Lorem ipsum dolor sit amet.'
+        ],
     ];
 }

@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->assign('title', __d('admin', 'Edit an Article')) ?>
 
 <?php $this->start('scriptBottom');
@@ -57,9 +54,9 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
                         'role' => 'form'
                     ]) ?>
                     <div class="form-group">
-                        <?= $this->Form->label('_translations.' . I18n::defaultLocale() . '.title', __d('admin', 'Title'), ['class' => 'col-sm-2 control-label']) ?>
+                        <?= $this->Form->label('title', __d('admin', 'Title'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-5">
-                            <?= $this->Form->input('_translations.' . I18n::defaultLocale() . '.title', ['class' => 'form-control', 'label' => false]) ?>
+                            <?= $this->Form->input('title', ['class' => 'form-control', 'label' => false]) ?>
                         </div>
                     </div>
                     <?= $this->I18n->i18nInput($article, 'title', ['class' => 'form-control']); ?>
@@ -86,10 +83,10 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <?= $this->Form->label('_translations.' . I18n::defaultLocale() . '.content', __d('admin', 'Content'), ['class' => 'col-sm-2 control-label']) ?>
+                        <?= $this->Form->label('content', __d('admin', 'Content'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-8">
                             <?= $this->Form->input(
-                                '_translations.' . I18n::defaultLocale() . '.content',
+                                'content',
                                 [
                                     'label' => false,
                                     'class' => 'form-control articleBox',

@@ -21,7 +21,7 @@ class CategoriesController extends AppController
         ];
 
         $categories = $this->BlogCategories
-            ->find('translations')
+            ->find()
             ->order([
                 'created' => 'desc'
             ]);
@@ -40,9 +40,11 @@ class CategoriesController extends AppController
         $this->loadModel('BlogCategories');
 
         $this->BlogCategories->locale(I18n::defaultLocale());
-        $category = $this->BlogCategories->newEntity($this->request->data, ['translations' => true]);
+        $category = $this->BlogCategories->newEntity($this->request->data);
 
         if ($this->request->is('post')) {
+            $category->setTranslations($this->request->data);
+
             if ($this->BlogCategories->save($category)) {
                 $this->Flash->success(__d('admin', 'The category has been created successfully !'));
 
@@ -68,7 +70,6 @@ class CategoriesController extends AppController
             ->where([
                 'BlogCategories.id' => $this->request->id
             ])
-            ->find('translations')
             ->first();
 
         //Check if the category is found.
@@ -79,7 +80,8 @@ class CategoriesController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->BlogCategories->patchEntity($category, $this->request->data(), ['translations' => true]);
+            $this->BlogCategories->patchEntity($category, $this->request->data());
+            $category->setTranslations($this->request->data);
 
             if ($this->BlogCategories->save($category)) {
                 $this->Flash->success(__d('admin', 'This category has been updated successfully !'));
@@ -101,7 +103,7 @@ class CategoriesController extends AppController
         $this->loadModel('BlogCategories');
 
         $category = $this->BlogCategories
-            ->find('translations')
+            ->find()
             ->where([
                 'BlogCategories.id' => $this->request->id
             ])

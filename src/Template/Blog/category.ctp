@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->element('meta', [
     'title' => __("Blog Category : {0}", h($category->title))
 ]) ?>
@@ -47,10 +44,10 @@ use Cake\I18n\I18n;
                             <header>
                                 <h2 class="title">
                                     <?= $this->Html->link(
-                                        $article->translation(I18n::locale())->title,
+                                        $article->title,
                                         [
                                             '_name' => 'blog-article',
-                                            'slug' => $article->translation(I18n::locale())->title,
+                                            'slug' => $article->title,
                                             'id' => $article->id,
                                             '?' => ['page' => $article->last_page]
                                         ]
@@ -84,7 +81,7 @@ use Cake\I18n\I18n;
 
                             <div class="content">
                                 <?= $this->Text->truncate(
-                                    $article->translation(I18n::locale())->content_empty,
+                                    $article->content_empty,
                                     200,
                                     [
                                         'ellipsis' => '...',
@@ -98,7 +95,7 @@ use Cake\I18n\I18n;
                                     __('{0} Read More', '<i class="fa fa-eye"></i>'),
                                     [
                                         '_name' => 'blog-article',
-                                        'slug' => $article->translation(I18n::locale())->title,
+                                        'slug' => $article->title,
                                         'id' => $article->id,
                                         '?' => ['page' => $article->last_page]
                                     ],

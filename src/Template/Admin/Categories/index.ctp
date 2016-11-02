@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->assign('title', __d('admin', 'Manage Categories')) ?>
 
 <div class="content-wrapper interface-blur">
@@ -45,7 +42,7 @@ use Cake\I18n\I18n;
                         ) ?>
                     </div>
 
-                    <?php if($categories->toArray()) : ?>
+                    <?php if ($categories->toArray()) : ?>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -66,7 +63,7 @@ use Cake\I18n\I18n;
                                         <td>
                                             <?= $this->Html->link(
                                                 $this->Text->truncate(
-                                                    $category->translation(I18n::locale())->title,
+                                                    $category->title,
                                                     35,
                                                     [
                                                         'ellipsis' => '...',
@@ -75,7 +72,7 @@ use Cake\I18n\I18n;
                                                 ),
                                                 [
                                                     '_name' => 'blog-category',
-                                                    'slug' => $category->translation(I18n::locale())->title,
+                                                    'slug' => $category->title,
                                                     'id' => $category->id,
                                                     'prefix' => false
                                                 ],
@@ -88,7 +85,7 @@ use Cake\I18n\I18n;
                                         </td>
                                         <td>
                                             <?= $this->Text->truncate(
-                                                h($category->translation(I18n::locale())->description),
+                                                h($category->description),
                                                 55,
                                                 [
                                                     'ellipsis' => '...',
@@ -107,7 +104,7 @@ use Cake\I18n\I18n;
                                                 '<i class="fa fa-edit"></i>',
                                                 [
                                                     '_name' => 'categories-edit',
-                                                    'slug' => $category->translation(I18n::locale())->title,
+                                                    'slug' => $category->title,
                                                     'id' => $category->id
                                                 ],
                                                 [
@@ -121,7 +118,7 @@ use Cake\I18n\I18n;
                                                 '<i class="fa fa-remove"></i>',
                                                 [
                                                     '_name' => 'categories-delete',
-                                                    'slug' => $category->translation(I18n::locale())->title,
+                                                    'slug' => $category->title,
                                                     'id' => $category->id
                                                 ],
                                                 [
@@ -139,16 +136,16 @@ use Cake\I18n\I18n;
 
                         <div class="pagination-centered">
                             <ul class="pagination">
-                                <?php if ($this->Paginator->hasPrev()): ?>
+                                <?php if ($this->Paginator->hasPrev()) : ?>
                                     <?= $this->Paginator->prev('«'); ?>
                                 <?php endif; ?>
                                 <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                                <?php if ($this->Paginator->hasNext()): ?>
+                                <?php if ($this->Paginator->hasNext()) : ?>
                                     <?= $this->Paginator->next('»'); ?>
                                 <?php endif; ?>
                             </ul>
                         </div>
-                    <?php else: ?>
+                    <?php else : ?>
                         <div class="infobox infobox-primary">
                             <h4>
                                 <?= __d('admin', 'No categories was found.') ?>

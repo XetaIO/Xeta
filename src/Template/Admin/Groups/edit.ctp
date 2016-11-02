@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->assign('title', __d('admin', 'Edit a Group')) ?>
 
 <div class="content-wrapper interface-blur">
@@ -45,9 +42,9 @@ use Cake\I18n\I18n;
                         'role' => 'form'
                     ]) ?>
                     <div class="form-group">
-                        <?= $this->Form->label('_translations.' . I18n::defaultLocale() . '.name', __d('admin', 'Name'), ['class' => 'col-sm-2 control-label']) ?>
+                        <?= $this->Form->label('name', __d('admin', 'Name'), ['class' => 'col-sm-2 control-label']) ?>
                         <div class="col-sm-5">
-                            <?= $this->Form->input('_translations.' . I18n::defaultLocale() . '.name', ['class' => 'form-control', 'label' => false]) ?>
+                            <?= $this->Form->input('name', ['class' => 'form-control', 'label' => false]) ?>
                         </div>
                     </div>
                     <?= $this->I18n->i18nInput($group, 'name', ['class' => 'form-control']); ?>

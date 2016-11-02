@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->element('meta', [
     'title' => __("Xeta's members")
 ]) ?>
@@ -60,7 +57,7 @@ use Cake\I18n\I18n;
                                 <?= h($user->full_name) ?>
                             </td>
                             <td>
-                                <?= \Cake\Utility\Inflector::humanize(h($user->group->translation(I18n::locale())->name)) ?>
+                                <?= \Cake\Utility\Inflector::humanize(h($user->group->name)) ?>
                             </td>
                             <td>
                                 <?= $user->created->format('d-m-Y') ?>

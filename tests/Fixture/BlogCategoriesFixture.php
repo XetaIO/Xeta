@@ -15,7 +15,6 @@ class BlogCategoriesFixture extends TestFixture
         'id' => ['type' => 'integer'],
         'title' => ['type' => 'string'],
         'description' => ['type' => 'text'],
-        'slug' => ['type' => 'string'],
         'article_count' => ['type' => 'integer'],
         'created' => ['type' => 'datetime'],
         'modified' => ['type' => 'datetime'],
@@ -36,7 +35,6 @@ class BlogCategoriesFixture extends TestFixture
         [
             'title' => 'Categorie 1',
             'description' => 'Lorem ipsum dolor sit amet.',
-            'slug' => 'categorie-1',
             'article_count' => 2,
             'created' => '2014-10-29 15:36:57',
             'modified' => '2014-10-29 15:36:57'
@@ -44,7 +42,6 @@ class BlogCategoriesFixture extends TestFixture
         [
             'title' => 'Categorie 2',
             'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat.',
-            'slug' => 'categorie-2',
             'article_count' => 0,
             'created' => '2014-10-29 15:36:57',
             'modified' => '2014-10-29 15:36:57'

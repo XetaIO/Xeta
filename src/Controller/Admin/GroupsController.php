@@ -28,7 +28,7 @@ class GroupsController extends AppController
         ];
 
         $groups = $this->Groups
-            ->find('translations')
+            ->find()
             ->order([
                 'Groups.created' => 'desc'
             ]);
@@ -45,9 +45,11 @@ class GroupsController extends AppController
     public function add()
     {
         $this->Groups->locale(I18n::defaultLocale());
-        $group = $this->Groups->newEntity($this->request->data, ['translations' => true]);
+        $group = $this->Groups->newEntity($this->request->data);
 
         if ($this->request->is('post')) {
+            $group->setTranslations($this->request->data);
+
             if ($this->Groups->save($group)) {
                 //Event.
                 $this->eventManager()->attach(new Statistics());
@@ -87,7 +89,8 @@ class GroupsController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->Groups->patchEntity($group, $this->request->data(), ['translations' => true]);
+            $this->Groups->patchEntity($group, $this->request->data());
+            $group->setTranslations($this->request->data);
 
             if ($this->Groups->save($group)) {
                 //Event.

@@ -26,13 +26,11 @@ class ArticlesController extends AppController
             'maxLimit' => 15
         ];
 
-        $this->BlogArticles->locale(I18n::defaultLocale());
         $articles = $this->BlogArticles
-            ->find('translations')
+            ->find()
             ->contain([
                 'BlogCategories' => function ($q) {
                     return $q
-                        ->find('translations')
                         ->select([
                             'id',
                             'title'
@@ -45,7 +43,6 @@ class ArticlesController extends AppController
             ->order([
                 'BlogArticles.created' => 'desc'
             ]);
-        //debug($articles->toArray());die;
 
         $articles = $this->paginate($articles);
         $this->set(compact('articles'));
@@ -61,10 +58,11 @@ class ArticlesController extends AppController
         $this->loadModel('BlogArticles');
 
         $this->BlogArticles->locale(I18n::defaultLocale());
-        $article = $this->BlogArticles->newEntity($this->request->data, ['translations' => true]);
+        $article = $this->BlogArticles->newEntity($this->request->data);
 
         if ($this->request->is('post')) {
             $article->user_id = $this->Auth->user('id');
+            $article->setTranslations($this->request->data);
 
             if ($this->BlogArticles->save($article)) {
                 $this->Flash->success(__d('admin', 'Your article has been created successfully !'));
@@ -73,14 +71,7 @@ class ArticlesController extends AppController
             }
         }
 
-        $categories = $this->BlogArticles->BlogCategories
-            ->find('translations')
-            ->find('list', [
-                'keyField' => 'id',
-                'valueField' => function ($e) {
-                    return $e->translation(I18n::locale())->title;
-                }
-            ]);
+        $categories = $this->BlogArticles->BlogCategories->find('list');
 
         $this->set(compact('article', 'categories'));
     }
@@ -117,7 +108,8 @@ class ArticlesController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->BlogArticles->patchEntity($article, $this->request->data(), ['translations' => true]);
+            $this->BlogArticles->patchEntity($article, $this->request->data());
+            $article->setTranslations($this->request->data);
 
             if ($this->BlogArticles->save($article)) {
                 $this->Flash->success(__d('admin', 'This article has been updated successfully !'));

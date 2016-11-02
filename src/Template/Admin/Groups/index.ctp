@@ -1,6 +1,3 @@
-<?php
-use Cake\I18n\I18n;
-?>
 <?= $this->assign('title', __d('admin', 'Manage Groups')) ?>
 
 <div class="content-wrapper interface-blur">
@@ -38,12 +35,14 @@ use Cake\I18n\I18n;
                 <div class="panel-body">
 
                     <div class="panel-body-header">
-                        <?= $this->Html->link(__d('admin', '{0} New Group', '<i class="fa fa-plus"></i>'),
-                        ['controller' => 'groups', 'action' => 'add', 'prefix' => 'admin'],
-                        ['class' => 'btn btn-primary-outline', 'escape' => false]) ?>
+                        <?= $this->Html->link(
+                            __d('admin', '{0} New Group', '<i class="fa fa-plus"></i>'),
+                            ['controller' => 'groups', 'action' => 'add', 'prefix' => 'admin'],
+                            ['class' => 'btn btn-primary-outline', 'escape' => false]
+                        )?>
                     </div>
 
-                    <?php if($groups->toArray()): ?>
+                    <?php if ($groups->toArray()) : ?>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -54,13 +53,13 @@ use Cake\I18n\I18n;
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($groups as $group):?>
+                                <?php foreach ($groups as $group) : ?>
                                     <tr>
                                         <td>
                                             #<?= $group->id ?>
                                         </td>
                                         <td>
-                                            <?= $this->Html->link($group->translation(I18n::locale())->name, ['_name' => 'groups-edit',
+                                            <?= $this->Html->link($group->name, ['_name' => 'groups-edit',
                                             'id' => $group->id]) ?>
                                         </td>
                                         <td>
@@ -101,16 +100,16 @@ use Cake\I18n\I18n;
 
                         <div class="pagination-centered">
                             <ul class="pagination">
-                                <?php if ($this->Paginator->hasPrev()): ?>
+                                <?php if ($this->Paginator->hasPrev()) : ?>
                                     <?= $this->Paginator->prev('«'); ?>
                                 <?php endif; ?>
                                 <?= $this->Paginator->numbers(['modulus' => 5]); ?>
-                                <?php if ($this->Paginator->hasNext()): ?>
+                                <?php if ($this->Paginator->hasNext()) : ?>
                                     <?= $this->Paginator->next('»'); ?>
                                 <?php endif; ?>
                             </ul>
                         </div>
-                    <?php else: ?>
+                    <?php else : ?>
                         <div class="infobox infobox-info">
                             <h4>
                                 <?= __d('admin', 'No groups was found.') ?>
