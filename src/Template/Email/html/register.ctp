@@ -25,7 +25,7 @@
                                         ),
                                         $this->Html->link(
                                             __d('mail', 'here'),
-                                            ['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum', '_full' => true],
+                                            ['controller' => 'users', 'action' => 'account', 'prefix' => false, '_full' => true],
                                             ['style' => 'color:#1ABC9C;text-decoration:none;']
                                         ),
                                         $this->Html->link(
