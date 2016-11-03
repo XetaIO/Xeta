@@ -44,6 +44,10 @@
             "bin/cake deployer clear_cache",
             "bin/cake migrations migrate"
         ],
+        "install": [
+            "bin/cake migrations migrate",
+            "bin/cake migrations seed"
+        ],
         "post-install-cmd": "App\\Console\\Installer::postInstall",
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
