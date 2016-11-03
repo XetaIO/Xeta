@@ -243,7 +243,7 @@ class Installer
         $content = str_replace('__DATABASE_NAME__', $databaseName, $content, $count);
 
         $databaseName = $io->ask('What is the database username ? ', 'xeta');
-        $content = str_replace('__DATABASE_USER__', $databaseName, $content, $count);
+        $content = str_replace('__DATABASE_USERNAME__', $databaseName, $content, $count);
 
         $databaseName = $io->ask('What is the database password ? ', 'xeta');
         $content = str_replace('__DATABASE_PASSWORD__', $databaseName, $content, $count);
