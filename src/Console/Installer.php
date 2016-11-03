@@ -279,7 +279,7 @@ class Installer
         if ($result) {
             $io->write('Updated Security.salt value in config/app.php');
 
-            return;
+            return $newKey;
         }
         $io->write('Unable to update Security.salt value.');
     }
@@ -296,7 +296,7 @@ class Installer
     public static function setAccountPassword($dir, $io, $newKey = null)
     {
         if ($newKey == null) {
-            $io->write('The new Security.salt value is empty in config/app.php, can\'t set up the password.');
+            $io->write('The new Security.salt value is empty in config/Seeds/UsersSeed.php, can\'t set up the password.');
 
             return;
         }
