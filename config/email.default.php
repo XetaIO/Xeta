@@ -33,15 +33,14 @@ return [
  */
     'EmailTransport' => [
         'default' => [
-            'className' => isset($_ENV['EMAIL_CLASSNAME']) ? $_ENV['EMAIL_CLASSNAME'] : 'Mail',
+            'className' => getenv('EMAIL_CLASSNAME') ? getenv('EMAIL_CLASSNAME') : 'Mail',
             // The following keys are used in SMTP transports
-            'host' => isset($_ENV['EMAIL_HOST']) ? $_ENV['EMAIL_HOST'] : '',
-            'port' => isset($_ENV['EMAIL_PORT']) ? $_ENV['EMAIL_PORT'] : 25,
+            'host' => getenv('EMAIL_HOST') ? getenv('EMAIL_HOST') : 'localhost',
+            'port' => getenv('EMAIL_PORT') ? getenv('EMAIL_PORT') : 25,
             'timeout' => 30,
-            'username' => isset($_ENV['EMAIL_USERNAME']) ? $_ENV['EMAIL_USERNAME'] : '',
-            'password' => isset($_ENV['EMAIL_PASSWORD']) ? $_ENV['EMAIL_PASSWORD'] : '',
-            'client' => isset($_ENV['EMAIL_CLIENT']) ? $_ENV['EMAIL_CLIENT'] : 'xeta.io',
-            'tls' => null,
+            'username' => getenv('EMAIL_USERNAME') ? getenv('EMAIL_USERNAME') : 'user',
+            'password' => getenv('EMAIL_PASSWORD') ? getenv('EMAIL_PASSWORD') : 'secret',
+            'client' => getenv('EMAIL_CLIENT') ? getenv('EMAIL_CLIENT') : null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null)
         ],
     ],
