@@ -69,11 +69,11 @@ class NotificationsTable extends Table
 
                         case 'bot':
                             $notification->text = __(
-                                'Welcome on <strong>{0}</strong>! You can now post your first message in the Forum.',
+                                'Welcome on <strong>{0}</strong>! You can now post your first comment in the blog.',
                                 \Cake\Core\Configure::read('Site.name')
                             );
 
-                            $notification->link = Router::url(['controller' => 'forum', 'action' => 'index', 'prefix' => 'forum']);
+                            $notification->link = Router::url(['controller' => 'blog', 'action' => 'index', 'prefix' => false]);
                             $notification->icon = $notification->data['icon'];
                             break;
 
