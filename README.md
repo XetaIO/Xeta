@@ -41,8 +41,8 @@ Steps to install :
 * Run :
 ```
 composer create-project --prefer-dist xety/xeta <application_name>
+composer run-script install
 ```
-* Import the file `config/Schema/xeta.sql` in your database.
 * Congratulations ! The application is ready to use. :+1:
 
 #### Pre-installed Accounts

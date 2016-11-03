@@ -236,8 +236,17 @@ class Installer
         $config = $dir . '/config/database.php';
         $content = file_get_contents($config);
 
-        $databaseName = $io->ask('What is your new database name ? ', 'xeta');
-        $content = str_replace('__DATABASE__', $databaseName, $content, $count);
+        $databaseName = $io->ask('What is the database host ? ', 'localhost');
+        $content = str_replace('__DATABASE_HOST__', $databaseName, $content, $count);
+
+        $databaseName = $io->ask('What is the database name ? ', 'xeta_test');
+        $content = str_replace('__DATABASE_NAME__', $databaseName, $content, $count);
+
+        $databaseName = $io->ask('What is the database username ? ', 'xeta');
+        $content = str_replace('__DATABASE_USER__', $databaseName, $content, $count);
+
+        $databaseName = $io->ask('What is the database password ? ', 'xeta');
+        $content = str_replace('__DATABASE_PASSWORD__', $databaseName, $content, $count);
 
         if ($count == 0) {
             $io->write('No Datasources.default.database placeholder to replace.');
