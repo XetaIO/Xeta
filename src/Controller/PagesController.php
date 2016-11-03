@@ -28,7 +28,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['home', 'acceptCookie', 'lang']);
+        $this->Auth->allow(['home', 'acceptCookie', 'lang', 'terms']);
     }
 
     /**
@@ -113,5 +113,14 @@ class PagesController extends AppController
     public function lang()
     {
         $this->redirect($this->referer());
+    }
+
+    /**
+     * Display the Terms page.
+     *
+     * @return void
+     */
+    public function terms()
+    {
     }
 }
