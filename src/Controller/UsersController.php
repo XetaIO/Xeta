@@ -76,8 +76,6 @@ class UsersController extends AppController
      */
     public function login()
     {
-        $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
-
         if ($this->request->is('post')) {
             $method = ($this->request->data['method']) ? $this->request->data['method'] : false;
 
@@ -88,6 +86,8 @@ class UsersController extends AppController
                     if ($userLogin) {
                         if ($userLogin['is_deleted'] == true) {
                             $this->Flash->error(__("This account has been deleted."));
+
+                            $userRegister = $this->Users->newEntity($this->request->data);
 
                             break;
                         }
@@ -130,9 +130,13 @@ class UsersController extends AppController
 
                     $this->Flash->error(__("Your username or password doesn't match."));
 
+                    $userRegister = $this->Users->newEntity($this->request->data);
+
                     break;
 
                 case "register":
+                    $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
+
                     $userRegister->register_ip = $this->request->clientIp();
                     $userRegister->last_login_ip = $this->request->clientIp();
                     $userRegister->last_login = new Time();
@@ -187,6 +191,8 @@ class UsersController extends AppController
         } else {
             //Save the referer URL before the user send the login/register request else it will delete the referer.
             $this->request->session()->write('Auth.redirect', $this->referer());
+
+            $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
         }
 
         if ($this->Auth->user()) {
