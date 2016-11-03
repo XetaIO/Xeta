@@ -78,6 +78,7 @@ try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
     Configure::load('database', 'default');
+    Configure::load('email', 'default');
     Configure::load('xeta', 'default');
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");

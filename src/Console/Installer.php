@@ -42,6 +42,7 @@ class Installer
         static::createWritableDirectories($rootDir, $io);
         static::createRecaptchaConfig($rootDir, $io);
         static::createDatabaseConfig($rootDir, $io);
+        static::createEmailConfig($rootDir, $io);
         static::setDatabaseName($rootDir, $io);
 
         // ask if the permissions should be changed
@@ -107,6 +108,24 @@ class Installer
         if (!file_exists($databaseConfig)) {
             copy($defaultConfig, $databaseConfig);
             $io->write('Created `config/database.php` file');
+        }
+    }
+
+    /**
+     * Create the config/email.php file if it does not exist.
+     *
+     * @param string $dir The application's root directory.
+     * @param \Composer\IO\IOInterface $io IO interface to write to console.
+     *
+     * @return void
+     */
+    public static function createDatabaseConfig($dir, $io)
+    {
+        $databaseConfig = $dir . '/config/email.php';
+        $defaultConfig = $dir . '/config/email.default.php';
+        if (!file_exists($databaseConfig)) {
+            copy($defaultConfig, $databaseConfig);
+            $io->write('Created `config/email.php` file');
         }
     }
 
