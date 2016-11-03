@@ -41,7 +41,7 @@ Steps to install :
 * Run :
 ```
 composer create-project --prefer-dist xety/xeta <application_name>
-composer run-script install
+composer run-script installation
 ```
 * Congratulations ! The application is ready to use. :+1:
 

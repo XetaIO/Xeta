@@ -44,7 +44,7 @@
             "bin/cake deployer clear_cache",
             "bin/cake migrations migrate"
         ],
-        "install": [
+        "installation": [
             "bin/cake migrations migrate",
             "bin/cake migrations seed"
         ],
