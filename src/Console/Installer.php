@@ -119,7 +119,7 @@ class Installer
      *
      * @return void
      */
-    public static function createDatabaseConfig($dir, $io)
+    public static function createEmailConfig($dir, $io)
     {
         $databaseConfig = $dir . '/config/email.php';
         $defaultConfig = $dir . '/config/email.default.php';
