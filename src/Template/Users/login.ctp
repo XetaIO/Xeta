@@ -105,8 +105,14 @@
                     </div>
                     <?= $this->Form->error('password_confirm') ?>
                 </div>
-                <div class="form-groups">
+                <div class="form-group">
                     <?= $this->Recaptcha->display() ?>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <?= __('By clicking the button "SignUp", you accept that you have read and understand the {0}.',
+                            $this->Html->link(__('Terms of Service'), ['controller' => 'pages', 'action' => 'terms'], ['class' => 'text-primary'])) ?>
+                    </p>
                 </div>
                 <div class="form-group">
                     <?= $this->Form->button(
