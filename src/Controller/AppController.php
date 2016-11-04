@@ -19,28 +19,12 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        //$this->loadComponent('Flash');
-    }
-
-    /**
-     * Components.
-     *
-     * @var array
-     */
-    public $components = [
-        'Flash',
-        'Cookie',
-        'Acl.Acl',
-        'SessionsActivity',
-    /**
-     * If you want enable CSRF uncomment this.
-     * I recommend to enable it. If i have disable it, it's because
-     * CloudFlare have some problem with the header X-CSRF-Token (AJAX Request).
-     */
-        /*'Csrf' => [
-            'secure' => true
-        ],*/
-        'Auth' => [
+        //Components.
+        $this->loadComponent('Flash');
+        $this->loadComponent('Cookie');
+        $this->loadComponent('Acl.Acl');
+        $this->loadComponent('SessionsActivity');
+        $this->loadComponent('Auth', [
             'className' => 'AclAuth',
             'allowedActionsForBanned' => [
                 'Pages' => [
@@ -82,23 +66,16 @@ class AppController extends Controller
                 'action' => 'home'
             ],
             'authError' => 'You are not authorized to access that location !'
-        ]
-    ];
+        ]);
 
-    /**
-     * Helpers.
-     *
-     * @var array
-     */
-    public $helpers = [
-        'Form' => [
-            'templates' => 'form-templates'
-        ],
-        'Paginator' => [
-            'templates' => 'paginator-templates'
-        ],
-        'Acl'
-    ];
+        if (env('HTTPS')) {
+            $this->loadComponent('Csrf', [
+                'secure' => true
+            ]);
+        } else {
+            $this->loadComponent('Csrf');
+        }
+    }
 
     /**
      * beforeFilter handle.

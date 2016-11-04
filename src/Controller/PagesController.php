@@ -9,13 +9,16 @@ class PagesController extends AppController
 {
 
     /**
-     * Components.
+     * Initialization hook method.
      *
-     * @var array
+     * @return void
      */
-    public $components = [
-        'RequestHandler'
-    ];
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+    }
 
     /**
      * Beforefilter.

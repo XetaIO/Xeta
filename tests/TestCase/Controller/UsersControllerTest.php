@@ -78,11 +78,16 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testLogin()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         //Login successfull.
         $data = [
             'method' => 'login',
             'username' => 'mariano',
-            'password' => 'password'
+            'password' => 'password',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'users', 'action' => 'login'], $data);
@@ -95,7 +100,8 @@ class UsersControllerTest extends IntegrationTestCase
         $data = [
             'method' => 'login',
             'username' => 'mariano',
-            'password' => 'passfail'
+            'password' => 'passfail',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'users', 'action' => 'login'], $data);
@@ -184,10 +190,16 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testLogout()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
+        //Login successfull.
         $data = [
             'method' => 'login',
             'username' => 'mariano',
-            'password' => 'password'
+            'password' => 'password',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post('/users/login', $data);
@@ -243,6 +255,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testAccountAuthorizedWithPut()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -267,7 +283,8 @@ class UsersControllerTest extends IntegrationTestCase
                 'error' => UPLOAD_ERR_OK,
                 'type' => 'image/png',
                 'size' => 6000
-            ]
+            ],
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'account'], $data);
@@ -279,7 +296,7 @@ class UsersControllerTest extends IntegrationTestCase
             ->select(['first_name', 'last_name', 'twitter', 'facebook', 'biography', 'signature'])
             ->first()->toArray();
 
-        unset($data['avatar_file']);
+        unset($data['avatar_file'], $data['_csrfToken']);
 
         $this->assertEquals($data, $user);
     }
@@ -326,6 +343,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testSettingsAuthorizedWithPutForEmail()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -340,6 +361,7 @@ class UsersControllerTest extends IntegrationTestCase
         $data = [
             'method' => 'email',
             'email' => 'mynew@email.io',
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'settings'], $data);
@@ -352,7 +374,7 @@ class UsersControllerTest extends IntegrationTestCase
             ->select(['email'])
             ->first()->toArray();
 
-        unset($data['method']);
+        unset($data['method'], $data['_csrfToken']);
 
         $this->assertEquals($data, $user);
     }
@@ -364,6 +386,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testSettingsAuthorizedWithPutForEmailWithNoEmail()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -377,6 +403,7 @@ class UsersControllerTest extends IntegrationTestCase
 
         $data = [
             'method' => 'email',
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'settings'], $data);
@@ -392,6 +419,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testSettingsAuthorizedWithPutForPassword()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -407,7 +438,8 @@ class UsersControllerTest extends IntegrationTestCase
             'method' => 'password',
             'old_password' => 'password',
             'password' => '12345678',
-            'password_confirm' => '12345678'
+            'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'settings'], $data);
@@ -432,6 +464,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testSettingsAuthorizedWithPutForPasswordWithNoPassword()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -446,7 +482,8 @@ class UsersControllerTest extends IntegrationTestCase
         $data = [
             'method' => 'password',
             'old_password' => 'password',
-            'password' => '12345678'
+            'password' => '12345678',
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'settings'], $data);
@@ -462,6 +499,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testSettingsAuthorizedWithPutForPasswordWithOldPasswordFail()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -477,7 +518,8 @@ class UsersControllerTest extends IntegrationTestCase
             'method' => 'password',
             'old_password' => 'OldPasswordFail',
             'password' => '12345678',
-            'password_confirm' => '12345678'
+            'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
 
         $this->put(['controller' => 'users', 'action' => 'settings'], $data);
@@ -608,9 +650,13 @@ class UsersControllerTest extends IntegrationTestCase
         $this->Users->save($user);
 
         //Page with POST but fail validation.
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
         $data = [
             'password' => '1234567',
-            'password_confirm' => '12345678'
+            'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
         $this->put(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1], $data);
         $this->assertResponseOk();
@@ -618,7 +664,8 @@ class UsersControllerTest extends IntegrationTestCase
         //Page with POST ok.
         $data = [
             'password' => '12345678',
-            'password_confirm' => '12345678'
+            'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
         $this->put(['_name' => 'users-resetpassword', 'code' => $code, 'id' => 1], $data);
         $this->assertResponseSuccess();
