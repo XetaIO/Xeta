@@ -15,6 +15,7 @@ class ClearCacheTask extends Shell
     public function main()
     {
         Cache::clear(false, '_cake_core_');
+        Cache::clear(false, 'database');
         Cache::clear(false, 'acl');
         $this->out('<info>The</info> "<error>deployer clear_cache</error>" <info>command has been executed successfully !</info>', 2);
     }

@@ -43,6 +43,7 @@ if (!function_exists('cleanup_after_tests')) {
     function cleanup_after_tests()
     {
         Cache::clear(false, 'analytics');
+        Cache::clear(false, 'database');
         Cache::clear(false, 'acl');
     }
 }
