@@ -1,4 +1,4 @@
-<header class="navbar navbar-inverse navbar-admin navbar-fixed-top interface-blur" role="navigation">
+<header class="navbar navbar-inverse navbar-admin navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

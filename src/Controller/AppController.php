@@ -64,8 +64,7 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => 'pages',
                 'action' => 'home'
-            ],
-            'authError' => 'You are not authorized to access that location !'
+            ]
         ]);
 
         if (env('HTTPS')) {
@@ -86,6 +85,11 @@ class AppController extends Controller
      */
     public function beforeFilter(Event $event)
     {
+        $this->loadModel('Settings');
+        $this->Settings->setSettings();
+
+        $this->Auth->config('authError', __('You need to be logged in or you are not authorized to access that location !'));
+
         //Define the language.
         $language = new Language($this);
         $language->setLanguage();

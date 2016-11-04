@@ -37,7 +37,7 @@ class AcosFixture extends TestFixture
      * @var array
      */
     public $records = [
-        ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '168'],
+        ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '178'],
         ['id' => '2', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'Conversations', 'lft' => '2', 'rght' => '35'],
         ['id' => '3', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'index', 'lft' => '3', 'rght' => '4'],
         ['id' => '4', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'action', 'lft' => '5', 'rght' => '6'],
@@ -91,7 +91,7 @@ class AcosFixture extends TestFixture
         ['id' => '54', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'deleteComment', 'lft' => '103', 'rght' => '104'],
         ['id' => '55', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'getEditComment', 'lft' => '105', 'rght' => '106'],
         ['id' => '56', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'editComment', 'lft' => '107', 'rght' => '108'],
-        ['id' => '58', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'Admin', 'lft' => '110', 'rght' => '167'],
+        ['id' => '58', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'Admin', 'lft' => '110', 'rght' => '177'],
         ['id' => '59', 'parent_id' => '58', 'model' => null, 'foreign_key' => null, 'alias' => 'Categories', 'lft' => '111', 'rght' => '120'],
         ['id' => '60', 'parent_id' => '59', 'model' => null, 'foreign_key' => null, 'alias' => 'index', 'lft' => '112', 'rght' => '113'],
         ['id' => '61', 'parent_id' => '59', 'model' => null, 'foreign_key' => null, 'alias' => 'add', 'lft' => '114', 'rght' => '115'],
@@ -120,6 +120,11 @@ class AcosFixture extends TestFixture
         ['id' => '84', 'parent_id' => '82', 'model' => null, 'foreign_key' => null, 'alias' => 'add', 'lft' => '160', 'rght' => '161'],
         ['id' => '85', 'parent_id' => '82', 'model' => null, 'foreign_key' => null, 'alias' => 'edit', 'lft' => '162', 'rght' => '163'],
         ['id' => '86', 'parent_id' => '82', 'model' => null, 'foreign_key' => null, 'alias' => 'delete', 'lft' => '164', 'rght' => '165'],
-        ['id' => '87', 'parent_id' => '19', 'model' => null, 'foreign_key' => null, 'alias' => 'terms', 'lft' => '43', 'rght' => '44']
+        ['id' => '87', 'parent_id' => '19', 'model' => '', 'foreign_key' => null, 'alias' => 'terms', 'lft' => '43', 'rght' => '44'],
+        ['id' => '88', 'parent_id' => '58', 'model' => '', 'foreign_key' => null, 'alias' => 'Settings', 'lft' => '167', 'rght' => '176'],
+        ['id' => '89', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'index', 'lft' => '168', 'rght' => '169'],
+        ['id' => '90', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'create', 'lft' => '170', 'rght' => '171'],
+        ['id' => '91', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'edit', 'lft' => '172', 'rght' => '173'],
+        ['id' => '92', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'delete', 'lft' => '174', 'rght' => '175']
     ];
 }
