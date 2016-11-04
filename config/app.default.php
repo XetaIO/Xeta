@@ -136,6 +136,16 @@ return [
         ],
 
     /**
+     * Configure the cache used for the database query caching.
+     */
+        'database' => [
+            'className' => 'File',
+            'prefix' => 'Xeta_database_',
+            'path' => CACHE . 'database/',
+            'duration' => '+1 days',
+        ],
+
+    /**
      * Configure the cache used for general framework caching. Path information,
      * object listings, and translation cache files are stored with this
      * configuration.

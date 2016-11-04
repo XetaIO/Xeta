@@ -13,6 +13,7 @@ class PagesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
+        'app.settings',
         'app.users',
         'app.groups',
         'app.groups_i18n',

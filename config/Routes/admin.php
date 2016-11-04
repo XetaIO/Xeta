@@ -192,5 +192,51 @@ Router::prefix('admin', function (RouteBuilder $routes) {
         ]
     );
 
+    //Settings Routes.
+    $routes->connect(
+        '/settings/edit/:id',
+        [
+            'controller' => 'settings',
+            'action' => 'edit'
+        ],
+        [
+            '_name' => 'settings-edit',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/settings/view/:id',
+        [
+            'controller' => 'settings',
+            'action' => 'view'
+        ],
+        [
+            '_name' => 'settings-view',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/settings/delete/:id',
+        [
+            'controller' => 'settings',
+            'action' => 'delete'
+        ],
+        [
+            '_name' => 'settings-delete',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
     $routes->fallbacks();
 });

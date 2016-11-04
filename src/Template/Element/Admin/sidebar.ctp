@@ -1,4 +1,4 @@
-<div class="sidebar interface-blur">
+<div class="sidebar">
     <div class="sidebar-inner">
         <ul class="sidebar-nav nav nav-pills nav-stacked hidden-xs hidden-sm">
             <li>
@@ -99,6 +99,19 @@
                     ) ?>
                 </li>
             <?php endif; ?>
+
+            <?php if ($this->Acl->check(['controller' => 'settings', 'action' => 'index', 'prefix' => 'admin'])): ?>
+                <?php if ($this->request->params['controller'] == 'Settings'): ?>
+                    <li class="active">
+                <?php else:?>
+                    <li>
+                <?php endif;?>
+                    <?= $this->Html->link(__d('admin', '{0} Settings {1}', '<i class="fa fa-cogs"></i>',
+                        '<i class="fa fa-chevron-right"></i>'), ['controller' => 'settings', 'action' => 'index', 'prefix' => 'admin'],
+                        ['escape' => false]
+                    ) ?>
+                </li>
+            <?php endif; ?>
         </ul>
 
 
@@ -186,6 +199,18 @@
                     <li>
                 <?php endif;?>
                     <?= $this->Html->link('<i class="fa fa-users fa-2x"></i>', ['controller' => 'groups', 'action' => 'index', 'prefix' => 'admin'],
+                        ['escape' => false]
+                    ) ?>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($this->Acl->check(['controller' => 'settings', 'action' => 'index', 'prefix' => 'admin'])): ?>
+                <?php if ($this->request->params['controller'] == 'Settings'): ?>
+                    <li class="active">
+                <?php else:?>
+                    <li>
+                <?php endif;?>
+                    <?= $this->Html->link('<i class="fa fa-cogs fa-2x"></i>', ['controller' => 'settings', 'action' => 'index', 'prefix' => 'admin'],
                         ['escape' => false]
                     ) ?>
                 </li>

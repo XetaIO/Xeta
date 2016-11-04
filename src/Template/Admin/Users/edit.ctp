@@ -1,6 +1,6 @@
 <?= $this->assign('title', __d('admin', 'Edit an User')) ?>
 
-<div class="profile interface-blur">
+<div class="profile">
     <div class="container-fluid">
         <div class="box-content text-center">
 

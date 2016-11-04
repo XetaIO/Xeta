@@ -8,6 +8,15 @@ class ContactControllerTest extends IntegrationTestCase
 {
 
     /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.settings'
+    ];
+
+    /**
      * Test index method
      *
      * @return void

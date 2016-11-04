@@ -12,7 +12,7 @@ echo $this->Html->script('ckeditor/ckeditor') ?>
 
 <?php $this->end() ?>
 
-<div class="content-wrapper interface-blur">
+<div class="content-wrapper">
     <div class="row">
 
         <div class="col-md-12">

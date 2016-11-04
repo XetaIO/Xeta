@@ -1,6 +1,6 @@
 <?= $this->assign('title', __d('admin', 'Edit a Category')) ?>
 
-<div class="content-wrapper interface-blur">
+<div class="content-wrapper">
     <div class="row">
 
         <div class="col-md-12">
