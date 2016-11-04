@@ -4,38 +4,38 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-25 18:28+0000\n"
-"PO-Revision-Date: 2015-04-27 21:00+0100\n"
+"POT-Creation-Date: 2016-11-04 11:18+0100\n"
+"PO-Revision-Date: 2016-11-04 11:35+0100\n"
 "Last-Translator: \n"
-"Language-Team:  <EMAIL@ADDRESS>\n"
+"Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #: Controller/Admin/ArticlesController.php:68
 msgid "Your article has been created successfully !"
 msgstr "Votre article a été créé avec succès !"
 
-#: Controller/Admin/ArticlesController.php:104;142
+#: Controller/Admin/ArticlesController.php:105;143
 msgid "This article doesn't exist or has been deleted."
 msgstr "Cet article n'existe pas ou a été supprimé."
 
-#: Controller/Admin/ArticlesController.php:114
+#: Controller/Admin/ArticlesController.php:115
 msgid "This article has been updated successfully !"
 msgstr "Cet article a été mis à jour avec succès !"
 
-#: Controller/Admin/ArticlesController.php:148
+#: Controller/Admin/ArticlesController.php:149
 msgid "This article has been deleted successfully !"
 msgstr "Cet article a été supprimé avec succès !"
 
-#: Controller/Admin/ArticlesController.php:153
+#: Controller/Admin/ArticlesController.php:154
 msgid "Unable to delete this article."
 msgstr "Impossible de supprimer cet article."
 
-#: Controller/Admin/AttachmentsController.php:70;143
+#: Controller/Admin/AttachmentsController.php:70;142
 msgid ""
 "This article has already an attachment, you can edit it <a href=\"{0}\" "
 "class=\"btn btn-sm btn-danger\">here</a>."
@@ -47,19 +47,19 @@ msgstr ""
 msgid "Your attachment has been created successfully !"
 msgstr "Votre fichier a été créé avec succès !"
 
-#: Controller/Admin/AttachmentsController.php:122;194
+#: Controller/Admin/AttachmentsController.php:121;192
 msgid "This attachment doesn't exist or has been deleted."
 msgstr "Ce fichier n'existe pas ou a été supprimé."
 
-#: Controller/Admin/AttachmentsController.php:165
+#: Controller/Admin/AttachmentsController.php:164
 msgid "Your attachment has been edited successfully !"
 msgstr "Votre fichier a été mis à jour avec succès !"
 
-#: Controller/Admin/AttachmentsController.php:200
+#: Controller/Admin/AttachmentsController.php:198
 msgid "This attachment has been deleted successfully !"
 msgstr "Ce fichier a été supprimé avec succès !"
 
-#: Controller/Admin/AttachmentsController.php:205
+#: Controller/Admin/AttachmentsController.php:203
 msgid "Unable to delete this attachment."
 msgstr "Impossible de supprimer ce fichier."
 
@@ -67,17 +67,15 @@ msgstr "Impossible de supprimer ce fichier."
 msgid "The category has been created successfully !"
 msgstr "La catégorie a été créée avec succès !"
 
-#: Controller/Admin/CategoriesController.php:78;115
-#: Controller/Admin/Forum/CategoriesController.php:86;112;138;196
+#: Controller/Admin/CategoriesController.php:77;114
 msgid "This category doesn't exist or has been deleted."
 msgstr "La catégorie n'existe pas ou a été supprimée."
 
-#: Controller/Admin/CategoriesController.php:88
-#: Controller/Admin/Forum/CategoriesController.php:151
+#: Controller/Admin/CategoriesController.php:87
 msgid "This category has been updated successfully !"
 msgstr "Cette catégorie a été mise à jour avec succès !"
 
-#: Controller/Admin/CategoriesController.php:122
+#: Controller/Admin/CategoriesController.php:121
 msgid ""
 "You can not deleted this category because one article or more is assigned to "
 "this category."
@@ -85,11 +83,11 @@ msgstr ""
 "Vous ne pouvez pas supprimer cette catégorie car un ou plusieurs article(s) "
 "est affecté à cette catégorie."
 
-#: Controller/Admin/CategoriesController.php:128
+#: Controller/Admin/CategoriesController.php:127
 msgid "This category has been deleted successfully !"
 msgstr "Cette catégorie a été supprimée avec succès !"
 
-#: Controller/Admin/CategoriesController.php:133
+#: Controller/Admin/CategoriesController.php:132
 msgid "Unable to delete this category."
 msgstr "Impossible de supprimer cette catégorie."
 
@@ -121,97 +119,57 @@ msgstr "Ce groupe a été supprimé avec succès !"
 msgid "Unable to delete this group."
 msgstr "Impossible de supprimer ce groupe."
 
-#: Controller/Admin/UsersController.php:118;156;188
+#: Controller/Admin/SettingsController.php:54
+msgid "This setting has been created successfully !"
+msgstr "Ce paramètre à été créé avec succès !"
+
+#: Controller/Admin/SettingsController.php:78;114
+msgid "This setting doesn't exist or has been deleted."
+msgstr "Ce paramètre n'existe pas ou a été supprimé."
+
+#: Controller/Admin/SettingsController.php:90
+msgid "This setting has been edited successfully !"
+msgstr "Ce paramètre à été édité avec succès !"
+
+#: Controller/Admin/SettingsController.php:120
+msgid "This setting has been deleted successfully !"
+msgstr "Ce paramètre à été supprimé avec succès !"
+
+#: Controller/Admin/UsersController.php:128;173;207
 msgid "This user doesn't exist or has been deleted."
 msgstr "Cet utilisateur n'existe pas ou a été supprimé."
 
-#: Controller/Admin/UsersController.php:127
+#: Controller/Admin/UsersController.php:144
 msgid "This user has been updated successfully !"
 msgstr "Cet utilisateur a été mis à jour avec succès !"
 
-#: Controller/Admin/UsersController.php:162
+#: Controller/Admin/UsersController.php:181
 msgid "This user has been deleted successfully !"
 msgstr "Cet utilisateur a été supprimé avec succès !"
 
-#: Controller/Admin/UsersController.php:167
+#: Controller/Admin/UsersController.php:186
 msgid "Unable to delete this user."
 msgstr "Impossible de supprimer cet utilisateur."
 
-#: Controller/Admin/UsersController.php:196
+#: Controller/Admin/UsersController.php:215
 msgid "His avatar has been deleted successfully !"
 msgstr "Son avatar a été supprimé avec succès !"
 
-#: Controller/Admin/UsersController.php:201
+#: Controller/Admin/UsersController.php:220
 msgid "Unable to delete his avatar."
 msgstr "Impossible de supprimer son avatar."
 
-#: Controller/Admin/Forum/CategoriesController.php:42
-msgid "Your category has been created successfully !"
-msgstr "La catégorie a été créée avec succès !"
-
-#: Controller/Admin/Forum/CategoriesController.php:56;60;166;170
-msgid "Root"
-msgstr "Racine"
-
-#: Controller/Admin/Forum/CategoriesController.php:210
-msgid ""
-"This category is not empty, you must delete/transfer all the threads "
-"assigned to this category before to delete it."
-msgstr ""
-"Cette catégorie n'est pas vide, vous devez supprimer/transférer tout les "
-"sujet assignés à cette catégorie avant de pouvoir supprimer cette catégorie."
-
-#: Controller/Admin/Forum/CategoriesController.php:216
-msgid "This category has been delete successfully !"
-msgstr "La catégorie a été supprimée avec succès !"
-
-#: Controller/Admin/Forum/CategoriesController.php:220
-msgid "There was an error while deleting this category."
-msgstr "Il y a eu une erreur lors de la suppression de la catégorie."
-
-#: Controller/Admin/Premium/DiscountsController.php:46
-msgid "Your discount has been created successfully !"
-msgstr "Votre réduction a été créée avec succès !"
-
-#: Controller/Admin/Premium/DiscountsController.php:82
-msgid "This discount doesn't exist or has been deleted."
-msgstr "Cette réduction n'existe pas ou a été supprimée."
-
-#: Controller/Admin/Premium/DiscountsController.php:91
-msgid "This discount has been updated successfully !"
-msgstr "Cette réduction a été mise à jour avec succès !"
-
-#: Controller/Admin/Premium/OffersController.php:45
-msgid "Your offer has been created successfully !"
-msgstr "Votre offre a été créée avec succès !"
-
-#: Controller/Admin/Premium/OffersController.php:77;113
-msgid "This offer doesn't exist or has been deleted."
-msgstr "Cette offre n'existe pas ou a été supprimé."
-
-#: Controller/Admin/Premium/OffersController.php:86
-msgid "This offer has been updated successfully !"
-msgstr "Cette offre a été mise à jour avec succès !"
-
-#: Controller/Admin/Premium/OffersController.php:119
-msgid "This offer has been deleted successfully !"
-msgstr "Cette offre a été supprimé avec succès !"
-
-#: Controller/Admin/Premium/OffersController.php:124
-msgid "Unable to delete this offer."
-msgstr "Impossible de supprimer cette offre."
-
 #: Template/Admin/Admin/home.ctp:1;12;16
-#: Template/Element/Admin/interface.ctp:12
+#: Template/Element/Admin/interface.ctp:13
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: Template/Admin/Admin/home.ctp:27;91;153;175
+#: Template/Admin/Admin/home.ctp:27;93;157;179
 msgid "Members"
 msgstr "Membres"
 
-#: Template/Admin/Admin/home.ctp:42 Template/Admin/Categories/index.ctp:47
-#: Template/Admin/Users/edit.ctp:62 Template/Element/Admin/interface.ctp:21
+#: Template/Admin/Admin/home.ctp:42 Template/Admin/Categories/index.ctp:52
+#: Template/Admin/Users/edit.ctp:62 Template/Element/Admin/interface.ctp:23
 msgid "Articles"
 msgstr "Articles"
 
@@ -219,78 +177,78 @@ msgstr "Articles"
 msgid "Comments"
 msgstr "Commentaires"
 
-#: Template/Admin/Admin/home.ctp:72 Template/Element/Admin/interface.ctp:30
+#: Template/Admin/Admin/home.ctp:72 Template/Element/Admin/interface.ctp:34
 msgid "Categories"
 msgstr "Catégories"
 
-#: Template/Admin/Admin/home.ctp:190;284
+#: Template/Admin/Admin/home.ctp:196;292
 msgid "Visitors"
 msgstr "Visiteurs"
 
-#: Template/Admin/Admin/home.ctp:287
+#: Template/Admin/Admin/home.ctp:295
 msgid "Page Views"
 msgstr "Pages Vues"
 
-#: Template/Admin/Admin/home.ctp:302
+#: Template/Admin/Admin/home.ctp:312
 msgid "Browsers"
 msgstr "Navigateurs"
 
-#: Template/Admin/Admin/home.ctp:317
+#: Template/Admin/Admin/home.ctp:329
 msgid "Pages views : {0,number,integer}"
 msgstr "Pages vues : {0,number,integer}"
 
-#: Template/Admin/Admin/home.ctp:331 Template/Element/Admin/sidebar.ctp:108
+#: Template/Admin/Admin/home.ctp:344
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: Template/Admin/Admin/home.ctp:338 Template/Admin/Users/index.ctp:46
+#: Template/Admin/Admin/home.ctp:353 Template/Admin/Users/index.ctp:49
 msgid "Type"
 msgstr "Type"
 
-#: Template/Admin/Admin/home.ctp:339
+#: Template/Admin/Admin/home.ctp:354 Template/Admin/Settings/index.ctp:50
 msgid "Value"
 msgstr "Valeur"
 
-#: Template/Admin/Admin/home.ctp:345
+#: Template/Admin/Admin/home.ctp:360
 msgid "Pages Views"
 msgstr "Pages Vues"
 
-#: Template/Admin/Admin/home.ctp:354
+#: Template/Admin/Admin/home.ctp:369
 msgid "Pages/Visit"
 msgstr "Pages/Visite"
 
-#: Template/Admin/Admin/home.ctp:363
+#: Template/Admin/Admin/home.ctp:378
 msgid "Average length/Visit"
 msgstr "Durée moyenne / Visite"
 
-#: Template/Admin/Admin/home.ctp:371
+#: Template/Admin/Admin/home.ctp:386
 msgid "Bounce Rate"
 msgstr "Taux de rebond"
 
-#: Template/Admin/Admin/home.ctp:380
+#: Template/Admin/Admin/home.ctp:395
 msgid "Visits"
 msgstr "Visites"
 
-#: Template/Admin/Admin/home.ctp:389
+#: Template/Admin/Admin/home.ctp:404
 msgid "Unique Visitors"
 msgstr "Visiteurs Uniques"
 
-#: Template/Admin/Admin/home.ctp:406
+#: Template/Admin/Admin/home.ctp:423
 msgid "Continents"
 msgstr "Continents"
 
-#: Template/Admin/Articles/add.ctp:1;24;36;45
-#: Template/Admin/Attachments/add.ctp:33
+#: Template/Admin/Articles/add.ctp:1;24;36;47
 msgid "Add an Article"
 msgstr "Ajouter un Article"
 
 #: Template/Admin/Articles/add.ctp:28 Template/Admin/Articles/edit.ctp:28
 #: Template/Admin/Articles/index.ctp:16 Template/Admin/Attachments/add.ctp:16
 #: Template/Admin/Attachments/edit.ctp:16
-#: Template/Admin/Attachments/index.ctp:16
-#: Template/Admin/Categories/add.ctp:16 Template/Admin/Categories/edit.ctp:16
-#: Template/Admin/Categories/index.ctp:16 Template/Admin/Groups/add.ctp:16
-#: Template/Admin/Groups/edit.ctp:16 Template/Admin/Groups/index.ctp:16
+#: Template/Admin/Attachments/index.ctp:16 Template/Admin/Categories/add.ctp:16
+#: Template/Admin/Categories/edit.ctp:16 Template/Admin/Categories/index.ctp:16
+#: Template/Admin/Groups/add.ctp:16 Template/Admin/Groups/edit.ctp:16
+#: Template/Admin/Groups/index.ctp:16 Template/Admin/Settings/create.ctp:16
+#: Template/Admin/Settings/edit.ctp:16 Template/Admin/Settings/index.ctp:16
 #: Template/Admin/Users/index.ctp:16 Template/Admin/Users/search.ctp:16
 msgid "{0} Dashboard"
 msgstr "{0} Tableau de bord"
@@ -299,293 +257,229 @@ msgstr "{0} Tableau de bord"
 msgid "{0} Manage Articles"
 msgstr "{0} Gérer les articles"
 
-#: Template/Admin/Articles/add.ctp:54 Template/Admin/Articles/edit.ctp:54
-#: Template/Admin/Articles/index.ctp:46 Template/Admin/Categories/add.ctp:42
-#: Template/Admin/Categories/edit.ctp:42
-#: Template/Admin/Categories/index.ctp:45
-#: Template/Admin/Forum/Categories/add.ctp:42
-#: Template/Admin/Forum/Categories/edit.ctp:42
-#: Template/Admin/Forum/Categories/index.ctp:44
+#: Template/Admin/Articles/add.ctp:58 Template/Admin/Articles/edit.ctp:57
+#: Template/Admin/Articles/index.ctp:49 Template/Admin/Categories/add.ctp:45
+#: Template/Admin/Categories/edit.ctp:45 Template/Admin/Categories/index.ctp:50
 msgid "Title"
 msgstr "Titre"
 
-#: Template/Admin/Articles/add.ctp:61 Template/Admin/Articles/edit.ctp:61
-#: Template/Admin/Articles/index.ctp:47 Template/Admin/Attachments/edit.ctp:43
+#: Template/Admin/Articles/add.ctp:65 Template/Admin/Articles/edit.ctp:64
+#: Template/Admin/Articles/index.ctp:50 Template/Admin/Attachments/edit.ctp:46
 msgid "Category"
 msgstr "Catégorie"
 
-#: Template/Admin/Articles/add.ctp:67 Template/Admin/Articles/edit.ctp:67
-#: Template/Admin/Articles/index.ctp:48
+#: Template/Admin/Articles/add.ctp:71 Template/Admin/Articles/edit.ctp:70
+#: Template/Admin/Articles/index.ctp:51
 msgid "Is display"
 msgstr "Est affiché"
 
-#: Template/Admin/Articles/add.ctp:70 Template/Admin/Articles/edit.ctp:70
-#: Template/Admin/Articles/index.ctp:93
-#: Template/Admin/Forum/Categories/add.ctp:57
-#: Template/Admin/Forum/Categories/edit.ctp:57
-#: Template/Admin/Groups/add.ctp:58;76 Template/Admin/Groups/edit.ctp:58;75
-#: Template/Admin/Premium/Discounts/index.ctp:88
-#: Template/Admin/Users/edit.ctp:237
+#: Template/Admin/Articles/add.ctp:74 Template/Admin/Articles/edit.ctp:75
+#: Template/Admin/Articles/index.ctp:97 Template/Admin/Groups/add.ctp:61;79
+#: Template/Admin/Groups/edit.ctp:63;82
 msgid "Yes"
 msgstr "Oui"
 
-#: Template/Admin/Articles/add.ctp:71 Template/Admin/Articles/edit.ctp:71
-#: Template/Admin/Articles/index.ctp:97
-#: Template/Admin/Forum/Categories/add.ctp:58
-#: Template/Admin/Forum/Categories/edit.ctp:58
-#: Template/Admin/Groups/add.ctp:59;77 Template/Admin/Groups/edit.ctp:59;76
-#: Template/Admin/Premium/Discounts/index.ctp:84
+#: Template/Admin/Articles/add.ctp:75 Template/Admin/Articles/edit.ctp:76
+#: Template/Admin/Articles/index.ctp:101 Template/Admin/Groups/add.ctp:62;80
+#: Template/Admin/Groups/edit.ctp:64;83
 msgid "No"
 msgstr "Non"
 
-#: Template/Admin/Articles/add.ctp:82 Template/Admin/Articles/edit.ctp:81
+#: Template/Admin/Articles/add.ctp:86 Template/Admin/Articles/edit.ctp:86
 msgid "Content"
 msgstr "Contenu"
 
-#: Template/Admin/Articles/add.ctp:95
-msgid "Create Article"
-msgstr "Créer l'Article"
+#: Template/Admin/Articles/add.ctp:99
+msgid "{0} Create Article"
+msgstr "{0} Créer l'Article"
 
-#: Template/Admin/Articles/edit.ctp:1;24;36;45
-#: Template/Admin/Attachments/edit.ctp:33
+#: Template/Admin/Articles/edit.ctp:1;24;36;46
 msgid "Edit an Article"
 msgstr "Editer un Article"
 
-#: Template/Admin/Articles/edit.ctp:94
-msgid "Edit Article"
-msgstr "Editer l'Article"
+#: Template/Admin/Articles/edit.ctp:100
+msgid "{0} Edit Article"
+msgstr "{0} Éditer l'Article"
 
-#: Template/Admin/Articles/index.ctp:1;12;20;29
-#: Template/Element/Admin/sidebar.ctp:38
+#: Template/Admin/Articles/index.ctp:1;12;20;30
+#: Template/Element/Admin/sidebar.ctp:54;160
 msgid "Manage Articles"
 msgstr "Gérer les Articles"
 
-#: Template/Admin/Articles/index.ctp:35
+#: Template/Admin/Articles/index.ctp:38
 msgid "{0} New Article"
 msgstr "{0} Nouveau Article"
 
-#: Template/Admin/Articles/index.ctp:44
-#: Template/Admin/Attachments/index.ctp:44
-#: Template/Admin/Categories/index.ctp:44
-#: Template/Admin/Forum/Categories/index.ctp:43
-#: Template/Admin/Groups/index.ctp:44
-#: Template/Admin/Premium/Discounts/index.ctp:44
-#: Template/Admin/Premium/Offers/index.ctp:44
-#: Template/Admin/Users/search.ctp:51
+#: Template/Admin/Articles/index.ctp:47 Template/Admin/Attachments/index.ctp:49
+#: Template/Admin/Categories/index.ctp:49 Template/Admin/Groups/index.ctp:49
+#: Template/Admin/Settings/index.ctp:48 Template/Admin/Users/search.ctp:54
 msgid "#Id"
 msgstr "#Id"
 
-#: Template/Admin/Articles/index.ctp:45
-#: Template/Admin/Attachments/index.ctp:45
+#: Template/Admin/Articles/index.ctp:48 Template/Admin/Attachments/index.ctp:50
 msgid "Author"
 msgstr "Auteur"
 
-#: Template/Admin/Articles/index.ctp:49
-#: Template/Admin/Attachments/index.ctp:51
-#: Template/Admin/Categories/index.ctp:48 Template/Admin/Groups/index.ctp:46
-#: Template/Admin/Premium/Discounts/index.ctp:52
-#: Template/Admin/Premium/Offers/index.ctp:51
-#: Template/Admin/Users/search.ctp:57
+#: Template/Admin/Articles/index.ctp:52 Template/Admin/Attachments/index.ctp:56
+#: Template/Admin/Categories/index.ctp:53 Template/Admin/Groups/index.ctp:51
+#: Template/Admin/Settings/index.ctp:54 Template/Admin/Users/search.ctp:60
 msgid "Created"
 msgstr "Créée le"
 
-#: Template/Admin/Articles/index.ctp:50
-#: Template/Admin/Attachments/index.ctp:52
-#: Template/Admin/Categories/index.ctp:49
-#: Template/Admin/Forum/Categories/index.ctp:45
-#: Template/Admin/Groups/index.ctp:47
-#: Template/Admin/Premium/Discounts/index.ctp:53
-#: Template/Admin/Premium/Offers/index.ctp:52
-#: Template/Admin/Users/search.ctp:58
+#: Template/Admin/Articles/index.ctp:53 Template/Admin/Attachments/index.ctp:57
+#: Template/Admin/Categories/index.ctp:54 Template/Admin/Groups/index.ctp:52
+#: Template/Admin/Settings/index.ctp:55 Template/Admin/Users/search.ctp:61
 msgid "Action"
 msgstr "Action"
 
-#: Template/Admin/Articles/index.ctp:82
-#: Template/Admin/Attachments/index.ctp:84
+#: Template/Admin/Articles/index.ctp:86 Template/Admin/Attachments/index.ctp:90
 msgid "View this Article"
 msgstr "Voir cet Article"
 
-#: Template/Admin/Articles/index.ctp:114
+#: Template/Admin/Articles/index.ctp:119
 msgid "Edit this article"
 msgstr "Editer cet Article"
 
-#: Template/Admin/Articles/index.ctp:127
+#: Template/Admin/Articles/index.ctp:133
 msgid "Delete this article"
 msgstr "Supprimer cet Article"
 
-#: Template/Admin/Articles/index.ctp:151
+#: Template/Admin/Articles/index.ctp:157
 msgid "No articles was found."
 msgstr "Aucun article n'a été trouvé."
 
-#: Template/Admin/Attachments/add.ctp:1;12;24
+#: Template/Admin/Attachments/add.ctp:1;12;24;34
 msgid "Add an Attachment"
 msgstr "Ajouter un Fichier"
 
-#: Template/Admin/Attachments/add.ctp:20
-#: Template/Admin/Attachments/edit.ctp:20
+#: Template/Admin/Attachments/add.ctp:20 Template/Admin/Attachments/edit.ctp:20
 msgid "{0} Manage Attachments"
 msgstr "{0} Gérer les Fichiers"
 
-#: Template/Admin/Attachments/add.ctp:43
-#: Template/Admin/Attachments/index.ctp:46
+#: Template/Admin/Attachments/add.ctp:46
+#: Template/Admin/Attachments/index.ctp:51
 msgid "Article"
 msgstr "Article"
 
-#: Template/Admin/Attachments/add.ctp:49
-#: Template/Admin/Attachments/edit.ctp:49
+#: Template/Admin/Attachments/add.ctp:52 Template/Admin/Attachments/edit.ctp:52
 msgid "File"
 msgstr "Fichier"
 
-#: Template/Admin/Attachments/add.ctp:53
-#: Template/Admin/Attachments/edit.ctp:53
-msgid "Select file"
-msgstr "Sélectionner un fichier"
+#: Template/Admin/Attachments/add.ctp:56
+msgid "{0} Select file"
+msgstr "{0} Sélectionner le Fichier"
 
-#: Template/Admin/Attachments/add.ctp:54
-#: Template/Admin/Attachments/edit.ctp:54
-msgid "Change"
-msgstr "Changer"
+#: Template/Admin/Attachments/add.ctp:68
+msgid "{0} Create Attachment"
+msgstr "{0} Créer le Fichier"
 
-#: Template/Admin/Attachments/add.ctp:66
-msgid "Create Attachment"
-msgstr "Créer le Fichier"
-
-#: Template/Admin/Attachments/edit.ctp:1;12;24
+#: Template/Admin/Attachments/edit.ctp:1;12;24;34
 msgid "Edit an Attachment"
 msgstr "Editer un fichier"
 
-#: Template/Admin/Attachments/edit.ctp:66
-msgid "Edit Attachment"
-msgstr "Editer le fichier"
+#: Template/Admin/Attachments/edit.ctp:56
+msgid "{0} Change"
+msgstr "{0} Changer"
 
-#: Template/Admin/Attachments/index.ctp:1;12;20;29
-#: Template/Element/Admin/sidebar.ctp:52
+#: Template/Admin/Attachments/edit.ctp:68
+msgid "{0} Edit Attachment"
+msgstr "{0} Éditer le Fichier"
+
+#: Template/Admin/Attachments/index.ctp:1;12;20;30
+#: Template/Element/Admin/sidebar.ctp:68;174
 msgid "Manage Attachments"
 msgstr "Gérer les Fichiers"
 
-#: Template/Admin/Attachments/index.ctp:35
+#: Template/Admin/Attachments/index.ctp:39
 msgid "{0} New Attachment"
 msgstr "{0} Nouveau Fichier"
 
-#: Template/Admin/Attachments/index.ctp:47 Template/Admin/Groups/add.ctp:42
-#: Template/Admin/Groups/edit.ctp:42 Template/Admin/Groups/index.ctp:45
+#: Template/Admin/Attachments/index.ctp:52 Template/Admin/Groups/add.ctp:45
+#: Template/Admin/Groups/edit.ctp:45 Template/Admin/Groups/index.ctp:50
+#: Template/Admin/Settings/create.ctp:46 Template/Admin/Settings/edit.ctp:46
+#: Template/Admin/Settings/index.ctp:49
 msgid "Name"
 msgstr "Nom"
 
-#: Template/Admin/Attachments/index.ctp:48
+#: Template/Admin/Attachments/index.ctp:53
 msgid "Size"
 msgstr "Taille"
 
-#: Template/Admin/Attachments/index.ctp:49
+#: Template/Admin/Attachments/index.ctp:54
 msgid "Extension"
 msgstr "Extension"
 
-#: Template/Admin/Attachments/index.ctp:50
+#: Template/Admin/Attachments/index.ctp:55
 msgid "Download"
 msgstr "Télécharger"
 
-#: Template/Admin/Attachments/index.ctp:114
+#: Template/Admin/Attachments/index.ctp:120
 msgid "Download this attachment"
 msgstr "Télécharger ce fichier"
 
-#: Template/Admin/Attachments/index.ctp:127
+#: Template/Admin/Attachments/index.ctp:133
 msgid "Edit this attachment"
 msgstr "Editer ce fichier"
 
-#: Template/Admin/Attachments/index.ctp:140
+#: Template/Admin/Attachments/index.ctp:146
 msgid "Delete this attachment"
 msgstr "Supprimer ce fichier"
 
-#: Template/Admin/Attachments/index.ctp:164
+#: Template/Admin/Attachments/index.ctp:170
 msgid "No attachments was found."
 msgstr "Aucun fichier n'a été trouvé."
 
-#: Template/Admin/Categories/add.ctp:1;12;24;33
-#: Template/Admin/Forum/Categories/add.ctp:1;12;24;33
+#: Template/Admin/Categories/add.ctp:1;12;24;34
 msgid "Add a Category"
 msgstr "Ajouter une Catégorie"
 
 #: Template/Admin/Categories/add.ctp:20 Template/Admin/Categories/edit.ctp:20
-#: Template/Admin/Forum/Categories/add.ctp:20
-#: Template/Admin/Forum/Categories/edit.ctp:20
 msgid "{0} Manage Categories"
 msgstr "{0} Gérer les Catégories"
 
-#: Template/Admin/Categories/add.ctp:49 Template/Admin/Categories/edit.ctp:49
-#: Template/Admin/Categories/index.ctp:46
-#: Template/Admin/Forum/Categories/add.ctp:48
-#: Template/Admin/Forum/Categories/edit.ctp:48
+#: Template/Admin/Categories/add.ctp:52 Template/Admin/Categories/edit.ctp:52
+#: Template/Admin/Categories/index.ctp:51
 msgid "Description"
 msgstr "Description"
 
-#: Template/Admin/Categories/add.ctp:56
-#: Template/Admin/Forum/Categories/add.ctp:75
-msgid "Create Category"
-msgstr "Créer la Catégorie"
+#: Template/Admin/Categories/add.ctp:59
+msgid "{0} Create Category"
+msgstr "{0} Créer la Catégorie"
 
-#: Template/Admin/Categories/edit.ctp:1;12;33
-#: Template/Admin/Forum/Categories/edit.ctp:1;12;24;33
+#: Template/Admin/Categories/edit.ctp:1;12;34
 msgid "Edit a Category"
 msgstr "Editer une Catégorie"
 
-#: Template/Admin/Categories/edit.ctp:56
-#: Template/Admin/Forum/Categories/edit.ctp:75
-msgid "Edit Category"
-msgstr "Editer la Catégorie"
+#: Template/Admin/Categories/edit.ctp:59
+msgid "{0} Edit Category"
+msgstr "{0} Éditer la Catégorie"
 
-#: Template/Admin/Categories/index.ctp:1;12;20;29
-#: Template/Admin/Forum/Categories/index.ctp:20;29
-#: Template/Element/Admin/sidebar.ctp:45;145
+#: Template/Admin/Categories/index.ctp:1;12;20;30
+#: Template/Element/Admin/sidebar.ctp:61;167
 msgid "Manage Categories"
 msgstr "Gérer les Catégories"
 
-#: Template/Admin/Categories/index.ctp:35
-#: Template/Admin/Forum/Categories/index.ctp:35
+#: Template/Admin/Categories/index.ctp:39
 msgid "{0} New Category"
 msgstr "{0} Nouvelle Catégorie"
 
-#: Template/Admin/Categories/index.ctp:76
+#: Template/Admin/Categories/index.ctp:82
 msgid "View this category and its articles"
 msgstr "Voir cette catégorie et ces articles"
 
-#: Template/Admin/Categories/index.ctp:106
-#: Template/Admin/Forum/Categories/index.ctp:104
+#: Template/Admin/Categories/index.ctp:113
 msgid "Edit this category"
 msgstr "Editer cette catégorie"
 
-#: Template/Admin/Categories/index.ctp:119
-#: Template/Admin/Forum/Categories/index.ctp:117
+#: Template/Admin/Categories/index.ctp:127
 msgid "Delete this category"
 msgstr "Supprimer cette catégorie"
 
-#: Template/Admin/Categories/index.ctp:143
+#: Template/Admin/Categories/index.ctp:151
 msgid "No categories was found."
 msgstr "Aucune catégories n'a été trouvé."
 
-#: Template/Admin/Forum/Categories/add.ctp:16
-#: Template/Admin/Forum/Categories/edit.ctp:16
-#: Template/Admin/Forum/Categories/index.ctp:16
-msgid "{0} Forum"
-msgstr "{0} Forum"
-
-#: Template/Admin/Forum/Categories/add.ctp:54
-#: Template/Admin/Forum/Categories/edit.ctp:54
-msgid "Category Open"
-msgstr "Catégorie Ouverte"
-
-#: Template/Admin/Forum/Categories/index.ctp:1;12
-msgid "Forum : Manage Categories"
-msgstr "Forum : Gérer les Catégories"
-
-#: Template/Admin/Forum/Categories/index.ctp:78
-msgid "Move up this category"
-msgstr "Monter cette catégorie"
-
-#: Template/Admin/Forum/Categories/index.ctp:91
-msgid "Move down this category"
-msgstr "Descendre cette catégorie"
-
-#: Template/Admin/Groups/add.ctp:1;12;24;33
+#: Template/Admin/Groups/add.ctp:1;12;24;34
 msgid "Add a Group"
 msgstr "Ajouter un Groupe"
 
@@ -593,366 +487,287 @@ msgstr "Ajouter un Groupe"
 msgid "{0} Manage Groups"
 msgstr "{0} Gérer les Groupes"
 
-#: Template/Admin/Groups/add.ctp:49 Template/Admin/Groups/edit.ctp:49
+#: Template/Admin/Groups/add.ctp:52 Template/Admin/Groups/edit.ctp:52
 msgid "CSS"
 msgstr "CSS"
 
-#: Template/Admin/Groups/add.ctp:55 Template/Admin/Groups/edit.ctp:55
+#: Template/Admin/Groups/add.ctp:58 Template/Admin/Groups/edit.ctp:58
 msgid "Is Staff"
 msgstr "Est Staff"
 
-#: Template/Admin/Groups/add.ctp:68 Template/Admin/Groups/edit.ctp:67
+#: Template/Admin/Groups/add.ctp:71 Template/Admin/Groups/edit.ctp:72
 msgid "Used to display the Staff Online"
 msgstr "Utilisé pour afficher les Membres de l'Equipe en Ligne"
 
-#: Template/Admin/Groups/add.ctp:73 Template/Admin/Groups/edit.ctp:72
+#: Template/Admin/Groups/add.ctp:76 Template/Admin/Groups/edit.ctp:77
 msgid "Is Member"
 msgstr "Est Membre"
 
-#: Template/Admin/Groups/add.ctp:86 Template/Admin/Groups/edit.ctp:84
+#: Template/Admin/Groups/add.ctp:89 Template/Admin/Groups/edit.ctp:91
 msgid "Used to display the Group Premium intead of the real group."
 msgstr "Utilisé pour afficher le Groupe Premium au lieu du réel Groupe."
 
-#: Template/Admin/Groups/add.ctp:91
-msgid "Create Group"
-msgstr "Créer un Group"
+#: Template/Admin/Groups/add.ctp:94
+msgid "{0} Create Group"
+msgstr "{0} Créer le Groupe"
 
-#: Template/Admin/Groups/edit.ctp:1;12;24;33
+#: Template/Admin/Groups/edit.ctp:1;12;24;34
 msgid "Edit a Group"
 msgstr "Editer un Groupe"
 
-#: Template/Admin/Groups/edit.ctp:89
-msgid "Edit Group"
-msgstr "Editer le Groupe"
+#: Template/Admin/Groups/edit.ctp:96
+msgid "{0} Edit Group"
+msgstr "{0} Éditer le Groupe"
 
-#: Template/Admin/Groups/index.ctp:1;12;20;29
+#: Template/Admin/Groups/index.ctp:1;12;20;30
 msgid "Manage Groups"
 msgstr "Gérer les Groupes"
 
-#: Template/Admin/Groups/index.ctp:35
+#: Template/Admin/Groups/index.ctp:39
 msgid "{0} New Group"
 msgstr "{0} Nouveau Groupe"
 
-#: Template/Admin/Groups/index.ctp:73
+#: Template/Admin/Groups/index.ctp:78
 msgid "Edit this group"
 msgstr "Editer ce Groupe"
 
-#: Template/Admin/Groups/index.ctp:86
+#: Template/Admin/Groups/index.ctp:91
 msgid "Delete this group"
 msgstr "Supprimer ce Groupe"
 
-#: Template/Admin/Groups/index.ctp:110
+#: Template/Admin/Groups/index.ctp:115
 msgid "No groups was found."
 msgstr "Aucun groupes n'a été trouvés."
 
-#: Template/Admin/Premium/Discounts/add.ctp:1;12;24;33
-msgid "Add a Discount"
-msgstr "Ajouter une Réduction"
+#: Template/Admin/Settings/create.ctp:1;12
+#: Template/Admin/Settings/edit.ctp:1;12
+#: Template/Admin/Settings/index.ctp:1;12;30
+msgid "Settings"
+msgstr "Paramètres"
 
-#: Template/Admin/Premium/Discounts/add.ctp:16
-#: Template/Admin/Premium/Discounts/edit.ctp:16
-#: Template/Admin/Premium/Discounts/index.ctp:16
-#: Template/Admin/Premium/Offers/add.ctp:16
-#: Template/Admin/Premium/Offers/edit.ctp:16
-#: Template/Admin/Premium/Offers/index.ctp:16
-msgid "{0} Premium"
-msgstr "{0} Premium"
+#: Template/Admin/Settings/create.ctp:20 Template/Admin/Settings/edit.ctp:20
+#: Template/Admin/Settings/index.ctp:20
+msgid "{0} Settings"
+msgstr "{0} Paramètres"
 
-#: Template/Admin/Premium/Discounts/add.ctp:20
-msgid "{0} Manage Discounts"
-msgstr "{0} Gérer les Réductions"
+#: Template/Admin/Settings/create.ctp:24;77
+msgid "{0} Create"
+msgstr "{0} Créer"
 
-#: Template/Admin/Premium/Discounts/add.ctp:42
-#: Template/Admin/Premium/Discounts/edit.ctp:42
-#: Template/Admin/Premium/Discounts/index.ctp:46
-msgid "Offer"
-msgstr "Offre"
+#: Template/Admin/Settings/create.ctp:34
+msgid "Add a Setting"
+msgstr "Ajouter un Paramètre"
 
-#: Template/Admin/Premium/Discounts/add.ctp:48
-#: Template/Admin/Premium/Discounts/edit.ctp:48
-#: Template/Admin/Premium/Discounts/index.ctp:47
-msgid "Code"
-msgstr "Code"
+#: Template/Admin/Settings/create.ctp:54 Template/Admin/Settings/edit.ctp:54
+msgid "Value Int"
+msgstr "Valeur Int"
 
-#: Template/Admin/Premium/Discounts/add.ctp:54
-#: Template/Admin/Premium/Discounts/edit.ctp:54
-#: Template/Admin/Premium/Discounts/index.ctp:48
-msgid "Discount (%)"
-msgstr "Réduction (%)"
+#: Template/Admin/Settings/create.ctp:60 Template/Admin/Settings/edit.ctp:60
+msgid "Value Bool"
+msgstr "Valeur Bool"
 
-#: Template/Admin/Premium/Discounts/add.ctp:60
-#: Template/Admin/Premium/Discounts/edit.ctp:60
-#: Template/Admin/Premium/Discounts/index.ctp:49
-msgid "Used"
-msgstr "Utilisée"
+#: Template/Admin/Settings/create.ctp:63 Template/Admin/Settings/edit.ctp:63
+msgid ""
+"Checked for <code>true</code> or uncheck for <code>false</code> and "
+"<code>void</code>"
+msgstr ""
+"Coché pour <code>true</code> ou pas coché pour <code>false</code> et "
+"<code>void</code>"
 
-#: Template/Admin/Premium/Discounts/add.ctp:66
-#: Template/Admin/Premium/Discounts/edit.ctp:66
-#: Template/Admin/Premium/Discounts/index.ctp:50
-msgid "Max Use"
-msgstr "Utilisation max"
+#: Template/Admin/Settings/create.ctp:67 Template/Admin/Settings/edit.ctp:67
+msgid "Value Str"
+msgstr "Valeur Str"
 
-#: Template/Admin/Premium/Discounts/add.ctp:72
-msgid "Create Discount"
-msgstr "Créer la Réduction"
+#: Template/Admin/Settings/create.ctp:71 Template/Admin/Settings/edit.ctp:71
+msgid ""
+"<strong>Note</strong> : You need to configure only one of the "
+"<strong>value_int</strong>, <strong>value_bool</strong> or "
+"<strong>value_str</strong>, regarding the type of the value. (Integer, "
+"Boolean or String)"
+msgstr ""
+"<strong>Note</strong> : Vous devez configurer seulement un des "
+"<strong>value_int</strong>, <strong>value_bool</strong> ou "
+"<strong>value_str</strong>, en fonction du type de valeur. (Integer, Boolean "
+"ou String)"
 
-#: Template/Admin/Premium/Discounts/edit.ctp:1;12;24;33
-msgid "Edit a Discount"
-msgstr "Editer une Réduction"
+#: Template/Admin/Settings/edit.ctp:24
+msgid "Edit Setting N°{0}"
+msgstr "Éditer ce Paramètre N°{0}"
 
-#: Template/Admin/Premium/Discounts/edit.ctp:20
-msgid "{0} Manage Discount"
-msgstr "{0} Gérer la Réduction"
+#: Template/Admin/Settings/edit.ctp:34
+msgid "Edit a Setting"
+msgstr "Éditer un Paramètre"
 
-#: Template/Admin/Premium/Discounts/edit.ctp:72
-msgid "Edit Discount"
-msgstr "Editer la Réduction"
+#: Template/Admin/Settings/edit.ctp:77
+msgid "{0} Edit"
+msgstr "{0} Editer"
 
-#: Template/Admin/Premium/Discounts/index.ctp:1;12
-msgid "Premium : Manage Discounts"
-msgstr "Premium : Gérer les Réductions"
+#: Template/Admin/Settings/index.ctp:38
+msgid "{0} New Setting"
+msgstr "{0} Nouveau Paramètre"
 
-#: Template/Admin/Premium/Discounts/index.ctp:20;29
-#: Template/Element/Admin/sidebar.ctp:122
-msgid "Manage Discounts"
-msgstr "Gérer les Réductions"
+#: Template/Admin/Settings/index.ctp:51
+msgid "Value Type"
+msgstr "Type de Valeur"
 
-#: Template/Admin/Premium/Discounts/index.ctp:35
-msgid "{0} New Discount"
-msgstr "{0} Nouvelle Réduction"
+#: Template/Admin/Settings/index.ctp:52
+msgid "Last updated by"
+msgstr "Dernière mise à jour par"
 
-#: Template/Admin/Premium/Discounts/index.ctp:45
-#: Template/Admin/Premium/Offers/index.ctp:45
-msgid "Created by"
-msgstr "Créée par"
+#: Template/Admin/Settings/index.ctp:53
+msgid "Last Updated"
+msgstr "Dernière mise à jour"
 
-#: Template/Admin/Premium/Discounts/index.ctp:51
-msgid "Available"
-msgstr "Disponible"
+#: Template/Admin/Settings/index.ctp:76;88
+msgid "null"
+msgstr "null"
 
-#: Template/Admin/Premium/Discounts/index.ctp:105
-msgid "Edit this discount"
-msgstr "Editer cette réduction"
+#: Template/Admin/Settings/index.ctp:82
+msgid "String"
+msgstr "String"
 
-#: Template/Admin/Premium/Discounts/index.ctp:129
-msgid "No discounts was found."
-msgstr "Aucune réduction n'a été trouvé."
+#: Template/Admin/Settings/index.ctp:84
+msgid "Integer"
+msgstr "Integer"
 
-#: Template/Admin/Premium/Discounts/index.ctp:67
-msgid "{0} Month"
-msgid_plural "{0} Months"
-msgstr[0] "{0} Mois"
-msgstr[1] "{0} Mois"
+#: Template/Admin/Settings/index.ctp:86
+msgid "Boolean"
+msgstr "Boolean"
 
-#: Template/Admin/Premium/Offers/add.ctp:1;12;24;33
-msgid "Add an Offer"
-msgstr "Ajouter une Offre"
+#: Template/Admin/Settings/index.ctp:120
+msgid "Edit this setting"
+msgstr "Éditer ce paramètre"
 
-#: Template/Admin/Premium/Offers/add.ctp:20
-#: Template/Admin/Premium/Offers/edit.ctp:20
-msgid "{0} Manage Offers"
-msgstr "{0} Gérer les Offres"
+#: Template/Admin/Settings/index.ctp:141 Template/Admin/Users/edit.ctp:225
+msgid "Close"
+msgstr "Fermer"
 
-#: Template/Admin/Premium/Offers/add.ctp:42
-#: Template/Admin/Premium/Offers/edit.ctp:42
-msgid "Period (Month)"
-msgstr "Période (Mois)"
+#: Template/Admin/Settings/index.ctp:144
+msgid "Delete a Setting"
+msgstr "Supprimer un Paramètre"
 
-#: Template/Admin/Premium/Offers/add.ctp:48
-#: Template/Admin/Premium/Offers/edit.ctp:48
-#: Template/Admin/Premium/Offers/index.ctp:47
-msgid "Price (Excl VAT)"
-msgstr "Prix (HT)"
+#: Template/Admin/Settings/index.ctp:149
+msgid "Are you sure you want delete this setting <strong>{0}</strong> ?"
+msgstr "Êtes-vous sûr de vouloir supprimer le paramètre <strong>{0}</strong> ?"
 
-#: Template/Admin/Premium/Offers/add.ctp:54
-#: Template/Admin/Premium/Offers/edit.ctp:54
-msgid "Tax (%)"
-msgstr "Taxe (%)"
+#: Template/Admin/Settings/index.ctp:153 Template/Admin/Users/edit.ctp:240
+msgid "{0} Yes, I confirm !"
+msgstr "{0} Oui, je confirme !"
 
-#: Template/Admin/Premium/Offers/add.ctp:60
-#: Template/Admin/Premium/Offers/edit.ctp:60
-#: Template/Admin/Premium/Offers/index.ctp:49
-msgid "Currency Code"
-msgstr "Code de Devise"
+#: Template/Admin/Settings/index.ctp:154 Template/Admin/Users/edit.ctp:241
+msgid "{0} Close"
+msgstr "{0} Fermer"
 
-#: Template/Admin/Premium/Offers/add.ctp:66
-#: Template/Admin/Premium/Offers/edit.ctp:66
-#: Template/Admin/Premium/Offers/index.ctp:50
-msgid "Currency Symbol"
-msgstr "Code Monétaire"
-
-#: Template/Admin/Premium/Offers/add.ctp:72
-msgid "Create Offer"
-msgstr "Créer une Offre"
-
-#: Template/Admin/Premium/Offers/edit.ctp:1;12;24;33
-msgid "Edit an Offer"
-msgstr "Editer une Offre"
-
-#: Template/Admin/Premium/Offers/edit.ctp:72
-msgid "Edit this Offer"
-msgstr "Editer cette Offre"
-
-#: Template/Admin/Premium/Offers/index.ctp:1;12
-msgid "Premium : Manage Offers"
-msgstr "Premium : Gérer les Offres"
-
-#: Template/Admin/Premium/Offers/index.ctp:20;29
-#: Template/Element/Admin/sidebar.ctp:115
-msgid "Manage Offers"
-msgstr "Gérer les Offres"
-
-#: Template/Admin/Premium/Offers/index.ctp:35
-msgid "{0} New Offer"
-msgstr "{0} Nouvelle Offre"
-
-#: Template/Admin/Premium/Offers/index.ctp:46
-msgid "Period"
-msgstr "Période"
-
-#: Template/Admin/Premium/Offers/index.ctp:48
-msgid "Tax"
-msgstr "Taxe"
-
-#: Template/Admin/Premium/Offers/index.ctp:93
-msgid "Edit this offer"
-msgstr "Editer cette offre"
-
-#: Template/Admin/Premium/Offers/index.ctp:106
-msgid "Delete this offer"
-msgstr "Supprimer cette offre"
-
-#: Template/Admin/Premium/Offers/index.ctp:130
-msgid "No offers was found."
-msgstr "Aucune offre n'a été trouvé."
-
-#: Template/Admin/Premium/Premium/home.ctp:1;12;16
-msgid "Premium : Dashboard"
-msgstr "Premium : Tableau de bord"
-
-#: Template/Admin/Premium/Premium/home.ctp:27
-msgid "Premium Members"
-msgstr "Membres Premium"
-
-#: Template/Admin/Premium/Premium/home.ctp:42
-msgid "Amount total"
-msgstr "Montant Total"
-
-#: Template/Admin/Premium/Premium/home.ctp:57
-msgid "Registered Discounts"
-msgstr "Réductions Enregistrés"
-
-#: Template/Admin/Premium/Premium/home.ctp:72
-msgid "Discount amount total"
-msgstr "Montant total des Réductions"
+#: Template/Admin/Settings/index.ctp:179
+msgid "No settings was found."
+msgstr "Aucun Paramètres trouvé"
 
 #: Template/Admin/Users/edit.ctp:1
 msgid "Edit an User"
 msgstr "Editer un Utilisateur"
 
-#: Template/Admin/Users/edit.ctp:70;154
+#: Template/Admin/Users/edit.ctp:70;157 Template/Admin/Users/index.ctp:56
 msgid "Group"
 msgstr "Groupe"
 
-#: Template/Admin/Users/edit.ctp:100
+#: Template/Admin/Users/edit.ctp:101
 msgid "{0}'s profile"
 msgstr "Profile de {0}"
 
-#: Template/Admin/Users/edit.ctp:107
+#: Template/Admin/Users/edit.ctp:110
 msgid "Avatar"
 msgstr "Avatar"
 
-#: Template/Admin/Users/edit.ctp:115
-msgid "Delete Avatar"
-msgstr "Supprimer l'Avatar"
-
 #: Template/Admin/Users/edit.ctp:118
+msgid "{0} Delete Avatar"
+msgstr "{0} Supprimer l'Avatar"
+
+#: Template/Admin/Users/edit.ctp:121
 msgid "Member since {0}"
 msgstr "Membre depuis le {0}"
 
-#: Template/Admin/Users/edit.ctp:121
-msgid "Delete Account"
-msgstr "Supprimer le compte"
+#: Template/Admin/Users/edit.ctp:124
+msgid "{0} Delete Account"
+msgstr "{0} Supprimer le Compte"
 
-#: Template/Admin/Users/edit.ctp:130 Template/Admin/Users/index.ctp:50
-#: Template/Admin/Users/search.ctp:52
+#: Template/Admin/Users/edit.ctp:133 Template/Admin/Users/index.ctp:53
+#: Template/Admin/Users/search.ctp:55
 msgid "Username"
 msgstr "Pseudo"
 
-#: Template/Admin/Users/edit.ctp:136
+#: Template/Admin/Users/edit.ctp:139
 msgid "First Name"
 msgstr "Prénom"
 
-#: Template/Admin/Users/edit.ctp:142
+#: Template/Admin/Users/edit.ctp:145
 msgid "Last Name"
 msgstr "Nom"
 
-#: Template/Admin/Users/edit.ctp:148 Template/Admin/Users/search.ctp:53
+#: Template/Admin/Users/edit.ctp:151 Template/Admin/Users/search.ctp:56
 msgid "Email"
 msgstr "Email"
 
-#: Template/Admin/Users/edit.ctp:160
+#: Template/Admin/Users/edit.ctp:163
 msgid "Facebook"
 msgstr "Facebook"
 
-#: Template/Admin/Users/edit.ctp:166
+#: Template/Admin/Users/edit.ctp:169
 msgid "Twitter"
 msgstr "Twitter"
 
-#: Template/Admin/Users/edit.ctp:172
+#: Template/Admin/Users/edit.ctp:175
 msgid "Last Login IP"
 msgstr "Dernière IP de connexion"
 
-#: Template/Admin/Users/edit.ctp:180
+#: Template/Admin/Users/edit.ctp:183
 msgid "Last Login"
 msgstr "Dernière connexion"
 
-#: Template/Admin/Users/edit.ctp:188
+#: Template/Admin/Users/edit.ctp:191
 msgid "Register IP"
 msgstr "IP d'inscription"
 
-#: Template/Admin/Users/edit.ctp:196
+#: Template/Admin/Users/edit.ctp:199
 msgid "Register"
 msgstr "Inscription"
 
-#: Template/Admin/Users/edit.ctp:204
-msgid "Edit {0}"
-msgstr "Editer {0}"
+#: Template/Admin/Users/edit.ctp:207
+msgid "{0} Edit {1}"
+msgstr "{0} Editer {1}"
 
-#: Template/Admin/Users/edit.ctp:222;238
-msgid "Close"
-msgstr "Fermer"
-
-#: Template/Admin/Users/edit.ctp:225
+#: Template/Admin/Users/edit.ctp:228
 msgid "Delete an account"
 msgstr "Supprimer un compte"
 
-#: Template/Admin/Users/edit.ctp:230
+#: Template/Admin/Users/edit.ctp:233
 msgid "Are you sure you want delete the account <strong>{0}</strong> ?"
 msgstr "Êtes-vous sûr de vouloir supprimer le compte <strong>{0}</strong> ?"
 
-#: Template/Admin/Users/edit.ctp:233
-msgid "Note : All his articles, comments and likes will be deleted."
-msgstr "Note: Tous ces articles, commentaires et j'aimes seront supprimés."
+#: Template/Admin/Users/edit.ctp:236
+msgid "Note : The User will not be able to connect to his account anymore."
+msgstr "Note : L'utilisateur ne pourras plus se connecter à son compte."
 
-#: Template/Admin/Users/index.ctp:1;12;20;29
+#: Template/Admin/Users/index.ctp:1;12;20;30
 msgid "Manage Users"
 msgstr "Gérer les Utilisateurs"
 
-#: Template/Admin/Users/index.ctp:39
+#: Template/Admin/Users/index.ctp:42
 msgid "Search"
 msgstr "Rechercher"
 
-#: Template/Admin/Users/index.ctp:51
+#: Template/Admin/Users/index.ctp:54
 msgid "IP"
 msgstr "IP"
 
-#: Template/Admin/Users/index.ctp:52
+#: Template/Admin/Users/index.ctp:55
 msgid "Mail"
 msgstr "Mail"
 
-#: Template/Admin/Users/index.ctp:64
-#: Template/Admin/Users/search.ctp:1;12;24;33
+#: Template/Admin/Users/index.ctp:68
+msgid "{0} Search Users"
+msgstr "{0} Rechercher"
+
+#: Template/Admin/Users/search.ctp:1;12;24;34
 msgid "Search Users"
 msgstr "Rechercher des Utilisateurs"
 
@@ -960,96 +775,336 @@ msgstr "Rechercher des Utilisateurs"
 msgid "{0} Manage Users"
 msgstr "{0} Gérer des Utilisateurs"
 
-#: Template/Admin/Users/search.ctp:40
+#: Template/Admin/Users/search.ctp:43
 msgid "Search : {0}"
 msgstr "Recherche : {0}"
 
-#: Template/Admin/Users/search.ctp:43
+#: Template/Admin/Users/search.ctp:46
 msgid "Type : {0}"
 msgstr "Type : {0}"
 
-#: Template/Admin/Users/search.ctp:54
+#: Template/Admin/Users/search.ctp:57
 msgid "Full name"
 msgstr "Nom complet"
 
-#: Template/Admin/Users/search.ctp:55
+#: Template/Admin/Users/search.ctp:58
 msgid "Last login"
 msgstr "Dernière connexion"
 
-#: Template/Admin/Users/search.ctp:56
+#: Template/Admin/Users/search.ctp:59
 msgid "Last login IP"
 msgstr "Dernière IP de connexion"
 
-#: Template/Admin/Users/search.ctp:96
+#: Template/Admin/Users/search.ctp:100
 msgid "Edit this user"
 msgstr "Editer cet Utilisateur"
 
-#: Template/Admin/Users/search.ctp:119
+#: Template/Admin/Users/search.ctp:123
 msgid "No results found"
 msgstr "Aucun résultat n'a été trouvé."
 
-#: Template/Admin/Users/search.ctp:121
+#: Template/Admin/Users/search.ctp:125
 msgid ""
 "No users were found for your search, please try again with a different word."
 msgstr ""
 "Aucun utilisateur n'a été trouvé pour votre recherche, essayez à nouveau "
 "avec un autre mot."
 
-#: Template/Admin/Users/search.ctp:123
+#: Template/Admin/Users/search.ctp:127
 msgid "Suggestions :"
 msgstr "Suggestions :"
 
-#: Template/Admin/Users/search.ctp:126
+#: Template/Admin/Users/search.ctp:130
 msgid "Check the spelling of your search words."
 msgstr "Vérifiez l'orthographe de vos mots de recherche."
 
-#: Template/Admin/Users/search.ctp:129
+#: Template/Admin/Users/search.ctp:133
 msgid "Try more general keywords."
 msgstr "Utilisez des mots plus généraux."
 
-#: Template/Element/Admin/header.ctp:24
+#: Template/Element/Admin/header.ctp:74
 msgid "Hello,"
 msgstr "Bonjour,"
 
-#: Template/Element/Admin/header.ctp:32
+#: Template/Element/Admin/header.ctp:84
 msgid "{0} Logout"
 msgstr "{0} Déconnexion"
 
-#: Template/Element/Admin/interface.ctp:39
-msgid "Attachments"
-msgstr "Fichiers"
-
-#: Template/Element/Admin/interface.ctp:48
+#: Template/Element/Admin/interface.ctp:45
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: Template/Element/Admin/interface.ctp:57
-msgid "Premium"
-msgstr "Premium"
+#: Template/Element/Admin/interface.ctp:56
+msgid "Groups"
+msgstr "Groupes"
 
 #: Template/Element/Admin/sidebar.ctp:10
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: Template/Element/Admin/sidebar.ctp:26
 msgid "{0} Dashboard {1}"
 msgstr "{0} Tableau de bord {1}"
 
-#: Template/Element/Admin/sidebar.ctp:31
+#: Template/Element/Admin/sidebar.ctp:47
 msgid "{0} Blog {1}"
 msgstr "{0} Blog {1}"
 
-#: Template/Element/Admin/sidebar.ctp:67
+#: Template/Element/Admin/sidebar.ctp:82
 msgid "{0} Users {1}"
 msgstr "{0} Utilisateurs {1}"
 
-#: Template/Element/Admin/sidebar.ctp:81
+#: Template/Element/Admin/sidebar.ctp:96
 msgid "{0} Groups {1}"
 msgstr "{0} Groupes {1}"
 
-#: Template/Element/Admin/sidebar.ctp:101
-msgid "{0} Premium {1}"
-msgstr "{0} Premium {1}"
+#: Template/Element/Admin/sidebar.ctp:109
+msgid "{0} Settings {1}"
+msgstr "{0} Paramètres {1}"
 
-#: Template/Element/Admin/sidebar.ctp:138
-msgid "{0} Forum {1}"
-msgstr "{0} Forum {1}"
+#~ msgid "Your category has been created successfully !"
+#~ msgstr "La catégorie a été créée avec succès !"
+
+#~ msgid "Root"
+#~ msgstr "Racine"
+
+#~ msgid ""
+#~ "This category is not empty, you must delete/transfer all the threads "
+#~ "assigned to this category before to delete it."
+#~ msgstr ""
+#~ "Cette catégorie n'est pas vide, vous devez supprimer/transférer tout les "
+#~ "sujet assignés à cette catégorie avant de pouvoir supprimer cette "
+#~ "catégorie."
+
+#~ msgid "This category has been delete successfully !"
+#~ msgstr "La catégorie a été supprimée avec succès !"
+
+#~ msgid "There was an error while deleting this category."
+#~ msgstr "Il y a eu une erreur lors de la suppression de la catégorie."
+
+#~ msgid "Your discount has been created successfully !"
+#~ msgstr "Votre réduction a été créée avec succès !"
+
+#~ msgid "This discount doesn't exist or has been deleted."
+#~ msgstr "Cette réduction n'existe pas ou a été supprimée."
+
+#~ msgid "This discount has been updated successfully !"
+#~ msgstr "Cette réduction a été mise à jour avec succès !"
+
+#~ msgid "Your offer has been created successfully !"
+#~ msgstr "Votre offre a été créée avec succès !"
+
+#~ msgid "This offer doesn't exist or has been deleted."
+#~ msgstr "Cette offre n'existe pas ou a été supprimé."
+
+#~ msgid "This offer has been updated successfully !"
+#~ msgstr "Cette offre a été mise à jour avec succès !"
+
+#~ msgid "This offer has been deleted successfully !"
+#~ msgstr "Cette offre a été supprimé avec succès !"
+
+#~ msgid "Unable to delete this offer."
+#~ msgstr "Impossible de supprimer cette offre."
+
+#~ msgid "Create Article"
+#~ msgstr "Créer l'Article"
+
+#~ msgid "Edit Article"
+#~ msgstr "Editer l'Article"
+
+#~ msgid "Select file"
+#~ msgstr "Sélectionner un fichier"
+
+#~ msgid "Change"
+#~ msgstr "Changer"
+
+#~ msgid "Create Attachment"
+#~ msgstr "Créer le Fichier"
+
+#~ msgid "Edit Attachment"
+#~ msgstr "Editer le fichier"
+
+#~ msgid "Create Category"
+#~ msgstr "Créer la Catégorie"
+
+#~ msgid "Edit Category"
+#~ msgstr "Editer la Catégorie"
+
+#~ msgid "{0} Forum"
+#~ msgstr "{0} Forum"
+
+#~ msgid "Category Open"
+#~ msgstr "Catégorie Ouverte"
+
+#~ msgid "Forum : Manage Categories"
+#~ msgstr "Forum : Gérer les Catégories"
+
+#~ msgid "Move up this category"
+#~ msgstr "Monter cette catégorie"
+
+#~ msgid "Move down this category"
+#~ msgstr "Descendre cette catégorie"
+
+#~ msgid "Create Group"
+#~ msgstr "Créer un Group"
+
+#~ msgid "Edit Group"
+#~ msgstr "Editer le Groupe"
+
+#~ msgid "Add a Discount"
+#~ msgstr "Ajouter une Réduction"
+
+#~ msgid "{0} Premium"
+#~ msgstr "{0} Premium"
+
+#~ msgid "{0} Manage Discounts"
+#~ msgstr "{0} Gérer les Réductions"
+
+#~ msgid "Offer"
+#~ msgstr "Offre"
+
+#~ msgid "Code"
+#~ msgstr "Code"
+
+#~ msgid "Discount (%)"
+#~ msgstr "Réduction (%)"
+
+#~ msgid "Used"
+#~ msgstr "Utilisée"
+
+#~ msgid "Max Use"
+#~ msgstr "Utilisation max"
+
+#~ msgid "Create Discount"
+#~ msgstr "Créer la Réduction"
+
+#~ msgid "Edit a Discount"
+#~ msgstr "Editer une Réduction"
+
+#~ msgid "{0} Manage Discount"
+#~ msgstr "{0} Gérer la Réduction"
+
+#~ msgid "Edit Discount"
+#~ msgstr "Editer la Réduction"
+
+#~ msgid "Premium : Manage Discounts"
+#~ msgstr "Premium : Gérer les Réductions"
+
+#~ msgid "Manage Discounts"
+#~ msgstr "Gérer les Réductions"
+
+#~ msgid "{0} New Discount"
+#~ msgstr "{0} Nouvelle Réduction"
+
+#~ msgid "Created by"
+#~ msgstr "Créée par"
+
+#~ msgid "Available"
+#~ msgstr "Disponible"
+
+#~ msgid "Edit this discount"
+#~ msgstr "Editer cette réduction"
+
+#~ msgid "No discounts was found."
+#~ msgstr "Aucune réduction n'a été trouvé."
+
+#~ msgid "{0} Month"
+#~ msgid_plural "{0} Months"
+#~ msgstr[0] "{0} Mois"
+#~ msgstr[1] "{0} Mois"
+
+#~ msgid "Add an Offer"
+#~ msgstr "Ajouter une Offre"
+
+#~ msgid "{0} Manage Offers"
+#~ msgstr "{0} Gérer les Offres"
+
+#~ msgid "Period (Month)"
+#~ msgstr "Période (Mois)"
+
+#~ msgid "Price (Excl VAT)"
+#~ msgstr "Prix (HT)"
+
+#~ msgid "Tax (%)"
+#~ msgstr "Taxe (%)"
+
+#~ msgid "Currency Code"
+#~ msgstr "Code de Devise"
+
+#~ msgid "Currency Symbol"
+#~ msgstr "Code Monétaire"
+
+#~ msgid "Create Offer"
+#~ msgstr "Créer une Offre"
+
+#~ msgid "Edit an Offer"
+#~ msgstr "Editer une Offre"
+
+#~ msgid "Edit this Offer"
+#~ msgstr "Editer cette Offre"
+
+#~ msgid "Premium : Manage Offers"
+#~ msgstr "Premium : Gérer les Offres"
+
+#~ msgid "Manage Offers"
+#~ msgstr "Gérer les Offres"
+
+#~ msgid "{0} New Offer"
+#~ msgstr "{0} Nouvelle Offre"
+
+#~ msgid "Period"
+#~ msgstr "Période"
+
+#~ msgid "Tax"
+#~ msgstr "Taxe"
+
+#~ msgid "Edit this offer"
+#~ msgstr "Editer cette offre"
+
+#~ msgid "Delete this offer"
+#~ msgstr "Supprimer cette offre"
+
+#~ msgid "No offers was found."
+#~ msgstr "Aucune offre n'a été trouvé."
+
+#~ msgid "Premium : Dashboard"
+#~ msgstr "Premium : Tableau de bord"
+
+#~ msgid "Premium Members"
+#~ msgstr "Membres Premium"
+
+#~ msgid "Amount total"
+#~ msgstr "Montant Total"
+
+#~ msgid "Registered Discounts"
+#~ msgstr "Réductions Enregistrés"
+
+#~ msgid "Discount amount total"
+#~ msgstr "Montant total des Réductions"
+
+#~ msgid "Delete Avatar"
+#~ msgstr "Supprimer l'Avatar"
+
+#~ msgid "Delete Account"
+#~ msgstr "Supprimer le compte"
+
+#~ msgid "Edit {0}"
+#~ msgstr "Editer {0}"
+
+#~ msgid "Note : All his articles, comments and likes will be deleted."
+#~ msgstr "Note: Tous ces articles, commentaires et j'aimes seront supprimés."
+
+#~ msgid "Attachments"
+#~ msgstr "Fichiers"
+
+#~ msgid "Premium"
+#~ msgstr "Premium"
+
+#~ msgid "{0} Premium {1}"
+#~ msgstr "{0} Premium {1}"
+
+#~ msgid "{0} Forum {1}"
+#~ msgstr "{0} Forum {1}"
 
 #~ msgid "Role"
 #~ msgstr "Rôle"

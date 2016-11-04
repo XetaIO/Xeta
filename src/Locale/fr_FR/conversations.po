@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-27 17:04+0100\n"
-"PO-Revision-Date: 2015-05-27 17:04+0100\n"
+"POT-Creation-Date: 2016-11-04 11:39+0100\n"
+"PO-Revision-Date: 2016-11-04 11:40+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
@@ -13,138 +13,138 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8\n"
+"X-Generator: Poedit 1.8.9\n"
 
-#: Controller/ConversationsController.php:105;198
+#: Controller/ConversationsController.php:108;201
 msgid "Action unknown."
 msgstr "Action inconnu."
 
-#: Controller/ConversationsController.php:114
+#: Controller/ConversationsController.php:117
 msgid "You have not chosen any conversations."
 msgstr "Vous n'avez pas encore choisis de conversation."
 
-#: Controller/ConversationsController.php:137
+#: Controller/ConversationsController.php:140
 msgid "Your conversation(s) has been Stared."
 msgstr "Vos conversation(s) ont été mise Star."
 
-#: Controller/ConversationsController.php:156
+#: Controller/ConversationsController.php:159
 msgid "Your conversation(s) has been set normal."
 msgstr "Vos conversation(s) ont été mise Normale."
 
-#: Controller/ConversationsController.php:190
+#: Controller/ConversationsController.php:193
 msgid "You have left your conversation(s) successfully."
 msgstr "Vous avez quitté la conversation avec succès."
 
-#: Controller/ConversationsController.php:224;1008
+#: Controller/ConversationsController.php:227;1017
 msgid "You cannot invite more than {0} user(s) in this conversation."
 msgstr ""
 "Vous ne pouvez pas inviter plus de {0} utilisateur(s) dans cette "
 "conversation."
 
-#: Controller/ConversationsController.php:249
+#: Controller/ConversationsController.php:253
 msgid "Please enter at least one valid recipient."
 msgstr "S'il vous plaît, entrer au moins un destinataire valide."
 
-#: Controller/ConversationsController.php:341
+#: Controller/ConversationsController.php:346
 msgid "Your conversation has been created successfully !"
 msgstr "Votre conversation a été créée avec succès !"
 
-#: Controller/ConversationsController.php:378
+#: Controller/ConversationsController.php:383
 msgid "This conversation doesn't exist or has been deleted."
 msgstr "Cette conversation n'existe pas ou a été supprimée."
 
-#: Controller/ConversationsController.php:506
+#: Controller/ConversationsController.php:511
 msgid "has said :"
 msgstr "a dit :"
 
-#: Controller/ConversationsController.php:526
+#: Controller/ConversationsController.php:531
 msgid "This message doesn't exist."
 msgstr "Ce message n'existe pas."
 
-#: Controller/ConversationsController.php:566
+#: Controller/ConversationsController.php:571
 msgid "This message doesn't exist or has been deleted !"
 msgstr "Ce message n'existe pas ou a déjà été supprimé."
 
-#: Controller/ConversationsController.php:589
+#: Controller/ConversationsController.php:595
 msgid "You don't have the authorization to edit this message !"
 msgstr "Vous n'avez pas l'autorisation d'éditer ce message !"
 
-#: Controller/ConversationsController.php:621
+#: Controller/ConversationsController.php:628
 msgid "This post doesn't exist or has been deleted !"
 msgstr "Ce message n'existe pas ou a été supprimé !"
 
-#: Controller/ConversationsController.php:642
+#: Controller/ConversationsController.php:649
 msgid "You don't have the authorization to edit this post !"
 msgstr "Vous n'avez pas l'autorisation d'éditer ce message !"
 
-#: Controller/ConversationsController.php:653
+#: Controller/ConversationsController.php:660
 msgid "This message has been edited successfully !"
 msgstr "Ce message a été édité avec succès !"
 
-#: Controller/ConversationsController.php:681
+#: Controller/ConversationsController.php:688
 msgid "This message doesn't exist or has been deleted."
 msgstr "Ce message n'existe pas ou a déjà été supprimé."
 
-#: Controller/ConversationsController.php:747;774
+#: Controller/ConversationsController.php:754;782
 msgid "You cannot kick this user from this conversation."
 msgstr "Vous ne pouvez pas kicker cet utilisateur de cette conversation."
 
-#: Controller/ConversationsController.php:792
+#: Controller/ConversationsController.php:801
 msgid "This user has been kicked successfully."
 msgstr "Cet utilisateur a été kické avec succès !"
 
-#: Controller/ConversationsController.php:827;924
+#: Controller/ConversationsController.php:836;933
 msgid "This conversation doesn't exist or has been deleted !"
 msgstr "Cette conversation n'existe pas ou a été supprimée."
 
-#: Controller/ConversationsController.php:834
+#: Controller/ConversationsController.php:843
 msgid "This conversation is closed, you cannot reply."
 msgstr "This conversation is closed, you cannot reply."
 
-#: Controller/ConversationsController.php:888
+#: Controller/ConversationsController.php:897
 msgid ""
 "Your reply has been posted successfully and the conversation has been "
 "closed !"
 msgstr ""
 "Votre réponse a été posté avec succès et la conversation a été verrouillé !"
 
-#: Controller/ConversationsController.php:890
+#: Controller/ConversationsController.php:899
 msgid "Your reply has been posted successfully !"
 msgstr "Votre réponse a été posté avec succès !"
 
-#: Controller/ConversationsController.php:931
+#: Controller/ConversationsController.php:940
 msgid "You don't have the authorization to edit this conversation !"
 msgstr "Vous n'avez pas l'autorisation d'éditer cette conversation !"
 
-#: Controller/ConversationsController.php:945
+#: Controller/ConversationsController.php:954
 msgid "Your conversation has been edited and closed successfully !"
 msgstr "Votre conversation a été éditée  et fermée avec succès !"
 
-#: Controller/ConversationsController.php:947
+#: Controller/ConversationsController.php:956
 msgid "Your conversation has been edited successfully !"
 msgstr "Votre conversation a été éditée avec succès !"
 
-#: Controller/ConversationsController.php:984
+#: Controller/ConversationsController.php:993
 msgid "This conversation is closed or has been deleted !"
 msgstr "Cette conversation n'existe pas ou a été supprimée."
 
-#: Controller/ConversationsController.php:990
+#: Controller/ConversationsController.php:999
 msgid "You don't have the authorization to invite in this conversation !"
 msgstr "Vous n'avez pas l'autorisation d'inviter dans cette converstion !"
 
-#: Controller/ConversationsController.php:1052
+#: Controller/ConversationsController.php:1061
 msgid "Your user(s) has been added successfully."
 msgstr "Votre utilisateur(s) a été ajouté avec succès."
 
-#: Controller/ConversationsController.php:1083
+#: Controller/ConversationsController.php:1092
 msgid "You are not in this conversation."
 msgstr "Vous n'êtes pas dans cette conversation."
 
-#: Controller/ConversationsController.php:1101
+#: Controller/ConversationsController.php:1110
 msgid "You have left the conversation successfully."
 msgstr "Vous avez quitté la conversation avec succès."
 
-#: Controller/ConversationsController.php:1106
+#: Controller/ConversationsController.php:1114
 msgid "You can not leave your own conversation."
 msgstr "Vous ne pouvez pas quitter votre propre conversation."
 
@@ -169,116 +169,128 @@ msgstr "Votre titre doit contenir au moins de {0} caractères."
 msgid "You must specify a message for your conversation."
 msgstr "Vous devez spécifier un message à votre conversation."
 
-#: Template/Cell/Conversations/sidebar.ctp:5
+#: Template/Cell/Conversations/sidebar.ctp:7
 msgid "Actions"
 msgstr "Actions"
 
-#: Template/Cell/Conversations/sidebar.ctp:11
+#: Template/Cell/Conversations/sidebar.ctp:15
 msgid "Edit the Conversation"
 msgstr "Editer la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:16
+#: Template/Cell/Conversations/sidebar.ctp:20
 msgid "Leave the Conversation"
 msgstr "Quitter la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:21
+#: Template/Cell/Conversations/sidebar.ctp:25
 msgid "Invite new Participants"
 msgstr "Inviter de nouveaux Participants"
 
-#: Template/Cell/Conversations/sidebar.ctp:34;53;69;100;117;167
+#: Template/Cell/Conversations/sidebar.ctp:38;57;73;122
 msgid "Close"
 msgstr "Fermer"
 
-#: Template/Cell/Conversations/sidebar.ctp:38
+#: Template/Cell/Conversations/sidebar.ctp:42
 msgid "{0} Leave Conversation"
 msgstr "{0} Quitter la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:43
+#: Template/Cell/Conversations/sidebar.ctp:47
 msgid "Are you sure you want to leave this conversation ?"
 msgstr "Êtes-vous sûr de vouloir quitter cette conversation?"
 
-#: Template/Cell/Conversations/sidebar.ctp:48
-#: Template/Conversations/create.ctp:80;95
-#: Template/Element/Conversations/index.ctp:169
-#: Template/Element/Conversations/reply.ctp:29
+#: Template/Cell/Conversations/sidebar.ctp:52;138;150
+#: Template/Conversations/create.ctp:79;93
+#: Template/Element/Conversations/index.ctp:179
+#: Template/Element/Conversations/reply.ctp:33
 msgid "Yes"
 msgstr "Oui"
 
-#: Template/Cell/Conversations/sidebar.ctp:73
+#: Template/Cell/Conversations/sidebar.ctp:77
 msgid "{0} Invite new Participants"
 msgstr "{0} Inviter de nouveaux Participants"
 
-#: Template/Cell/Conversations/sidebar.ctp:78
+#: Template/Cell/Conversations/sidebar.ctp:82
 #: Template/Conversations/create.ctp:49
 msgid "Participants in the conversation"
 msgstr "Participants dans la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:84
+#: Template/Cell/Conversations/sidebar.ctp:88
 #: Template/Conversations/create.ctp:55
 msgid "Enter the name(s) here"
 msgstr "Entrez les noms ici"
 
-#: Template/Cell/Conversations/sidebar.ctp:93
-msgid "Invite"
-msgstr "Invite"
+#: Template/Cell/Conversations/sidebar.ctp:97
+msgid "{0} Invite"
+msgstr "{0} Inviter"
 
-#: Template/Cell/Conversations/sidebar.ctp:121
+#: Template/Cell/Conversations/sidebar.ctp:105;169
+#: Template/Conversations/json/get_edit_message.ctp:18
+msgid "{0} Cancel"
+msgstr "{0} Annuler"
+
+#: Template/Cell/Conversations/sidebar.ctp:126
 msgid "{0} Edit Conversation"
 msgstr "{0} Editer la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:126
+#: Template/Cell/Conversations/sidebar.ctp:131
 msgid "Conversation Title"
 msgstr "Titre de la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:130
+#: Template/Cell/Conversations/sidebar.ctp:135
 msgid "Close Conversation"
 msgstr "Fermer la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:144
+#: Template/Cell/Conversations/sidebar.ctp:137;149
+#: Template/Conversations/create.ctp:80;92
+#: Template/Element/Conversations/reply.ctp:34
+msgid "No"
+msgstr "Non"
+
+#: Template/Cell/Conversations/sidebar.ctp:147
 #: Template/Conversations/create.ctp:77
 msgid "Allow anyone in the conversation to invite other users"
 msgstr ""
 "Autoriser tout le monde dans la conversation à inviter d'autres utilisateurs"
 
-#: Template/Cell/Conversations/sidebar.ctp:160
-msgid "Save"
-msgstr "Sauvegarder"
+#: Template/Cell/Conversations/sidebar.ctp:161
+#: Template/Conversations/json/get_edit_message.ctp:17
+msgid "{0} Save"
+msgstr "{0} Sauvegarder"
 
-#: Template/Cell/Conversations/sidebar.ctp:180
+#: Template/Cell/Conversations/sidebar.ctp:184
 msgid "Conversation Information"
 msgstr "Conversation Information"
 
-#: Template/Cell/Conversations/sidebar.ctp:185
+#: Template/Cell/Conversations/sidebar.ctp:191
 msgid "Participants :"
 msgstr "Participants :"
 
-#: Template/Cell/Conversations/sidebar.ctp:193
+#: Template/Cell/Conversations/sidebar.ctp:199
 msgid "Replies :"
 msgstr "Réponses :"
 
-#: Template/Cell/Conversations/sidebar.ctp:201
+#: Template/Cell/Conversations/sidebar.ctp:207
 msgid "Last reply :"
 msgstr "Dernière réponse :"
 
-#: Template/Cell/Conversations/sidebar.ctp:209
+#: Template/Cell/Conversations/sidebar.ctp:215
 msgid "Last reply by :"
 msgstr "Dernière réponse par :"
 
-#: Template/Cell/Conversations/sidebar.ctp:233
+#: Template/Cell/Conversations/sidebar.ctp:241
 msgid "Participants"
 msgstr "Participants"
 
-#: Template/Cell/Conversations/sidebar.ctp:268
+#: Template/Cell/Conversations/sidebar.ctp:278
 msgid "Kick {0}"
 msgstr "Kick {0}"
 
-#: Template/Cell/Conversations/sidebar.ctp:275
+#: Template/Cell/Conversations/sidebar.ctp:285
 msgid "Kick from conversation"
 msgstr "Kick de la Conversation"
 
-#: Template/Cell/Conversations/sidebar.ctp:288
-msgid "Invite new participants"
-msgstr "Inviter des Participants"
+#: Template/Cell/Conversations/sidebar.ctp:298
+msgid "{0} Invite new participants"
+msgstr "{0} Inviter des Participants"
 
 #: Template/Conversations/create.ctp:2;27;44
 #: Template/Conversations/index.ctp:2;19;34
@@ -305,19 +317,14 @@ msgstr "Titre de la conversation"
 msgid "Your message"
 msgstr "Votre message"
 
-#: Template/Conversations/create.ctp:81;96
-#: Template/Element/Conversations/reply.ctp:30
-msgid "No"
-msgstr "Non"
-
-#: Template/Conversations/create.ctp:92
+#: Template/Conversations/create.ctp:90
 msgid "Lock the conversation <small>(No reply will be permitted)</small>"
 msgstr ""
 "Verrouiller la conversation <small>(Aucune réponse ne sera autorisée)</small>"
 
-#: Template/Conversations/create.ctp:106
-msgid "Start the Conversation"
-msgstr "Commencer la Conversation"
+#: Template/Conversations/create.ctp:102
+msgid "{0} Start the Conversation"
+msgstr "{0} Commencer la Conversation"
 
 #: Template/Conversations/maintenance.ctp:16
 msgid "Maintenance"
@@ -343,97 +350,88 @@ msgstr "Rechercher"
 msgid "Word : {0}"
 msgstr "Mot : {0}"
 
-#: Template/Conversations/view.ctp:51
+#: Template/Conversations/view.ctp:51;52
 msgid "Online"
 msgstr "En Ligne"
 
-#: Template/Conversations/view.ctp:53
+#: Template/Conversations/view.ctp:54;55
 msgid "Offline"
 msgstr "Hors Ligne"
 
-#: Template/Conversations/view.ctp:84
+#: Template/Conversations/view.ctp:86
 msgid "Post Link"
 msgstr "Lien du Post"
 
-#: Template/Conversations/view.ctp:98
-#: Template/Element/Conversations/index.ctp:132
+#: Template/Conversations/view.ctp:100
+#: Template/Element/Conversations/index.ctp:154
 msgid "New"
 msgstr "New"
 
-#: Template/Conversations/view.ctp:106
+#: Template/Conversations/view.ctp:108
 msgid "{0} Edit"
 msgstr "{0} Editer"
 
-#: Template/Conversations/view.ctp:129
+#: Template/Conversations/view.ctp:132
 msgid "{0} Last Edit: {1}, {2}"
 msgstr "{0} Dernière Edition: {1}, {2}"
 
-#: Template/Conversations/view.ctp:145
+#: Template/Conversations/view.ctp:150
 msgid "{0} Quote"
 msgstr "{0} Citer"
-
-#: Template/Conversations/json/get_edit_message.ctp:17
-msgid "Update Message"
-msgstr "Mettre à Jour le Message"
-
-#: Template/Conversations/json/get_edit_message.ctp:18
-#: Template/Element/Conversations/index.ctp:174
-msgid "Cancel"
-msgstr "Annuler"
 
 #: Template/Element/Conversations/index.ctp:14
 msgid "Search a conversation by his name.."
 msgstr "Rechercher une conversation par son nom.."
 
-#: Template/Element/Conversations/index.ctp:45
+#: Template/Element/Conversations/index.ctp:48
 msgid "Mark all Conversations"
 msgstr "Marquer tous les Conversations"
 
-#: Template/Element/Conversations/index.ctp:51
+#: Template/Element/Conversations/index.ctp:54
 msgid "Star Conversation(s)"
 msgstr "Star les Conversation(s)"
 
-#: Template/Element/Conversations/index.ctp:52
+#: Template/Element/Conversations/index.ctp:55
 msgid "Make normal Conversation(s)"
 msgstr "Mettre les Conversation(s) normale(s)"
 
-#: Template/Element/Conversations/index.ctp:53
+#: Template/Element/Conversations/index.ctp:56
 msgid "Exit Conversation(s)"
 msgstr "Quitter les Conversation(s)"
 
-#: Template/Element/Conversations/index.ctp:56
+#: Template/Element/Conversations/index.ctp:59
 msgid "Action..."
 msgstr "Action..."
 
-#: Template/Element/Conversations/index.ctp:71
+#: Template/Element/Conversations/index.ctp:75
 msgid "New Conversation"
 msgstr "Nouvelle Conversation"
 
-#: Template/Element/Conversations/index.ctp:96
-msgid "Created by {0}"
-msgstr "Créé par {0}"
-
-#: Template/Element/Conversations/index.ctp:98;125
-msgid "At {0}"
-msgstr "Le {0}"
-
-#: Template/Element/Conversations/index.ctp:123
-msgid "Last Reply {0}"
-msgstr "Dernière Réponse {0}"
-
-#: Template/Element/Conversations/index.ctp:136
+#: Template/Element/Conversations/index.ctp:104
 msgid "Stared"
 msgstr "Star"
 
-#: Template/Element/Conversations/index.ctp:142
+#: Template/Element/Conversations/index.ctp:110
 msgid "Closed"
 msgstr "Fermé"
 
-#: Template/Element/Conversations/index.ctp:160
+#: Template/Element/Conversations/index.ctp:118
+msgid "Created by {0}"
+msgstr "Créé par {0}"
+
+#: Template/Element/Conversations/index.ctp:120;147
+msgid "At {0}"
+msgstr "Le {0}"
+
+#: Template/Element/Conversations/index.ctp:145
+msgid "Last Reply {0}"
+msgstr "Dernière Réponse {0}"
+
+#: Template/Element/Conversations/index.ctp:170
 msgid "Exit Conversations"
 msgstr "Quitter les Conversations"
 
-#: Template/Element/Conversations/index.ctp:165
+#: Template/Element/Conversations/index.ctp:175
 msgid ""
 "If you delete conversations where you are the owner, this will completely "
 "remove the conversation. Are you sure you want to delete these "
@@ -443,41 +441,66 @@ msgstr ""
 "supprimer complètement la conversation. Êtes-vous sûr de vouloir supprimer "
 "ces conversations ?"
 
-#: Template/Element/Conversations/index.ctp:196
+#: Template/Element/Conversations/index.ctp:184
+msgid "Cancel"
+msgstr "Annuler"
+
+#: Template/Element/Conversations/index.ctp:197
 msgid "New Conversation {0}"
 msgstr "Nouvelle Conversation {0}"
 
-#: Template/Element/Conversations/index.ctp:204
+#: Template/Element/Conversations/index.ctp:205
 msgid "You don't have any conversations yet."
 msgstr "Vous n'avez pas encore créer de conversation."
 
-#: Template/Element/Conversations/index.ctp:100
+#: Template/Element/Conversations/index.ctp:122
 msgid "Participant {0}"
 msgid_plural "Participants {0}"
 msgstr[0] "Participant {0}"
 msgstr[1] "Participants {0}"
 
-#: Template/Element/Conversations/index.ctp:127
+#: Template/Element/Conversations/index.ctp:149
 msgid "Reply {0}"
 msgid_plural "Replies {0}"
 msgstr[0] "Réponse {0}"
 msgstr[1] "Réponses {0}"
 
-#: Template/Element/Conversations/reply.ctp:6
+#: Template/Element/Conversations/reply.ctp:7
 msgid "Reply to this Conversation"
 msgstr "Répondre à cette Conversation"
 
-#: Template/Element/Conversations/reply.ctp:26
-msgid "Close the Conversation with the response ?"
-msgstr "Fermez la conversation avec la réponse?"
+#: Template/Element/Conversations/reply.ctp:29
+msgid "Close the conversation with the response ?"
+msgstr "Fermez la conversation avec la réponse ?"
 
-#: Template/Element/Conversations/reply.ctp:42
-msgid "Reply"
-msgstr "Répondre"
+#: Template/Element/Conversations/reply.ctp:45
+msgid "{0} Reply"
+msgstr "{0} Répondre"
 
-#: Template/Element/Conversations/reply.ctp:51
+#: Template/Element/Conversations/reply.ctp:54
 msgid "This conversation is closed."
 msgstr "Cette conversation est fermée."
+
+#~ msgid "Invite"
+#~ msgstr "Invite"
+
+#~ msgid "Save"
+#~ msgstr "Sauvegarder"
+
+#~ msgid "Invite new participants"
+#~ msgstr "Inviter des Participants"
+
+#~ msgid "Start the Conversation"
+#~ msgstr "Commencer la Conversation"
+
+#~ msgid "Update Message"
+#~ msgstr "Mettre à Jour le Message"
+
+#~ msgid "Close the Conversation with the response ?"
+#~ msgstr "Fermez la conversation avec la réponse?"
+
+#~ msgid "Reply"
+#~ msgstr "Répondre"
 
 #~ msgid "Search {0}"
 #~ msgstr "Rechercher {0}"
