@@ -1,5 +1,5 @@
 /vendor/*
-/tmp/*
+/tmp/bake/*
 /logs/*
 /bin/*
 /plugins/*
