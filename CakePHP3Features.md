@@ -20,6 +20,8 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
     * To store user's information
 * Authentication
     * For login/logout an user
+* CSRF
+    * For security reasons...
 * Flash
     * With custom message : Error, Success, Info, Primary
 * Cross Site Request Forgery (CSRF)

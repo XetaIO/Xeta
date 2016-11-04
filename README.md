@@ -66,11 +66,6 @@ This project implements many features and will implements more in the future. He
     * Quote
     * Attachments
 
-* ###### Premium
-    * Support of Paypal
-    * Discounts Code
-    * Offers
-
 * ###### Admin Panel
     * Google Analytics integrated
     * Members Management
@@ -83,6 +78,7 @@ This project implements many features and will implements more in the future. He
         * Statistics
         * Offers
         * Discounts
+    * Settings Management
 
 * ###### ACL
     * ACL Management (Still in Dev)
