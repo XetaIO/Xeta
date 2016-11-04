@@ -428,8 +428,6 @@ class UsersController extends AppController
             return $this->redirect(['controller' => 'pages', 'action' => 'home']);
         }
 
-        $user = $this->Users->newEntity($this->request->data);
-
         if ($this->request->is('post')) {
             $user = $this->Users
                 ->find()

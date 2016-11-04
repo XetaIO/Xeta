@@ -22,12 +22,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-offset-2 col-md-8">
             <section class="section animated bounceInLeft">
                 <div class="section-title">
-                    <h3>
-                        <?= __("Reset your Password") ?>
-                    </h3>
+                    <div class="hr-divider">
+                        <h3 class="hr-divider-content hr-divider-heading">
+                            <?= __("Reset your Password") ?>
+                        </h3>
+                    </div>
                 </div>
 
                 <?= $this->Form->create($user) ?>
@@ -70,10 +72,10 @@
                     </div>
                     <?= $this->Form->error('password_confirm') ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group text-center">
                     <?= $this->Form->button(
                         __('Reset {0}', '<i class="fa fa-arrow-right"></i>'),
-                        ['class' => 'btn btn-primary']
+                        ['class' => 'btn btn-primary-outline']
                     ); ?>
                 </div>
                 <?= $this->Form->end(); ?>
