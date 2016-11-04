@@ -26,10 +26,16 @@ class ContactControllerTest extends IntegrationTestCase
      */
     public function testIndexWithInvalidData()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $data = [
-            'email' => '',
             'name' => '',
-            'message' => ''
+            'email' => '',
+            'subject' => '',
+            'message' => '',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'contact', 'action' => 'index'], $data);
@@ -45,10 +51,16 @@ class ContactControllerTest extends IntegrationTestCase
      */
     public function testIndexWithValidData()
     {
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+
         $data = [
             'email' => 'test@xeta.io',
             'name' => 'My Name',
-            'message' => 'My message'
+            'subject' => '',
+            'message' => 'My message',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'contact', 'action' => 'index'], $data);
