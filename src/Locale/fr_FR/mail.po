@@ -4,26 +4,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-15 23:16+0000\n"
-"PO-Revision-Date: 2015-05-16 01:23+0100\n"
+"POT-Creation-Date: 2016-11-04 11:36+0100\n"
+"PO-Revision-Date: 2016-11-04 11:39+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team:  <EMAIL@ADDRESS>\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.6\n"
-"Language: fr_FR\n"
+"X-Generator: Poedit 1.8.9\n"
 
-#: Controller/UsersController.php:156;158 Template/Email/html/register.ctp:11
+#: Mailer/UserMailer.php:22;24 Template/Email/html/register.ctp:11
 msgid "Welcome on {0} !"
 msgstr "Bienvenue sur {0} !"
 
+#: Mailer/UserMailer.php:39;41
+msgid "Connexion on your account {0} !"
+msgstr "Connexion à votre compte {0} !"
+
+#: Mailer/UserMailer.php:57;59
+msgid "Forgot your Password - {0}"
+msgstr "﻿Mot de Passe oublié - {0}"
+
 #: Template/Email/html/contact.ctp:11
-#: Template/Email/html/forgot_password.ctp:11
+#: Template/Email/html/forgot_password.ctp:11 Template/Email/html/login.ctp:11
 #: Template/Email/html/register.ctp:14
 msgid "Hi {0},"
-msgstr "Hello {0},"
+msgstr "Bonjour {0},"
 
 #: Template/Email/html/contact.ctp:14
 msgid ""
@@ -34,7 +42,7 @@ msgstr "<strong>{0}</strong> vous a contacté via la forme contact sur le site."
 msgid "Subject : {0}"
 msgstr "Sujet : {0}"
 
-#: Template/Email/html/contact.ctp:31
+#: Template/Email/html/contact.ctp:31 Template/Email/html/login.ctp:28
 msgid "Additional Informations"
 msgstr "Informations Supplémentaires"
 
@@ -47,12 +55,12 @@ msgid "His IP : {0}"
 msgstr "Son IP : {0}"
 
 #: Template/Email/html/contact.ctp:43
-#: Template/Email/html/forgot_password.ctp:48
-#: Template/Email/html/register.ctp:63
+#: Template/Email/html/forgot_password.ctp:48 Template/Email/html/login.ctp:42
+#: Template/Email/html/register.ctp:58
 msgid "Regards,"
 msgstr "Cordialement,"
 
-#: Template/Email/html/contact.ctp:44
+#: Template/Email/html/contact.ctp:44 Template/Email/html/login.ctp:43
 msgid "Your bot."
 msgstr "Votre Bot."
 
@@ -78,7 +86,7 @@ msgid "To complete this process, please follow this link : {0}"
 msgstr "Pour compléter ce processus, veuillez suivez ce lien : {0}"
 
 #: Template/Email/html/forgot_password.ctp:24
-#: Template/Email/html/register.ctp:22;27;32;37
+#: Template/Email/html/register.ctp:22;27;32
 msgid "here"
 msgstr "ici"
 
@@ -87,26 +95,57 @@ msgid "Note : This link will be expired in 10 minutes. "
 msgstr "Note : Ce lien sera expiré dans 10 minutes."
 
 #: Template/Email/html/forgot_password.ctp:49
-#: Template/Email/html/register.ctp:64
+#: Template/Email/html/register.ctp:59
 msgid "{0}'s Team."
 msgstr "{0}'s Team."
 
+#: Template/Email/html/login.ctp:14
+msgid "Someone just tried to login to your account <strong>{0}</strong>."
+msgstr ""
+"Quelqu'un viens d'essayer de se connecter à votre compte <strong>{0}</"
+"strong>."
+
+#: Template/Email/html/login.ctp:17
+msgid "If it was you, just ignore this message."
+msgstr "Si c'est vous, ignorez ce message."
+
+#: Template/Email/html/login.ctp:30
+msgid "His User Agent : <strong>{0}</strong>"
+msgstr "Son User Agent : <strong>{0}</strong>"
+
+#: Template/Email/html/login.ctp:31
+msgid "His IP : <strong>{0}</strong>"
+msgstr "Son IP : <strong>{0}</strong>"
+
+#: Template/Email/html/login.ctp:33
+msgid "DateTime : <strong>{0}</strong>"
+msgstr "DateTime : <strong>{0}</strong>"
+
 #: Template/Email/html/register.ctp:17
 msgid ""
-"Welcome on {0} ! You can now post your first comment in the Blog {1}, or "
-"create your new topic in the Forum {2}. You can also manage your account {3} "
-"and view your profil {4}."
+"Welcome on {0} ! You can now post your first comment in the Blog {1}. You "
+"can also manage your account {2} and view your profil {3}."
 msgstr ""
-"Bienvenue sur {0} ! Vous pouvez maintenant publier votre premier commentaire "
-"dans le Blog {1}, ou créer votre premier sujet dans le Forum {2}. Vous "
-"pouvez également gérer votre compte {3} et afficher votre profil {4}."
+"Bienvenue sur {0}! Vous pouvez maintenant poster votre premier commentaire "
+"dans le Blog {1}. Vous pouvez également administrer votre compte {2} et voir "
+"votre profil {3}."
 
-#: Template/Email/html/register.ctp:44
+#: Template/Email/html/register.ctp:39
 msgid ""
 "Don't forget, if you want to report an issue or contribute to this project, "
 "{0}."
 msgstr "Si vous voulez signaler un problème ou contribuer à ce projet, {0}"
 
-#: Template/Email/html/register.ctp:48
+#: Template/Email/html/register.ctp:43
 msgid "do it there please"
 msgstr "faites-le ici s'il vous plaît."
+
+#~ msgid ""
+#~ "Welcome on {0} ! You can now post your first comment in the Blog {1}, or "
+#~ "create your new topic in the Forum {2}. You can also manage your account "
+#~ "{3} and view your profil {4}."
+#~ msgstr ""
+#~ "Bienvenue sur {0} ! Vous pouvez maintenant publier votre premier "
+#~ "commentaire dans le Blog {1}, ou créer votre premier sujet dans le Forum "
+#~ "{2}. Vous pouvez également gérer votre compte {3} et afficher votre "
+#~ "profil {4}."

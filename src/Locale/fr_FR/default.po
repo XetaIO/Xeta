@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-29 15:27+0100\n"
-"PO-Revision-Date: 2015-05-29 15:27+0100\n"
+"POT-Creation-Date: 2016-11-04 11:08+0100\n"
+"PO-Revision-Date: 2016-11-04 11:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: fr_FR\n"
@@ -13,29 +13,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.9\n"
 
-#: Controller/BlogController.php:89 Controller/Forum/ForumController.php:140
+#: Controller/AppController.php:91
+msgid ""
+"You need to be logged in or you are not authorized to access that location !"
+msgstr ""
+"Vous devez être connecté ou vous n'êtes pas autorisé à accéder à cet "
+"endroit !"
+
+#: Controller/BlogController.php:92
 msgid "This category doesn't exist or has been deleted."
 msgstr "Cette catégorie n'existe pas ou a été supprimée."
 
-#: Controller/BlogController.php:148
+#: Controller/BlogController.php:149
 msgid "This article doesn't exist or has been deleted."
 msgstr "Cet article n'existe pas ou a été supprimé."
 
-#: Controller/BlogController.php:159
+#: Controller/BlogController.php:160
 msgid "You must be connected to post a comment."
 msgstr "Vous devez être connecté pour poster un commentaire."
 
-#: Controller/BlogController.php:171
+#: Controller/BlogController.php:172
 msgid "Your comment has been posted successfully !"
 msgstr "Votre commentaire a été posté avec succès !"
 
-#: Controller/BlogController.php:286 Controller/Forum/PostsController.php:331
+#: Controller/BlogController.php:286
 msgid "has said :"
 msgstr "a dit :"
 
-#: Controller/BlogController.php:306 Controller/Forum/PostsController.php:351
+#: Controller/BlogController.php:306
 msgid "This comment doesn't exist."
 msgstr "Ce commentaire n'existe pas."
 
@@ -55,12 +62,11 @@ msgstr "Cet article n'existe pas."
 msgid "Thanks for {0} this article ! "
 msgstr "Merci d'avoir {0} cet article !"
 
-#: Controller/BlogController.php:521 Template/Blog/article.ctp:216
+#: Controller/BlogController.php:521 Template/Blog/article.ctp:190
 msgid "You {0} this article."
 msgstr "Vous {0} cet article."
 
 #: Controller/BlogController.php:530;587
-#: Controller/Forum/PostsController.php:89;182
 msgid "An error occurred, please try again later."
 msgstr "Une erreur s'est produite, veuillez réessayer plus tard."
 
@@ -68,12 +74,11 @@ msgstr "Une erreur s'est produite, veuillez réessayer plus tard."
 msgid "You don't like this article !"
 msgstr "Vous n'aimez pas cet article."
 
-#: Controller/BlogController.php:584 Controller/Forum/PostsController.php:85
-#: Template/Blog/article.ctp:234 Template/Element/Forum/Thread/posts.ctp:206
+#: Controller/BlogController.php:584 Template/Blog/article.ctp:206
 msgid "Like {0}"
 msgstr "J'aime {0}"
 
-#: Controller/BlogController.php:618;679;733
+#: Controller/BlogController.php:618;679;735
 msgid "This comment doesn't exist or has been deleted !"
 msgstr "Ce commentaire n'existe pas ou a été supprimé !"
 
@@ -85,129 +90,107 @@ msgstr "Vous n'avez pas l'autorisation de supprimer ce commentaire !"
 msgid "This comment has been deleted successfully !"
 msgstr "Ce commentaire a été supprimé avec succès !"
 
-#: Controller/BlogController.php:702;754
+#: Controller/BlogController.php:703;756
 msgid "You don't have the authorization to edit this comment !"
 msgstr "Vous n'avez pas l'autorisation d'éditer ce commentaire !"
 
-#: Controller/BlogController.php:761
+#: Controller/BlogController.php:763
 msgid "This comment has been edited successfully !"
 msgstr "Ce commentaire a été édité avec succès !"
 
-#: Controller/ContactController.php:61
+#: Controller/ContactController.php:62
 msgid "You need to put your E-mail."
 msgstr "Vous devez renseigner votre E-mail."
 
-#: Controller/ContactController.php:64 Model/Table/UsersTable.php:154;258;345
+#: Controller/ContactController.php:65 Model/Table/UsersTable.php:122;226;313
 msgid "You must specify a valid E-mail address."
 msgstr "Vous devez spécifier une adresse Email valide."
 
-#: Controller/ContactController.php:66
+#: Controller/ContactController.php:67
 msgid "You need to put your name."
 msgstr "Vous devez renseigner votre nom."
 
-#: Controller/ContactController.php:67
+#: Controller/ContactController.php:68
 msgid "You need to give a message."
 msgstr "Vous devez mettre un message."
 
-#: Controller/ContactController.php:70
+#: Controller/ContactController.php:71
 msgid "Your message can not contain less than {0} characters."
 msgstr "Votre message ne peut pas contenir moins de {0} caractères."
 
-#: Controller/ContactController.php:92
+#: Controller/ContactController.php:85
 msgid ""
 "Your message has been sent successfully, you will get a response shortly !"
 msgstr ""
 "Votre message a été envoyé avec succès, vous obtiendrez une réponse "
 "prochainement !"
 
-#: Controller/PagesController.php:102
+#: Controller/PagesController.php:105
 msgid "Thanks for accepting to use the cookies !"
 msgstr "Merci d'avoir accepté d'utiliser les cookies !"
 
-#: Controller/PremiumController.php:63
-msgid "This offer does not exist."
-msgstr "Cet offre n'existe pas."
-
-#: Controller/PremiumController.php:78
-msgid "Your discount code isn't valid or has already been used."
-msgstr "Votre code de réduction n'est pas valide ou a déjà été utilisé."
-
-#: Controller/PremiumController.php:104
-msgid ""
-"Unable to get the Paypal URL, please contact an administrator or try again "
-"later."
-msgstr ""
-"Impossible d'obtenir l'URL Paypal, veuillez contacter un administrateur ou "
-"réessayez plus tard."
-
-#: Controller/PremiumController.php:98
-msgid "Premium {0} month"
-msgid_plural "Premium {0} months"
-msgstr[0] "Premium {0} mois"
-msgstr[1] "Premium {0} mois"
-
-#: Controller/UsersController.php:89
+#: Controller/UsersController.php:88
 msgid "This account has been deleted."
 msgstr "Ce compte a été supprimé."
 
-#: Controller/UsersController.php:133
+#: Controller/UsersController.php:131
 msgid "Your username or password doesn't match."
 msgstr "Votre nom d'utilisateur ou mot de passe ne correspondent pas."
 
-#: Controller/UsersController.php:181
+#: Controller/UsersController.php:174
 msgid "Your account has been created successfully !"
 msgstr "Votre compte a été créé avec succès !"
 
-#: Controller/UsersController.php:191
+#: Controller/UsersController.php:184
 msgid "Please, correct your mistake."
 msgstr "S'il vous plaît, corrigez vos erreurs."
 
-#: Controller/UsersController.php:193;490
+#: Controller/UsersController.php:186;450
 msgid "Please, correct your Captcha."
 msgstr "S'il vous plaît, corrigez votre Captcha."
 
-#: Controller/UsersController.php:235
+#: Controller/UsersController.php:230
 msgid "Your information has been updated !"
 msgstr "Vos informations ont été mises à jour."
 
-#: Controller/UsersController.php:269
+#: Controller/UsersController.php:264
 msgid "Your E-mail has been changed !"
 msgstr "Votre Email a été changé !"
 
-#: Controller/UsersController.php:278
+#: Controller/UsersController.php:273
 msgid "Please, complete all fields !"
 msgstr "S'il vous plaît, complétez tous les champs !"
 
-#: Controller/UsersController.php:283
+#: Controller/UsersController.php:279
 msgid "Your old password don't match !"
 msgstr "Votre ancien mot de passe ne correspond pas !"
 
-#: Controller/UsersController.php:288;573
+#: Controller/UsersController.php:284;525
 msgid "Your password has been changed !"
 msgstr "Votre mot de passe a été changé !"
 
-#: Controller/UsersController.php:368
+#: Controller/UsersController.php:349
 msgid "This user doesn't exist or has been deleted."
 msgstr "Cet utilisateur n'existe pas ou a été supprimé."
 
-#: Controller/UsersController.php:388
+#: Controller/UsersController.php:371
+msgid "Your password doesn't match !"
+msgstr "Votre mot de passe ne correspond pas !"
+
+#: Controller/UsersController.php:379
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr "Votre compte a été supprimé avec succès ! Merci de votre visite !"
 
-#: Controller/UsersController.php:393
+#: Controller/UsersController.php:384
 msgid "Unable to delete your account, please try again."
 msgstr ""
 "Impossible de supprimer votre compte, s'il vous plaît réessayez plus tard."
 
-#: Controller/UsersController.php:482
+#: Controller/UsersController.php:442
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr "Cet E-mail n'existe pas ou l'utilisateur à été supprimé."
 
-#: Controller/UsersController.php:517;519
-msgid "Forgot your Password - Xeta"
-msgstr "Réinitialisation du Mot de Passe - Xeta"
-
-#: Controller/UsersController.php:523
+#: Controller/UsersController.php:475
 msgid ""
 "An E-mail has been send to <strong>{0}</strong>. Please follow the "
 "instructions in the E-mail."
@@ -215,283 +198,13 @@ msgstr ""
 "Un E-mail a été envoyé à <strong>{0}</strong>. Suivez les instructions "
 "contenue dans l'E-mail."
 
-#: Controller/UsersController.php:542;556
+#: Controller/UsersController.php:494;508
 msgid "This code is not associated with this users or is incorrect."
 msgstr "Ce code n'est pas associé avec cet utilisateur ou est incorrect."
 
-#: Controller/UsersController.php:564
+#: Controller/UsersController.php:516
 msgid "This code is expired, please ask another E-mail code."
 msgstr "Ce code est expiré, s'il vous plaît veuillez demander un autre code."
-
-#: Controller/Component/PaypalComponent.php:86
-msgid "The txn {0} has already been used."
-msgstr "The txn {0} a déjà été utilisé."
-
-#: Controller/Component/PaypalComponent.php:92
-msgid "The Email {0} is not the same as the config Email {0}."
-msgstr "L'Email {0} n'est pas le même que l'Email de configuration {0}."
-
-#: Controller/Component/PaypalComponent.php:98
-msgid "The price does not match with the offer price."
-msgstr "Le prix ne correspond pas avec le prix de l'offre."
-
-#: Controller/Component/PaypalComponent.php:104
-msgid "The currency offer does not match with the Paypal currency."
-msgstr ""
-"Le code monétaire de l'offre ne correspond pas avec le code monétaire Paypal."
-
-#: Controller/Component/PaypalComponent.php:110
-msgid "The discount offer does not match with the Paypal discount."
-msgstr "La réduction de l'offre ne correspond pas avec la réduction de Paypal."
-
-#: Controller/Component/PaypalComponent.php:119
-msgid "Error to update the user."
-msgstr "Impossible de mettre à jour l'utilisateur."
-
-#: Controller/Component/PaypalComponent.php:139
-msgid "Status Payment invalid : {0}"
-msgstr "Statut de Paiement invalide : {0}"
-
-#: Controller/Component/PaypalComponent.php:144
-msgid "Response INVALID."
-msgstr "Réponse INVALID."
-
-#: Controller/Component/PaypalComponent.php:186
-msgid "This user does not exist."
-msgstr "Cet utilisateur n'existe pas."
-
-#: Controller/Component/PaypalComponent.php:277
-msgid "Failed to initialize cURL : {0}"
-msgstr "Échec de l'initialisation cURL : {0}"
-
-#: Controller/Component/PaypalComponent.php:287
-msgid "cURL falied to get the Paypal URL Button : {0}"
-msgstr "cURL n'a pas réussi à obtenir l'URL du bouton PayPal : {0}"
-
-#: Controller/Component/PaypalComponent.php:353
-msgid "Unable to get the offer with the ID {0} and the period {1}."
-msgstr "Impossible d'obtenir l'offre avec l'ID {0} et la période {1}."
-
-#: Controller/Component/PaypalComponent.php:363
-msgid "The price of the offer {0} is not the same as the Paypal price {1}."
-msgstr "Le prix de l'offre {0} ne est pas le même que le prix Paypal {1}."
-
-#: Controller/Component/PaypalComponent.php:405
-msgid "The discount offer {0} does not match with the Paypal discount {1}."
-msgstr ""
-"La réduction de l'offre {0} ne correspond pas avec la réduction Paypal {1}."
-
-#: Controller/Component/PaypalComponent.php:456
-msgid "The currency offer {0} does not match with the Paypal currency {1}."
-msgstr ""
-"Le code monétaire de l'offre  {0} ne correspond pas avec le code monétaire "
-"Paypal {1}."
-
-#: Controller/Component/Chat/CommandsComponent.php:353
-msgid "I have banned {0} {1}"
-msgstr "J'ai bannis {0} {1}"
-
-#: Controller/Component/Forum/AntiSpamComponent.php:91
-msgid "The type \"{0}\" to check is not defined."
-msgstr "Le type \"{0}\" à vérifier est pas défini."
-
-#: Controller/Forum/ForumController.php:260
-msgid "This thread doesn't exist or has been deleted."
-msgstr "Ce sujet n'existe pas ou a été supprimé."
-
-#: Controller/Forum/PostsController.php:67
-msgid "You don't like this post !"
-msgstr "Vous n'aimez pas ce post !"
-
-#: Controller/Forum/PostsController.php:86 Template/Blog/archive.ctp:87
-#: Template/Blog/article.ctp:97 Template/Blog/category.ctp:75
-#: Template/Blog/index.ctp:80 Template/Blog/search.ctp:72
-#: Template/Element/Forum/Thread/posts.ctp:193
-msgid "{0} Like"
-msgid_plural "{0} Likes"
-msgstr[0] "{0} J'aime"
-msgstr[1] "{0} J'aimes"
-
-#: Controller/Forum/PostsController.php:124
-msgid "You already like this post !"
-msgstr "You aimez déjà ce post !"
-
-#: Controller/Forum/PostsController.php:143
-msgid "This post doesn't exist !"
-msgstr "Ce post n'existe pas !"
-
-#: Controller/Forum/PostsController.php:174
-msgid "Thanks for {0} this post ! "
-msgstr "Merci d'avoir {0} ce post !"
-
-#: Controller/Forum/PostsController.php:175
-#: Template/Element/Forum/Thread/posts.ctp:187
-msgid "You {0} this post."
-msgstr "Vous {0} ce post."
-
-#: Controller/Forum/PostsController.php:179
-#: Template/Element/Forum/Thread/posts.ctp:174
-msgid "{0} Unlike"
-msgstr "{0} Je n'aime plus"
-
-#: Controller/Forum/PostsController.php:216;383
-msgid "This post doesn't exist or has been deleted."
-msgstr "Ce post n'existe pas ou a été supprimé."
-
-#: Controller/Forum/PostsController.php:223
-msgid "You cannot delete the first post of a thread."
-msgstr "Vous ne pouvez pas supprimer le premier post d'un sujet."
-
-#: Controller/Forum/PostsController.php:234
-msgid "An error occurred while deleting the post. Please, try again."
-msgstr ""
-"Une erreur est survenue lors de la suppression du post. Veuillez réessayer."
-
-#: Controller/Forum/PostsController.php:287
-msgid "The post has been deleted successfully !"
-msgstr "Ce post a été supprimé avec succès !"
-
-#: Controller/Forum/PostsController.php:440;508
-msgid "This post doesn't exist or has been deleted !"
-msgstr "Ce post n'existe pas ou a été supprimé !"
-
-#: Controller/Forum/PostsController.php:461;531
-#: Controller/Forum/ThreadsController.php:155
-msgid "You don't have the authorization to edit this post !"
-msgstr "Vous n'avez pas l'autorisation d'éditer ce post !"
-
-#: Controller/Forum/PostsController.php:472
-msgid "This post has been edited successfully !"
-msgstr "Ce post a été édité avec succès !"
-
-#: Controller/Forum/ThreadsController.php:51;175
-msgid "This category doesn't exist or has been deleted !"
-msgstr "Cette catégorie n'existe pas ou a été supprimée !"
-
-#: Controller/Forum/ThreadsController.php:58
-msgid ""
-"You can't create a thread in the category <strong>{0}</strong> because this "
-"category is closed !"
-msgstr ""
-"Vous ne pouvez pas créer un sujet dans la catégorie <strong>{0}</strong> car "
-"cette catégorie est fermée !"
-
-#: Controller/Forum/ThreadsController.php:66
-msgid ""
-"You can't not create a thread in the next 5 minutes due to spamming "
-"restrictions."
-msgstr ""
-"Vous ne pouvez pas créer de sujet pendant les 5 prochaines minutes dû aux "
-"restrictions de spam."
-
-#: Controller/Forum/ThreadsController.php:112
-msgid "Your thread has been created successfully !"
-msgstr "Votre sujet a été créé avec succès !"
-
-#: Controller/Forum/ThreadsController.php:148;233;358;447;522;578
-msgid "This thread doesn't exist or has been deleted !"
-msgstr "Ce sujet n'existe pas ou a été supprimé !"
-
-#: Controller/Forum/ThreadsController.php:182
-msgid ""
-"You can't assign this thread to the category <strong>{0}</strong> because "
-"this category is closed !"
-msgstr ""
-"Vous ne pouvez pas assigner ce sujet dans la catégorie <strong>{0}</strong> "
-"car cette catégorie est fermée !"
-
-#: Controller/Forum/ThreadsController.php:191
-msgid "Your thread has been edited and set to sticky successfully !"
-msgstr "Votre sujet à été éditer et épinglé avec succès !"
-
-#: Controller/Forum/ThreadsController.php:193
-msgid "Your thread has been edited successfully !"
-msgstr "Ce sujet a été édité avec succès !"
-
-#: Controller/Forum/ThreadsController.php:219
-msgid ""
-"You can't not reply to a thread in the next 5 minutes due to spamming "
-"restrictions."
-msgstr ""
-"Vous ne pouvez pas répondre à ce sujet pendant les 5 prochaines minutes dû "
-"aux restrictions de spam."
-
-#: Controller/Forum/ThreadsController.php:240
-msgid "This thread is closed or has been deleted !"
-msgstr "Ce sujet est fermé ou a été supprimé !"
-
-#: Controller/Forum/ThreadsController.php:316
-msgid ""
-"Your reply has been posted successfully and the thread has been closed !"
-msgstr "Votre réponse a été posté avec succès et le sujet a été verrouillé !"
-
-#: Controller/Forum/ThreadsController.php:318
-msgid "Your reply has been posted successfully !"
-msgstr "Votre réponse a été posté avec succès !"
-
-#: Controller/Forum/ThreadsController.php:365
-msgid "This thread is already closed !"
-msgstr "Ce sujet est déjà fermé !"
-
-#: Controller/Forum/ThreadsController.php:390
-msgid "You don't have the authorization to lock this post !"
-msgstr "Vous n'avez pas l'autorisation de verrouiller ce post !"
-
-#: Controller/Forum/ThreadsController.php:411
-msgid "This thread has been locked successfully !"
-msgstr "Ce sujet a été verrouillé avec succès !"
-
-#: Controller/Forum/ThreadsController.php:454
-msgid "This thread is already open !"
-msgstr "Ce sujet est déjà déverrouillé !"
-
-#: Controller/Forum/ThreadsController.php:479
-msgid "You don't have the authorization to unlock this post !"
-msgstr "Vous n'avez pas l'autorisation de déverrouiller ce post !"
-
-#: Controller/Forum/ThreadsController.php:490
-msgid "This thread has been unlocked successfully !"
-msgstr "Ce sujet a été déverrouillé avec succès !"
-
-#: Controller/Forum/ThreadsController.php:537
-msgid "You already follow this thread !"
-msgstr "Vous suivez déjà ce sujet !"
-
-#: Controller/Forum/ThreadsController.php:548
-msgid "You successfully follow this thread now !"
-msgstr "Vous suivez maintenant ce sujet !"
-
-#: Controller/Forum/ThreadsController.php:552
-msgid "There was an error while following the thread."
-msgstr "Il y a eu une erreur lors de l'abonnement à ce sujet."
-
-#: Controller/Forum/ThreadsController.php:593
-msgid "You don't follow this thread !"
-msgstr "Vous ne suivez pas ce sujet !"
-
-#: Controller/Forum/ThreadsController.php:599
-msgid "You successfully unfollow this thread now !"
-msgstr "Vous avez arrêté de suivre ce sujet avec succès !"
-
-#: Controller/Forum/ThreadsController.php:603
-msgid "There was an error while unfollowing this thread."
-msgstr "Il y a eu une erreur lors du désabonnement à ce sujet."
-
-#: Model/Entity/User.php:101
-msgid "You must select the Groups for the function User::_getGroupName()."
-msgstr ""
-"Vous devez sélectionner le Group pour la fonction User::_getGroupName()."
-
-#: Model/Entity/User.php:105 Template/Blog/article.ctp:115
-#: Template/Element/header.ctp:32 Template/Layout/Email/html/default.ctp:56
-#: Template/Premium/cancel.ctp:16 Template/Premium/index.ctp:20;21;56
-#: Template/Premium/success.ctp:24;25;39 Template/Users/premium.ctp:2;16
-msgid "Premium"
-msgstr "Premium"
-
-#: Model/Entity/User.php:121
-msgid "You must select the Groups for the function User::_getGroupCss()."
-msgstr "You must select the Groups for the function User::_getGroupCss()."
 
 #: Model/Table/BadgesTable.php:55
 msgid "You must select a name."
@@ -502,7 +215,7 @@ msgid "Please, {0} characters minimum for the name."
 msgstr "S'il vous plaît, {0} caractères minimum pour le nom."
 
 #: Model/Table/BadgesTable.php:64 Model/Table/BlogAttachmentsTable.php:61
-#: Model/Table/UsersTable.php:187
+#: Model/Table/UsersTable.php:155
 msgid "The mimeType is not allowed."
 msgstr "Le mimeType n'est pas autorisé."
 
@@ -510,11 +223,11 @@ msgstr "Le mimeType n'est pas autorisé."
 msgid "The extension allowed are {0}."
 msgstr "Les extensions autorisées sont {0}."
 
-#: Model/Table/BadgesTable.php:78 Model/Table/UsersTable.php:201
+#: Model/Table/BadgesTable.php:78 Model/Table/UsersTable.php:169
 msgid "The file exceeded the max allowed size of {0}"
 msgstr "Le fichier a dépassé la taille maximale autorisée de {0}."
 
-#: Model/Table/BadgesTable.php:86 Model/Table/UsersTable.php:209
+#: Model/Table/BadgesTable.php:86 Model/Table/UsersTable.php:177
 msgid ""
 "The file exceeded the max allowed dimension. Max height : {0} Max width : {1}"
 msgstr ""
@@ -545,31 +258,31 @@ msgstr "Vous devez sélectionner un utilisateur."
 msgid "Please, {0} characters minimum for your comment."
 msgstr "S'il vous plaît, {0} caractères minimum pour votre commentaire."
 
-#: Model/Table/BlogArticlesTable.php:65
+#: Model/Table/BlogArticlesTable.php:64
 msgid "You must select a category."
 msgstr "Vous devez sélectionner une catégorie."
 
-#: Model/Table/BlogArticlesTable.php:69 Model/Table/BlogCategoriesTable.php:45
+#: Model/Table/BlogArticlesTable.php:68 Model/Table/BlogCategoriesTable.php:44
 msgid "The title is required."
 msgstr "Le titre est requis."
 
-#: Model/Table/BlogArticlesTable.php:74 Model/Table/BlogCategoriesTable.php:50
+#: Model/Table/BlogArticlesTable.php:73 Model/Table/BlogCategoriesTable.php:49
 msgid "This title is already used."
 msgstr "Le titre est déjà utilisé."
 
-#: Model/Table/BlogArticlesTable.php:78 Model/Table/BlogCategoriesTable.php:54
+#: Model/Table/BlogArticlesTable.php:77 Model/Table/BlogCategoriesTable.php:53
 msgid "Please, {0} characters minimum for the title."
 msgstr "S'il vous plaît, {0} caractères minimum pour le titre."
 
-#: Model/Table/BlogArticlesTable.php:81
+#: Model/Table/BlogArticlesTable.php:80
 msgid "The content is required."
 msgstr "Le contenu est requis."
 
-#: Model/Table/BlogArticlesTable.php:84
+#: Model/Table/BlogArticlesTable.php:83
 msgid "Please, {0} characters minimum for the content."
 msgstr "S'il vous plaît, {0} caractères minimum pour le contenu."
 
-#: Model/Table/BlogArticlesTable.php:89
+#: Model/Table/BlogArticlesTable.php:88
 msgid ""
 "Incorrect value, please do not attempt to modify the HTML, little hacker. ;)"
 msgstr "Valeur incorrect, n'essayez pas de modifier l'HTML, petit hacker. ;)"
@@ -590,50 +303,9 @@ msgstr "Vous devez uploader un fichier."
 msgid "The file exceeded the max allowed size of {0}."
 msgstr "Le fichier a dépassé la taille maximum autorisée de {0}."
 
-#: Model/Table/BlogCategoriesTable.php:60
+#: Model/Table/BlogCategoriesTable.php:59
 msgid "Please, {0} characters maximum for the description."
 msgstr "S'il vous plaît, {0} caractères maximum pour la description."
-
-#: Model/Table/ForumCategoriesTable.php:54
-msgid "You must set a title for the category."
-msgstr "Vous devez définir un titre pour la catégorie."
-
-#: Model/Table/ForumCategoriesTable.php:58
-#: Model/Table/ForumThreadsTable.php:79;108
-msgid "The title must be between {0} and {1} characters."
-msgstr "Le titre doit être compris entre {0} et {1} caractères."
-
-#: Model/Table/ForumPostsTable.php:60
-msgid "You must specify a message for your response."
-msgstr "Vous devez spécifier un message pour votre réponse."
-
-#: Model/Table/ForumPostsTable.php:65 Model/Table/ForumThreadsTable.php:87
-msgid "Your message must contain at least {0} characters."
-msgstr "Votre message ne peut pas contenir moins de {0} caractères."
-
-#: Model/Table/ForumThreadsFollowersTable.php:42
-msgid "You must set an user."
-msgstr "Vous devez définir un utilisateur."
-
-#: Model/Table/ForumThreadsFollowersTable.php:45
-msgid "The user must be numeric."
-msgstr "L'utilisateur doit être numérique."
-
-#: Model/Table/ForumThreadsFollowersTable.php:47
-msgid "You must set a thread."
-msgstr "Vous devez définir un sujet."
-
-#: Model/Table/ForumThreadsFollowersTable.php:50
-msgid "The thread must be numeric."
-msgstr "Le sujet doit être numérique."
-
-#: Model/Table/ForumThreadsTable.php:75;104
-msgid "You must set a title for your thread."
-msgstr "Vous devez définir un titre pour votre sujet."
-
-#: Model/Table/ForumThreadsTable.php:82
-msgid "You must specify a message for your thread."
-msgstr "Vous devez spécifier un message pour votre sujet."
 
 #: Model/Table/GroupsTable.php:47
 msgid "You must set a name."
@@ -644,202 +316,106 @@ msgid "The name can not be less than {0} characters."
 msgstr "Le nom ne peut pas contenir moins de {0} caractères."
 
 #: Model/Table/NotificationsTable.php:54
-msgid "<strong>{0}</strong> has replied to your thread <strong>{1}</strong>."
-msgstr "<strong>{0}</strong> a répondu à votre sujet <strong>{1}</strong>."
-
-#: Model/Table/NotificationsTable.php:60
-msgid "<strong>{0}</strong> has replied to the thread <strong>{1}</strong>."
-msgstr "<strong>{0}</strong> a répondu au sujet <strong>{1}</strong>."
-
-#: Model/Table/NotificationsTable.php:71
-msgid "<strong>{0}</strong> has locked your thread <strong>{1}</strong>."
-msgstr "<strong>{0}</strong> a fermé votre sujet <strong>{1}</strong>."
-
-#: Model/Table/NotificationsTable.php:86
-msgid "<strong>{0}</strong> has liked your post in <strong>{1}</strong>."
-msgstr "<strong>{0}</strong> a aimé votre post dans <strong>{1}</strong>."
-
-#: Model/Table/NotificationsTable.php:101
 msgid ""
 "<strong>{0}</strong> has replied in your conversation <strong>{1}</strong>."
 msgstr ""
 "<strong>{0}</strong> a répondu dans votre conversation <strong>{1}</strong>."
 
-#: Model/Table/NotificationsTable.php:107
+#: Model/Table/NotificationsTable.php:60
 msgid ""
 "<strong>{0}</strong> has replied in the conversation <strong>{1}</strong>."
 msgstr ""
 "<strong>{0}</strong> a répondu dans la conversation <strong>{1}</strong>."
 
-#: Model/Table/NotificationsTable.php:118
+#: Model/Table/NotificationsTable.php:71
 msgid ""
-"Welcome on <strong>{0}</strong>! You can now post your first message in the "
-"Forum."
+"Welcome on <strong>{0}</strong>! You can now post your first comment in the "
+"blog."
 msgstr ""
 "Bienvenue sur <strong>{0}</strong>! Vous pouvez dès à présent poster votre "
-"premier message dans le Forum !"
+"premier commentaire dans le Blog !"
 
-#: Model/Table/NotificationsTable.php:128
+#: Model/Table/NotificationsTable.php:81
 msgid "You have unlock the badge \"{0}\"."
 msgstr "Vous avez débloqué le badge \"{0}\"."
 
-#: Model/Table/PremiumDiscountsTable.php:48
-msgid "You must set an offer."
-msgstr "Vous devez définir une offre."
-
-#: Model/Table/PremiumDiscountsTable.php:51
-msgid "The offer must be numeric value."
-msgstr "L'offre doit être une valeur numérique."
-
-#: Model/Table/PremiumDiscountsTable.php:53
-msgid "You must set a code."
-msgstr "Vous devez définir un code."
-
-#: Model/Table/PremiumDiscountsTable.php:56
-msgid "The code can not be more than {0} characters."
-msgstr "Le code peut pas avoir plus de {0} caractères."
-
-#: Model/Table/PremiumDiscountsTable.php:58
-msgid "You must set a discount."
-msgstr "Vous devez définir une réduction."
-
-#: Model/Table/PremiumDiscountsTable.php:61
-msgid "The discount must be numeric value."
-msgstr "La réduction doit être une valeur numérique."
-
-#: Model/Table/PremiumDiscountsTable.php:63
-msgid "You must set the used number."
-msgstr "Vous devez définir le nombre d'utilisation."
-
-#: Model/Table/PremiumDiscountsTable.php:66
-msgid "The used value must be numeric value."
-msgstr "Le nombre d'utilisation doit être une valeur numérique."
-
-#: Model/Table/PremiumDiscountsTable.php:68
-msgid "You must set the max use for the discount."
-msgstr "Vous devez définir le nombre d'utilisation maximum pour la réduction."
-
-#: Model/Table/PremiumDiscountsTable.php:71
-msgid "The max use value must be numeric value."
-msgstr "Le nombre d'utilisation maximum doit être une valeur numérique."
-
-#: Model/Table/PremiumOffersTable.php:47
-msgid "You must set a period."
-msgstr "Vous devez définir une période."
-
-#: Model/Table/PremiumOffersTable.php:50
-msgid "The period must be numeric."
-msgstr "La période doit être une valeur numérique."
-
-#: Model/Table/PremiumOffersTable.php:52
-msgid "You must set a price."
-msgstr "Vous devez définir un prix."
-
-#: Model/Table/PremiumOffersTable.php:55
-msgid "The price must be numeric."
-msgstr "Le prix doit être une valeur numérique."
-
-#: Model/Table/PremiumOffersTable.php:57
-msgid "You must set a tax."
-msgstr "Vous devez définir une taxe."
-
-#: Model/Table/PremiumOffersTable.php:60
-msgid "The tax must be numeric."
-msgstr "La taxe doit être une valeur numérique."
-
-#: Model/Table/PremiumOffersTable.php:62
-msgid "You must set a currency code."
-msgstr "Vous devez définir le code de devise."
-
-#: Model/Table/PremiumOffersTable.php:65
-msgid "The currency code can not be more than {0} characters."
-msgstr "Le code de devise ne doit pas contenir plus de {0} caractères."
-
-#: Model/Table/PremiumOffersTable.php:67
-msgid "You must set a currency symbol."
-msgstr "Vous devez définir un code monétaire."
-
-#: Model/Table/PremiumOffersTable.php:70
-msgid "The currency symbol can not be more than {0} characters."
-msgstr "Le code monétaire ne doit pas contenir plus de {0} caractères."
-
-#: Model/Table/UsersTable.php:115;319
+#: Model/Table/UsersTable.php:83;287
 msgid "You must set an username"
 msgstr "Vous devez définir un nom d'utilisateur."
 
-#: Model/Table/UsersTable.php:120;324
+#: Model/Table/UsersTable.php:88;292
 msgid "This username is already used."
 msgstr "Ce nom d'utilisateur est déjà utilisé."
 
-#: Model/Table/UsersTable.php:124;328
+#: Model/Table/UsersTable.php:92;296
 msgid "Only alphanumeric characters."
 msgstr "Seulement des caractères alphanumériques."
 
-#: Model/Table/UsersTable.php:128;332
+#: Model/Table/UsersTable.php:96;300
 msgid "Your username must be between {0} and {1} characters."
 msgstr "Votre nom d'utilisateur doit être compris entre {0} et {1} caractères."
 
-#: Model/Table/UsersTable.php:131
+#: Model/Table/UsersTable.php:99
 msgid "You must specify your password."
 msgstr "Vous devez spécifier votre mot de passe."
 
-#: Model/Table/UsersTable.php:132;267;293
+#: Model/Table/UsersTable.php:100;235;261
 msgid "You must specify your password (confirmation)."
 msgstr "Vous devez spécifier votre mot de passe (confirmation)."
 
-#: Model/Table/UsersTable.php:136;271;297
+#: Model/Table/UsersTable.php:104;239;265
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 "Votre mot de passe (confirmation) doit être compris entre {0} et {1} "
 "caractères."
 
-#: Model/Table/UsersTable.php:142
+#: Model/Table/UsersTable.php:110
 msgid "Your password confirm must match with your password."
 msgstr ""
 "Votre mot de passe confirmation doit correspondre avec votre mot de passe."
 
-#: Model/Table/UsersTable.php:150;341
+#: Model/Table/UsersTable.php:118;309
 msgid "This E-mail is already used."
 msgstr "Cet Email est déjà utilisé."
 
-#: Model/Table/UsersTable.php:176
+#: Model/Table/UsersTable.php:144
 msgid "Your First Name can not contain more than {0} characters."
 msgstr "Votre prénom ne peut pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:181
+#: Model/Table/UsersTable.php:149
 msgid "Your Last Name can not contain more than {0} characters."
 msgstr "Votre nom ne peut pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:194
+#: Model/Table/UsersTable.php:162
 msgid "The extensions allowed are {0}."
 msgstr "Les extensions autorisées sont {0}."
 
-#: Model/Table/UsersTable.php:219
+#: Model/Table/UsersTable.php:187
 msgid "Your Facebook can not contain more than {0} characters."
 msgstr "Votre Facebook ne peut pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:224
+#: Model/Table/UsersTable.php:192
 msgid "Your Twitter can not contain more than {0} characters."
 msgstr "Votre Twitter ne peut pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:231;239
+#: Model/Table/UsersTable.php:199;207
 msgid "Your biography can not contain more than {0} characters."
 msgstr "Votre biographie ne peut pas contenir plus de {0} caractères."
 
-#: Model/Table/UsersTable.php:254
+#: Model/Table/UsersTable.php:222
 msgid "Your E-mail can not be empty."
 msgstr "Votre Email ne peut pas être vide."
 
-#: Model/Table/UsersTable.php:263
+#: Model/Table/UsersTable.php:231
 msgid "This E-mail is already used, please choose another E-mail."
 msgstr ""
 "Cet Email est déjà utilisé, s'il vous plaît veuillez choisir un autre Email."
 
-#: Model/Table/UsersTable.php:266;292
+#: Model/Table/UsersTable.php:234;260
 msgid "You must specify your new password."
 msgstr "Vous devez indiquer votre nouveau mot de passe."
 
-#: Model/Table/UsersTable.php:277;303
+#: Model/Table/UsersTable.php:245;271
 msgid "Your password confirm must match with your new password"
 msgstr ""
 "Votre mot de passe confirmation doit correspondre avec votre nouveau mot de "
@@ -849,11 +425,6 @@ msgstr ""
 msgid "Edit a Category"
 msgstr "Editer une Catégorie"
 
-#: Template/Admin/Forum/Categories/add.ctp:69
-#: Template/Admin/Forum/Categories/edit.ctp:69
-msgid "Parent"
-msgstr "Parent"
-
 #: Template/Blog/archive.ctp:2
 msgid "Blog Archive : {0}"
 msgstr "Blog Archive : {0}"
@@ -861,13 +432,11 @@ msgstr "Blog Archive : {0}"
 #: Template/Blog/archive.ctp:10 Template/Blog/article.ctp:42
 #: Template/Blog/category.ctp:10 Template/Blog/index.ctp:10
 #: Template/Blog/search.ctp:10 Template/Contact/index.ctp:10
-#: Template/Element/header.ctp:17 Template/Error/error400.ctp:116
-#: Template/Error/error500.ctp:116 Template/Forum/Forum/categories.ctp:11
-#: Template/Forum/Forum/index.ctp:9 Template/Forum/Forum/threads.ctp:40
-#: Template/Forum/Threads/create.ctp:24 Template/Groups/view.ctp:9
-#: Template/Layout/Email/html/default.ctp:41 Template/Users/account.ctp:24
-#: Template/Users/index.ctp:9 Template/Users/notifications.ctp:10
-#: Template/Users/premium.ctp:10 Template/Users/profile.ctp:10
+#: Template/Element/header.ctp:17 Template/Error/error400.ctp:117
+#: Template/Error/error500.ctp:117 Template/Groups/view.ctp:9
+#: Template/Layout/Email/html/default.ctp:44 Template/Pages/terms.ctp:13
+#: Template/Users/account.ctp:24 Template/Users/index.ctp:9
+#: Template/Users/notifications.ctp:10 Template/Users/profile.ctp:70
 #: Template/Users/settings.ctp:10
 msgid "Home"
 msgstr "Accueil"
@@ -875,7 +444,7 @@ msgstr "Accueil"
 #: Template/Blog/archive.ctp:13 Template/Blog/article.ctp:45
 #: Template/Blog/category.ctp:13 Template/Blog/index.ctp:2;13
 #: Template/Blog/search.ctp:13 Template/Element/header.ctp:22
-#: Template/Layout/Email/html/default.ctp:46
+#: Template/Layout/Email/html/default.ctp:49
 msgid "Blog"
 msgstr "Blog"
 
@@ -883,106 +452,105 @@ msgstr "Blog"
 msgid "Archive"
 msgstr "Archive"
 
-#: Template/Blog/archive.ctp:104 Template/Blog/category.ctp:94
-#: Template/Blog/index.ctp:99 Template/Blog/search.ctp:91
-#: Template/Cell/Forum/suggestion.ctp:72
-msgid "Read More"
-msgstr "Lire Plus"
+#: Template/Blog/archive.ctp:106 Template/Blog/category.ctp:95
+#: Template/Blog/index.ctp:100 Template/Blog/search.ctp:91
+msgid "{0} Read More"
+msgstr "{0} Lire Plus"
 
-#: Template/Blog/archive.ctp:132 Template/Blog/category.ctp:122
-#: Template/Blog/index.ctp:126
+#: Template/Blog/archive.ctp:124 Template/Blog/category.ctp:113
+#: Template/Blog/index.ctp:118
 msgid "No articles found"
 msgstr "Aucun articles trouvés"
 
-#: Template/Blog/archive.ctp:134
+#: Template/Blog/archive.ctp:126
 msgid "No articles were found for this date."
 msgstr "Aucun article n'a été trouvé pour cette date."
 
-#: Template/Blog/archive.ctp:83 Template/Blog/article.ctp:93;410
-#: Template/Blog/category.ctp:71 Template/Blog/index.ctp:76
+#: Template/Blog/archive.ctp:85 Template/Blog/article.ctp:93;386
+#: Template/Blog/category.ctp:73 Template/Blog/index.ctp:78
 #: Template/Blog/search.ctp:68
 msgid "{0} Comment"
 msgid_plural "{0} Comments"
 msgstr[0] "{0} Commentaire"
 msgstr[1] "{0} Commentaires"
 
-#: Template/Blog/article.ctp:115
-msgid "You need to be <strong>{0}</strong> to download the file."
-msgstr "Vous devez être <strong>{0}</strong> pour télécharger le fichier."
+#: Template/Blog/archive.ctp:89 Template/Blog/article.ctp:97
+#: Template/Blog/category.ctp:77 Template/Blog/index.ctp:82
+#: Template/Blog/search.ctp:72
+msgid "{0} Like"
+msgid_plural "{0} Likes"
+msgstr[0] "{0} J'aime"
+msgstr[1] "{0} J'aimes"
 
-#: Template/Blog/article.ctp:163
+#: Template/Blog/article.ctp:139
 msgid "File Size :"
 msgstr "Taille du fichier :"
 
-#: Template/Blog/article.ctp:171
+#: Template/Blog/article.ctp:147
 msgid "Download :"
 msgstr "Téléchargement :"
 
-#: Template/Blog/article.ctp:185;188
-#: Template/Element/Forum/Thread/actions.ctp:4
+#: Template/Blog/article.ctp:161;164
 msgid "{0} Reply"
 msgstr "{0} Répondre"
 
-#: Template/Blog/article.ctp:314
+#: Template/Blog/article.ctp:290
 msgid "Related Articles"
 msgstr "Articles en Relation"
 
-#: Template/Blog/article.ctp:381 Template/Pages/home.ctp:325
+#: Template/Blog/article.ctp:357 Template/Pages/home.ctp:444
 msgid "Read More {0}"
 msgstr "Lire Plus {0}"
 
-#: Template/Blog/article.ctp:452;468
-#: Template/Element/Forum/Thread/posts.ctp:153
+#: Template/Blog/article.ctp:429;443
 msgid "{0} Quote"
 msgstr "{0} Citer"
 
-#: Template/Blog/article.ctp:482 Template/Element/Forum/Thread/posts.ctp:104
+#: Template/Blog/article.ctp:458
 msgid "{0} Edit"
 msgstr "{0} Editer"
 
-#: Template/Blog/article.ctp:501 Template/Element/Forum/Thread/posts.ctp:121
+#: Template/Blog/article.ctp:478;551
 msgid "{0} Delete"
 msgstr "{0} Supprimer"
 
-#: Template/Blog/article.ctp:538
+#: Template/Blog/article.ctp:507
 msgid "Leave a Comment"
 msgstr "Laisser un Commentaire"
 
-#: Template/Blog/article.ctp:552 Template/Element/Forum/Thread/reply.ctp:42
-msgid "Post Comment"
-msgstr "Poster le Commentaire"
+#: Template/Blog/article.ctp:524
+msgid "{0} Post Comment"
+msgstr "{0} Poster le Commentaire"
 
-#: Template/Blog/article.ctp:569;580
-#: Template/Element/Forum/Thread/actions.ctp:42;95
-#: Template/Users/settings.ctp:86;95
+#: Template/Blog/article.ctp:541 Template/Users/settings.ctp:86;111
 msgid "Close"
 msgstr "Fermer"
 
-#: Template/Blog/article.ctp:571
+#: Template/Blog/article.ctp:543
 msgid "Delete a Comment"
 msgstr "Supprimer un Commentaire"
 
-#: Template/Blog/article.ctp:575
+#: Template/Blog/article.ctp:547
 msgid "Are you sure you want delete this comment ?"
 msgstr "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
 
-#: Template/Blog/article.ctp:579
-msgid "Delete"
-msgstr "Supprimer"
+#: Template/Blog/article.ctp:552
+msgid "{0} Close"
+msgstr "{0} Fermer"
 
 #: Template/Blog/category.ctp:2
 msgid "Blog Category : {0}"
 msgstr "Blog Catégorie : {0}"
 
-#: Template/Blog/category.ctp:16 Template/Element/Forum/Thread/actions.ctp:55
+#: Template/Blog/category.ctp:16
 msgid "Category"
 msgstr "Catégorie"
 
-#: Template/Blog/category.ctp:124
+#: Template/Blog/category.ctp:115
 msgid "No articles were found for this category."
 msgstr "Aucun article n'a été trouvé pour cette catégorie."
 
-#: Template/Blog/index.ctp:128
+#: Template/Blog/index.ctp:120
 msgid "No articles were found."
 msgstr "Aucun article n'a été trouvé."
 
@@ -994,11 +562,11 @@ msgstr "Blog Recherche : {0}"
 msgid "Search : {0}"
 msgstr "Recherche : {0}"
 
-#: Template/Blog/search.ctp:119
+#: Template/Blog/search.ctp:109
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: Template/Blog/search.ctp:121
+#: Template/Blog/search.ctp:111
 msgid ""
 "No articles were found for your search, please try again with a different "
 "word."
@@ -1006,97 +574,50 @@ msgstr ""
 "Aucun article n'a été trouvé pour votre recherche, s'il vous plaît ressayez "
 "à nouveau avec un autre mot."
 
-#: Template/Blog/search.ctp:123
+#: Template/Blog/search.ctp:113
 msgid "Suggestions :"
 msgstr "Suggestions :"
 
-#: Template/Blog/search.ctp:126
+#: Template/Blog/search.ctp:116
 msgid "Check the spelling of your search words."
 msgstr "Vérifiez l'orthographe de vos mots de recherche."
 
-#: Template/Blog/search.ctp:129
+#: Template/Blog/search.ctp:119
 msgid "Try more general keywords."
 msgstr "Utilisez des mots plus généraux."
 
-#: Template/Blog/json/get_edit_comment.ctp:17
-msgid "Update Comment"
-msgstr "Mettre à jour le Commentaire"
+#: Template/Blog/json/get_edit_comment.ctp:17 Template/Users/account.ctp:125
+#: Template/Users/settings.ctp:46
+msgid "{0} Save"
+msgstr "{0} Sauvegarder"
 
 #: Template/Blog/json/get_edit_comment.ctp:18
-#: Template/Forum/Posts/json/get_edit_post.ctp:18
-msgid "Cancel"
-msgstr "Annuler"
+msgid "{0} Cancel"
+msgstr "{0} Annuler"
 
 #: Template/Cell/Blog/sidebar.ctp:3
 msgid "Search Posts"
 msgstr "Rechercher des Articles"
 
-#: Template/Cell/Blog/sidebar.ctp:13
+#: Template/Cell/Blog/sidebar.ctp:14
 msgid "Type your search..."
 msgstr "Tapez votre recherche..."
 
-#: Template/Cell/Blog/sidebar.ctp:20
+#: Template/Cell/Blog/sidebar.ctp:21
 msgid "Featured Article"
 msgstr "Dernier Article"
 
-#: Template/Cell/Blog/sidebar.ctp:58
+#: Template/Cell/Blog/sidebar.ctp:59
 msgid "Categories"
 msgstr "Catégories"
 
-#: Template/Cell/Blog/sidebar.ctp:72
+#: Template/Cell/Blog/sidebar.ctp:73
 msgid "Archives"
 msgstr "Archives"
 
-#: Template/Cell/Blog/sidebar.ctp:77
+#: Template/Cell/Blog/sidebar.ctp:78
 msgid "{0} ({1})"
 msgstr "{0} ({1})"
-
-#: Template/Cell/Conversations/sidebar.ctp:133;147
-#: Template/Element/Forum/Thread/actions.ctp:62;76
-#: Template/Element/Forum/Thread/reply.ctp:29
-#: Template/Forum/Threads/create.ctp:77;92
-msgid "Yes"
-msgstr "Oui"
-
-#: Template/Cell/Conversations/sidebar.ctp:134;148
-#: Template/Element/Forum/Thread/actions.ctp:63;77
-#: Template/Element/Forum/Thread/reply.ctp:30
-#: Template/Forum/Threads/create.ctp:78;93 Template/Users/premium.ctp:68
-msgid "No"
-msgstr "Non"
-
-#: Template/Cell/Forum/sidebar.ctp:5
-msgid "Staff Online"
-msgstr "Membres de l'équipe en ligne"
-
-#: Template/Cell/Forum/sidebar.ctp:53
-msgid "Latest Threads"
-msgstr "Derniers Sujets"
-
-#: Template/Cell/Forum/sidebar.ctp:65
-msgid "Created by {0}"
-msgstr "Créé par {0}"
-
-#: Template/Cell/Forum/sidebar.ctp:84 Template/Users/notifications.ctp:53
-msgid "At {0}"
-msgstr "Le {0}"
-
-#: Template/Cell/Forum/suggestion.ctp:9
-#: Template/Element/Forum/categories.ctp:15
-#: Template/Element/Forum/Category/threads.ctp:16
-#: Template/Element/Forum/Index/statistics.ctp:3
-msgid "Statistics"
-msgstr "Statistiques"
-
-#: Template/Cell/Forum/suggestion.ctp:52
-msgid "- By {0}"
-msgstr "- Par {0}"
-
-#: Template/Cell/Forum/suggestion.ctp:12
-msgid "There are {0} user on this page."
-msgid_plural "There are {0} users on this page."
-msgstr[0] "Il y a {0} utilisateur sur cette page."
-msgstr[1] "Il y a {0} utilisateurs sur cette page."
 
 #: Template/Cell/Notification/notifications.ctp:7
 msgid "News Notifications"
@@ -1119,9 +640,9 @@ msgstr "Toutes les Notifications"
 msgid "Contact me"
 msgstr "Contactez-Moi"
 
-#: Template/Contact/index.ctp:13;72 Template/Element/header.ctp:37
-#: Template/Error/error400.ctp:117 Template/Error/error500.ctp:117
-#: Template/Layout/Email/html/default.ctp:61
+#: Template/Contact/index.ctp:13;72 Template/Element/footer.ctp:18
+#: Template/Element/header.ctp:27 Template/Error/error400.ctp:118
+#: Template/Error/error500.ctp:118 Template/Layout/Email/html/default.ctp:54
 msgid "Contact"
 msgstr "Contact"
 
@@ -1145,7 +666,7 @@ msgstr ""
 "NEW : Vous pouvez maintenant me contacter directement sur le site via les "
 "Conversations Privées {0} !"
 
-#: Template/Contact/index.ctp:32
+#: Template/Contact/index.ctp:32 Template/Pages/terms.ctp:126
 msgid "here"
 msgstr "ici"
 
@@ -1182,8 +703,8 @@ msgid "Enter your message..."
 msgstr "Entrez votre message..."
 
 #: Template/Contact/index.ctp:67
-msgid "Send"
-msgstr "Envoyer"
+msgid "{0} Send"
+msgstr "{0} Envoyer"
 
 #: Template/Contact/index.ctp:81
 msgid "Secret"
@@ -1193,8 +714,7 @@ msgstr "Secret"
 msgid "Social"
 msgstr "Social"
 
-#: Template/Conversations/view.ctp:67
-#: Template/Element/Forum/Thread/posts.ctp:33
+#: Template/Conversations/view.ctp:69 Template/Users/profile.ctp:106
 msgid "Joined"
 msgstr "Inscription"
 
@@ -1210,282 +730,85 @@ msgstr ""
 msgid "{0} I understood."
 msgstr "{0} J'ai compris."
 
-#: Template/Element/footer.ctp:9 Template/Layout/Email/html/default.ctp:130
+#: Template/Element/footer.ctp:10 Template/Layout/Email/html/default.ctp:135
 msgid "&copy; {0} {1}."
 msgstr "&copy; {0} {1}."
 
-#: Template/Element/footer.ctp:10
-msgid "Source Code available on {0}"
-msgstr "Code Source disponible sur {0}"
+#: Template/Element/footer.ctp:15 Template/Pages/terms.ctp:16
+msgid "Terms"
+msgstr "Conditions d'Utilisation"
 
-#: Template/Element/footer.ctp:13
+#: Template/Element/footer.ctp:21
+msgid "Source Code available on Github"
+msgstr "Code Source disponible sur GitHub"
+
+#: Template/Element/footer.ctp:25
+msgid "Version : {0}"
+msgstr "Version : {0}"
+
+#: Template/Element/footer.ctp:29
 msgid "{0} with {1} and {2} by"
 msgstr "{0} avec {1} et {2} par"
 
-#: Template/Element/header.ctp:27 Template/Forum/Forum/categories.ctp:14
-#: Template/Forum/Forum/index.ctp:2;12 Template/Forum/Forum/threads.ctp:43
-#: Template/Forum/Threads/create.ctp:27
-#: Template/Layout/Email/html/default.ctp:51
-msgid "Forum"
-msgstr "Forum"
-
-#: Template/Element/header.ctp:45
+#: Template/Element/header.ctp:35
 msgid "Hello,"
 msgstr "Bonjour,"
 
-#: Template/Element/header.ctp:51
+#: Template/Element/header.ctp:43
 msgid "Login"
 msgstr "Connexion"
 
-#: Template/Element/header.ctp:53
+#: Template/Element/header.ctp:48
 msgid "Sign up"
 msgstr "Inscription"
 
-#: Template/Element/header.ctp:67
+#: Template/Element/header.ctp:66
+msgid "Visit your profile !"
+msgstr "Visiter votre profil !"
+
+#: Template/Element/header.ctp:71;77
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: Template/Element/header.ctp:74
-msgid "My Profile"
-msgstr "Mon Profil"
+#: Template/Element/header.ctp:73
+msgid "Access to the site administration."
+msgstr "Accéder à l'administration du site."
 
-#: Template/Element/header.ctp:80
-msgid "Conversations"
-msgstr "Conversations"
-
-#: Template/Element/header.ctp:85 Template/Users/account.ctp:2;30
+#: Template/Element/header.ctp:86;92 Template/Users/account.ctp:2;30
 msgid "My Account"
 msgstr "Mon Compte"
 
-#: Template/Element/header.ctp:90
-msgid "My Notifications"
-msgstr "Mes Notifications"
+#: Template/Element/header.ctp:88
+msgid "Manage your account settings."
+msgstr "Gérer les paramètres de votre compte."
 
-#: Template/Element/header.ctp:96
+#: Template/Element/header.ctp:101;107
+msgid "Conversations"
+msgstr "Conversations"
+
+#: Template/Element/header.ctp:103
+msgid "Check your private messages."
+msgstr "Consulter vos messages privés."
+
+#: Template/Element/header.ctp:116;122 Template/Users/notifications.ctp:2;16;30
+msgid "Notifications"
+msgstr "Notifications"
+
+#: Template/Element/header.ctp:118
+msgid "Check your new and old notifications."
+msgstr "Regarder vos nouvelles et anciennes notifications."
+
+#: Template/Element/header.ctp:131;137
 msgid "Logout"
 msgstr "Déconnexion"
+
+#: Template/Element/header.ctp:133
+msgid "See you later !"
+msgstr "À plus tard !"
 
 #: Template/Element/meta.ctp:4;24;40
 msgid "Welcome on Xeta"
 msgstr "Bienvenue sur Xeta"
-
-#: Template/Element/Forum/categories.ctp:12
-#: Template/Element/Forum/Category/threads.ctp:13
-msgid "Title"
-msgstr "Titre"
-
-#: Template/Element/Forum/categories.ctp:18
-#: Template/Element/Forum/Category/threads.ctp:19
-msgid "Last post"
-msgstr "Dernier post"
-
-#: Template/Element/Forum/categories.ctp:31
-#: Template/Element/Forum/Category/threads.ctp:30;36
-msgid "Unread"
-msgstr "Non-lu"
-
-#: Template/Element/Forum/categories.ctp:33
-#: Template/Element/Forum/Category/threads.ctp:32;38
-msgid "Read"
-msgstr "Lu"
-
-#: Template/Element/Forum/categories.ctp:84
-msgid "(Contains no threads)"
-msgstr "(Contient aucun sujets)"
-
-#: Template/Element/Forum/categories.ctp:107
-#: Template/Element/Forum/Category/threads.ctp:51;67
-msgid "By"
-msgstr "Par"
-
-#: Template/Element/Forum/categories.ctp:77
-msgid "{0} Thread"
-msgid_plural "{0} Threads"
-msgstr[0] "{0} Sujet"
-msgstr[1] "{0} Sujets"
-
-#: Template/Element/Forum/Category/actions.ctp:7
-msgid "{0} New Thread"
-msgstr "{0} Nouveau Sujet"
-
-#: Template/Element/Forum/Category/threads.ctp:5
-msgid "{0} Topics"
-msgstr "{0} Sujets"
-
-#: Template/Element/Forum/Category/threads.ctp:97
-msgid "No threads found"
-msgstr "Aucun sujet trouvés"
-
-#: Template/Element/Forum/Category/threads.ctp:99
-msgid "No threads were found for this category. {0}"
-msgstr "Aucun sujet n'a été trouvé pour cette catégorie. {0}"
-
-#: Template/Element/Forum/Category/threads.ctp:102
-msgid "{0} Create a Thread"
-msgstr "{0} Créer un Sujet"
-
-#: Template/Element/Forum/Category/threads.ctp:61
-msgid "{0} Response"
-msgid_plural "{0} Responses"
-msgstr[0] "{0} Réponse"
-msgstr[1] "{0} Réponses"
-
-#: Template/Element/Forum/Category/threads.ctp:62
-msgid "{0} View"
-msgid_plural "{0} Views"
-msgstr[0] "{0} Vue"
-msgstr[1] "{0} Vues"
-
-#: Template/Element/Forum/Index/statistics.ctp:12
-msgid "Toggle list"
-msgstr "Déplier la liste"
-
-#: Template/Element/Forum/Index/statistics.ctp:17
-msgid "Users Online"
-msgstr "Utilisateurs en ligne"
-
-#: Template/Element/Forum/Index/statistics.ctp:25
-msgid "Total Likes"
-msgstr "Total de J'aimes"
-
-#: Template/Element/Forum/Index/statistics.ctp:33
-msgid "Total Posts"
-msgstr "Total de Posts"
-
-#: Template/Element/Forum/Index/statistics.ctp:41
-msgid "Total Threads"
-msgstr "Total de Sujets"
-
-#: Template/Element/Forum/Index/statistics.ctp:49
-msgid "Total Members"
-msgstr "Total d'Utilisateurs"
-
-#: Template/Element/Forum/Index/statistics.ctp:57
-msgid "Newest Member"
-msgstr "Dernier Membre"
-
-#: Template/Element/Forum/Index/statistics.ctp:68
-msgid ""
-"{0} registered and {1} guests (based on users active over the past 5 minutes)"
-msgstr ""
-"{0} utilisateurs enregistrés et {1} invités (basé sur les utilisateurs "
-"actifs des 5 dernières minutes)"
-
-#: Template/Element/Forum/Index/statistics.ctp:73
-msgid "Legend : "
-msgstr "Légende : "
-
-#: Template/Element/Forum/Index/statistics.ctp:67
-msgid "In total there is <strong>{0}</strong> user online :"
-msgid_plural "In total there are <strong>{0}</strong> users online :"
-msgstr[0] "Au total, il y a <strong>{0}</strong> utilisateur en ligne :"
-msgstr[1] "Au total, il y a <strong>{0}</strong> utilisateurs en ligne :"
-
-#: Template/Element/Forum/Index/statistics.ctp:83
-msgid "Registered user :"
-msgid_plural "Registered users :"
-msgstr[0] "Utilisateur enregistré :"
-msgstr[1] "Utilisateurs enregistrés :"
-
-#: Template/Element/Forum/Thread/actions.ctp:11
-msgid "{0} Lock"
-msgstr "{0} Verrouiller"
-
-#: Template/Element/Forum/Thread/actions.ctp:17
-msgid "{0} Closed"
-msgstr "{0} Fermé"
-
-#: Template/Element/Forum/Thread/actions.ctp:21
-msgid "{0} Unlock"
-msgstr "{0} Déverrouiller"
-
-#: Template/Element/Forum/Thread/actions.ctp:30;46
-msgid "{0} Edit Thread"
-msgstr "{0} Editer le Sujet"
-
-#: Template/Element/Forum/Thread/actions.ctp:51
-#: Template/Forum/Threads/create.ctp:64
-msgid "Thread Title"
-msgstr "Titre du Sujet"
-
-#: Template/Element/Forum/Thread/actions.ctp:59
-#: Template/Forum/Threads/create.ctp:74
-msgid "Sticky Thread"
-msgstr "Sujet Epinglé"
-
-#: Template/Element/Forum/Thread/actions.ctp:73
-#: Template/Forum/Threads/create.ctp:89
-msgid "Lock Thread"
-msgstr "Verrouiller le Sujet"
-
-#: Template/Element/Forum/Thread/actions.ctp:89 Template/Users/account.ctp:126
-#: Template/Users/settings.ctp:46;70
-msgid "Save"
-msgstr "Sauvegarder"
-
-#: Template/Element/Forum/Thread/actions.ctp:106
-msgid "{0} Follow"
-msgstr "{0} Suivre"
-
-#: Template/Element/Forum/Thread/actions.ctp:111
-msgid "Follow this thread"
-msgstr "Suivre ce sujet"
-
-#: Template/Element/Forum/Thread/actions.ctp:121
-msgid "{0} Unfollow"
-msgstr "{0} Ne plus suivre"
-
-#: Template/Element/Forum/Thread/actions.ctp:126
-msgid "Unfollow this thread"
-msgstr "Ne plus suivre ce sujet"
-
-#: Template/Element/Forum/Thread/posts.ctp:13 Template/Users/profile.ctp:29
-msgid "Online"
-msgstr "En ligne"
-
-#: Template/Element/Forum/Thread/posts.ctp:15 Template/Users/profile.ctp:31
-msgid "Offline"
-msgstr "Hors ligne"
-
-#: Template/Element/Forum/Thread/posts.ctp:29
-msgid "Send a Message"
-msgstr "Envoyer un Message"
-
-#: Template/Element/Forum/Thread/posts.ctp:40
-msgid "Messsages created"
-msgstr "Messages créés"
-
-#: Template/Element/Forum/Thread/posts.ctp:45
-msgid "Threads created"
-msgstr "Sujet créés"
-
-#: Template/Element/Forum/Thread/posts.ctp:50
-msgid "Likes received"
-msgstr "J'aimes reçu"
-
-#: Template/Element/Forum/Thread/posts.ctp:56
-msgid "Badges"
-msgstr "Badges"
-
-#: Template/Element/Forum/Thread/posts.ctp:89
-msgid "Post Link"
-msgstr "Lien du Post"
-
-#: Template/Element/Forum/Thread/posts.ctp:134
-msgid "{0} Last Edit: {1}, {2}"
-msgstr "{0} Dernière Edition: {1}, {2}"
-
-#: Template/Element/Forum/Thread/posts.ctp:233
-msgid "Advertising"
-msgstr "Publicité"
-
-#: Template/Element/Forum/Thread/reply.ctp:6
-msgid "Reply to this Thread"
-msgstr "Répondre à ce Sujet"
-
-#: Template/Element/Forum/Thread/reply.ctp:26
-msgid "Lock the Thread with the response ?"
-msgstr "Verrouiller le sujet avec la réponse ?"
 
 #: Template/Element/Users/sidebar.ctp:8
 msgid "{0} Account {1}"
@@ -1496,80 +819,32 @@ msgid "{0} Conversations {1}"
 msgstr "{0} Conversations {1}"
 
 #: Template/Element/Users/sidebar.ctp:24
-msgid "{0} Settings {1}"
-msgstr "{0} Paramètres {1}"
-
-#: Template/Element/Users/sidebar.ctp:32
 msgid "{0} Notifications {1}"
 msgstr "{0} Notifications {1}"
 
-#: Template/Element/Users/sidebar.ctp:40
-msgid "{0} Premium {1}"
-msgstr "{0} Premium {1}"
+#: Template/Element/Users/sidebar.ctp:32
+msgid "{0} Settings {1}"
+msgstr "{0} Paramètres {1}"
 
-#: Template/Error/error400.ctp:2 Template/Error/error500.ctp:2
+#: Template/Error/error400.ctp:3 Template/Error/error500.ctp:3
 msgid "Error {0} :("
 msgstr "Erreur {0} :("
 
-#: Template/Error/error400.ctp:113
+#: Template/Error/error400.ctp:114
 msgid "Aaaaaaaaaaaaaah ! You broke the robot !"
 msgstr "Aaaaaaaaaaaaaah ! Vous avez cassé le robot !"
 
-#: Template/Error/error500.ctp:113
+#: Template/Error/error500.ctp:114
 msgid "Our monkey's team are working on this error !"
 msgstr "Notre équipe de singe travaillent sur cette erreur !"
-
-#: Template/Forum/Posts/json/get_edit_post.ctp:17
-msgid "Update Post"
-msgstr "Mettre à jour le Post"
-
-#: Template/Forum/Threads/create.ctp:2;42
-msgid "New Thread"
-msgstr "Nouveau Sujet"
-
-#: Template/Forum/Threads/create.ctp:56
-msgid "Create a new Thread"
-msgstr "Créer un nouveau Sujet"
-
-#: Template/Forum/Threads/create.ctp:69
-msgid "Title..."
-msgstr "Titre..."
-
-#: Template/Forum/Threads/create.ctp:105
-msgid "Message"
-msgstr "Message"
-
-#: Template/Forum/Threads/create.ctp:122
-msgid "{0} Create Thread"
-msgstr "{0} Créer un Sujet"
-
-#: Template/Forum/Threads/create.ctp:125
-msgid "{0} Save Draft"
-msgstr "{0} Sauvegarder le Draft"
-
-#: Template/Forum/Threads/create.ctp:130
-msgid "The Draft has been saved successfully !"
-msgstr "Le Draft a été enregistré avec succès !"
-
-#: Template/Forum/Threads/create.ctp:139
-msgid "Delete the Draft"
-msgstr "Supprimer le Draft"
-
-#: Template/Forum/Threads/create.ctp:143
-msgid "The Draft has been cleaned successfully !"
-msgstr "Le Draft a été nettoyé avec succès !"
-
-#: Template/Forum/Threads/create.ctp:147
-msgid "{0} Cancel"
-msgstr "{0} Annuler"
 
 #: Template/Groups/view.ctp:2 Template/Users/index.ctp:2
 msgid "Xeta's members"
 msgstr "Membres de Xeta"
 
-#: Template/Groups/view.ctp:12 Template/Users/account.ctp:27
-#: Template/Users/index.ctp:12 Template/Users/notifications.ctp:13
-#: Template/Users/premium.ctp:13 Template/Users/profile.ctp:13
+#: Template/Groups/view.ctp:12 Template/Pages/home.ctp:514
+#: Template/Users/account.ctp:27 Template/Users/index.ctp:12
+#: Template/Users/notifications.ctp:13 Template/Users/profile.ctp:73
 #: Template/Users/settings.ctp:13
 msgid "Users"
 msgstr "Utilisateurs"
@@ -1583,7 +858,7 @@ msgid "Ordered by Group : {0}"
 msgstr "Ordonné par Groupe : {0}"
 
 #: Template/Groups/view.ctp:31 Template/Users/index.ctp:28
-#: Template/Users/login.ctp:45;140
+#: Template/Users/login.ctp:45;146
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -1607,11 +882,11 @@ msgstr "Dernière connexion"
 msgid "Visit his profile."
 msgstr "Visiter son profil."
 
-#: Template/Pages/home.ctp:227
+#: Template/Pages/home.ctp:307
 msgid "Welcome on {0} !"
 msgstr "Bienvenue sur {0} !"
 
-#: Template/Pages/home.ctp:230
+#: Template/Pages/home.ctp:311
 msgid ""
 "Welcome to my personal website ! I use this site as my personal blog and for "
 "try my  experiences in development."
@@ -1619,19 +894,19 @@ msgstr ""
 "Bienvenue sur mon site personnel ! J'utilise ce site comme mon blog "
 "personnel et pour essayer mes expériences dans le développement."
 
-#: Template/Pages/home.ctp:234
-msgid "Sign Up now {0}"
-msgstr "Inscrivez-vous dès maintenant {0}"
+#: Template/Pages/home.ctp:316
+msgid "{0} Sign Up now"
+msgstr "{0} Inscrivez-Vous"
 
-#: Template/Pages/home.ctp:236
-msgid "Visit the Blog {0}"
-msgstr "Visitez le Blog {0}"
+#: Template/Pages/home.ctp:317;319
+msgid "{0} Visit the Blog"
+msgstr "{0} Visitez le Blog"
 
-#: Template/Pages/home.ctp:252
+#: Template/Pages/home.ctp:351
 msgid "Open Source"
 msgstr "Open Source"
 
-#: Template/Pages/home.ctp:255
+#: Template/Pages/home.ctp:354
 msgid ""
 "The code source of this website is open source and available on {0}. If you "
 "want to contribute, feel free to do a PR."
@@ -1639,11 +914,11 @@ msgstr ""
 "Le code source de ce site est open source et disponible sur {0}. Si vous "
 "souhaitez contribuer, n'hésitez pas à faire une PR."
 
-#: Template/Pages/home.ctp:263
+#: Template/Pages/home.ctp:371
 msgid "Experiences"
 msgstr "Expériences"
 
-#: Template/Pages/home.ctp:266
+#: Template/Pages/home.ctp:374
 msgid ""
 "I use this site for my personal experiences in development, to try new "
 "things like JS libraries, or PHP libraries."
@@ -1652,11 +927,11 @@ msgstr ""
 "développement, essayer de nouvelles choses comme des librairies JS, PHP, CSS "
 "etc."
 
-#: Template/Pages/home.ctp:274
+#: Template/Pages/home.ctp:391
 msgid "Interact"
 msgstr "Interagir"
 
-#: Template/Pages/home.ctp:277
+#: Template/Pages/home.ctp:394
 msgid ""
 "You can interact with {0}'s members in the blog or directly with me in the "
 "comments of an article."
@@ -1664,158 +939,326 @@ msgstr ""
 "Vous pouvez interagir avec les membres de {0} dans le blog ou directement "
 "avec moi dans les commentaires d'un article."
 
-#: Template/Pages/home.ctp:286
+#: Template/Pages/home.ctp:405
 msgid "Latest Articles"
 msgstr "Derniers Articles"
 
-#: Template/Pages/home.ctp:379
+#: Template/Pages/home.ctp:529
+msgid "Premium"
+msgstr "Premium"
+
+#: Template/Pages/home.ctp:544 Template/Users/profile.ctp:41
+msgid "Comments"
+msgstr "Commentaires"
+
+#: Template/Pages/home.ctp:559
+msgid "Likes"
+msgstr "J'aimes"
+
+#: Template/Pages/home.ctp:573
 msgid "Latest Comments"
 msgstr "Derniers Commentaires"
 
-#: Template/Premium/cancel.ctp:18
-msgid "Your payment has been canceled !"
-msgstr "Votre paiement a été annulé !"
+#: Template/Pages/terms.ctp:5;27 Template/Users/login.ctp:114
+msgid "Terms of Service"
+msgstr "Conditions d'Utilisation"
 
-#: Template/Premium/cancel.ctp:21
+#: Template/Pages/terms.ctp:31
+msgid "Last update : {0}"
+msgstr "Dernière Édition : {0}"
+
+#: Template/Pages/terms.ctp:38
+msgid "Summary"
+msgstr "Sommaire"
+
+#: Template/Pages/terms.ctp:43;90
+msgid "General Information"
+msgstr "Informations Générales"
+
+#: Template/Pages/terms.ctp:48;101
+msgid "Account Terms"
+msgstr "Conditions des Comptes"
+
+#: Template/Pages/terms.ctp:53;134
+msgid "Copyright and Content Ownership"
+msgstr "Droits d'Auteur et la Propriété de Contenu"
+
+#: Template/Pages/terms.ctp:58;149
+msgid "General Conditions"
+msgstr "Conditions Générales"
+
+#: Template/Pages/terms.ctp:63;182
+msgid "Privacy Policy Terms"
+msgstr "Conditions des Politiques de Confidentialité"
+
+#: Template/Pages/terms.ctp:69;188
+msgid "Cookies"
+msgstr "Cookies"
+
+#: Template/Pages/terms.ctp:74;206
+msgid "Data Storage"
+msgstr "Stockage des Données"
+
+#: Template/Pages/terms.ctp:79;218
+msgid "Information Gathering and Usage"
+msgstr "Collecte et Utilisation des Informations"
+
+#: Template/Pages/terms.ctp:93
 msgid ""
-"Your payment has been canceled, you can make a new payment in the page "
-"Premium. {0}"
+"Violation of any of the terms below will result in the termination of your "
+"Account. While {0} prohibits such conduct and Content on the Service, you "
+"understand and agree that {0} cannot be responsible for the Content posted "
+"on the Service and you nonetheless may be exposed to such materials. You "
+"agree to use the Service at your own risk."
 msgstr ""
-"Votre paiement a été annulé, vous pouvez faire un nouveau paiement sur la "
-"page Premium. {0}"
+"La violation de l'une des conditions ci-dessous entraînera la résiliation de "
+"votre compte. Alors que {0} interdit un tel comportement et de contenu sur "
+"le Service, vous comprenez et acceptez que {0} ne peut pas être responsable "
+"du Contenu publié sur le service et que vous pouvez néanmoins être exposés à "
+"ces matériaux. Vous vous engagez à utiliser le Service à vos propres risques."
 
-#: Template/Premium/cancel.ctp:22
-msgid "Premium {0}"
-msgstr "Premium {0}"
+#: Template/Pages/terms.ctp:105
+msgid "You must be 13 years or older to use this Service."
+msgstr "Vous devez avoir 13 ans ou plus pour utiliser ce Service."
 
-#: Template/Premium/cancel.ctp:26 Template/Premium/success.ctp:45
-msgid "Go Home {0}"
-msgstr "Aller à l'Accueil {0}"
-
-#: Template/Premium/index.ctp:22
+#: Template/Pages/terms.ctp:108
 msgid ""
-"Become a Premium and access to tutorials resources, win a badge and more in "
-"the future !"
+"You must provide your username, a valid email address, and any other "
+"information requested in order to complete the signup process."
 msgstr ""
-"Devenez un Premium et accédez aux ressources de tutoriels, gagner un badge "
-"et plus dans le futur !"
+"Vous devez fournir votre nom, une adresse E-mail valide, et toute autre "
+"information requise afin de compléter le processus d'inscription."
 
-#: Template/Premium/index.ctp:29
+#: Template/Pages/terms.ctp:111
 msgid ""
-"You're already Premium, but you can extend your subscription if you want ! "
-"Your Premium will be ended at {0}."
+"You are responsible for maintaining the security of your account and "
+"password. {0} cannot and will not be liable for any loss or damage from your "
+"failure to comply with this security obligation."
 msgstr ""
-"Vous êtes déjà Premium, mais vous pouvez prolonger votre abonnement si vous "
-"le souhaitez ! Votre Premium sera terminé à {0}."
+"Vous êtes responsable du maintien de la sécurité de votre compte et de votre "
+"mot de passe. {0} ne peut pas et ne sera pas responsable de toute perte ou "
+"dommages résultant de votre non-respect de cette obligation de sécurité."
 
-#: Template/Premium/index.ctp:35
-msgid "You need to be connected to purchase the Premium. {0}"
-msgstr "Vous devez être connecté pour acheter le Premium. {0}"
-
-#: Template/Premium/index.ctp:36;85
-msgid "Login {0}"
-msgstr "Connexion {0}"
-
-#: Template/Premium/index.ctp:68
-msgid "Resources in Tutorials"
-msgstr "Ressources dans les Tutoriels"
-
-#: Template/Premium/index.ctp:69
-msgid "Premium Badge"
-msgstr "Badge Premium"
-
-#: Template/Premium/index.ctp:70
-msgid "Yellow color in Chat & Forum"
-msgstr "Couleur jaune dans le Chat & Forum"
-
-#: Template/Premium/index.ctp:77
-msgid "Discount Code"
-msgstr "Code de Réduction"
-
-#: Template/Premium/index.ctp:79
-msgid "Extend {0}"
-msgstr "Prolonger {0}"
-
-#: Template/Premium/index.ctp:79
-msgid "Subscribe {0}"
-msgstr "S'abonner {0}"
-
-#: Template/Premium/index.ctp:61 Template/Users/premium.ctp:52
-msgid "{0} Month"
-msgid_plural "{0} Months"
-msgstr[0] "{0} Mois"
-msgstr[1] "{0} Mois"
-
-#: Template/Premium/index.ctp:61
-msgctxt "Excluding VAT"
-msgid "Excl VAT"
-msgstr "HT"
-
-#: Template/Premium/success.ctp:18;41
-msgid "Thanks for purchasing the Premium !"
-msgstr "Merci d'avoir acheté le Premium !"
-
-#: Template/Premium/success.ctp:21
-msgid "You have unlock the badge Premium"
-msgstr "Vous avez déverrouillé le badge Premium."
-
-#: Template/Premium/success.ctp:29
-msgid "Your Premium will be ended at {0}."
-msgstr "Votre Premium sera terminé à {0}."
-
-#: Template/Premium/success.ctp:31
-msgid "My Profil {0}"
-msgstr "Mon Profil {0}"
-
-#: Template/Premium/success.ctp:43
+#: Template/Pages/terms.ctp:114
 msgid ""
-"Your account will be upgraded when the transaction will be completed ! It "
-"can take 2-3 hours, it depend of Paypal."
+"You are responsible for all Content posted and activity that occurs under "
+"your Account."
 msgstr ""
-"Votre compte sera mis à jour lorsque la transaction sera complétée ! Ceci "
-"peut prendre deux à trois heures, cela dépend de Paypal."
+"Vous êtes responsable de tout Contenu posté et de l'activité qui se produit "
+"avec votre Compte."
+
+#: Template/Pages/terms.ctp:117
+msgid ""
+"Selling your Account is totally prohibited and will result in the "
+"termination of your Account."
+msgstr ""
+"La vente de votre Compte est totalement interdite et entraînera la "
+"résiliation de votre Compte."
+
+#: Template/Pages/terms.ctp:120
+msgid ""
+"It is totally prohibited to share your Account with an other user. In that "
+"case, the Account shared will be immediately banned and you will lose all "
+"purchases made from your Account."
+msgstr ""
+"Il est totalement interdit de partager votre Compte avec un autre "
+"utilisateur. Dans ce cas, le Compte partagé sera immédiatement résilié et "
+"vous perdrez tous les achats effectués depuis votre Compte."
+
+#: Template/Pages/terms.ctp:123
+msgid "One person or legal entity may not maintain more than one Account."
+msgstr ""
+"Une personne physique ou morale ne peuvent pas maintenir plus d'un Compte."
+
+#: Template/Pages/terms.ctp:126
+msgid ""
+"When deleting your Account, all your Content will not be deleted directly. "
+"If you want all your Content to be deleted, please ask {0}."
+msgstr ""
+"Lors de la suppression de votre Compte, tout votre Contenu ne sera pas "
+"supprimé directement. Si vous voulez que tout votre contenu soit supprimé, "
+"s'il vous plaît veuillez demander {0}."
+
+#: Template/Pages/terms.ctp:138
+msgid ""
+"The look and feel of the Service is copyright &copy;{0} {1}. All rights "
+"reserved. You may not duplicate, copy, or reuse any portion of the HTML/CSS, "
+"Javascript, or visual design elements or concepts without express written "
+"permission from {1}."
+msgstr ""
+"L'aspect et la convivialité du Service sont protégés par les droits d'auteur "
+"&copy;{0} {1}. Tous droits réservés. Vous ne pouvez pas dupliquer, copier, "
+"ou réutiliser toute ou une partie du HTML/CSS, Javascript, ou des éléments "
+"de conception visuelle ou des concepts sans autorisation expresse écrite de "
+"{1}."
+
+#: Template/Pages/terms.ctp:141
+msgid ""
+"All trademarks, service marks, trade names, trade dress, product names and "
+"logos appearing on the site are the property of their respective owners."
+msgstr ""
+"Toutes les marques de commerce, marques de service, noms commerciaux, robe "
+"de commerce, noms de produits et logos figurant sur le site sont la "
+"propriété de leurs propriétaires respectifs."
+
+#: Template/Pages/terms.ctp:153
+msgid ""
+"Your use of the Service is at your sole risk. The service is provided on an "
+"\"as is\" and \"as available\" basis."
+msgstr ""
+"Votre utilisation du Service est à votre seul risque. Le service est fourni "
+"\"tel quel\" et \"tel que disponible\"."
+
+#: Template/Pages/terms.ctp:156
+msgid ""
+"You understand that {0} uses third-party vendors and hosting partners to "
+"provide the necessary hardware, software, networking, storage, and related "
+"technology required to run the Service."
+msgstr ""
+"Vous comprenez que {0} utilise ou peut utiliser des fournisseurs tiers et "
+"partenaires d'hébergement pour fournir le matériel, les logiciels, les "
+"réseaux, le stockage et la technologie nécessaire pour exécuter le Service."
+
+#: Template/Pages/terms.ctp:159
+msgid ""
+"You must not modify, adapt or hack the Service or modify another website so "
+"as to falsely imply that it is associated with the Service, {0}, or any "
+"other {0} service."
+msgstr ""
+"Vous ne devez pas modifier, adapter ou pirater le Service ou modifier un "
+"autre site afin d'impliquer faussement qu'il est associé avec le Service, "
+"{0}, ou tout autre Service {0}."
+
+#: Template/Pages/terms.ctp:162
+msgid ""
+"You agree not to reproduce, duplicate, copy, sell, resell or exploit any "
+"portion of the Service, use of the Service, or access to the Service without "
+"the express written permission by {0}."
+msgstr ""
+"Vous acceptez de ne pas reproduire, dupliquer, copier, vendre, revendre ou "
+"exploiter tout ou une partie du Service, l'utilisation du Service, ou "
+"l'accès au Service sans l'autorisation expresse écrite par {0}."
+
+#: Template/Pages/terms.ctp:165
+msgid ""
+"We may, but have no obligation to, remove Content and Accounts containing "
+"Content that we determine in our sole discretion are unlawful, offensive, "
+"threatening, libelous, defamatory, pornographic, obscene or otherwise "
+"objectionable or violates any party's intellectual property or these Terms "
+"of Service."
+msgstr ""
+"Nous pouvons, mais n'avons aucune obligation, de supprimer du Contenu et des "
+"Comptes contenant du contenu que nous déterminons à notre seule discrétion "
+"qui sont illégales, offensant, menaçant, diffamatoire, pornographique, "
+"obscène ou autrement répréhensible ou qui viole la propriété intellectuelle "
+"d'une partie ou de ces Conditions d'Utilisation."
+
+#: Template/Pages/terms.ctp:168
+msgid ""
+"Verbal, physical, written or other abuse (including threats of abuse or "
+"retribution) of any {0} customer, members, or staff will result in immediate "
+"account termination."
+msgstr ""
+"Tout abus verbale, physique, écrit ou autre abus (y compris les menaces de "
+"violence) envers tout client, membre ou personnel {0}, entraînera la "
+"résiliation immédiate du compte."
+
+#: Template/Pages/terms.ctp:171
+msgid ""
+"You understand that the technical processing and transmission of the "
+"Service, including your Content, may be transferred unencrypted."
+msgstr ""
+"Vous comprenez que le traitement technique et la transmission du Service, y "
+"compris votre Contenu, peuvent être transférées \"en clair\", non crypté."
+
+#: Template/Pages/terms.ctp:174
+msgid "Questions about the Terms of Service should be sent to {0}."
+msgstr ""
+"Les questions sur les Conditions d'Utilisation doivent être envoyées à {0}."
+
+#: Template/Pages/terms.ctp:193
+msgid ""
+"A cookie is a small amount of data, which often includes an anonymous unique "
+"identifier, that is sent to your browser from a web site's computers and "
+"stored on your computer's hard drive."
+msgstr ""
+"Un \"Cookie\" est une petite quantité de données, qui comprend souvent un "
+"identifiant unique et anonyme, qui est envoyé à votre navigateur depuis les "
+"ordinateurs d'un site web et stocké sur le disque dur de votre ordinateur."
+
+#: Template/Pages/terms.ctp:196
+msgid "Cookies are required to use the {0} service."
+msgstr "Les Cookies sont nécessaires à l'utilisation du Service {0}."
+
+#: Template/Pages/terms.ctp:199
+msgid ""
+"We use cookies to record current session information, but do not use "
+"permanent cookies. You are required to re-login to your {0} account after a "
+"certain period of time has elapsed to protect you against others "
+"accidentally accessing your account contents."
+msgstr ""
+"Nous utilisons les Cookies pour enregistrer des informations de session en "
+"cours, mais nous utilisons pas des Cookies permanents. Vous êtes tenu de "
+"vous reconnecter à votre compte {0} après un certain laps de temps, pour "
+"vous protéger contre les autres personnes physiques et moral qui pourrais "
+"accéder accidentellement au contenu de votre compte."
+
+#: Template/Pages/terms.ctp:211
+msgid ""
+"{0} uses third-party vendors and hosting partners to provide the necessary "
+"hardware, software, networking, storage, and related technology required to "
+"run {0}. Although {0} owns the code, databases, and all rights to the {0} "
+"application, you retain all rights to your data."
+msgstr ""
+"{0} utilise des fournisseurs tiers et partenaires d'hébergement pour fournir "
+"le matériel, les logiciels, les réseaux, le stockage et la technologie "
+"nécessaire pour faire fonctionner le service {0}. Bien que {0} possède le "
+"code, bases de données, et tous les droits à l'application {0}, vous "
+"conservez tous les droits sur vos données."
+
+#: Template/Pages/terms.ctp:223
+msgid ""
+"{0} uses collected information for the following general purposes: products "
+"and services payments, billing, identification and authentication, services "
+"improvement, contact, and research."
+msgstr ""
+"{0} utilise les informations collectées pour les fins suivantes: les "
+"paiements de produits et services, la facturation, l'identification et "
+"l'authentification, l'amélioration des services, et la recherche."
 
 #: Template/Users/account.ctp:54
 msgid "Default Avatar"
 msgstr "Avatar par Défaut"
 
-#: Template/Users/account.ctp:61
-msgid "Select image"
-msgstr "Sélectionner une Image"
-
 #: Template/Users/account.ctp:62
 msgid "Change"
 msgstr "Changer"
 
-#: Template/Users/account.ctp:68
-msgid "Remove"
-msgstr "Supprimer"
-
-#: Template/Users/account.ctp:74
+#: Template/Users/account.ctp:73
 msgid "First Name"
 msgstr "Prénom"
 
-#: Template/Users/account.ctp:78
+#: Template/Users/account.ctp:77
 msgid "Last Name"
 msgstr "Nom"
 
-#: Template/Users/account.ctp:86
+#: Template/Users/account.ctp:85
 msgid "Twitter"
 msgstr "Twitter"
 
-#: Template/Users/account.ctp:93
+#: Template/Users/account.ctp:92
 msgid "Facebook"
 msgstr "Facebook"
 
-#: Template/Users/account.ctp:100
+#: Template/Users/account.ctp:99
 msgid "Biography"
 msgstr "Biographie"
 
-#: Template/Users/account.ctp:102
+#: Template/Users/account.ctp:101
 msgid "The biography will be displayed on your profile page."
 msgstr "La biographie sera affichée sur votre page de profil."
 
-#: Template/Users/account.ctp:115
+#: Template/Users/account.ctp:114
 msgid ""
 "The signature will be displayed on each article that you have wrotten on the "
 "blog."
@@ -1866,7 +1309,8 @@ msgstr ""
 msgid "Create an Account"
 msgstr "Créer un Compte"
 
-#: Template/Users/login.ctp:81;157 Template/Users/reset_password.ctp:44
+#: Template/Users/login.ctp:81;163 Template/Users/reset_password.ctp:44
+#: Template/Users/settings.ctp:105
 msgid "Password"
 msgstr "Mot de Passe"
 
@@ -1875,146 +1319,106 @@ msgid "Password (Confirmation)"
 msgstr "Mot de Passe (Confirmation)"
 
 #: Template/Users/login.ctp:113
+msgid ""
+"By clicking the button \"SignUp\", you accept that you have read and "
+"understand the {0}."
+msgstr ""
+"En cliquant sur le bouton \"Inscription\", vous acceptez que vous avez lu et "
+"compris les {0}."
+
+#: Template/Users/login.ctp:119
 msgid "SignUp {0}"
 msgstr "Inscription {0}"
 
-#: Template/Users/login.ctp:127
+#: Template/Users/login.ctp:133
 msgid "Login to your Account"
 msgstr "Connectez-vous à votre compte"
 
-#: Template/Users/login.ctp:166
+#: Template/Users/login.ctp:172
 msgid "Forgot your password ?"
 msgstr "Vous avez oublié votre mot de passe ? "
 
-#: Template/Users/login.ctp:171
+#: Template/Users/login.ctp:177
 msgid "LogIn {0}"
 msgstr "Connexion {0}"
 
-#: Template/Users/notifications.ctp:2;16;30
-msgid "Notifications"
-msgstr "Notifications"
+#: Template/Users/notifications.ctp:53
+msgid "At {0}"
+msgstr "Le {0}"
 
 #: Template/Users/notifications.ctp:83
 msgid "You don't have any notification yet."
 msgstr "Vous n'avez pas encore de notifications."
 
-#: Template/Users/premium.ctp:30
-msgid "Premium Purchases"
-msgstr "Achats de Premium"
-
-#: Template/Users/premium.ctp:33
-msgid "You can see here all your premium purchases."
-msgstr "Vous pouvez voir ici tous vos achats de Premium."
-
-#: Template/Users/premium.ctp:39
-msgid "Offer"
-msgstr "Offre"
-
-#: Template/Users/premium.ctp:40
-msgid "Offer Amount"
-msgstr "Montant de l'Offre"
-
-#: Template/Users/premium.ctp:41
-msgid "Amount HT"
-msgstr "Montant HT"
-
-#: Template/Users/premium.ctp:42
-msgid "Tax"
-msgstr "Taxe"
-
-#: Template/Users/premium.ctp:43
-msgid "Discount"
-msgstr "Réduction"
-
-#: Template/Users/premium.ctp:44
-msgid "Discount Amount"
-msgstr "Montant de la Réduction"
-
-#: Template/Users/premium.ctp:45
-msgid "Date"
-msgstr "Date"
-
-#: Template/Users/premium.ctp:76
-msgid "0{0}"
-msgstr "0{0}"
-
-#: Template/Users/premium.ctp:101
-msgid "You haven't purchased the Premium yet. {0}"
-msgstr "Vous n'avez pas encore acheté de Premium. {0}"
-
-#: Template/Users/premium.ctp:102
-msgid "Check the offers {0}"
-msgstr "Voir les offres {0}"
-
 #: Template/Users/profile.ctp:2
 msgid "{0}'s profile"
 msgstr "Profil de {0}"
 
-#: Template/Users/profile.ctp:56
+#: Template/Users/profile.ctp:18;19;89;90
+msgid "Online"
+msgstr "En ligne"
+
+#: Template/Users/profile.ctp:21;22;92;93
+msgid "Offline"
+msgstr "Hors ligne"
+
+#: Template/Users/profile.ctp:112
+msgid "Send a Message"
+msgstr "Envoyer un Message"
+
+#: Template/Users/profile.ctp:134
 msgid "Edit my profile {0}"
 msgstr "Editer mon profil {0}"
 
-#: Template/Users/profile.ctp:60
+#: Template/Users/profile.ctp:139
+msgid "{0} Edit this User"
+msgstr "{0} Éditer cet utilisateur"
+
+#: Template/Users/profile.ctp:153
 msgid "Your Biography"
 msgstr "Votre Biographie"
 
-#: Template/Users/profile.ctp:62
+#: Template/Users/profile.ctp:155
 msgid "His Biography"
 msgstr "Sa Biographie"
 
-#: Template/Users/profile.ctp:70
+#: Template/Users/profile.ctp:165
 msgid "You don't have set a biography."
 msgstr "Vous n'avez pas encore renseigné votre biographie."
 
-#: Template/Users/profile.ctp:71
+#: Template/Users/profile.ctp:166
 msgid "{0} Add one now"
 msgstr "{0} Modifier maintenant"
 
-#: Template/Users/profile.ctp:73
+#: Template/Users/profile.ctp:168
 msgid "This user hasn't set a biography yet."
 msgstr "Cet utilisateur n'a pas encore renseigné sa biographie."
 
-#: Template/Users/profile.ctp:81
+#: Template/Users/profile.ctp:177
 msgid "Your Badges"
 msgstr "Vos Badges"
 
-#: Template/Users/profile.ctp:83
+#: Template/Users/profile.ctp:179
 msgid "His Badges"
 msgstr "Ces Badges"
 
-#: Template/Users/profile.ctp:104
-msgid "Your Lastest Threads in the Forum"
-msgstr "Vos dernières Sujets dans le Forum"
-
-#: Template/Users/profile.ctp:106
-msgid "His Lastest Threads in the Forum"
-msgstr "Ces derniers Sujets dans le Forum"
-
-#: Template/Users/profile.ctp:130;167;204;241
-msgid "Created at {0}"
-msgstr "Créé le {0}"
-
-#: Template/Users/profile.ctp:141
-msgid "Your Lastest Posts in the Forum"
-msgstr "Vos derniers Messages dans le Forum"
-
-#: Template/Users/profile.ctp:143
-msgid "His Lastest Posts in the Forum"
-msgstr "Ces derniers Messages dans le Forum"
-
-#: Template/Users/profile.ctp:178
+#: Template/Users/profile.ctp:200
 msgid "Your Lastest Articles in the Blog"
 msgstr "Vos derniers Articles dans le Blog"
 
-#: Template/Users/profile.ctp:180
+#: Template/Users/profile.ctp:202
 msgid "His Lastest Articles in the Blog"
 msgstr "Ces derniers Articles dans le Blog"
 
-#: Template/Users/profile.ctp:215
+#: Template/Users/profile.ctp:227;266
+msgid "Created at {0}"
+msgstr "Créé le {0}"
+
+#: Template/Users/profile.ctp:239
 msgid "Your Lastest Comments in the Blog"
 msgstr "Vos derniers Commentaires dans le Blog"
 
-#: Template/Users/profile.ctp:217
+#: Template/Users/profile.ctp:241
 msgid "His Lastest Comments in the Blog"
 msgstr "Ces derniers Commentaires dans le Blog"
 
@@ -2054,15 +1458,23 @@ msgstr "Nouveau Mot de Passe"
 msgid "New Password (confirm)"
 msgstr "Nouveau Mot de Passe (confirmation)"
 
+#: Template/Users/settings.ctp:70
+msgid "{0} Change"
+msgstr "{0} Changer"
+
 #: Template/Users/settings.ctp:75
 msgid "Delete your Account"
 msgstr "Supprimer votre Compte"
 
-#: Template/Users/settings.ctp:78;88
+#: Template/Users/settings.ctp:78
+msgid "{0} Delete my Account"
+msgstr "{0} Supprimer mon Compte"
+
+#: Template/Users/settings.ctp:88
 msgid "Delete my Account"
 msgstr "Supprimer mon Compte"
 
-#: Template/Users/settings.ctp:91
+#: Template/Users/settings.ctp:97
 msgid ""
 "Are you sure you want delete your account ? <strong>This operation is not "
 "reversible.</strong>"
@@ -2070,9 +1482,729 @@ msgstr ""
 "Êtes-vous sûr de vouloir supprimer votre compte? <strong>Cette opération "
 "n'est pas réversible.</strong>"
 
-#: Template/Users/settings.ctp:94
+#: Template/Users/settings.ctp:110
 msgid "Yes, i confirm !"
 msgstr "Oui, je confirme !"
+
+#~ msgid "This offer does not exist."
+#~ msgstr "Cet offre n'existe pas."
+
+#~ msgid "Your discount code isn't valid or has already been used."
+#~ msgstr "Votre code de réduction n'est pas valide ou a déjà été utilisé."
+
+#~ msgid ""
+#~ "Unable to get the Paypal URL, please contact an administrator or try "
+#~ "again later."
+#~ msgstr ""
+#~ "Impossible d'obtenir l'URL Paypal, veuillez contacter un administrateur "
+#~ "ou réessayez plus tard."
+
+#~ msgid "Premium {0} month"
+#~ msgid_plural "Premium {0} months"
+#~ msgstr[0] "Premium {0} mois"
+#~ msgstr[1] "Premium {0} mois"
+
+#~ msgid "Forgot your Password - Xeta"
+#~ msgstr "Réinitialisation du Mot de Passe - Xeta"
+
+#~ msgid "The txn {0} has already been used."
+#~ msgstr "The txn {0} a déjà été utilisé."
+
+#~ msgid "The Email {0} is not the same as the config Email {0}."
+#~ msgstr "L'Email {0} n'est pas le même que l'Email de configuration {0}."
+
+#~ msgid "The price does not match with the offer price."
+#~ msgstr "Le prix ne correspond pas avec le prix de l'offre."
+
+#~ msgid "The currency offer does not match with the Paypal currency."
+#~ msgstr ""
+#~ "Le code monétaire de l'offre ne correspond pas avec le code monétaire "
+#~ "Paypal."
+
+#~ msgid "The discount offer does not match with the Paypal discount."
+#~ msgstr ""
+#~ "La réduction de l'offre ne correspond pas avec la réduction de Paypal."
+
+#~ msgid "Error to update the user."
+#~ msgstr "Impossible de mettre à jour l'utilisateur."
+
+#~ msgid "Status Payment invalid : {0}"
+#~ msgstr "Statut de Paiement invalide : {0}"
+
+#~ msgid "Response INVALID."
+#~ msgstr "Réponse INVALID."
+
+#~ msgid "This user does not exist."
+#~ msgstr "Cet utilisateur n'existe pas."
+
+#~ msgid "Failed to initialize cURL : {0}"
+#~ msgstr "Échec de l'initialisation cURL : {0}"
+
+#~ msgid "cURL falied to get the Paypal URL Button : {0}"
+#~ msgstr "cURL n'a pas réussi à obtenir l'URL du bouton PayPal : {0}"
+
+#~ msgid "Unable to get the offer with the ID {0} and the period {1}."
+#~ msgstr "Impossible d'obtenir l'offre avec l'ID {0} et la période {1}."
+
+#~ msgid "The price of the offer {0} is not the same as the Paypal price {1}."
+#~ msgstr "Le prix de l'offre {0} ne est pas le même que le prix Paypal {1}."
+
+#~ msgid "The discount offer {0} does not match with the Paypal discount {1}."
+#~ msgstr ""
+#~ "La réduction de l'offre {0} ne correspond pas avec la réduction Paypal "
+#~ "{1}."
+
+#~ msgid "The currency offer {0} does not match with the Paypal currency {1}."
+#~ msgstr ""
+#~ "Le code monétaire de l'offre  {0} ne correspond pas avec le code "
+#~ "monétaire Paypal {1}."
+
+#~ msgid "I have banned {0} {1}"
+#~ msgstr "J'ai bannis {0} {1}"
+
+#~ msgid "The type \"{0}\" to check is not defined."
+#~ msgstr "Le type \"{0}\" à vérifier est pas défini."
+
+#~ msgid "This thread doesn't exist or has been deleted."
+#~ msgstr "Ce sujet n'existe pas ou a été supprimé."
+
+#~ msgid "You don't like this post !"
+#~ msgstr "Vous n'aimez pas ce post !"
+
+#~ msgid "You already like this post !"
+#~ msgstr "You aimez déjà ce post !"
+
+#~ msgid "This post doesn't exist !"
+#~ msgstr "Ce post n'existe pas !"
+
+#~ msgid "Thanks for {0} this post ! "
+#~ msgstr "Merci d'avoir {0} ce post !"
+
+#~ msgid "You {0} this post."
+#~ msgstr "Vous {0} ce post."
+
+#~ msgid "{0} Unlike"
+#~ msgstr "{0} Je n'aime plus"
+
+#~ msgid "This post doesn't exist or has been deleted."
+#~ msgstr "Ce post n'existe pas ou a été supprimé."
+
+#~ msgid "You cannot delete the first post of a thread."
+#~ msgstr "Vous ne pouvez pas supprimer le premier post d'un sujet."
+
+#~ msgid "An error occurred while deleting the post. Please, try again."
+#~ msgstr ""
+#~ "Une erreur est survenue lors de la suppression du post. Veuillez "
+#~ "réessayer."
+
+#~ msgid "The post has been deleted successfully !"
+#~ msgstr "Ce post a été supprimé avec succès !"
+
+#~ msgid "This post doesn't exist or has been deleted !"
+#~ msgstr "Ce post n'existe pas ou a été supprimé !"
+
+#~ msgid "You don't have the authorization to edit this post !"
+#~ msgstr "Vous n'avez pas l'autorisation d'éditer ce post !"
+
+#~ msgid "This post has been edited successfully !"
+#~ msgstr "Ce post a été édité avec succès !"
+
+#~ msgid "This category doesn't exist or has been deleted !"
+#~ msgstr "Cette catégorie n'existe pas ou a été supprimée !"
+
+#~ msgid ""
+#~ "You can't create a thread in the category <strong>{0}</strong> because "
+#~ "this category is closed !"
+#~ msgstr ""
+#~ "Vous ne pouvez pas créer un sujet dans la catégorie <strong>{0}</strong> "
+#~ "car cette catégorie est fermée !"
+
+#~ msgid ""
+#~ "You can't not create a thread in the next 5 minutes due to spamming "
+#~ "restrictions."
+#~ msgstr ""
+#~ "Vous ne pouvez pas créer de sujet pendant les 5 prochaines minutes dû aux "
+#~ "restrictions de spam."
+
+#~ msgid "Your thread has been created successfully !"
+#~ msgstr "Votre sujet a été créé avec succès !"
+
+#~ msgid "This thread doesn't exist or has been deleted !"
+#~ msgstr "Ce sujet n'existe pas ou a été supprimé !"
+
+#~ msgid ""
+#~ "You can't assign this thread to the category <strong>{0}</strong> because "
+#~ "this category is closed !"
+#~ msgstr ""
+#~ "Vous ne pouvez pas assigner ce sujet dans la catégorie <strong>{0}</"
+#~ "strong> car cette catégorie est fermée !"
+
+#~ msgid "Your thread has been edited and set to sticky successfully !"
+#~ msgstr "Votre sujet à été éditer et épinglé avec succès !"
+
+#~ msgid "Your thread has been edited successfully !"
+#~ msgstr "Ce sujet a été édité avec succès !"
+
+#~ msgid ""
+#~ "You can't not reply to a thread in the next 5 minutes due to spamming "
+#~ "restrictions."
+#~ msgstr ""
+#~ "Vous ne pouvez pas répondre à ce sujet pendant les 5 prochaines minutes "
+#~ "dû aux restrictions de spam."
+
+#~ msgid "This thread is closed or has been deleted !"
+#~ msgstr "Ce sujet est fermé ou a été supprimé !"
+
+#~ msgid ""
+#~ "Your reply has been posted successfully and the thread has been closed !"
+#~ msgstr ""
+#~ "Votre réponse a été posté avec succès et le sujet a été verrouillé !"
+
+#~ msgid "Your reply has been posted successfully !"
+#~ msgstr "Votre réponse a été posté avec succès !"
+
+#~ msgid "This thread is already closed !"
+#~ msgstr "Ce sujet est déjà fermé !"
+
+#~ msgid "You don't have the authorization to lock this post !"
+#~ msgstr "Vous n'avez pas l'autorisation de verrouiller ce post !"
+
+#~ msgid "This thread has been locked successfully !"
+#~ msgstr "Ce sujet a été verrouillé avec succès !"
+
+#~ msgid "This thread is already open !"
+#~ msgstr "Ce sujet est déjà déverrouillé !"
+
+#~ msgid "You don't have the authorization to unlock this post !"
+#~ msgstr "Vous n'avez pas l'autorisation de déverrouiller ce post !"
+
+#~ msgid "This thread has been unlocked successfully !"
+#~ msgstr "Ce sujet a été déverrouillé avec succès !"
+
+#~ msgid "You already follow this thread !"
+#~ msgstr "Vous suivez déjà ce sujet !"
+
+#~ msgid "You successfully follow this thread now !"
+#~ msgstr "Vous suivez maintenant ce sujet !"
+
+#~ msgid "There was an error while following the thread."
+#~ msgstr "Il y a eu une erreur lors de l'abonnement à ce sujet."
+
+#~ msgid "You don't follow this thread !"
+#~ msgstr "Vous ne suivez pas ce sujet !"
+
+#~ msgid "You successfully unfollow this thread now !"
+#~ msgstr "Vous avez arrêté de suivre ce sujet avec succès !"
+
+#~ msgid "There was an error while unfollowing this thread."
+#~ msgstr "Il y a eu une erreur lors du désabonnement à ce sujet."
+
+#~ msgid "You must select the Groups for the function User::_getGroupName()."
+#~ msgstr ""
+#~ "Vous devez sélectionner le Group pour la fonction User::_getGroupName()."
+
+#~ msgid "You must select the Groups for the function User::_getGroupCss()."
+#~ msgstr "You must select the Groups for the function User::_getGroupCss()."
+
+#~ msgid "You must set a title for the category."
+#~ msgstr "Vous devez définir un titre pour la catégorie."
+
+#~ msgid "The title must be between {0} and {1} characters."
+#~ msgstr "Le titre doit être compris entre {0} et {1} caractères."
+
+#~ msgid "You must specify a message for your response."
+#~ msgstr "Vous devez spécifier un message pour votre réponse."
+
+#~ msgid "Your message must contain at least {0} characters."
+#~ msgstr "Votre message ne peut pas contenir moins de {0} caractères."
+
+#~ msgid "You must set an user."
+#~ msgstr "Vous devez définir un utilisateur."
+
+#~ msgid "The user must be numeric."
+#~ msgstr "L'utilisateur doit être numérique."
+
+#~ msgid "You must set a thread."
+#~ msgstr "Vous devez définir un sujet."
+
+#~ msgid "The thread must be numeric."
+#~ msgstr "Le sujet doit être numérique."
+
+#~ msgid "You must set a title for your thread."
+#~ msgstr "Vous devez définir un titre pour votre sujet."
+
+#~ msgid "You must specify a message for your thread."
+#~ msgstr "Vous devez spécifier un message pour votre sujet."
+
+#~ msgid ""
+#~ "<strong>{0}</strong> has replied to your thread <strong>{1}</strong>."
+#~ msgstr "<strong>{0}</strong> a répondu à votre sujet <strong>{1}</strong>."
+
+#~ msgid "<strong>{0}</strong> has replied to the thread <strong>{1}</strong>."
+#~ msgstr "<strong>{0}</strong> a répondu au sujet <strong>{1}</strong>."
+
+#~ msgid "<strong>{0}</strong> has locked your thread <strong>{1}</strong>."
+#~ msgstr "<strong>{0}</strong> a fermé votre sujet <strong>{1}</strong>."
+
+#~ msgid "<strong>{0}</strong> has liked your post in <strong>{1}</strong>."
+#~ msgstr "<strong>{0}</strong> a aimé votre post dans <strong>{1}</strong>."
+
+#~ msgid ""
+#~ "Welcome on <strong>{0}</strong>! You can now post your first message in "
+#~ "the Forum."
+#~ msgstr ""
+#~ "Bienvenue sur <strong>{0}</strong>! Vous pouvez dès à présent poster "
+#~ "votre premier message dans le Forum !"
+
+#~ msgid "You must set an offer."
+#~ msgstr "Vous devez définir une offre."
+
+#~ msgid "The offer must be numeric value."
+#~ msgstr "L'offre doit être une valeur numérique."
+
+#~ msgid "You must set a code."
+#~ msgstr "Vous devez définir un code."
+
+#~ msgid "The code can not be more than {0} characters."
+#~ msgstr "Le code peut pas avoir plus de {0} caractères."
+
+#~ msgid "You must set a discount."
+#~ msgstr "Vous devez définir une réduction."
+
+#~ msgid "The discount must be numeric value."
+#~ msgstr "La réduction doit être une valeur numérique."
+
+#~ msgid "You must set the used number."
+#~ msgstr "Vous devez définir le nombre d'utilisation."
+
+#~ msgid "The used value must be numeric value."
+#~ msgstr "Le nombre d'utilisation doit être une valeur numérique."
+
+#~ msgid "You must set the max use for the discount."
+#~ msgstr ""
+#~ "Vous devez définir le nombre d'utilisation maximum pour la réduction."
+
+#~ msgid "The max use value must be numeric value."
+#~ msgstr "Le nombre d'utilisation maximum doit être une valeur numérique."
+
+#~ msgid "You must set a period."
+#~ msgstr "Vous devez définir une période."
+
+#~ msgid "The period must be numeric."
+#~ msgstr "La période doit être une valeur numérique."
+
+#~ msgid "You must set a price."
+#~ msgstr "Vous devez définir un prix."
+
+#~ msgid "The price must be numeric."
+#~ msgstr "Le prix doit être une valeur numérique."
+
+#~ msgid "You must set a tax."
+#~ msgstr "Vous devez définir une taxe."
+
+#~ msgid "The tax must be numeric."
+#~ msgstr "La taxe doit être une valeur numérique."
+
+#~ msgid "You must set a currency code."
+#~ msgstr "Vous devez définir le code de devise."
+
+#~ msgid "The currency code can not be more than {0} characters."
+#~ msgstr "Le code de devise ne doit pas contenir plus de {0} caractères."
+
+#~ msgid "You must set a currency symbol."
+#~ msgstr "Vous devez définir un code monétaire."
+
+#~ msgid "The currency symbol can not be more than {0} characters."
+#~ msgstr "Le code monétaire ne doit pas contenir plus de {0} caractères."
+
+#~ msgid "Parent"
+#~ msgstr "Parent"
+
+#~ msgid "Read More"
+#~ msgstr "Lire Plus"
+
+#~ msgid "You need to be <strong>{0}</strong> to download the file."
+#~ msgstr "Vous devez être <strong>{0}</strong> pour télécharger le fichier."
+
+#~ msgid "Post Comment"
+#~ msgstr "Poster le Commentaire"
+
+#~ msgid "Delete"
+#~ msgstr "Supprimer"
+
+#~ msgid "Update Comment"
+#~ msgstr "Mettre à jour le Commentaire"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Yes"
+#~ msgstr "Oui"
+
+#~ msgid "No"
+#~ msgstr "Non"
+
+#~ msgid "Staff Online"
+#~ msgstr "Membres de l'équipe en ligne"
+
+#~ msgid "Latest Threads"
+#~ msgstr "Derniers Sujets"
+
+#~ msgid "Created by {0}"
+#~ msgstr "Créé par {0}"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistiques"
+
+#~ msgid "- By {0}"
+#~ msgstr "- Par {0}"
+
+#~ msgid "There are {0} user on this page."
+#~ msgid_plural "There are {0} users on this page."
+#~ msgstr[0] "Il y a {0} utilisateur sur cette page."
+#~ msgstr[1] "Il y a {0} utilisateurs sur cette page."
+
+#~ msgid "Send"
+#~ msgstr "Envoyer"
+
+#~ msgid "Source Code available on {0}"
+#~ msgstr "Code Source disponible sur {0}"
+
+#~ msgid "Forum"
+#~ msgstr "Forum"
+
+#~ msgid "My Profile"
+#~ msgstr "Mon Profil"
+
+#~ msgid "My Notifications"
+#~ msgstr "Mes Notifications"
+
+#~ msgid "Title"
+#~ msgstr "Titre"
+
+#~ msgid "Last post"
+#~ msgstr "Dernier post"
+
+#~ msgid "Unread"
+#~ msgstr "Non-lu"
+
+#~ msgid "Read"
+#~ msgstr "Lu"
+
+#~ msgid "(Contains no threads)"
+#~ msgstr "(Contient aucun sujets)"
+
+#~ msgid "By"
+#~ msgstr "Par"
+
+#~ msgid "{0} Thread"
+#~ msgid_plural "{0} Threads"
+#~ msgstr[0] "{0} Sujet"
+#~ msgstr[1] "{0} Sujets"
+
+#~ msgid "{0} New Thread"
+#~ msgstr "{0} Nouveau Sujet"
+
+#~ msgid "{0} Topics"
+#~ msgstr "{0} Sujets"
+
+#~ msgid "No threads found"
+#~ msgstr "Aucun sujet trouvés"
+
+#~ msgid "No threads were found for this category. {0}"
+#~ msgstr "Aucun sujet n'a été trouvé pour cette catégorie. {0}"
+
+#~ msgid "{0} Create a Thread"
+#~ msgstr "{0} Créer un Sujet"
+
+#~ msgid "{0} Response"
+#~ msgid_plural "{0} Responses"
+#~ msgstr[0] "{0} Réponse"
+#~ msgstr[1] "{0} Réponses"
+
+#~ msgid "{0} View"
+#~ msgid_plural "{0} Views"
+#~ msgstr[0] "{0} Vue"
+#~ msgstr[1] "{0} Vues"
+
+#~ msgid "Toggle list"
+#~ msgstr "Déplier la liste"
+
+#~ msgid "Users Online"
+#~ msgstr "Utilisateurs en ligne"
+
+#~ msgid "Total Likes"
+#~ msgstr "Total de J'aimes"
+
+#~ msgid "Total Posts"
+#~ msgstr "Total de Posts"
+
+#~ msgid "Total Threads"
+#~ msgstr "Total de Sujets"
+
+#~ msgid "Total Members"
+#~ msgstr "Total d'Utilisateurs"
+
+#~ msgid "Newest Member"
+#~ msgstr "Dernier Membre"
+
+#~ msgid ""
+#~ "{0} registered and {1} guests (based on users active over the past 5 "
+#~ "minutes)"
+#~ msgstr ""
+#~ "{0} utilisateurs enregistrés et {1} invités (basé sur les utilisateurs "
+#~ "actifs des 5 dernières minutes)"
+
+#~ msgid "Legend : "
+#~ msgstr "Légende : "
+
+#~ msgid "In total there is <strong>{0}</strong> user online :"
+#~ msgid_plural "In total there are <strong>{0}</strong> users online :"
+#~ msgstr[0] "Au total, il y a <strong>{0}</strong> utilisateur en ligne :"
+#~ msgstr[1] "Au total, il y a <strong>{0}</strong> utilisateurs en ligne :"
+
+#~ msgid "Registered user :"
+#~ msgid_plural "Registered users :"
+#~ msgstr[0] "Utilisateur enregistré :"
+#~ msgstr[1] "Utilisateurs enregistrés :"
+
+#~ msgid "{0} Lock"
+#~ msgstr "{0} Verrouiller"
+
+#~ msgid "{0} Closed"
+#~ msgstr "{0} Fermé"
+
+#~ msgid "{0} Unlock"
+#~ msgstr "{0} Déverrouiller"
+
+#~ msgid "{0} Edit Thread"
+#~ msgstr "{0} Editer le Sujet"
+
+#~ msgid "Thread Title"
+#~ msgstr "Titre du Sujet"
+
+#~ msgid "Sticky Thread"
+#~ msgstr "Sujet Epinglé"
+
+#~ msgid "Lock Thread"
+#~ msgstr "Verrouiller le Sujet"
+
+#~ msgid "Save"
+#~ msgstr "Sauvegarder"
+
+#~ msgid "{0} Follow"
+#~ msgstr "{0} Suivre"
+
+#~ msgid "Follow this thread"
+#~ msgstr "Suivre ce sujet"
+
+#~ msgid "{0} Unfollow"
+#~ msgstr "{0} Ne plus suivre"
+
+#~ msgid "Unfollow this thread"
+#~ msgstr "Ne plus suivre ce sujet"
+
+#~ msgid "Messsages created"
+#~ msgstr "Messages créés"
+
+#~ msgid "Threads created"
+#~ msgstr "Sujet créés"
+
+#~ msgid "Likes received"
+#~ msgstr "J'aimes reçu"
+
+#~ msgid "Badges"
+#~ msgstr "Badges"
+
+#~ msgid "Post Link"
+#~ msgstr "Lien du Post"
+
+#~ msgid "{0} Last Edit: {1}, {2}"
+#~ msgstr "{0} Dernière Edition: {1}, {2}"
+
+#~ msgid "Advertising"
+#~ msgstr "Publicité"
+
+#~ msgid "Reply to this Thread"
+#~ msgstr "Répondre à ce Sujet"
+
+#~ msgid "Lock the Thread with the response ?"
+#~ msgstr "Verrouiller le sujet avec la réponse ?"
+
+#~ msgid "{0} Premium {1}"
+#~ msgstr "{0} Premium {1}"
+
+#~ msgid "Update Post"
+#~ msgstr "Mettre à jour le Post"
+
+#~ msgid "New Thread"
+#~ msgstr "Nouveau Sujet"
+
+#~ msgid "Create a new Thread"
+#~ msgstr "Créer un nouveau Sujet"
+
+#~ msgid "Title..."
+#~ msgstr "Titre..."
+
+#~ msgid "Message"
+#~ msgstr "Message"
+
+#~ msgid "{0} Create Thread"
+#~ msgstr "{0} Créer un Sujet"
+
+#~ msgid "{0} Save Draft"
+#~ msgstr "{0} Sauvegarder le Draft"
+
+#~ msgid "The Draft has been saved successfully !"
+#~ msgstr "Le Draft a été enregistré avec succès !"
+
+#~ msgid "Delete the Draft"
+#~ msgstr "Supprimer le Draft"
+
+#~ msgid "The Draft has been cleaned successfully !"
+#~ msgstr "Le Draft a été nettoyé avec succès !"
+
+#~ msgid "Sign Up now {0}"
+#~ msgstr "Inscrivez-vous dès maintenant {0}"
+
+#~ msgid "Visit the Blog {0}"
+#~ msgstr "Visitez le Blog {0}"
+
+#~ msgid "Your payment has been canceled !"
+#~ msgstr "Votre paiement a été annulé !"
+
+#~ msgid ""
+#~ "Your payment has been canceled, you can make a new payment in the page "
+#~ "Premium. {0}"
+#~ msgstr ""
+#~ "Votre paiement a été annulé, vous pouvez faire un nouveau paiement sur la "
+#~ "page Premium. {0}"
+
+#~ msgid "Premium {0}"
+#~ msgstr "Premium {0}"
+
+#~ msgid "Go Home {0}"
+#~ msgstr "Aller à l'Accueil {0}"
+
+#~ msgid ""
+#~ "Become a Premium and access to tutorials resources, win a badge and more "
+#~ "in the future !"
+#~ msgstr ""
+#~ "Devenez un Premium et accédez aux ressources de tutoriels, gagner un "
+#~ "badge et plus dans le futur !"
+
+#~ msgid ""
+#~ "You're already Premium, but you can extend your subscription if you "
+#~ "want ! Your Premium will be ended at {0}."
+#~ msgstr ""
+#~ "Vous êtes déjà Premium, mais vous pouvez prolonger votre abonnement si "
+#~ "vous le souhaitez ! Votre Premium sera terminé à {0}."
+
+#~ msgid "You need to be connected to purchase the Premium. {0}"
+#~ msgstr "Vous devez être connecté pour acheter le Premium. {0}"
+
+#~ msgid "Login {0}"
+#~ msgstr "Connexion {0}"
+
+#~ msgid "Resources in Tutorials"
+#~ msgstr "Ressources dans les Tutoriels"
+
+#~ msgid "Premium Badge"
+#~ msgstr "Badge Premium"
+
+#~ msgid "Yellow color in Chat & Forum"
+#~ msgstr "Couleur jaune dans le Chat & Forum"
+
+#~ msgid "Discount Code"
+#~ msgstr "Code de Réduction"
+
+#~ msgid "Extend {0}"
+#~ msgstr "Prolonger {0}"
+
+#~ msgid "Subscribe {0}"
+#~ msgstr "S'abonner {0}"
+
+#~ msgid "{0} Month"
+#~ msgid_plural "{0} Months"
+#~ msgstr[0] "{0} Mois"
+#~ msgstr[1] "{0} Mois"
+
+#~ msgctxt "Excluding VAT"
+#~ msgid "Excl VAT"
+#~ msgstr "HT"
+
+#~ msgid "Thanks for purchasing the Premium !"
+#~ msgstr "Merci d'avoir acheté le Premium !"
+
+#~ msgid "You have unlock the badge Premium"
+#~ msgstr "Vous avez déverrouillé le badge Premium."
+
+#~ msgid "Your Premium will be ended at {0}."
+#~ msgstr "Votre Premium sera terminé à {0}."
+
+#~ msgid "My Profil {0}"
+#~ msgstr "Mon Profil {0}"
+
+#~ msgid ""
+#~ "Your account will be upgraded when the transaction will be completed ! It "
+#~ "can take 2-3 hours, it depend of Paypal."
+#~ msgstr ""
+#~ "Votre compte sera mis à jour lorsque la transaction sera complétée ! Ceci "
+#~ "peut prendre deux à trois heures, cela dépend de Paypal."
+
+#~ msgid "Select image"
+#~ msgstr "Sélectionner une Image"
+
+#~ msgid "Remove"
+#~ msgstr "Supprimer"
+
+#~ msgid "Premium Purchases"
+#~ msgstr "Achats de Premium"
+
+#~ msgid "You can see here all your premium purchases."
+#~ msgstr "Vous pouvez voir ici tous vos achats de Premium."
+
+#~ msgid "Offer"
+#~ msgstr "Offre"
+
+#~ msgid "Offer Amount"
+#~ msgstr "Montant de l'Offre"
+
+#~ msgid "Amount HT"
+#~ msgstr "Montant HT"
+
+#~ msgid "Tax"
+#~ msgstr "Taxe"
+
+#~ msgid "Discount"
+#~ msgstr "Réduction"
+
+#~ msgid "Discount Amount"
+#~ msgstr "Montant de la Réduction"
+
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#~ msgid "0{0}"
+#~ msgstr "0{0}"
+
+#~ msgid "You haven't purchased the Premium yet. {0}"
+#~ msgstr "Vous n'avez pas encore acheté de Premium. {0}"
+
+#~ msgid "Check the offers {0}"
+#~ msgstr "Voir les offres {0}"
+
+#~ msgid "Your Lastest Threads in the Forum"
+#~ msgstr "Vos dernières Sujets dans le Forum"
+
+#~ msgid "His Lastest Threads in the Forum"
+#~ msgstr "Ces derniers Sujets dans le Forum"
+
+#~ msgid "Your Lastest Posts in the Forum"
+#~ msgstr "Vos derniers Messages dans le Forum"
+
+#~ msgid "His Lastest Posts in the Forum"
+#~ msgstr "Ces derniers Messages dans le Forum"
 
 #~ msgid "Beta"
 #~ msgstr "Bêta"
@@ -2080,14 +2212,8 @@ msgstr "Oui, je confirme !"
 #~ msgid "You must specify a title for your conversation."
 #~ msgstr "Vous devez spécifier un titre à votre conversation."
 
-#~ msgid "Comments"
-#~ msgstr "Commentaires"
-
 #~ msgid "Comment"
 #~ msgstr "Commentaire"
-
-#~ msgid "Likes"
-#~ msgstr "J'aimes"
 
 #~ msgid "Like"
 #~ msgstr "J'aime"
