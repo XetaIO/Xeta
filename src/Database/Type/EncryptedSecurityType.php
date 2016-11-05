@@ -21,6 +21,7 @@ class EncryptedSecurityType extends Type
         if ($value === null || empty($value)) {
             return null;
         }
+
         return Security::decrypt(base64_decode($value), Configure::read('Security.key'));
     }
 
@@ -35,6 +36,7 @@ class EncryptedSecurityType extends Type
         if ($value === null) {
             return $value;
         }
+
         return base64_encode(Security::encrypt($value, Configure::read('Security.key')));
     }
 
@@ -50,6 +52,7 @@ class EncryptedSecurityType extends Type
         if ($value === null) {
             return null;
         }
+
         return $value;
     }
 
@@ -65,6 +68,7 @@ class EncryptedSecurityType extends Type
         if ($value === null) {
             return PDO::PARAM_NULL;
         }
+
         return PDO::PARAM_STR;
     }
 }

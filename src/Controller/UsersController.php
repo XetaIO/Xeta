@@ -839,6 +839,7 @@ class UsersController extends AppController
             ->formatResults(function ($logs) use ($browscap) {
                 return $logs->map(function ($log) use ($browscap) {
                     $log->infos = $browscap->getBrowser($log->user_agent);
+
                     return $log;
                 });
             });
