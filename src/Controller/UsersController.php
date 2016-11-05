@@ -198,7 +198,7 @@ class UsersController extends AppController
                     $userRegister->last_login_ip = $this->request->clientIp();
                     $userRegister->last_login = new Time();
 
-                    if ($this->Recaptcha->verify()) {
+                    if ($this->Recaptcha->verify() || Configure::read('Recaptcha.bypass') === true) {
                         if ($this->Users->save($userRegister)) {
                             $user = $this->Auth->identify();
 

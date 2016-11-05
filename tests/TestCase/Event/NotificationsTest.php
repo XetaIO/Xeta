@@ -78,7 +78,7 @@ class NotificationsTest extends TestCase
      *
      * @return void
      */
-    /*public function testDispatchParticipants()
+    public function testDispatchParticipants()
     {
         //Insert participants.
         $data = [
@@ -95,7 +95,17 @@ class NotificationsTest extends TestCase
             'conversation_id' => 1,
             'sender_id' => 1
         ]);
-        $this->assertTrue($notifications->dispatchNotification($event));
+        $this->assertTrue($notifications->dispatchParticipants($event));
+
+        //Test for the anti-spam notification.
+        $result = $this->Notifications
+            ->find()
+            ->where(['user_id' => 2, 'type' => 'conversation.reply'])
+            ->select(['id', 'user_id', 'type', 'is_read'])
+            ->count();
+        $this->assertEquals(1, $result);
+        $this->assertTrue($notifications->dispatchParticipants($event));
+        $this->assertEquals(1, $result, 'Should still has one notification.');
 
         $result = $this->Notifications
             ->find()
@@ -111,5 +121,5 @@ class NotificationsTest extends TestCase
             'is_read' => 0
         ];
         $this->assertEquals($expected, $result);
-    }*/
+    }
 }
