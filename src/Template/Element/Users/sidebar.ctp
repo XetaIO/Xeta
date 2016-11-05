@@ -31,5 +31,13 @@
         <?php endif;?>
             <?= $this->Html->link(__("{0} Settings {1}", '<i class="fa fa-cogs"></i>', '<i class="fa fa-chevron-right"></i>'), ['controller' => 'users', 'action' => 'settings'], ['escape' => false]) ?>
         </li>
+
+        <?php if($this->request->params['action'] == 'security' || $this->request->params['controller'] == 'Tfa'): ?>
+            <li class="active">
+        <?php else:?>
+            <li>
+        <?php endif;?>
+            <?= $this->Html->link(__("{0} Security {1}", '<i class="fa fa-expeditedssl"></i>', '<i class="fa fa-chevron-right"></i>'), ['controller' => 'users', 'action' => 'security'], ['escape' => false]) ?>
+        </li>
     </ul>
 </div>

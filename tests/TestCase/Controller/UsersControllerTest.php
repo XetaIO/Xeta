@@ -30,7 +30,8 @@ class UsersControllerTest extends IntegrationTestCase
         'app.blog_articles_likes',
         'app.badges',
         'app.badges_users',
-        'app.notifications'
+        'app.notifications',
+        'app.users_logs'
     ];
 
     /**

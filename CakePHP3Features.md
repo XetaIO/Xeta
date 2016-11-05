@@ -79,6 +79,7 @@ Since I have decided to release it, I'm trying to use the maximum of CakePHP 3's
     * Badge system
         * Badge on comment
         * Badge for register date
+    * Logs
 * Authenticate
     * Cookies [Cake3-CookieAuth](https://github.com/Xety/Cake3-CookieAuth)
         * For auto-login

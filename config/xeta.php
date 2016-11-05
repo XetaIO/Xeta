@@ -15,7 +15,8 @@ return [
         'github_url' => 'https://github.com/Xety/Xeta',
         'contact_email' => 'contact@xeta.io',
         'analytics_tracker_code' => 'UA-40328289-2',
-        'full_url' => 'https://xeta.io'
+        'full_url' => 'https://xeta.io',
+        'maintenance' => false
     ],
     'Home' => [
         'articles' => 8,
@@ -26,6 +27,12 @@ return [
         'comment_per_page' => 10
     ],
     'User' => [
+        'Login' => [
+            'enabled' => true
+        ],
+        'Register' => [
+            'enabled' => true
+        ],
         'Profile' => [
             'max_blog_articles' => 5,
             'max_blog_comments' => 5

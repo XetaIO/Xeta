@@ -67,7 +67,7 @@ class Installer
             static::setFolderPermissions($rootDir, $io);
         }
 
-        $newKey = static::setSecuritySalt($rootDir, $io);
+        $newKey = static::setSecuritySaltAndKey($rootDir, $io);
         static::setAccountPassword($rootDir, $io, $newKey);
 
         if (class_exists('\Cake\Codeception\Console\Installer')) {
@@ -270,13 +270,16 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setSecuritySalt($dir, $io)
+    public static function setSecuritySaltAndKey($dir, $io)
     {
         $config = $dir . '/config/app.php';
         $content = file_get_contents($config);
 
         $newKey = hash('sha256', Security::randomBytes(64));
+        $securityKey = hash('sha256', Security::randomBytes(64));
+
         $content = str_replace('__SALT__', $newKey, $content, $count);
+        $content = str_replace('__KEY__', $securityKey, $content, $count);
 
         if ($count == 0) {
             $io->write('No Security.salt placeholder to replace.');

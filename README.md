@@ -32,7 +32,7 @@ If you need to install to try a function or any other things, just follow the st
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
 * :cake: All requirements for CakePHP 3 : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
-* :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
+* :package: PHP cURL extension
 * :package: Supported DBMS : MySQL & SQLite
 * :package: [Google Recaptcha](https://www.google.com/recaptcha/intro/index.html) (For the register form)
 
@@ -87,6 +87,8 @@ This project implements many features and will implements more in the future. He
     * Multi-Participants
     * Kick/Invite Participants
     * `Star` Conversations
+
+* ###### Two Factor Authentication (TOTP)
 
 * WYSIWYG Editor (CKEditor) on all the site : Articles, Comments, Posts, Notice in the chat etc
 

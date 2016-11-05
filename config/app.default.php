@@ -63,6 +63,8 @@ return [
  */
     'Security' => [
         'salt' => env('SECURITY_SALT', '__SALT__'),
+        //Used to encrypt data in database.
+        'key' => env('SECURITY_KEY', '__KEY__')
     ],
 
 /**
