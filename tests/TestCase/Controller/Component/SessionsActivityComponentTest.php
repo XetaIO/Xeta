@@ -58,7 +58,7 @@ class SessionsActivityComponentTest extends TestCase
                 'expires' => Time::now()->timestamp + ini_get('session.gc_maxlifetime')
             ]
         ];
-        $sessions = $this->Sessions->newEntities($data);
+        $sessions = $this->Sessions->newEntities($data, ['accessibleFields' => ['id' => true]]);
         foreach ($sessions as $session) {
             $this->Sessions->save($session);
         }
@@ -104,5 +104,36 @@ class SessionsActivityComponentTest extends TestCase
 
         $result = $this->SessionsActivity->getOnlineStatus($users->get(2));
         $this->assertFalse($result);
+    }
+
+    /**
+     * Test getOnlineSessionsForUserNoUser method
+     *
+     * @return void
+     */
+    public function testGetOnlineSessionsForUserNoUser()
+    {
+        $result = $this->SessionsActivity->getOnlineSessionsForUser(null);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test getOnlineSessionsForUser method
+     *
+     * @return void
+     */
+    public function testGetOnlineSessionsForUser()
+    {
+        $expected = [
+            'id' => 'd2k8c70sggoc4lhu8d4d3crq46',
+            'user_id' => 1,
+            'data' => '',
+            'controller' => 'forum/forum',
+            'action' => 'threads',
+            'params' => serialize([2, 'title-2'])
+        ];
+        $result = $this->SessionsActivity->getOnlineSessionsForUser(1);
+        unset($result[0]['expires']);
+        $this->assertEquals($expected, (array)$result[0]->toArray());
     }
 }

@@ -135,10 +135,6 @@ class SessionsActivityComponent extends Component
      */
     public function getOnlineStatus(User $user)
     {
-        if (empty($user)) {
-            return false;
-        }
-
         $sessions = TableRegistry::get('Sessions');
         $online = $sessions
             ->find('expires')
@@ -160,10 +156,14 @@ class SessionsActivityComponent extends Component
      *
      * @param int $user The user id.
      *
-     * @return array
+     * @return false|array
      */
     public function getOnlineSessionsForUser($user)
     {
+        if (empty($user) || is_null($user)) {
+            return false;
+        }
+
         $this->Sessions = TableRegistry::get('Sessions');
 
         $sessions = $this->Sessions
