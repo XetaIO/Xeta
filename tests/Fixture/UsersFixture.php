@@ -64,7 +64,7 @@ class UsersFixture extends TestFixture
             'signature' => 'My awesome signature',
             'facebook' => 'mariano',
             'twitter' => 'mariano',
-            'group_id' => 1,
+            'group_id' => 5,
             'language' => 'fr_FR',
             'two_factor_auth_enabled' => 0,
             'blog_articles_comment_count' => 2,

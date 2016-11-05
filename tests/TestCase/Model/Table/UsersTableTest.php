@@ -101,7 +101,7 @@ class UsersTableTest extends TestCase
             'avatar' => '../img/avatar.png',
             'blog_articles_comment_count' => 2,
             'blog_article_count' => 2,
-            'group_id' => 1,
+            'group_id' => 5,
             'facebook' => 'mariano',
             'twitter' => 'mariano',
             'signature' => 'My awesome signature',
