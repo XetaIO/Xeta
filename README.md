@@ -116,6 +116,7 @@ This project implements many features and will implements more in the future. He
 |`2FA.recovery_code.regenerate`|Triggered when an user regenerate a new recovery code.|
 |`2FA.recovery_code.used`|Triggered when an user use his recovery code.|
 
+
 * ###### WYSIWYG Editor (CKEditor)
     * Articles, Comments
 

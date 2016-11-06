@@ -102,18 +102,19 @@ class AppController extends Controller
         if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
             $this->loadModel('Users');
 
-            $user = $this->Auth->identify();
-            if ($user && $user['is_deleted'] == false) {
+            $userLogin = $this->Auth->identify();
+            if ($userLogin && $userLogin['is_deleted'] == false) {
                 $this->loadComponent('TwoFactorAuth');
 
                 //Verify if the user use 2FA and if yes, if he's authorized.
                 if ($userLogin['two_factor_auth_enabled'] == true && $this->TwoFactorAuth->isAuthorized($userLogin['id']) === false) {
                     $this->Cookie->delete('CookieAuth');
                 } else {
-                    $this->Auth->setUser($user);
+                    $this->Auth->setUser($userLogin);
 
-                    $user = $this->Users->newEntity($user, ['accessibleFields' => ['id' => true]]);
+                    $user = $this->Users->newEntity($userLogin);
                     $user->isNew(false);
+                    $user->id = $userLogin['id'];
 
                     $user->last_login = new Time();
                     $user->last_login_ip = $this->request->clientIp();
