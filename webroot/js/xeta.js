@@ -55,6 +55,9 @@ $(document).ready(function () {
         $.ajax({
             type : "POST",
             url : $(this).attr("data-url"),
+            headers : {
+                'X-CSRF-Token': $(this).attr("data-csrf")
+            },
             data : {
                 id : commentId
             },
