@@ -112,9 +112,8 @@ class AppController extends Controller
                 } else {
                     $this->Auth->setUser($userLogin);
 
-                    $user = $this->Users->newEntity($userLogin);
+                    $user = $this->Users->newEntity($userLogin, ['accessibleFields' => ['id' => true]]);
                     $user->isNew(false);
-                    $user->id = $userLogin['id'];
 
                     $user->last_login = new Time();
                     $user->last_login_ip = $this->request->clientIp();
