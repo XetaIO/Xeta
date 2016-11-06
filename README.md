@@ -32,7 +32,7 @@ If you need to install to try a function or any other things, just follow the st
 ### Requirements
 * :package: [Composer](https://getcomposer.org)
 * :cake: All requirements for CakePHP 3 : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
-* :package: PHP cURL extension (Needed only if you want to use the Google Analytics system in Dashboard)
+* :package: PHP cURL extension
 * :package: Supported DBMS : MySQL & SQLite
 * :package: [Google Recaptcha](https://www.google.com/recaptcha/intro/index.html) (For the register form)
 
@@ -42,6 +42,11 @@ Steps to install :
 ```
 composer create-project --prefer-dist xety/xeta <application_name>
 composer run-script installation
+```
+```
+//Need to download the browscap.ini file.
+vendor/bin/browscap-php browscap:fetch
+vendor/bin/browscap-php browscap:convert
 ```
 * Congratulations ! The application is ready to use. :+1:
 
@@ -88,7 +93,32 @@ This project implements many features and will implements more in the future. He
     * Kick/Invite Participants
     * `Star` Conversations
 
-* WYSIWYG Editor (CKEditor) on all the site : Articles, Comments, Posts, Notice in the chat etc
+* ###### Two Factor Authentication (TOTP)
+
+* ###### Logs
+    * Preview
+![Logs Preview](https://cloud.githubusercontent.com/assets/8210023/20028971/0dff8060-a340-11e6-8487-62b3e2ff8350.png)
+
+    * Logs Events list :
+
+|Command|Description|
+|------|-------|
+|`user.connection.manual.success`|Triggered when the user login on the login page.|
+|`user.connection.manual.failed`|Triggered when the user failed to login on the login page.|
+|`user.connection.auto`|Triggered when the user is automated login with Cookies.|
+|`user.account.modify`|Triggered when the user has modified his account.|
+|`user.email`|Triggered when the user has changed his Email.|
+|`user.password.change`|Triggered when the user has changed his password.|
+|`user.password.reset`|Triggered when the user has asked a password reset.|
+|`user.password.reset.successful`|Triggered when an user has successfully reset his password with the Email.|
+|`2FA.enabled`|Triggered when an user enbale the 2FA mode.|
+|`2FA.disabled`|Triggered when an user disable the 2FA mode.|
+|`2FA.recovery_code.regenerate`|Triggered when an user regenerate a new recovery code.|
+|`2FA.recovery_code.used`|Triggered when an user use his recovery code.|
+
+
+* ###### WYSIWYG Editor (CKEditor)
+    * Articles, Comments
 
 All the CakePHP3's features that i use in the project are described [here](https://github.com/Xety/Xeta/blob/master/CakePHP3Features.md).
 

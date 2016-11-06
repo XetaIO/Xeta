@@ -68,6 +68,15 @@ class UsersTable extends Table
         $this->hasMany('Conversations', [
             'foreignKey' => 'user_id'
         ]);
+        $this->hasMany('ConversationsMessages', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('UsersLogs', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasOne('UsersTwoFactorAuth', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**

@@ -30,7 +30,8 @@ class UsersControllerTest extends IntegrationTestCase
         'app.blog_articles_likes',
         'app.badges',
         'app.badges_users',
-        'app.notifications'
+        'app.notifications',
+        'app.users_logs'
     ];
 
     /**
@@ -111,12 +112,17 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertSession(null, 'Auth.User.id');
 
         //Register successfull.
-        /*$data = [
+        Configure::write('Recaptcha.bypass', true);
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
+        $data = [
             'method' => 'register',
             'username' => 'mariano2',
             'email' => 'test@xeta.io',
             'password' => '12345678',
             'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'users', 'action' => 'login'], $data);
@@ -125,13 +131,17 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertSession(3, 'Auth.User.id');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);
 
-        //Register fail.
+        //Register fail. (Username already exist)
+        $this->_cookie = [
+            'csrfToken' => '123456789'
+        ];
         $data = [
             'method' => 'register',
             'username' => 'mariano',
             'email' => 'test@xeta.io',
             'password' => '12345678',
             'password_confirm' => '12345678',
+            '_csrfToken' => '123456789'
         ];
 
         $this->post(['controller' => 'users', 'action' => 'login'], $data);
@@ -139,7 +149,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
         $this->assertSession(null, 'Auth.User.id');
         //We can't test the flash test due to the translation system.
-        $this->assertResponseContains('infobox-danger');*/
+        $this->assertResponseContains('infobox-danger');
     }
 
     /**

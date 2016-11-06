@@ -1,8 +1,10 @@
 <?php
 namespace App\Event;
 
+use App\Event\Logs;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
+use Cake\Event\EventManager;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\ORM\TableRegistry;
 
@@ -31,6 +33,17 @@ class Users implements EventListenerInterface
      */
     public function usersLoginFailed(Event $event)
     {
+        //Logs Event.
+        EventManager::instance()->attach(new Logs());
+        $logs = new Event('Log.User', $this, [
+            'user_id' => $event->data['user_id'],
+            'username' => $event->data['username'],
+            'user_ip' => $event->data['user_ip'],
+            'user_agent' => $event->data['user_agent'],
+            'action' => 'user.connection.manual.failed'
+        ]);
+        EventManager::instance()->dispatch($logs);
+
         //Email.
         $this->Groups = TableRegistry::get('Groups');
         $group = $this->Groups

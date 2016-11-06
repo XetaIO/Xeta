@@ -18,7 +18,9 @@
         "xety/cake3-upload": "1.*",
         "xety/cake3-cookieauth": "1.*",
         "cake17/cakephp-recaptcha": "dev-master",
-        "filp/whoops": "~2.0"
+        "filp/whoops": "~2.0",
+        "robthree/twofactorauth": "1.*",
+        "browscap/browscap-php": "3.*"
     },
     "require-dev": {
         "psy/psysh": "@stable",

@@ -4,6 +4,7 @@ namespace App\Controller\Component;
 use App\Model\Entity\User;
 use Cake\Controller\Component;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 
@@ -61,8 +62,14 @@ class SessionsActivityComponent extends Component
 
         //@codingStandardsIgnoreStart
         $user_id = $this->_session->read('Auth.User.id');
+        $user_agent = $this->_request->env('HTTP_USER_AGENT');
+        $user_ip = $this->_request->clientIp();
+        $full_url = $this->_request->url;
         //@codingStandardIgnoreEnd
-        $record = compact('controller', 'action', 'params', 'expires', 'user_id');
+
+        $modified = new Time();
+
+        $record = compact('controller', 'action', 'params', 'expires', 'user_id', 'user_agent', 'user_ip', 'full_url', 'modified');
 
         $record[$sessions->primaryKey()] = $this->_session->id();
         $sessions->save(new Entity($record));
@@ -96,6 +103,7 @@ class SessionsActivityComponent extends Component
                 },
             ])
             ->select(['Sessions.user_id', 'Sessions.expires'])
+            ->group('Sessions.user_id')
             ->toArray();
 
         foreach ($records as $key => $record) {
@@ -127,10 +135,6 @@ class SessionsActivityComponent extends Component
      */
     public function getOnlineStatus(User $user)
     {
-        if (empty($user)) {
-            return false;
-        }
-
         $sessions = TableRegistry::get('Sessions');
         $online = $sessions
             ->find('expires')
@@ -145,6 +149,31 @@ class SessionsActivityComponent extends Component
         }
 
         return false;
+    }
+
+    /**
+     * Get all the sessions online for the given user.
+     *
+     * @param int $user The user id.
+     *
+     * @return false|array
+     */
+    public function getOnlineSessionsForUser($user)
+    {
+        if (empty($user) || is_null($user)) {
+            return false;
+        }
+
+        $this->Sessions = TableRegistry::get('Sessions');
+
+        $sessions = $this->Sessions
+            ->find('expires')
+            ->where([
+                'Sessions.user_id' => $user
+            ])
+            ->toArray();
+
+        return $sessions;
     }
 
 }

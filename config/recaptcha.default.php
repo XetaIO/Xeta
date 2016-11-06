@@ -18,5 +18,7 @@ return [
         'theme' => 'light',
         // either image or audio
         'type' => 'image',
+        //Used in unit testing
+        'bypass' => false
     ]
 ];

@@ -29,7 +29,8 @@ $_SERVER['PHP_SELF'] = '/';
 /**
  * Clean the cache before the tests.
  */
-Cache::clear(false, 'acl');
+ Cache::clear(false, 'database');
+ Cache::clear(false, 'acl');
 
 /**
  * Executed after all the tests.

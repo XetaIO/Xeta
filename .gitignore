@@ -16,6 +16,7 @@ config/database.php
 config/email.php
 config/recaptcha.php
 config/analytics-certificate.p12
+config/Migrations/schema-dump-default.lock
 .idea
 .brackets.json
 flo.js

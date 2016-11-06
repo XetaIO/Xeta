@@ -118,7 +118,7 @@ class UserTest extends TestCase
         $result = $entity->parentNode();
         $expected = [
             'Groups' => [
-                'id' => 1
+                'id' => 5
             ]
         ];
         $this->assertEquals($expected, $result);
@@ -128,7 +128,7 @@ class UserTest extends TestCase
         $result = $entity->parentNode();
         $expected = [
             'Groups' => [
-                'id' => 1
+                'id' => 5
             ]
         ];
         $this->assertEquals($expected, $result);

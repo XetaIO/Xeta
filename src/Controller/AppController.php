@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Event\Badges;
+use App\Event\Logs;
 use App\I18n\Language;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
@@ -101,30 +102,49 @@ class AppController extends Controller
         if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
             $this->loadModel('Users');
 
-            $user = $this->Auth->identify();
-            if ($user && $user['is_deleted'] == false) {
-                $this->Auth->setUser($user);
+            $userLogin = $this->Auth->identify();
+            if ($userLogin && $userLogin['is_deleted'] == false) {
+                $this->loadComponent('TwoFactorAuth');
 
-                $user = $this->Users->newEntity($user, ['accessibleFields' => ['id' => true]]);
-                $user->isNew(false);
+                //Verify if the user use 2FA and if yes, if he's authorized.
+                if ($userLogin['two_factor_auth_enabled'] == true && $this->TwoFactorAuth->isAuthorized($userLogin['id']) === false) {
+                    $this->Cookie->delete('CookieAuth');
+                } else {
+                    $this->Auth->setUser($userLogin);
 
-                $user->last_login = new Time();
-                $user->last_login_ip = $this->request->clientIp();
+                    $user = $this->Users->newEntity($userLogin);
+                    $user->isNew(false);
+                    $user->id = $userLogin['id'];
 
-                $this->Users->save($user);
+                    $user->last_login = new Time();
+                    $user->last_login_ip = $this->request->clientIp();
 
-                //Event.
-                $this->eventManager()->attach(new Badges($this));
+                    $this->Users->save($user);
 
-                $user = new Event('Model.Users.register', $this, [
-                    'user' => $user
-                ]);
-                $this->eventManager()->dispatch($user);
+                    //Badges Event.
+                    $this->eventManager()->attach(new Badges($this));
+                    $user = new Event('Model.Users.register', $this, [
+                        'user' => $user
+                    ]);
+                    $this->eventManager()->dispatch($user);
+
+                    //Logs Event.
+                    $this->eventManager()->attach(new Logs());
+                    $event = new Event('Log.User', $this, [
+                        'user_id' => $user->id,
+                        'username' => $user->username,
+                        'user_ip' => $this->request->clientIp(),
+                        'user_agent' => $this->request->header('User-Agent'),
+                        'action' => 'user.connection.auto'
+                    ]);
+                    $this->eventManager()->dispatch($event);
+                }
             } else {
                 $this->Cookie->delete('CookieAuth');
             }
         }
 
+        //Layouts
         if (isset($this->request->params['prefix'])) {
             $prefix = explode('/', $this->request->params['prefix'])[0];
 
