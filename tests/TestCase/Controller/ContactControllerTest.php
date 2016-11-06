@@ -35,6 +35,8 @@ class ContactControllerTest extends IntegrationTestCase
      */
     public function testIndexWithInvalidData()
     {
+        //Bypass mailtrap security
+        sleep(3);
         $this->_cookie = [
             'csrfToken' => '123456789'
         ];
