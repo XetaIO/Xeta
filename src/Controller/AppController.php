@@ -122,10 +122,10 @@ class AppController extends Controller
 
                     //Badges Event.
                     $this->eventManager()->attach(new Badges($this));
-                    $user = new Event('Model.Users.register', $this, [
+                    $badge = new Event('Model.Users.register', $this, [
                         'user' => $user
                     ]);
-                    $this->eventManager()->dispatch($user);
+                    $this->eventManager()->dispatch($badge);
 
                     //Logs Event.
                     $this->eventManager()->attach(new Logs());
