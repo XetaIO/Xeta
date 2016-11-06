@@ -143,7 +143,6 @@ class UsersController extends AppController
 
                         //Badge Event.
                         $this->eventManager()->attach(new Badges($this));
-
                         $user = new Event('Model.Users.register', $this, [
                             'user' => $user
                         ]);
