@@ -31,7 +31,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['home', 'acceptCookie', 'lang', 'terms']);
+        $this->Auth->allow(['home', 'maintenance', 'acceptCookie', 'lang', 'terms']);
     }
 
     /**
@@ -116,6 +116,18 @@ class PagesController extends AppController
     public function lang()
     {
         $this->redirect($this->referer());
+    }
+
+    /**
+     * Display the maintenance page or a 404 if the site isn't in maintenance.
+     *
+     * @return void
+     */
+    public function maintenance()
+    {
+        if (Configure::read('Site.maintenance') === false) {
+            throw new NotFoundException();
+        }
     }
 
     /**

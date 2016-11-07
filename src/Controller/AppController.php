@@ -5,6 +5,7 @@ use App\Event\Badges;
 use App\Event\Logs;
 use App\I18n\Language;
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\I18n\Time;
 
@@ -156,6 +157,45 @@ class AppController extends Controller
 
         $allowCookies = $this->Cookie->check('allowCookies');
         $this->set(compact('allowCookies'));
+
+        //Site Maintenance
+        if (Configure::read('Site.maintenance') === true) {
+            $controller = $this->request->params['controller'];
+            $action = $this->request->params['action'];
+
+            if ($this->Auth->user()) {
+                $this->loadModel('Users');
+                $user = $this->Users
+                    ->find()
+                    ->contain([
+                        'Groups' => function ($q) {
+                            return $q->select(['id', 'is_staff']);
+                        }
+                    ])
+                    ->where([
+                        'Users.id' => $this->Auth->user('id')
+                    ])
+                    ->first();
+
+                if (!is_null($user) && $user->group->is_staff == true) {
+                    //To prevent multiple flash messages.
+                    $this->Flash->config(['clear' => true]);
+                    $this->Flash->error(__("Hello {0}, The website is under maintenance, only you and the staff groups have the access !", h($user->full_name)));
+                } else {
+                    if (!($controller == 'Pages' && $action == 'maintenance') &&
+                        !($controller == 'Users' && $action == 'login') &&
+                        !($controller == 'Users' && $action == 'logout')) {
+                        $this->redirect(['controller' => 'pages', 'action' => 'maintenance', 'prefix' => false]);
+                    }
+                }
+            } else {
+                if (!($controller == 'Pages' && $action == 'maintenance') &&
+                    !($controller == 'Users' && $action == 'login') &&
+                    !($controller == 'Users' && $action == 'logout')) {
+                    $this->redirect(['controller' => 'pages', 'action' => 'maintenance', 'prefix' => false]);
+                }
+            }
+        }
 
         //JavaScript Notifications.
         if ($this->request->session()->read('Notification') && !empty($this->request->session()->read('Notification'))) {

@@ -85,6 +85,19 @@ class UsersController extends AppController
      */
     public function login()
     {
+        //Handle Maintenances
+        if (Configure::read('User.Login.enabled') === false) {
+            $this->Flash->error(__("The Login action is disabled for the moment, please try again later."));
+        }
+
+        if (Configure::read('User.Register.enabled') === false && Configure::read('Site.maintenance') === false) {
+            $this->Flash->error(__("The Register action is disabled for the moment, please try again later."));
+        }
+
+        if (Configure::read('Site.maintenance') === true) {
+            $this->Flash->error(__("While the site is in maintenance, you can not register a new account."));
+        }
+
         if ($this->request->is('post')) {
             $method = ($this->request->data['method']) ? $this->request->data['method'] : false;
 
@@ -192,6 +205,11 @@ class UsersController extends AppController
 
                 case "register":
                     $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
+
+                    //Handle Maintenances
+                    if (Configure::read('Site.maintenance') === true || Configure::read('User.Register.enabled') === false) {
+                        break;
+                    }
 
                     $userRegister->register_ip = $this->request->clientIp();
                     $userRegister->last_login_ip = $this->request->clientIp();
