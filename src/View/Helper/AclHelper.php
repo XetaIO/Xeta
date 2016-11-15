@@ -47,10 +47,7 @@ class AclHelper extends Helper
         $this->Acl = new AclComponent($collection);
 
         $this->Authorize = new ActionsAuthorize($collection);
-        $this->Authorize->config([
-            'actionPath' => 'app/',
-            'userModel' => 'Users'
-        ]);
+        $this->Authorize->config($this->config());
     }
 
     /**
