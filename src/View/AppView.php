@@ -22,6 +22,5 @@ class AppView extends View
         $this->loadHelper('Paginator', [
             'templates' => 'paginator-templates'
         ]);
-        //$this->loadHelper('Acl');
     }
 }
