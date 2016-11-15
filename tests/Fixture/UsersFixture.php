@@ -23,7 +23,7 @@ class UsersFixture extends TestFixture
         'signature' => ['type' => 'text'],
         'facebook' => ['type' => 'string', 'length' => 200],
         'twitter' => ['type' => 'string', 'length' => 200],
-        'group_id' => ['type' => 'integer'],
+        'group_id' => ['type' => 'integer', 'default' => 2],
         'language' => ['type' => 'string', 'length' => 7],
         'two_factor_auth_enabled' => ['type' => 'boolean', 'default' => '0'],
         'blog_articles_comment_count' => ['type' => 'integer', 'length' => 11, 'default' => '0'],
