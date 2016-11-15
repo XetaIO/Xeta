@@ -205,4 +205,19 @@ class AppController extends Controller
             $this->set(compact('notification'));
         }
     }
+
+    /**
+     * BeforeRender hook method.
+     *
+     * @return void
+     */
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+
+        $builder = $this->viewBuilder();
+        $builder->helpers([
+            'Acl' => $this->Auth->config('authorize')['Acl.Actions']
+        ]);
+    }
 }
