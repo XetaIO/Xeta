@@ -209,6 +209,8 @@ class AppController extends Controller
     /**
      * BeforeRender hook method.
      *
+     * @param Event $event The beforeRender event that was fired.
+     *
      * @return void
      */
     public function beforeRender(Event $event)
