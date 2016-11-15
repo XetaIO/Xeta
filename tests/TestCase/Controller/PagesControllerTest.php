@@ -63,7 +63,7 @@ class PagesControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test acceptCookie method not in AJAX
+     * Test acceptCookie method not in AJAX.
      *
      * @return void
      */

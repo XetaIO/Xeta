@@ -207,7 +207,7 @@ class AppController extends Controller
     }
 
     /**
-     * BeforeRender hook method.
+     * beforeRender hook method.
      *
      * @param Event $event The beforeRender event that was fired.
      *
@@ -217,9 +217,11 @@ class AppController extends Controller
     {
         parent::beforeRender($event);
 
-        $builder = $this->viewBuilder();
-        $builder->helpers([
-            'Acl' => $this->Auth->config('authorize')['Acl.Actions']
-        ]);
+        if ($this->components()->has('Auth')) {
+            $builder = $this->viewBuilder();
+            $builder->helpers([
+                'Acl' => $this->Auth->config('authorize')['Acl.Actions']
+            ]);
+        }
     }
 }
