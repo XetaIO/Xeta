@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2016-11-04 11:06+0100\n"
+"POT-Creation-Date: 2016-11-15 21:47+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,8 +14,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AppController.php:91
+#: Controller/AppController.php:93
 msgid "You need to be logged in or you are not authorized to access that location !"
+msgstr ""
+
+#: Controller/AppController.php:184
+msgid "Hello {0}, The website is under maintenance, only you and the staff groups have the access !"
 msgstr ""
 
 #: Controller/BlogController.php:92
@@ -101,7 +105,7 @@ msgid "You need to put your E-mail."
 msgstr ""
 
 #: Controller/ContactController.php:65
-#: Model/Table/UsersTable.php:122;226;313
+#: Model/Table/UsersTable.php:131;235;322
 msgid "You must specify a valid E-mail address."
 msgstr ""
 
@@ -125,75 +129,131 @@ msgstr ""
 msgid "Thanks for accepting to use the cookies !"
 msgstr ""
 
-#: Controller/UsersController.php:88
+#: Controller/TfaController.php:42;77
+msgid "You have already set-up the Two-factor authentication."
+msgstr ""
+
+#: Controller/TfaController.php:127;176
+msgid "Two-factor secret verification failed. Please verify your secret and try again."
+msgstr ""
+
+#: Controller/TfaController.php:172
+msgid "Two-factor authentication successfully enabled !"
+msgstr ""
+
+#: Controller/TfaController.php:204;266;297
+msgid "The Two-factor authentication is not enabled !"
+msgstr ""
+
+#: Controller/TfaController.php:234
+msgid "The Two-factor authentication has been disabled !"
+msgstr ""
+
+#: Controller/TfaController.php:335
+msgid "New two-factor recovery code successfully generated."
+msgstr ""
+
+#: Controller/TfaController.php:339
+msgid "Error to generate two-factor recovery code."
+msgstr ""
+
+#: Controller/UsersController.php:90
+msgid "The Login action is disabled for the moment, please try again later."
+msgstr ""
+
+#: Controller/UsersController.php:94
+msgid "The Register action is disabled for the moment, please try again later."
+msgstr ""
+
+#: Controller/UsersController.php:98
+msgid "While the site is in maintenance, you can not register a new account."
+msgstr ""
+
+#: Controller/UsersController.php:115
 msgid "This account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:131
+#: Controller/UsersController.php:200
 msgid "Your username or password doesn't match."
 msgstr ""
 
-#: Controller/UsersController.php:174
+#: Controller/UsersController.php:248
 msgid "Your account has been created successfully !"
 msgstr ""
 
-#: Controller/UsersController.php:184
+#: Controller/UsersController.php:258
 msgid "Please, correct your mistake."
 msgstr ""
 
-#: Controller/UsersController.php:186;450
+#: Controller/UsersController.php:260;710
 msgid "Please, correct your Captcha."
 msgstr ""
 
-#: Controller/UsersController.php:230
+#: Controller/UsersController.php:327
+msgid "Happy to see you again {0} ! "
+msgstr ""
+
+#: Controller/UsersController.php:337
+msgid "See you later {0} ! "
+msgstr ""
+
+#: Controller/UsersController.php:367
+msgid "The link used for the Two-factor Authentication is incorrect."
+msgstr ""
+
+#: Controller/UsersController.php:430
+msgid "Two-factor secret verification failed. Please verify your code and try again."
+msgstr ""
+
+#: Controller/UsersController.php:470
 msgid "Your information has been updated !"
 msgstr ""
 
-#: Controller/UsersController.php:264
+#: Controller/UsersController.php:515
 msgid "Your E-mail has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:273
+#: Controller/UsersController.php:524
 msgid "Please, complete all fields !"
 msgstr ""
 
-#: Controller/UsersController.php:279
+#: Controller/UsersController.php:530
 msgid "Your old password don't match !"
 msgstr ""
 
-#: Controller/UsersController.php:284;525
+#: Controller/UsersController.php:546;796
 msgid "Your password has been changed !"
 msgstr ""
 
-#: Controller/UsersController.php:349
+#: Controller/UsersController.php:611
 msgid "This user doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:371
+#: Controller/UsersController.php:633
 msgid "Your password doesn't match !"
 msgstr ""
 
-#: Controller/UsersController.php:379
+#: Controller/UsersController.php:641
 msgid "Your account has been deleted successfully ! Thanks for your visit !"
 msgstr ""
 
-#: Controller/UsersController.php:384
+#: Controller/UsersController.php:646
 msgid "Unable to delete your account, please try again."
 msgstr ""
 
-#: Controller/UsersController.php:442
+#: Controller/UsersController.php:702
 msgid "This E-mail doesn't exist or the account has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:475
+#: Controller/UsersController.php:746
 msgid "An E-mail has been send to <strong>{0}</strong>. Please follow the instructions in the E-mail."
 msgstr ""
 
-#: Controller/UsersController.php:494;508
+#: Controller/UsersController.php:765;779
 msgid "This code is not associated with this users or is incorrect."
 msgstr ""
 
-#: Controller/UsersController.php:516
+#: Controller/UsersController.php:787
 msgid "This code is expired, please ask another E-mail code."
 msgstr ""
 
@@ -207,7 +267,7 @@ msgstr ""
 
 #: Model/Table/BadgesTable.php:64
 #: Model/Table/BlogAttachmentsTable.php:61
-#: Model/Table/UsersTable.php:155
+#: Model/Table/UsersTable.php:164
 msgid "The mimeType is not allowed."
 msgstr ""
 
@@ -217,12 +277,12 @@ msgid "The extension allowed are {0}."
 msgstr ""
 
 #: Model/Table/BadgesTable.php:78
-#: Model/Table/UsersTable.php:169
+#: Model/Table/UsersTable.php:178
 msgid "The file exceeded the max allowed size of {0}"
 msgstr ""
 
 #: Model/Table/BadgesTable.php:86
-#: Model/Table/UsersTable.php:177
+#: Model/Table/UsersTable.php:186
 msgid "The file exceeded the max allowed dimension. Max height : {0} Max width : {1}"
 msgstr ""
 
@@ -325,79 +385,79 @@ msgstr ""
 msgid "You have unlock the badge \"{0}\"."
 msgstr ""
 
-#: Model/Table/UsersTable.php:83;287
+#: Model/Table/UsersTable.php:92;296
 msgid "You must set an username"
 msgstr ""
 
-#: Model/Table/UsersTable.php:88;292
+#: Model/Table/UsersTable.php:97;301
 msgid "This username is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:92;296
+#: Model/Table/UsersTable.php:101;305
 msgid "Only alphanumeric characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:96;300
+#: Model/Table/UsersTable.php:105;309
 msgid "Your username must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:99
+#: Model/Table/UsersTable.php:108
 msgid "You must specify your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:100;235;261
+#: Model/Table/UsersTable.php:109;244;270
 msgid "You must specify your password (confirmation)."
 msgstr ""
 
-#: Model/Table/UsersTable.php:104;239;265
+#: Model/Table/UsersTable.php:113;248;274
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:110
+#: Model/Table/UsersTable.php:119
 msgid "Your password confirm must match with your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:118;309
+#: Model/Table/UsersTable.php:127;318
 msgid "This E-mail is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:144
+#: Model/Table/UsersTable.php:153
 msgid "Your First Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:149
+#: Model/Table/UsersTable.php:158
 msgid "Your Last Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:162
+#: Model/Table/UsersTable.php:171
 msgid "The extensions allowed are {0}."
 msgstr ""
 
-#: Model/Table/UsersTable.php:187
+#: Model/Table/UsersTable.php:196
 msgid "Your Facebook can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:192
+#: Model/Table/UsersTable.php:201
 msgid "Your Twitter can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:199;207
+#: Model/Table/UsersTable.php:208;216
 msgid "Your biography can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:222
+#: Model/Table/UsersTable.php:231
 msgid "Your E-mail can not be empty."
 msgstr ""
 
-#: Model/Table/UsersTable.php:231
+#: Model/Table/UsersTable.php:240
 msgid "This E-mail is already used, please choose another E-mail."
 msgstr ""
 
-#: Model/Table/UsersTable.php:234;260
+#: Model/Table/UsersTable.php:243;269
 msgid "You must specify your new password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:245;271
+#: Model/Table/UsersTable.php:254;280
 msgid "Your password confirm must match with your new password"
 msgstr ""
 
@@ -421,10 +481,16 @@ msgstr ""
 #: Template/Groups/view.ctp:9
 #: Template/Layout/Email/html/default.ctp:44
 #: Template/Pages/terms.ctp:13
+#: Template/Tfa/configure.ctp:10
+#: Template/Tfa/enable.ctp:10
+#: Template/Tfa/index.ctp:14
+#: Template/Tfa/intro.ctp:10
+#: Template/Tfa/recovery_code.ctp:10
 #: Template/Users/account.ctp:24
 #: Template/Users/index.ctp:9
 #: Template/Users/notifications.ctp:10
 #: Template/Users/profile.ctp:70
+#: Template/Users/security.ctp:10
 #: Template/Users/settings.ctp:10
 msgid "Home"
 msgstr ""
@@ -820,6 +886,10 @@ msgstr ""
 msgid "{0} Settings {1}"
 msgstr ""
 
+#: Template/Element/Users/sidebar.ctp:40
+msgid "{0} Security {1}"
+msgstr ""
+
 #: Template/Error/error400.ctp:3
 #: Template/Error/error500.ctp:3
 msgid "Error {0} :("
@@ -840,10 +910,16 @@ msgstr ""
 
 #: Template/Groups/view.ctp:12
 #: Template/Pages/home.ctp:514
+#: Template/Tfa/configure.ctp:13
+#: Template/Tfa/enable.ctp:13
+#: Template/Tfa/index.ctp:17
+#: Template/Tfa/intro.ctp:13
+#: Template/Tfa/recovery_code.ctp:13
 #: Template/Users/account.ctp:27
 #: Template/Users/index.ctp:12
 #: Template/Users/notifications.ctp:13
 #: Template/Users/profile.ctp:73
+#: Template/Users/security.ctp:13
 #: Template/Users/settings.ctp:13
 msgid "Users"
 msgstr ""
@@ -947,6 +1023,14 @@ msgstr ""
 
 #: Template/Pages/home.ctp:573
 msgid "Latest Comments"
+msgstr ""
+
+#: Template/Pages/maintenance.ctp:2
+msgid "Website in maintenance"
+msgstr ""
+
+#: Template/Pages/maintenance.ctp:113
+msgid "Oops ! The website is in maintenance, our monkey's team are working on it !"
 msgstr ""
 
 #: Template/Pages/terms.ctp:5;27
@@ -1090,6 +1174,244 @@ msgstr ""
 msgid "{0} uses collected information for the following general purposes: products and services payments, billing, identification and authentication, services improvement, contact, and research."
 msgstr ""
 
+#: Template/Tfa/configure.ctp:2
+msgid "Two-factor Authentication : Configure"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:16
+#: Template/Tfa/enable.ctp:16
+#: Template/Tfa/index.ctp:20
+#: Template/Tfa/intro.ctp:16
+#: Template/Tfa/recovery_code.ctp:16
+#: Template/Users/security.ctp:2;16
+msgid "Security"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:19;37
+#: Template/Tfa/enable.ctp:19;37
+#: Template/Tfa/index.ctp:6;23;38
+#: Template/Tfa/intro.ctp:19;37
+#: Template/Tfa/recovery_code.ctp:19
+#: Template/Users/security.ctp:31
+#: Template/Users/tfa.ctp:32
+msgid "Two-factor Authentication"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:22
+msgid "Configure"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:41
+msgid "You will need to install a two-factor authentication application on your phone."
+msgstr ""
+
+#: Template/Tfa/configure.ctp:46
+msgid "1. Scan QrCode"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:52
+msgid "Scan the image above with the two-factor authentication app on your phone."
+msgstr ""
+
+#: Template/Tfa/configure.ctp:53
+msgid "If you can’t use a barcode, {0}enter this text code{1} instead."
+msgstr ""
+
+#: Template/Tfa/configure.ctp:58
+msgid "After scanning the barcode image, the app will display a six-digit code that you can enter below."
+msgstr ""
+
+#: Template/Tfa/configure.ctp:69
+msgid "2. Enter the six-digit code from the application"
+msgstr ""
+
+#: Template/Tfa/configure.ctp:71
+#: Template/Tfa/intro.ctp:69
+#: Template/Users/security.ctp:65
+msgid "{0} Enable Two-factor Authentication"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:2
+msgid "Two-factor Authentication : Enable"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:22
+msgid "Enable"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:42
+msgid "Enabled {0}"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:43
+msgid "Two-factor authentication is currently on."
+msgstr ""
+
+#: Template/Tfa/enable.ctp:46
+msgid "{0} Disable two-factor authentication"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:51
+msgid "Don’t get locked out of your {0} account"
+msgstr ""
+
+#: Template/Tfa/enable.ctp:53
+msgid "<strong>Your account is now more secure, make sure you don’t get locked out</strong>.\n                        If you lose your two-factor device, the {0} Support cannot restore access to accounts with two-factor authentication enabled for security reasons, <strong>printing your recovery codes will keep you from permanently losing access to your {0} account.</strong>."
+msgstr ""
+
+#: Template/Tfa/enable.ctp:57
+msgid "Recovery codes can be used to access your account in the event you lose access to your device and cannot receive two-factor authentication codes."
+msgstr ""
+
+#: Template/Tfa/enable.ctp:60
+msgid "{0} View recovery code"
+msgstr ""
+
+#: Template/Tfa/index.ctp:44;63
+msgid "About Two-Factor Authentication"
+msgstr ""
+
+#: Template/Tfa/index.ctp:49;83
+msgid "Application on phone"
+msgstr ""
+
+#: Template/Tfa/index.ctp:54;111
+#: Template/Tfa/recovery_code.ctp:22
+msgid "Recovery Code"
+msgstr ""
+
+#: Template/Tfa/index.ctp:66
+msgid "Two-factor authentication, or 2FA, is a way of logging into websites that requires more than just a password. Using a password to log into a website is susceptible to security threats, because it represents a single piece of information a malicious person needs to acquire. The added security that 2FA provides is requiring additional information to sign in."
+msgstr ""
+
+#: Template/Tfa/index.ctp:69
+msgid "In {0}'s case, this additional information is an authentication code delivered to your cell phone that's generated by an application on your smartphone.The only way someone can sign into your account is if they know both your password and have access to the authentication code on your phone."
+msgstr ""
+
+#: Template/Tfa/index.ctp:72
+msgid "We <strong>strongly</strong> urge you to turn on 2FA for the safety of your account, not only on {0}, but on other websites that support it."
+msgstr ""
+
+#: Template/Tfa/index.ctp:76
+msgid "<strong>Warning</strong>: For security reasons, the {0} Support cannot restore access to accounts with two-factor authentication enabled if you lose your phone and don't have access to your recovery code."
+msgstr ""
+
+#: Template/Tfa/index.ctp:86
+msgid "A <em>Time-based One-Time Password</em> (TOTP) application automatically generates an authentication code that changes after a certain period of time."
+msgstr ""
+
+#: Template/Tfa/index.ctp:89
+msgid "Download one of these applications :"
+msgstr ""
+
+#: Template/Tfa/index.ctp:93
+msgid "For Android, iOS, and Blackberry : {0}"
+msgstr ""
+
+#: Template/Tfa/index.ctp:96
+msgid "For Android and iOS : {0}"
+msgstr ""
+
+#: Template/Tfa/index.ctp:99
+msgid "For Windows Phone : {0}"
+msgstr ""
+
+#: Template/Tfa/index.ctp:104
+msgid "To configure authentication via TOTP on multiple devices, during setup, scan the QR code using <strong>each device at the same time</strong>. If 2FA is already enabled and you want to add another device, you must re-configure 2FA from your security settings."
+msgstr ""
+
+#: Template/Tfa/index.ctp:114
+msgid "After successfully setting up two-factor authentication via a TOTP mobile application, the {0} page lists your recovery code. We <strong>strongly</strong> recommend saving your recovery code immediately. If you don't, though, you can download them at any point after enabling two-factor authentication."
+msgstr ""
+
+#: Template/Tfa/index.ctp:115
+msgid "Two-factor recovery code"
+msgstr ""
+
+#: Template/Tfa/index.ctp:118
+msgid "<strong>Treat your recovery codes with the same level of attention as you would your password!</strong> They should not be shared or distributed. The {0} Staff will never ask you your recovery code."
+msgstr ""
+
+#: Template/Tfa/index.ctp:122
+msgid "Once you use your recovery code to regain access to your account, <strong>it cannot be reused</strong>. If you've used your recovery code, you must {0}."
+msgstr ""
+
+#: Template/Tfa/index.ctp:123
+msgid "generate a new valid recovery code"
+msgstr ""
+
+#: Template/Tfa/intro.ctp:2
+msgid "Two-factor Authentication : Intro"
+msgstr ""
+
+#: Template/Tfa/intro.ctp:22
+msgid "Intro"
+msgstr ""
+
+#: Template/Tfa/intro.ctp:41
+msgid "Two-factor authentication adds an extra layer of security to your account. In addition to your username and password, you'll need to enter a code that is present in an app on your phone."
+msgstr ""
+
+#: Template/Tfa/intro.ctp:54
+msgid "When you sign into {0} you’ll enter your username and password, like always."
+msgstr ""
+
+#: Template/Tfa/intro.ctp:57
+msgid "When logging in from a new browser, you’ll need to enter an additional code from your phone or tablet."
+msgstr ""
+
+#: Template/Tfa/intro.ctp:60
+msgid "Once you enter the code on the website, you’ll be logged into {0}."
+msgstr ""
+
+#: Template/Tfa/intro.ctp:66
+msgid "Use an {0} to get two-factor authentication codes when prompted."
+msgstr ""
+
+#: Template/Tfa/intro.ctp:66
+msgid "application on your phone"
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:2;37
+msgid "Two-factor Authentication : Recovery Code"
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:41
+msgid "Recovery code can be used to access your account in the event you lose access to your device and cannot receive two-factor authentication code."
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:45
+msgid "Your recovery code : {0}"
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:46
+msgid "Code Status : "
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:48
+msgid "Used {0}"
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:50
+msgid "Valid {0}"
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:53
+msgid "Printing your recovery code will keep you from permanently losing access to your {0} account."
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:60
+msgid "Once you use your recovery code to regain access to your account, <strong>it cannot be reused</strong>. If you've used your recovery code, click <strong>Generate new recovery code</strong> to recreate another recovery code."
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:63
+msgid "When you generate a new recovery code, you must download or print the new code. Your old code won't work anymore."
+msgstr ""
+
+#: Template/Tfa/recovery_code.ctp:66
+msgid "{0} Generate new recovery code"
+msgstr ""
+
 #: Template/Users/account.ctp:54
 msgid "Default Avatar"
 msgstr ""
@@ -1126,7 +1448,7 @@ msgstr ""
 msgid "The signature will be displayed on each article that you have wrotten on the blog."
 msgstr ""
 
-#: Template/Users/forgot_password.ctp:2;29
+#: Template/Users/forgot_password.ctp:2;30
 msgid "Forgot your Password"
 msgstr ""
 
@@ -1139,14 +1461,14 @@ msgstr ""
 msgid "Use the form below to recover your password ! An E-mail will be send to you."
 msgstr ""
 
-#: Template/Users/forgot_password.ctp:44
+#: Template/Users/forgot_password.ctp:46
 #: Template/Users/login.ctp:63
 #: Template/Users/settings.ctp:35
 msgid "E-mail"
 msgstr ""
 
-#: Template/Users/forgot_password.ctp:57
-#: Template/Users/reset_password.ctp:75
+#: Template/Users/forgot_password.ctp:59
+#: Template/Users/reset_password.ctp:77
 msgid "Reset {0}"
 msgstr ""
 
@@ -1167,13 +1489,13 @@ msgid "Create an Account"
 msgstr ""
 
 #: Template/Users/login.ctp:81;163
-#: Template/Users/reset_password.ctp:44
+#: Template/Users/reset_password.ctp:46
 #: Template/Users/settings.ctp:105
 msgid "Password"
 msgstr ""
 
 #: Template/Users/login.ctp:100
-#: Template/Users/reset_password.ctp:64
+#: Template/Users/reset_password.ctp:66
 msgid "Password (Confirmation)"
 msgstr ""
 
@@ -1194,6 +1516,7 @@ msgid "Forgot your password ?"
 msgstr ""
 
 #: Template/Users/login.ctp:177
+#: Template/Users/tfa.ctp:55
 msgid "LogIn {0}"
 msgstr ""
 
@@ -1277,12 +1600,176 @@ msgstr ""
 msgid "His Lastest Comments in the Blog"
 msgstr ""
 
-#: Template/Users/reset_password.ctp:2;29
+#: Template/Users/reset_password.ctp:2;30
 msgid "Reset your Password"
 msgstr ""
 
 #: Template/Users/reset_password.ctp:13
 msgid "Use the form below to reset your password !"
+msgstr ""
+
+#: Template/Users/security.ctp:37
+msgid "{0} in a safe place. It will allow you to access your account if you lose your phone."
+msgstr ""
+
+#: Template/Users/security.ctp:39
+msgid "{0} Save your recovery code"
+msgstr ""
+
+#: Template/Users/security.ctp:42
+msgid "{0} provides another layer of security to your account."
+msgstr ""
+
+#: Template/Users/security.ctp:44
+msgid "{0} Two-factor Authentication"
+msgstr ""
+
+#: Template/Users/security.ctp:50
+msgid "Status : "
+msgstr ""
+
+#: Template/Users/security.ctp:53
+msgid "On {0}"
+msgstr ""
+
+#: Template/Users/security.ctp:57
+msgid "Off {0}"
+msgstr ""
+
+#: Template/Users/security.ctp:63
+msgid "{0} Disable Two-factor Authentication"
+msgstr ""
+
+#: Template/Users/security.ctp:73
+msgid "Sessions"
+msgstr ""
+
+#: Template/Users/security.ctp:77
+msgid "This is a list of devices that are logged into your account."
+msgstr ""
+
+#: Template/Users/security.ctp:102
+msgid "Your current session"
+msgstr ""
+
+#: Template/Users/security.ctp:104
+msgid "Other session"
+msgstr ""
+
+#: Template/Users/security.ctp:112
+msgid "on {0}"
+msgstr ""
+
+#: Template/Users/security.ctp:116
+msgid "Last seen on"
+msgstr ""
+
+#: Template/Users/security.ctp:125
+msgid "Last seen"
+msgstr ""
+
+#: Template/Users/security.ctp:130
+msgid "Created"
+msgstr ""
+
+#: Template/Users/security.ctp:139
+msgid "There's currently no sessions online for your account."
+msgstr ""
+
+#: Template/Users/security.ctp:148
+msgid "Security History"
+msgstr ""
+
+#: Template/Users/security.ctp:153
+msgid "This is a security log of important events involving your account."
+msgstr ""
+
+#: Template/Users/security.ctp:178
+msgid "action"
+msgstr ""
+
+#: Template/Users/security.ctp:182
+msgid "browser"
+msgstr ""
+
+#: Template/Users/security.ctp:186
+msgid "plateform"
+msgstr ""
+
+#: Template/Users/security.ctp:190
+msgid "username"
+msgstr ""
+
+#: Template/Users/security.ctp:194
+msgid "user_ip"
+msgstr ""
+
+#: Template/Users/security.ctp:198
+msgid "created"
+msgstr ""
+
+#: Template/Users/security.ctp:207
+msgid "{0} More informations about security actions"
+msgstr ""
+
+#: Template/Users/security.ctp:222
+msgid "Action name"
+msgstr ""
+
+#: Template/Users/security.ctp:223
+msgid "Action description"
+msgstr ""
+
+#: Template/Users/security.ctp:229
+msgid "Triggered when an user login on the login page."
+msgstr ""
+
+#: Template/Users/security.ctp:233
+msgid "Triggered when the user failed to login on the login page."
+msgstr ""
+
+#: Template/Users/security.ctp:237
+msgid "Triggered when an user is automated login with Cookies."
+msgstr ""
+
+#: Template/Users/security.ctp:241
+msgid "Triggered when an user has modified his account."
+msgstr ""
+
+#: Template/Users/security.ctp:245
+msgid "Triggered when an user has changed his Email."
+msgstr ""
+
+#: Template/Users/security.ctp:249
+msgid "Triggered when an user has changed his password."
+msgstr ""
+
+#: Template/Users/security.ctp:253
+msgid "Triggered when an user has asked a password reset."
+msgstr ""
+
+#: Template/Users/security.ctp:257
+msgid "Triggered when an user has successfully reset his password with the Email."
+msgstr ""
+
+#: Template/Users/security.ctp:261
+msgid "Triggered when an user enbale the 2FA mode."
+msgstr ""
+
+#: Template/Users/security.ctp:265
+msgid "Triggered when an user disable the 2FA mode."
+msgstr ""
+
+#: Template/Users/security.ctp:269
+msgid "Triggered when an user regenerate a new recovery code."
+msgstr ""
+
+#: Template/Users/security.ctp:273
+msgid "Triggered when an user use his recovery code."
+msgstr ""
+
+#: Template/Users/security.ctp:283
+msgid "There's no logs for your account."
 msgstr ""
 
 #: Template/Users/settings.ctp:2;16
@@ -1335,5 +1822,21 @@ msgstr ""
 
 #: Template/Users/settings.ctp:110
 msgid "Yes, i confirm !"
+msgstr ""
+
+#: Template/Users/tfa.ctp:2
+msgid "Login : Two-Factor Authentication"
+msgstr ""
+
+#: Template/Users/tfa.ctp:10
+msgid "Two-Factor Authentication required"
+msgstr ""
+
+#: Template/Users/tfa.ctp:13
+msgid "This account is protected by the Two-factor Authentication method. You need to specify below the code obtained on your phone !"
+msgstr ""
+
+#: Template/Users/tfa.ctp:46
+msgid "123456"
 msgstr ""
 
