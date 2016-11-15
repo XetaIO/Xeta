@@ -96,7 +96,7 @@ class AppController extends Controller
         $language = new Language($this);
         $language->setLanguage();
 
-        //Set trustProxy or get the original visitor IP.
+        //Set trustProxy to get the original visitor IP.
         $this->request->trustProxy = true;
 
         //Automatically Login.
@@ -115,6 +115,7 @@ class AppController extends Controller
 
                     $user = $this->Users->newEntity($userLogin, ['accessibleFields' => ['id' => true]]);
                     $user->isNew(false);
+                    $user->id = $userLogin['id'];
 
                     $user->last_login = new Time();
                     $user->last_login_ip = $this->request->clientIp();
