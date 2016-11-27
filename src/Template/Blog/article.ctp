@@ -187,6 +187,7 @@
                                             ]),
                                             'data-type' => 'unlike',
                                             'data-toggle' => 'tooltip',
+                                            'data-csrf' => h($this->request->cookie('csrfToken')),
                                             'title' => __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>"),
                                             'escape' => false
                                         ]
@@ -203,6 +204,7 @@
                                             ]),
                                             'data-type' => 'like',
                                             'data-toggle' => 'tooltip',
+                                            'data-csrf' => h($this->request->cookie('csrfToken')),
                                             'title' => __('Like {0}', "<i class='fa fa-heart text-danger'></i>"),
                                             'escape' => false
                                         ]
@@ -435,6 +437,7 @@
                                                             $article->id,
                                                             $comment->id
                                                         ]),
+                                                        'data-csrf' => h($this->request->cookie('csrfToken')),
                                                         'escape' => false
                                                     ]
                                                 ) ?>
