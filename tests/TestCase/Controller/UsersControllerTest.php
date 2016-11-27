@@ -111,6 +111,9 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertSession(null, 'Auth.User.id');
 
+        //Mailtrap bypass...
+        sleep(1);
+
         //Register successfull.
         Configure::write('Recaptcha.bypass', true);
         $this->_cookie = [
