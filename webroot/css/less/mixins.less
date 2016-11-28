@@ -1,0 +1,193 @@
+// main : xeta.less
+
+.ma-button-variant(@color, @background) {
+    text-decoration: none;
+    color: @color;
+    background-color: @background;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        background-color: darken(@background, 5%);
+    }
+}
+
+.button-variant(@color, @background) {
+    color: @color;
+    background-color: @background;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        color: @color;
+        background-color: darken(@background, 5%);
+        border-color: transparent;
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            background-color: @background;
+        }
+    }
+
+    .badge {
+        color: @background;
+        background-color: @color;
+    }
+}
+
+.button-variant-outline(@color, @background) {
+    color: @background;
+    background-color: transparent;
+    border-color: @background;
+    box-shadow: none;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        color: @color;
+        background-color: @background;
+        box-shadow: none;
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        pointer-events: visible;
+
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            border-color: @background;
+        }
+    }
+
+    .badge {
+        color: @background;
+        background-color: @color;
+    }
+}
+
+.button-variant-outline-white(@color, @background) {
+    color: @background;
+    background-color: transparent;
+    border-color: @background;
+    box-shadow: none;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        color: @color;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle& {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        pointer-events: visible;
+
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            border-color: @background;
+        }
+    }
+
+    .badge {
+        color: @background;
+        background-color: @color;
+    }
+}
+
+// Button sizes
+.button-size(@padding-vertical, @padding-horizontal) {
+    padding: @padding-vertical @padding-horizontal;
+    border-radius: 0px;
+}
+
+//InfoBox
+.infobox-variant(@color) {
+    border-left-color: @color;
+    color: @color;
+}
+
+// Alert
+.alert-variant(@background, @border, @text-color) {
+    background-color: @background;
+    border-color: @border;
+    color: @text-color;
+
+    hr {
+        border-top-color: darken(@border, 5%);
+    }
+    .alert-link {
+        color: darken(@text-color, 10%);
+    }
+}
+
+//Panel
+.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
+    border-color: @border;
+
+    & > .panel-heading {
+        color: @heading-text-color;
+        background-color: @heading-bg-color;
+        border-color: @heading-border;
+
+        + .panel-collapse > .panel-body {
+            border-top-color: @border;
+        }
+        .badge {
+            color: @heading-bg-color;
+            background-color: @heading-text-color;
+        }
+    }
+    & > .panel-footer {
+        + .panel-collapse > .panel-body {
+            border-bottom-color: @border;
+        }
+    }
+}
+
+// Progress bars
+.progress-bar-variant(@color) {
+  background-color: @color;
+}
+
+//Text.
+.text-emphasis-variant(@color) {
+color: @color;
+a&:hover {
+    color: darken(@color, 5%);
+}
+}

@@ -1,0 +1,38 @@
+// main : xeta.less
+
+.tooltip-inner {
+	color: #fff;
+	background-color: @primary-color;
+	padding: 5px 12px;
+	border-radius: 3px;
+}
+.tooltip.top .tooltip-arrow,
+.tooltip.top-left .tooltip-arrow,
+.tooltip.top-right .tooltip-arrow {
+	border-top-color: @primary-color;
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: @primary-color;
+}
+
+.tooltip.left .tooltip-arrow {
+	border-left-color: @primary-color;
+}
+
+.tooltip.bottom .tooltip-arrow,
+.tooltip.bottom-left .tooltip-arrow,
+.tooltip.bottom-right .tooltip-arrow {
+	border-bottom-color: @primary-color;
+}
+
+#flotTip {
+    padding: 0.4em 0.6em;
+    font-size: 0.8em;
+    white-space: nowrap;
+    background: @primary-color;
+    color: #fff;
+	z-index: 100;
+	
+	.border-radius(0.5em);
+}

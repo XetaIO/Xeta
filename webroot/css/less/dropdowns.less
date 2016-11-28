@@ -1,0 +1,32 @@
+// main : xeta.less
+
+.dropdown-menu {
+    .border-radius(3px);
+
+    > li > a {
+        color: @dropdown-link-color;
+    }
+
+    > .active > a {
+        color: #FFF;
+        text-decoration: none;
+        background-color: @primary-color;
+        outline: 0px none;
+
+        &:hover,
+        &:focus {
+            color: #FFF;
+            text-decoration: none;
+            background-color: @primary-color;
+            outline: 0px none;
+        }
+    }
+}
+
+.dropdown-menu > li > a {
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: @dropdown-link-hover-color;
+    }
+}

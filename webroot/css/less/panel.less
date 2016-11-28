@@ -1,0 +1,80 @@
+// main : xeta.less
+
+.panel {
+    background: #FFF;
+    border: 1px solid #E6E9ED;
+    border-bottom-width: 2px;
+
+    .box-shadow(none);
+    .border-radius(3px);
+
+    .panel-heading {
+        font-weight: 700;
+        font-style: normal;
+        line-height: 40px;
+        min-height: 40px;
+        padding: 0px;
+        text-transform: uppercase;
+        color: #FFF;
+        border-color: transparent;
+        border-radius: 3px 3px 0px 0px;
+        background-color: @primary-color;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    &.panel-staff-online {
+
+        .panel-body {
+
+            ul {
+                padding: 0;
+
+                li {
+                    list-style: outside none none;
+                    border-bottom: 1px dotted #DDD;
+                    margin-bottom: 10px;
+                    padding-bottom: 10px;
+
+                    &:last-child {
+                        border: none;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .username,
+            .title {
+                display: block;
+                margin-top: 2px;
+                font-size: 11pt;
+                font-weight: bold;
+            }
+
+            .title {
+                font-weight: normal;
+                word-break: break-all;
+            }
+
+            .avatar {
+                margin-right: 5px;
+                float: left;
+                width: auto;
+                height: auto;
+
+                img {
+                    height: 42px;
+                    width: 42px;
+                }
+            }
+        }
+    }
+}
+
+.panel-default {
+    .panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
+}

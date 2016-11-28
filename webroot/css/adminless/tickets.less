@@ -1,0 +1,204 @@
+// main: admin.less
+
+.tableTickets {
+    margin-top: 15px;
+
+    .left {
+        position: relative;
+        padding-left: 20px;
+        font-size: 12px;
+
+        .license {
+            margin: -5px 0px 5px;
+            font-size: 13px;
+            color: #FFF;
+            background-color: @info;
+            padding: 1px 5px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: @info;
+            left: -7px;
+            position: absolute;
+            border-radius: 3px 0px 3px 3px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+            span {
+                background-color: @info;
+                border-top-left-radius: 3px;
+                position: absolute;
+                top: -4px;
+                left: -1px;
+                width: 7px;
+                height: 4px;
+                transform: initial;
+            }
+        }
+    }
+
+    .right {
+        position: relative;
+        font-size: 12px;
+
+        .new {
+            margin: -5px 0px 5px;
+            font-size: 11px;
+            color: #FFF;
+            background-color: @danger;
+            padding: 1px 5px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: @danger;
+            right: -10px;
+            top: 8px;
+            position: absolute;
+            border-radius: 3px 0px 3px 3px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+            span {
+                background-color: @danger;
+                border-top-right-radius: 3px;
+                position: absolute;
+                top: -4px;
+                right: -1px;
+                width: 10px;
+                height: 4px;
+                transform: initial;
+            }
+        }
+    }
+}
+
+
+.tickets {
+
+    .message {
+        padding: 10px;
+        margin-bottom: 25px;
+        border: 1px solid transparent;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+        background-color: #FFF;
+        border-radius: 4px;
+        position: relative;
+
+        &.messageNew {
+            background-color: #E0FFD9;
+        }
+
+        .left {
+            float: left;
+            width: 120px;
+            text-align: center;
+
+            span {
+                display: block;
+                padding: 10px 0px;
+                border-top: 1px dotted #DDD;
+            }
+
+            .avatar {
+                position: relative;
+                width: 120px;
+                padding: 10px;
+
+                img {
+                    border-radius: 50%;
+                    width: 75px;
+                    height: auto;
+                    border: 4px solid #DEDEDE;
+                }
+
+                .status {
+                    top: 55px;
+                    color: #F68484;
+                    left: 79px;
+                    border: medium none;
+                    position: absolute;
+
+                    i {
+                        height: 18px;
+                        width: 18px;
+                        display: block;
+                        border: 3px solid #FFF;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+
+        .right {
+            margin-left: 130px;
+            padding: 10px 20px 20px;
+            border-left: 1px dotted #DDD;
+
+            .header {
+                border-bottom: 1px dotted #DDD;
+                padding: 0px 5px 5px;
+
+                .messageId {
+                    float: right;
+                    font-size: 16px;
+                }
+
+                .new {
+                    margin: -5px 0px 5px;
+                    font-size: 11px;
+                    color: #FFF;
+                    background-color: #62C04E;
+                    padding: 1px 5px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #62C04E;
+                    right: -10px;
+                    top: 8px;
+                    position: absolute;
+                    border-radius: 3px 0px 3px 3px;
+                    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+                    span {
+                        background-color: #62C04E;
+                        border-top-right-radius: 3px;
+                        position: absolute;
+                        top: -4px;
+                        right: -1px;
+                        width: 10px;
+                        height: 4px;
+                        transform: initial;
+                    }
+                }
+            }
+
+            .actions {
+                margin: 5px;
+                text-align: right;
+            }
+        }
+    }
+
+    .ticketComment {
+
+        .panel-heading {
+            background-color: #DDE1E7;
+            border-color: #DDE1E7;
+
+            h4 {
+                margin: 0px;
+            }
+        }
+    }
+}
+
+.sidebar-ticket {
+    dt {
+        float: left;
+        max-width: 100%;
+        margin-right: 5px;
+    }
+    dd {
+        text-align: right;
+        max-width: 100%;
+    }
+}
+
+.widget-ticket {
+    min-height: 190px;
+}

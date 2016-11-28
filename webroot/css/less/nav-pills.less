@@ -1,0 +1,56 @@
+// main : xeta.less
+
+.nav-pills {
+
+    &.nav-stacked {
+        & > li.active > a {
+            background: transparent;
+            color: @primary-color;
+        }
+
+        & > li > a {
+            .border-radius(3px);
+
+            & > i:last-child {
+                opacity: 0;
+                float: right;
+                padding: 4px 0;
+
+                .transition(opacity 200ms ease);
+            }
+        }
+
+        & > li > a:hover > i:last-child,
+        & > li.active > a > i:last-child {
+            opacity: 1;
+        }
+    }
+
+    & > li.active > a {
+        background: transparent;
+        color: @primary-color;
+
+        &:hover,
+        &:focus {
+            background: transparent;
+            color: @primary-color;
+        }
+    }
+
+    & > li > a {
+        .border-radius(3px);
+
+        & > i:last-child {
+            opacity: 0;
+            float: right;
+            padding: 4px 0;
+
+            .transition(opacity 200ms ease);
+        }
+    }
+
+    & > li > a:hover > i:last-child,
+    & > li.active > a > i:last-child {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,32 @@
+// main : xeta.less
+
+.social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: inline-block;
+        margin-left: 10px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
+            display: block;
+            color: inherit;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: @white;
+            background-color: @text-color;
+
+            &:hover {
+                background-color: @primary-color;
+            }
+        }
+    }
+}

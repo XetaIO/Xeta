@@ -1,0 +1,26 @@
+//main: xeta.less
+
+.nav-tabs {
+    border-color: @primary-color;
+
+    li {
+        &.active>a,
+        &.active>a:hover,
+        &.active>a:focus {
+            background-color: @primary-color;
+            color: #fff;
+            border-radius: 2px 2px 0 0;
+            border-color: @primary-color @primary-color transparent;
+            border-bottom: 0;
+        }
+
+        a {
+            border-radius: 2px 2px 0 0;
+
+            &:hover {
+                border-color: @primary-color @primary-color transparent;
+                background-color: transparent;
+            }
+        }
+    }
+}

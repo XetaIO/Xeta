@@ -1,0 +1,143 @@
+// main: admin.less
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 50px;
+    width: 210px;
+    height: auto;
+    text-align: center;
+    color: white;
+
+    &:after {
+        content: "";
+        position: fixed;
+        top: 50px;
+        left: 0;
+        bottom: 0;
+        width: 210px;
+        background-color: #2f4052;
+        border: none;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        z-index: -1;
+    }
+
+    .sidebar-header {
+        height: 70px;
+
+        .avatar {
+            float: left;
+            width: 40px;
+            margin: 15px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .information {
+            padding-right: 15px;
+            padding-top: 20px;
+            margin-left: 70px;
+            text-align: left;
+        }
+
+        .progress {
+            margin-bottom: 0;
+            height: 5px;
+        }
+
+        .username {
+            a {
+                float: right;
+
+                i:first-child {
+                    float: none;
+                    margin: 0;
+                    font-size: inherit;
+                    min-width: inherit;
+                }
+            }
+        }
+    }
+
+    .sidebar-nav {
+        li {
+            border-bottom: 1px solid #394A5D;
+
+            a {
+                border-radius: 0;
+
+                i:first-child {
+                    float: left;
+                    font-size: 20px;
+                    margin-right: 15px;
+                    min-width: 26px;
+
+                }
+            }
+        }
+    }
+
+    .sidebar-inner {
+        position: relative;
+        width: auto;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    ul.submenu {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        li > a {
+            text-align: left;
+            font-size: 12px;
+            padding-left: 45px;
+        }
+
+        li.active a {
+            color: @primary-color;
+            background-color: #eee;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        position: absolute;
+        width: 60px;
+        z-index: 2;
+
+        &:after {
+            width: 60px;
+        }
+
+        .sidebar-inner {
+            overflow: initial;
+        }
+
+        li a i:first-child {
+            float: none;
+        }
+
+        .sidebar-nav {
+            li {
+                a i:first-child {
+                    float: none;
+
+                }
+            }
+        }
+
+        .sidebar-header {
+            height: inherit;
+
+            .avatar {
+                float: none;
+                margin: 10px;
+            }
+        }
+    }
+}

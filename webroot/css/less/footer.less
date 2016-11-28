@@ -1,0 +1,56 @@
+// main : xeta.less
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 60px;
+    color: @white;
+    background-color: @footer-bg;
+    border-top: 4px solid @footer-border-color;
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .text-muted {
+            color: inherit;
+            margin-top: 15px;
+
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+
+    a {
+        color: @link-color;
+    }
+
+    .navigation {
+        display: inline-block;
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin: 0 2px;
+
+            &:before {
+                content: "|";
+                margin-right: 4px;
+            }
+
+            &:first-child:before{
+                content:none;
+            }
+        }
+    }
+
+    .copyright {
+        display: inline-block;
+        margin-right: 10px;
+    }
+}

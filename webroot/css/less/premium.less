@@ -1,0 +1,87 @@
+// main : xeta.less
+
+.pricing-table {
+	
+	header {
+		h1 {
+			font-family: "Leckerli One", cursive;
+			font-size: 44px;
+			line-height: 130%;
+			margin-bottom: 25px;
+		}
+	}
+	
+	.pricing {
+		.plan {
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			overflow: hidden;
+			
+			header {
+				padding: 35px;
+				background: none repeat scroll 0% 0% @h-color;
+				text-align: center;
+				
+				h2 {
+					font-family: "Leckerli One",cursive;
+					margin-top: 0px;
+					font-size: 35px;
+					letter-spacing: 0.15em;
+					color: #FFF;
+				}
+				
+				.price {
+					font-family: "Leckerli One",cursive;
+					
+					.currency {
+						position: relative;
+						top: 16px;
+						font-size: 24px;
+						vertical-align: top;
+						margin-right: 5px;
+					}
+					
+					.amount {
+						font-size: 60px;
+						font-weight: 900;
+						color: #FFF;
+					}
+					
+					.period {
+						display: block;
+						font-size: 16px;
+						text-transform: uppercase;
+					}
+				}
+			}
+			
+			.features {
+				padding: 20px 30px;
+				
+				list-style: outside none none;
+				
+				background: none repeat scroll 0% 0% #F5F7FA;
+				border-right: 1px solid @border-grey;
+				border-left: 1px solid @border-grey;
+				border-style: none solid solid;
+				border-color: @border-grey;
+				border-width: medium 1px 2px;
+				border-bottom-left-radius: 3px;
+				border-bottom-right-radius: 3px;
+				
+				li {
+					padding: 15px 0px;
+					border-top: 1px solid @grey-light;
+					
+					&:first-child {
+						border: medium none;
+					}
+					
+					i {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}

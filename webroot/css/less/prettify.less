@@ -1,0 +1,134 @@
+// main : xeta.less
+
+.pln {
+	color : #73879C;
+}
+
+.str {
+	color : #A3BE8C;
+}
+
+.kwd {
+	color : #B48EAD;
+}
+
+.com {
+	color      : #93A1A1;
+	font-style : italic;
+}
+
+.typ {
+	color : #E4926E;
+}
+
+.lit {
+	color : #195F91;
+}
+
+.pun {
+	color : #81BCBE;
+}
+
+.opn {
+	color : #93A1A1;
+}
+
+.clo {
+	color : #93A1A1;
+}
+
+.tag {
+	color : #008;
+}
+
+.atn {
+	color : teal;
+}
+
+.atv {
+	color : #DD1144;
+}
+
+.dec {
+	color : teal;
+}
+
+.var {
+	color : teal;
+}
+
+.fun {
+	color : #DC322F;
+}
+
+/* Put a border around prettyprinted code snippets. */
+pre.prettyprint {
+	background-color : #F7F7F9;
+	padding          : 10px;
+	border           : 1px solid #E1E1E8;
+	//white-space      : pre;
+}
+
+pre.prettyprint.linenums {
+	box-shadow : 40px 0 0 #FBFBFC inset, 41px 0 0 #ECECF0 inset;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+	color   : #1E347B;
+	padding : 0;
+	margin  : 0 40px 0 40px;
+}
+
+ol.linenums li {
+	color        : #BEBEC5;
+	line-height  : 18px;
+	padding-left : 12px;
+	font-size    : 14px;
+}
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 {
+	list-style-type : normal;
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+	background : transparent;
+}
+
+.zero-clipboard {
+	display  : block;
+	position : relative;
+}
+
+.btn-clipboard {
+	position         : absolute;
+	top              : 0;
+	right            : 0;
+	z-index          : 10;
+	display          : block;
+	padding          : 5px 8px;
+	font-size        : 12px;
+	color            : #777;
+	cursor           : pointer;
+	background-color : #FFF;
+	border           : 1px solid #E1E1E8;
+	border-radius    : 0 0px 0 1px;
+}
+
+.btn-clipboard-hover {
+	color            : #FFF;
+	background-color : @primary-color;
+	border-color     : @primary-color;
+}

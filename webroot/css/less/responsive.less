@@ -1,0 +1,136 @@
+// main : xeta.less
+
+@media (max-width: 767px) {
+
+    .navbar {
+        margin-bottom: 0;
+
+        .container-fluid {
+
+            .navbar-brand {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .navbar-inverse {
+        position: static;
+
+        .navbar-nav {
+            text-align: center;
+
+            .active > a,
+            .active > a:hover,
+            .active > a:focus {
+                border-bottom: none;
+            }
+
+            li > a {
+                width: 100%;
+
+                &:hover,
+                &:focus {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    .section {
+        padding: 20px 30px 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-bottom: 95px;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        margin-top: 54px;
+        margin-bottom: 95px;
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        margin-bottom: 69px;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        margin-bottom: 60px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .account-sidebar.affix,
+    .sidebar-profile.affix {
+        position: relative;
+    }
+
+    .account-sidebar.affix-bottom,
+    .sidebar-profile.affix-bottom {
+        position: relative;
+    }
+}
+
+@media (min-width: 768px) {
+    .account-sidebar.affix,
+    .sidebar-profile.affix {
+        position: relative;
+    }
+
+    .account-sidebar.affix-bottom,
+    .sidebar-profile.affix-bottom {
+        position: relative;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .account-sidebar.affix,
+    .account-sidebar.affix-bottom,
+    .sidebar-profile.affix,
+    .sidebar-profile.affix-bottom {
+        width: 213px;
+    }
+
+    .account-sidebar.affix,
+    .sidebar-profile.affix {
+        position: fixed;
+        top: 60px;
+    }
+
+    .account-sidebar.affix-bottom,
+    .sidebar-profile.affix-bottom {
+        position: absolute;
+    }
+
+    .sidebar-profile {
+        padding: 30px 40px 20px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .account-sidebar.affix-bottom,
+    .account-sidebar.affix,
+    .sidebar-profile.affix-bottom,
+    .sidebar-profile.affix {
+        width: 263px;
+    }
+
+    .sidebar-profile {
+        padding: 30px 60px 20px !important;
+    }
+}

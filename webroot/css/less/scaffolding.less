@@ -1,0 +1,162 @@
+// main : xeta.less
+
+::selection {
+    background: #aaf2e4;
+    color: #506A85;
+}
+::-moz-selection {
+    background: #aaf2e4;
+    color: #506A85;
+}
+
+::-webkit-scrollbar{
+    width: 13px;
+}
+::-webkit-scrollbar-thumb{
+    background: @primary-color;
+    border-radius: 0;
+}
+::-webkit-scrollbar-track{
+    background: #ddd;
+}
+::-webkit-scrollbar:horizontal{
+    height: 13px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    color: @text-color;
+    background-color: @bg-color;
+    margin-bottom: 60px;
+    overflow-x: hidden;
+
+    > .container {
+        //padding: 60px 15px 0;
+
+        .text-muted {
+            margin: 20px 0;
+        }
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    .transition(all 200ms ease);
+
+    &:hover,
+    &:focus {
+        color: @link-color;
+        text-decoration: inherit;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: @h-color;
+}
+
+blockquote {
+    padding: 10px 20px;
+    margin: 15px 40px;
+    font-size: inherit;
+    font-style: italic;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    border-left: 5px solid @primary-color;
+
+
+}
+
+.section {
+    background: #FFF;
+    padding: 30px 80px 30px;
+    margin-bottom: 40px;
+    border: 1px solid @form-control-border-color;
+    border-bottom-width: 2px;
+
+    .border-radius(3px);
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.inner {
+    padding-top: 50px;
+    padding-bottom: 90px;
+}
+
+.inner-top-sm {
+    padding-top: 60px;
+}
+
+.g-recaptcha > div > div {
+    width: inherit !important;
+}
+
+
+.hr-divider {
+    position: relative;
+    line-height: 20px;
+    font-size: 17px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+    &:before {
+        position: absolute;
+        top: 50%;
+        display: block;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #B7B7B7;
+    }
+
+    .hr-divider-heading {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 100%;
+        color: inherit;
+    }
+
+    .hr-divider-content {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        padding-left: 1em;
+        padding-right: 1em;
+        vertical-align: middle;
+        background-color: #ffffff;
+    }
+}
+
+.hr-divider-panel {
+    font-size: inherit;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 40px;
+
+    &:before {
+        background-color: #ffffff;
+    }
+
+    .hr-divider-content {
+        background-color: @primary-color;
+    }
+}

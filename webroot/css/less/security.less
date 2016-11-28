@@ -1,0 +1,241 @@
+// main : xeta.less
+
+.sessions {
+    padding: 0;
+
+    li {
+        position: relative;
+        line-height: 18px;
+        padding: 15px;
+        list-style-type: none;
+
+        border-bottom: 1px solid rgba(212,212,212,0.45);
+        border-left: 1px solid rgba(212,212,212,0.45);
+        border-right: 1px solid rgba(212,212,212,0.45);
+
+        &:first-child {
+            border-top: 1px solid rgba(212,212,212,0.45);
+        }
+
+        &:hover {
+            background-color: rgba(212, 212, 212, 0.25);
+        }
+    }
+
+    .online {
+        float: left;
+        width: 8px;
+        height: 8px;
+        margin-top: 10px;
+        border-radius: 5px;
+        background-color: #6cc644;
+        box-shadow: 0 0 10px rgba(108,198,68,1);
+    }
+
+    .icon {
+        float: left;
+        width: 32px;
+        margin-top: 1px;
+        margin-left: 15px;
+        text-align: center;
+        color: #bbb;
+    }
+
+    .details {
+        position: relative;
+        width: 350px;
+        margin-left: 70px;
+    }
+}
+
+.logs {
+    padding: 0;
+
+    .panel+.panel {
+        margin: 0;
+        border-bottom: none;
+    }
+
+    .panel-logs {
+        margin: 0;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+
+        position: relative;
+        line-height: 23px;
+        list-style-type: none;
+
+        border: 1px solid rgba(212,212,212,0.45);
+
+        &:first-child {
+            border-bottom: none;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid rgba(212,212,212,0.45);
+        }
+
+        .accordion-toggle:before {
+            font-family: 'Glyphicons Halflings';
+            content: "\e114";
+            float: left;
+            margin-right: 5px;
+        }
+
+        .accordion-toggle.collapsed:before {
+            content: "\e080";
+        }
+    }
+
+    .title {
+        padding: 10px;
+        background-color: rgba(212, 212, 212, 0.25);
+        cursor: pointer;
+
+        &.collapsed {
+            background: none;
+        }
+
+        &:hover {
+            background-color: rgba(212, 212, 212, 0.25);
+
+            .link {
+                color: @primary-color
+            }
+        }
+
+        .time {
+            float: right;
+        }
+    }
+
+    .panel-logs-body {
+        padding: 0 15px;
+
+        p {
+            border-bottom: 1px dotted #ddd;
+            margin: 0;
+            padding: 10px;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            strong {
+                width: 20%;
+                display: inline-block;
+            }
+
+            span {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.two-factor-intro {
+    margin: 0 0 40px;
+    padding: 0;
+    font-size: 13px;
+    list-style: none;
+}
+
+.two-factor-graphic {
+    text-align: center;
+    margin-left:15%;
+    margin-right:10%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+    .step {
+        float: left;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        line-height: 20px;
+        border-radius: 50%;
+        border: 6px solid #ddd;
+        font-weight: bold;
+        font-size: large;
+
+        &.colored {
+            background-color: #6BCE6C;
+        }
+
+        i {
+            color: #fff;
+        }
+    }
+
+    .line {
+        margin-top:17px;
+        width: 35%;
+        border-bottom: 6px solid #ddd;
+        display: inline-block;
+        float: left;
+    }
+}
+
+.qrcode-box {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid @border-grey;
+    border-radius: 3px;
+    text-align: center;
+
+    .title {
+        margin: -15px -15px 0;
+        font-size: 18px;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+
+    .qrcode {
+        margin: 40px auto;
+    }
+
+    .qrcode-box-footer {
+        margin: 15px -15px -15px;
+        padding: 15px;
+        border-top: 1px solid @border-grey;
+        border-radius: 0 0 3px 3px;
+    }
+}
+
+.qrcode-form-box {
+    text-align: center;
+    width: 60%;
+    margin: auto;
+}
+
+.two-factor-status {
+    padding: 20px 0;
+    margin: 0 0 20px;
+    border-bottom: 1px solid @border-grey;
+
+    .btn {
+        position: relative;
+        top: -4px;
+    }
+}
+
+.two-factor-information {
+    position: relative;
+    margin: 0 0 20px;
+    padding: 10px 20px 10px 70px;
+    border: 1px solid @border-grey;
+    border-radius: 3px;
+    font-size: 14px;
+
+    .warning {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
+    h3 {
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,65 @@
+// main : xeta.less
+
+.pagination-centered {
+    text-align: center;
+}
+
+.pagination {
+
+    .border-radius(3px);
+
+    li {
+        display: inline-block;
+        margin-left: 10px;
+
+        a,
+        span {
+            padding: 11px 20px 13px;
+            font-weight: 700;
+            border: none;
+            color: @primary-color;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-color: @primary-color;
+
+            .border-radius(3px);
+
+            &.disabled,
+            &[disabled] {
+                cursor: not-allowed;
+                pointer-events: visible;
+                opacity: .65;
+
+                &,
+                &:hover,
+                &:focus,
+                &:active,
+                &.active {
+                    color: @primary-color;
+                    background-color: transparent;
+                    border-color: @primary-color;
+                }
+            }
+        }
+    }
+
+    .active>a,
+    .active>span,
+    .active>a:hover,
+    .active>span:hover,
+    .active>a:focus,
+    .active>span:focus {
+        background-color: @primary-color;
+        border-color: @primary-color;
+    }
+
+    li>a:hover,
+    li>span:hover,
+    li>a:focus,
+    li>span:focus {
+        color: #fff;
+        background-color: @primary-color;
+        border-color: transparent;
+    }
+
+}

@@ -1,0 +1,57 @@
+// main : xeta.less
+
+.section-notifications {
+
+    table {
+
+        tr {
+            position: relative;
+        }
+
+        a {
+            display: block;
+            min-height: 47px;
+            position: relative;
+
+            img,
+            i {
+                float: left;
+                width: 40px;
+                height: 40px;
+                margin-right: 14px;
+            }
+
+            small {
+                float: right;
+                margin-right: 10px;
+            }
+
+            .new {
+                margin: -5px 0px 5px;
+                font-size: 11px;
+                color: #FFF;
+                background-color: @danger;
+                padding: 1px 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: @danger;
+                right: -10px;
+                top: 10px;
+                position: absolute;
+                border-radius: 3px 0px 3px 3px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+                span {
+                    background-color: @danger;
+                    border-top-right-radius: 3px;
+                    position: absolute;
+                    top: -4px;
+                    right: -1px;
+                    width: 10px;
+                    height: 4px;
+                    transform: initial;
+                }
+            }
+        }
+    }
+}

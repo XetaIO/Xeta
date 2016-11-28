@@ -1,0 +1,51 @@
+// main: admin.less
+
+.interface {
+
+    &.modal {
+        -webkit-perspective: 1300px;
+        -moz-perspective: 1300px;
+        -ms-perspective: 1300px;
+        -o-perspective: 1300px;
+        perspective: 1300px;
+    }
+
+    .modal-dialog {
+        margin: 50px auto;
+    }
+
+    .text-gradient-white {
+        color: #f0f0f0;
+    }
+
+    .element,
+    .element h5 {
+        color: #f0f0f0;
+        text-shadow: rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px;
+    }
+
+    .element i {
+        opacity: .8;
+    }
+
+    .padded {
+        padding: 15px;
+    }
+
+    .text-white {
+        color: #f0f0f0;
+    }
+}
+
+
+
+.interface.modal {
+    .perspective(1300px);
+}
+
+.modal-open {
+    .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

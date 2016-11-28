@@ -1,0 +1,267 @@
+// main : xeta.less
+
+.tableConversations {
+    margin-top: 15px;
+
+    td {
+        position: relative;
+    }
+
+    .left {
+        font-size: 12px;
+
+        .avatar {
+            margin-right: 5px;
+            max-width: 50px
+        }
+    }
+
+    .right {
+        font-size: 12px;
+
+        .new {
+            margin: -5px 0px 5px;
+            font-size: 11px;
+            color: #FFF;
+            background-color: @danger;
+            padding: 1px 5px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: @danger;
+            right: -10px;
+            top: 8px;
+            position: absolute;
+            border-radius: 3px 0px 3px 3px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+            span {
+                background-color: @danger;
+                border-top-right-radius: 3px;
+                position: absolute;
+                top: -4px;
+                right: -1px;
+                width: 10px;
+                height: 4px;
+                transform: initial;
+            }
+        }
+    }
+
+    .star {
+        margin: -5px 0px 5px;
+        font-size: 11px;
+        color: #FFF;
+        background-color: #F9CC40;
+        padding: 1px 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #F9CC40;
+        left: -7px;
+        top: 8px;
+        position: absolute;
+        border-radius: 0 3px 3px 3px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+        span {
+            background-color: #F9CC40;
+            border-top-left-radius: 3px;
+            position: absolute;
+            top: -4px;
+            left: -1px;
+            width: 7px;
+            height: 4px;
+            transform: initial;
+        }
+    }
+
+    .closed {
+        margin: -5px 0px 5px;
+        font-size: 13px;
+        color: #FFF;
+        background-color: @danger;
+        padding: 1px 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: @danger;
+        left: -7px;
+        bottom: 0;
+        position: absolute;
+        border-radius: 0 3px 3px 3px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+        span {
+            background-color: @danger;
+            border-top-left-radius: 3px;
+            position: absolute;
+            top: -4px;
+            left: -1px;
+            width: 7px;
+            height: 4px;
+            transform: initial;
+        }
+    }
+}
+
+.conversations {
+
+    .message {
+        padding: 10px;
+        margin-bottom: 25px;
+        border: 1px solid transparent;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+        background-color: #FFF;
+        border-radius: 4px;
+        position: relative;
+
+        &.messageNew {
+            background-color: #E0FFD9;
+        }
+
+        .left {
+            float: left;
+            width: 120px;
+            text-align: center;
+
+            span {
+                display: block;
+                padding: 10px 0px;
+                border-top: 1px dotted #DDD;
+            }
+
+            .avatar {
+                position: relative;
+                width: 120px;
+                padding: 10px;
+
+                img {
+                    border-radius: 50%;
+                    width: 75px;
+                    height: auto;
+                    border: 4px solid #DEDEDE;
+                }
+
+                .status {
+                    color: @danger;
+                    display: block;
+                    padding: 5px 0;
+                    border-top: none;
+
+                    i {
+                        display: inline-block;
+                        height: 12px;
+                        width: 12px;
+                        box-shadow: 0 0 8px @danger;
+                        background: @danger;
+                        line-height: 20px;
+                        vertical-align: middle;
+
+                        &.online {
+                            box-shadow: 0 0 8px @success;
+                            background: @success;
+                        }
+
+                        .border-radius(50%);
+                    }
+
+                    small {
+                        font-size: 80%;
+                        font-weight: bold;
+                        color: @danger;
+
+                        &.online {
+                            color: @success;
+                        }
+                    }
+                }
+            }
+        }
+
+        .right {
+            margin-left: 130px;
+            padding: 10px 20px 20px;
+            border-left: 1px dotted #DDD;
+
+            .header {
+                border-bottom: 1px dotted #DDD;
+                padding: 0px 5px 5px;
+
+                .messageId {
+                    float: right;
+                    font-size: 16px;
+                }
+
+                .new {
+                    margin: -5px 0px 5px;
+                    font-size: 11px;
+                    color: #FFF;
+                    background-color: #62C04E;
+                    padding: 1px 5px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #62C04E;
+                    right: -10px;
+                    top: 8px;
+                    position: absolute;
+                    border-radius: 3px 0px 3px 3px;
+                    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+                    span {
+                        background-color: #62C04E;
+                        border-top-right-radius: 3px;
+                        position: absolute;
+                        top: -4px;
+                        right: -1px;
+                        width: 10px;
+                        height: 4px;
+                        transform: initial;
+                    }
+                }
+            }
+
+            .actions {
+                margin: 5px;
+                text-align: right;
+            }
+        }
+    }
+
+    .conversationComment {
+
+        .panel-heading {
+            background-color: #DDE1E7;
+            border-color: #DDE1E7;
+
+            h4 {
+                margin: 0px;
+            }
+        }
+    }
+}
+
+.sidebar-conversation {
+    dt {
+        float: left;
+        max-width: 100%;
+        margin-right: 5px;
+    }
+    dd {
+        text-align: right;
+        max-width: 100%;
+    }
+}
+
+.panel-staff-online {
+
+    .panel-footer {
+        font-weight: 700;
+        font-style: normal;
+        line-height: 40px;
+        height: 40px;
+        padding: 0px 0px 0px 10px;
+        text-transform: uppercase;
+        border-color: #DDD transparent transparent;
+        border-radius: 0px 0px 3px 3px;
+        background-color: rgb(255, 255, 255);
+        border-top: 1px dotted rgb(221, 221, 221);
+    }
+}

@@ -1,0 +1,58 @@
+//main : xeta.less
+
+.modal-actions {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+.ma {
+    font-weight: bold;
+    text-align: center;
+}
+
+.ma-btn {
+    float: left;
+    width: 50%;
+    padding: 15px;
+    border: none;
+    background-color: #F1F1F1;
+
+    &:first-child {
+        border-bottom-left-radius: 5px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 5px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        background-color: @btn-default-bg;
+    }
+}
+
+
+.ma-btn-primary {
+     .ma-button-variant(@btn-primary-color, @btn-primary-bg);
+}
+
+.ma-btn-danger {
+     .ma-button-variant(@btn-danger-color, @btn-danger-bg);
+}
+
+.ma-btn-success {
+     .ma-button-variant(@btn-success-color, @btn-success-bg);
+}
+
+.ma-btn-info {
+     .ma-button-variant(@btn-info-color, @btn-info-bg);
+}

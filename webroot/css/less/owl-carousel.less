@@ -1,0 +1,161 @@
+// main : xeta.less
+
+/**
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+/* display none until init */
+.owl-carousel {
+	display: none;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper {
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+	.transition(height 500ms ease-in-out);
+}
+
+.owl-carousel .owl-item {
+	float: left;
+}
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div {
+	cursor: pointer;
+}
+.owl-controls {
+	.user-select(none);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing {
+	cursor:url("../img/owl-carousel/grabbing.png") 8 8, move;
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item {
+	.backface-visibility(hidden);
+	.transform(translate3d(0,0,0));
+}
+
+.customNavigation a.prev,
+.customNavigation a.next {
+	text-align: center;
+	position: absolute;
+	top:42%;
+	cursor:pointer;
+	padding:10px 12px;
+}
+
+.customNavigation a.prev {
+	left:0;
+	.border-radius(0px 4px 4px 0px);
+}
+
+.customNavigation a.next {
+	right:0;
+	.border-radius(4px 0px 0px 4px);
+}
+.customNavigation .btn i {
+	color:#FFF;
+	font-size:20px;
+	vertical-align:-webkit-baseline-middle;
+}
+
+
+
+/**
+ * 	Owl Carousel Theme Custom
+ */
+.owl-theme .owl-controls {
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* Styling Next and Prev buttons */
+
+.owl-theme .owl-controls .owl-buttons div {
+	color: #FFF;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+	margin: 5px;
+	padding: 3px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background: #869791;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover {
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+	text-decoration: none;
+}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controls .owl-page {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+}
+
+.owl-theme .owl-controls .owl-page span {
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 5px 7px;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+	.border-radius(20px);
+	background: #869791;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+	background: @primary-color;
+}
+
+/* If PaginationNumbers is true */
+.owl-theme .owl-controls .owl-page span.owl-numbers {
+	height: auto;
+	width: auto;
+	color: #FFF;
+	padding: 2px 10px;
+	font-size: 12px;
+	.border-radius(30p);
+}
+
+/* preloading images */
+.owl-item.loading {
+	min-height: 150px;
+	background: url("../img/owl-carousel/AjaxLoader.gif") no-repeat center center
+}

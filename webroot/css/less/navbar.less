@@ -1,0 +1,258 @@
+// main : xeta.less
+
+.navbar-inverse {
+    background-color: @white;
+    border-bottom: 4px solid rgba(0,0,0,0.1);
+
+    //Toggle button on responsive menu.
+    .navbar-toggle {
+        border-color: rgba(0,0,0,0.1);
+
+        &:hover,
+        &:focus {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .icon-bar {
+            background-color: @primary-color;
+        }
+    }
+
+    //Menu.
+    .navbar-nav {
+        .active > a,
+        .active > a:hover,
+        .active > a:focus {
+            color: @primary-color;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+        &>.open>a,
+        &>.open>a:hover,
+        &>.open>a:focus {
+            color: @primary-color;
+            background-color: transparent;
+        }
+
+        li > a {
+            position: relative;
+            display: inline-block;
+            outline: none;
+            margin: 15px 0 0;
+            padding: 0 5px;
+            color: inherit;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            text-shadow: 0 0 1px rgba(255,255,255,0.3);
+            overflow: hidden;
+
+            span {
+                position: relative;
+                display: inline-block;
+                -webkit-transition: -webkit-transform 0.3s;
+                -moz-transition: -moz-transform 0.3s;
+                transition: transform 0.3s;
+
+                &::before {
+                    position: absolute;
+                    top: 100%;
+                    content: attr(data-hover);
+                    font-weight: 700;
+
+                    .transform(translate3d(0,0,0));
+                }
+            }
+
+            &:hover,
+            &:focus {
+                color: @navbar-menu-text-color-hover;
+
+                span {
+                    .transform(translateY(-100%));
+                }
+            }
+        }
+
+        .navbar-btn {
+            margin-top: 7px;
+            padding: 8px 15px;
+        }
+
+        .navbar-notification {
+            font-family: "Source Sans Pro","Arial","Helvetica",sans-serif;
+
+            &:before {
+                content: attr(data-number);
+                font-size: 8px;
+                position: absolute;
+                top: 4px;
+                font-weight: bold;
+                color: @danger;
+                z-index: 2;
+            }
+
+            .icon {
+                font-size: 18px;
+            }
+
+            .dropdown-header {
+                text-align: center;
+                font-size: 15px;
+            }
+
+            .notification-item {
+                border-bottom: 1px dotted #DDD;
+                margin-bottom: 5px;
+                padding-bottom: 5px;
+
+                &:nth-last-child(3) {
+                    border: medium none;
+                    margin-bottom: 0px;
+                    padding-bottom: 0px;
+                }
+
+                .notif-icon {
+                    float: left;
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 14px;
+                }
+
+                a {
+                    letter-spacing: 0px;
+                    white-space: normal;
+                    width: 300px;
+                    min-height: 46px;
+                    overflow: visible;
+                    padding: 3px 25px 3px 15px;
+
+                    img {
+                        float: left;
+                        width: 40px;
+                        height: 40px;
+                        margin-right: 14px;
+                    }
+
+                    p {
+                        margin-left: 54px;
+                        word-break: break-word;
+                    }
+
+                    .new {
+                        margin: -5px 0px 5px;
+                        font-size: 11px;
+                        color: #FFF;
+                        background-color: @danger;
+                        padding: 1px 5px;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: @danger;
+                        right: -10px;
+                        top: 6px;
+                        position: absolute;
+                        border-radius: 3px 0px 3px 3px;
+                        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.247);
+
+                        span {
+                            background-color: @danger;
+                            border-top-right-radius: 3px;
+                            position: absolute;
+                            top: -4px;
+                            right: -1px;
+                            width: 10px;
+                            height: 4px;
+                            transform: initial;
+                        }
+                    }
+                }
+            }
+
+            .notification-all {
+                text-align: center;
+                letter-spacing: 0px;
+            }
+        }
+    }
+
+    //Navbar.
+    .navbar-collapse {
+        border-color: rgba(0,0,0,0.3);
+    }
+
+    //Site name.
+    .navbar-brand {
+        position: relative;
+        outline: none;
+        font-size: 24px;
+        font-family: 'Leckerli One',cursive;
+        color: inherit;
+
+        &:hover,
+        &:focus {
+            &:before {
+                max-width: 100%;
+            }
+        }
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: inherit;
+            overflow: hidden;
+            max-width: 0;
+            padding: 15px 0;
+            color: @primary-color;
+            content: attr(data-hover);
+
+            .transition(max-width 0.5s);
+        }
+    }
+
+    .navbar-text {
+        display: inline-block;
+        float: none;
+        font-weight: bold;
+        color: inherit;
+        margin-right: 0;
+        margin-left: 10px;
+
+        a {
+            background-color: transparent !important;
+            color: @primary-color;
+        }
+    }
+
+    .navbar-img {
+        max-width: 40px;
+        max-height: 40px;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        margin-left: 15px;
+    }
+
+    .dropdown-menu {
+        border-radius: 0;
+        li > a {
+            display: block;
+            margin: 0;
+            padding: 3px 20px;
+            text-transform: none;
+            color: @grey;
+
+            &:hover,
+            &:focus {
+                border-bottom: none;
+            }
+        }
+
+    }
+}
+
+@media (min-width:768px){
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0;
+    }
+}

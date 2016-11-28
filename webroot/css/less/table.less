@@ -1,0 +1,38 @@
+// main: xeta.less
+
+.flextable-container {
+    padding-left: 25px;
+    padding-right: 25px;
+
+    .flextable {
+        display: table;
+        width: 100%;
+
+        .flextable-item {
+            display: table-cell;
+            width: 1%;
+            white-space: nowrap;
+            vertical-align: middle;
+
+            .btn-group {
+                margin-left: 10px;
+
+                & > .btn {
+                    float: none;
+                }
+
+                & > .btn + .btn {
+                    margin-left: -5px;
+                }
+            }
+
+            input {
+                margin: 0;
+            }
+        }
+
+        .flextable-primary {
+            width: 99%;
+        }
+    }
+}

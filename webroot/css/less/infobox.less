@@ -1,0 +1,57 @@
+// main : xeta.less
+
+.infobox {
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #E6E9ED;
+    border-left-width: 5px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    border-bottom-width: 2px;
+
+    &.infobox-note {
+        text-align: center;
+        border-right-width: 5px;
+        margin-bottom: 0;
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: @primary-color;
+        }
+    }
+}
+
+.infobox-primary {
+    .infobox-variant(@infobox-primary-color);
+}
+.infobox-danger {
+    .infobox-variant(@infobox-danger-color);
+}
+.infobox-success {
+    .infobox-variant(@infobox-success-color);
+}
+.infobox-info {
+    .infobox-variant(@infobox-info-color);
+}
+.infobox-warning {
+    .infobox-variant(@infobox-warning-color);
+}
+
+.infobox-note.infobox-primary {
+    border-right-color: @infobox-primary-color;
+}
+.infobox-note.infobox-danger {
+    border-right-color: @infobox-danger-color;
+}
+.infobox-note.infobox-success {
+    border-right-color: @infobox-success-color;
+}
+.infobox-note.infobox-info {
+    border-right-color: @infobox-info-color;
+}
+.infobox-note.infobox-warning {
+    border-right-color: @infobox-warning-color;
+}
