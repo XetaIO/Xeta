@@ -5,7 +5,7 @@
 
 |Travis|Coverage|Scrutinizer|Stable Version|Downloads|License|CakePHP|
 |:------:|:-------:|:-------:|:------:|:------:|:------:|:------:|
-|[![Build Status](https://img.shields.io/travis/XetaIO/Xeta.svg?style=flat-square)](https://travis-ci.org/XetaIO/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/Xety/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/Xety/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/Xety/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/Xety/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
+|[![Build Status](https://img.shields.io/travis/XetaIO/Xeta.svg?style=flat-square)](https://travis-ci.org/XetaIO/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/XetaIO/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/XetaIO/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/XetaIO/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/XetaIO/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
 
 Xeta is a resource to help people starting with Cake3.
 
@@ -57,7 +57,7 @@ vendor/bin/browscap-php browscap:convert
     * User : Test | Pass : `testaccount`
 
 # Documentation
-https://github.com/Xety/Xeta/wiki
+https://github.com/XetaIO/Xeta/wiki
 
 # Features
 This project implements many features and will implements more in the future. Here's a list of the features developed in Xeta :
@@ -120,14 +120,14 @@ This project implements many features and will implements more in the future. He
 * ###### WYSIWYG Editor (CKEditor)
     * Articles, Comments
 
-All the CakePHP3's features that i use in the project are described [here](https://github.com/Xety/Xeta/blob/master/CakePHP3Features.md).
+All the CakePHP3's features that i use in the project are described [here](https://github.com/XetaIO/Xeta/blob/master/CakePHP3Features.md).
 
 # Information
 If you want to contribute to the project by adding new features or just fix a bug, feel free to do a PR.
 
 # Contribute
-[Follow this guide to contribute](https://github.com/Xety/Xeta/blob/master/CONTRIBUTING.md)
+[Follow this guide to contribute](https://github.com/XetaIO/Xeta/blob/master/CONTRIBUTING.md)
 
 # Special Thanks
 * [Antograssiot](https://github.com/antograssiot) (CakePHP Team Member) For all his help !
-* And all the [contributors](https://github.com/Xety/Xeta/graphs/contributors) !
+* And all the [contributors](https://github.com/XetaIO/Xeta/graphs/contributors) !
