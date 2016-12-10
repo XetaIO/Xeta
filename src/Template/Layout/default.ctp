@@ -40,6 +40,9 @@ use Cake\Core\Configure;
         <![endif]-->
 
         <?= $this->fetch('css') ?>
+        <script style="text/javascript">
+            window.Xeta = <?= json_encode(['csrfToken' => h($this->request->cookie('csrfToken'))]) ?>
+        </script>
         <?= $this->fetch('scriptTop') ?>
 
         <?= $this->element('google-analytics') ?>

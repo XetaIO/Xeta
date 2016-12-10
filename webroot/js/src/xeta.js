@@ -56,7 +56,7 @@ $(document).ready(function () {
             type : "POST",
             url : $(this).attr("data-url"),
             headers : {
-                'X-CSRF-Token': $(this).attr("data-csrf")
+                'X-CSRF-Token': Xeta.csrfToken
             },
             data : {
                 id : commentId
@@ -101,7 +101,7 @@ $(document).ready(function () {
             type : "POST",
             url : $(this).attr("data-url"),
             headers : {
-                'X-CSRF-Token': $(this).attr("data-csrf")
+                'X-CSRF-Token': Xeta.csrfToken
             },
             dataType : "json",
             success : function (data) {
@@ -140,7 +140,7 @@ $(document).ready(function () {
             type : "POST",
             url : $(this).attr("data-url"),
             headers : {
-                'X-CSRF-Token': $(this).attr("data-csrf")
+                'X-CSRF-Token': Xeta.csrfToken
             },
             dataType : "json",
             success : function (data) {
@@ -240,6 +240,9 @@ $(document).ready(function () {
         $.ajax({
             type : "POST",
             url : $(this).attr("data-url"),
+            headers : {
+                'X-CSRF-Token': Xeta.csrfToken
+            },
             dataType: "json",
             data : {
                 id : id
