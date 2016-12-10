@@ -126,7 +126,7 @@ All the CakePHP3's features that i use in the project are described [here](https
 If you want to contribute to the project by adding new features or just fix a bug, feel free to do a PR.
 
 # Contribute
-[Follow this guide to contribute](https://github.com/XetaIO/Xeta/blob/master/CONTRIBUTING.md)
+[Follow this guide to contribute](https://github.com/XetaIO/Xeta/blob/master/.github/CONTRIBUTING.md)
 
 # Special Thanks
 * [Antograssiot](https://github.com/antograssiot) (CakePHP Team Member) For all his help !

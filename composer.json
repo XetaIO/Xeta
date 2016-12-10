@@ -1,10 +1,21 @@
 {
     "name": "xety/xeta",
     "description": "A resource to help people starting with Cake3",
-    "keywords": ["CakePHP 3","Cake3"],
-    "homepage": "https://github.com/Xety/Xeta",
+    "keywords": ["CakePHP 3", "Cake3", "website", "blog", "administration"],
+    "homepage": "https://github.com/XetaIO/Xeta",
     "type": "project",
     "license": "MIT",
+    "support": {
+        "source":"https://github.com/XetaIO/Xeta",
+        "issues":"https://github.com/XetaIO/Xeta/issues"
+    },
+    "authors": [
+        {
+            "name": "Xety",
+            "email": "zoro.fmt@gmail.com",
+            "homepage": "https://github.com/Xety"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "cakephp/cakephp": "~3.0",
