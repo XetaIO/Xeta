@@ -40,7 +40,7 @@
                                     h($user->username),
                                     [
                                         '_name' => 'users-profile',
-                                        'slug' => $user->slug,
+                                        'slug' => $user->username,
                                         'id' => $user->id
                                     ],
                                     [

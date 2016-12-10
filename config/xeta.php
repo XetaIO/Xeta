@@ -12,7 +12,7 @@ return [
         'name' => 'Xeta',
         'version' => '3.0.4',
         'description' => 'You will find content related to web development like tutorials, my personal tests on new technologies etc',
-        'github_url' => 'https://github.com/Xety/Xeta',
+        'github_url' => 'https://github.com/XetaIO/Xeta',
         'contact_email' => 'contact@xeta.io',
         'analytics_tracker_code' => 'UA-40328289-2',
         'full_url' => 'https://xeta.io',

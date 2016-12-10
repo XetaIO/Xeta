@@ -251,7 +251,7 @@
                                         <?= $this->Html->link(
                                             $comment->blog_article->title,
                                             ['controller' => 'blog', 'action' => 'go', $comment->id],
-                                            ['class' => 'title text-primary', 'escape' => false]
+                                            ['class' => 'title text-primary']
                                         ) ?>
                                         <br>
                                         <?= $this->Text->truncate(
