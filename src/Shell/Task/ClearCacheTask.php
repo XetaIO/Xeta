@@ -29,7 +29,7 @@ class ClearCacheTask extends Shell
     {
         $parser = new ConsoleOptionParser('clear_cache', false);
         $parser->description(
-            'This tasks is used to clear the cached files in the application.'
+            'This task is used to clear the cached files in the application.'
         );
 
         return $parser;
