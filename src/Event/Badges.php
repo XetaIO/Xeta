@@ -245,9 +245,9 @@ class Badges implements EventListenerInterface
         $data = [];
         $data['badge_id'] = $badge['id'];
         $data['user_id'] = $userId;
-        $badge = $this->BadgesUsers->newEntity($data);
+        $badgeUser = $this->BadgesUsers->newEntity($data);
 
-        $badge = $this->BadgesUsers->save($badge);
+        $badgeUser = $this->BadgesUsers->save($badgeUser);
 
         $this->Flash->badge('You have unlock a badge !', [
             'key' => 'badge',
@@ -259,7 +259,7 @@ class Badges implements EventListenerInterface
         EventManager::instance()->attach(new Notifications());
         $event = new Event('Model.Notifications.new', $this, [
             'type' => 'badge',
-            'badge' => $badge
+            'badge' => $badgeUser
         ]);
         EventManager::instance()->dispatch($event);
 
