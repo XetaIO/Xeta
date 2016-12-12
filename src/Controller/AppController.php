@@ -25,6 +25,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Cookie');
         $this->loadComponent('Acl.Acl');
+        $this->loadComponent('Maintenance');
         $this->loadComponent('SessionsActivity');
         $this->loadComponent('Auth', [
             'className' => 'AclAuth',
@@ -69,13 +70,9 @@ class AppController extends Controller
             ]
         ]);
 
-        if (env('HTTPS')) {
-            $this->loadComponent('Csrf', [
-                'secure' => true
-            ]);
-        } else {
-            $this->loadComponent('Csrf');
-        }
+        $this->loadComponent('Csrf', [
+            'secure' => env('HTTPS') ? true : false
+        ]);
     }
 
     /**
@@ -92,14 +89,14 @@ class AppController extends Controller
 
         $this->Auth->config('authError', __('You need to be logged in or you are not authorized to access that location !'));
 
-        //Define the language.
+        // Define the language
         $language = new Language($this);
         $language->setLanguage();
 
-        //Set trustProxy to get the original visitor IP.
+        // Set trustProxy to get the original visitor IP
         $this->request->trustProxy = true;
 
-        //Automatically Login.
+        // Automatically Login
         if (!$this->Auth->user() && $this->Cookie->read('CookieAuth')) {
             $this->loadModel('Users');
 
@@ -145,7 +142,7 @@ class AppController extends Controller
             }
         }
 
-        //Layouts
+        // Layouts
         if (isset($this->request->params['prefix'])) {
             $prefix = explode('/', $this->request->params['prefix'])[0];
 
@@ -156,49 +153,14 @@ class AppController extends Controller
             }
         }
 
+        // Cookies
         $allowCookies = $this->Cookie->check('allowCookies');
         $this->set(compact('allowCookies'));
 
-        //Site Maintenance
-        if (Configure::read('Site.maintenance') === true) {
-            $controller = $this->request->params['controller'];
-            $action = $this->request->params['action'];
+        // Maintenance
+        $this->Maintenance->handle();
 
-            if ($this->Auth->user()) {
-                $this->loadModel('Users');
-                $user = $this->Users
-                    ->find()
-                    ->contain([
-                        'Groups' => function ($q) {
-                            return $q->select(['id', 'is_staff']);
-                        }
-                    ])
-                    ->where([
-                        'Users.id' => $this->Auth->user('id')
-                    ])
-                    ->first();
-
-                if (!is_null($user) && $user->group->is_staff == true) {
-                    //To prevent multiple flash messages.
-                    $this->Flash->config(['clear' => true]);
-                    $this->Flash->error(__("Hello {0}, The website is under maintenance, only you and the staff groups have the access !", h($user->full_name)));
-                } else {
-                    if (!($controller == 'Pages' && $action == 'maintenance') &&
-                        !($controller == 'Users' && $action == 'login') &&
-                        !($controller == 'Users' && $action == 'logout')) {
-                        $this->redirect(['controller' => 'pages', 'action' => 'maintenance', 'prefix' => false]);
-                    }
-                }
-            } else {
-                if (!($controller == 'Pages' && $action == 'maintenance') &&
-                    !($controller == 'Users' && $action == 'login') &&
-                    !($controller == 'Users' && $action == 'logout')) {
-                    $this->redirect(['controller' => 'pages', 'action' => 'maintenance', 'prefix' => false]);
-                }
-            }
-        }
-
-        //JavaScript Notifications.
+        // JavaScript Notifications
         if ($this->request->session()->read('Notification') && !empty($this->request->session()->read('Notification'))) {
             $notification = $this->request->session()->read('Notification');
             $this->request->session()->delete('Notification');

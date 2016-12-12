@@ -29,6 +29,7 @@ class SessionsActivityComponent extends Component
      * Initialize properties.
      *
      * @param array $config The config data.
+     *
      * @return void
      */
     public function initialize(array $config)
@@ -129,7 +130,7 @@ class SessionsActivityComponent extends Component
     /**
      * Determine if the given user is online or offline.
      *
-     * @param App\Model\Entity\User $user The user to check.
+     * @param \App\Model\Entity\User $user The user to check.
      *
      * @return bool
      */
