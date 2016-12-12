@@ -22,7 +22,7 @@ use Cake\Core\Configure;
                         </li>
                     </ul>
                 </div>
-                <small style="display:none;"><?= __('Version : {0}', h(Configure::read('Site.version'))) ?></small>
+                <small><?= __('Version : {0}', h(Configure::read('Site.version'))) ?></small>
             </div>
 
             <div class="text-muted col-lg-5 col-lg-offset-1 col-md-6">
