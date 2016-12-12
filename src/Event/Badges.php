@@ -24,13 +24,7 @@ class Badges implements EventListenerInterface
      */
     public function __construct($controller = null)
     {
-        if (is_null($controller)) {
-            $this->registry = new ComponentRegistry(new Controller(new Request(), new Response()));
-            $this->registry->load('Flash');
-            $this->Flash = $this->registry->Flash;
-        } else {
-            $this->Flash = $controller->loadComponent('Flash');
-        }
+        $this->Flash = $controller->loadComponent('Flash');
     }
 
     /**
