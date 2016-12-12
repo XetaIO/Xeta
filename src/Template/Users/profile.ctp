@@ -54,6 +54,12 @@
                                 <?= $this->Html->link('<i class="fa fa-twitter fa-2x"></i>', 'http://twitter.com/' . h($user->twitter), ['class' => 'text-primary', 'target' => '_blank', 'escape' => false, 'data-toggle' => 'tooltip', 'data-container' => 'body', 'data-placement' => 'top', 'title' => 'http://twitter.com/' . h($user->twitter)]) ?>
                             </li>
                         <?php endif; ?>
+
+                        <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
+                            <li style="padding: 9px">
+                                <?= $this->Html->link(__("{0} Edit my profile", '<i class="fa fa-edit"></i>'), ['action' => 'account'], ['class' => 'btn btn-primary-outline', 'escape' => false]) ?>
+                            </li>
+                        <?php endif;?>
                     </ul>
                 </div>
             </div>
@@ -130,10 +136,6 @@
 
         <div class="col-md-9">
             <section class="section">
-                <?php if ($user->id == $this->request->session()->read('Auth.User.id')) : ?>
-                    <?= $this->Html->link(__("Edit my profile {0}", '<i class="fa fa-arrow-right"></i>'), ['action' => 'account'], ['class' => 'pull-right', 'escape' => false]) ?>
-                <?php endif;?>
-
                 <?php if ($this->Acl->check(['controller' => 'users', 'action' => 'index', 'prefix' => 'admin'])) : ?>
                     <?= $this->Html->link(
                         __("{0} Edit this User", '<i class="fa fa-edit"></i>'),
@@ -143,7 +145,7 @@
                             'id' => $user->id,
                             'prefix' => 'admin'
                         ],
-                        ['class' => 'btn btn-primary-outline btn-sm', 'escape' => false]
+                        ['class' => 'btn btn-primary-outline btn-sm pull-right', 'escape' => false]
                     ) ?>
                 <?php endif; ?>
 
