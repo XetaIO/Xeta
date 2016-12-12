@@ -65,6 +65,10 @@ class ArticlesController extends AppController
             $article->setTranslations($this->request->data);
 
             if ($this->BlogArticles->save($article)) {
+                $this->eventManager()->attach(new Statistics());
+                $event = new Event('Model.BlogArticles.new');
+                $this->eventManager()->dispatch($event);
+
                 $this->Flash->success(__d('admin', 'Your article has been created successfully !'));
 
                 return $this->redirect(['action' => 'index']);
@@ -146,6 +150,10 @@ class ArticlesController extends AppController
         }
 
         if ($this->BlogArticles->delete($article)) {
+            $this->eventManager()->attach(new Statistics());
+            $event = new Event('Model.BlogArticles.new');
+            $this->eventManager()->dispatch($event);
+
             $this->Flash->success(__d('admin', 'This article has been deleted successfully !'));
 
             return $this->redirect(['action' => 'index']);

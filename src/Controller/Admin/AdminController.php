@@ -130,17 +130,37 @@ class AdminController extends AppController
         }
         $usersGraph = array_reverse($usersGraph);
 
-        $usersCount = Number::format($this->Users->find()->count());
+        $stats = $this->_buildStats([
+            'Users' => 'Model.Users.register',
+            'Articles' => 'Model.BlogArticles.new',
+            'ArticlesLikes' => 'Model.BlogArticlesLikes.new',
+            'ArticlesComments' => 'Model.BlogArticlesComments.new'
+        ]);
 
-        $this->loadModel('BlogArticles');
-        $articlesCount = Number::format($this->BlogArticles->find()->count());
+        $this->set(compact('stats', 'usersGraph'));
+    }
 
-        $this->loadModel('BlogArticlesComments');
-        $commentsCount = Number::format($this->BlogArticlesComments->find()->count());
+    /**
+     * Build the statistics for the home page.
+     *
+     * @param array $array The array of statistics to build.
+     *
+     * @return array
+     */
+    protected function _buildStats(array $array)
+    {
+        $statistics = [];
 
-        $this->loadModel('BlogCategories');
-        $categoriesCount = Number::format($this->BlogCategories->find()->count());
+        foreach ($array as $type => $event) {
+            $statistics[$type] = Cache::remember($type, function () {
+                $this->eventManager()->attach(new Statistics());
+                $event = new Event($event);
+                $this->eventManager()->dispatch($event);
 
-        $this->set(compact('usersCount', 'articlesCount', 'commentsCount', 'categoriesCount', 'usersGraph'));
+                return $event->result;
+            }, 'statistics');
+        }
+
+        return $statistics;
     }
 }

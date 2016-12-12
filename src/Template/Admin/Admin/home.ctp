@@ -30,7 +30,7 @@
                         </div>
                         <div class="body">
                             <h1 class="number">
-                                <?= $usersCount ?>
+                                <?= h($stats['Users']['TotalUsers']) ?>
                             </h1>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="body">
                             <h1 class="number">
-                                <?= $articlesCount ?>
+                                <?= h($stats['Articles']) ?>
                             </h1>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="body">
                             <h1 class="number">
-                                <?= $commentsCount ?>
+                                <?= h($stats['ArticlesComments']) ?>
                             </h1>
                         </div>
                     </div>
@@ -69,13 +69,13 @@
                     <div class="info-box">
                         <div class="title">
                             <h5>
-                                <?= __d('admin', 'Categories') ?>
-                                <i class="fa fa-tag pull-right"></i>
+                                <?= __d('admin', 'Likes') ?>
+                                <i class="fa fa-heart pull-right"></i>
                             </h5>
                         </div>
                         <div class="body">
                             <h1 class="number">
-                                <?= $categoriesCount ?>
+                                <?= h($stats['ArticlesLikes']) ?>
                             </h1>
                         </div>
                     </div>

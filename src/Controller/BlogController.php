@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Event\Badges;
+use App\Event\Statistics;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
@@ -169,6 +170,10 @@ class BlogController extends AppController
             $this->BlogArticlesComments->eventManager()->attach(new Badges($this));
 
             if ($insertComment = $this->BlogArticlesComments->save($newComment)) {
+                $this->eventManager()->attach(new Statistics());
+                $event = new Event('Model.BlogArticlesComments.new');
+                $this->eventManager()->dispatch($event);
+
                 $this->Flash->success(__('Your comment has been posted successfully !'));
                 //Redirect the user to the last page of the article.
                 $this->redirect([
@@ -517,6 +522,11 @@ EOT;
         $like = $this->BlogArticlesLikes->newEntity($data);
 
         if ($this->BlogArticlesLikes->save($like)) {
+            //Update the Statistics
+            $this->eventManager()->attach(new Statistics());
+            $event = new Event('Model.BlogArticlesLikes.new');
+            $this->eventManager()->dispatch($event);
+
             $json['message'] = __('Thanks for {0} this article ! ', "<i class='fa fa-heart text-danger'></i>");
             $json['title'] = __('You {0} this article.', "<i class='fa fa-heart text-danger'></i>");
             $json['url'] = Router::url(
@@ -577,6 +587,11 @@ EOT;
         }
 
         if ($this->BlogArticlesLikes->delete($like)) {
+            //Update the Statistics
+            $this->eventManager()->attach(new Statistics());
+            $event = new Event('Model.BlogArticlesLikes.new');
+            $this->eventManager()->dispatch($event);
+
             $json['url'] = Router::url([
                                 'action' => 'articleLike',
                                 $articleId
@@ -642,6 +657,10 @@ EOT;
         }
 
         if ($this->BlogArticlesComments->delete($comment)) {
+            $this->eventManager()->attach(new Statistics());
+            $event = new Event('Model.BlogArticlesComments.new');
+            $this->eventManager()->dispatch($event);
+
             $this->Flash->success(__("This comment has been deleted successfully !"));
         }
 

@@ -1,9 +1,21 @@
 <?= $this->element('meta') ?>
+
+<?php $this->start('scriptBottom'); ?>
+<script type="text/javascript">
+    $('.counter').each(function() {
+        $(this).appear(function() {
+            var number = $(this).find('.counter-timer').attr('data-to');
+            $(this).find('.counter-timer').countTo({from: 0, to: number, speed: 1500, refreshInterval: 30});
+        });
+    });
+</script>
+<?php $this->end(); ?>
+
 <?php $this->start('css');
     echo $this->Html->css([
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,700'
     ]);
-$this->end() ?>
+$this->end(); ?>
 
 <section id="sky-applications">
     <div class="sky jumbotron">
@@ -507,8 +519,8 @@ $this->end() ?>
                         </div>
                         <div class="counter-content">
                             <h2>
-                                <span class="counter-timer" data-from="0" data-to="150">
-                                    150
+                                <span class="counter-timer" data-from="0" data-to="<?= h($statistics['Users']['TotalUsers']) ?>">
+                                    <?= h($statistics['Users']['TotalUsers']) ?>
                                 </span>
                             </h2>
                             <h6 class="counter-text"><?= __('Users') ?></h6>
@@ -518,15 +530,15 @@ $this->end() ?>
                 <div class="col-sm-3">
                     <div class="counter">
                         <div class="counter-icon">
-                            <span class="fa fa-trophy"></span>
+                            <span class="fa fa-newspaper-o"></span>
                         </div>
                         <div class="counter-content">
                             <h2>
-                                <span class="counter-timer" data-from="0" data-to="150">
-                                    150
+                                <span class="counter-timer" data-from="0" data-to="<?= h($statistics['Articles']) ?>">
+                                    <?= h($statistics['Articles']) ?>
                                 </span>
                             </h2>
-                            <h6 class="counter-text"><?= __('Premium') ?></h6>
+                            <h6 class="counter-text"><?= __('Articles') ?></h6>
                         </div>
                     </div>
                 </div>
@@ -537,8 +549,8 @@ $this->end() ?>
                         </div>
                         <div class="counter-content">
                             <h2>
-                                <span class="counter-timer" data-from="0" data-to="150">
-                                    150
+                                <span class="counter-timer" data-from="0" data-to="<?= h($statistics['ArticlesComments']) ?>">
+                                    <?= h($statistics['ArticlesComments']) ?>
                                 </span>
                             </h2>
                             <h6 class="counter-text"><?= __('Comments') ?></h6>
@@ -552,8 +564,8 @@ $this->end() ?>
                         </div>
                         <div class="counter-content">
                             <h2>
-                                <span class="counter-timer" data-from="0" data-to="150">
-                                    150
+                                <span class="counter-timer" data-from="0" data-to="<?= h($statistics['ArticlesLikes']) ?>">
+                                    <?= h($statistics['ArticlesLikes']) ?>
                                 </span>
                             </h2>
                             <h6 class="counter-text"><?= __('Likes') ?></h6>
