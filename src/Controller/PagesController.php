@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Event\Statistics;
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
@@ -79,7 +81,38 @@ class PagesController extends AppController
                 'BlogArticles.is_display' => 1
             ]);
 
-        $this->set(compact('articles', 'comments'));
+        $statistics = $this->_buildStats([
+            'Users' => 'Model.Users.register',
+            'Articles' => 'Model.BlogArticles.new',
+            'ArticlesLikes' => 'Model.BlogArticlesLikes.new',
+            'ArticlesComments' => 'Model.BlogArticlesComments.new'
+        ]);
+
+        $this->set(compact('articles', 'comments', 'statistics'));
+    }
+
+    /**
+     * Build the statistics for the home page.
+     *
+     * @param array $array The array of statistics to build.
+     *
+     * @return array
+     */
+    protected function _buildStats(array $array)
+    {
+        $statistics = [];
+
+        foreach ($array as $type => $event) {
+            $statistics[$type] = Cache::remember($type, function () {
+                $this->eventManager()->attach(new Statistics());
+                $event = new Event($event);
+                $this->eventManager()->dispatch($event);
+
+                return $event->result;
+            }, 'statistics');
+        }
+
+        return $statistics;
     }
 
     /**
