@@ -103,7 +103,7 @@ class PagesController extends AppController
         $statistics = [];
 
         foreach ($array as $type => $event) {
-            $statistics[$type] = Cache::remember($type, function () {
+            $statistics[$type] = Cache::remember($type, function () use ($event) {
                 $this->eventManager()->attach(new Statistics());
                 $event = new Event($event);
                 $this->eventManager()->dispatch($event);
