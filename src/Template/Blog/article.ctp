@@ -56,6 +56,8 @@
     <div class="row">
         <main class="col-md-9" role="main">
 
+            <?= $this->element('Blog/polls') ?>
+
             <section class="blog-main">
                 <article class="post">
 
