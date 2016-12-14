@@ -19,13 +19,14 @@ class CreatePolls extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
+            ->addColumn('article_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
             ->addColumn('name', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
-            ])
-            ->addColumn('multiple_choice', 'boolean', [
-                'default' => false,
                 'null' => false,
             ])
             ->addColumn('is_display', 'boolean', [

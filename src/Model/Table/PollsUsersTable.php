@@ -8,7 +8,7 @@ use Cake\ORM\Table;
  *
  * @property \Cake\ORM\Association\BelongsTo $Polls
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Answers
+ * @property \Cake\ORM\Association\BelongsTo $PollsAnswers
  */
 class PollsUsersTable extends Table
 {
@@ -29,6 +29,10 @@ class PollsUsersTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('CounterCache', [
+            'Polls' => ['user_count'],
+            'PollsAnswers' => ['user_count']
+        ]);
 
         $this->belongsTo('Polls', [
             'foreignKey' => 'poll_id'
@@ -36,7 +40,7 @@ class PollsUsersTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
-        $this->belongsTo('Answers', [
+        $this->belongsTo('PollsAnswers', [
             'foreignKey' => 'answer_id'
         ]);
     }

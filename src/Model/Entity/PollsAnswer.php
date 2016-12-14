@@ -27,4 +27,14 @@ class PollsAnswer extends Entity
         '*' => true,
         'id' => false
     ];
+
+    /**
+     * Get the percentage of the answer's vote relative to the total of vote.
+     *
+     * @return int
+     */
+    protected function _getPercentage()
+    {
+        return ($this->user_count * 100) / $this->poll->user_count;
+    }
 }

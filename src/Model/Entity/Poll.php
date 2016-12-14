@@ -17,7 +17,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\PollsUser[] $polls_users
  * @property \App\Model\Entity\PollsAnswer[] $polls_answers
  */
 class Poll extends Entity

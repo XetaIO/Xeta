@@ -33,11 +33,13 @@ class ConversationsTable extends Table
             'foreignKey' => 'last_message_user_id'
         ]);
         $this->hasMany('ConversationsMessages', [
-            'foreignKey' => 'conversation_id'
+            'foreignKey' => 'conversation_id',
+            'dependent' => true
         ]);
         $this->hasMany('ConversationsUsers', [
             'className' => 'ConversationsUsers',
-            'foreignKey' => 'conversation_id'
+            'foreignKey' => 'conversation_id',
+            'dependent' => true
         ]);
     }
 

@@ -140,8 +140,29 @@ class BlogController extends AppController
                 'BlogCategories',
                 'BlogAttachments',
                 'Users' => function ($q) {
-                        return $q->find('full');
-                }
+                    return $q->find('full');
+                },
+                'Polls',
+                'Polls.PollsAnswers',
+                'Polls.PollsAnswers.Polls' => function ($q) {
+                    return $q->select(['id', 'user_count']);
+                },
+                'Polls.PollsUsers'
+            ])
+            ->first();
+
+        $this->loadModel('PollsUsers');
+        $hasVoted = $this->PollsUsers
+            ->find()
+            ->contain([
+                'Polls' => function ($q) {
+                    return $q->select(['id']);
+                },
+                'PollsAnswers'
+            ])
+            ->where([
+                'PollsUsers.user_id' => 1, //$this->Auth->user('id'),
+                'Polls.id' => $article->poll->id
             ])
             ->first();
 
@@ -248,7 +269,7 @@ class BlogController extends AppController
             ->select(['id', 'group_id'])
             ->first();
 
-        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles', 'currentUser'));
+        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles', 'currentUser', 'hasVoted'));
     }
 
     /**

@@ -10,8 +10,9 @@ use Cake\Validation\Validator;
  * Polls Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $BlogArticles
  * @property \Cake\ORM\Association\HasMany $PollsAnswers
- * @property \Cake\ORM\Association\BelongsToMany $Users
+ * @property \Cake\ORM\Association\BelongsToMany $PollsUsers
  */
 class PollsTable extends Table
 {
@@ -34,16 +35,18 @@ class PollsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'user_id'
+        ]);
+        $this->belongsTo('BlogArticles', [
+            'foreignKey' => 'article_id'
         ]);
         $this->hasMany('PollsAnswers', [
-            'foreignKey' => 'poll_id'
-        ]);
-        $this->belongsToMany('PollsUsers', [
             'foreignKey' => 'poll_id',
-            'targetForeignKey' => 'user_id',
-            'joinTable' => 'polls_users'
+            'dependent' => true
+        ]);
+        $this->hasMany('PollsUsers', [
+            'foreignKey' => 'poll_id',
+            'dependent' => true
         ]);
     }
 
@@ -63,11 +66,6 @@ class PollsTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
-
-        $validator
-            ->boolean('multiple_choice')
-            ->requirePresence('multiple_choice', 'create')
-            ->notEmpty('multiple_choice');
 
         $validator
             ->boolean('is_display')

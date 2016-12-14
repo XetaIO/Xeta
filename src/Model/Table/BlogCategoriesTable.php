@@ -28,6 +28,7 @@ class BlogCategoriesTable extends Table
 
         $this->hasMany('BlogArticles', [
             'foreignKey' => 'category_id',
+            'dependent' => true
         ]);
     }
 

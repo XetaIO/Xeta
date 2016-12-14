@@ -276,5 +276,23 @@ Router::scope('/', function (RouteBuilder $routes) {
         ]
     );
 
+    //Polls Routes.
+    $routes->connect(
+        '/polls/vote/:slug.:id',
+        [
+            'controller' => 'polls',
+            'action' => 'vote'
+        ],
+        [
+            '_name' => 'polls-vote',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
     $routes->fallbacks();
 });
