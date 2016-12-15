@@ -7,6 +7,17 @@ use Cake\Network\Exception\NotFoundException;
 class PollsController extends AppController
 {
     /**
+     * Initialization hook method.
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Security');
+    }
+
+    /**
      * An user vote to a poll.
      *
      * @return \Cake\Network\Exception\NotFoundException|\Cake\Network\Response
