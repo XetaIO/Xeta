@@ -22,6 +22,7 @@ class PagesControllerTest extends IntegrationTestCase
         'app.aros_acos',
         'app.sessions',
         'app.blog_articles',
+        'app.blog_articles_i18n',
         'app.blog_articles_likes',
         'app.blog_articles_comments',
         'app.blog_categories'

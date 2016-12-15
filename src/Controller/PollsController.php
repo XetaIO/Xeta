@@ -6,16 +6,6 @@ use Cake\Network\Exception\NotFoundException;
 
 class PollsController extends AppController
 {
-    /**
-     * Initialization hook method.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('Security');
-    }
 
     /**
      * An user vote to a poll.
@@ -65,7 +55,7 @@ class PollsController extends AppController
             ->first();
 
         if (!is_null($hasVoted)) {
-            $this->Flash->error(__('You have already voted for this poll ! (You voted <strong>{0}</strong>)', h($hasVoted->polls_answer->response)));
+            $this->Flash->error(__('You have already voted for this poll ! (You voted <strong>{0}</strong>).', h($hasVoted->polls_answer->response)));
 
             return $this->redirect($this->referer());
         }
@@ -75,7 +65,7 @@ class PollsController extends AppController
         $user = $this->PollsUsers->newEntity($this->request->data);
 
         if ($this->PollsUsers->save($user)) {
-            $this->Flash->success(__('Your have successfully voted for this poll ! (You voted <strong>{0}</strong>)', h($answer->response)));
+            $this->Flash->success(__('Your have successfully voted for this poll ! (You voted <strong>{0}</strong>).', h($answer->response)));
 
             return $this->redirect($this->referer());
         }

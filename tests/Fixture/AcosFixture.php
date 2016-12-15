@@ -37,7 +37,7 @@ class AcosFixture extends TestFixture
      * @var array
      */
     public $records = [
-        ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '200'],
+        ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '204'],
         ['id' => '2', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'Conversations', 'lft' => '2', 'rght' => '35'],
         ['id' => '3', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'index', 'lft' => '3', 'rght' => '4'],
         ['id' => '4', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'action', 'lft' => '5', 'rght' => '6'],
@@ -136,6 +136,8 @@ class AcosFixture extends TestFixture
         ['id' => '100', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'recoveryCode', 'lft' => '195', 'rght' => '196'],
         ['id' => '101', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'generateRecoveryCode', 'lft' => '197', 'rght' => '198'],
         ['id' => '102', 'parent_id' => '30', 'model' => '', 'foreign_key' => null, 'alias' => 'tfa', 'lft' => '83', 'rght' => '84'],
-        ['id' => '103', 'parent_id' => '19', 'model' => '', 'foreign_key' => null, 'alias' => 'maintenance', 'lft' => '45', 'rght' => '46']
+        ['id' => '103', 'parent_id' => '19', 'model' => '', 'foreign_key' => null, 'alias' => 'maintenance', 'lft' => '45', 'rght' => '46'],
+        ['id' => '104', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Polls', 'lft' => '200', 'rght' => '203'],
+        ['id' => '105', 'parent_id' => '104', 'model' => '', 'foreign_key' => null, 'alias' => 'vote', 'lft' => '201', 'rght' => '202']
     ];
 }

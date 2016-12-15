@@ -48,7 +48,7 @@ class Users implements EventListenerInterface
         $this->Groups = TableRegistry::get('Groups');
         $group = $this->Groups
             ->find()
-            ->where(['id' => $event->data['group_id']])
+            ->where(['Groups.id' => $event->data['group_id']])
             ->first();
 
         if (is_null($group) || (bool)$group->is_staff === false) {

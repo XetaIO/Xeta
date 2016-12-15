@@ -22,6 +22,7 @@ class BadgesTest extends TestCase
         'app.users',
         'app.blog_articles_comments',
         'app.badges',
+        'app.badges_i18n',
         'app.badges_users'
     ];
 

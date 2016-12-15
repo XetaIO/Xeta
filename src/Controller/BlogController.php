@@ -21,7 +21,6 @@ class BlogController extends AppController
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
-        $this->loadComponent('Security');
     }
 
     /**
@@ -36,7 +35,6 @@ class BlogController extends AppController
         parent::beforeFilter($event);
 
         $this->Auth->allow(['index', 'category', 'article', 'go', 'archive', 'search']);
-        $this->Security->config('unlockedActions', ['quote', 'getEditComment', 'articleLike', 'articleUnlike']);
     }
 
     /**
