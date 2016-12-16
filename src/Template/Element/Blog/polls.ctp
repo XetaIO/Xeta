@@ -1,3 +1,4 @@
+<?php if (!is_null($poll)) : ?>
 <div class="threadPoll">
     <div class="panel">
         <div class="panel-heading">
@@ -74,3 +75,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>

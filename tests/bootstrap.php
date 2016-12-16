@@ -21,11 +21,6 @@ define('TEST_APP', TESTS . 'test_app' . DS);
 define('TEST_TMP', TEST_APP . 'tmp' . DS);
 define('TEST_WWW_ROOT', TEST_APP . 'webroot' . DS);
 
-if (!getenv('db_class')) {
-    putenv('db_dsn=sqlite:///:memory:');
-}
-ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
-
 $_SERVER['PHP_SELF'] = '/';
 
 /**

@@ -33,7 +33,7 @@ If you need to install to try a function or any other things, just follow the st
 * :package: [Composer](https://getcomposer.org)
 * :cake: All requirements for CakePHP 3 : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :package: PHP cURL extension
-* :package: Supported DBMS : MySQL & SQLite
+* :package: Supported DBMS : MySQL
 * :package: [Google Recaptcha](https://www.google.com/recaptcha/intro/index.html) (For the register form)
 
 Steps to install :

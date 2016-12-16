@@ -42,7 +42,7 @@ class BlogArticlesFixture extends TestFixture
             'title' => 'First article',
             'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat.',
             'comment_count' => 2,
-            'like_count' => 2,
+            'like_count' => 1,
             'is_display' => 1,
             'created' => '2014-10-28 15:48:53',
             'modified' => '2014-10-28 15:48:53'
@@ -55,6 +55,17 @@ class BlogArticlesFixture extends TestFixture
             'comment_count' => 0,
             'like_count' => 0,
             'is_display' => 0,
+            'created' => '2014-10-29 15:48:53',
+            'modified' => '2014-10-29 15:48:53'
+        ],
+        [
+            'category_id' => 3,
+            'user_id' => 1,
+            'title' => 'Third article',
+            'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat.',
+            'comment_count' => 0,
+            'like_count' => 0,
+            'is_display' => 1,
             'created' => '2014-10-29 15:48:53',
             'modified' => '2014-10-29 15:48:53'
         ]

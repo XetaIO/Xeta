@@ -55,8 +55,8 @@ class BlogCellTest extends TestCase
 
         $this->assertEquals('sidebar', $cell->template);
         $this->assertContains('Categorie 1 (2)', $render);
-        $this->assertContains('First article', $render);
-        $this->assertContains('October 2014 (1)', $render);
+        $this->assertContains('Third article', $render);
+        $this->assertContains('October 2014 (2)', $render);
     }
 
     /**

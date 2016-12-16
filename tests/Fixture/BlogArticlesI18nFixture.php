@@ -67,5 +67,19 @@ class BlogArticlesI18nFixture extends TestFixture
             'field' => 'content',
             'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat.'
         ],
+        [
+            'locale' => 'en_US',
+            'model' => 'BlogArticles',
+            'foreign_key' => 3,
+            'field' => 'title',
+            'content' => 'Third article'
+        ],
+        [
+            'locale' => 'en_US',
+            'model' => 'BlogArticles',
+            'foreign_key' => 3,
+            'field' => 'content',
+            'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat.'
+        ]
     ];
 }
