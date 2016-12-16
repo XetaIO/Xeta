@@ -122,7 +122,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertResponseContains('First article', 'Must cointain article');
         $this->assertResponseContains('Is my website the best website ?', 'Must cointain poll');
-        $this->assertResponseContains('attachment.zip', 'Must cointain attachement');
+        $this->assertResponseContains('Attachment.zip', 'Must cointain attachement');
         $this->assertResponseContains('Third article', 'Must cointain related articles');
     }
 

@@ -121,7 +121,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'pass' => [
                 'type',
                 'id'
-            ]
+            ],
+            'type' => '(?i:blog)',
+            'id' => '[0-9]+'
         ]
     );
 

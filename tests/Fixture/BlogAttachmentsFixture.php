@@ -39,11 +39,22 @@ class BlogAttachmentsFixture extends TestFixture
         [
             'user_id' => 1,
             'article_id' => 1,
-            'name' => 'attachment.zip',
+            'name' => 'Attachment.zip',
             'size' => 1584,
             'extension' => '.zip',
-            'url' => 'attachment.zip',
+            'url' => TEST_TMP . 'Attachment.zip',
             'download' => 1,
+            'created' => '2014-12-23 13:23:36',
+            'modified' => '2014-12-23 13:23:36'
+        ],
+        [
+            'user_id' => 1,
+            'article_id' => 2,
+            'name' => 'not_found.zip',
+            'size' => 1584,
+            'extension' => '.zip',
+            'url' => TEST_TMP . 'not_found.zip',
+            'download' => 0,
             'created' => '2014-12-23 13:23:36',
             'modified' => '2014-12-23 13:23:36'
         ]
