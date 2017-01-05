@@ -30,6 +30,7 @@ https://xeta.io
 If you need to install to try a function or any other things, just follow the steps bellow.
 
 ### Requirements
+* :package: ![PHP](https://img.shields.io/badge/PHP->=5.6-44CB12.svg?style=flat-square)
 * :package: [Composer](https://getcomposer.org)
 * :cake: All requirements for CakePHP 3 : [list here](http://book.cakephp.org/3.0/en/installation.html#requirements)
 * :package: PHP cURL extension
