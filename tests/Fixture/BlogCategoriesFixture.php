@@ -45,6 +45,13 @@ class BlogCategoriesFixture extends TestFixture
             'article_count' => 0,
             'created' => '2014-10-29 15:36:57',
             'modified' => '2014-10-29 15:36:57'
+        ],
+        [
+            'title' => 'Categorie 3',
+            'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat.',
+            'article_count' => 1,
+            'created' => '2014-10-29 15:36:57',
+            'modified' => '2014-10-29 15:36:57'
         ]
     ];
 }

@@ -39,23 +39,19 @@ class UsersTable extends Table
 
         $this->hasMany('BlogArticles', [
             'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
+            'dependent' => true
         ]);
         $this->hasMany('BlogArticlesComments', [
             'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
+            'dependent' => true
         ]);
         $this->hasMany('BlogArticlesLikes', [
             'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
+            'dependent' => true
         ]);
         $this->hasMany('BadgesUsers', [
             'foreignKey' => 'user_id',
-            'dependent' => true,
-            'cascadeCallbacks' => true
+            'dependent' => true
         ]);
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
@@ -66,16 +62,24 @@ class UsersTable extends Table
             'cascadeCallbacks' => true
         ]);
         $this->hasMany('Conversations', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true
         ]);
         $this->hasMany('ConversationsMessages', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true
         ]);
         $this->hasMany('UsersLogs', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true
         ]);
         $this->hasOne('UsersTwoFactorAuth', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true
+        ]);
+        $this->hasMany('Polls', [
+            'foreignKey' => 'user_id',
+            'dependent' => true
         ]);
     }
 

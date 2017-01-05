@@ -42,13 +42,6 @@ class NotificationsController extends AppController
             ])
             ->first();
 
-        if ($notification->is_read) {
-            $this->set(compact('json'));
-            $this->set('_serialize', 'json');
-
-            return;
-        }
-
         //If the notification doesn't exist or if the owner of the
         //notification is not the current user, return an error.
         if (is_null($notification) || $notification->user_id != $this->Auth->user('id')) {
@@ -56,6 +49,13 @@ class NotificationsController extends AppController
 
             $this->set(compact('json'));
 
+            $this->set('_serialize', 'json');
+
+            return;
+        }
+
+        if ($notification->is_read) {
+            $this->set(compact('json'));
             $this->set('_serialize', 'json');
 
             return;

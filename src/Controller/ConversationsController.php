@@ -109,6 +109,8 @@ class ConversationsController extends AppController
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
+            return;
         }
 
         if (!array_key_exists('conversations', $this->request->data)) {
@@ -118,6 +120,8 @@ class ConversationsController extends AppController
 
             $this->set(compact('json'));
             $this->set('_serialize', 'json');
+
+            return;
         }
 
         $this->loadModel('ConversationsUsers');
@@ -193,13 +197,6 @@ class ConversationsController extends AppController
                 $json['message'] = __d('conversations', 'You have left your conversation(s) successfully.');
                 $json['error'] = '0';
                 $json['redirect'] = Router::url(['action' => 'index']);
-
-                $this->set(compact('json'));
-                break;
-
-            default:
-                $json['message'] = __d('conversations', 'Action unknown.');
-                $json['error'] = '1';
 
                 $this->set(compact('json'));
                 break;
@@ -455,7 +452,7 @@ class ConversationsController extends AppController
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
         }
-        $keyword = strtolower($this->request->data['query']);
+        $keyword = strtolower($this->request->query('query'));
 
         $this->loadModel('Users');
         $users = $this->Users
@@ -1178,7 +1175,7 @@ EOT;
     }
 
     /**
-     * Action to rendre the maintenance page.
+     * Action to render the maintenance page.
      *
      * @return void
      */

@@ -435,7 +435,7 @@ $this->end(); ?>
                                                 ),
                                                 [
                                                     '_name' => 'blog-article',
-                                                    'slug' => $article->slug,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id,
                                                     '?' => ['page' => $article->last_page]
                                                 ]
@@ -456,7 +456,7 @@ $this->end(); ?>
                                                 __("Read More {0}", '<i class="fa fa-arrow-right"></i>'),
                                                 [
                                                     '_name' => 'blog-article',
-                                                    'slug' => $article->slug,
+                                                    'slug' => $article->title,
                                                     'id' => $article->id,
                                                     '?' => ['page' => $article->last_page]
                                                 ],
@@ -474,7 +474,7 @@ $this->end(); ?>
                                                         h($article->blog_category->title),
                                                         [
                                                             '_name' => 'blog-category',
-                                                            'slug' => $article->blog_category->slug,
+                                                            'slug' => $article->blog_category->title,
                                                             'id' => $article->blog_category->id
                                                         ]
                                                     ) ?>
@@ -604,7 +604,7 @@ $this->end(); ?>
                                     </div>
                                     <div class="info">
                                         <?= $this->Html->link($comment->user->full_name, ['_name' => 'users-profile',
-                                                'slug' => $comment->user->slug, 'id' =>$comment->user->id], ['class' => 'name']) ?>
+                                                'slug' => $comment->user->username, 'id' =>$comment->user->id], ['class' => 'name']) ?>
                                         <div class="article">
                                             <i class="fa fa-newspaper-o"></i>
                                             <?= $this->Html->link(

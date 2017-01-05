@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Event\Statistics;
+use Cake\Event\Event;
 use Cake\I18n\I18n;
 
 class ArticlesController extends AppController

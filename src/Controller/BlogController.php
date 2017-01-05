@@ -140,8 +140,14 @@ class BlogController extends AppController
                 'BlogCategories',
                 'BlogAttachments',
                 'Users' => function ($q) {
-                        return $q->find('full');
-                }
+                    return $q->find('full');
+                },
+                'Polls',
+                'Polls.PollsAnswers',
+                'Polls.PollsAnswers.Polls' => function ($q) {
+                    return $q->select(['id', 'user_count']);
+                },
+                'Polls.PollsUsers'
             ])
             ->first();
 
@@ -158,7 +164,13 @@ class BlogController extends AppController
         if ($this->request->is('post')) {
             //Check if the user is connected.
             if (!$this->Auth->user()) {
-                return $this->Flash->error(__('You must be connected to post a comment.'));
+                $this->Flash->error(__('You must be connected to post a comment.'));
+
+                return $this->redirect([
+                    '_name' => 'blog-article',
+                    'slug' => h($article->title),
+                    'id' => $article->id
+                ]);
             }
 
             $this->request->data['article_id'] = $article->id;
@@ -182,6 +194,21 @@ class BlogController extends AppController
                 ]);
             }
         }
+
+        $this->loadModel('PollsUsers');
+        $hasVoted = $this->PollsUsers
+            ->find()
+            ->contain([
+                'Polls' => function ($q) {
+                    return $q->select(['id']);
+                },
+                'PollsAnswers'
+            ])
+            ->where([
+                'PollsUsers.user_id' => $this->Auth->user('id'),
+                'Polls.id' => $article->poll ? $article->poll->id : null
+            ])
+            ->first();
 
         //Paginate all comments related to the article.
         $this->paginate = [
@@ -220,18 +247,22 @@ class BlogController extends AppController
         //Search related articles
         $keywords = preg_split("/([\s,\W])+/", $article->title);
 
-        $articles = $this->BlogArticles
-            ->find()
+        $query = $this->BlogArticles->find();
+        $query
             ->contain([
                 'BlogCategories',
-            ])
-            ->where([
-                'BlogArticles.is_display' => 1,
-                'BlogArticles.id !=' => $article->id
-            ])
-            ->andWhere([
-                'BlogArticles.title RLIKE' => rtrim(implode('|', $keywords), '|')
             ]);
+
+        foreach ($keywords as $keyword) {
+            $query->orWhere(function ($exp, $q) use ($keyword) {
+                return $exp->like('BlogArticles.title', '%' . $keyword . '%');
+            });
+        }
+
+        $articles = $query->andWhere([
+            'BlogArticles.is_display' => 1,
+            'BlogArticles.id !=' => $article->id
+        ]);
 
         //Current user.
         $this->loadModel('Users');
@@ -248,7 +279,7 @@ class BlogController extends AppController
             ->select(['id', 'group_id'])
             ->first();
 
-        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles', 'currentUser'));
+        $this->set(compact('article', 'formComments', 'comments', 'like', 'articles', 'currentUser', 'hasVoted'));
     }
 
     /**
@@ -493,6 +524,8 @@ EOT;
             $this->set(compact('json'));
 
             $this->set('_serialize', 'json');
+
+            return;
         }
 
         //Check if the article exist.
@@ -510,8 +543,9 @@ EOT;
             $json['error'] = true;
 
             $this->set(compact('json'));
-
             $this->set('_serialize', 'json');
+
+            return;
         }
 
         //Prepare data to be saved.
@@ -584,6 +618,8 @@ EOT;
             $this->set(compact('json'));
 
             $this->set('_serialize', 'json');
+
+            return;
         }
 
         if ($this->BlogArticlesLikes->delete($like)) {
@@ -734,10 +770,16 @@ EOT;
      *
      * @param int $id Id of the comment.
      *
+     * @throws \Cake\Network\Exception\NotFoundException When it's not a POST request.
+     *
      * @return \Cake\Network\Response
      */
     public function editComment($id = null)
     {
+        if (!$this->request->is('post')) {
+            throw new NotFoundException();
+        }
+
         $this->loadModel('BlogArticlesComments');
 
         $comment = $this->BlogArticlesComments

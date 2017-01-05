@@ -26,9 +26,11 @@ class UsersControllerTest extends IntegrationTestCase
         'app.aros_acos',
         'app.sessions',
         'app.blog_articles',
+        'app.blog_articles_i18n',
         'app.blog_articles_comments',
         'app.blog_articles_likes',
         'app.badges',
+        'app.badges_i18n',
         'app.badges_users',
         'app.notifications',
         'app.users_logs'

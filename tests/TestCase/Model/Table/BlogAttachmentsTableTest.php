@@ -111,7 +111,7 @@ class BlogAttachmentsTableTest extends TestCase
             'id' => 1,
             'user_id' => 1,
             'article_id' => 1,
-            'name' => 'attachment.zip',
+            'name' => 'Attachment.zip',
             'url' => 'upload' . DS . '1' . DS . '1.zip',
             'size' => 1584,
             'extension' => '.zip',

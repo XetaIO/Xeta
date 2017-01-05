@@ -2,6 +2,7 @@
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
+use Cake\I18n\I18n;
 
 /**
  * Test runner bootstrap.
@@ -14,15 +15,11 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/bootstrap.php';
 
 Configure::write('App.defaultLocale', 'en_US');
+I18n::locale('en_US');
 
 define('TEST_APP', TESTS . 'test_app' . DS);
 define('TEST_TMP', TEST_APP . 'tmp' . DS);
 define('TEST_WWW_ROOT', TEST_APP . 'webroot' . DS);
-
-if (!getenv('db_class')) {
-    putenv('db_dsn=sqlite:///:memory:');
-}
-ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
 
 $_SERVER['PHP_SELF'] = '/';
 

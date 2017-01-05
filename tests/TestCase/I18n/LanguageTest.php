@@ -59,17 +59,17 @@ class LanguageTest extends TestCase
         $this->controller->request->env('HTTP_ACCEPT_LANGUAGE', 'enZZ');
         $language = new Language($this->controller);
 
-        $this->assertEquals('fr_FR', I18n::locale());
+        $this->assertEquals('en_US', I18n::locale());
         $language->setLanguage();
-        $this->assertEquals('fr_FR', I18n::locale());
+        $this->assertEquals('en_US', I18n::locale());
 
         $this->controller->Cookie->delete('language');
-        $this->controller->request->env('HTTP_ACCEPT_LANGUAGE', 'en_US');
+        $this->controller->request->env('HTTP_ACCEPT_LANGUAGE', 'fr_FR');
         $language = new Language($this->controller);
 
-        $this->assertEquals('fr_FR', I18n::locale());
+        $this->assertEquals('en_US', I18n::locale());
         $language->setLanguage();
-        $this->assertEquals('fr_FR', I18n::locale());
+        $this->assertEquals('en_US', I18n::locale());
     }
 
     /**
@@ -79,11 +79,11 @@ class LanguageTest extends TestCase
      */
     public function testSetLanguageNotConnected()
     {
-        $this->controller->Cookie->write('language', 'en_US');
+        $this->controller->Cookie->write('language', 'fr_FR');
         $language = new Language($this->controller);
 
         $language->setLanguage();
-        $this->assertEquals('en_US', I18n::locale());
+        $this->assertEquals('fr_FR', I18n::locale());
     }
 
     /**
@@ -100,7 +100,7 @@ class LanguageTest extends TestCase
                     'username' => 'mariano',
                     'avatar' => '../img/avatar.png',
                     'group_id' => 5,
-                    'language' => 'en_US'
+                    'language' => 'fr_FR'
                 ]
             ]
         ]);
@@ -110,8 +110,8 @@ class LanguageTest extends TestCase
 
         $language->setLanguage();
 
-        $this->assertEquals('en_US', $this->controller->Cookie->read('language'));
-        $this->assertEquals('en_US', I18n::locale());
+        $this->assertEquals('fr_FR', $this->controller->Cookie->read('language'));
+        $this->assertEquals('fr_FR', I18n::locale());
     }
 
     /**
@@ -121,15 +121,15 @@ class LanguageTest extends TestCase
      */
     public function testSetLanguageAndChangeTheLanguage()
     {
-        $this->controller->request->addParams(['lang' => 'en_US']);
+        $this->controller->request->addParams(['lang' => 'fr_FR']);
         $language = new Language($this->controller);
 
         $this->assertNull($this->controller->Cookie->read('language'));
 
         $language->setLanguage();
 
-        $this->assertEquals('en_US', $this->controller->Cookie->read('language'));
-        $this->assertEquals('en_US', I18n::locale());
+        $this->assertEquals('fr_FR', $this->controller->Cookie->read('language'));
+        $this->assertEquals('fr_FR', I18n::locale());
     }
 
     /**

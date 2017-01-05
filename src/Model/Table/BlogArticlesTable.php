@@ -49,6 +49,10 @@ class BlogArticlesTable extends Table
             'dependent' => true,
             'cascadeCallbacks' => true
         ]);
+        $this->hasOne('Polls', [
+            'foreignKey' => 'article_id',
+            'dependent' => true
+        ]);
     }
 
     /**

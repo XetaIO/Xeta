@@ -121,7 +121,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'pass' => [
                 'type',
                 'id'
-            ]
+            ],
+            'type' => '(?i:blog)',
+            'id' => '[0-9]+'
         ]
     );
 
@@ -267,6 +269,24 @@ Router::scope('/', function (RouteBuilder $routes) {
         ],
         [
             '_name' => 'conversations-reply',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    //Polls Routes.
+    $routes->connect(
+        '/polls/vote/:slug.:id',
+        [
+            'controller' => 'polls',
+            'action' => 'vote'
+        ],
+        [
+            '_name' => 'polls-vote',
             'routeClass' => 'SlugRoute',
             'pass' => [
                 'id',

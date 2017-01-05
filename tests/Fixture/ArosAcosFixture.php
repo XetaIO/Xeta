@@ -70,6 +70,12 @@ class ArosAcosFixture extends TestFixture
         ['id' => '32', 'aro_id' => '4', 'aco_id' => '64', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
         ['id' => '33', 'aro_id' => '4', 'aco_id' => '74', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
         ['id' => '34', 'aro_id' => '4', 'aco_id' => '80', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
-        ['id' => '35', 'aro_id' => '4', 'aco_id' => '82', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1']
+        ['id' => '35', 'aro_id' => '4', 'aco_id' => '82', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '36', 'aro_id' => '2', 'aco_id' => '94', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '37', 'aro_id' => '3', 'aco_id' => '94', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '38', 'aro_id' => '4', 'aco_id' => '94', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '39', 'aro_id' => '2', 'aco_id' => '104', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '40', 'aro_id' => '3', 'aco_id' => '104', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'],
+        ['id' => '41', 'aro_id' => '4', 'aco_id' => '104', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1']
     ];
 }

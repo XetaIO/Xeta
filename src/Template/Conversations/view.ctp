@@ -58,7 +58,7 @@
                         </div>
 
                         <span class="username">
-                            <?= $this->Html->link($message->user->full_name, ['_name' => 'users-profile', 'slug' => $message->user->slug, 'id' => $message->user->id, 'prefix' => false]) ?>
+                            <?= $this->Html->link($message->user->full_name, ['_name' => 'users-profile', 'slug' => $message->user->username, 'id' => $message->user->id, 'prefix' => false]) ?>
                         </span>
 
                         <span class="group" style="<?= h($message->user->group_css) ?>">
@@ -135,7 +135,7 @@
                                         '<i class="fa fa-pencil"></i>',
                                         $this->Html->link(
                                             h($message->last_edit_user->username),
-                                            ['_name' => 'users-profile', 'slug' => $message->last_edit_user->slug, 'id' => $message->last_edit_user->id, 'prefix' => false],
+                                            ['_name' => 'users-profile', 'slug' => $message->last_edit_user->username, 'id' => $message->last_edit_user->id, 'prefix' => false],
                                             ['class' => 'text-primary', 'escape' => false]
                                         ),
                                         ucwords($message->last_edit_date->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::MEDIUM]))

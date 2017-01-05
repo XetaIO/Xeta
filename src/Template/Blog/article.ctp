@@ -56,6 +56,12 @@
     <div class="row">
         <main class="col-md-9" role="main">
 
+            <?= $this->element('Blog/polls', [
+                'poll' => $article->poll,
+                'article' => $article,
+                'hasVoted' => $hasVoted
+            ]) ?>
+
             <section class="blog-main">
                 <article class="post">
 
