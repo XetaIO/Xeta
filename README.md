@@ -3,9 +3,9 @@
   <img src="https://cloud.githubusercontent.com/assets/8210023/21071044/ca810e6a-be94-11e6-8524-ec950ad60ff0.png" alt="Xeta Logo" height="80"/>
 </p>
 
-|Travis|Coverage|Scrutinizer|Stable Version|Downloads|License|CakePHP|
+|Travis|Coverage|Scrutinizer|Stable Version|Downloads|License|
 |:------:|:-------:|:-------:|:------:|:------:|:------:|:------:|
-|[![Build Status](https://img.shields.io/travis/XetaIO/Xeta.svg?style=flat-square)](https://travis-ci.org/XetaIO/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/XetaIO/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/XetaIO/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/XetaIO/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/XetaIO/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![CakePHP 3](https://img.shields.io/badge/CakePHP 3-%E2%99%A5-44CB12.svg?style=flat-square)](http://cakephp.org)
+|[![Build Status](https://img.shields.io/travis/XetaIO/Xeta.svg?style=flat-square)](https://travis-ci.org/XetaIO/Xeta)|[![Coverage Status](https://img.shields.io/coveralls/XetaIO/Xeta/master.svg?style=flat-square)](https://coveralls.io/r/XetaIO/Xeta)|[![Scrutinizer](https://img.shields.io/scrutinizer/g/XetaIO/Xeta.svg?style=flat-square)](https://scrutinizer-ci.com/g/XetaIO/Xeta)|[![Latest Stable Version](https://img.shields.io/packagist/v/Xety/Xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![Total Downloads](https://img.shields.io/packagist/dt/xety/xeta.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://packagist.org/packages/xety/xeta)|
 
 Xeta is a resource to help people starting with Cake3.
 
