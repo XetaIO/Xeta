@@ -31,13 +31,14 @@ class Notifications implements EventListenerInterface
     public function newNotification(Event $event)
     {
         $this->Notifications = TableRegistry::get('Notifications');
+        $type = $event->getData('type');
 
-        if (!isset($event->data['type'])) {
+        if (is_null($type)) {
             return false;
         }
-        $event->data['type'] = strtolower($event->data['type']);
+        $type = strtolower($type);
 
-        switch ($event->data['type']) {
+        switch ($type) {
             case 'conversation.reply':
                 $result = $this->_conversationReply($event);
                 break;
@@ -70,7 +71,7 @@ class Notifications implements EventListenerInterface
         $participants = $this->ConversationsUsers
             ->find()
             ->where([
-                'ConversationsUsers.conversation_id' => $event->data['conversation_id']
+                'ConversationsUsers.conversation_id' => $event->getData('conversation_id')
             ])
             ->contain([
                 'Users' => function ($q) {
@@ -91,8 +92,8 @@ class Notifications implements EventListenerInterface
         }
 
         foreach ($participants as $participant) {
-            if ($participant->user_id != $event->data['sender_id']) {
-                $event->data['participant'] = $participant;
+            if ($participant->user_id != $event->getData('sender_id')) {
+                $event->setData('participant', $participant);
 
                 $this->newNotification($event);
             }
@@ -110,7 +111,7 @@ class Notifications implements EventListenerInterface
      */
     protected function _conversationReply(Event $event)
     {
-        if (!is_integer($event->data['conversation_id'])) {
+        if (!is_integer($event->getData('conversation_id'))) {
             return false;
         }
 
@@ -120,7 +121,7 @@ class Notifications implements EventListenerInterface
         $conversation = $this->Conversations
             ->find()
             ->where([
-                'Conversations.id' => $event->data['conversation_id']
+                'Conversations.id' => $event->getData('conversation_id')
             ])
             ->select([
                 'id', 'user_id', 'title', 'last_message_id'
@@ -130,7 +131,7 @@ class Notifications implements EventListenerInterface
         $sender = $this->Users
             ->find('medium')
             ->where([
-                'Users.id' => $event->data['sender_id']
+                'Users.id' => $event->getData('sender_id')
             ])
             ->first();
 
@@ -139,8 +140,8 @@ class Notifications implements EventListenerInterface
             ->find()
             ->where([
                 'Notifications.foreign_key' => $conversation->id,
-                'Notifications.type' => $event->data['type'],
-                'Notifications.user_id' => $event->data['participant']->user->id
+                'Notifications.type' => $event->getData('type'),
+                'Notifications.user_id' => $event->getData('participant')->user->id
             ])
             ->first();
 
@@ -151,8 +152,8 @@ class Notifications implements EventListenerInterface
             $this->Notifications->save($hasReplied);
         } else {
             $data = [];
-            $data['user_id'] = $event->data['participant']->user->id;
-            $data['type'] = $event->data['type'];
+            $data['user_id'] = $event->getData('participant')->user->id;
+            $data['type'] = $event->getData('type');
             $data['data'] = serialize(['sender' => $sender, 'conversation' => $conversation]);
             $data['foreign_key'] = $conversation->id;
 
@@ -176,7 +177,7 @@ class Notifications implements EventListenerInterface
 
         $user = $this->Users
             ->find()
-            ->where(['id' => $event->data['user_id']])
+            ->where(['id' => $event->getData('user_id')])
             ->first();
 
         if (is_null($user)) {
@@ -185,7 +186,7 @@ class Notifications implements EventListenerInterface
 
         $data = [];
         $data['user_id'] = $user->id;
-        $data['type'] = $event->data['type'];
+        $data['type'] = $event->getData('type');
         $data['data'] = serialize(['icon' => '../img/notifications/welcome.png']);
 
         $entity = $this->Notifications->newEntity($data);
@@ -208,7 +209,7 @@ class Notifications implements EventListenerInterface
 
         $badge = $this->Badges
             ->find()
-            ->where(['Badges.id' => $event->data['badge']->badge_id])
+            ->where(['Badges.id' => $event->getData('badge')->badge_id])
             ->first();
 
         if (is_null($badge)) {
@@ -219,7 +220,7 @@ class Notifications implements EventListenerInterface
 
         $user = $this->Users
             ->find()
-            ->where(['id' => $event->data['badge']->user_id])
+            ->where(['id' => $event->getData('badge')->user_id])
             ->select([
                 'id'
             ])
@@ -230,8 +231,8 @@ class Notifications implements EventListenerInterface
         }
 
         $data = [];
-        $data['user_id'] = $event->data['badge']->user_id;
-        $data['type'] = $event->data['type'];
+        $data['user_id'] = $event->getData('badge')->user_id;
+        $data['type'] = $event->getData('type');
         $data['data'] = serialize(['badge' => $badge, 'user' => $user]);
 
         $entity = $this->Notifications->newEntity($data);

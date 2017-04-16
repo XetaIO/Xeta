@@ -238,7 +238,7 @@ class UsersControllerTest extends IntegrationTestCase
     {
         $this->get(['controller' => 'users', 'action' => 'account']);
         $this->assertResponseSuccess();
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login', 'redirect' => '/users/account']);
     }
 
     /**
@@ -326,7 +326,7 @@ class UsersControllerTest extends IntegrationTestCase
     {
         $this->get(['controller' => 'users', 'action' => 'settings']);
         $this->assertResponseSuccess();
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login', 'redirect' => '/users/settings']);
     }
 
     /**

@@ -1,0 +1,16 @@
+parameters:
+    bin_dir: ./vendor/bin
+    git_dir: .
+    tasks:
+        phpversion:
+            project: '5.6'
+        phpcs:
+            standard: "vendor/cakephp/cakephp-codesniffer/CakePHP/"
+            ignore_patterns:
+                - "*.ctp"
+                - config/
+                - logs/
+                - plugins/
+                - tests/
+                - tmp/
+                - webroot/

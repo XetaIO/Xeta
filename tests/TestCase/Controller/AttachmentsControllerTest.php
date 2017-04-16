@@ -81,7 +81,7 @@ class AttachmentsControllerTest extends IntegrationTestCase
         ]);
         $this->get(['controller' => 'attachments', 'action' => 'download', 'type' => 'blog', 'id' => 1]);
         $this->assertResponseCode(302);
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login', 'redirect' => '/attachments/download/blog/1']);
     }
 
     /**
