@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=5.6.0",
         "cakephp/cakephp": "~3.0",
         "cakephp/acl": "dev-master",
         "cakephp/migrations": "~1.0",

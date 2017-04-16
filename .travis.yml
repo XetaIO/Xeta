@@ -15,7 +15,6 @@ matrix:
   fast_finish: true
 
   allow_failures:
-    - php: 7.1
     - php: 7.0
       env: COVERALLS=1 DEFAULT=0 DB=mysql
 
