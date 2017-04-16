@@ -943,7 +943,6 @@ EOT;
                 ]);
             }
 
-
             $this->Conversations->patchEntity($conversation, $this->request->data, ['validate' => 'edit']);
 
             if ($this->Conversations->save($conversation)) {

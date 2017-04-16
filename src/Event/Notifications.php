@@ -101,7 +101,6 @@ class Notifications implements EventListenerInterface
         return true;
     }
 
-
     /**
      * A user has replied to a conversation.
      *
@@ -134,7 +133,6 @@ class Notifications implements EventListenerInterface
                 'Users.id' => $event->data['sender_id']
             ])
             ->first();
-
 
         //Check if this user hasn't already a notification. (Prevent for spam)
         $hasReplied = $this->Notifications
