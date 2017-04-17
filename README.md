@@ -82,9 +82,6 @@ This project implements many features and will implements more in the future. He
     * Groups Management
     * Settings Management
 
-* ###### ACL
-    * ACL Management (Still in Dev)
-
 * ###### Private Conversations
     * Multi-Participants
     * Kick/Invite Participants
