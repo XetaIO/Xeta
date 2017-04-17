@@ -39,7 +39,8 @@
         "phpunit/phpunit": "*",
         "cakephp/cakephp-codesniffer": "dev-master",
         "cakephp/debug_kit": "~3.0",
-        "cakephp/bake": "~1.0"
+        "cakephp/bake": "~1.0",
+        "phpro/grumphp": "^0.11.4"
     },
     "autoload": {
         "psr-4": {
