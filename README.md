@@ -80,10 +80,6 @@ This project implements many features and will implements more in the future. He
         * Categories
         * Articles
     * Groups Management
-    * Premium Management
-        * Statistics
-        * Offers
-        * Discounts
     * Settings Management
 
 * ###### ACL
