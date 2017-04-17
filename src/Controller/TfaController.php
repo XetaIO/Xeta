@@ -123,7 +123,7 @@ class TfaController extends AppController
             ])
             ->first();
 
-        if (is_null($userTfa) || empty($userTfa->secret) || !isset($this->request->data['code'])) {
+        if (is_null($userTfa) || empty($userTfa->secret) || is_null($this->request->getData('code'))) {
             $this->Flash->error(__('Two-factor secret verification failed. Please verify your secret and try again.'));
 
             return $this->redirect(['action' => 'configure']);
@@ -131,7 +131,7 @@ class TfaController extends AppController
 
         $tfa = new TwoFactorAuth('Xeta');
 
-        if ($tfa->verifyCode($userTfa->secret, $this->request->data['code']) === true && $this->request->data['code'] != $userTfa->current_code) {
+        if ($tfa->verifyCode($userTfa->secret, $this->request->getData('code')) === true && $this->request->getData('code') != $userTfa->current_code) {
             $this->loadModel('Users');
 
             $user = $this->Users
@@ -151,7 +151,7 @@ class TfaController extends AppController
 
             $data = [
                 'session' => $this->request->clientIp() . $this->request->header('User-Agent') . gethostbyaddr($this->request->clientIp()),
-                'current_code' => $this->request->data['code'],
+                'current_code' => $this->request->getData('code'),
                 'recovery_code' => $this->_generateNewRecoveryCode($userTfa->username)
             ];
 

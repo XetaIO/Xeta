@@ -51,7 +51,7 @@ class AttachmentsController extends AppController
     {
         $this->loadModel('BlogAttachments');
         $this->loadModel('BlogArticles');
-        $attachment = $this->BlogAttachments->newEntity($this->request->data);
+        $attachment = $this->BlogAttachments->newEntity($this->request->getParsedBody());
 
         if ($this->request->is('post')) {
             $article = $this->BlogArticles
@@ -60,7 +60,7 @@ class AttachmentsController extends AppController
                     'BlogAttachments'
                 ])
                 ->where([
-                    'BlogArticles.id' => $this->request->data['article_id']
+                    'BlogArticles.id' => $this->request->getData('article_id')
                 ])
                 ->first();
 
@@ -124,7 +124,7 @@ class AttachmentsController extends AppController
         }
 
         if ($this->request->is(['put', 'post'])) {
-            $this->BlogAttachments->patchEntity($attachment, $this->request->data());
+            $this->BlogAttachments->patchEntity($attachment, $this->request->getParsedBody());
 
             //Check if the article has already an attachment
             $article = $this->BlogArticles
@@ -133,7 +133,7 @@ class AttachmentsController extends AppController
                     'BlogAttachments'
                 ])
                 ->where([
-                    'BlogArticles.id' => $this->request->data['article_id']
+                    'BlogArticles.id' => $this->request->getData('article_id')
                 ])
                 ->first();
 

@@ -71,14 +71,14 @@ class ContactController extends AppController
                     'message' => __("Your message can not contain less than {0} characters.", 10)
                 ]);
 
-            $contact['errors'] = $validator->errors($this->request->data());
+            $contact['errors'] = $validator->errors($this->request->getParsedBody());
 
             if (empty($contact['errors'])) {
                 $viewVars = [
                     'ip' => $this->request->clientIp()
                 ];
 
-                $viewVars = array_merge($this->request->data(), $viewVars);
+                $viewVars = array_merge($this->request->getParsedBody(), $viewVars);
 
                 $this->getMailer('Contact')->send('contact', [$viewVars]);
 

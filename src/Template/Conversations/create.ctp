@@ -55,7 +55,7 @@
                             'placeholder' => __d('conversations', 'Enter the name(s) here'),
                             'autocomplete' => 'off',
                             'required' => 'required',
-                            'value' => (isset($this->request->query['r']) && !empty(trim($this->request->query['r']))) ? h(trim($this->request->query['r'])) : '',
+                            'value' => (!is_null($this->request->getQuery('r')) && !empty(trim($this->request->getQuery('r')))) ? h(trim($this->request->getQuery('r'))) : '',
                             'data-url' => \Cake\Routing\Router::url(['controller' => 'conversations', 'action' => 'inviteMember'])
                         ]) ?>
                     </div>
@@ -69,13 +69,14 @@
                                 'label' => false,
                                 'class' => 'form-control messageBox',
                                 'id' => 'messageBox'
-                            ]
-                        ) ?>
+                        ]) ?>
                         <?= $this->Form->error('message') ?>
                     </div>
                     <div class="form-group">
                         <?= $this->Form->label('open_invite', __d('conversations', 'Allow anyone in the conversation to invite other users')) ?>
-                        <?= $this->Form->radio('open_invite', [
+                        <?= $this->Form->radio(
+                            'open_invite',
+                            [
                                 '1' => __d('conversations', 'Yes'),
                                 '0' => __d('conversations', 'No')
                             ],
@@ -84,11 +85,13 @@
                                 'legend' => false,
                                 'class' => 'form-control'
                             ]
-                        ) ?>
+                        )?>
                     </div>
                     <div class="form-group">
                         <?= $this->Form->label('conversation_open', __d('conversations', 'Lock the conversation <small>(No reply will be permitted)</small>'), ['escape' => false]) ?>
-                        <?= $this->Form->radio('conversation_open', [
+                        <?= $this->Form->radio(
+                            'conversation_open',
+                            [
                                 '1' => __d('conversations', 'No'),
                                 '0' => __d('conversations', 'Yes')
                             ],

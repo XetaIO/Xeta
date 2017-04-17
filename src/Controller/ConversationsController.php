@@ -102,7 +102,7 @@ class ConversationsController extends AppController
 
         $actionAllowed = ['star', 'normal', 'exit'];
 
-        if (!array_key_exists('action', $this->request->data) || !in_array($this->request->data['action'], $actionAllowed)) {
+        if (!array_key_exists('action', $this->request->getParsedBody()) || !in_array($this->request->getData('action'), $actionAllowed)) {
             $json = [];
             $json['error'] = '1';
             $json['message'] = __d('conversations', 'Action unknown.');
@@ -113,7 +113,7 @@ class ConversationsController extends AppController
             return;
         }
 
-        if (!array_key_exists('conversations', $this->request->data)) {
+        if (!array_key_exists('conversations', $this->request->getParsedBody())) {
             $json = [];
             $json['error'] = '1';
             $json['message'] = __d('conversations', 'You have not chosen any conversations.');
@@ -126,8 +126,8 @@ class ConversationsController extends AppController
 
         $this->loadModel('ConversationsUsers');
 
-        $action = $this->request->data['action'];
-        $array = $this->request->data['conversations'];
+        $action = $this->request->getData('action');
+        $array = $this->request->getData('conversations');
 
         switch ($action) {
             case "star":
@@ -213,10 +213,10 @@ class ConversationsController extends AppController
     public function create()
     {
         $this->loadModel('Conversations');
-        $conversation = $this->Conversations->newEntity($this->request->data, ['validate' => 'create']);
+        $conversation = $this->Conversations->newEntity($this->request->getParsedBody(), ['validate' => 'create']);
 
         if ($this->request->is('post')) {
-            $users = str_replace(",", "", trim(strtolower($this->request->data['users'])));
+            $users = str_replace(",", "", trim(strtolower($this->request->getData('users'))));
             $users = explode(" ", $users);
 
             //Check max users.
@@ -264,7 +264,7 @@ class ConversationsController extends AppController
                 $this->loadModel('ConversationsUsers');
 
                 $data = [];
-                $data['message'] = $this->request->data['message'];
+                $data['message'] = $this->request->getData('message');
                 $data['conversation_id'] = $conversation->id;
                 $data['user_id'] = $this->Auth->user('id');
 
@@ -452,7 +452,7 @@ class ConversationsController extends AppController
         if (!$this->request->is('ajax')) {
             throw new NotFoundException();
         }
-        $keyword = strtolower($this->request->query('query'));
+        $keyword = strtolower($this->request->getQuery('query'));
 
         $this->loadModel('Users');
         $users = $this->Users
@@ -554,7 +554,7 @@ EOT;
         $message = $this->ConversationsMessages
             ->find()
             ->where([
-                'ConversationsMessages.id' => $this->request->data['id']
+                'ConversationsMessages.id' => $this->request->getData('id')
             ])
             ->first();
 
@@ -648,7 +648,7 @@ EOT;
             return $this->redirect($this->referer());
         }
 
-        $this->ConversationsMessages->patchEntity($message, $this->request->data());
+        $this->ConversationsMessages->patchEntity($message, $this->request->getParsedBody());
         $message->last_edit_date = new Time();
         $message->last_edit_user_id = $this->Auth->user('id');
         $message->edit_count++;
@@ -843,13 +843,13 @@ EOT;
             }
 
             //Build the newEntity for the post form.
-            $this->request->data['conversation']['id'] = $this->request->id;
-            $this->request->data['conversation']['last_post_date'] = new Time();
-            $this->request->data['conversation']['last_post_user_id'] = $this->Auth->user('id');
-            $this->request->data['user_id'] = $this->Auth->user('id');
-            $this->request->data['conversation_id'] = $this->request->id;
+            $this->request = $this->request
+                ->withData('conversation.last_post_date', new Time())
+                ->withData('conversation.last_post_user_id', $this->Auth->user('id'))
+                ->withData('user_id', $this->Auth->user('id'))
+                ->withData('conversation_id', $this->request->id);
 
-            $message = $this->ConversationsMessages->newEntity($this->request->data, [
+            $message = $this->ConversationsMessages->newEntity($this->request->getParsedBody(), [
                 'associated' => ['Conversations'],
                 'validate' => 'create'
             ]);
@@ -870,6 +870,9 @@ EOT;
                 $message->conversation->isNew(false);
             }
 
+            $message->conversation->accessible('id', true);
+            $message->conversation->id = $this->request->id;
+
             if ($message = $this->ConversationsMessages->save($message)) {
                 //Update the last message id for the conversation.
                 $this->loadModel('Conversations');
@@ -888,7 +891,7 @@ EOT;
                 ]);
                 $this->eventManager()->dispatch($event);
 
-                $conversationOpen = isset($this->request->data['conversation']['conversation_open']) ? $this->request->data['conversation']['conversation_open'] : true;
+                $conversationOpen = !is_null($this->request->getData('conversation.conversation_open')) ? $this->request->getData('conversation.conversation_open') : true;
 
                 if ($conversationOpen == false) {
                     $this->Flash->success(__d('conversations', 'Your reply has been posted successfully and the conversation has been closed !'));
@@ -943,7 +946,7 @@ EOT;
                 ]);
             }
 
-            $this->Conversations->patchEntity($conversation, $this->request->data, ['validate' => 'edit']);
+            $this->Conversations->patchEntity($conversation, $this->request->getParsedBody(), ['validate' => 'edit']);
 
             if ($this->Conversations->save($conversation)) {
                 if ($conversation->conversation_open == false) {
@@ -998,7 +1001,7 @@ EOT;
         }
 
         if ($this->request->is(['post', 'put'])) {
-            $users = str_replace(",", "", trim(strtolower($this->request->data['users'])));
+            $users = str_replace(",", "", trim(strtolower($this->request->getData('users'))));
             $users = explode(" ", $users);
 
             $maxUsersCheck = $this->ConversationsUsers
@@ -1127,8 +1130,8 @@ EOT;
         $this->loadModel('ConversationsUsers');
 
         //Check the keyword to search. (For pagination)
-        if (!empty($this->request->data['search'])) {
-            $keyword = $this->request->data['search'];
+        if (!empty($this->request->getData('search'))) {
+            $keyword = $this->request->getData('search');
             $this->request->session()->write('Search.Conversations.Keyword', $keyword);
         } else {
             if ($this->request->session()->read('Search.Conversations.Keyword')) {

@@ -14,7 +14,7 @@ class PollsController extends AppController
      */
     public function vote()
     {
-        if (!$this->request->is('post') || !isset($this->request->data['answer_id'])) {
+        if (!$this->request->is('post') || is_null($this->request->getData('answer_id'))) {
             throw new NotFoundException();
         }
 
@@ -25,7 +25,7 @@ class PollsController extends AppController
                 'Polls'
             ])
             ->where([
-                'PollsAnswers.id' => $this->request->data['answer_id'],
+                'PollsAnswers.id' => $this->request->getData('answer_id'),
                 'Polls.article_id' => $this->request->id
             ])
             ->first();
@@ -60,9 +60,10 @@ class PollsController extends AppController
             return $this->redirect($this->referer());
         }
 
-        $this->request->data['poll_id'] = $answer->poll->id;
-        $this->request->data['user_id'] = $this->Auth->user('id');
-        $user = $this->PollsUsers->newEntity($this->request->data);
+        $this->request = $this->request
+            ->withData('poll_id', $answer->poll->id)
+            ->withData('user_id', $this->Auth->user('id'));
+        $user = $this->PollsUsers->newEntity($this->request->getParsedBody());
 
         if ($this->PollsUsers->save($user)) {
             $this->Flash->success(__('Your have successfully voted for this poll ! (You voted <strong>{0}</strong>).', h($answer->response)));

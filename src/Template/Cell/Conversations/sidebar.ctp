@@ -232,7 +232,7 @@
     </div>
 </div>
 
-<?php if (!empty($participants)): ?>
+<?php if (!empty($participants)) : ?>
     <div class="sidebox widget">
         <div class="panel panel-staff-online">
             <div class="panel-heading">
@@ -244,7 +244,7 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <?php foreach ($participants as $participant): ?>
+                    <?php foreach ($participants as $participant) : ?>
                         <li id="recipient-<?= $participant->user->id ?>">
                             <?= $this->Html->link(
                                 $this->Html->image($participant->user->avatar, ['class' => 'img-thumbnail']),
@@ -257,8 +257,8 @@
                                 ['class' => 'username']
                             ) ?>
                             <small class="userGroup">
-                                <span style="<?= h($participant->user->group_css) ?>">
-                                    <?= h($participant->user->group_name) ?>
+                                <span style="<?= h($participant->user->group->css) ?>">
+                                    <?= h($participant->user->group->name) ?>
                                 </span>
                                 <?php if (
                                     (
@@ -272,7 +272,7 @@
                                         $participant->user->id != $conversation->user_id &&
                                         (!is_null($currentUser) && $currentUser->group->is_staff)
                                     )
-                                ): ?>
+                                ) : ?>
                                     <span class="pull-right" style="margin-top: 3px;">
                                         <?= $this->Html->link(
                                             __d('conversations', 'Kick {0}', '<i class="fa fa-sign-out"></i>'),
@@ -293,7 +293,7 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)): ?>
+            <?php if ($conversation->open_invite || $conversation->user_id == $this->request->session()->read('Auth.User.id') || (!is_null($currentUser) && $currentUser->group->is_staff)) : ?>
                 <div class="panel-footer">
                     <?= $this->Html->link(__d('conversations', '{0} Invite new participants', '<i class="fa fa-plus"></i>'), '#', ['escape' => false, 'data-toggle' => 'modal', 'data-target' => '#inviteParticipant']) ?>
                 </div>

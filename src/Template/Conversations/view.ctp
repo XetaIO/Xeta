@@ -61,8 +61,8 @@
                             <?= $this->Html->link($message->user->full_name, ['_name' => 'users-profile', 'slug' => $message->user->username, 'id' => $message->user->id, 'prefix' => false]) ?>
                         </span>
 
-                        <span class="group" style="<?= h($message->user->group_css) ?>">
-                            <?= h($message->user->group_name) ?>
+                        <span class="group" style="<?= h($message->user->group->css) ?>">
+                            <?= h($message->user->group->name) ?>
                         </span>
 
                         <span class="joinedDate">
@@ -114,7 +114,7 @@
                                             'action' => 'getEditMessage'
                                         ]),
                                         'data-id' => $message->id,
-                                        'data-csrf' => h($this->request->cookie('csrfToken')),
+                                        'data-csrf' => h($this->request->getCookie('csrfToken')),
                                         'escape' => false
                                     ]
                                 ) ?>

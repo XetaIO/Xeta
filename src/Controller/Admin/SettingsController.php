@@ -44,7 +44,7 @@ class SettingsController extends AppController
      */
     public function create()
     {
-        $setting = $this->Settings->newEntity($this->request->data);
+        $setting = $this->Settings->newEntity($this->request->getParsedBody());
 
         if ($this->request->is('post')) {
             $setting->last_updated_user_id = $this->Auth->user('id');
@@ -81,7 +81,7 @@ class SettingsController extends AppController
         }
 
         if ($this->request->is(['post', 'put'])) {
-            $this->Settings->patchEntity($setting, $this->request->data);
+            $this->Settings->patchEntity($setting, $this->request->getParsedBody());
 
             $setting->last_updated_user_id = $this->Auth->user('id');
 

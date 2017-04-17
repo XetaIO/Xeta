@@ -41,7 +41,7 @@ use Cake\Core\Configure;
 
         <?= $this->fetch('css') ?>
         <script style="text/javascript">
-            window.Xeta = <?= json_encode(['csrfToken' => h($this->request->cookie('csrfToken'))]) ?>
+            window.Xeta = <?= json_encode(['csrfToken' => h($this->request->getCookie('csrfToken'))]) ?>
         </script>
         <?= $this->fetch('scriptTop') ?>
 

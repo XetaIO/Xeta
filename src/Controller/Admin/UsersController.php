@@ -23,8 +23,8 @@ class UsersController extends AppController
     public function search()
     {
         //Keyword to search. (For pagination)
-        if (!empty($this->request->data['search'])) {
-            $keyword = $this->request->data['search'];
+        if (!empty($this->request->getData('search'))) {
+            $keyword = $this->request->getData('search');
             $this->request->session()->write('Search.Admin.Users.Keyword', $keyword);
         } else {
             if ($this->request->session()->read('Search.Admin.Users.Keyword')) {
@@ -35,8 +35,8 @@ class UsersController extends AppController
         }
 
         //Search type. (For pagination)
-        if (!empty($this->request->data['type'])) {
-            $type = $this->request->data['type'];
+        if (!empty($this->request->getData('type'))) {
+            $type = $this->request->getData('type');
             $this->request->session()->write('Search.Admin.Users.Type', $type);
         } else {
             if ($this->request->session()->read('Search.Admin.Users.Type')) {
@@ -133,7 +133,7 @@ class UsersController extends AppController
         if ($this->request->is('put')) {
             $this->Users->patchEntity(
                 $user,
-                $this->request->data(),
+                $this->request->getParsedBody(),
                 [
                     'validate' => 'update',
                     'accessibleFields' => ['group_id' => true]

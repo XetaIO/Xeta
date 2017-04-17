@@ -36,66 +36,8 @@ class Badges implements EventListenerInterface
     {
         return [
             'Model.BlogArticlesComments.add' => 'commentsBadge',
-            'Model.Users.register' => 'registerBadge',
-            'Model.Users.premium' => 'premiumBadge'
+            'Model.Users.register' => 'registerBadge'
         ];
-    }
-
-    /**
-     * Unlock all badges related to premium.
-     *
-     * @param \Cake\Event\Event $event The Model.Users.premium event that was fired.
-     *
-     * @return bool
-     */
-    public function premiumBadge(Event $event)
-    {
-        $this->Badges = TableRegistry::get('Badges');
-        $user = $event->getData('user');
-
-        if (!$user instanceof User) {
-            return false;
-        }
-
-        $badges = $this->Badges
-            ->find('all')
-            ->select([
-                'id',
-                'name',
-                'picture',
-                'rule'
-            ])
-            ->where([
-                'type' => 'premium'
-            ])
-            ->hydrate(false)
-            ->toArray();
-
-        if (empty($badges)) {
-            return true;
-        }
-
-        $this->Users = TableRegistry::get('Users');
-
-        $userId = $event->getData('user')->id;
-
-        $user = $this->Users
-            ->find()
-            ->where([
-                'id' => $userId
-            ])
-            ->select([
-                'end_subscription'
-            ])
-            ->first();
-
-        foreach ($badges as $badge) {
-            if ($user->premium == $badge['rule']) {
-                $this->_unlockBadge($badge, $userId);
-            }
-        }
-
-        return true;
     }
 
     /**

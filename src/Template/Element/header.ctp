@@ -12,17 +12,17 @@
         </div>
         <nav class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <?= (strtolower($this->request->params['controller']) == 'pages' && strtolower($this->request->params['action']) == 'home') ? '<li class="active">' : '<li>' ?>
+                <?= (strtolower($this->request->getParam('controller')) == 'pages' && strtolower($this->request->getParam('action')) == 'home') ? '<li class="active">' : '<li>' ?>
                     <a href="<?= $this->Url->build('/') ?>">
                         <span data-hover="<?=__("Home") ?>"><?= __("Home") ?></span>
                     </a>
                 </li>
-                <?= (strtolower($this->request->params['controller']) == 'blog') ? '<li class="active">' : '<li>' ?>
+                <?= (strtolower($this->request->getParam('controller')) == 'blog') ? '<li class="active">' : '<li>' ?>
                     <a href="<?= $this->Url->build(['controller' => 'blog', 'action' => 'index', 'prefix' => false]) ?>">
                         <span data-hover="<?=__("Blog") ?>"><?= __("Blog") ?></span>
                     </a>
                 </li>
-                <?= (strtolower($this->request->params['controller']) == 'contact') ? '<li class="active">' : '<li>' ?>
+                <?= (strtolower($this->request->getParam('controller')) == 'contact') ? '<li class="active">' : '<li>' ?>
                     <a href="<?= $this->Url->build(['controller' => 'contact', 'action' => 'index', 'prefix' => false]) ?>">
                         <span data-hover="<?=__("Contact") ?>"><?= __("Contact") ?></span>
                     </a>
