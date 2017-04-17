@@ -44,8 +44,8 @@ Steps to install :
 composer create-project --prefer-dist xety/xeta <application_name>
 composer run-script installation
 ```
+You need to download the browscap.ini file.
 ```
-//Need to download the browscap.ini file.
 vendor/bin/browscap-php browscap:fetch
 vendor/bin/browscap-php browscap:convert
 ```
