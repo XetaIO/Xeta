@@ -38,7 +38,7 @@ class NotificationsController extends AppController
         $notification = $this->Notifications
             ->find()
             ->where([
-                'id' => $this->request->data['id']
+                'id' => $this->request->getData('id')
             ])
             ->first();
 

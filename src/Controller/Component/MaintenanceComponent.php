@@ -48,8 +48,8 @@ class MaintenanceComponent extends Component
             return false;
         }
 
-        $controller = $this->request->params['controller'];
-        $action = $this->request->params['action'];
+        $controller = $this->request->getParam('controller');
+        $action = $this->request->getParam('action');
 
         if ($this->_controller->Auth->user()) {
             $this->Users = TableRegistry::get('Users');

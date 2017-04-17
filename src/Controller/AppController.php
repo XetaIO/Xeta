@@ -98,8 +98,8 @@ class AppController extends Controller
         $this->CookieLogin->handle();
 
         // Layouts
-        if (isset($this->request->params['prefix'])) {
-            $prefix = explode('/', $this->request->params['prefix'])[0];
+        if (!is_null($this->request->getParam('prefix'))) {
+            $prefix = explode('/', $this->request->getParam('prefix'))[0];
 
             switch ($prefix) {
                 case 'admin':

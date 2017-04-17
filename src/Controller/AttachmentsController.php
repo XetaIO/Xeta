@@ -63,14 +63,13 @@ class AttachmentsController extends AppController
                     throw new NotFoundException();
                 }
 
-                $this->response->file(
+                $this->BlogAttachments->patchEntity($attachment, ['download' => $attachment->download + 1]);
+                $this->BlogAttachments->save($attachment);
+
+                return $this->response->withFile(
                     $file->path,
                     ['download' => true, 'name' => $attachment->name]
                 );
-
-                $this->BlogAttachments->patchEntity($attachment, ['download' => $attachment->download + 1]);
-                $this->BlogAttachments->save($attachment);
-                break;
         }
 
         return $this->response;

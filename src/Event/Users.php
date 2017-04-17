@@ -25,7 +25,7 @@ class Users implements EventListenerInterface
     }
 
     /**
-     * An user failed to login.
+     * An staff user failed to login. Send a mail to the user.
      *
      * @param Event $event The event that was fired.
      *
@@ -36,10 +36,10 @@ class Users implements EventListenerInterface
         //Logs Event.
         EventManager::instance()->attach(new Logs());
         $logs = new Event('Log.User', $this, [
-            'user_id' => $event->data['user_id'],
-            'username' => $event->data['username'],
-            'user_ip' => $event->data['user_ip'],
-            'user_agent' => $event->data['user_agent'],
+            'user_id' => $event->getData('user_id'),
+            'username' => $event->getData('username'),
+            'user_ip' => $event->getData('user_ip'),
+            'user_agent' => $event->getData('user_agent'),
             'action' => 'user.connection.manual.failed'
         ]);
         EventManager::instance()->dispatch($logs);
@@ -48,7 +48,7 @@ class Users implements EventListenerInterface
         $this->Groups = TableRegistry::get('Groups');
         $group = $this->Groups
             ->find()
-            ->where(['Groups.id' => $event->data['group_id']])
+            ->where(['Groups.id' => $event->getData('group_id')])
             ->first();
 
         if (is_null($group) || (bool)$group->is_staff === false) {
@@ -56,10 +56,10 @@ class Users implements EventListenerInterface
         }
 
         $viewVars = [
-            'user_ip' => $event->data['user_ip'],
-            'username' => $event->data['username'],
-            'user_agent' => $event->data['user_agent'],
-            'email' => $event->data['user_email']
+            'user_ip' => $event->getData('user_ip'),
+            'username' => $event->getData('username'),
+            'user_agent' => $event->getData('user_agent'),
+            'email' => $event->getData('user_email')
         ];
 
         $this->getMailer('User')->send('login', [$viewVars]);

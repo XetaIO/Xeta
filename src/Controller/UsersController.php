@@ -99,12 +99,12 @@ class UsersController extends AppController
         }
 
         if ($this->request->is('post')) {
-            $method = ($this->request->data['method']) ? $this->request->data['method'] : false;
+            $method = !is_null($this->request->getData('method')) ? $this->request->getData('method') : false;
 
             switch ($method) {
                 case "login":
                     if (Configure::read('User.Login.enabled') === false) {
-                        $userRegister = $userRegister = $this->Users->newEntity($this->request->data);
+                        $userRegister = $userRegister = $this->Users->newEntity($this->request->getParsedBody());
 
                         break;
                     }
@@ -114,7 +114,7 @@ class UsersController extends AppController
                         if ($userLogin['is_deleted'] == true) {
                             $this->Flash->error(__("This account has been deleted."));
 
-                            $userRegister = $this->Users->newEntity($this->request->data);
+                            $userRegister = $this->Users->newEntity($this->request->getParsedBody());
 
                             break;
                         }
@@ -150,8 +150,8 @@ class UsersController extends AppController
                             'httpOnly' => true
                         ]);
                         $this->Cookie->write('CookieAuth', [
-                            'username' => $this->request->data('username'),
-                            'password' => $this->request->data('password')
+                            'username' => $this->request->getData('username'),
+                            'password' => $this->request->getData('password')
                         ]);
 
                         //Badge Event.
@@ -172,7 +172,7 @@ class UsersController extends AppController
                     $user = $this->Users
                         ->find()
                         ->where([
-                            'username' => $this->request->data['username']
+                            'username' => $this->request->getData('username')
                         ])
                         ->select([
                             'id',
@@ -199,12 +199,12 @@ class UsersController extends AppController
 
                     $this->Flash->error(__("Your username or password doesn't match."));
 
-                    $userRegister = $this->Users->newEntity($this->request->data);
+                    $userRegister = $this->Users->newEntity($this->request->getParsedBody());
 
                     break;
 
                 case "register":
-                    $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
+                    $userRegister = $this->Users->newEntity($this->request->getParsedBody(), ['validate' => 'create']);
 
                     //Handle Maintenances
                     if (Configure::read('Site.maintenance') === true || Configure::read('User.Register.enabled') === false) {
@@ -266,7 +266,7 @@ class UsersController extends AppController
             //Save the referer URL before the user send the login/register request else it will delete the referer.
             $this->request->session()->write('Auth.redirect', $this->referer());
 
-            $userRegister = $this->Users->newEntity($this->request->data, ['validate' => 'create']);
+            $userRegister = $this->Users->newEntity($this->request->getParsedBody(), ['validate' => 'create']);
         }
 
         if ($this->Auth->user()) {
@@ -302,8 +302,8 @@ class UsersController extends AppController
             'httpOnly' => true
         ]);
         $this->Cookie->write('CookieAuth', [
-            'username' => $this->request->data('username'),
-            'password' => $this->request->data('password')
+            'username' => $this->request->getData('username'),
+            'password' => $this->request->getData('password')
         ]);
 
         //Badge Event.
@@ -381,10 +381,10 @@ class UsersController extends AppController
             $isAuthorized = false;
             $recoveryCodeUsed = false;
 
-            if ($tfa->verifyCode($userTfa->secret, $this->request->data['code']) === true && $this->request->data['code'] !== $userTfa->current_code) {
+            if ($tfa->verifyCode($userTfa->secret, $this->request->getData('code')) === true && $this->request->getData('code') !== $userTfa->current_code) {
                 $isAuthorized = true;
             //Check recovery code and verify if the recovery code is not already used.
-            } elseif ($userTfa->recovery_code === $this->request->data['code'] && $userTfa->recovery_code_used == false && $this->request->data['code'] !== $userTfa->current_code) {
+            } elseif ($userTfa->recovery_code === $this->request->getData('code') && $userTfa->recovery_code_used == false && $this->request->getData('code') !== $userTfa->current_code) {
                 $isAuthorized = true;
                 $recoveryCodeUsed = true;
             }
@@ -392,7 +392,7 @@ class UsersController extends AppController
             if ($isAuthorized === true) {
                 $data = [
                     'session' => $this->request->clientIp() . $this->request->header('User-Agent') . gethostbyaddr($this->request->clientIp()),
-                    'current_code' => $recoveryCodeUsed === true ? 'recovery' : $this->request->data['code'],
+                    'current_code' => $recoveryCodeUsed === true ? 'recovery' : $this->request->getData('code'),
                     'recovery_code_used' => $recoveryCodeUsed === true ? 1 : $userTfa->recovery_code_used
                 ];
 
@@ -451,7 +451,7 @@ class UsersController extends AppController
 
         if ($this->request->is('put')) {
             $user->accessible('avatar_file', true);
-            $this->Users->patchEntity($user, $this->request->data(), ['validate' => 'account']);
+            $this->Users->patchEntity($user, $this->request->getParsedBody(), ['validate' => 'account']);
 
             if ($this->Users->save($user)) {
                 $this->request->session()->write('Auth.User.avatar', $user->avatar);
@@ -486,20 +486,20 @@ class UsersController extends AppController
         $oldEmail = $user->email;
 
         if ($this->request->is('put')) {
-            $method = ($this->request->data['method']) ? $this->request->data['method'] : false;
+            $method = ($this->request->getData('method')) ? $this->request->getData('method') : false;
 
             switch ($method) {
                 case "email":
-                    if (!isset($this->request->data['email'])) {
+                    if (is_null($this->request->getData('email'))) {
                         $this->set(compact('user', 'oldEmail'));
 
                         return $this->redirect(['action' => 'settings']);
                     }
 
-                    $this->Users->patchEntity($user, $this->request->data(), ['validate' => 'settings']);
+                    $this->Users->patchEntity($user, $this->request->getParsedBody(), ['validate' => 'settings']);
 
                     if ($this->Users->save($user)) {
-                        $oldEmail = $this->request->data['email'];
+                        $oldEmail = $this->request->getData('email');
 
                         //Logs Event.
                         $this->eventManager()->attach(new Logs());
@@ -517,7 +517,7 @@ class UsersController extends AppController
                     break;
 
                 case "password":
-                    $data = $this->request->data;
+                    $data = $this->request->getParsedBody();
                     if (!isset($data['old_password']) || !isset($data['password']) || !isset($data['password_confirm'])) {
                         $this->set(compact('user', 'oldEmail'));
 
@@ -530,7 +530,7 @@ class UsersController extends AppController
                         return $this->Flash->error(__("Your old password don't match !"));
                     }
 
-                    $this->Users->patchEntity($user, $this->request->data(), ['validate' => 'settings']);
+                    $this->Users->patchEntity($user, $this->request->getParsedBody(), ['validate' => 'settings']);
                     if ($this->Users->save($user)) {
                         //Logs Event.
                         $this->eventManager()->attach(new Logs());
@@ -629,7 +629,7 @@ class UsersController extends AppController
 
         $user = $this->Users->get($this->Auth->user('id'));
 
-        if (!(new DefaultPasswordHasher)->check($this->request->data['password'], $user->password)) {
+        if (!(new DefaultPasswordHasher)->check($this->request->getData('password'), $user->password)) {
             $this->Flash->error(__("Your password doesn't match !"));
 
             return $this->redirect(['action' => 'settings']);
@@ -694,7 +694,7 @@ class UsersController extends AppController
             $user = $this->Users
                 ->find()
                 ->where([
-                    'Users.email' => $this->request->data['email']
+                    'Users.email' => $this->request->getData('email')
                 ])
                 ->first();
 
@@ -790,7 +790,7 @@ class UsersController extends AppController
         }
 
         if ($this->request->is(['post', 'put'])) {
-            $this->Users->patchEntity($user, $this->request->data, ['validate' => 'resetpassword']);
+            $this->Users->patchEntity($user, $this->request->getParsedBody(), ['validate' => 'resetpassword']);
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__("Your password has been changed !"));

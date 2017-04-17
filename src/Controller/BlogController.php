@@ -173,10 +173,11 @@ class BlogController extends AppController
                 ]);
             }
 
-            $this->request->data['article_id'] = $article->id;
-            $this->request->data['user_id'] = $this->Auth->user('id');
+            $this->request = $this->request
+                ->withData('article_id', $article->id)
+                ->withData('user_id', $this->Auth->user('id'));
 
-            $newComment = $this->BlogArticlesComments->newEntity($this->request->data, ['validate' => 'create']);
+            $newComment = $this->BlogArticlesComments->newEntity($this->request->getParsedBody(), ['validate' => 'create']);
 
             //Attach Event.
             $this->BlogArticlesComments->eventManager()->attach(new Badges($this));
@@ -451,8 +452,8 @@ EOT;
         $this->loadModel('BlogArticles');
 
         //Check the keyword to search. (For pagination)
-        if (!empty($this->request->data['search'])) {
-            $keyword = $this->request->data['search'];
+        if (!empty($this->request->getData('search'))) {
+            $keyword = $this->request->getData('search');
             $this->request->session()->write('Search.Blog.Keyword', $keyword);
         } else {
             if ($this->request->session()->read('Search.Blog.Keyword')) {
@@ -720,7 +721,7 @@ EOT;
         $comment = $this->BlogArticlesComments
             ->find()
             ->where([
-                'BlogArticlesComments.id' => $this->request->data['id']
+                'BlogArticlesComments.id' => $this->request->getData('id')
             ])
             ->first();
 
@@ -819,7 +820,7 @@ EOT;
             return $this->redirect($this->referer());
         }
 
-        $this->BlogArticlesComments->patchEntity($comment, $this->request->data());
+        $this->BlogArticlesComments->patchEntity($comment, $this->request->getParsedBody());
         if ($this->BlogArticlesComments->save($comment)) {
             $this->Flash->success(__("This comment has been edited successfully !"));
         }

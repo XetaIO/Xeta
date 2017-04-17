@@ -40,10 +40,10 @@ class CategoriesController extends AppController
         $this->loadModel('BlogCategories');
 
         $this->BlogCategories->locale(I18n::defaultLocale());
-        $category = $this->BlogCategories->newEntity($this->request->data);
+        $category = $this->BlogCategories->newEntity($this->request->getParsedBody());
 
         if ($this->request->is('post')) {
-            $category->setTranslations($this->request->data);
+            $category->setTranslations($this->request->getParsedBody());
 
             if ($this->BlogCategories->save($category)) {
                 $this->Flash->success(__d('admin', 'The category has been created successfully !'));
@@ -80,8 +80,8 @@ class CategoriesController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->BlogCategories->patchEntity($category, $this->request->data());
-            $category->setTranslations($this->request->data);
+            $this->BlogCategories->patchEntity($category, $this->request->getParsedBody());
+            $category->setTranslations($this->request->getParsedBody());
 
             if ($this->BlogCategories->save($category)) {
                 $this->Flash->success(__d('admin', 'This category has been updated successfully !'));

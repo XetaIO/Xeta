@@ -60,11 +60,11 @@ class ArticlesController extends AppController
         $this->loadModel('BlogArticles');
 
         $this->BlogArticles->locale(I18n::defaultLocale());
-        $article = $this->BlogArticles->newEntity($this->request->data);
+        $article = $this->BlogArticles->newEntity($this->request->getParsedBody());
 
         if ($this->request->is('post')) {
             $article->user_id = $this->Auth->user('id');
-            $article->setTranslations($this->request->data);
+            $article->setTranslations($this->request->getParsedBody());
 
             if ($this->BlogArticles->save($article)) {
                 $this->eventManager()->attach(new Statistics());
@@ -114,8 +114,8 @@ class ArticlesController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->BlogArticles->patchEntity($article, $this->request->data());
-            $article->setTranslations($this->request->data);
+            $this->BlogArticles->patchEntity($article, $this->request->getParsedBody());
+            $article->setTranslations($this->request->getParsedBody());
 
             if ($this->BlogArticles->save($article)) {
                 $this->Flash->success(__d('admin', 'This article has been updated successfully !'));

@@ -87,7 +87,7 @@ class Language
         }
 
         //The user want to change his language.
-        if (isset($this->_controller->request->params['lang']) && isset($this->_locales[$this->_controller->request->params['lang']])) {
+        if (!is_null($this->_controller->request->getParam('lang')) && isset($this->_locales[$this->_controller->request->getParam('lang')])) {
             //If the user is connected, we need to save the new language in the database and refresh his session.
             if ($this->_controller->Auth->user()) {
                 $this->_controller->loadModel('Users');
@@ -97,15 +97,15 @@ class Language
                     ->where(['id' => $this->_session->read('Auth.User.id')])
                     ->first();
 
-                $user->language = $this->_controller->request->params['lang'];
+                $user->language = $this->_controller->request->getParam('lang');
                 $this->_controller->Users->save($user);
-                $this->_session->write('Auth.User.language', $this->_controller->request->params['lang']);
+                $this->_session->write('Auth.User.language', $this->_controller->request->getParam('lang'));
             }
 
             //Save the new language in the cookie.
-            $this->_cookie->write('language', $this->_controller->request->params['lang']);
+            $this->_cookie->write('language', $this->_controller->request->getParam('lang'));
 
-            $this->_locale = $this->_controller->request->params['lang'];
+            $this->_locale = $this->_controller->request->getParam('lang');
         }
 
         //Set the locale.

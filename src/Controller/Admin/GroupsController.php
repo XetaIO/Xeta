@@ -45,10 +45,10 @@ class GroupsController extends AppController
     public function add()
     {
         $this->Groups->locale(I18n::defaultLocale());
-        $group = $this->Groups->newEntity($this->request->data);
+        $group = $this->Groups->newEntity($this->request->getParsedBody());
 
         if ($this->request->is('post')) {
-            $group->setTranslations($this->request->data);
+            $group->setTranslations($this->request->getParsedBody());
 
             if ($this->Groups->save($group)) {
                 //Event.
@@ -89,8 +89,8 @@ class GroupsController extends AppController
         }
 
         if ($this->request->is('put')) {
-            $this->Groups->patchEntity($group, $this->request->data());
-            $group->setTranslations($this->request->data);
+            $this->Groups->patchEntity($group, $this->request->getParsedBody());
+            $group->setTranslations($this->request->getParsedBody());
 
             if ($this->Groups->save($group)) {
                 //Event.
