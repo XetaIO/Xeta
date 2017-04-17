@@ -48,11 +48,11 @@ class Logs implements EventListenerInterface
         $this->UsersLogs = TableRegistry::get('UsersLogs');
 
         $data = [
-            'user_id' => $event->data['user_id'],
-            'username' => $event->data['username'],
-            'user_ip' => $event->data['user_ip'],
-            'user_agent' => $event->data['user_agent'],
-            'action' => $event->data['action']
+            'user_id' => $event->getData('user_id'),
+            'username' => $event->getData('username'),
+            'user_ip' => $event->getData('user_ip'),
+            'user_agent' => $event->getData('user_agent'),
+            'action' => $event->getData('action')
         ];
 
         $entity = $this->UsersLogs->newEntity($data);
