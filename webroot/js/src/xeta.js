@@ -14,6 +14,24 @@ $(document).ready(function () {
     });
 
     /**
+     * Navbar Home Page.
+     */
+    var scroll_start = 0;
+    var change_navbar = $('#change-navbar');
+    var offset = change_navbar.offset();
+
+    if (change_navbar.length){
+      $(document).scroll(function() {
+          scroll_start = $(this).scrollTop();
+          if(scroll_start > (offset.top - 60)) {
+              $(".navbar-inverse").attr('style', 'background-color: #fff !important;border-bottom: 4px solid rgba(0,0,0,0.1) !important;color: inherit !important');
+          } else {
+              $('.navbar-inverse').attr('style', 'background-color: transparent !important;border-bottom: transparent !important;color: #fff !important');
+          }
+      });
+    }
+
+    /**
      * ScrollUp.
      */
     $.scrollUp({

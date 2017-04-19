@@ -117,7 +117,7 @@
                 <div class="form-group">
                     <?= $this->Form->button(
                         __('SignUp {0}', '<i class="fa fa-arrow-right"></i>'),
-                        ['class' => 'btn btn-primary']
+                        ['class' => 'btn btn-primary-outline']
                     ); ?>
                 </div>
                 <?= $this->Form->end(); ?>
@@ -175,7 +175,7 @@
                     <div class="form-group">
                         <?= $this->Form->button(
                             __('LogIn {0}', '<i class="fa fa-arrow-right"></i>'),
-                            ['class' => 'btn btn-primary']
+                            ['class' => 'btn btn-primary-outline']
                         ); ?>
                     </div>
                 <?= $this->Form->end(); ?>

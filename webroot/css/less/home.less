@@ -1,35 +1,27 @@
 // main : xeta.less
 
-svg {
-    float: left;
-    width: 100px;
-    height: 100px;
-    shape-rendering: geometricPrecision;
+#particles {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
 }
 
-g, path, circle, rect {
-    //.animation-iteration-count(infinite);
-    -webkit-animation-iteration-count: infinite;
-    .animation-timing-function(linear);
-    //.animation-duration(18s);
-    .animation-direction(normal);
-
-    .transform-origin(50% 50%);
-}
-
-.sky {
+.showcase {
     position: relative;
-    padding: 0;
-    margin: 0 0 35px;
+    background-color: #2a2c3a;
+    color: #fff;
     text-align: center;
-    background-color: #6bc2ea;
-    color: #ffffff;
+    font-family: 'Ubuntu', sans-serif;
 
     .hp-title {
-        font-size: 28px;
+        font-size: 250%;
+        font-weight: 600;
+        line-height: 120%;
         padding: 20px 0 40px;
-        font-family: cursive;
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.27);
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.87);
 
         span {
             font-family: 'Leckerli One',cursive;
@@ -39,142 +31,11 @@ g, path, circle, rect {
 
     .hp-intro {
         padding: 0 0 40px;
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.27);
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.87);
 
         .hp-headline {
             color: @white;
         }
-    }
-
-    .svg svg {
-        opacity: 0.9;
-    }
-
-    .sky-bg {
-        padding: 48px 30px 68px;
-        background: url(/img/home/overlay.png);
-    }
-
-    .container {
-        position: inherit;
-        z-index: 2;
-    }
-
-    .climacon_component-stroke {
-        fill: #ffffff;
-        stroke-width: 0%;
-        stroke: #000000;
-
-        &.climacon_component-stroke_sunSpoke,
-        &.climacon_component-stroke_sunBody {
-            fill: #F1C40F;
-        }
-    }
-
-    .climacon_component-fill {
-        fill: #aedef4;
-        stroke-width: 0%;
-        stroke: #000000;
-    }
-
-    .climacon_sun {
-        position: absolute;
-        left: -5%;
-        top: -70px;
-        width: 150px;
-        height: 150px;
-        margin-left: -100px;
-
-        .animation(animateSun 280s 0s linear infinite);
-    }
-
-    .climacon_cloudFill {
-        position: absolute;
-        right: 0%;
-        margin-right: -120px;
-
-        &.cloud-1 {
-            top: 10%;
-            .transform(scale(0.6));
-            .animation(animateCloud 35s 12s linear infinite);
-        }
-
-        &.cloud-1-1 {
-            top: 34%;
-            .transform(scale(0.6));
-            .animation(animateCloud 35s 14s linear infinite);
-        }
-
-        &.cloud-1-2 {
-            top: 74%;
-            .transform(scale(0.6));
-            .animation(animateCloud 35s 9s linear infinite);
-        }
-
-        &.cloud-2 {
-            top: 60%;
-            .transform(scale(0.8));
-            .animation(animateCloud 30s 10s linear infinite);
-        }
-
-        &.cloud-3 {
-            top: 43%;
-            .transform(scale(1));
-            .animation(animateCloud 25s 7s linear infinite);
-        }
-
-        &.cloud-3-1 {
-            top: 13%;
-            .transform(scale(1));
-            .animation(animateCloud 25s 16s linear infinite);
-        }
-
-        &.cloud-4 {
-            top: 18%;
-            .transform(scale(1.2));
-            .animation(animateCloud 20s 4s linear infinite);
-        }
-
-        &.cloud-4-1 {
-            top: 70%;
-            .transform(scale(1.4));
-            .animation(animateCloud 20s 8s linear infinite);
-        }
-
-        &.cloud-5 {
-            top: 27%;
-            .transform(scale(1.6));
-            .animation(animateCloud 15s 0s linear infinite);
-        }
-
-        &.cloud-5-1 {
-            top: 8%;
-            .transform(scale(1.8));
-            .animation(animateCloud 15s 5s linear infinite);
-        }
-    }
-
-    .climacon_componentWrap_sunSpoke,
-    .climacon_component-stroke_sunSpoke {
-        .animation-name(scale);
-        .animation-direction(alternate);
-        .animation-duration(2s);
-    }
-
-    .climacon_componentWrap_sunSpoke,
-    .climacon_component-stroke_sunSpoke:nth-child(even) {
-        .animation-delay(1.5s);
-    }
-}
-
-
-@media (max-width: 767px) {
-    .sky .climacon_sun {
-        display: none;
-    }
-
-    .sky .sky-bg {
-        padding: 28px 0px 48px;
     }
 }
 
@@ -270,9 +131,9 @@ g, path, circle, rect {
 }
 
 .focus {
-    margin-bottom: 80px;
+    padding-bottom: 80px;
     text-align: center;
-    margin-top: 55px;
+    padding-top: 55px;
 
     .col-md-4 {
         margin-top: 20px;
@@ -482,61 +343,6 @@ g, path, circle, rect {
     }
     100% {
         -moz-transform: scale(.7);
-    }
-}
-
-
-@keyframes animateCloud {
-    0% {
-        right: 0%;
-    }
-    100% {
-        right: 110%;
-    }
-}
-
-@-webkit-keyframes animateCloud {
-    0% {
-        right: 0%;
-    }
-    100% {
-        right: 110%;
-    }
-}
-
-@-moz-keyframes animateCloud {
-    0% {
-        right: 0%;
-    }
-    100% {
-        right: 110%;
-    }
-}
-
-@keyframes animateSun {
-    0% {
-        left: 0%;
-    }
-    100% {
-        left: 110%;
-    }
-}
-
-@-webkit-keyframes animateSun {
-    0% {
-        left: 0%;
-    }
-    100% {
-        left: 110%;
-    }
-}
-
-@-moz-keyframes animateSun {
-    0% {
-        left: 0%;
-    }
-    100% {
-        left: 110%;
     }
 }
 
