@@ -71,6 +71,17 @@
                                         <i class="fa fa-heart"></i>
                                         <?= __n('{0} Like', '{0} Likes', $article->like_count_format, $article->like_count_format) ?>
                                     </li>
+                                    <?php if (!is_null($article->poll)) : ?>
+                                        <li class="poll">
+                                            <i class="fa fa-bar-chart" data-toggle="tooltip" title="<?= __('This article has a poll') ?>"></i>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <?php if (!is_null($article->blog_attachment)) : ?>
+                                        <li class="attachment">
+                                            <i class="fa fa-cloud-download" data-toggle="tooltip" title="<?= __('This article has an attachment') ?>"></i>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </aside>
 
