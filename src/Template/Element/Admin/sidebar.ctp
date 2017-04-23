@@ -42,7 +42,8 @@
 
             <?php if ($this->Acl->check(['controller' => 'articles', 'action' => 'index', 'prefix' => 'admin']) ||
                 $this->Acl->check(['controller' => 'categories', 'action' => 'index', 'prefix' => 'admin']) ||
-                $this->Acl->check(['controller' => 'attachments', 'action' => 'index', 'prefix' => 'admin'])
+                $this->Acl->check(['controller' => 'attachments', 'action' => 'index', 'prefix' => 'admin']) ||
+                $this->Acl->check(['controller' => 'polls', 'action' => 'index', 'prefix' => 'admin'])
             ) : ?>
 
                 <?php if ($this->request->getParam('controller') == 'Articles'
@@ -84,6 +85,12 @@
                             <?= ($this->request->getParam('controller') == 'Attachments') ? '<li class="active">' : '<li>' ?>
                                 <?= $this->Html->link(__d('admin', 'Manage Attachments'), ['controller' => 'attachments', 'action' => 'index',
                                     'prefix' => 'admin']) ?>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if ($this->Acl->check(['controller' => 'polls', 'action' => 'index', 'prefix' => 'admin'])) : ?>
+                            <?= ($this->request->getParam('controller') == 'Polls') ? '<li class="active">' : '<li>' ?>
+                                <?= $this->Html->link(__d('admin', 'Manage Polls'), ['controller' => 'polls', 'action' => 'index', 'prefix' => 'admin']) ?>
                             </li>
                         <?php endif; ?>
                     </ul>

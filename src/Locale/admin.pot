@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2016-11-15 21:47+0100\n"
+"POT-Creation-Date: 2017-04-23 14:32+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,23 +14,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/Admin/ArticlesController.php:68
+#: Controller/Admin/ArticlesController.php:74
 msgid "Your article has been created successfully !"
 msgstr ""
 
-#: Controller/Admin/ArticlesController.php:105;143
+#: Controller/Admin/ArticlesController.php:111;149
 msgid "This article doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/Admin/ArticlesController.php:115
+#: Controller/Admin/ArticlesController.php:121
 msgid "This article has been updated successfully !"
 msgstr ""
 
-#: Controller/Admin/ArticlesController.php:149
+#: Controller/Admin/ArticlesController.php:159
 msgid "This article has been deleted successfully !"
 msgstr ""
 
-#: Controller/Admin/ArticlesController.php:154
+#: Controller/Admin/ArticlesController.php:164
 msgid "Unable to delete this article."
 msgstr ""
 
@@ -106,6 +106,50 @@ msgstr ""
 msgid "Unable to delete this group."
 msgstr ""
 
+#: Controller/Admin/PollsAnswersController.php:26
+msgid "This answer doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/Admin/PollsAnswersController.php:32
+msgid "This answer has been deleted successfully."
+msgstr ""
+
+#: Controller/Admin/PollsAnswersController.php:34
+msgid "An error occured while deleting this answers."
+msgstr ""
+
+#: Controller/Admin/PollsController.php:66;152
+msgid "This article has already a poll, you can edit it <a href=\"{0}\" class=\"btn btn-sm btn-danger-outline\">here</a>."
+msgstr ""
+
+#: Controller/Admin/PollsController.php:89;175
+msgid "You must add at least one answer for this poll."
+msgstr ""
+
+#: Controller/Admin/PollsController.php:99
+msgid "Your poll has been created successfully !"
+msgstr ""
+
+#: Controller/Admin/PollsController.php:130;215
+msgid "This poll doesn't exist or has been deleted."
+msgstr ""
+
+#: Controller/Admin/PollsController.php:185
+msgid "Your poll has been edited successfully !"
+msgstr ""
+
+#: Controller/Admin/PollsController.php:187
+msgid "An error occurred while editing the poll."
+msgstr ""
+
+#: Controller/Admin/PollsController.php:221
+msgid "This poll has been deleted successfully !"
+msgstr ""
+
+#: Controller/Admin/PollsController.php:223
+msgid "Unable to delete this poll."
+msgstr ""
+
 #: Controller/Admin/SettingsController.php:54
 msgid "This setting has been created successfully !"
 msgstr ""
@@ -168,8 +212,7 @@ msgid "Comments"
 msgstr ""
 
 #: Template/Admin/Admin/home.ctp:72
-#: Template/Element/Admin/interface.ctp:34
-msgid "Categories"
+msgid "Likes"
 msgstr ""
 
 #: Template/Admin/Admin/home.ctp:196;292
@@ -246,6 +289,9 @@ msgstr ""
 #: Template/Admin/Groups/add.ctp:16
 #: Template/Admin/Groups/edit.ctp:16
 #: Template/Admin/Groups/index.ctp:16
+#: Template/Admin/Polls/add.ctp:16
+#: Template/Admin/Polls/edit.ctp:16
+#: Template/Admin/Polls/index.ctp:16
 #: Template/Admin/Settings/create.ctp:16
 #: Template/Admin/Settings/edit.ctp:16
 #: Template/Admin/Settings/index.ctp:16
@@ -278,6 +324,9 @@ msgstr ""
 #: Template/Admin/Articles/add.ctp:71
 #: Template/Admin/Articles/edit.ctp:70
 #: Template/Admin/Articles/index.ctp:51
+#: Template/Admin/Polls/add.ctp:57
+#: Template/Admin/Polls/edit.ctp:57
+#: Template/Admin/Polls/index.ctp:53
 msgid "Is display"
 msgstr ""
 
@@ -286,6 +335,9 @@ msgstr ""
 #: Template/Admin/Articles/index.ctp:97
 #: Template/Admin/Groups/add.ctp:61;79
 #: Template/Admin/Groups/edit.ctp:63;82
+#: Template/Admin/Polls/add.ctp:60;75
+#: Template/Admin/Polls/edit.ctp:60;75
+#: Template/Admin/Polls/index.ctp:110;124;143
 msgid "Yes"
 msgstr ""
 
@@ -294,6 +346,9 @@ msgstr ""
 #: Template/Admin/Articles/index.ctp:101
 #: Template/Admin/Groups/add.ctp:62;80
 #: Template/Admin/Groups/edit.ctp:64;83
+#: Template/Admin/Polls/add.ctp:61;76
+#: Template/Admin/Polls/edit.ctp:61;76
+#: Template/Admin/Polls/index.ctp:114;128;147
 msgid "No"
 msgstr ""
 
@@ -315,7 +370,7 @@ msgid "{0} Edit Article"
 msgstr ""
 
 #: Template/Admin/Articles/index.ctp:1;12;20;30
-#: Template/Element/Admin/sidebar.ctp:54;160
+#: Template/Element/Admin/sidebar.ctp:72;204
 msgid "Manage Articles"
 msgstr ""
 
@@ -327,6 +382,7 @@ msgstr ""
 #: Template/Admin/Attachments/index.ctp:49
 #: Template/Admin/Categories/index.ctp:49
 #: Template/Admin/Groups/index.ctp:49
+#: Template/Admin/Polls/index.ctp:49
 #: Template/Admin/Settings/index.ctp:48
 #: Template/Admin/Users/search.ctp:54
 msgid "#Id"
@@ -334,6 +390,7 @@ msgstr ""
 
 #: Template/Admin/Articles/index.ctp:48
 #: Template/Admin/Attachments/index.ctp:50
+#: Template/Admin/Polls/index.ctp:50
 msgid "Author"
 msgstr ""
 
@@ -341,6 +398,7 @@ msgstr ""
 #: Template/Admin/Attachments/index.ctp:56
 #: Template/Admin/Categories/index.ctp:53
 #: Template/Admin/Groups/index.ctp:51
+#: Template/Admin/Polls/index.ctp:58
 #: Template/Admin/Settings/index.ctp:54
 #: Template/Admin/Users/search.ctp:60
 msgid "Created"
@@ -350,6 +408,7 @@ msgstr ""
 #: Template/Admin/Attachments/index.ctp:57
 #: Template/Admin/Categories/index.ctp:54
 #: Template/Admin/Groups/index.ctp:52
+#: Template/Admin/Polls/index.ctp:59
 #: Template/Admin/Settings/index.ctp:55
 #: Template/Admin/Users/search.ctp:61
 msgid "Action"
@@ -383,6 +442,9 @@ msgstr ""
 
 #: Template/Admin/Attachments/add.ctp:46
 #: Template/Admin/Attachments/index.ctp:51
+#: Template/Admin/Polls/add.ctp:45
+#: Template/Admin/Polls/edit.ctp:45
+#: Template/Admin/Polls/index.ctp:51
 msgid "Article"
 msgstr ""
 
@@ -412,7 +474,7 @@ msgid "{0} Edit Attachment"
 msgstr ""
 
 #: Template/Admin/Attachments/index.ctp:1;12;20;30
-#: Template/Element/Admin/sidebar.ctp:68;174
+#: Template/Element/Admin/sidebar.ctp:86;218
 msgid "Manage Attachments"
 msgstr ""
 
@@ -424,6 +486,7 @@ msgstr ""
 #: Template/Admin/Groups/add.ctp:45
 #: Template/Admin/Groups/edit.ctp:45
 #: Template/Admin/Groups/index.ctp:50
+#: Template/Admin/Polls/index.ctp:52
 #: Template/Admin/Settings/create.ctp:46
 #: Template/Admin/Settings/edit.ctp:46
 #: Template/Admin/Settings/index.ctp:49
@@ -486,7 +549,7 @@ msgid "{0} Edit Category"
 msgstr ""
 
 #: Template/Admin/Categories/index.ctp:1;12;20;30
-#: Template/Element/Admin/sidebar.ctp:61;167
+#: Template/Element/Admin/sidebar.ctp:79;211
 msgid "Manage Categories"
 msgstr ""
 
@@ -574,6 +637,87 @@ msgstr ""
 
 #: Template/Admin/Groups/index.ctp:115
 msgid "No groups was found."
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:1;12;24;34
+msgid "Add a Poll"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:20
+#: Template/Admin/Polls/edit.ctp:20
+msgid "{0} Manage Polls"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:51;115
+#: Template/Admin/Polls/edit.ctp:51;115
+msgid "Poll Question"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:72
+#: Template/Admin/Polls/edit.ctp:72
+#: Template/Admin/Polls/index.ctp:55
+msgid "Is timed"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:87
+#: Template/Admin/Polls/edit.ctp:87
+#: Template/Admin/Polls/index.ctp:56
+msgid "End date"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:119
+#: Template/Admin/Polls/edit.ctp:119
+msgid "Add"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:125
+#: Template/Admin/Polls/edit.ctp:125
+msgid "Add an answer"
+msgstr ""
+
+#: Template/Admin/Polls/add.ctp:143
+msgid "{0} Create Poll"
+msgstr ""
+
+#: Template/Admin/Polls/edit.ctp:1;12;24;34
+msgid "Edit a Poll"
+msgstr ""
+
+#: Template/Admin/Polls/edit.ctp:153
+msgid "Delete this answer"
+msgstr ""
+
+#: Template/Admin/Polls/edit.ctp:172
+msgid "{0} Edit Poll"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:1;12;20;30
+#: Template/Element/Admin/sidebar.ctp:93
+msgid "Manage Polls"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:39
+msgid "{0} New Poll"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:54
+msgid "Votes count"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:57
+msgid "Expired"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:168
+msgid "Edit this poll"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:182
+msgid "Delete this poll"
+msgstr ""
+
+#: Template/Admin/Polls/index.ctp:206
+msgid "No polls was found."
 msgstr ""
 
 #: Template/Admin/Settings/create.ctp:1;12
@@ -864,6 +1008,10 @@ msgstr ""
 msgid "{0} Logout"
 msgstr ""
 
+#: Template/Element/Admin/interface.ctp:34
+msgid "Categories"
+msgstr ""
+
 #: Template/Element/Admin/interface.ctp:45
 msgid "Users"
 msgstr ""
@@ -872,27 +1020,27 @@ msgstr ""
 msgid "Groups"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:10
+#: Template/Element/Admin/sidebar.ctp:13
 msgid "Logout"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:26
+#: Template/Element/Admin/sidebar.ctp:31
 msgid "{0} Dashboard {1}"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:47
+#: Template/Element/Admin/sidebar.ctp:59
 msgid "{0} Blog {1}"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:82
+#: Template/Element/Admin/sidebar.ctp:107
 msgid "{0} Users {1}"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:96
+#: Template/Element/Admin/sidebar.ctp:127
 msgid "{0} Groups {1}"
 msgstr ""
 
-#: Template/Element/Admin/sidebar.ctp:109
+#: Template/Element/Admin/sidebar.ctp:146
 msgid "{0} Settings {1}"
 msgstr ""
 

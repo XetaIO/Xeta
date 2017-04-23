@@ -112,7 +112,7 @@ class AttachmentsController extends AppController
         $attachment = $this->BlogAttachments
             ->find()
             ->where([
-                'id' => $this->request->id
+                'id' => $this->request->getAttribute('params')['id']
             ])
             ->first();
 
@@ -183,7 +183,7 @@ class AttachmentsController extends AppController
         $attachment = $this->BlogAttachments
             ->find()
             ->where([
-                'id' => $this->request->id
+                'id' => $this->request->getAttribute('params')['id']
             ])
             ->first();
 
