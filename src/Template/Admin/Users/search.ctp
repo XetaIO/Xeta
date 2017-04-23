@@ -78,13 +78,13 @@
                                                     'slug' => $user->username, 'id' => $user->id]) ?>
                                         </td>
                                         <td>
-                                            <?= $user->last_login->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                            <?= $this->Time->i18nFormat($user->last_login); ?>
                                         </td>
                                         <td>
                                             <?= h($user->last_login_ip) ?>
                                         </td>
                                         <td>
-                                            <?= $user->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                            <?= $this->Time->i18nFormat($user->created); ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(

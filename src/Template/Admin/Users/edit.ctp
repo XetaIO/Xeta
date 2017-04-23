@@ -118,7 +118,7 @@
                                 <?= $this->Html->link(__d('admin', '{0} Delete Avatar', '<i class="fa fa-remove"></i>'), ['_name' => 'users-deleteAvatar', 'slug' => $user->username, 'id' => $user->id], ['class' => 'btn btn-danger-outline btn-sm', 'escape' => false]) ?>
                             </div>
                             <h5>
-                                <?= __d('admin', 'Member since {0}', $user->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT])) ?>
+                                <?= __d('admin', 'Member since {0}', $this->Time->i18nFormat($user->created)) ?>
                             </h5>
                             <div class="delete-account">
                                 <?= $this->Html->link(__d('admin', '{0} Delete Account', '<i class="fa fa-remove"></i>'), '#', ['class' => 'btn btn-danger-outline btn-sm', 'data-toggle' => 'modal', 'data-target' => '#modalDeleteAccount', 'escape' => false]) ?>
@@ -183,7 +183,7 @@
                                 <?= $this->Form->label(null, __d('admin', 'Last Login'), ['class' => 'col-sm-2 control-label']) ?>
                                 <div class="col-sm-6">
                                     <p class="form-control-static">
-                                        <?= $user->last_login->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                        <?= $this->Time->i18nFormat($user->last_login); ?>
                                     </p>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                 <?= $this->Form->label(null, __d('admin', 'Register'), ['class' => 'col-sm-2 control-label']) ?>
                                 <div class="col-sm-6">
                                     <p class="form-control-static">
-                                        <?= $user->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                        <?= $this->Time->i18nFormat($user->created); ?>
                                     </p>
                                 </div>
                             </div>

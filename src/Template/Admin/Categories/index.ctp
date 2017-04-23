@@ -97,7 +97,7 @@
                                             <?= $category->article_count_format ?>
                                         </td>
                                         <td>
-                                            <?= $category->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                            <?= $this->Time->i18nFormat($category->created); ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(
