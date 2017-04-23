@@ -55,7 +55,9 @@ class BlogController extends AppController
                 'BlogCategories',
                 'Users' => function ($q) {
                     return $q->find('short');
-                }
+                },
+                'Polls',
+                'BlogAttachments'
             ])
             ->order([
                 'BlogArticles.created' => 'desc'
@@ -106,7 +108,9 @@ class BlogController extends AppController
             ->contain([
                 'Users' => function ($q) {
                     return $q->find('short');
-                }
+                },
+                'Polls',
+                'BlogAttachments'
             ])
             ->where([
                 'BlogArticles.category_id' => $category->id,
@@ -431,7 +435,9 @@ EOT;
                 'BlogCategories',
                 'Users' => function ($q) {
                         return $q->find('short');
-                }
+                },
+                'Polls',
+                'BlogAttachments'
             ])
             ->order([
                 'BlogArticles.created' => 'desc'
@@ -473,7 +479,9 @@ EOT;
             ->contain([
                 'Users' => function ($q) {
                     return $q->find('short');
-                }
+                },
+                'Polls',
+                'BlogAttachments'
             ])
             ->where([
                 'BlogArticles.is_display' => 1

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2017-04-23 14:32+0200\n"
+"POT-Creation-Date: 2017-04-23 16:51+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,81 +18,81 @@ msgstr ""
 msgid "You need to be logged in or you are not authorized to access that location !"
 msgstr ""
 
-#: Controller/BlogController.php:93
+#: Controller/BlogController.php:95
 msgid "This category doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:156
+#: Controller/BlogController.php:160
 msgid "This article doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:167
+#: Controller/BlogController.php:171
 msgid "You must be connected to post a comment."
 msgstr ""
 
-#: Controller/BlogController.php:190
+#: Controller/BlogController.php:194
 msgid "Your comment has been posted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:323
+#: Controller/BlogController.php:327
 msgid "has said :"
 msgstr ""
 
-#: Controller/BlogController.php:343
+#: Controller/BlogController.php:347
 msgid "This comment doesn't exist."
 msgstr ""
 
-#: Controller/BlogController.php:375
+#: Controller/BlogController.php:379
 msgid "This comment doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:522
+#: Controller/BlogController.php:530
 msgid "You already like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:543
+#: Controller/BlogController.php:551
 msgid "This article doesn't exist !"
 msgstr ""
 
-#: Controller/BlogController.php:565
+#: Controller/BlogController.php:573
 msgid "Thanks for {0} this article ! "
 msgstr ""
 
-#: Controller/BlogController.php:566
+#: Controller/BlogController.php:574
 #: Template/Blog/article.ctp:196
 msgid "You {0} this article."
 msgstr ""
 
-#: Controller/BlogController.php:575;639
+#: Controller/BlogController.php:583;647
 msgid "An error occurred, please try again later."
 msgstr ""
 
-#: Controller/BlogController.php:616
+#: Controller/BlogController.php:624
 msgid "You don't like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:636
+#: Controller/BlogController.php:644
 #: Template/Blog/article.ctp:212
 msgid "Like {0}"
 msgstr ""
 
-#: Controller/BlogController.php:670;735;797
+#: Controller/BlogController.php:678;743;805
 msgid "This comment doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/BlogController.php:691
+#: Controller/BlogController.php:699
 msgid "You don't have the authorization to delete this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:701
+#: Controller/BlogController.php:709
 msgid "This comment has been deleted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:759;818
+#: Controller/BlogController.php:767;826
 msgid "You don't have the authorization to edit this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:825
+#: Controller/BlogController.php:833
 msgid "This comment has been edited successfully !"
 msgstr ""
 
@@ -529,20 +529,34 @@ msgstr ""
 msgid "Archive"
 msgstr ""
 
-#: Template/Blog/archive.ctp:106
-#: Template/Blog/category.ctp:95
-#: Template/Blog/index.ctp:100
-#: Template/Blog/search.ctp:91
+#: Template/Blog/archive.ctp:93
+#: Template/Blog/category.ctp:81
+#: Template/Blog/index.ctp:86
+#: Template/Blog/search.ctp:76
+msgid "This article has a poll"
+msgstr ""
+
+#: Template/Blog/archive.ctp:99
+#: Template/Blog/category.ctp:87
+#: Template/Blog/index.ctp:92
+#: Template/Blog/search.ctp:82
+msgid "This article has an attachment"
+msgstr ""
+
+#: Template/Blog/archive.ctp:117
+#: Template/Blog/category.ctp:106
+#: Template/Blog/index.ctp:111
+#: Template/Blog/search.ctp:102
 msgid "{0} Read More"
 msgstr ""
 
-#: Template/Blog/archive.ctp:124
-#: Template/Blog/category.ctp:113
-#: Template/Blog/index.ctp:118
+#: Template/Blog/archive.ctp:135
+#: Template/Blog/category.ctp:124
+#: Template/Blog/index.ctp:129
 msgid "No articles found"
 msgstr ""
 
-#: Template/Blog/archive.ctp:126
+#: Template/Blog/archive.ctp:137
 msgid "No articles were found for this date."
 msgstr ""
 
@@ -632,11 +646,11 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: Template/Blog/category.ctp:115
+#: Template/Blog/category.ctp:126
 msgid "No articles were found for this category."
 msgstr ""
 
-#: Template/Blog/index.ctp:120
+#: Template/Blog/index.ctp:131
 msgid "No articles were found."
 msgstr ""
 
@@ -648,23 +662,23 @@ msgstr ""
 msgid "Search : {0}"
 msgstr ""
 
-#: Template/Blog/search.ctp:109
+#: Template/Blog/search.ctp:120
 msgid "No results found"
 msgstr ""
 
-#: Template/Blog/search.ctp:111
+#: Template/Blog/search.ctp:122
 msgid "No articles were found for your search, please try again with a different word."
 msgstr ""
 
-#: Template/Blog/search.ctp:113
+#: Template/Blog/search.ctp:124
 msgid "Suggestions :"
 msgstr ""
 
-#: Template/Blog/search.ctp:116
+#: Template/Blog/search.ctp:127
 msgid "Check the spelling of your search words."
 msgstr ""
 
-#: Template/Blog/search.ctp:119
+#: Template/Blog/search.ctp:130
 msgid "Try more general keywords."
 msgstr ""
 
