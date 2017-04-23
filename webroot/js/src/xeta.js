@@ -336,7 +336,10 @@ $(document).ready(function () {
     $('.closeCookies').bind("click", function () {
         $.ajax({
             type : "POST",
-            url : $(this).attr("data-url"),
+            url: $(this).attr("data-url"),
+            headers: {
+                'X-CSRF-Token': Xeta.csrfToken
+            },
             dataType : "json",
             success : function (data) {
                 $(".top-right").notify({
