@@ -63,7 +63,7 @@
                                             'id' => $group->id]) ?>
                                         </td>
                                         <td>
-                                            <?= $group->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                            <?= $this->Time->i18nFormat($group->created); ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(

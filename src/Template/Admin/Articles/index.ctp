@@ -103,7 +103,7 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?= $article->created->i18nFormat([\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT]) ?>
+                                            <?= $this->Time->i18nFormat($article->created); ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(

@@ -102,10 +102,10 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?= h($setting->modified->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                            <?= $setting->modified->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
                                         </td>
                                         <td>
-                                            <?= h($setting->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT])) ?>
+                                            <?= $setting->created->i18nFormat([\IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT]) ?>
                                         </td>
                                         <td>
                                             <?= $this->Html->link(
