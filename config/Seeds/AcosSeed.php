@@ -16,7 +16,7 @@ class AcosSeed extends AbstractSeed
     public function run()
     {
         $data = [
-            ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '200'],
+            ['id' => '1', 'parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'app', 'lft' => '1', 'rght' => '218'],
             ['id' => '2', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'Conversations', 'lft' => '2', 'rght' => '35'],
             ['id' => '3', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'index', 'lft' => '3', 'rght' => '4'],
             ['id' => '4', 'parent_id' => '2', 'model' => null, 'foreign_key' => null, 'alias' => 'action', 'lft' => '5', 'rght' => '6'],
@@ -70,7 +70,7 @@ class AcosSeed extends AbstractSeed
             ['id' => '54', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'deleteComment', 'lft' => '109', 'rght' => '110'],
             ['id' => '55', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'getEditComment', 'lft' => '111', 'rght' => '112'],
             ['id' => '56', 'parent_id' => '44', 'model' => null, 'foreign_key' => null, 'alias' => 'editComment', 'lft' => '113', 'rght' => '114'],
-            ['id' => '58', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'admin', 'lft' => '116', 'rght' => '183'],
+            ['id' => '58', 'parent_id' => '1', 'model' => null, 'foreign_key' => null, 'alias' => 'admin', 'lft' => '116', 'rght' => '197'],
             ['id' => '59', 'parent_id' => '58', 'model' => null, 'foreign_key' => null, 'alias' => 'Categories', 'lft' => '117', 'rght' => '126'],
             ['id' => '60', 'parent_id' => '59', 'model' => null, 'foreign_key' => null, 'alias' => 'index', 'lft' => '118', 'rght' => '119'],
             ['id' => '61', 'parent_id' => '59', 'model' => null, 'foreign_key' => null, 'alias' => 'add', 'lft' => '120', 'rght' => '121'],
@@ -106,16 +106,25 @@ class AcosSeed extends AbstractSeed
             ['id' => '91', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'edit', 'lft' => '178', 'rght' => '179'],
             ['id' => '92', 'parent_id' => '88', 'model' => '', 'foreign_key' => null, 'alias' => 'delete', 'lft' => '180', 'rght' => '181'],
             ['id' => '93', 'parent_id' => '30', 'model' => '', 'foreign_key' => null, 'alias' => 'security', 'lft' => '81', 'rght' => '82'],
-            ['id' => '94', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Tfa', 'lft' => '184', 'rght' => '199'],
-            ['id' => '95', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'index', 'lft' => '185', 'rght' => '186'],
-            ['id' => '96', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'intro', 'lft' => '187', 'rght' => '188'],
-            ['id' => '97', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'configure', 'lft' => '189', 'rght' => '190'],
-            ['id' => '98', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'enable', 'lft' => '191', 'rght' => '192'],
-            ['id' => '99', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'disable', 'lft' => '193', 'rght' => '194'],
-            ['id' => '100', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'recoveryCode', 'lft' => '195', 'rght' => '196'],
-            ['id' => '101', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'generateRecoveryCode', 'lft' => '197', 'rght' => '198'],
+            ['id' => '94', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Tfa', 'lft' => '198', 'rght' => '213'],
+            ['id' => '95', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'index', 'lft' => '199', 'rght' => '200'],
+            ['id' => '96', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'intro', 'lft' => '201', 'rght' => '202'],
+            ['id' => '97', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'configure', 'lft' => '203', 'rght' => '204'],
+            ['id' => '98', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'enable', 'lft' => '205', 'rght' => '206'],
+            ['id' => '99', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'disable', 'lft' => '207', 'rght' => '208'],
+            ['id' => '100', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'recoveryCode', 'lft' => '209', 'rght' => '210'],
+            ['id' => '101', 'parent_id' => '94', 'model' => '', 'foreign_key' => null, 'alias' => 'generateRecoveryCode', 'lft' => '211', 'rght' => '212'],
             ['id' => '102', 'parent_id' => '30', 'model' => '', 'foreign_key' => null, 'alias' => 'tfa', 'lft' => '83', 'rght' => '84'],
-            ['id' => '103', 'parent_id' => '19', 'model' => '', 'foreign_key' => null, 'alias' => 'maintenance', 'lft' => '45', 'rght' => '46']
+            ['id' => '103', 'parent_id' => '19', 'model' => '', 'foreign_key' => null, 'alias' => 'maintenance', 'lft' => '45', 'rght' => '46'],
+            ['id' => '104', 'parent_id' => '1', 'model' => '', 'foreign_key' => null, 'alias' => 'Polls', 'lft' => '214', 'rght' => '217'],
+            ['id' => '105', 'parent_id' => '104', 'model' => '', 'foreign_key' => null, 'alias' => 'vote', 'lft' => '215', 'rght' => '216'],
+            ['id' => '106', 'parent_id' => '58', 'model' => '', 'foreign_key' => null, 'alias' => 'Polls', 'lft' => '183', 'rght' => '192'],
+            ['id' => '107', 'parent_id' => '106', 'model' => '', 'foreign_key' => null, 'alias' => 'index', 'lft' => '184', 'rght' => '185'],
+            ['id' => '108', 'parent_id' => '106', 'model' => '', 'foreign_key' => null, 'alias' => 'add', 'lft' => '186', 'rght' => '187'],
+            ['id' => '109', 'parent_id' => '106', 'model' => '', 'foreign_key' => null, 'alias' => 'edit', 'lft' => '188', 'rght' => '189'],
+            ['id' => '110', 'parent_id' => '106', 'model' => '', 'foreign_key' => null, 'alias' => 'delete', 'lft' => '190', 'rght' => '191'],
+            ['id' => '111', 'parent_id' => '58', 'model' => '', 'foreign_key' => null, 'alias' => 'PollsAnswers', 'lft' => '193', 'rght' => '196'],
+            ['id' => '112', 'parent_id' => '111', 'model' => '', 'foreign_key' => null, 'alias' => 'delete', 'lft' => '194', 'rght' => '195']
         ];
 
         $table = $this->table('acos');

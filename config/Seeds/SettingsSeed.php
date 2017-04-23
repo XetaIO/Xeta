@@ -29,7 +29,7 @@ class SettingsSeed extends AbstractSeed
             [
                 'name' => 'Site.version',
                 'value_int' => null,
-                'value_str' => '3.0.1',
+                'value_str' => '3.1.1',
                 'value_bool' => null,
                 'last_updated_user_id' => '1',
                 'created' => '2015-12-08 01:00:00',
