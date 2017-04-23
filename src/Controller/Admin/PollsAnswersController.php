@@ -31,7 +31,7 @@ class PollsAnswersController extends AppController
         if ($this->PollsAnswers->delete($answer)) {
             $this->Flash->success(__d('admin', 'This answer has been deleted successfully.'));
         } else {
-             $this->Flash->error(__d('admin', 'En error occured while deleting this answers.'));
+             $this->Flash->error(__d('admin', 'An error occured while deleting this answers.'));
         }
 
         return $this->redirect($this->referer());

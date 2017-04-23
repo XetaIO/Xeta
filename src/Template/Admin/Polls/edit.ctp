@@ -31,7 +31,7 @@
                 <div class="panel-heading">
                     <div class="hr-divider hr-divider-panel">
                         <h3 class="hr-divider-content hr-divider-heading">
-                            <?= __d('admin', 'Add a Poll') ?>
+                            <?= __d('admin', 'Edit a Poll') ?>
                         </h3>
                     </div>
                 </div>

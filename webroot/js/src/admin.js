@@ -19,9 +19,9 @@ $(document).ready(function () {
 
     $("#create-answer").bind("click", function () {
         var original = $('#duplicate-answer');
-        var clone = original.clone(); // "deep" clone
+        var clone = original.clone();
 
-        clone.attr("id", "new-answer" + ++i); // there can only be one element with an ID
+        clone.attr("id", "new-answer" + ++i);
         clone.attr("class", "form-control");
         clone.appendTo("#answers-container");
 

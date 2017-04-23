@@ -45,7 +45,6 @@ class PollsController extends AppController
     {
         $this->loadModel('BlogArticles');
         $this->loadModel('Polls');
-        $this->loadModel('PollsAnswers');
 
         $poll = $this->Polls->newEntity($this->request->getParsedBody());
         $articles = $this->Polls->BlogArticles->find('list');
@@ -137,7 +136,6 @@ class PollsController extends AppController
             $this->Polls->patchEntity($poll, $this->request->getParsedBody());
             $articles = $this->Polls->BlogArticles->find('list');
 
-            //Check if the article has already a poll
             $article = $this->BlogArticles
                 ->find()
                 ->contain([

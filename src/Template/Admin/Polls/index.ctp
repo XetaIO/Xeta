@@ -203,7 +203,7 @@
                     <?php else : ?>
                         <div class="infobox infobox-primary">
                             <h4>
-                                <?= __d('admin', 'No attachments was found.') ?>
+                                <?= __d('admin', 'No polls was found.') ?>
                             </h4>
                         </div>
                     <?php endif; ?>
