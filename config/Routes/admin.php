@@ -163,6 +163,56 @@ Router::prefix('admin', function (RouteBuilder $routes) {
         ]
     );
 
+    //Polls Routes.
+    $routes->connect(
+        '/polls/edit/:slug.:id',
+        [
+            'controller' => 'polls',
+            'action' => 'edit',
+        ],
+        [
+            '_name' => 'polls-edit',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/polls/delete/:slug.:id',
+        [
+            'controller' => 'polls',
+            'action' => 'delete',
+        ],
+        [
+            '_name' => 'polls-delete',
+            'routeClass' => 'SlugRoute',
+            'pass' => [
+                'id',
+                'slug'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
+    $routes->connect(
+        '/polls/answers/delete/:id',
+        [
+            'controller' => 'pollsAnswers',
+            'action' => 'delete',
+        ],
+        [
+            '_name' => 'polls-answers-delete',
+            'pass' => [
+                'id'
+            ],
+            'id' => '[0-9]+'
+        ]
+    );
+
     //Groups Routes.
     $routes->connect(
         '/groups/edit/:id',

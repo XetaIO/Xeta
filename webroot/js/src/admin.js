@@ -11,6 +11,23 @@ $(document).ready(function () {
         selector: "[data-toggle=popover]"
     });
 
+
+    /**
+     * Polls
+     */
+    var i = 0;
+
+    $("#create-answer").bind("click", function () {
+        var original = $('#duplicate-answer');
+        var clone = original.clone(); // "deep" clone
+
+        clone.attr("id", "new-answer" + ++i); // there can only be one element with an ID
+        clone.attr("class", "form-control");
+        clone.appendTo("#answers-container");
+
+        return false;
+    });
+
     /**
      * Notifications
      */

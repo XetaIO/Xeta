@@ -11,7 +11,10 @@
         <div class="panel-body">
             <?php foreach ($poll->polls_answers as $answer) : ?>
                 <div>
-                    <?php if (is_null($hasVoted) && ($poll->is_timed == true && $poll->end_date >= new \Cake\I18n\Time())) : ?>
+                    <?php if (
+                        is_null($hasVoted) &&
+                        (($poll->is_timed == true && $poll->end_date >= new \Cake\I18n\Time()) || $poll->is_timed == false)
+                    ) : ?>
                         <div class="clearfix pull-left" style="margin: 15px 10px 0 0;">
                             <?= $this->Form->create(null, [
                                     'url' => [

@@ -3,13 +3,6 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-/**
- * PollsUsers Model
- *
- * @property \Cake\ORM\Association\BelongsTo $Polls
- * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $PollsAnswers
- */
 class PollsUsersTable extends Table
 {
 

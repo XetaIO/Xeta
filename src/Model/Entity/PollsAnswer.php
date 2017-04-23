@@ -35,6 +35,10 @@ class PollsAnswer extends Entity
      */
     protected function _getPercentage()
     {
-        return ($this->user_count * 100) / $this->poll->user_count;
+        if ($this->poll->user_count != 0) {
+            return ($this->user_count * 100) / $this->poll->user_count;
+        }
+
+        return $this->poll->user_count;
     }
 }
