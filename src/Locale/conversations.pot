@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2016-11-15 21:47+0100\n"
+"POT-Creation-Date: 2017-04-23 14:32+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,87 +14,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/ConversationsController.php:108;201
+#: Controller/ConversationsController.php:108
 msgid "Action unknown."
 msgstr ""
 
-#: Controller/ConversationsController.php:117
+#: Controller/ConversationsController.php:119
 msgid "You have not chosen any conversations."
 msgstr ""
 
-#: Controller/ConversationsController.php:140
+#: Controller/ConversationsController.php:144
 msgid "Your conversation(s) has been Stared."
 msgstr ""
 
-#: Controller/ConversationsController.php:159
+#: Controller/ConversationsController.php:163
 msgid "Your conversation(s) has been set normal."
 msgstr ""
 
-#: Controller/ConversationsController.php:193
+#: Controller/ConversationsController.php:197
 msgid "You have left your conversation(s) successfully."
 msgstr ""
 
-#: Controller/ConversationsController.php:227;1017
+#: Controller/ConversationsController.php:224;1016
 msgid "You cannot invite more than {0} user(s) in this conversation."
 msgstr ""
 
-#: Controller/ConversationsController.php:253
+#: Controller/ConversationsController.php:250
 msgid "Please enter at least one valid recipient."
 msgstr ""
 
-#: Controller/ConversationsController.php:346
+#: Controller/ConversationsController.php:343
 msgid "Your conversation has been created successfully !"
 msgstr ""
 
-#: Controller/ConversationsController.php:383
+#: Controller/ConversationsController.php:380
 msgid "This conversation doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/ConversationsController.php:511
+#: Controller/ConversationsController.php:508
 msgid "has said :"
 msgstr ""
 
-#: Controller/ConversationsController.php:531
+#: Controller/ConversationsController.php:528
 msgid "This message doesn't exist."
 msgstr ""
 
-#: Controller/ConversationsController.php:571
+#: Controller/ConversationsController.php:568
 msgid "This message doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/ConversationsController.php:595
+#: Controller/ConversationsController.php:592
 msgid "You don't have the authorization to edit this message !"
 msgstr ""
 
-#: Controller/ConversationsController.php:628
+#: Controller/ConversationsController.php:625
 msgid "This post doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/ConversationsController.php:649
+#: Controller/ConversationsController.php:646
 msgid "You don't have the authorization to edit this post !"
 msgstr ""
 
-#: Controller/ConversationsController.php:660
+#: Controller/ConversationsController.php:657
 msgid "This message has been edited successfully !"
 msgstr ""
 
-#: Controller/ConversationsController.php:688
+#: Controller/ConversationsController.php:685
 msgid "This message doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/ConversationsController.php:754;782
+#: Controller/ConversationsController.php:751;779
 msgid "You cannot kick this user from this conversation."
 msgstr ""
 
-#: Controller/ConversationsController.php:801
+#: Controller/ConversationsController.php:798
 msgid "This user has been kicked successfully."
 msgstr ""
 
-#: Controller/ConversationsController.php:836;933
+#: Controller/ConversationsController.php:833;933
 msgid "This conversation doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/ConversationsController.php:843
+#: Controller/ConversationsController.php:840
 msgid "This conversation is closed, you cannot reply."
 msgstr ""
 
@@ -110,35 +110,35 @@ msgstr ""
 msgid "You don't have the authorization to edit this conversation !"
 msgstr ""
 
-#: Controller/ConversationsController.php:954
+#: Controller/ConversationsController.php:953
 msgid "Your conversation has been edited and closed successfully !"
 msgstr ""
 
-#: Controller/ConversationsController.php:956
+#: Controller/ConversationsController.php:955
 msgid "Your conversation has been edited successfully !"
 msgstr ""
 
-#: Controller/ConversationsController.php:993
+#: Controller/ConversationsController.php:992
 msgid "This conversation is closed or has been deleted !"
 msgstr ""
 
-#: Controller/ConversationsController.php:999
+#: Controller/ConversationsController.php:998
 msgid "You don't have the authorization to invite in this conversation !"
 msgstr ""
 
-#: Controller/ConversationsController.php:1061
+#: Controller/ConversationsController.php:1060
 msgid "Your user(s) has been added successfully."
 msgstr ""
 
-#: Controller/ConversationsController.php:1092
+#: Controller/ConversationsController.php:1091
 msgid "You are not in this conversation."
 msgstr ""
 
-#: Controller/ConversationsController.php:1110
+#: Controller/ConversationsController.php:1109
 msgid "You have left the conversation successfully."
 msgstr ""
 
-#: Controller/ConversationsController.php:1114
+#: Controller/ConversationsController.php:1113
 msgid "You can not leave your own conversation."
 msgstr ""
 
@@ -147,19 +147,19 @@ msgid "You must specify a message for your response."
 msgstr ""
 
 #: Model/Table/ConversationsMessagesTable.php:54
-#: Model/Table/ConversationsTable.php:65;93
+#: Model/Table/ConversationsTable.php:67;95
 msgid "Your message must contain at least {0} characters."
 msgstr ""
 
-#: Model/Table/ConversationsTable.php:54;82
+#: Model/Table/ConversationsTable.php:56;84
 msgid "You must specify a title for your conversation."
 msgstr ""
 
-#: Model/Table/ConversationsTable.php:57;85
+#: Model/Table/ConversationsTable.php:59;87
 msgid "Your title must contain at least {0} characters."
 msgstr ""
 
-#: Model/Table/ConversationsTable.php:60;88
+#: Model/Table/ConversationsTable.php:62;90
 msgid "You must specify a message for your conversation."
 msgstr ""
 
@@ -192,7 +192,7 @@ msgid "Are you sure you want to leave this conversation ?"
 msgstr ""
 
 #: Template/Cell/Conversations/sidebar.ctp:52;138;150
-#: Template/Conversations/create.ctp:79;93
+#: Template/Conversations/create.ctp:80;96
 #: Template/Element/Conversations/index.ctp:179
 #: Template/Element/Conversations/reply.ctp:33
 msgid "Yes"
@@ -234,13 +234,13 @@ msgid "Close Conversation"
 msgstr ""
 
 #: Template/Cell/Conversations/sidebar.ctp:137;149
-#: Template/Conversations/create.ctp:80;92
+#: Template/Conversations/create.ctp:81;95
 #: Template/Element/Conversations/reply.ctp:34
 msgid "No"
 msgstr ""
 
 #: Template/Cell/Conversations/sidebar.ctp:147
-#: Template/Conversations/create.ctp:77
+#: Template/Conversations/create.ctp:76
 msgid "Allow anyone in the conversation to invite other users"
 msgstr ""
 
@@ -313,11 +313,11 @@ msgstr ""
 msgid "Your message"
 msgstr ""
 
-#: Template/Conversations/create.ctp:90
+#: Template/Conversations/create.ctp:91
 msgid "Lock the conversation <small>(No reply will be permitted)</small>"
 msgstr ""
 
-#: Template/Conversations/create.ctp:102
+#: Template/Conversations/create.ctp:105
 msgid "{0} Start the Conversation"
 msgstr ""
 

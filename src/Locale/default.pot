@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2016-11-15 21:47+0100\n"
+"POT-Creation-Date: 2017-04-23 14:32+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,89 +14,85 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AppController.php:93
+#: Controller/AppController.php:88
 msgid "You need to be logged in or you are not authorized to access that location !"
 msgstr ""
 
-#: Controller/AppController.php:184
-msgid "Hello {0}, The website is under maintenance, only you and the staff groups have the access !"
-msgstr ""
-
-#: Controller/BlogController.php:92
+#: Controller/BlogController.php:93
 msgid "This category doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:149
+#: Controller/BlogController.php:156
 msgid "This article doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:160
+#: Controller/BlogController.php:167
 msgid "You must be connected to post a comment."
 msgstr ""
 
-#: Controller/BlogController.php:172
+#: Controller/BlogController.php:190
 msgid "Your comment has been posted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:286
+#: Controller/BlogController.php:323
 msgid "has said :"
 msgstr ""
 
-#: Controller/BlogController.php:306
+#: Controller/BlogController.php:343
 msgid "This comment doesn't exist."
 msgstr ""
 
-#: Controller/BlogController.php:338
+#: Controller/BlogController.php:375
 msgid "This comment doesn't exist or has been deleted."
 msgstr ""
 
-#: Controller/BlogController.php:485
+#: Controller/BlogController.php:522
 msgid "You already like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:504
+#: Controller/BlogController.php:543
 msgid "This article doesn't exist !"
 msgstr ""
 
-#: Controller/BlogController.php:520
+#: Controller/BlogController.php:565
 msgid "Thanks for {0} this article ! "
 msgstr ""
 
-#: Controller/BlogController.php:521
-#: Template/Blog/article.ctp:190
+#: Controller/BlogController.php:566
+#: Template/Blog/article.ctp:196
 msgid "You {0} this article."
 msgstr ""
 
-#: Controller/BlogController.php:530;587
+#: Controller/BlogController.php:575;639
 msgid "An error occurred, please try again later."
 msgstr ""
 
-#: Controller/BlogController.php:571
+#: Controller/BlogController.php:616
 msgid "You don't like this article !"
 msgstr ""
 
-#: Controller/BlogController.php:584
-#: Template/Blog/article.ctp:206
+#: Controller/BlogController.php:636
+#: Template/Blog/article.ctp:212
 msgid "Like {0}"
 msgstr ""
 
-#: Controller/BlogController.php:618;679;735
+#: Controller/BlogController.php:670;735;797
 msgid "This comment doesn't exist or has been deleted !"
 msgstr ""
 
-#: Controller/BlogController.php:639
+#: Controller/BlogController.php:691
 msgid "You don't have the authorization to delete this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:645
+#: Controller/BlogController.php:701
 msgid "This comment has been deleted successfully !"
 msgstr ""
 
-#: Controller/BlogController.php:703;756
+#: Controller/BlogController.php:759;818
 msgid "You don't have the authorization to edit this comment !"
 msgstr ""
 
-#: Controller/BlogController.php:763
+#: Controller/BlogController.php:825
 msgid "This comment has been edited successfully !"
 msgstr ""
 
@@ -105,7 +101,7 @@ msgid "You need to put your E-mail."
 msgstr ""
 
 #: Controller/ContactController.php:65
-#: Model/Table/UsersTable.php:131;235;322
+#: Model/Table/UsersTable.php:135;239;326
 msgid "You must specify a valid E-mail address."
 msgstr ""
 
@@ -125,8 +121,28 @@ msgstr ""
 msgid "Your message has been sent successfully, you will get a response shortly !"
 msgstr ""
 
-#: Controller/PagesController.php:105
+#: Controller/PagesController.php:138
 msgid "Thanks for accepting to use the cookies !"
+msgstr ""
+
+#: Controller/PollsController.php:34
+msgid "This answer doesn't exist."
+msgstr ""
+
+#: Controller/PollsController.php:40
+msgid "This poll is expired, you can not vote anymore."
+msgstr ""
+
+#: Controller/PollsController.php:58
+msgid "You have already voted for this poll ! (You voted <strong>{0}</strong>)."
+msgstr ""
+
+#: Controller/PollsController.php:69
+msgid "Your have successfully voted for this poll ! (You voted <strong>{0}</strong>)."
+msgstr ""
+
+#: Controller/PollsController.php:74
+msgid "An error occured while saving the vote !"
 msgstr ""
 
 #: Controller/TfaController.php:42;77
@@ -257,6 +273,10 @@ msgstr ""
 msgid "This code is expired, please ask another E-mail code."
 msgstr ""
 
+#: Controller/Component/MaintenanceComponent.php:71
+msgid "Hello {0}, The website is under maintenance, only you and the staff groups have the access !"
+msgstr ""
+
 #: Model/Table/BadgesTable.php:55
 msgid "You must select a name."
 msgstr ""
@@ -267,7 +287,7 @@ msgstr ""
 
 #: Model/Table/BadgesTable.php:64
 #: Model/Table/BlogAttachmentsTable.php:61
-#: Model/Table/UsersTable.php:164
+#: Model/Table/UsersTable.php:168
 msgid "The mimeType is not allowed."
 msgstr ""
 
@@ -277,12 +297,12 @@ msgid "The extension allowed are {0}."
 msgstr ""
 
 #: Model/Table/BadgesTable.php:78
-#: Model/Table/UsersTable.php:178
+#: Model/Table/UsersTable.php:182
 msgid "The file exceeded the max allowed size of {0}"
 msgstr ""
 
 #: Model/Table/BadgesTable.php:86
-#: Model/Table/UsersTable.php:186
+#: Model/Table/UsersTable.php:190
 msgid "The file exceeded the max allowed dimension. Max height : {0} Max width : {1}"
 msgstr ""
 
@@ -310,34 +330,34 @@ msgstr ""
 msgid "Please, {0} characters minimum for your comment."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:64
+#: Model/Table/BlogArticlesTable.php:68
 msgid "You must select a category."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:68
-#: Model/Table/BlogCategoriesTable.php:44
+#: Model/Table/BlogArticlesTable.php:72
+#: Model/Table/BlogCategoriesTable.php:45
 msgid "The title is required."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:73
-#: Model/Table/BlogCategoriesTable.php:49
+#: Model/Table/BlogArticlesTable.php:77
+#: Model/Table/BlogCategoriesTable.php:50
 msgid "This title is already used."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:77
-#: Model/Table/BlogCategoriesTable.php:53
+#: Model/Table/BlogArticlesTable.php:81
+#: Model/Table/BlogCategoriesTable.php:54
 msgid "Please, {0} characters minimum for the title."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:80
+#: Model/Table/BlogArticlesTable.php:84
 msgid "The content is required."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:83
+#: Model/Table/BlogArticlesTable.php:87
 msgid "Please, {0} characters minimum for the content."
 msgstr ""
 
-#: Model/Table/BlogArticlesTable.php:88
+#: Model/Table/BlogArticlesTable.php:92
 msgid "Incorrect value, please do not attempt to modify the HTML, little hacker. ;)"
 msgstr ""
 
@@ -357,7 +377,7 @@ msgstr ""
 msgid "The file exceeded the max allowed size of {0}."
 msgstr ""
 
-#: Model/Table/BlogCategoriesTable.php:59
+#: Model/Table/BlogCategoriesTable.php:60
 msgid "Please, {0} characters maximum for the description."
 msgstr ""
 
@@ -385,79 +405,79 @@ msgstr ""
 msgid "You have unlock the badge \"{0}\"."
 msgstr ""
 
-#: Model/Table/UsersTable.php:92;296
+#: Model/Table/UsersTable.php:96;300
 msgid "You must set an username"
 msgstr ""
 
-#: Model/Table/UsersTable.php:97;301
+#: Model/Table/UsersTable.php:101;305
 msgid "This username is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:101;305
+#: Model/Table/UsersTable.php:105;309
 msgid "Only alphanumeric characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:105;309
+#: Model/Table/UsersTable.php:109;313
 msgid "Your username must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:108
+#: Model/Table/UsersTable.php:112
 msgid "You must specify your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:109;244;270
+#: Model/Table/UsersTable.php:113;248;274
 msgid "You must specify your password (confirmation)."
 msgstr ""
 
-#: Model/Table/UsersTable.php:113;248;274
+#: Model/Table/UsersTable.php:117;252;278
 msgid "Your password (confirmation) must be between {0} and {1} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:119
+#: Model/Table/UsersTable.php:123
 msgid "Your password confirm must match with your password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:127;318
+#: Model/Table/UsersTable.php:131;322
 msgid "This E-mail is already used."
 msgstr ""
 
-#: Model/Table/UsersTable.php:153
+#: Model/Table/UsersTable.php:157
 msgid "Your First Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:158
+#: Model/Table/UsersTable.php:162
 msgid "Your Last Name can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:171
+#: Model/Table/UsersTable.php:175
 msgid "The extensions allowed are {0}."
 msgstr ""
 
-#: Model/Table/UsersTable.php:196
+#: Model/Table/UsersTable.php:200
 msgid "Your Facebook can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:201
+#: Model/Table/UsersTable.php:205
 msgid "Your Twitter can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:208;216
+#: Model/Table/UsersTable.php:212;220
 msgid "Your biography can not contain more than {0} characters."
 msgstr ""
 
-#: Model/Table/UsersTable.php:231
+#: Model/Table/UsersTable.php:235
 msgid "Your E-mail can not be empty."
 msgstr ""
 
-#: Model/Table/UsersTable.php:240
+#: Model/Table/UsersTable.php:244
 msgid "This E-mail is already used, please choose another E-mail."
 msgstr ""
 
-#: Model/Table/UsersTable.php:243;269
+#: Model/Table/UsersTable.php:247;273
 msgid "You must specify your new password."
 msgstr ""
 
-#: Model/Table/UsersTable.php:254;280
+#: Model/Table/UsersTable.php:258;284
 msgid "Your password confirm must match with your new password"
 msgstr ""
 
@@ -489,7 +509,7 @@ msgstr ""
 #: Template/Users/account.ctp:24
 #: Template/Users/index.ctp:9
 #: Template/Users/notifications.ctp:10
-#: Template/Users/profile.ctp:70
+#: Template/Users/profile.ctp:76
 #: Template/Users/security.ctp:10
 #: Template/Users/settings.ctp:10
 msgid "Home"
@@ -527,7 +547,7 @@ msgid "No articles were found for this date."
 msgstr ""
 
 #: Template/Blog/archive.ctp:85
-#: Template/Blog/article.ctp:93;386
+#: Template/Blog/article.ctp:99;392
 #: Template/Blog/category.ctp:73
 #: Template/Blog/index.ctp:78
 #: Template/Blog/search.ctp:68
@@ -537,7 +557,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: Template/Blog/archive.ctp:89
-#: Template/Blog/article.ctp:97
+#: Template/Blog/article.ctp:103
 #: Template/Blog/category.ctp:77
 #: Template/Blog/index.ctp:82
 #: Template/Blog/search.ctp:72
@@ -546,61 +566,61 @@ msgid_plural "{0} Likes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Template/Blog/article.ctp:139
+#: Template/Blog/article.ctp:145
 msgid "File Size :"
 msgstr ""
 
-#: Template/Blog/article.ctp:147
+#: Template/Blog/article.ctp:153
 msgid "Download :"
 msgstr ""
 
-#: Template/Blog/article.ctp:161;164
+#: Template/Blog/article.ctp:167;170
 msgid "{0} Reply"
 msgstr ""
 
-#: Template/Blog/article.ctp:290
+#: Template/Blog/article.ctp:296
 msgid "Related Articles"
 msgstr ""
 
-#: Template/Blog/article.ctp:357
-#: Template/Pages/home.ctp:444
+#: Template/Blog/article.ctp:363
+#: Template/Pages/home.ctp:273
 msgid "Read More {0}"
 msgstr ""
 
-#: Template/Blog/article.ctp:429;443
+#: Template/Blog/article.ctp:435;449
 msgid "{0} Quote"
 msgstr ""
 
-#: Template/Blog/article.ctp:458
+#: Template/Blog/article.ctp:464
 msgid "{0} Edit"
 msgstr ""
 
-#: Template/Blog/article.ctp:478;551
+#: Template/Blog/article.ctp:483;556
 msgid "{0} Delete"
 msgstr ""
 
-#: Template/Blog/article.ctp:507
+#: Template/Blog/article.ctp:512
 msgid "Leave a Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:524
+#: Template/Blog/article.ctp:529
 msgid "{0} Post Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:541
+#: Template/Blog/article.ctp:546
 #: Template/Users/settings.ctp:86;111
 msgid "Close"
 msgstr ""
 
-#: Template/Blog/article.ctp:543
+#: Template/Blog/article.ctp:548
 msgid "Delete a Comment"
 msgstr ""
 
-#: Template/Blog/article.ctp:547
+#: Template/Blog/article.ctp:552
 msgid "Are you sure you want delete this comment ?"
 msgstr ""
 
-#: Template/Blog/article.ctp:552
+#: Template/Blog/article.ctp:557
 msgid "{0} Close"
 msgstr ""
 
@@ -774,7 +794,7 @@ msgid "Social"
 msgstr ""
 
 #: Template/Conversations/view.ctp:69
-#: Template/Users/profile.ctp:106
+#: Template/Users/profile.ctp:112
 msgid "Joined"
 msgstr ""
 
@@ -870,6 +890,26 @@ msgstr ""
 msgid "Welcome on Xeta"
 msgstr ""
 
+#: Template/Element/Blog/polls.ctp:27
+msgid "{0} Vote"
+msgstr ""
+
+#: Template/Element/Blog/polls.ctp:53
+msgid "This poll expire in"
+msgstr ""
+
+#: Template/Element/Blog/polls.ctp:61
+msgid "This poll is expired !"
+msgstr ""
+
+#: Template/Element/Blog/polls.ctp:70
+msgid "Total votes : {0}"
+msgstr ""
+
+#: Template/Element/Blog/polls.ctp:73
+msgid "You have already voted ! (You voted <strong>{0}</strong>)"
+msgstr ""
+
 #: Template/Element/Users/sidebar.ctp:8
 msgid "{0} Account {1}"
 msgstr ""
@@ -909,7 +949,7 @@ msgid "Xeta's members"
 msgstr ""
 
 #: Template/Groups/view.ctp:12
-#: Template/Pages/home.ctp:514
+#: Template/Pages/home.ctp:343
 #: Template/Tfa/configure.ctp:13
 #: Template/Tfa/enable.ctp:13
 #: Template/Tfa/index.ctp:17
@@ -918,7 +958,7 @@ msgstr ""
 #: Template/Users/account.ctp:27
 #: Template/Users/index.ctp:12
 #: Template/Users/notifications.ctp:13
-#: Template/Users/profile.ctp:73
+#: Template/Users/profile.ctp:79
 #: Template/Users/security.ctp:13
 #: Template/Users/settings.ctp:13
 msgid "Users"
@@ -964,64 +1004,64 @@ msgstr ""
 msgid "Visit his profile."
 msgstr ""
 
-#: Template/Pages/home.ctp:307
+#: Template/Pages/home.ctp:137
 msgid "Welcome on {0} !"
 msgstr ""
 
-#: Template/Pages/home.ctp:311
+#: Template/Pages/home.ctp:141
 msgid "Welcome to my personal website ! I use this site as my personal blog and for try my  experiences in development."
 msgstr ""
 
-#: Template/Pages/home.ctp:316
+#: Template/Pages/home.ctp:146
 msgid "{0} Sign Up now"
 msgstr ""
 
-#: Template/Pages/home.ctp:317;319
+#: Template/Pages/home.ctp:147;149
 msgid "{0} Visit the Blog"
 msgstr ""
 
-#: Template/Pages/home.ctp:351
+#: Template/Pages/home.ctp:180
 msgid "Open Source"
 msgstr ""
 
-#: Template/Pages/home.ctp:354
+#: Template/Pages/home.ctp:183
 msgid "The code source of this website is open source and available on {0}. If you want to contribute, feel free to do a PR."
 msgstr ""
 
-#: Template/Pages/home.ctp:371
+#: Template/Pages/home.ctp:200
 msgid "Experiences"
 msgstr ""
 
-#: Template/Pages/home.ctp:374
+#: Template/Pages/home.ctp:203
 msgid "I use this site for my personal experiences in development, to try new things like JS libraries, or PHP libraries."
 msgstr ""
 
-#: Template/Pages/home.ctp:391
+#: Template/Pages/home.ctp:220
 msgid "Interact"
 msgstr ""
 
-#: Template/Pages/home.ctp:394
+#: Template/Pages/home.ctp:223
 msgid "You can interact with {0}'s members in the blog or directly with me in the comments of an article."
 msgstr ""
 
-#: Template/Pages/home.ctp:405
+#: Template/Pages/home.ctp:234
 msgid "Latest Articles"
 msgstr ""
 
-#: Template/Pages/home.ctp:529
-msgid "Premium"
+#: Template/Pages/home.ctp:358
+msgid "Articles"
 msgstr ""
 
-#: Template/Pages/home.ctp:544
+#: Template/Pages/home.ctp:373
 #: Template/Users/profile.ctp:41
 msgid "Comments"
 msgstr ""
 
-#: Template/Pages/home.ctp:559
+#: Template/Pages/home.ctp:388
 msgid "Likes"
 msgstr ""
 
-#: Template/Pages/home.ctp:573
+#: Template/Pages/home.ctp:402
 msgid "Latest Comments"
 msgstr ""
 
@@ -1532,71 +1572,71 @@ msgstr ""
 msgid "{0}'s profile"
 msgstr ""
 
-#: Template/Users/profile.ctp:18;19;89;90
+#: Template/Users/profile.ctp:18;19;95;96
 msgid "Online"
 msgstr ""
 
-#: Template/Users/profile.ctp:21;22;92;93
+#: Template/Users/profile.ctp:21;22;98;99
 msgid "Offline"
 msgstr ""
 
-#: Template/Users/profile.ctp:112
+#: Template/Users/profile.ctp:60
+msgid "{0} Edit my profile"
+msgstr ""
+
+#: Template/Users/profile.ctp:118
 msgid "Send a Message"
 msgstr ""
 
-#: Template/Users/profile.ctp:134
-msgid "Edit my profile {0}"
-msgstr ""
-
-#: Template/Users/profile.ctp:139
+#: Template/Users/profile.ctp:141
 msgid "{0} Edit this User"
 msgstr ""
 
-#: Template/Users/profile.ctp:153
+#: Template/Users/profile.ctp:155
 msgid "Your Biography"
 msgstr ""
 
-#: Template/Users/profile.ctp:155
+#: Template/Users/profile.ctp:157
 msgid "His Biography"
 msgstr ""
 
-#: Template/Users/profile.ctp:165
+#: Template/Users/profile.ctp:167
 msgid "You don't have set a biography."
 msgstr ""
 
-#: Template/Users/profile.ctp:166
+#: Template/Users/profile.ctp:168
 msgid "{0} Add one now"
 msgstr ""
 
-#: Template/Users/profile.ctp:168
+#: Template/Users/profile.ctp:170
 msgid "This user hasn't set a biography yet."
 msgstr ""
 
-#: Template/Users/profile.ctp:177
+#: Template/Users/profile.ctp:179
 msgid "Your Badges"
 msgstr ""
 
-#: Template/Users/profile.ctp:179
+#: Template/Users/profile.ctp:181
 msgid "His Badges"
 msgstr ""
 
-#: Template/Users/profile.ctp:200
+#: Template/Users/profile.ctp:202
 msgid "Your Lastest Articles in the Blog"
 msgstr ""
 
-#: Template/Users/profile.ctp:202
+#: Template/Users/profile.ctp:204
 msgid "His Lastest Articles in the Blog"
 msgstr ""
 
-#: Template/Users/profile.ctp:227;266
+#: Template/Users/profile.ctp:229;268
 msgid "Created at {0}"
 msgstr ""
 
-#: Template/Users/profile.ctp:239
+#: Template/Users/profile.ctp:241
 msgid "Your Lastest Comments in the Blog"
 msgstr ""
 
-#: Template/Users/profile.ctp:241
+#: Template/Users/profile.ctp:243
 msgid "His Lastest Comments in the Blog"
 msgstr ""
 
