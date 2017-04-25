@@ -1,10 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\Lib\IntegrationTestCaseTrait;
 use Cake\TestSuite\IntegrationTestCase;
 
 class BlogControllerTest extends IntegrationTestCase
 {
+    use IntegrationTestCaseTrait;
+
     /**
      * Fixtures
      *
@@ -354,7 +357,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('Thanks for');
-        $this->assertResponseContains('"error": false');
+        $this->assertEqualsJson(false, 'error', 'Should not thrown an error.');
     }
 
     /**
@@ -385,7 +388,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('You already like this article !');
-        $this->assertResponseContains('"error": true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 
     /**
@@ -405,7 +408,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1337]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('This article doesn\u0027t exist !');
-        $this->assertResponseContains('"error": true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 
     /**
@@ -424,7 +427,7 @@ class BlogControllerTest extends IntegrationTestCase
 
         $this->get(['controller' => 'blog', 'action' => 'articleUnlike', 1]);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false');
+        $this->assertEqualsJson(false, 'error', 'Should not thrown an error.');
     }
 
     /**
@@ -455,7 +458,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleUnlike', 1337]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('You don\u0027t like this article !');
-        $this->assertResponseContains('"error": true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 
     /**

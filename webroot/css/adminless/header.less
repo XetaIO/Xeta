@@ -16,11 +16,9 @@
     .navbar-header {
         width: 195px;
         border-right: 1px solid #3F5061;
+        padding-left: 35.5px;
 
         .navbar-brand {
-            width: initial;
-            margin-left: 35px;
-            padding: 11px 0;
         }
     }
 
@@ -52,12 +50,22 @@
     .navbar-admin {
         .navbar-header {
             width: inherit;
+            padding-left: 0px;
 
             .navbar-brand {
-                outline: none;
-                fill: #ffffff;
-                height: 38px;
+                height: 40px;
                 margin: 6px 9px 6px -6px;
+                padding: 5px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-admin {
+        .navbar-header {
+            .navbar-brand {
+                margin-left: -15px;
             }
         }
     }
@@ -72,7 +80,7 @@
                 margin: 0;
                 border-right: 1px solid #3f5061;
                 height: 50px;
-                padding: 6px 9px;
+                padding: 6px 10px;
             }
         }
 

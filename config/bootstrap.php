@@ -16,22 +16,22 @@
 /*
  * You can remove this if you are confident that your PHP version is sufficient.
  */
-if (version_compare(PHP_VERSION, '5.5.9') < 0) {
-    trigger_error('Your PHP version must be equal or higher than 5.5.9 to use CakePHP.', E_USER_ERROR);
+if (version_compare(PHP_VERSION, '5.6.0') < 0) {
+    trigger_error('Your PHP version must be equal or higher than 5.6.0 to use Xeta.', E_USER_ERROR);
 }
 
 /*
  *  You can remove this if you are confident you have intl installed.
  */
 if (!extension_loaded('intl')) {
-    trigger_error('You must enable the intl extension to use CakePHP.', E_USER_ERROR);
+    trigger_error('You must enable the intl extension to use Xeta.', E_USER_ERROR);
 }
 
 /*
  * You can remove this if you are confident you have mbstring installed.
  */
 if (!extension_loaded('mbstring')) {
-    trigger_error('You must enable the mbstring extension to use CakePHP.', E_USER_ERROR);
+    trigger_error('You must enable the mbstring extension to use Xeta.', E_USER_ERROR);
 }
 
 /*
@@ -156,11 +156,11 @@ if (!Configure::read('App.fullBaseUrl')) {
     unset($httpHost, $s);
 }
 
-Cache::config(Configure::consume('Cache'));
-ConnectionManager::config(Configure::consume('Datasources'));
-Email::configTransport(Configure::consume('EmailTransport'));
-Email::config(Configure::consume('Email'));
-Log::config(Configure::consume('Log'));
+Cache::setConfig(Configure::consume('Cache'));
+ConnectionManager::setConfig(Configure::consume('Datasources'));
+Email::setConfigTransport(Configure::consume('EmailTransport'));
+Email::setConfig(Configure::consume('Email'));
+Log::setConfig(Configure::consume('Log'));
 Security::salt(Configure::consume('Security.salt'));
 
 /**
@@ -168,10 +168,12 @@ Security::salt(Configure::consume('Security.salt'));
  */
 Request::addDetector('mobile', function ($request) {
     $detector = new \Detection\MobileDetect();
+
     return $detector->isMobile();
 });
 Request::addDetector('tablet', function ($request) {
     $detector = new \Detection\MobileDetect();
+
     return $detector->isTablet();
 });
 
@@ -188,6 +190,8 @@ Type::build('time')
 Type::build('date')
     ->useImmutable();
 Type::build('datetime')
+    ->useImmutable();
+Type::build('timestamp')
     ->useImmutable();
 
 /**

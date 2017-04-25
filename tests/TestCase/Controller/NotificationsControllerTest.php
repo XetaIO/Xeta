@@ -1,11 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\Lib\IntegrationTestCaseTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class NotificationsControllerTest extends IntegrationTestCase
 {
+    use IntegrationTestCaseTrait;
+
     /**
      * Fixtures
      *
@@ -81,7 +84,7 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false');
+        $this->assertEqualsJson(false, 'error', 'Should not thrown an error.');
 
         $this->configRequest([
             'headers' => [
@@ -92,7 +95,7 @@ class NotificationsControllerTest extends IntegrationTestCase
         //Test markAsRead when the notif is already readed
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false', 'Should not throw an error.');
+        $this->assertEqualsJson(false, 'error', 'Should not thrown an error.');
     }
 
     /**
@@ -137,7 +140,7 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 
     /**
@@ -161,6 +164,6 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 }
