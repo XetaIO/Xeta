@@ -1,11 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\Lib\IntegrationTestCaseTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class ConversationsControllerTest extends IntegrationTestCase
 {
+    use IntegrationTestCaseTrait;
+
     /**
      * Fixtures
      *
@@ -340,7 +343,7 @@ class ConversationsControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'conversations', 'action' => 'quote', 1]);
         $this->assertResponseOk();
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error":false');
+        $this->assertEqualsJson(false, 'error', 'Should not thrown an error.');
     }
 
     /**
@@ -359,7 +362,7 @@ class ConversationsControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'conversations', 'action' => 'quote', 2]);
         $this->assertResponseOk();
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error":true');
+        $this->assertEqualsJson(true, 'error', 'Should thrown an error.');
     }
 
     /**
