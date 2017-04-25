@@ -39,10 +39,10 @@ class Application extends BaseApplication
     {
         $middleware
             // Handle plugin/theme assets like CakePHP normally does.
-            ->add(new AssetMiddleware())
+            ->add(AssetMiddleware::class)
 
             // Apply routing
-            ->add(new RoutingMiddleware())
+            ->add(RoutingMiddleware::class)
 
             // Handle the language switching from the Accept-Language header
             ->add(new LocaleSelectorMiddleware(['locales' => ['en_US', 'en', 'fr_FR', 'fr']]));

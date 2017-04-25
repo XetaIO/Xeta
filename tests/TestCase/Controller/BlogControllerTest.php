@@ -354,7 +354,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('Thanks for');
-        $this->assertResponseContains('"error": false');
+        $this->assertResponseContains('"error":false');
     }
 
     /**
@@ -385,7 +385,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('You already like this article !');
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 
     /**
@@ -405,7 +405,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleLike', 1337]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('This article doesn\u0027t exist !');
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 
     /**
@@ -424,7 +424,7 @@ class BlogControllerTest extends IntegrationTestCase
 
         $this->get(['controller' => 'blog', 'action' => 'articleUnlike', 1]);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false');
+        $this->assertResponseContains('"error":false');
     }
 
     /**
@@ -455,7 +455,7 @@ class BlogControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'blog', 'action' => 'articleUnlike', 1337]);
         $this->assertJson($this->_response->body());
         $this->assertResponseContains('You don\u0027t like this article !');
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 
     /**

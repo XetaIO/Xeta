@@ -81,7 +81,7 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false');
+        $this->assertResponseContains('"error":false');
 
         $this->configRequest([
             'headers' => [
@@ -92,7 +92,7 @@ class NotificationsControllerTest extends IntegrationTestCase
         //Test markAsRead when the notif is already readed
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false', 'Should not throw an error.');
+        $this->assertResponseContains('"error":false', 'Should not throw an error.');
     }
 
     /**
@@ -137,7 +137,7 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 
     /**
@@ -161,6 +161,6 @@ class NotificationsControllerTest extends IntegrationTestCase
 
         $this->post(['controller' => 'notifications', 'action' => 'markAsRead'], $data);
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 }

@@ -340,7 +340,7 @@ class ConversationsControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'conversations', 'action' => 'quote', 1]);
         $this->assertResponseOk();
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": false');
+        $this->assertResponseContains('"error":false');
     }
 
     /**
@@ -359,7 +359,7 @@ class ConversationsControllerTest extends IntegrationTestCase
         $this->get(['controller' => 'conversations', 'action' => 'quote', 2]);
         $this->assertResponseOk();
         $this->assertJson($this->_response->body());
-        $this->assertResponseContains('"error": true');
+        $this->assertResponseContains('"error":true');
     }
 
     /**
